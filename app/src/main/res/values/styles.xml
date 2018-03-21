@@ -1,0 +1,40 @@
+<resources>
+
+    <!--  FFFFFF color -->
+    <style name="label_white_very_low">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_very_low</item>
+    </style>
+
+    <style name="label_white_low">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_low</item>
+    </style>
+
+    <style name="label_white_small">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="label_white">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="label_white_medium">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="label_white_large">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="label_white_vlarge">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_vlarge</item>
+    </style>
+
+
+</resources>

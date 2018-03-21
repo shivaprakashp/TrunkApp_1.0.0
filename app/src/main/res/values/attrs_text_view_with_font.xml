@@ -1,0 +1,15 @@
+<resources>
+    <declare-styleable name="font">
+        <attr name="type">
+            <enum name="bold" value="1"/>
+            <enum name="italic" value="2"/>
+        </attr>
+        <attr name="name">
+            <enum name="Montserrat-Light" value="1"/>
+            <enum name="Montserrat-Medium" value="2"/>
+            <enum name="Montserrat-Regular" value="3"/>
+            <enum name="Montserrat-Bold" value="4"/>
+        </attr>
+    </declare-styleable>
+</resources>
+
