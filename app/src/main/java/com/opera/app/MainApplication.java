@@ -41,7 +41,7 @@ public class MainApplication extends Application {
     private void initDagger(){
         apiComponent = DaggerApiComponent.builder()
                 .appModule(new AppModule(this))
-                .apiModule(new ApiModule("https://api.androidhive.info/"))
+                .apiModule(new ApiModule(UrlUtils.baseUrl))
                 .build();
 
     }

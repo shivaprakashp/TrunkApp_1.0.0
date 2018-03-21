@@ -6,5 +6,5 @@ package com.opera.app;
 
 public class UrlUtils {
 
-    public static String baseUrl = "I am uat version";
+    public static String baseUrl = "https://api.androidhive.info/";
 }
