@@ -70,6 +70,7 @@
             </LinearLayout>
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_forgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -115,8 +116,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="bottom"
                 android:text="@string/continue_as_guest"
-                android:textColor="@color/colorWhite"
-                />
+                android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
 
