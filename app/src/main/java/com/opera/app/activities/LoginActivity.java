@@ -9,24 +9,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.opera.app.BaseActivity;
 import com.opera.app.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private Intent in;
     private Activity mActivity;
+
+    @BindView(R.id.tv_forgotPassword)
+    TextView mTextForgotPwd;
+
+    @BindView(R.id.btnRegister)
+    Button mButtonRegister;
+
+    @BindView(R.id.btnLogin)
+    Button mButtonLogin;
+
+    @BindView(R.id.textView_continue_as_guest)
+    TextView mTextContinue_as_guest;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initView();
+    }
+
+    private void initView() {
         mActivity = LoginActivity.this;
+
+        mTextForgotPwd.setOnClickListener(this);
+        mButtonRegister.setOnClickListener(this);
+        mButtonLogin.setOnClickListener(this);
+        mTextContinue_as_guest.setOnClickListener(this);
     }
 
     @Override

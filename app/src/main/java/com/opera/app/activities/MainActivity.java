@@ -20,6 +20,7 @@ import com.opera.app.fragments.controller.FragNavController;
 
 import butterknife.BindArray;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements
         FragNavController.TransactionListener, FragNavController.RootFragmentListener{
