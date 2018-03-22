@@ -11,6 +11,11 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.BaseFragment;
+import com.opera.app.fragments.DiningFragment;
+import com.opera.app.fragments.EventsFragment;
+import com.opera.app.fragments.HomeFragment;
+import com.opera.app.fragments.ListenFragment;
+import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
 
 import butterknife.BindArray;
@@ -42,6 +47,25 @@ public class MainActivity extends BaseActivity implements
 
         initTabs();
         initFragmentControl(savedInstanceState);
+
+        bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switchTab(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                mNavController.clearStack();
+                switchTab(tab.getPosition());
+
+            }
+        });
     }
 
     private void initTabs(){
@@ -80,17 +104,43 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public Fragment getRootFragment(int index) {
-        return null;
+        switch (index) {
+
+            case FragNavController.TAB1:
+                return new HomeFragment();
+            case FragNavController.TAB2:
+                return new EventsFragment();
+            case FragNavController.TAB3:
+                return new DiningFragment();
+            case FragNavController.TAB4:
+                return new ListenFragment();
+            case FragNavController.TAB5:
+                return new MenuFragment();
+        }
+        throw new IllegalStateException("Need to send an index that we know");
     }
+
 
     @Override
     public void onTabTransaction(Fragment fragment, int index) {
+// If we have a backstack, show the back button
+        if (getSupportActionBar() != null && mNavController != null) {
 
+            //Toolbar have to implement here
+            //updateToolbar();
+
+        }
     }
 
     @Override
     public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
+//do fragmentty stuff. Maybe change title, I'm not going to tell you how to live your life
+        // If we have a backstack, show the back button
+        if (getSupportActionBar() != null && mNavController != null) {
+//Toolbar have to implement here
+            //updateToolbar();
 
+        }
     }
 
     @Override
