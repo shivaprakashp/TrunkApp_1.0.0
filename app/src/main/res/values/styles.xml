@@ -36,21 +36,4 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
-
-    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/black</item>
-    </style>
-
-    <style name="common_btn_style" parent="Theme.AppCompat">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:background">@drawable/btn_ripple_effect</item>
-    </style>
-
-    <style name="transparent_btn_style" parent="Theme.AppCompat">
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:background">@drawable/transparent_btn_ripple</item>
-    </style>
 </resources>

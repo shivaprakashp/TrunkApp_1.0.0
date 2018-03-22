@@ -17,4 +17,13 @@
 
     </style>
 
+    <style name="common_btn_style" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/btn_ripple_effect</item>
+    </style>
+
+    <style name="transparent_btn_style" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/transparent_btn_ripple</item>
+    </style>
 </resources>
