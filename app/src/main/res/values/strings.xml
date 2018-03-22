@@ -2,4 +2,13 @@
     <string name="app_name">TrunkApp</string>
     <string name="loading">Loading...</string>
 
+    <array name="tab_name">
+        <item>Home</item>
+        <item>Events</item>
+        <item>Dining</item>
+        <item>Listen</item>
+        <item>Menu</item>
+    </array>
+
+
 </resources>
