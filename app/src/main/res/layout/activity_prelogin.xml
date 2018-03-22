@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_dubai_opera_logo" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/textView_continue_as_guest"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.35"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            style="@style/transparent_btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:text="@string/create_an_account"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/common_btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/btnCreateAccount"
+            android:layout_weight="1"
+            android:text="@string/already_have_an_account"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/textView_continue_as_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="@string/continue_as_guest"
+            android:textColor="@color/colorWhite" />
+
+    </RelativeLayout>
+
+</LinearLayout>
