@@ -1,6 +1,6 @@
 package com.opera.app.dagger;
 
-import com.opera.app.MainActivity;
+import com.opera.app.activities.MainActivity;
 
 import javax.inject.Singleton;
 
