@@ -99,6 +99,7 @@
                 android:textColor="@color/colorWhite" />
 
             <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnRegister"
                 style="@style/transparent_btn_style"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
