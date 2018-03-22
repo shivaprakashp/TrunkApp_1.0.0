@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">TrunkApp</string>
     <string name="loading">Loading...</string>
+    <string name="english">English</string>
+    <string name="arabic">عربى</string>
+    <string name="already_have_an_account">Already have an account? Login</string>
+    <string name="continue_as_guest"><u>continue as guest</u></string>
+    <string name="create_an_account">Create an account</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="dont_have_an_account">Don\'t have an account? Create one</string>
 
 </resources>
