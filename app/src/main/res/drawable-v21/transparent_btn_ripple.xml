@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:color="@color/white"
+    android:color="@color/colorWhite"
     tools:targetApi="lollipop">
     <!--<item android:drawable="@android:color/transparent" />--> <!-- default -->
 
@@ -11,7 +11,7 @@
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="0.5dp"
-                android:color="@color/white" />
+                android:color="@color/colorWhite" />
         </shape>
     </item>
 

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/allow_notification"
+                android:textColor="@color/black" />
+
+            <Switch
+                android:id="@+id/notificationSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:checked="true" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/allow_promotion"
+                android:textColor="@color/black" />
+
+            <Switch
+                android:id="@+id/promotionSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:checked="false" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/allow_feedback"
+                android:textColor="@color/black" />
+
+            <Switch
+                android:id="@+id/feedbackSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:checked="false" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/weekly_newsletters"
+                android:textColor="@color/black" />
+
+            <Switch
+                android:id="@+id/newletterSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:checked="false" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/reminder_booked_show"
+                android:textColor="@color/black" />
+
+            <Switch
+                android:id="@+id/reminderSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:checked="true" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="1.5"
+                android:text="@string/language"
+                android:textColor="@color/black" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/englishSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:background="@color/button_bg"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/english"
+                android:textColor="@color/colorWhite" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/arabicSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:background="@color/dark_gray"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/arabic_in_english"
+                android:textColor="@color/colorWhite"
+
+                />
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:text="@string/logout"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_gray" />
+
+    </LinearLayout>
+</ScrollView>

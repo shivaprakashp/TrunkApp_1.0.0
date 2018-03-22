@@ -21,21 +21,21 @@
         android:layout_marginRight="30dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnEnglish"
             style="@style/common_btn_style"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="@string/english"
             android:textColor="@color/colorWhite" />
 
-        <Button
+        <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnArabic"
             style="@style/common_btn_style"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="@string/arabic"

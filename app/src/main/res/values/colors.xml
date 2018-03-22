@@ -11,4 +11,5 @@
     <color name="dark_gray">#9E9E9E</color>
     <color name="colorBurgendy">#782327</color>
     <color name="colorBlack">#000000</color>
+    <color name="transparent_black">#D9000000</color>
 </resources>

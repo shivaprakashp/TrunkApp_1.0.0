@@ -29,27 +29,27 @@
         android:layout_weight="0.35"
         android:orientation="vertical">
 
-        <Button
+        <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnCreateAccount"
             style="@style/transparent_btn_style"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
             android:text="@string/create_an_account"
             android:textColor="@color/colorWhite" />
 
-        <Button
+        <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnLogin"
             style="@style/common_btn_style"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:layout_below="@+id/btnCreateAccount"
             android:layout_weight="1"
             android:text="@string/already_have_an_account"
             android:textColor="@color/colorWhite" />
 
-        <TextView
+        <com.opera.app.customwidget.TextViewWithFont
             android:id="@+id/textView_continue_as_guest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
