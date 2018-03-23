@@ -40,34 +40,18 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <EditText
-                    android:id="@+id/editUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/username"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-                <!--android:textCursorDrawable="@null"
-                android:textDirection="rtl"-->
+                <include
+                    android:id="@+id/login_username"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:layout_margin="5dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/editPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/login_password"
+                    layout="@layout/include_edittext" />
 
             </LinearLayout>
 

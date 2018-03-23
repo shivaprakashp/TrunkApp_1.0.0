@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
@@ -44,11 +45,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.textView_continue_as_guest)
     TextView mTextContinue_as_guest;
 
-    @BindView(R.id.editUsername)
-    EditText mEditTextUsername;
+    @BindView(R.id.login_username)
+    View login_username;
 
-    @BindView(R.id.editPassword)
-    EditText mEditTextPassword;
+    @BindView(R.id.login_password)
+    View login_password;
 
 
     @Override
@@ -68,19 +69,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        mTextForgotPwd.setOnClickListener(this);
+        //button
         mButtonRegister.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
+
+        //textview
+        mTextForgotPwd.setOnClickListener(this);
         mTextContinue_as_guest.setOnClickListener(this);
+
+        //edittext
+        EditTextWithFont username = (EditTextWithFont) login_username.findViewById(R.id.edt);
+        username.setHint(getString(R.string.username));
+
+        EditTextWithFont password = (EditTextWithFont) login_password.findViewById(R.id.edt);
+        password.setHint(getString(R.string.password));
+
 
         if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic)) {
             mButtonLogin.setText(getResources().getString(R.string.login_arabic));
             mButtonRegister.setText(getResources().getString(R.string.dont_have_an_account_arabic));
             mTextContinue_as_guest.setText(getResources().getString(R.string.continue_as_guest_arabic));
             mTextForgotPwd.setText(getResources().getString(R.string.forgot_password_arabic));
-            mEditTextUsername.setHint(getResources().getString(R.string.username_arabic));
-            mEditTextPassword.setHint(getResources().getString(R.string.password_arabic));
-            mEditTextPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+            username.setHint(getResources().getString(R.string.username_arabic));
+            password.setHint(getResources().getString(R.string.password_arabic));
+            password.setInputType(InputType.TYPE_CLASS_TEXT);
         }
     }
 
