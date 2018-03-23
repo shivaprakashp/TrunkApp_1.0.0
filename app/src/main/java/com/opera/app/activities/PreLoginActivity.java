@@ -50,7 +50,7 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
         mTvContinueAsGuest.setOnClickListener(this);
 
         if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic))
-            ;
+
         {
             mButtonCreateAccount.setText(getResources().getString(R.string.create_an_account_arabic));
             mButtonLogin.setText(getResources().getString(R.string.already_have_an_account_arabic));
