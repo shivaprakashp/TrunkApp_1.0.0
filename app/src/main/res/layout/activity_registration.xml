@@ -257,14 +257,16 @@
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnCreateAccount"
-                style="@style/common_btn_style"
+                style="@style/label_white_medium"
+                android:background="@drawable/btn_ripple_effect"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="@string/create_account"
                 android:textColor="@color/colorWhite" />
 
             <com.opera.app.customwidget.ButtonWithFont
-                style="@style/transparent_btn_style"
+                style="@style/label_white_medium"
+                android:background="@drawable/transparent_btn_ripple"
                 android:layout_width="match_parent"
                 android:id="@+id/btnLogin"
                 android:layout_height="40dp"

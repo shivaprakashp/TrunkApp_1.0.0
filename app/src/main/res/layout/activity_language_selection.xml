@@ -44,12 +44,12 @@
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnArabic"
                 style="@style/label_white_medium"
+                android:background="@drawable/btn_ripple_effect"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/arabic"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_ripple_effect"/>
+                android:layout_margin="5dp"/>
 
         </LinearLayout>
     </LinearLayout>
