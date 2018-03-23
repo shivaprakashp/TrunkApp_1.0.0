@@ -40,6 +40,7 @@
                 android:background="@drawable/btn_ripple_effect"
                 style="@style/label_white_medium"/>
 
+            
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnArabic"
                 style="@style/label_white_medium"
