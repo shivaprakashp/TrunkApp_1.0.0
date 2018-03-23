@@ -24,7 +24,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
 
     private Intent in;
     private Activity mActivity;
-    private OperaUtils mOperaUtils=new OperaUtils();
+    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.btnEnglish)
     Button mButtonEnglish;
@@ -35,13 +35,19 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_language_selection);
 
-        InitView();
+        mActivity = LanguageActivity.this;
+        if (!mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, "").equalsIgnoreCase("")) {
+            in = new Intent(mActivity, PreLoginActivity.class);
+            startActivity(in);
+            finish();
+        } else {
+            setContentView(R.layout.activity_language_selection);
+            InitView();
+        }
     }
 
     private void InitView() {
-        mActivity = LanguageActivity.this;
         mButtonEnglish.setOnClickListener(this);
         mButtonArabic.setOnClickListener(this);
     }
@@ -51,17 +57,19 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btnEnglish:
 
-                mOperaUtils.StoreInSharedPreference(mActivity,mOperaUtils.mSelectedLanguage,mOperaUtils.mLanguageEnglish);
+                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish);
                 in = new Intent(mActivity, PreLoginActivity.class);
                 startActivity(in);
+                finish();
 
                 break;
 
             case R.id.btnArabic:
 
-                mOperaUtils.StoreInSharedPreference(mActivity,mOperaUtils.mSelectedLanguage,mOperaUtils.mLanguageArabic);
+                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageArabic);
                 in = new Intent(mActivity, PreLoginActivity.class);
                 startActivity(in);
+                finish();
 
                 break;
         }

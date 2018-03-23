@@ -19,7 +19,7 @@ public class OperaUtils {
 
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
 
-    public static String mSelectedLanguage = "";
+    public static String mSelectedLanguage = "SelectedLanguage";
 
     public static String mLanguageEnglish = "English";
 

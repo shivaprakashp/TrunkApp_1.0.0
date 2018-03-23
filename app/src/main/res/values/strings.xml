@@ -10,10 +10,13 @@
     <string name="create_an_account">Create an account</string>
     <string name="create_an_account_arabic">انشئ حساب</string>
     <string name="forgot_password">Forgot password</string>
+    <string name="forgot_password_arabic">هل نسيت كلمة المرور</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="login_arabic">تسجيل الدخول</string>
     <string name="dont_have_an_account">Don\'t have an account? Create one</string>
+    <string name="dont_have_an_account_arabic">لا تملك حساب؟ اصنع واحدا</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -24,6 +27,7 @@
     </array>
 
     <string name="send">Send</string>
+    <string name="send_arabic">إرسال</string>
     <string name="email">Email Address*</string>
     <string name="pass">Password*</string>
     <string name="re_pass">Re-enter Password*</string>
@@ -85,6 +89,10 @@
     </array>
 
     <string name="privacyNpolicy">Privacy Policy</string>
+    <string name="username_arabic">اسم المستخدم</string>
+    <string name="password_arabic">كلمه السر</string>
+
+
     <array name="privacy_policy">
         <item>This policy describes the types of information we may collect from you or that you may provide when you visit the website www.dubaiopera.com(our “Website”) and our practices for collecting, using, maintaining, protecting and disclosing that information.</item>
         <item>This policy applies to information we collect:</item>

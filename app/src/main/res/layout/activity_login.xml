@@ -16,7 +16,7 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="90dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_dubai_opera_logo" />
@@ -41,6 +41,7 @@
                 android:padding="5dp">
 
                 <EditText
+                    android:id="@+id/editUsername"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@null"
@@ -59,6 +60,7 @@
                     android:background="@color/dark_gray" />
 
                 <EditText
+                    android:id="@+id/editPassword"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@null"
@@ -93,21 +95,23 @@
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
                 style="@style/label_white_medium"
-                android:background="@drawable/btn_ripple_effect"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:background="@drawable/btn_ripple_effect"
                 android:text="@string/login"
+                android:textAllCaps="false"
                 android:textColor="@color/colorWhite" />
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnRegister"
                 style="@style/label_white_medium"
-                android:background="@drawable/transparent_btn_ripple"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_below="@+id/btnLogin"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/dont_have_an_account"
+                android:textAllCaps="false"
                 android:textColor="@color/colorWhite" />
 
             <com.opera.app.customwidget.TextViewWithFont
