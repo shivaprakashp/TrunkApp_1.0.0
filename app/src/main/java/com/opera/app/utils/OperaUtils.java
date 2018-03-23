@@ -3,6 +3,7 @@ package com.opera.app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -23,6 +24,8 @@ public class OperaUtils {
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString(mKey, mValue);
         mEditor.commit();
+
+        Log.e("test","");
     }
 
     private String GetSharedPreferences(Activity mActivity, String mKey, String mDefauleValue) {
