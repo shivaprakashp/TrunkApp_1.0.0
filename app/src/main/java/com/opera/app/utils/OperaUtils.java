@@ -19,16 +19,22 @@ public class OperaUtils {
 
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
 
-    private void StoreInSharedPreference(Activity mActivity, String mKey, String mValue) {
+    public static String mSelectedLanguage = "";
+
+    public static String mLanguageEnglish = "English";
+
+    public static String mLanguageArabic = "Arabic";
+
+    public void StoreInSharedPreference(Activity mActivity, String mKey, String mValue) {
         SharedPreferences mPrefs = mActivity.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString(mKey, mValue);
         mEditor.commit();
 
-        Log.e("test","");
+        Log.e("test", "");
     }
 
-    private String GetSharedPreferences(Activity mActivity, String mKey, String mDefauleValue) {
+    public String GetSharedPreferences(Activity mActivity, String mKey, String mDefauleValue) {
         String mValue = "";
         SharedPreferences mPrefs = mActivity.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
         mValue = mPrefs.getString(mKey, mDefauleValue);

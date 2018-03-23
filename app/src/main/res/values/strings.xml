@@ -4,8 +4,11 @@
     <string name="english">English</string>
     <string name="arabic">عربى</string>
     <string name="already_have_an_account">Already have an account? Login</string>
+    <string name="already_have_an_account_arabic">هل لديك حساب؟ تسجيل الدخول</string>
     <string name="continue_as_guest"><u>continue as guest</u></string>
+    <string name="continue_as_guest_arabic"><u>تواصل كضيف</u></string>
     <string name="create_an_account">Create an account</string>
+    <string name="create_an_account_arabic">انشئ حساب</string>
     <string name="forgot_password">Forgot password</string>
     <string name="username">Username</string>
     <string name="password">Password</string>

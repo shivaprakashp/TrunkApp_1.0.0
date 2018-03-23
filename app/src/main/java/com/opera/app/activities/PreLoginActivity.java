@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +24,7 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
 
     private Intent in;
     private Activity mActivity;
+    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -46,6 +48,14 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
         mButtonCreateAccount.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
         mTvContinueAsGuest.setOnClickListener(this);
+
+        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic))
+            ;
+        {
+            mButtonCreateAccount.setText(getResources().getString(R.string.create_an_account_arabic));
+            mButtonLogin.setText(getResources().getString(R.string.already_have_an_account_arabic));
+            mTvContinueAsGuest.setText(getResources().getString(R.string.continue_as_guest_arabic));
+        }
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +24,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
 
     private Intent in;
     private Activity mActivity;
+    private OperaUtils mOperaUtils=new OperaUtils();
 
     @BindView(R.id.btnEnglish)
     Button mButtonEnglish;
@@ -49,6 +51,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btnEnglish:
 
+                mOperaUtils.StoreInSharedPreference(mActivity,mOperaUtils.mSelectedLanguage,mOperaUtils.mLanguageEnglish);
                 in = new Intent(mActivity, PreLoginActivity.class);
                 startActivity(in);
 
@@ -56,6 +59,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
 
             case R.id.btnArabic:
 
+                mOperaUtils.StoreInSharedPreference(mActivity,mOperaUtils.mSelectedLanguage,mOperaUtils.mLanguageArabic);
                 in = new Intent(mActivity, PreLoginActivity.class);
                 startActivity(in);
 
