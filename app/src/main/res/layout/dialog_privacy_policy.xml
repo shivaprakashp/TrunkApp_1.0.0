@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.opera.app.customwidget.TextViewWithFont
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/privacyNpolicy"
         android:textSize="20dp"
+        android:padding="8dp"
         android:textColor="@color/colorWhite"
         android:gravity="center"
         android:background="@color/button_bg"/>
