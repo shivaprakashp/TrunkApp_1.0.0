@@ -14,4 +14,6 @@ public class OperaUtils {
 
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
 
+    public static String FONT_MONSTERRAT_BOLD1 = "Montserrat-I.ttf";
+
 }
