@@ -40,162 +40,106 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/edtEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/email"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtEmail"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/pass"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
+                <include
+                    android:id="@+id/reg_edtPassword"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtRePass"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/re_pass"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtRePass"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/firstname"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtFirstName"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/lastname"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtLastName"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-
-                <EditText
-                    android:id="@+id/edtNationality"
+                <!--<Spinner
+                    android:id="@+id/spinnerNationality"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/nationality"
+                    android:entries="@array/nationality"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />-->
+                <include
+                    android:id="@+id/reg_edtNationality"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtDob"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/dob"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtDob"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/mobile"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtMobile"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/city"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtCity"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtState"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/state"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtState"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:background="@color/dark_gray" />
 
-                <EditText
-                    android:id="@+id/edtCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:hint="@string/country"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                <include
+                    android:id="@+id/reg_edtCountry"
+                    layout="@layout/include_edittext" />
 
             </LinearLayout>
 

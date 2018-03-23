@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,9 +12,9 @@ import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.EditTextWithFont;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by 1000632 on 3/22/2018.
@@ -38,6 +37,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.textView_continue_as_guest)
     TextView mTextContinue_as_guest;
 
+    @BindView(R.id.login_username)
+    View login_username;
+
+    @BindView(R.id.login_password)
+    View login_password;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,10 +54,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void initView() {
         mActivity = LoginActivity.this;
 
-        mTextForgotPwd.setOnClickListener(this);
+        //button
         mButtonRegister.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
+
+        //textview
+        mTextForgotPwd.setOnClickListener(this);
         mTextContinue_as_guest.setOnClickListener(this);
+
+        //edittext
+        EditTextWithFont username = (EditTextWithFont) login_username.findViewById(R.id.edt);
+        username.setHint(getString(R.string.username));
+
+        EditTextWithFont password = (EditTextWithFont) login_password.findViewById(R.id.edt);
+        password.setHint(getString(R.string.password));
+
     }
 
     @Override
