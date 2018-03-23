@@ -64,4 +64,35 @@
     <string name="menu_guest">Welcome Guest</string>
     <string name="menu_account">CREATE ACCOUNT</string>
 
+    <string name="termsNconditions">Ticketing Terms and Conditions</string>
+    <array name="terms_conditions">
+        <item>1. Refunds and exchanges are not permitted. Dubai Opera at its sole discretion may offer a refund or exchange if an event is cancelled or rescheduled.</item>
+        <item>2. Dubai Opera reserves the right to add, withdraw, reschedule or substitute artists and/or vary advertised programmes, prices, seating arrangements and audience capacity without prior notice.</item>
+        <item>3. Entry may be subject to age restrictions specified on dubaiopera.com</item>
+        <item>4. Removing any part of, altering or defacing the ticket will invalidate it.</item>
+        <item>5. This ticket is only valid for the date, time and event shown.</item>
+        <item>6. The ticket holder agrees to submit to any search for any prohibited items including, but not limited to, recording devices and controlled or dangerous substances.</item>
+        <item>7. Latecomers will only be admitted at a suitable break and may be seated in alternate locations to avoid disruption.</item>
+        <item>8. Any use of mobile phones, cameras and other electronic devices inside the auditorium is strictly prohibited.</item>
+        <item>9. The ticket holder voluntarily assumes all risk and danger incidental to the event whether occurring prior to, during or subsequent to the actual event, including any death, personal injury, loss, damage or liability.</item>
+        <item>10. Food and beverages purchased outside Dubai Opera are not permitted. No food and beverages may enter the auditorium.</item>
+        <item>11. Ticket(s) that are duplicated, resold or used for advertising, promotion or other commercial purposes will be subject to immediate cancellation.</item>
+        <item>12. Lost, stolen or damaged tickets may be re-issued to the original purchaser if their authenticity can be verified (subject to a replacement fee).</item>
+        <item>13. Dubai Opera reserves the right without refund or compensation to refuse admission/evict any person(s) whose conduct is disorderly/inappropriate or who poses a threat to security or to the enjoyment of the event by others.</item>
+    </array>
+
+    <string name="privacyNpolicy">Privacy Policy</string>
+    <array name="privacy_policy">
+        <item>This policy describes the types of information we may collect from you or that you may provide when you visit the website www.dubaiopera.com(our “Website”) and our practices for collecting, using, maintaining, protecting and disclosing that information.</item>
+        <item>This policy applies to information we collect:</item>
+        <item>1. On this Website.</item>
+        <item>2. In e-mail, text and other electronic messages between you and this Website.</item>
+        <item>3. Through mobile and desktop applications you may download from this Website, which provide dedicated non-browser-based interaction between you and this Website.</item>
+        <item>4. When you interact with our advertising and applications on third-party websites and services, if those applications or advertising include links to this policy.</item>
+        <item>It does not apply to information collected by:</item>
+        <item>1. Us offline or through any other means, including any other website operated by any third party; or</item>
+        <item>2. Any third party, including through any application or content (including advertising) that may link to the Website.</item>
+        <item>Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. If you do not agree with our policies and practices, your choice is not to use our Website. By accessing or using this Website, you agree to this privacy policy. This policy may change from time to time. Your continued use of this Website after we make changes is deemed to be acceptance of those changes, so please check the policy periodically for updates.</item>
+    </array>
+
 </resources>
