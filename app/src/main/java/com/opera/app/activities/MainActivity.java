@@ -1,11 +1,14 @@
 package com.opera.app.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.support.v7.widget.Toolbar;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
@@ -23,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements
-        FragNavController.TransactionListener, FragNavController.RootFragmentListener{
+        FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
     private int[] tabSelected = {
             R.drawable.ic_home,
@@ -39,6 +42,9 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.bottom_tab_layout)
     TabLayout bottomTabLayout;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private FragNavController mNavController;
 
     @Override
@@ -46,6 +52,11 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //toolbar title disable
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        initToolbar();
         initTabs();
         initFragmentControl(savedInstanceState);
 
@@ -69,7 +80,12 @@ public class MainActivity extends BaseActivity implements
         });
     }
 
-    private void initTabs(){
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+
+
+    }
+    private void initTabs() {
         if (bottomTabLayout != null) {
             for (int i = 0; i < TABS.length; i++) {
                 bottomTabLayout.addTab(bottomTabLayout.newTab());
@@ -80,7 +96,7 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-    private void initFragmentControl(Bundle savedInstanceState){
+    private void initFragmentControl(Bundle savedInstanceState) {
         mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.content_frame)
                 .transactionListener(this)
                 .rootFragmentListener(this, TABS.length)
@@ -101,6 +117,7 @@ public class MainActivity extends BaseActivity implements
 
     private void switchTab(int position) {
         mNavController.switchTab(position);
+        updateToolBar(position);
     }
 
     @Override
@@ -126,7 +143,6 @@ public class MainActivity extends BaseActivity implements
     public void onTabTransaction(Fragment fragment, int index) {
 // If we have a backstack, show the back button
         if (getSupportActionBar() != null && mNavController != null) {
-
             //Toolbar have to implement here
             //updateToolbar();
 
@@ -141,7 +157,55 @@ public class MainActivity extends BaseActivity implements
 //Toolbar have to implement here
             //updateToolbar();
 
+
         }
+    }
+
+    public void updateToolBar(int position) {
+        Log.i("Position", position + "");
+        switch (position) {
+            case 0:
+                toolbar.setVisibility(View.VISIBLE);
+                LayoutInflater homeInflater =(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View homeView = homeInflater.inflate(R.layout.view_home_toolbar, null);
+                toolBarLayout(homeView);
+                break;
+
+            case 1:
+
+                toolbar.setVisibility(View.VISIBLE);
+                LayoutInflater eventInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View eventView = eventInflater.inflate(R.layout.view_events_toolbar, null);
+                toolBarLayout(eventView);
+                break;
+
+            case 2:
+                toolbar.setVisibility(View.VISIBLE);
+                LayoutInflater diningInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View diningView = diningInflater.inflate(R.layout.view_dining_toolbar, null);
+                toolBarLayout(diningView);
+                break;
+
+            case 3:
+                toolbar.setVisibility(View.VISIBLE);
+                LayoutInflater listenInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View listenView = listenInflater.inflate(R.layout.view_listen_toolbar, null);
+                toolBarLayout(listenView);
+                break;
+
+            case 4:
+                toolbar.setVisibility(View.GONE);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void toolBarLayout(View view){
+        toolbar.removeAllViews();
+        toolbar.addView(view, Toolbar.LayoutParams.MATCH_PARENT,
+                Toolbar.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
