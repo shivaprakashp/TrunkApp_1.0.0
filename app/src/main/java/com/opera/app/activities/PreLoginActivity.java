@@ -2,6 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.utils.OperaUtils;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,24 +41,22 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mActivity = PreLoginActivity.this;
+
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_prelogin);
 
         initView();
     }
 
     private void initView() {
-        mActivity = PreLoginActivity.this;
+
         mButtonCreateAccount.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
         mTvContinueAsGuest.setOnClickListener(this);
 
-        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic))
-
-        {
-            mButtonCreateAccount.setText(getResources().getString(R.string.create_an_account_arabic));
-            mButtonLogin.setText(getResources().getString(R.string.already_have_an_account_arabic));
-            mTvContinueAsGuest.setText(getResources().getString(R.string.continue_as_guest_arabic));
-        }
     }
 
     @Override
