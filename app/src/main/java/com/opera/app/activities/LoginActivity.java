@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.utils.OperaUtils;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,11 +60,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
 
         mActivity = LoginActivity.this;
-        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic))
 
-        {
-            forceRTLIfSupported();
-        }
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
 
         setContentView(R.layout.activity_login);
 
@@ -84,16 +85,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         EditTextWithFont password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
 
-
-        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic)) {
-            mButtonLogin.setText(getResources().getString(R.string.login_arabic));
-            mButtonRegister.setText(getResources().getString(R.string.dont_have_an_account_arabic));
-            mTextContinue_as_guest.setText(getResources().getString(R.string.continue_as_guest_arabic));
-            mTextForgotPwd.setText(getResources().getString(R.string.forgot_password_arabic));
-            username.setHint(getResources().getString(R.string.username_arabic));
-            password.setHint(getResources().getString(R.string.password_arabic));
-            password.setInputType(InputType.TYPE_CLASS_TEXT);
-        }
     }
 
     @Override
@@ -135,26 +126,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
+
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
         dialog.setContentView(R.layout.popup_forgotpassword);
 
         TextView tv_forgotPassword = (TextView) dialog.findViewById(R.id.tv_forgotPassword);
         EditText et_username = (EditText) dialog.findViewById(R.id.et_username);
         Button btnSend = (Button) dialog.findViewById(R.id.btnSend);
 
-        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageArabic)) {
-            tv_forgotPassword.setText(getResources().getString(R.string.forgot_password_arabic));
-            et_username.setHint(getResources().getString(R.string.username_arabic));
-            btnSend.setText(getResources().getString(R.string.send_arabic));
-        }
-
         dialog.show();
 
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void forceRTLIfSupported() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        }
-    }
+
 }

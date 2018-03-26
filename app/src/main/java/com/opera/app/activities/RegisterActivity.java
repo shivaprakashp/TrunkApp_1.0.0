@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 
@@ -24,6 +25,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private Intent in;
     private Activity mActivity;
+    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -79,6 +81,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mActivity = RegisterActivity.this;
+
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_registration);
 
         initView();
@@ -130,9 +137,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         EditTextWithFont edtNationality = (EditTextWithFont) reg_edtNationality.findViewById(R.id.edt);
         edtNationality.setHint(getString(R.string.nationality));
 
-        /*//spinner
-        spinnerNationality.setOnClickListener(this);*/
-
     }
 
     @Override
@@ -172,7 +176,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 di.setContentView(R.layout.dialog_privacy_policy);
                 di.show();
             }
-                break;
+            break;
 
         }
     }
