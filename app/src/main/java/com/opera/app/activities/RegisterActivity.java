@@ -155,7 +155,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         //---------------Nationality----------------
         // Initializing a String Array
         String[] nationality_str = new String[]{
-                "Nationality*"
+               getResources().getString(R.string.nationality)
         };
         final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
 
@@ -209,7 +209,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         //---------------State----------------
         String[] state_str = new String[]{
-                "State*"
+                getResources().getString(R.string.state)
         };
         final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
 
@@ -263,7 +263,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         //---------------Country----------------
         String[] country_str = new String[]{
-                "Country*"
+                getResources().getString(R.string.country)
         };
         final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
 

@@ -25,7 +25,7 @@
     <string name="mobile">تليفون محمول*</string>
     <string name="city">مدينة*</string>
     <string name="state">إمارة أو ولاية *</string>
-    <string name="country">بلد</string>
+    <string name="country">بلد *</string>
     <string name="home">الصفحة الرئيسية</string>
     <string name="events">أحداث</string>
     <string name="dining">الطعام</string>
