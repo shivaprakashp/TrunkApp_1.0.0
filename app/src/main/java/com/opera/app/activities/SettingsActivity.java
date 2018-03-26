@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 
@@ -18,6 +19,7 @@ import butterknife.BindView;
 public class SettingsActivity extends BaseActivity {
 
     private Activity mActivity;
+    private OperaUtils mOperaUtils=new OperaUtils();
 
     @BindView(R.id.toolbar_setting)
     Toolbar toolbar;
@@ -25,8 +27,12 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setting);
+
         mActivity = SettingsActivity.this;
+
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
+        setContentView(R.layout.setting);
 
         initToolbar();
         initView();

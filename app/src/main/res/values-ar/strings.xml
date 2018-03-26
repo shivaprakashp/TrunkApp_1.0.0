@@ -94,4 +94,15 @@
         <item>2. أي طرف ثالث ، بما في ذلك من خلال أي تطبيق أو محتوى (بما في ذلك الإعلانات) التي قد ترتبط بموقع الويب.</item>
         <item>يرجى قراءة هذه السياسة بعناية لفهم سياساتنا وممارساتنا المتعلقة بمعلوماتك وكيفية تعاملنا معها. إذا كنت لا توافق على سياساتنا وممارساتنا ، فإن اختيارك هو عدم استخدام موقعنا الإلكتروني. عن طريق الوصول إلى هذا الموقع أو استخدامه ، فإنك توافق على سياسة الخصوصية هذه. قد تتغير هذه السياسة من وقت لآخر. يعتبر استمرار استخدامك لهذا الموقع بعد إجراء التغييرات هو قبول هذه التغييرات ، لذا يرجى مراجعة السياسة بشكل دوري للحصول على التحديثات.</item>
     </array>
+
+    <!--Settings-->
+    <string name="allow_notification">السماح بالإشعار</string>
+    <string name="allow_promotion">اسمح بالترقية</string>
+    <string name="allow_feedback">السماح بتعليقات المرتجعات</string>
+    <string name="weekly_newsletters">النشرة الأسبوعية</string>
+    <string name="reminder_booked_show">تذكيرات للعرض المحجوز</string>
+    <string name="language">لغة</string>
+    <string name="logout">الخروج</string>
+    <string name="arabic_in_english">عربى</string>
+    <string name="english">الإنجليزية</string>
 </resources>
