@@ -1,147 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
-    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="110dp"
-                android:layout_height="90dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_dubai_opera_logo" />
-
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/transparent_white"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_dubai_opera_logo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingTop="20dp">
 
-                <include
-                    android:id="@+id/reg_edtEmail"
-                    layout="@layout/include_edittext" />
-
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/transparent_white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <include
-                    android:id="@+id/reg_edtPassword"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtEmail"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtRePass"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtPassword"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtFirstName"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtRePass"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtLastName"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtFirstName"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <!--<Spinner
+                    <include
+                        android:id="@+id/reg_edtLastName"
+                        layout="@layout/include_edittext" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
+
+                    <Spinner
                     android:id="@+id/spinnerNationality"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:entries="@array/nationality"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />-->
-                <include
-                    android:id="@+id/reg_edtNationality"
-                    layout="@layout/include_edittext" />
+                    android:textSize="12sp" />
+                    <!--<include
+                        android:id="@+id/reg_edtNationality"
+                        layout="@layout/include_edittext" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtDob"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtDob"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtMobile"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtMobile"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtCity"
-                    layout="@layout/include_edittext" />
+                    <include
+                        android:id="@+id/reg_edtCity"
+                        layout="@layout/include_edittext" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtState"
-                    layout="@layout/include_edittext" />
+                    <Spinner
+                        android:id="@+id/spinnerState"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                    <!--<include
+                        android:id="@+id/reg_edtState"
+                        layout="@layout/include_edittext" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="@color/dark_gray" />
 
-                <include
-                    android:id="@+id/reg_edtCountry"
-                    layout="@layout/include_edittext" />
+                    <Spinner
+                        android:id="@+id/spinnerCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                    <!--<include
+                        android:id="@+id/reg_edtCountry"
+                        layout="@layout/include_edittext" />-->
+
+
+                </LinearLayout>
 
             </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,7 +192,13 @@
                     android:id="@+id/ckbTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:button="@drawable/custom_checkbox" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
                     android:text="@string/check"
                     android:textColor="@color/colorWhite" />
 
@@ -181,20 +227,31 @@
 
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/ckbSubscribe"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="@string/check_subscribe"
-                android:textColor="@color/colorWhite" />
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/ckbSubscribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:button="@drawable/custom_checkbox" />
 
-        </LinearLayout>
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/tvSubscribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="@string/check_subscribe"
+                    android:textColor="@color/colorWhite"/>
+
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
@@ -213,8 +270,7 @@
                 style="@style/transparent_btn_style"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
-                android:layout_below="@+id/btnLogin"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/already_have_an_account"
                 android:textColor="@color/colorWhite" />
 
@@ -222,10 +278,7 @@
                 android:id="@+id/textView_continue_as_guest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="bottom"
                 android:text="@string/continue_as_guest"
@@ -233,4 +286,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+    </LinearLayout>
