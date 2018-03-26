@@ -1,5 +1,6 @@
 package com.opera.app.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +48,9 @@ public class MenuFragment extends BaseFragment {
     @BindView(R.id.menu_save_card)
     View menu_save_card;
 
+    private Activity mActivity;
+    private OperaUtils mOperaUtils = new OperaUtils();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,9 @@ public class MenuFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        mActivity = getActivity();
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         ButterKnife.bind(this, view);

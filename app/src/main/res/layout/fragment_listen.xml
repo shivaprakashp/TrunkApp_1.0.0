@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Listen Fragment"
+        android:text="@string/listen_fragment"
         android:textSize="25sp"
         android:layout_gravity="center"
         android:gravity="center"/>

@@ -12,7 +12,7 @@
         <com.opera.app.customwidget.TextViewWithFont
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Events"
+            android:text="@string/events"
             android:gravity="center"
             style="@style/label_white_large"/>
     </LinearLayout>

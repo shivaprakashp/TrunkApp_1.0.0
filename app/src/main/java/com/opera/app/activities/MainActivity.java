@@ -1,5 +1,6 @@
 package com.opera.app.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import com.opera.app.fragments.HomeFragment;
 import com.opera.app.fragments.ListenFragment;
 import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindArray;
 import butterknife.BindView;
@@ -46,10 +48,16 @@ public class MainActivity extends BaseActivity implements
     Toolbar toolbar;
 
     private FragNavController mNavController;
+    private Activity mActivity;
+    private OperaUtils mOperaUtils = new OperaUtils();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mActivity = MainActivity.this;
+        //For Language setting
+        mOperaUtils.CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_main);
 
         //toolbar title disable
@@ -167,6 +175,8 @@ public class MainActivity extends BaseActivity implements
             case 0:
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater homeInflater =(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
                 View homeView = homeInflater.inflate(R.layout.view_home_toolbar, null);
                 toolBarLayout(homeView);
                 break;
@@ -175,6 +185,8 @@ public class MainActivity extends BaseActivity implements
 
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater eventInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
                 View eventView = eventInflater.inflate(R.layout.view_events_toolbar, null);
                 toolBarLayout(eventView);
                 break;
@@ -182,6 +194,8 @@ public class MainActivity extends BaseActivity implements
             case 2:
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater diningInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
                 View diningView = diningInflater.inflate(R.layout.view_dining_toolbar, null);
                 toolBarLayout(diningView);
                 break;
@@ -189,6 +203,8 @@ public class MainActivity extends BaseActivity implements
             case 3:
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater listenInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
                 View listenView = listenInflater.inflate(R.layout.view_listen_toolbar, null);
                 toolBarLayout(listenView);
                 break;

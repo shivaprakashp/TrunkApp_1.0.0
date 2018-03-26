@@ -82,6 +82,14 @@
     </array>
 
     <string name="privacyNpolicy">Privacy Policy</string>
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="dining">Dining</string>
+    <string name="listen">Listen</string>
+    <string name="home_fragment">Home fragment</string>
+    <string name="events_fragment">Events Fragment</string>
+    <string name="dining_fragment">Dining Fragment</string>
+    <string name="listen_fragment">Listen Fragment</string>
 
 
     <array name="privacy_policy">

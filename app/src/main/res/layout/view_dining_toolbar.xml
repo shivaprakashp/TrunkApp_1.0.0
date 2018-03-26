@@ -12,7 +12,7 @@
         <com.opera.app.customwidget.TextViewWithFont
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Dining"
+            android:text="@string/dining"
             android:gravity="center"
             style="@style/label_white_large"/>
     </LinearLayout>
