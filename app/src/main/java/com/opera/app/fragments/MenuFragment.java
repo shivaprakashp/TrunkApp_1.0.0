@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import android.content.Intent;
 import com.opera.app.R;
+import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.OperaUtils;
 
@@ -16,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MenuFragment extends BaseFragment {
+
+    private Intent in;
 
     @BindView(R.id.menu_profile)
     View menu_profile;
@@ -133,5 +137,13 @@ public class MenuFragment extends BaseFragment {
         TextViewWithFont txtSaveCard = (TextViewWithFont) menu_save_card.findViewById(R.id.menu_icon_text);
         imgSaveCard.setImageDrawable(getActivity().getDrawable(R.drawable.ic_saved_cards));
         txtSaveCard.setText(getActivity().getString(R.string.menu_save_cards));
+
+        menu_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(in);
+            }
+        });
     }
 }

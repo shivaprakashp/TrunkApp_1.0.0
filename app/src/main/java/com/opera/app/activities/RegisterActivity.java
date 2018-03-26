@@ -3,17 +3,26 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.utils.OperaUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -66,17 +75,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.reg_edtCity)
     View reg_edtCity;
 
-    @BindView(R.id.reg_edtState)
+    /*@BindView(R.id.reg_edtState)
     View reg_edtState;
 
     @BindView(R.id.reg_edtCountry)
     View reg_edtCountry;
 
     @BindView(R.id.reg_edtNationality)
-    View reg_edtNationality;
+    View reg_edtNationality;*/
 
-    /*@BindView(R.id.spinnerNationality)
-    Spinner spinnerNationality;*/
+    @BindView(R.id.spinnerNationality)
+    Spinner spinnerNationality;
+
+    @BindView(R.id.spinnerState)
+    Spinner spinnerState;
+
+    @BindView(R.id.spinnerCountry)
+    Spinner spinnerCountry;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,15 +143,177 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         EditTextWithFont edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.city));
 
-        EditTextWithFont edtState = (EditTextWithFont) reg_edtState.findViewById(R.id.edt);
+        /*EditTextWithFont edtState = (EditTextWithFont) reg_edtState.findViewById(R.id.edt);
         edtState.setHint(getString(R.string.state));
 
         EditTextWithFont edtCountry = (EditTextWithFont) reg_edtCountry.findViewById(R.id.edt);
         edtCountry.setHint(getString(R.string.country));
 
         EditTextWithFont edtNationality = (EditTextWithFont) reg_edtNationality.findViewById(R.id.edt);
-        edtNationality.setHint(getString(R.string.nationality));
+        edtNationality.setHint(getString(R.string.nationality));*/
 
+        //---------------Nationality----------------
+        // Initializing a String Array
+        String[] nationality_str = new String[]{
+                "Nationality*"
+        };
+        final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this, R.layout.custom_spinner, List) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner);
+
+        spinnerNationality.setAdapter(spinnerArrayAdapter);
+        spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                if (position > 0) {
+                    // Notify the selected item text
+                    /*Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();*/
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //---------------State----------------
+        String[] state_str = new String[]{
+                "State*"
+        };
+        final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(
+                this, R.layout.custom_spinner, stateList) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        spinnerArrayAdapter1.setDropDownViewResource(R.layout.custom_spinner);
+
+        spinnerState.setAdapter(spinnerArrayAdapter1);
+        spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                if (position > 0) {
+                    // Notify the selected item text
+                    /*Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();*/
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //---------------Country----------------
+        String[] country_str = new String[]{
+                "Country*"
+        };
+        final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(
+                this, R.layout.custom_spinner, countryList) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        spinnerArrayAdapter2.setDropDownViewResource(R.layout.custom_spinner);
+
+        spinnerCountry.setAdapter(spinnerArrayAdapter2);
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                if (position > 0) {
+                    // Notify the selected item text
+                    /*Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();*/
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
