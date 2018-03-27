@@ -96,12 +96,12 @@
     </array>
 
     <!--Settings-->
-    <string name="allow_notification">السماح بالإشعار</string>
-    <string name="allow_promotion">اسمح بالترقية</string>
-    <string name="allow_feedback">السماح بتعليقات المرتجعات</string>
-    <string name="weekly_newsletters">النشرة الأسبوعية</string>
-    <string name="reminder_booked_show">تذكيرات للعرض المحجوز</string>
-    <string name="language">لغة</string>
+    <string name="setting_allow_notification">السماح بالإشعار</string>
+    <string name="setting_allow_promotion">اسمح بالترقية</string>
+    <string name="setting_allow_feedback">السماح بتعليقات المرتجعات</string>
+    <string name="setting_weekly_newsletters">النشرة الأسبوعية</string>
+    <string name="setting_reminder_booked_show">تذكيرات للعرض المحجوز</string>
+    <string name="setting_language">لغة</string>
     <string name="logout">الخروج</string>
     <string name="arabic_in_english">عربى</string>
     <string name="english">الإنجليزية</string>

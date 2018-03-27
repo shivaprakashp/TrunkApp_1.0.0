@@ -198,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/check"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tvTerms"
@@ -206,14 +206,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="@string/terms"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="@string/and"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tvPrivacyPolicy"
@@ -221,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="@string/privacy"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium" />
 
         </LinearLayout>
 
@@ -244,7 +244,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/check_subscribe"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium" />
 
         </LinearLayout>
 
@@ -281,7 +281,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="bottom"
                 android:text="@string/continue_as_guest"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_medium" />
 
         </LinearLayout>
     </LinearLayout>
