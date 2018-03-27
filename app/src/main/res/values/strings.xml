@@ -42,9 +42,9 @@
 
     <!--Setting activity-->
     <string name="setting_alert_show">Alert on the show timings</string>
-    <string name="allow_notification">Allow Notification</string>
-    <string name="allow_promotion">Allow Promotion</string>
-    <string name="allow_feedback">Allow Feedback Notification</string>
+    <string name="setting_allow_notification">Allow Notification</string>
+    <string name="setting_allow_promotion">Allow Promotion</string>
+    <string name="setting_allow_feedback">Allow Feedback Notification</string>
     <string name="setting_weekly_newsletters">Weekly newsletter</string>
     <string name="setting_reminder_booked_show">Reminders for the booked show</string>
     <string name="setting_language">Language</string>
