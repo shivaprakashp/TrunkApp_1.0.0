@@ -72,6 +72,41 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
+    <!--  782327 color -->
+    <style name="label_burgendy_very_low">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_very_low</item>
+    </style>
+
+    <style name="label_burgendy_low">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_low</item>
+    </style>
+
+    <style name="label_burgendy_small">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="label_burgendy">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="label_burgendy_medium">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="label_burgendy_large">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="label_burgendy_vlarge">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_vlarge</item>
+    </style>
 
 
 </resources>
