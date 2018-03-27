@@ -214,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
-                android:background="@color/button_bg"
+                android:background="@color/colorBurgendy"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/english"
@@ -248,6 +248,7 @@
             android:orientation="horizontal">
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tvLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
