@@ -11,6 +11,14 @@
         android:orientation="horizontal"
         android:gravity="center">
 
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_back_arrrow"
+            android:padding="10dp"
+            android:visibility="gone"/>
+
         <com.opera.app.customwidget.TextViewWithFont
             android:layout_width="match_parent"
             android:layout_height="match_parent"
