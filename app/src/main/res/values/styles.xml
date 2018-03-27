@@ -36,6 +36,41 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
+    <!--  000000 color -->
+    <style name="label_black_very_low">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_very_low</item>
+    </style>
+
+    <style name="label_black_low">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_low</item>
+    </style>
+
+    <style name="label_black_small">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="label_black">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="label_black_medium">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="label_black_large">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="label_black_vlarge">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textsize_vlarge</item>
+    </style>
 
 
 
