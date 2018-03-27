@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -45,6 +46,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
             setContentView(R.layout.activity_language_selection);
             InitView();
         }
+        Log.e("test","test");
     }
 
     private void InitView() {
