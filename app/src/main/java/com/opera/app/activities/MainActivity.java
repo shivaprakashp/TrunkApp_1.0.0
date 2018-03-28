@@ -2,9 +2,12 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.BaseFragment;
 import com.opera.app.fragments.DiningFragment;
@@ -115,10 +119,19 @@ public class MainActivity extends BaseActivity implements
 
     private View getTabView(int position) {
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_item_bottom, null);
-        ImageView icon = (ImageView) view.findViewById(R.id.tab_icon);
-        TextViewWithFont text = (TextViewWithFont) view.findViewById(R.id.tab_text);
-        icon.setImageDrawable(getDrawable(tabSelected[position]));
-        text.setText(TABS[position]);
+        try {
+
+            ImageView icon = (ImageView) view.findViewById(R.id.tab_icon);
+            TextViewWithFont text = (TextViewWithFont) view.findViewById(R.id.tab_text);
+
+            //icon.setImageDrawable(getDrawable(tabSelected[position]));
+            icon.setImageDrawable(OperaUtils.setDrawableImage(MainActivity.this, tabSelected[position],
+                    tabSelected[position], position));
+            text.setText(TABS[position]);
+
+            ColorStateList colors = ContextCompat.getColorStateList(this,R.color.color_bottom_state);
+            text.setTextColor(colors);
+        }catch (Exception e){e.printStackTrace();}
 
         return view;
     }
