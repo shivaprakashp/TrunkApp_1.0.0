@@ -105,4 +105,11 @@
     <string name="logout">الخروج</string>
     <string name="arabic_in_english">عربى</string>
     <string name="english">الإنجليزية</string>
+
+    <!--My Profile-->
+    <string name="my_profile">ملفي</string>
+    <string name="profile_edit_profile">تعديل الملف الشخصي</string>
+    <string name="profile_change_password">تغيير كلمة السر</string>
+    <string name="tab_profile">الملف الشخصي</string>
+    <string name="tab_loyalty">نقاط الولاء</string>
 </resources>
