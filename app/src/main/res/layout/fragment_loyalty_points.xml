@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/loyalty_points_background"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_dubai_opera_logo"/>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/label_white_vlarge"
+            android:layout_marginTop="5dp"
+            android:text="4450"/>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loyalty_points"
+            style="@style/label_white_medium"/>
+
+    </LinearLayout>
+
+</LinearLayout>

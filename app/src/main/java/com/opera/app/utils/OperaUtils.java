@@ -4,18 +4,17 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
 import com.opera.app.R;
 
-import java.time.format.TextStyle;
 import java.util.Locale;
 
 /**
@@ -112,5 +111,8 @@ public class OperaUtils {
         return drawable;
     }
 
-
+    public static Snackbar getSnackbar(View viw, String msg) {
+        Snackbar snackbar = Snackbar.make(viw, msg, Snackbar.LENGTH_LONG);
+        return snackbar;
+    }
 }
