@@ -8,9 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.utils.OperaUtils;
@@ -35,6 +39,19 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
+    @BindView(R.id.toolbar_setting)
+    Toolbar mToolbar;
+
+    @BindView(R.id.imgCommonToolBack)
+    View inc_set_toolbar;
+
+    @BindView(R.id.txtCommonToolHome)
+    View inc_set_toolbar_text;
+
+    @BindView(R.id.inc_set_toolbar)
+    LinearLayout mLinearLayout;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +68,14 @@ public class MyProfileActivity extends BaseActivity {
 
     private void initView() {
 
+        mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.my_profile));
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments to adapter one by one
@@ -60,6 +85,13 @@ public class MyProfileActivity extends BaseActivity {
 
         mTabHost.setupWithViewPager(mViewPager);
     }
+
+    private View.OnClickListener backPress = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    };
 
 
     // Adapter for the viewpager using FragmentPagerAdapter
