@@ -6,21 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/layout">
 
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="165dp"
+            android:layout_height="160dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
             android:src="@drawable/bg_login"
@@ -31,11 +25,13 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_gravity="left"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_back_arrrow" />
 
         <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,16 +39,15 @@
             android:layout_marginTop="10dp"
             style="@style/label_white_large"/>
 
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+        <com.opera.app.customwidget.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_below="@+id/header_cover_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-80dp"
             android:elevation="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_logo_white_bg"/>
+            android:src="@drawable/bg_login" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -61,11 +56,10 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/header_cover_image"
             android:elevation="4dp"
-            android:background="@color/colorBurgendy"
             android:paddingBottom="24dp">
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/profile_name"
+                android:id="@+id/tv_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -74,77 +68,33 @@
                 style="@style/label_black_vlarge"/>
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/profile_info"
+                android:id="@+id/tv_profile_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_name"
+                android:layout_below="@+id/tv_profile_name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/profile_info"
                 style="@style/label_black_medium"/>
         </RelativeLayout>
     </RelativeLayout>
-    </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/colorBurgendy"
-        android:orientation="vertical">
-
-        <!--<android.support.v4.app.FragmentTabHost
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/tabhost"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/profile_layout"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <FrameLayout
-                android:id="@+id/realtabcontent"
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabhost"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorBurgendy"
+                android:minHeight="?attr/actionBarSize"
+                app:tabTextColor="@color/colorTabText"
+                app:tabSelectedTextColor="@color/colorWhite"
+                app:tabIndicatorColor="@android:color/white"
+                app:tabMode="fixed"
+                />
 
-        </LinearLayout>
-    </android.support.v4.app.FragmentTabHost>-->
-
-    </LinearLayout>
-
-        <!--<android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/profile_layout"
-            android:elevation="4dp"
-            android:orientation="vertical">-->
-
-            <!--<android.support.v4.app.FragmentTabHost
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@android:id/tabhost"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/profile_layout"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <FrameLayout
-                        android:id="@+id/realtabcontent"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-
-                </LinearLayout>
-            </android.support.v4.app.FragmentTabHost>-->
-
-        <!--</android.support.constraint.ConstraintLayout>-->
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
 
 </LinearLayout>
