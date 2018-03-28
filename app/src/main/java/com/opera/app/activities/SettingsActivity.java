@@ -35,7 +35,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.toolbar_setting)
     Toolbar toolbar;
 
-    @BindView(R.id.img_back_arrow)
+    @BindView(R.id.imgCommonToolBack)
     View inc_set_toolbar;
 
     @Override
@@ -62,8 +62,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         arabicSwitch.setOnClickListener(this);
         tvLogout.setOnClickListener(this);
 
-        inc_set_toolbar.findViewById(R.id.img_back_arrow).setVisibility(View.VISIBLE);
-        inc_set_toolbar.findViewById(R.id.img_back_arrow).setOnClickListener(backPress);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageEnglish)) {
             englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
