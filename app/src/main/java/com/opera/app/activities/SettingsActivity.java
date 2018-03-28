@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +18,7 @@ import butterknife.BindView;
  * Created by 58001 on 23-03-2018.
  */
 
-public class SettingsActivity extends BaseActivity implements View.OnClickListener{
+public class SettingsActivity extends BaseActivity implements View.OnClickListener {
 
     private Activity mActivity;
     private OperaUtils mOperaUtils = new OperaUtils();
@@ -63,6 +64,14 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         inc_set_toolbar.findViewById(R.id.img_back_arrow).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.img_back_arrow).setOnClickListener(backPress);
+
+        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageEnglish)) {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+        } else {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+        }
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -78,12 +87,28 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             case R.id.englishSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish);
+
+                Intent in = new Intent(mActivity, MainActivity.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in);
+                /*//For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
+                setContentView(R.layout.setting);*/
             }
             break;
 
             case R.id.arabicSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageArabic);
+
+                Intent in = new Intent(mActivity, MainActivity.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in);
+                /*//For Language setting
+                mOperaUtils.CommonLanguageFunction(mActivity);
+                setContentView(R.layout.setting);*/
             }
             break;
 
