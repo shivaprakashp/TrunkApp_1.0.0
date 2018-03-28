@@ -12,7 +12,6 @@
         android:hint="@string/username"
         android:inputType="text"
         android:padding="5dp"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        style="@style/label_black" />
 
 </LinearLayout>

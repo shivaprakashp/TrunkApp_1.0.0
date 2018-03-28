@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                font:name="Montserrat-Regular"
                 android:text="@string/menu_guest" />
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -57,6 +58,7 @@
                 android:background="@drawable/transparent_btn_ripple"
                 android:gravity="center"
                 android:padding="10dp"
+                font:name="Montserrat-Regular"
                 android:text="@string/menu_account" />
         </LinearLayout>
     </LinearLayout>

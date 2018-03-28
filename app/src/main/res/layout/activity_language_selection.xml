@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_login"
     android:orientation="vertical">
 
@@ -34,25 +35,27 @@
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnEnglish"
-                style="@style/label_white_medium"
+                style="@style/label_white_large"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/english"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                font:name="Montserrat-Light"/>
 
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnArabic"
-                style="@style/label_white_medium"
+                style="@style/label_white_large"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/arabic"
+                font:name="Montserrat-Light"
                 android:textAllCaps="false" />
 
         </LinearLayout>

@@ -1,185 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
-    android:orientation="vertical">
+    android:background="@drawable/bg_login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="40dp"
-                    android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="110dp"
-                        android:layout_height="90dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_dubai_opera_logo" />
-
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ic_dubai_opera_logo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:paddingTop="20dp">
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/transparent_white">
 
-                    <LinearLayout
+
+                    <include
+                        android:id="@+id/reg_edtEmail"
+                        layout="@layout/include_edittext" />
+
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@drawable/transparent_white"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtPassword"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtEmail"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtRePass"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtPassword"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtFirstName"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtRePass"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtLastName"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtFirstName"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <Spinner
+                        android:id="@+id/spinnerNationality"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
-                        <include
-                            android:id="@+id/reg_edtLastName"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtDob"
+                        layout="@layout/include_edittext" />
 
-                        <Spinner
-                            android:id="@+id/spinnerNationality"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-                        <!--<include
-                            android:id="@+id/reg_edtNationality"
-                            layout="@layout/include_edittext" />-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtMobile"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtDob"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <include
+                        android:id="@+id/reg_edtCity"
+                        layout="@layout/include_edittext" />
 
-                        <include
-                            android:id="@+id/reg_edtMobile"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
+                    <Spinner
+                        android:id="@+id/spinnerState"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
-                        <include
-                            android:id="@+id/reg_edtCity"
-                            layout="@layout/include_edittext" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
-
-                        <Spinner
-                            android:id="@+id/spinnerState"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-                        <!--<include
-                            android:id="@+id/reg_edtState"
-                            layout="@layout/include_edittext" />-->
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="@color/dark_gray" />
-
-                        <Spinner
-                            android:id="@+id/spinnerCountry"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-                        <!--<include
-                            android:id="@+id/reg_edtCountry"
-                            layout="@layout/include_edittext" />-->
-                    </LinearLayout>
+                    <Spinner
+                        android:id="@+id/spinnerCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
-
             </LinearLayout>
-
         </ScrollView>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -190,53 +161,26 @@
                 android:id="@+id/ckbTerms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:button="@drawable/custom_checkbox" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/check"
-                style="@style/label_white_medium" />
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tvTerms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/terms"
-                style="@style/label_white_medium" />
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/and"
-                style="@style/label_white_medium"/>
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tvPrivacyPolicy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/privacy"
-                style="@style/label_white_medium" />
-
+                android:text="@string/reg_terms_policy"
+                style="@style/label_white"
+                font:name="Montserrat-Light"
+                android:layout_marginLeft="10dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <CheckBox
-                android:id="@+id/ckbSubscribe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:button="@drawable/custom_checkbox" />
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -244,45 +188,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/check_subscribe"
-                style="@style/label_white_medium" />
+                style="@style/label_white"
+                font:name="Montserrat-Light"
+                android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnCreateAccount"
-                style="@style/common_btn_style"
+                android:background="@drawable/btn_ripple_effect"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:text="@string/create_account"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_large"
+                font:name="Montserrat-Light"
+                android:textAllCaps="false"/>
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
-                style="@style/transparent_btn_style"
+                android:background="@drawable/transparent_btn_ripple"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginTop="20dp"
                 android:text="@string/already_have_an_account"
-                android:textColor="@color/colorWhite" />
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/textView_continue_as_guest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:gravity="bottom"
-                android:text="@string/continue_as_guest"
-                style="@style/label_white_medium" />
+                style="@style/label_white_large"
+                font:name="Montserrat-Light"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <include
+                layout="@layout/include_guest"/>
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

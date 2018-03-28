@@ -45,11 +45,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.textView_continue_as_guest)
     TextView mTvContinueAsGuest;
 
-    @BindView(R.id.tvTerms)
-    TextView mtvTerms;
+   // @BindView(R.id.tvTerms)
+    //TextView mtvTerms;
 
-    @BindView(R.id.tvPrivacyPolicy)
-    TextView mtvPrivacyPolicy;
+    //@BindView(R.id.tvPrivacyPolicy)
+    //TextView mtvPrivacyPolicy;
 
     @BindView(R.id.reg_edtEmail)
     View reg_edtEmail;
@@ -115,8 +115,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         //textview
         mTvContinueAsGuest.setOnClickListener(this);
-        mtvTerms.setOnClickListener(this);
-        mtvPrivacyPolicy.setOnClickListener(this);
+        //mtvTerms.setOnClickListener(this);
+        //mtvPrivacyPolicy.setOnClickListener(this);
 
         //edittext
         EditTextWithFont edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
@@ -339,7 +339,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 startActivity(in);
                 break;
 
-            case R.id.tvTerms: {
+          /*  case R.id.tvTerms: {
                 final Dialog di = new Dialog(mActivity);
                 di.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
                 di.setContentView(R.layout.dialog_terms_conditions);
@@ -353,7 +353,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 di.setContentView(R.layout.dialog_privacy_policy);
                 di.show();
             }
-            break;
+            break;*/
 
         }
     }
