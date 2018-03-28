@@ -10,6 +10,9 @@
     <string name="username">اسم المستخدم</string>
     <string name="password">كلمه السر</string>
     <string name="create_account">إصنع حساب</string>
+
+    <!--Registration activity -->
+    <string name="reg_terms_policy">أوافق على الشروط وسياسة الخصوصية</string>
     <string name="check">أنا أوافق على </string>
     <string name="terms"><u>شروط</u> </string>
     <string name="and">و </string>
