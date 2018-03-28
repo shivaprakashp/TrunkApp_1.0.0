@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout">
+
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_login"
+            app:srcCompat="@drawable/bg_login" />
+
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_back_arrrow" />
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/my_profile"
+            android:layout_marginTop="10dp"
+            style="@style/label_white_large"/>
+
+        <com.opera.app.customwidget.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-80dp"
+            android:elevation="5dp"
+            android:src="@drawable/bg_login" />
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/header_cover_image"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:text="@string/profile_name"
+                style="@style/label_black_vlarge"/>
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_profile_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_profile_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/profile_info"
+                style="@style/label_black_medium"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabhost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBurgendy"
+                android:minHeight="?attr/actionBarSize"
+                app:tabTextColor="@color/colorTabText"
+                app:tabSelectedTextColor="@color/colorWhite"
+                app:tabIndicatorColor="@android:color/white"
+                app:tabMode="fixed"
+                />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+</LinearLayout>

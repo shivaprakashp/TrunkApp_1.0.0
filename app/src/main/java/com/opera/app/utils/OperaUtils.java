@@ -4,11 +4,18 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
+import com.opera.app.R;
+
+import java.time.format.TextStyle;
 import java.util.Locale;
 
 /**
@@ -63,4 +70,47 @@ public class OperaUtils {
         mActivity.getBaseContext().getResources().updateConfiguration(config,
                 mActivity.getBaseContext().getResources().getDisplayMetrics());
     }
+
+    //related to home bottom navigation icons
+    public static Drawable setDrawableImage(Context context, int normal, int selected, int position){
+
+        StateListDrawable drawable = new StateListDrawable();
+
+        Drawable state_normal = ContextCompat.getDrawable(context, normal);
+        Drawable state_pressed = null;
+
+        switch (position){
+
+            case 0:
+                state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_home_hover);
+                break;
+
+            case 1:
+                state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_events_hover);
+                break;
+
+            case 2:
+                state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_dining_hover);
+                break;
+
+            case 3:
+                state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_listern_hover);
+                break;
+
+            case 4:
+                state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_menu_hover);
+                break;
+
+                default:
+        }
+
+        drawable.addState(new int[]{android.R.attr.state_selected},
+                state_pressed);
+        drawable.addState(new int[]{android.R.attr.state_enabled},
+                state_normal);
+
+        return drawable;
+    }
+
+
 }
