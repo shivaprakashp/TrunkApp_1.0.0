@@ -1,115 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_dubai_opera_logo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.35"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/transparent_white"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="90dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_dubai_opera_logo" />
+            <include
+                android:id="@+id/login_username"
+                layout="@layout/include_edittext" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:background="@color/dark_gray" />
+
+            <include
+                android:id="@+id/login_password"
+                layout="@layout/include_edittext" />
         </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/tv_forgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="@string/forgot_password"
+            style="@style/label_burgendy_medium"
+            font:name="Montserrat-Regular"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:orientation="vertical"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/transparent_white"
-                android:orientation="vertical"
-                android:padding="5dp">
-
-                <include
-                    android:id="@+id/login_username"
-                    layout="@layout/include_edittext" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="@color/dark_gray" />
-
-                <include
-                    android:id="@+id/login_password"
-                    layout="@layout/include_edittext" />
-
-            </LinearLayout>
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tv_forgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="end"
-                android:layout_marginBottom="10dp"
-                android:text="@string/forgot_password"
-                android:textColor="@color/button_bg" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="0.35"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
-                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_large"
+                font:name="Montserrat-Light" />
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnRegister"
-                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
-                android:layout_below="@+id/btnLogin"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/dont_have_an_account"
                 android:textAllCaps="false"
-                android:textColor="@color/colorWhite" />
+                style="@style/label_white_large"
+                font:name="Montserrat-Light"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
 
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/textView_continue_as_guest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:gravity="bottom"
-                android:text="@string/continue_as_guest"
-                style="@style/label_white_medium" />
-
-        </RelativeLayout>
-
+        <include
+            layout="@layout/include_guest"/>
     </LinearLayout>
 </LinearLayout>

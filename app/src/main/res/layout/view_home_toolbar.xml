@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBurgendy">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal"
-        android:gravity="center">
+        >
 
         <ImageView
-            android:id="@+id/img_back_arrow"
+            android:id="@+id/imgCommonToolBack"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_back_arrrow"
@@ -20,10 +21,12 @@
             android:visibility="gone"/>
 
         <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtCommonToolHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/home"
             android:gravity="center"
-            style="@style/label_white_large"/>
-    </LinearLayout>
+            style="@style/label_white"
+            font:name="Montserrat-Regular"/>
+    </FrameLayout>
 </LinearLayout>

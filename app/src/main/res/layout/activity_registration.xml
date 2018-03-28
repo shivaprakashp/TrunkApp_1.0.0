@@ -169,7 +169,8 @@
                 android:text="@string/reg_terms_policy"
                 style="@style/label_white"
                 font:name="Montserrat-Light"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -190,7 +191,8 @@
                 android:text="@string/check_subscribe"
                 style="@style/label_white"
                 font:name="Montserrat-Light"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
 
         </LinearLayout>
 
