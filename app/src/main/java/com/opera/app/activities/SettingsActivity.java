@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
@@ -38,6 +40,11 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.imgCommonToolBack)
     View inc_set_toolbar;
 
+    @BindView(R.id.txtCommonToolHome)
+    View inc_set_toolbar_text;
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +71,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.menu_settings));
+
 
         if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageEnglish)) {
             englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
