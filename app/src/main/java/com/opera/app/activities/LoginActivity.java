@@ -70,8 +70,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
 
         initView();
-
-        OperaUtils.createInstance().getSnackbar(mLinearParent,"test");
     }
 
     private void initView() {
