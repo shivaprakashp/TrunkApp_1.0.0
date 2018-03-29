@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 /**
@@ -16,7 +17,6 @@ import com.opera.app.utils.OperaUtils;
 public class LoyaltyPointsFragment extends BaseFragment {
 
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class LoyaltyPointsFragment extends BaseFragment {
         // Inflate the layout for this fragment
         mActivity = getActivity();
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_loyalty_points, container, false);
 
         return view;

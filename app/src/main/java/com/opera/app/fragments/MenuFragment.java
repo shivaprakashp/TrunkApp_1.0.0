@@ -13,6 +13,7 @@ import com.opera.app.R;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
@@ -54,7 +55,6 @@ public class MenuFragment extends BaseFragment {
     View menu_save_card;
 
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class MenuFragment extends BaseFragment {
 
         mActivity = getActivity();
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         ButterKnife.bind(this, view);

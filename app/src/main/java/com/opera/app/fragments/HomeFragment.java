@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 public class HomeFragment extends BaseFragment {
@@ -25,7 +26,7 @@ public class HomeFragment extends BaseFragment {
         // Inflate the layout for this fragment
         mActivity = getActivity();
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         return view;
