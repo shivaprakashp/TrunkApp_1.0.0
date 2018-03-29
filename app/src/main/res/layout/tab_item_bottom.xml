@@ -8,6 +8,8 @@
     android:gravity="center"
     android:background="@color/colorBlack">
 
+
+
     <ImageView
         android:id="@+id/tab_icon"
         android:layout_width="30dp"

@@ -208,7 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:text="@string/create_account"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 font:name="Montserrat-Light"
                 android:textAllCaps="false"/>
 
@@ -219,7 +219,7 @@
                 android:layout_height="@dimen/button_height"
                 android:layout_marginTop="20dp"
                 android:text="@string/already_have_an_account"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 font:name="Montserrat-Light"
                 android:textAllCaps="false"/>
 

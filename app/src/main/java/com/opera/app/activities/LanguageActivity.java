@@ -37,7 +37,6 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
 
         mActivity = LanguageActivity.this;
-
         if (!LanguageManager.createInstance().GetSharedPreferences(mActivity,
                 LanguageManager.createInstance().mSelectedLanguage, "").equalsIgnoreCase("")) {
             openActivity(mActivity,PreLoginActivity.class);
