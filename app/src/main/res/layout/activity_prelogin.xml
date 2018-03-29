@@ -36,7 +36,7 @@
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnCreateAccount"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="10dp"
@@ -47,7 +47,7 @@
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="10dp"
