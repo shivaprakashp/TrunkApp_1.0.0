@@ -121,5 +121,7 @@
     <string name="tab_profile">PROFILE</string>
     <string name="tab_loyalty">LOYALTY POINTS</string>
     <string name="loyalty_points">Loyalty Points</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
 </resources>
