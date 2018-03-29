@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.Locale;
@@ -25,9 +26,7 @@ import butterknife.ButterKnife;
 
 public class PreLoginActivity extends BaseActivity implements View.OnClickListener {
 
-    private Intent in;
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -45,7 +44,7 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
         mActivity = PreLoginActivity.this;
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_prelogin);
 
         initView();
@@ -63,24 +62,15 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:
-
-                in = new Intent(mActivity, RegisterActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, RegisterActivity.class);
                 break;
 
             case R.id.btnLogin:
-
-                in = new Intent(mActivity, LoginActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, LoginActivity.class);
                 break;
 
             case R.id.textView_continue_as_guest:
-
-                in = new Intent(mActivity, MainActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, MainActivity.class);
                 break;
         }
     }

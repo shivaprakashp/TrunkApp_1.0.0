@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.Locale;
@@ -32,9 +33,7 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
-    private Intent in;
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -62,7 +61,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mActivity = LoginActivity.this;
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
 
         setContentView(R.layout.activity_login);
 
@@ -97,24 +96,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.btnRegister:
-
-                in = new Intent(mActivity, RegisterActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, RegisterActivity.class);
                 break;
 
             case R.id.textView_continue_as_guest:
-
-                in = new Intent(mActivity, MainActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, MainActivity.class);
                 break;
 
             case R.id.btnLogin:
-
-                in = new Intent(mActivity, MainActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, MainActivity.class);
                 break;
 
         }
@@ -128,7 +118,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         dialog.setCanceledOnTouchOutside(true);
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         dialog.setContentView(R.layout.popup_forgotpassword);
 
         TextView tv_forgotPassword = (TextView) dialog.findViewById(R.id.tv_forgotPassword);

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
@@ -32,9 +33,7 @@ import butterknife.BindView;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-    private Intent in;
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -44,12 +43,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @BindView(R.id.textView_continue_as_guest)
     TextView mTvContinueAsGuest;
-
-   // @BindView(R.id.tvTerms)
-    //TextView mtvTerms;
-
-    //@BindView(R.id.tvPrivacyPolicy)
-    //TextView mtvPrivacyPolicy;
 
     @BindView(R.id.reg_edtEmail)
     View reg_edtEmail;
@@ -75,15 +68,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.reg_edtCity)
     View reg_edtCity;
 
-    /*@BindView(R.id.reg_edtState)
-    View reg_edtState;
-
-    @BindView(R.id.reg_edtCountry)
-    View reg_edtCountry;
-
-    @BindView(R.id.reg_edtNationality)
-    View reg_edtNationality;*/
-
     @BindView(R.id.spinnerNationality)
     Spinner spinnerNationality;
 
@@ -100,7 +84,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mActivity = RegisterActivity.this;
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_registration);
 
         initView();
@@ -143,14 +127,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         EditTextWithFont edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.city));
 
-        /*EditTextWithFont edtState = (EditTextWithFont) reg_edtState.findViewById(R.id.edt);
-        edtState.setHint(getString(R.string.state));
-
-        EditTextWithFont edtCountry = (EditTextWithFont) reg_edtCountry.findViewById(R.id.edt);
-        edtCountry.setHint(getString(R.string.country));
-
-        EditTextWithFont edtNationality = (EditTextWithFont) reg_edtNationality.findViewById(R.id.edt);
-        edtNationality.setHint(getString(R.string.nationality));*/
 
         //---------------Nationality----------------
         // Initializing a String Array
@@ -303,10 +279,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-                    // Notify the selected item text
-                    /*Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();*/
+
                 }
             }
 
@@ -320,40 +293,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:
-
-                in = new Intent(mActivity, MainActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, MainActivity.class);
                 break;
 
             case R.id.btnLogin:
-
-                in = new Intent(mActivity, LoginActivity.class);
-                startActivity(in);
-
+                openActivity(mActivity, LoginActivity.class);
                 break;
 
             case R.id.textView_continue_as_guest:
-
-                in = new Intent(mActivity, MainActivity.class);
-                startActivity(in);
+                openActivity(mActivity, MainActivity.class);
                 break;
-
-          /*  case R.id.tvTerms: {
-                final Dialog di = new Dialog(mActivity);
-                di.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                di.setContentView(R.layout.dialog_terms_conditions);
-                di.show();
-            }
-            break;
-
-            case R.id.tvPrivacyPolicy: {
-                final Dialog di = new Dialog(mActivity);
-                di.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                di.setContentView(R.layout.dialog_privacy_policy);
-                di.show();
-            }
-            break;*/
 
         }
     }

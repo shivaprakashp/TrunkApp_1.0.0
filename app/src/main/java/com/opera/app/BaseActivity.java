@@ -1,5 +1,7 @@
 package com.opera.app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -9,7 +11,6 @@ import butterknife.ButterKnife;
  */
 
 public class BaseActivity extends AppCompatActivity {
-
 
     @Override
     public void setContentView(int layoutResID) {
@@ -22,4 +23,9 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void openActivity(Activity activity, Class<?> startClass){
+        Intent intent = new Intent(activity, startClass);
+        startActivity(intent);
+        //finish();
+    }
 }

@@ -12,6 +12,7 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
@@ -23,7 +24,6 @@ import butterknife.BindView;
 public class SettingsActivity extends BaseActivity implements View.OnClickListener {
 
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.englishSwitch)
     TextView englishSwitch;
@@ -52,7 +52,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         mActivity = SettingsActivity.this;
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.setting);
 
         initToolbar();
@@ -76,7 +76,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         txtToolbarName.setText(getString(R.string.menu_settings));
 
 
-        if (mOperaUtils.GetSharedPreferences(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish).equalsIgnoreCase(mOperaUtils.mLanguageEnglish)) {
+        if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
+                LanguageManager.createInstance().mSelectedLanguage,
+                LanguageManager.createInstance().mLanguageEnglish).
+                equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
             englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
             arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
         } else {
@@ -98,28 +101,26 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             case R.id.englishSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageEnglish);
+                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                        LanguageManager.createInstance().mSelectedLanguage,
+                        LanguageManager.createInstance().mLanguageEnglish);
 
-                Intent in = new Intent(mActivity, MainActivity.class);
-                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(in);
-                /*//For Language setting
-                mOperaUtils.CommonLanguageFunction(mActivity);
-                setContentView(R.layout.setting);*/
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
             break;
 
             case R.id.arabicSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-                mOperaUtils.StoreInSharedPreference(mActivity, mOperaUtils.mSelectedLanguage, mOperaUtils.mLanguageArabic);
+                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                        LanguageManager.createInstance().mSelectedLanguage,
+                        LanguageManager.createInstance().mLanguageArabic);
 
-                Intent in = new Intent(mActivity, MainActivity.class);
-                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(in);
-                /*//For Language setting
-                mOperaUtils.CommonLanguageFunction(mActivity);
-                setContentView(R.layout.setting);*/
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
             break;
 

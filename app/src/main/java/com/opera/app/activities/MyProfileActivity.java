@@ -17,6 +17,7 @@ import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ import butterknife.BindView;
 public class MyProfileActivity extends BaseActivity {
 
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
@@ -59,7 +59,7 @@ public class MyProfileActivity extends BaseActivity {
         mActivity = MyProfileActivity.this;
 
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_my_profile);
 
         initView();
