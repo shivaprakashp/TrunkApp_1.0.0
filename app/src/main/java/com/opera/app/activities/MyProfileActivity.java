@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.opera.app.BaseActivity;
@@ -29,9 +31,10 @@ import butterknife.BindView;
  * Created by 58001 on 27-03-2018.
  */
 
-public class MyProfileActivity extends BaseActivity {
+public class MyProfileActivity extends BaseActivity implements View.OnClickListener{
 
     private Activity mActivity;
+    private static final int PICK_IMAGE = 1;
 
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
@@ -50,6 +53,9 @@ public class MyProfileActivity extends BaseActivity {
 
     @BindView(R.id.inc_set_toolbar)
     LinearLayout mLinearLayout;
+
+    @BindView(R.id.img_profile)
+    ImageView img_profile;
 
 
     @Override
@@ -92,6 +98,16 @@ public class MyProfileActivity extends BaseActivity {
             onBackPressed();
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.img_profile:
+                OperaUtils.createInstance().SelectGalleryImage(mActivity,PICK_IMAGE);
+                break;
+
+        }
+    }
 
 
     // Adapter for the viewpager using FragmentPagerAdapter
