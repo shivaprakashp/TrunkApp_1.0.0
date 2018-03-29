@@ -86,7 +86,7 @@
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 font:name="Montserrat-Light" />
 
             <com.opera.app.customwidget.ButtonWithFont
@@ -96,7 +96,7 @@
                 android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/dont_have_an_account"
                 android:textAllCaps="false"
-                style="@style/label_white_large"
+                style="@style/label_white_medium"
                 font:name="Montserrat-Light"
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
