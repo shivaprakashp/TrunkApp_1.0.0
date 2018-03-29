@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 public class ListenFragment extends BaseFragment{
@@ -26,7 +27,7 @@ public class ListenFragment extends BaseFragment{
 
         mActivity = getActivity();
         //For Language setting
-        mOperaUtils.CommonLanguageFunction(mActivity);
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_listen, container, false);
 
         return view;
