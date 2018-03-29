@@ -21,7 +21,7 @@
     <string name="arabic">عربى</string>
 
     <!--Pre Login Activity -->
-    <string name="already_have_an_account">Already have an account? Login</string>
+    <string name="already_have_an_account">Already have an Account? Login</string>
     <string name="continue_as_guest"><u>Continue as Guest</u></string>
     <string name="create_an_account">Create an Account</string>
 
@@ -121,5 +121,7 @@
     <string name="tab_profile">PROFILE</string>
     <string name="tab_loyalty">LOYALTY POINTS</string>
     <string name="loyalty_points">Loyalty Points</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
 </resources>
