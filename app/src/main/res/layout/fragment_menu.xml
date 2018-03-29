@@ -43,7 +43,7 @@
             android:orientation="vertical">
 
             <com.opera.app.customwidget.TextViewWithFont
-                style="@style/label_white_medium"
+                style="@style/label_white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
