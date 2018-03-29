@@ -21,7 +21,7 @@
     <string name="arabic">عربى</string>
 
     <!--Pre Login Activity -->
-    <string name="already_have_an_account">Already have an account? Login</string>
+    <string name="already_have_an_account">Already have an Account? Login</string>
     <string name="continue_as_guest"><u>Continue as Guest</u></string>
     <string name="create_an_account">Create an Account</string>
 

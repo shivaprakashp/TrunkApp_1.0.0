@@ -8,19 +8,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.utils.LanguageManager;
+
+import butterknife.BindView;
 
 /**
  * Created by 58001 on 27-03-2018.
  */
 
-public class ProfileFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment implements View.OnClickListener {
 
     private Activity mActivity;
+
+    @BindView(R.id.btnEditProfile)
+    Button btnEditProfile;
+
+    @BindView(R.id.btnChangePassword)
+    Button btnChangePassword;
+
+    @BindView(R.id.prof_edtCurrPass)
+    View prof_edtCurrPass;
+
+    @BindView(R.id.prof_edtNewPass)
+    View prof_edtNewPass;
+
+    @BindView(R.id.prof_edtRePass)
+    View prof_edtRePass;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +53,28 @@ public class ProfileFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //initView();
+
         return view;
+    }
+
+    private void initView() {
+        //button
+        btnEditProfile.setOnClickListener(this);
+        btnChangePassword.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnEditProfile:
+
+                break;
+
+            case R.id.btnChangePassword:
+                //showDialog();
+                break;
+        }
     }
 
     public void showDialog() {
@@ -49,9 +87,14 @@ public class ProfileFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         dialog.setContentView(R.layout.popup_changepassword);
 
-        TextView tv_forgotPassword = (TextView) dialog.findViewById(R.id.tv_forgotPassword);
-        EditText et_username = (EditText) dialog.findViewById(R.id.et_username);
-        Button btnSend = (Button) dialog.findViewById(R.id.btnSend);
+        //EditText
+        EditTextWithFont tv_forgotPassword = (EditTextWithFont) dialog.findViewById(R.id.tv_forgotPassword);
+        EditTextWithFont et_username = (EditTextWithFont) dialog.findViewById(R.id.et_username);
+        EditTextWithFont et_username1 = (EditTextWithFont) dialog.findViewById(R.id.et_username);
+
+        //Button
+        Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+        Button btnSave = (Button) dialog.findViewById(R.id.btnSave);
 
         dialog.show();
 
