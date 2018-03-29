@@ -1,17 +1,22 @@
 package com.opera.app.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,6 +28,7 @@ import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,6 +40,7 @@ import butterknife.BindView;
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     private Activity mActivity;
+    public static EditTextWithFont edtDob;
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -96,6 +103,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         //button
         mButtonCreateAccount.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
+        reg_edtDob.setOnClickListener(this);
 
         //textview
         mTvContinueAsGuest.setOnClickListener(this);
@@ -118,8 +126,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         EditTextWithFont edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
 
-        EditTextWithFont edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
+        edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
+        edtDob.setFocusable(false);
 
         EditTextWithFont edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.mobile));
@@ -131,7 +140,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         //---------------Nationality----------------
         // Initializing a String Array
         String[] nationality_str = new String[]{
-               getResources().getString(R.string.nationality)
+                getResources().getString(R.string.nationality)
         };
         final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
 
@@ -287,6 +296,20 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+        edtDob.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//your code
+                    DialogFragment newFragment = new DatePickerFragment();
+                    newFragment.show(getSupportFragmentManager(), "datePicker");
+
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -304,6 +327,26 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 openActivity(mActivity, MainActivity.class);
                 break;
 
+        }
+    }
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+//            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+            return dialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            month = month + 1;
+            edtDob.setText(year + "-" + month + "-" + day);
         }
     }
 }

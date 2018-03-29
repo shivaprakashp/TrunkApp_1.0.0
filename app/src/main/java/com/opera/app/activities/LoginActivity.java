@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -53,6 +54,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.login_password)
     View login_password;
 
+    @BindView(R.id.linearParent)
+    LinearLayout mLinearParent;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +70,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
 
         initView();
+
+        OperaUtils.createInstance().getSnackbar(mLinearParent,"test");
     }
 
     private void initView() {

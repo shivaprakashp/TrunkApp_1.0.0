@@ -13,7 +13,6 @@ import com.opera.app.utils.OperaUtils;
 public class HomeFragment extends BaseFragment {
 
     private Activity mActivity;
-    private OperaUtils mOperaUtils = new OperaUtils();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
