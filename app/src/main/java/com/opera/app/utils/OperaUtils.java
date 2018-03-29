@@ -10,7 +10,9 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 
 import com.opera.app.R;
@@ -23,6 +25,8 @@ import java.util.Locale;
 
 public class OperaUtils {
 
+    private static OperaUtils mOperaUtils = null;
+
     public static String FONT_MONSTERRAT_LIGHT = "Montserrat-Light.ttf";
 
     public static String FONT_MONSTERRAT_MEDIUM = "Montserrat-Medium.ttf";
@@ -30,6 +34,20 @@ public class OperaUtils {
     public static String FONT_MONSTERRAT_REGULAR = "Montserrat-Regular.ttf";
 
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
+
+    //restricted user to create instance
+    private OperaUtils(){}
+
+    public static OperaUtils createInstance(){
+
+        //initialize if instance is null
+        //or else return instance
+        if ( mOperaUtils == null ){
+            mOperaUtils = new OperaUtils();
+        }
+
+        return mOperaUtils;
+    }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void forceRTLIfSupported(Activity mActivity) {
@@ -83,4 +101,9 @@ public class OperaUtils {
         Snackbar snackbar = Snackbar.make(viw, msg, Snackbar.LENGTH_LONG);
         return snackbar;
     }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
 }
