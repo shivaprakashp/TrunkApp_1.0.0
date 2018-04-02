@@ -1,27 +1,40 @@
 package com.opera.app.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.SlidingUpPanelLayout;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +44,13 @@ import butterknife.BindView;
  * Created by 58001 on 27-03-2018.
  */
 
-public class MyProfileActivity extends BaseActivity implements View.OnClickListener{
+public class MyProfileActivity extends BaseActivity implements View.OnClickListener {
 
     private Activity mActivity;
     private static final int PICK_IMAGE = 1;
+    private static final int ACCESS_CAMERA_PERMISSION = 2;
+    private static final int CAMERA_REQUEST = 3;
+    private Bitmap bmProfileImage;
 
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
@@ -56,6 +72,18 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
 
     @BindView(R.id.img_profile)
     ImageView img_profile;
+
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout sliding_layout;
+
+    @BindView(R.id.linearBottomSliding)
+    LinearLayout linearBottomSliding;
+
+    @BindView(R.id.linearGallery)
+    LinearLayout linearGallery;
+
+    @BindView(R.id.linearCamera)
+    LinearLayout linearCamera;
 
 
     @Override
@@ -90,6 +118,9 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
         mViewPager.setAdapter(adapter);
 
         mTabHost.setupWithViewPager(mViewPager);
+        img_profile.setOnClickListener(this);
+        linearGallery.setOnClickListener(this);
+        linearCamera.setOnClickListener(this);
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -103,12 +134,30 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_profile:
-                OperaUtils.createInstance().SelectGalleryImage(mActivity,PICK_IMAGE);
+                sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                break;
+            case R.id.linearGallery:
+                CollapseBottomSliding();
+                OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+
+                break;
+            case R.id.linearCamera:
+                CollapseBottomSliding();
+                if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+                    if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
+                    } else {
+                        OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                    }
+                } else {
+                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                }
+
+
                 break;
 
         }
     }
-
 
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -139,4 +188,56 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
             return mFragmentTitleList.get(position);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PICK_IMAGE) {
+                if (data != null) {
+                    try {
+                        bmProfileImage = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                img_profile.setImageBitmap(bmProfileImage);
+            } else {
+                bmProfileImage = (Bitmap) data.getExtras().get("data");
+                img_profile.setImageBitmap(bmProfileImage);
+            }
+
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (sliding_layout != null &&
+                (sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+            CollapseBottomSliding();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    public void CollapseBottomSliding() {
+        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == ACCESS_CAMERA_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                OperaUtils.createInstance().getSnackbar(sliding_layout, getResources().getString(R.string.permissionGranted)).show();
+                OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+            } else {
+                OperaUtils.createInstance().getSnackbar(sliding_layout, getResources().getString(R.string.permissionDenied)).show();
+            }
+        }
+    }
+
+
 }

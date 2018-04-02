@@ -2,6 +2,7 @@ package com.opera.app.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -18,6 +20,9 @@ import android.view.View;
 
 import com.opera.app.R;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -37,13 +42,14 @@ public class OperaUtils {
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
 
     //restricted user to create instance
-    private OperaUtils(){}
+    private OperaUtils() {
+    }
 
-    public static OperaUtils createInstance(){
+    public static OperaUtils createInstance() {
 
         //initialize if instance is null
         //or else return instance
-        if ( mOperaUtils == null ){
+        if (mOperaUtils == null) {
             mOperaUtils = new OperaUtils();
         }
 
@@ -58,14 +64,14 @@ public class OperaUtils {
     }
 
     //related to home bottom navigation icons
-    public static Drawable setDrawableImage(Context context, int normal, int selected, int position){
+    public static Drawable setDrawableImage(Context context, int normal, int selected, int position) {
 
         StateListDrawable drawable = new StateListDrawable();
 
         Drawable state_normal = ContextCompat.getDrawable(context, normal);
         Drawable state_pressed = null;
 
-        switch (position){
+        switch (position) {
 
             case 0:
                 state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_home_hover);
@@ -87,7 +93,7 @@ public class OperaUtils {
                 state_pressed = ContextCompat.getDrawable(context, R.drawable.ic_menu_hover);
                 break;
 
-                default:
+            default:
         }
 
         drawable.addState(new int[]{android.R.attr.state_selected},
@@ -107,11 +113,27 @@ public class OperaUtils {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public static void SelectGalleryImage(Activity mActivity,int PICK_IMAGE) {
+    public static void SelectGalleryImage(Activity mActivity, int PICK_IMAGE) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
 
+    public static void SelectCameraImage(Activity mActivity, int CAMERA_REQUEST) {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        mActivity.startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    public static boolean CheckMarshmallowOrNot() {
+        boolean IsMarshmallow;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            // Marshmallow+
+            IsMarshmallow = true;
+        } else {
+            //below Marshmallow
+            IsMarshmallow = false;
+        }
+        return IsMarshmallow;
+    }
 }

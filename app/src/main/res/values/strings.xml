@@ -123,5 +123,9 @@
     <string name="loyalty_points">Loyalty Points</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="permissionDenied">Permission denied</string>
+    <string name="permissionGranted">Permission Granted</string>
 
 </resources>
