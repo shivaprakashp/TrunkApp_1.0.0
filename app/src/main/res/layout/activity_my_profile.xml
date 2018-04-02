@@ -19,14 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/header_cover_image"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_login"
-                app:srcCompat="@drawable/bg_login" />
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_login"
+            app:srcCompat="@drawable/ic_profile_bg" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_setting"
@@ -66,26 +66,26 @@
                 android:elevation="4dp"
                 android:paddingBottom="20dp">
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/tv_profile_name"
-                    style="@style/label_black_vlarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="70dp"
-                    android:text="@string/profile_name" />
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:text="@string/profile_name"
+                style="@style/label_black_medium"/>
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/tv_profile_info"
-                    style="@style/label_black_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_profile_name"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/profile_info" />
-            </RelativeLayout>
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_profile_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_profile_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/profile_info"
+                style="@style/label_black"/>
         </RelativeLayout>
+    </RelativeLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabhost"
