@@ -18,7 +18,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
             android:src="@drawable/bg_login"
-            app:srcCompat="@drawable/bg_login" />
+            app:srcCompat="@drawable/ic_profile_bg" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_setting"
@@ -65,7 +65,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
                 android:text="@string/profile_name"
-                style="@style/label_black_vlarge"/>
+                style="@style/label_black_medium"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tv_profile_info"
@@ -75,7 +75,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/profile_info"
-                style="@style/label_black_medium"/>
+                style="@style/label_black"/>
         </RelativeLayout>
     </RelativeLayout>
 

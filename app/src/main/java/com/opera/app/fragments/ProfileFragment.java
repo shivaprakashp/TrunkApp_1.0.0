@@ -38,7 +38,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @BindView(R.id.prof_edtRePass)
     View prof_edtRePass;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
