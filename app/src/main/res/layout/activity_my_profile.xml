@@ -4,8 +4,8 @@
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:umanoInitialState="hidden"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    app:umanoInitialState="hidden">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_profile_bg" />
+            <ImageView
+                android:id="@+id/header_cover_image"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_profile_bg" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_setting"
@@ -63,26 +63,26 @@
                 android:elevation="4dp"
                 android:paddingBottom="20dp">
 
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tv_profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:text="@string/profile_name"
-                style="@style/label_black_medium"/>
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/tv_profile_name"
+                    style="@style/label_black_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
+                    android:text="@string/profile_name" />
 
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tv_profile_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_profile_name"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/profile_info"
-                style="@style/label_black"/>
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/tv_profile_info"
+                    style="@style/label_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/profile_info" />
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabhost"
@@ -107,7 +107,7 @@
         android:id="@+id/linearBottomSliding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
 
         <LinearLayout
@@ -115,9 +115,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="10dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -138,9 +138,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="10dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="100dp"
