@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
@@ -16,13 +17,14 @@ import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import butterknife.OnClick;
+
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
-public class LanguageActivity extends BaseActivity implements View.OnClickListener {
+public class LanguageActivity extends BaseActivity{
 
     private Activity mActivity;
 
@@ -37,23 +39,19 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
 
         mActivity = LanguageActivity.this;
+
         if (!LanguageManager.createInstance().GetSharedPreferences(mActivity,
                 LanguageManager.createInstance().mSelectedLanguage, "").equalsIgnoreCase("")) {
             openActivity(mActivity,PreLoginActivity.class);
             finish();
         } else {
             setContentView(R.layout.activity_language_selection);
-            InitView();
         }
     }
 
-    private void InitView() {
-        mButtonEnglish.setOnClickListener(this);
-        mButtonArabic.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
+    //used butterknife onClick
+    @OnClick({R.id.btnEnglish, R.id.btnArabic})
+    public void onClick(View v){
         switch (v.getId()) {
             case R.id.btnEnglish:
                 LanguageManager.createInstance().StoreInSharedPreference(mActivity,
@@ -72,6 +70,4 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
                 break;
         }
     }
-
-
 }
