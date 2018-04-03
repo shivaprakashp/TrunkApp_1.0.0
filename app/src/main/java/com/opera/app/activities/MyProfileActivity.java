@@ -39,12 +39,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 58001 on 27-03-2018.
  */
 
-public class MyProfileActivity extends BaseActivity implements View.OnClickListener {
+public class MyProfileActivity extends BaseActivity {
 
     private Activity mActivity;
     private static final int PICK_IMAGE = 1;
@@ -118,9 +119,6 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
         mViewPager.setAdapter(adapter);
 
         mTabHost.setupWithViewPager(mViewPager);
-        img_profile.setOnClickListener(this);
-        linearGallery.setOnClickListener(this);
-        linearCamera.setOnClickListener(this);
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -130,7 +128,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
         }
     };
 
-    @Override
+    @OnClick({R.id.img_profile,R.id.linearGallery,R.id.linearCamera})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_profile:

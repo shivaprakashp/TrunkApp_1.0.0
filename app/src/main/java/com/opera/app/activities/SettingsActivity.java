@@ -16,12 +16,13 @@ import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 58001 on 23-03-2018.
  */
 
-public class SettingsActivity extends BaseActivity implements View.OnClickListener {
+public class SettingsActivity extends BaseActivity {
 
     private Activity mActivity;
 
@@ -63,10 +64,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initView() {
-        //textview
-        englishSwitch.setOnClickListener(this);
-        arabicSwitch.setOnClickListener(this);
-        tvLogout.setOnClickListener(this);
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -94,7 +91,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         }
     };
 
-    @Override
+    @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.englishSwitch: {

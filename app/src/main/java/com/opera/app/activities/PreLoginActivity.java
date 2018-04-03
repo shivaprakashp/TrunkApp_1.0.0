@@ -19,12 +19,13 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
-public class PreLoginActivity extends BaseActivity implements View.OnClickListener {
+public class PreLoginActivity extends BaseActivity {
 
     private Activity mActivity;
 
@@ -46,19 +47,9 @@ public class PreLoginActivity extends BaseActivity implements View.OnClickListen
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_prelogin);
-
-        initView();
     }
 
-    private void initView() {
-
-        mButtonCreateAccount.setOnClickListener(this);
-        mButtonLogin.setOnClickListener(this);
-        mTvContinueAsGuest.setOnClickListener(this);
-
-    }
-
-    @Override
+    @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:

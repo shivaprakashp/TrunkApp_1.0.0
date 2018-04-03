@@ -10,11 +10,11 @@ import android.widget.ImageView;
 
 import android.content.Intent;
 import com.opera.app.R;
+import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -151,6 +151,14 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 in = new Intent(getActivity(), MyProfileActivity.class);
+                startActivity(in);
+            }
+        });
+
+        menu_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in = new Intent(getActivity(), ContactUsActivity.class);
                 startActivity(in);
             }
         });
