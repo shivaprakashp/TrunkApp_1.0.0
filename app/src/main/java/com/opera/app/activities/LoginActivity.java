@@ -27,12 +27,13 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
 
@@ -73,13 +74,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        //button
-        mButtonRegister.setOnClickListener(this);
-        mButtonLogin.setOnClickListener(this);
-
-        //textview
-        mTextForgotPwd.setOnClickListener(this);
-        mTextContinue_as_guest.setOnClickListener(this);
 
         //edittext
         EditTextWithFont username = (EditTextWithFont) login_username.findViewById(R.id.edt);
@@ -90,7 +84,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    @Override
+    @OnClick({R.id.tv_forgotPassword,R.id.btnRegister,R.id.textView_continue_as_guest,R.id.btnLogin})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_forgotPassword:

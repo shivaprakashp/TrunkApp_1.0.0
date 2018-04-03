@@ -32,12 +32,13 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity{
 
     private Activity mActivity;
     public static EditTextWithFont edtDob;
@@ -99,16 +100,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void initView() {
         mActivity = RegisterActivity.this;
-
-        //button
-        mButtonCreateAccount.setOnClickListener(this);
-        mButtonLogin.setOnClickListener(this);
-        reg_edtDob.setOnClickListener(this);
-
-        //textview
-        mTvContinueAsGuest.setOnClickListener(this);
-        //mtvTerms.setOnClickListener(this);
-        //mtvPrivacyPolicy.setOnClickListener(this);
 
         //edittext
         EditTextWithFont edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
@@ -312,7 +303,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-    @Override
+    @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:

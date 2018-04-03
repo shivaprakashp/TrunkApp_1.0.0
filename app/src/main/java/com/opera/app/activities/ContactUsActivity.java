@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -21,12 +20,13 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 4/3/2018.
  */
 
-public class ContactUs extends BaseActivity implements View.OnClickListener {
+public class ContactUsActivity extends BaseActivity {
 
     private Activity mActivity;
 
@@ -64,7 +64,7 @@ public class ContactUs extends BaseActivity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mActivity = ContactUs.this;
+        mActivity = ContactUsActivity.this;
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_contactus);
@@ -76,7 +76,6 @@ public class ContactUs extends BaseActivity implements View.OnClickListener {
     private void initView() {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-        mImageNumber.setOnClickListener(this);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
@@ -117,7 +116,7 @@ public class ContactUs extends BaseActivity implements View.OnClickListener {
         }
     };
 
-    @Override
+    @OnClick({R.id.imgNumber})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgNumber:
