@@ -1,15 +1,9 @@
 package com.opera.app.activities;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,12 +15,8 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
-
-import java.util.Locale;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
