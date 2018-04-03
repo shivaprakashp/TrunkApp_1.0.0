@@ -126,4 +126,13 @@
     <string name="contact_us_info">لديك أسئلة؟ املأ النموذج أدناه وسنوافيك بالرد في أقرب وقت ممكن.</string>
     <string name="send_message">ارسل رسالة</string>
     <string name="contact_us">اتصل بنا</string>
+    <string name="full_name">الاسم الكامل</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="email2">البريد الإلكتروني</string>
+    <string name="message">رسالة</string>
+    <string name="enquiry_type">نوع استفسار</string>
+    <string name="press_enquiry">الصحافة الاستفسار</string>
+    <string name="ticketting_enquiry">الاستفسار</string>
+    <string name="venue_booking">حجز الموقع</string>
+    <string name="careers">وظائف</string>
 </resources>

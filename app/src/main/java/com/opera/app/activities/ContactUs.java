@@ -1,13 +1,21 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
 
@@ -17,7 +25,7 @@ import butterknife.BindView;
  * Created by 1000632 on 4/3/2018.
  */
 
-public class ContactUs extends BaseActivity {
+public class ContactUs extends BaseActivity implements View.OnClickListener {
 
     private Activity mActivity;
 
@@ -29,6 +37,27 @@ public class ContactUs extends BaseActivity {
 
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
+
+    @BindView(R.id.edtFullName)
+    View edtFullName;
+
+    @BindView(R.id.edtPhoneNumber)
+    View edtPhoneNumber;
+
+    @BindView(R.id.edtEmail)
+    View edtEmail;
+
+    @BindView(R.id.edtMessage)
+    View edtMessage;
+
+    @BindView(R.id.spinnerEnquiryType)
+    Spinner spinnerEnquiryType;
+
+    @BindView(R.id.imgNumber)
+    ImageView mImageNumber;
+
+    @BindView(R.id.txtNumber)
+    TextView mTextNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,9 +75,33 @@ public class ContactUs extends BaseActivity {
     private void initView() {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+        mImageNumber.setOnClickListener(this);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
+
+
+        EditTextWithFont mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
+        mEdtFullName.setHint(getString(R.string.full_name));
+        mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        EditTextWithFont mEdtPhoneNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
+        mEdtPhoneNumber.setHint(getString(R.string.phone_number));
+        mEdtFullName.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        EditTextWithFont mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
+        mEdtEmail.setHint(getString(R.string.email2));
+        mEdtFullName.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        EditTextWithFont mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
+        mEdtMessage.setHint(getString(R.string.message));
+        mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        String[] arrEnquiryOptions = {getResources().getString(R.string.enquiry_type), getResources().getString(R.string.press_enquiry), getResources().getString(R.string.ticketting_enquiry),
+                getResources().getString(R.string.venue_booking), getResources().getString(R.string.careers)};
+
+        ArrayAdapter<String> adapterEnquiry = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrEnquiryOptions);
+        spinnerEnquiryType.setAdapter(adapterEnquiry);
     }
 
     private void initToolbar() {
@@ -61,4 +114,16 @@ public class ContactUs extends BaseActivity {
             onBackPressed();
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imgNumber:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + mTextNumber.getText().toString().trim()));
+                startActivity(intent);
+                break;
+
+        }
+    }
 }

@@ -55,6 +55,7 @@
                     font:name="Montserrat-Light" />
 
                 <ImageView
+                    android:id="@+id/imgNumber"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginRight="5dp"
@@ -62,6 +63,7 @@
 
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtNumber"
                     style="@style/label_black_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,42 +80,60 @@
                 android:text="@string/contact_us_info"
                 font:name="Montserrat-Light" />
 
-            <include
-                android:id="@+id/edtFullName"
-                layout="@layout/include_edittext"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/grey_corner">
 
-            <include
-                android:id="@+id/edtPhoneNumber"
-                layout="@layout/include_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp" />
+                <include
+                    android:id="@+id/edtFullName"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
 
-            <include
-                android:id="@+id/edtEmail"
-                layout="@layout/include_edittext"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/grey_corner">
+
+                <include
+                    android:id="@+id/edtPhoneNumber"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/grey_corner">
+
+                <include
+                    android:id="@+id/edtEmail"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/spinnerEnquiryType"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/spinner_bg"
+                android:gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
-            <include
-                android:id="@+id/edtMessage"
-                layout="@layout/include_edittext"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/grey_corner">
 
+                <include
+                    android:id="@+id/edtMessage"
+                    layout="@layout/include_edittext" />
+
+            </LinearLayout>
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/updateProfile"

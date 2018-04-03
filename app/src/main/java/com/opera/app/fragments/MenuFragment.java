@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import android.content.Intent;
 import com.opera.app.R;
+import com.opera.app.activities.ContactUs;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -151,6 +152,14 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 in = new Intent(getActivity(), MyProfileActivity.class);
+                startActivity(in);
+            }
+        });
+
+        menu_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in = new Intent(getActivity(), ContactUs.class);
                 startActivity(in);
             }
         });
