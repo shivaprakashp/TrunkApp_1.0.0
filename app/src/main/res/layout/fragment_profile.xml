@@ -155,7 +155,7 @@
             android:background="@drawable/btn_ripple_effect"
             android:text="@string/profile_edit_profile"
             android:textAllCaps="true"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             font:name="Montserrat-Light"/>
 
         <com.opera.app.customwidget.ButtonWithFont
@@ -167,7 +167,7 @@
             android:background="@drawable/btn_ripple_effect"
             android:text="@string/profile_change_password"
             android:textAllCaps="true"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             font:name="Montserrat-Light"/>
     </LinearLayout>
 

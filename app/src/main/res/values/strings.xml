@@ -121,11 +121,28 @@
     <string name="tab_profile">PROFILE</string>
     <string name="tab_loyalty">LOYALTY POINTS</string>
     <string name="loyalty_points">Loyalty Points</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="permissionDenied">Permission denied</string>
     <string name="permissionGranted">Permission Granted</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save Changes</string>
+
+    <!--Change Password Popup -->
+    <string name="curr_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="conf_new_password">Confirm New Password</string>
+
+    <!--Edit Profile-->
+    <string name="edit_email">Email Address</string>
+    <string name="edit_firstname">First Name</string>
+    <string name="edit_lastname">Last Name</string>
+    <string name="edit_nationality">Nationality</string>
+    <string name="edit_dob">Date of Birth</string>
+    <string name="edit_mobile">Mobile Phone</string>
+    <string name="edit_city">City</string>
+    <string name="edit_state">Emirate or State</string>
+    <string name="edit_country">Country</string>
+    <string name="edit_address">Address</string>
 
 </resources>

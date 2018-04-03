@@ -120,5 +120,23 @@
     <string name="camera">الة تصوير</string>
     <string name="permissionDenied">طلب الاذن مرفوض</string>
     <string name="permissionGranted">تم تأمين التصريح</string>
+    <string name="cancel">إلغاء</string>
+    <string name="save">حفظ التغييرات</string>
 
+    <!--Change Password Popup -->
+    <string name="curr_password">كلمة السر الحالية</string>
+    <string name="new_password">كلمة السر الجديدة</string>
+    <string name="conf_new_password">تأكيد كلمة المرور الجديدة</string>
+
+    <!--Edit Profile-->
+    <string name="edit_email">عنوان البريد الإلكتروني</string>
+    <string name="edit_firstname">الاسم الاول</string>
+    <string name="edit_lastname">الكنية</string>
+    <string name="edit_nationality">جنسية</string>
+    <string name="edit_dob">تاريخ الولادة</string>
+    <string name="edit_mobile">تليفون محمول</string>
+    <string name="edit_city">مدينة</string>
+    <string name="edit_state">إمارة أو ولاية</string>
+    <string name="edit_country">بلد</string>
+    <string name="edit_address">كلمه السر</string>
 </resources>
