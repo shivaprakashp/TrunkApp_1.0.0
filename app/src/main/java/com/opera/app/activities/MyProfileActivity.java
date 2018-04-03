@@ -135,6 +135,9 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.img_profile:
                 sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+
+//                DisableBackgroundTabs();
+
                 break;
             case R.id.linearGallery:
                 CollapseBottomSliding();
@@ -208,6 +211,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
             }
 
         }
+        CollapseBottomSliding();
     }
 
 
@@ -223,6 +227,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnClickListe
 
     public void CollapseBottomSliding() {
         sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+
     }
 
     @Override
