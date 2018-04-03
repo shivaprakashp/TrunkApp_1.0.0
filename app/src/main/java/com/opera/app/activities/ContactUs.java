@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -87,15 +88,16 @@ public class ContactUs extends BaseActivity implements View.OnClickListener {
 
         EditTextWithFont mEdtPhoneNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
         mEdtPhoneNumber.setHint(getString(R.string.phone_number));
-        mEdtFullName.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEdtPhoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         EditTextWithFont mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email2));
-        mEdtFullName.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        mEdtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
         EditTextWithFont mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
         mEdtMessage.setHint(getString(R.string.message));
-        mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
+        mEdtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        mEdtMessage.setSingleLine(false);
 
         String[] arrEnquiryOptions = {getResources().getString(R.string.enquiry_type), getResources().getString(R.string.press_enquiry), getResources().getString(R.string.ticketting_enquiry),
                 getResources().getString(R.string.venue_booking), getResources().getString(R.string.careers)};
