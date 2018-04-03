@@ -29,12 +29,13 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 58001 on 03-04-2018.
  */
 
-public class EditProfileActivity extends BaseActivity implements View.OnClickListener {
+public class EditProfileActivity extends BaseActivity{
 
     private Activity mActivity;
     public static EditTextWithFont edtDob;
@@ -90,10 +91,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     private void initView() {
 
-        //button
-        mBtnSave.setOnClickListener(this);
-        mBtnCancel.setOnClickListener(this);
-        edit_edtDob.setOnClickListener(this);
 
         //edittext
         EditTextWithFont edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
@@ -295,7 +292,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
-    @Override
+    @OnClick({R.id.btnSave,R.id.btnCancel})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:

@@ -17,12 +17,13 @@ import com.opera.app.utils.LanguageManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 58001 on 27-03-2018.
  */
 
-public class ProfileFragment extends BaseFragment implements View.OnClickListener {
+public class ProfileFragment extends BaseFragment {
 
     private Activity mActivity;
     private Intent in;
@@ -48,18 +49,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
 
-        initView();
-
         return view;
     }
 
-    private void initView() {
-        //button
-        mBtnEditProfile.setOnClickListener(this);
-        mBtnChangePassword.setOnClickListener(this);
-    }
-
-    @Override
+    @OnClick({R.id.btnEditProfile,R.id.btnChangePassword})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEditProfile:

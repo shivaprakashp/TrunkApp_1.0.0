@@ -23,7 +23,6 @@
             android:layout_height="160dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg_login"
             app:srcCompat="@drawable/ic_profile_bg" />
 
             <android.support.v7.widget.Toolbar
