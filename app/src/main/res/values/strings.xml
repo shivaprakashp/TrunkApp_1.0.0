@@ -128,4 +128,12 @@
     <string name="permissionDenied">Permission denied</string>
     <string name="permissionGranted">Permission Granted</string>
 
+    <!--Contact us-->
+    <string name="reach_us">Reach Us:</string>
+    <string name="number">044408888</string>
+    <string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
+    <string name="send_message">Send message</string>
+    <string name="contact_us">Contact Us</string>
+
+
 </resources>
