@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +31,7 @@ import butterknife.OnClick;
 public class ContactUsActivity extends BaseActivity {
 
     private Activity mActivity;
+    private Intent intent;
 
     @BindView(R.id.toolbar_contactUs)
     Toolbar toolbar;
@@ -59,6 +62,15 @@ public class ContactUsActivity extends BaseActivity {
 
     @BindView(R.id.txtNumber)
     TextView mTextNumber;
+
+    @BindView(R.id.linearTwitter)
+    LinearLayout mLinearTwitter;
+
+    @BindView(R.id.linearInstagram)
+    LinearLayout mLinearInstagram;
+
+    @BindView(R.id.linearFacebook)
+    LinearLayout mLinearFacebook;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,12 +128,27 @@ public class ContactUsActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.imgNumber})
+    @OnClick({R.id.imgNumber, R.id.linearTwitter, R.id.linearInstagram, R.id.linearFacebook})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgNumber:
-                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + mTextNumber.getText().toString().trim()));
+                startActivity(intent);
+                break;
+            case R.id.linearTwitter:
+                intent = new Intent(mActivity, CommonWebViewActivity.class);
+                intent.putExtra("URL", OperaUtils.OPERA_TWITTER_URL);
+                startActivity(intent);
+                break;
+            case R.id.linearInstagram:
+                intent = new Intent(mActivity, CommonWebViewActivity.class);
+                intent.putExtra("URL", OperaUtils.OPERA_INSTAGRAM_URL);
+                startActivity(intent);
+                break;
+            case R.id.linearFacebook:
+                intent = new Intent(mActivity, CommonWebViewActivity.class);
+                intent.putExtra("URL", OperaUtils.OPERA_FACEBOOK_URL);
                 startActivity(intent);
                 break;
 

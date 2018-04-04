@@ -41,6 +41,12 @@ public class OperaUtils {
 
     public static String FONT_MONSTERRAT_BOLD = "Montserrat-Bold.ttf";
 
+    public static String OPERA_TWITTER_URL = "https://twitter.com/dubaiopera";
+
+    public static String OPERA_INSTAGRAM_URL = "https://www.instagram.com/dubaiopera/";
+
+    public static String OPERA_FACEBOOK_URL = "https://www.facebook.com/dubaiopera";
+
     //restricted user to create instance
     private OperaUtils() {
     }
