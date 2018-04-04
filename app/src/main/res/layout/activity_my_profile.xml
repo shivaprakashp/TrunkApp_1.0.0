@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.opera.app.customwidget.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
@@ -70,7 +71,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="70dp"
-                    android:text="@string/profile_name" />
+                    android:text="@string/profile_name"
+                    font:name="Montserrat-Light"/>
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/tv_profile_info"
@@ -80,7 +82,8 @@
                     android:layout_below="@+id/tv_profile_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="@string/profile_info" />
+                    android:text="@string/profile_info"
+                    font:name="Montserrat-Light"/>
             </RelativeLayout>
         </RelativeLayout>
 
@@ -128,7 +131,8 @@
                 style="@style/label_black_vlarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gallery" />
+                android:text="@string/gallery"
+                font:name="Montserrat-Light"/>
 
         </LinearLayout>
 
@@ -151,7 +155,8 @@
                 style="@style/label_black_vlarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/camera" />
+                android:text="@string/camera"
+                font:name="Montserrat-Light"/>
         </LinearLayout>
 
     </LinearLayout>

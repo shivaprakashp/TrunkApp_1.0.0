@@ -57,7 +57,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_address_icon" />
+                        android:src="@drawable/ic_mail_icon" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -84,7 +84,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_address_icon" />
+                        android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -101,34 +101,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_address_icon" />
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        style="@style/label_black_medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="left|center"
-                        android:layout_marginLeft="10dp"
-                        font:name="Montserrat-Regular"
-                        android:text="@string/setting_allow_notification" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/dark_gray" />
-
 
             </LinearLayout>
         </ScrollView>
