@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBurgendy">
@@ -14,6 +15,7 @@
             android:layout_height="match_parent"
             android:text="@string/dining"
             android:gravity="center"
-            style="@style/label_white_large"/>
+            style="@style/label_white_large"
+            font:name="Montserrat-Light"/>
     </LinearLayout>
 </LinearLayout>
