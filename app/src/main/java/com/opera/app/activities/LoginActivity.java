@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,12 +13,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.dagger.Api;
+import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.utils.LanguageManager;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 3/22/2018.
@@ -48,6 +59,23 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.linearParent)
     LinearLayout mLinearParent;
 
+    //injecting retrofit
+    @Inject
+    Retrofit retrofit;
+
+    private Api api;
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response) {
+            Log.i("response", response.body().toString());
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t) {
+            Log.e("Error", call.toString());
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +92,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
+
+        api = retrofit.create(Api.class);
 
         //edittext
         EditTextWithFont username = (EditTextWithFont) login_username.findViewById(R.id.edt);
@@ -92,11 +124,18 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.btnLogin:
-                openActivity(mActivity, MainActivity.class);
+                //openActivity(mActivity, MainActivity.class);
+                sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
                 break;
 
         }
 
+    }
+
+    private void sendPost(String emailId, String pwd){
+
+        MainController controller = new MainController(LoginActivity.this);
+        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
     }
 
     public void showDialog() {

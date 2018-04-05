@@ -52,7 +52,7 @@ public class ProfileFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick({R.id.btnEditProfile,R.id.btnChangePassword})
+    @OnClick({R.id.btnEditProfile, R.id.btnChangePassword})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEditProfile:

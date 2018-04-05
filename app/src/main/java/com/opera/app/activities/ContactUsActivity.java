@@ -92,7 +92,6 @@ public class ContactUsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
 
-
         EditTextWithFont mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
         mEdtFullName.setHint(getString(R.string.full_name));
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
