@@ -1,5 +1,6 @@
 package com.opera.app.dagger;
 
+import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
 
 import javax.inject.Singleton;
@@ -14,4 +15,5 @@ import dagger.Component;
 @Component(modules = {AppModule.class, ApiModule.class})
 public interface ApiComponent {
     void inject(MainActivity mainActivity);
+    void inject(LoginActivity loginActivity);
 }
