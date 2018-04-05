@@ -53,7 +53,7 @@ public class CommonWebViewActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.social_media));
+        //txtToolbarName.setText(getString(R.string.social_media));
     }
 
     private void webView() {
