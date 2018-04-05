@@ -161,5 +161,6 @@
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
     <string name="social_media">Social media</string>
+    <string name="reserve_a_table">Reserve a table</string>
 
 </resources>

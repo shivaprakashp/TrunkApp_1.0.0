@@ -20,8 +20,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -86,7 +88,6 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.linearCamera)
     LinearLayout linearCamera;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,8 +134,6 @@ public class MyProfileActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.img_profile:
                 sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-
-//                DisableBackgroundTabs();
 
                 break;
             case R.id.linearGallery:
@@ -225,7 +224,6 @@ public class MyProfileActivity extends BaseActivity {
 
     public void CollapseBottomSliding() {
         sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-
     }
 
     @Override

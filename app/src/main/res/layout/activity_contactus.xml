@@ -165,7 +165,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/twitter" />
+                        android:src="@drawable/ic_twitter" />
 
                 </LinearLayout>
 
@@ -185,7 +185,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/instagram" />
+                        android:src="@drawable/ic_instagram" />
 
                 </LinearLayout>
 
@@ -205,7 +205,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/facebook" />
+                        android:src="@drawable/ic_facebook" />
 
                 </LinearLayout>
 
