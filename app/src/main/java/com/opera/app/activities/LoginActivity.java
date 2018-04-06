@@ -21,6 +21,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -37,6 +38,7 @@ import retrofit2.Retrofit;
 public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
+    EditTextWithFont username, password;
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -98,10 +100,10 @@ public class LoginActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         //edittext
-        EditTextWithFont username = (EditTextWithFont) login_username.findViewById(R.id.edt);
+        username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
 
-        EditTextWithFont password = (EditTextWithFont) login_password.findViewById(R.id.edt);
+        password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
 
     }
@@ -125,11 +127,24 @@ public class LoginActivity extends BaseActivity {
 
             case R.id.btnLogin:
                 //openActivity(mActivity, MainActivity.class);
-                sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
+                if (checkValidation()) sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
                 break;
+        }
+    }
 
+    private boolean checkValidation() {
+        boolean ret = true;
+
+        if (!OperaUtils.isValidEmail(username.getText().toString().trim())){
+            OperaUtils.getSnackbar(username, "").show();
+            ret = false;
+        }
+        else if (!OperaUtils.hasText(password)) {
+            OperaUtils.getSnackbar(password, "").show();
+            ret = false;
         }
 
+        return ret;
     }
 
     private void sendPost(String emailId, String pwd){

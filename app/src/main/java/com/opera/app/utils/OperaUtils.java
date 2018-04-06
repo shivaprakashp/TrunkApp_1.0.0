@@ -2,28 +2,19 @@ package com.opera.app.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 
 import com.opera.app.R;
-
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -115,10 +106,6 @@ public class OperaUtils {
         return snackbar;
     }
 
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
     public static void SelectGalleryImage(Activity mActivity, int PICK_IMAGE) {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -141,5 +128,25 @@ public class OperaUtils {
             IsMarshmallow = false;
         }
         return IsMarshmallow;
+    }
+
+    //---------Validation------------
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    // check the input field has any text or not
+    // return true if it contains text otherwise false
+    public static boolean hasText(EditText editText) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if (text.length() == 0) {
+            //editText.setError(REQUIRED_MSG);
+            return false;
+        }
+
+        return true;
     }
 }
