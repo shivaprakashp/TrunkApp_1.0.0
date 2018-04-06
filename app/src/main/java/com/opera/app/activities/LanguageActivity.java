@@ -34,6 +34,7 @@ public class LanguageActivity extends BaseActivity{
     @BindView(R.id.btnArabic)
     Button mButtonArabic;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

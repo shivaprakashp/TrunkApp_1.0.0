@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -39,6 +41,16 @@ public class EditProfileActivity extends BaseActivity{
 
     private Activity mActivity;
     public static EditTextWithFont edtDob;
+
+    @BindView(R.id.toolbar_edit_profile)
+    Toolbar toolbar;
+
+    @BindView(R.id.imgCommonToolBack)
+    View inc_set_toolbar;
+
+    @BindView(R.id.txtCommonToolHome)
+    View inc_set_toolbar_text;
+
 
     @BindView(R.id.btnCancel)
     Button mBtnCancel;
@@ -86,11 +98,21 @@ public class EditProfileActivity extends BaseActivity{
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_edit_password);
 
+        initToolbar();
         initView();
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
     }
 
     private void initView() {
 
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.my_profile));
 
         //edittext
         EditTextWithFont edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
@@ -291,6 +313,13 @@ public class EditProfileActivity extends BaseActivity{
             }
         });
     }
+
+    private View.OnClickListener backPress = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    };
 
     @OnClick({R.id.btnSave,R.id.btnCancel})
     public void onClick(View v) {
