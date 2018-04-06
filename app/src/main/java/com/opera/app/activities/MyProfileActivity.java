@@ -2,14 +2,12 @@ package com.opera.app.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -20,16 +18,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
-import com.opera.app.customwidget.SlidingUpPanelLayout;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
@@ -76,7 +70,7 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.img_profile)
     ImageView img_profile;
 
-    @BindView(R.id.sliding_layout)
+    /*@BindView(R.id.sliding_layout)
     SlidingUpPanelLayout sliding_layout;
 
     @BindView(R.id.linearBottomSliding)
@@ -86,7 +80,7 @@ public class MyProfileActivity extends BaseActivity {
     LinearLayout linearGallery;
 
     @BindView(R.id.linearCamera)
-    LinearLayout linearCamera;
+    LinearLayout linearCamera;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,14 +123,15 @@ public class MyProfileActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.img_profile,R.id.linearGallery,R.id.linearCamera})
+    @OnClick(R.id.img_profile)
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_profile:
-                sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                showDialog();
+                //sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
                 break;
-            case R.id.linearGallery:
+            /*case R.id.linearGallery:
                 CollapseBottomSliding();
                 OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
 
@@ -152,11 +147,45 @@ public class MyProfileActivity extends BaseActivity {
                 } else {
                     OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
                 }
-
-
-                break;
-
+                break;*/
         }
+    }
+
+    public void showDialog() {
+        final Dialog dialog = new Dialog(mActivity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+        //For Language setting
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
+        dialog.setContentView(R.layout.dialog_image_selection);
+
+        //LinearLayout
+        LinearLayout linearGallery = (LinearLayout) dialog.findViewById(R.id.linearGallery);
+        LinearLayout linearCamera = (LinearLayout) dialog.findViewById(R.id.linearCamera);
+
+        linearGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+            }
+        });
+        linearCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+                    if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
+                    } else {
+                        OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                    }
+                } else {
+                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                }
+            }
+        });
+        dialog.show();
     }
 
     // Adapter for the viewpager using FragmentPagerAdapter
@@ -208,11 +237,11 @@ public class MyProfileActivity extends BaseActivity {
             }
 
         }
-        CollapseBottomSliding();
+        //CollapseBottomSliding();
     }
 
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         if (sliding_layout != null &&
                 (sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
@@ -238,7 +267,6 @@ public class MyProfileActivity extends BaseActivity {
                 OperaUtils.createInstance().getSnackbar(sliding_layout, getResources().getString(R.string.permissionDenied)).show();
             }
         }
-    }
-
+    }*/
 
 }

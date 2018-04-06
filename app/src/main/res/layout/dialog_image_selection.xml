@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/grey_corner"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:id="@+id/linearGallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp" />
+
+        <com.opera.app.customwidget.TextViewWithFont
+            style="@style/label_black_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"
+            android:gravity="center"
+            font:name="Montserrat-Light" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearCamera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp" />
+
+        <com.opera.app.customwidget.TextViewWithFont
+            style="@style/label_black_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera"
+            android:gravity="center"
+            font:name="Montserrat-Light" />
+    </LinearLayout>
+
+</LinearLayout>

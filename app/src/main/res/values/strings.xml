@@ -121,8 +121,8 @@
     <string name="tab_profile">PROFILE</string>
     <string name="tab_loyalty">LOYALTY POINTS</string>
     <string name="loyalty_points">Loyalty Points</string>
-    <string name="gallery">Gallery</string>
-    <string name="camera">Camera</string>
+    <string name="gallery">Choose from Gallery</string>
+    <string name="camera">Use Camera</string>
     <string name="permissionDenied">Permission denied</string>
     <string name="permissionGranted">Permission Granted</string>
     <string name="cancel">Cancel</string>
