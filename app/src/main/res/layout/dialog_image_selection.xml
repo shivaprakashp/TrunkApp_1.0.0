@@ -22,7 +22,7 @@
             android:layout_marginBottom="5dp" />
 
         <com.opera.app.customwidget.TextViewWithFont
-            style="@style/label_black_small"
+            style="@style/label_black_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gallery"
