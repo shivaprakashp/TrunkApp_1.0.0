@@ -20,6 +20,7 @@ import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -127,7 +128,13 @@ public class LoginActivity extends BaseActivity {
 
             case R.id.btnLogin:
                 //openActivity(mActivity, MainActivity.class);
-                if (checkValidation()) sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
+
+                if(Connections.isConnectionAlive(mActivity)){
+                    if (checkValidation()) sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
+                }else{
+                    OperaUtils.getSnackbar(username, OperaUtils.NETWORK_CONNECTIVITY_MESG).show();
+                }
+
                 break;
         }
     }
@@ -135,14 +142,8 @@ public class LoginActivity extends BaseActivity {
     private boolean checkValidation() {
         boolean ret = true;
 
-        if (!OperaUtils.isValidEmail(username.getText().toString().trim())){
-            OperaUtils.getSnackbar(username, "").show();
-            ret = false;
-        }
-        else if (!OperaUtils.hasText(password)) {
-            OperaUtils.getSnackbar(password, "").show();
-            ret = false;
-        }
+        if (!OperaUtils.isEmailAddress(username, true, getString(R.string.enter_username))) ret = false;
+        else if (!OperaUtils.hasText(password, getString(R.string.enter_password))) ret = false;
 
         return ret;
     }

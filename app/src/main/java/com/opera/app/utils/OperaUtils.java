@@ -9,12 +9,13 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.opera.app.R;
+
+import java.util.regex.Pattern;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -130,20 +131,56 @@ public class OperaUtils {
         return IsMarshmallow;
     }
 
-    //---------Validation------------
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    public static void printException(Exception e) {
+        e.printStackTrace();
+        Log.e("Exception", " " + e.toString());
+    }
+
+    // --------- NETWORK CONNECTIVITY -------
+    public static String NETWORK_CONNECTIVITY_MESG = "Please check your internet connection!";
+
+    // --------- VALIDATIONS ------------
+
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String PHONE_REGEX = "\\d{3}-\\d{7}";
+
+    // Error Messages
+    private static final String EMAIL_MSG = "Invalid data";
+    private static final String PHONE_MSG = "###-#######";
+
+    // check email validation
+    public static boolean isEmailAddress(EditText editText, boolean required, String msg) {
+        return isValid(editText, EMAIL_REGEX, EMAIL_MSG, required, msg);
+    }
+
+    // check phone number validation
+    public static boolean isPhoneNumber(EditText editText, boolean required, String msg) {
+        return isValid(editText, PHONE_REGEX, PHONE_MSG, required, msg);
+    }
+
+    public static boolean isValid(EditText editText, String regex, String errMsg, boolean required, String message) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if ( required && !hasText(editText, message) ) return false;
+
+        if (required && !Pattern.matches(regex, text)) {
+            getSnackbar(editText, errMsg).show();
+            return false;
+        };
+
+        return true;
     }
 
     // check the input field has any text or not
-    // return true if it contains text otherwise false
-    public static boolean hasText(EditText editText) {
+    public static boolean hasText(EditText editText, String msg) {
 
         String text = editText.getText().toString().trim();
         editText.setError(null);
 
         if (text.length() == 0) {
-            //editText.setError(REQUIRED_MSG);
+            getSnackbar(editText, msg).show();
             return false;
         }
 
