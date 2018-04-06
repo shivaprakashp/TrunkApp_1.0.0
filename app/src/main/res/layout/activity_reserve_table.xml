@@ -4,6 +4,7 @@
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -24,4 +25,177 @@
             android:id="@+id/inc_set_toolbar"
             layout="@layout/view_home_toolbar" />
     </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                style="@style/textsize_vvlarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reserve_a_table2"
+                android:textColor="@color/colorWhite"
+                font:name="Montserrat-Regular" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                style="@style/label_gray_vlarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/sean_connolly_dubai_opera"
+                android:textColor="@color/colorWhite"
+                font:name="Montserrat-Regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/black_bg_edittext"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <com.opera.app.customwidget.EditTextWithFont
+                    style="@style/label_black"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.9"
+                    android:background="@null"
+                    android:hint="@string/preffereed_date"
+                    font:name="Montserrat-Regular" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinnerMealPeriod"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/spinner_bg_gray"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/spinnerSelectTime"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/spinner_bg_gray"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/black_bg_edittext"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <com.opera.app.customwidget.EditTextWithFont
+                    style="@style/label_black"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.7"
+                    android:background="@null"
+                    android:hint="@string/total_no_of_guests"
+                    font:name="Montserrat-Regular" />
+
+                <ImageView
+                    android:id="@+id/imageMinus"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="0.05"
+                    android:src="@drawable/ic_down_arrow" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtNumberOfGuests"
+                    style="@style/label_black_medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+                    android:text="1"
+                    font:name="Montserrat-Regular" />
+
+                <ImageView
+                    android:id="@+id/imagePlus"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="0.05"
+                    android:src="@drawable/ic_down_arrow" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/black_bg_edittext">
+
+                <include
+                    android:id="@+id/reserve_edtWindowTable"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/black_bg_edittext">
+
+                <include
+                    android:id="@+id/reserve_edtFulName"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/black_bg_edittext">
+
+                <include
+                    android:id="@+id/reserve_edtFulNo"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/black_bg_edittext">
+
+                <include
+                    android:id="@+id/reserve_edtEmail"
+                    layout="@layout/include_edittext" />
+            </LinearLayout>
+
+            <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnLogin"
+                style="@style/label_white_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_ripple_effect"
+                android:text="@string/submit"
+                font:name="Montserrat-Light" />
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

@@ -10,6 +10,7 @@
     <dimen name="textsize_medium">16dp</dimen>
     <dimen name="textsize_large">18dp</dimen>
     <dimen name="textsize_vlarge">20dp</dimen>
+    <dimen name="textsize_vvlarge">24dp</dimen>
     <dimen name="textsize_ex_v_large">30dp</dimen>
 
     <dimen name="button_height">40dp</dimen>

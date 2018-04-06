@@ -161,6 +161,17 @@
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
     <string name="social_media">Social media</string>
-    <string name="reserve_a_table">Reserve a table</string>
+    <string name="reserve_a_table">Reserve a Table</string>
+    <string name="reserve_a_table2">Reserve a table</string>
+    <string name="sean_connolly_dubai_opera">\@Sean Connolly at Dubai Opera</string>
+    <string name="preffereed_date">Preffered date of reservation*</string>
+    <string name="telephone_no">Telephone number</string>
+    <string name="email3">Email</string>
+    <string name="window_table">Window table</string>
+    <string name="total_no_of_guests">Please select total number of guests*</string>
+    <string name="full_name1">Full name</string>
+    <string name="submit">Submit</string>
+    <string name="select_meal_priod">Please select the meal period*</string>
+    <string name="select_time">Please select time*</string>
 
 </resources>

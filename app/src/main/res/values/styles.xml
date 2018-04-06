@@ -36,6 +36,12 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
+    <style name="textsize_vvlarge">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/textsize_vvlarge</item>
+    </style>
+
+
     <!--  000000 color -->
     <style name="label_black_very_low">
         <item name="android:textColor">@color/colorBlack</item>
@@ -108,5 +114,45 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
+    <!--  FFFFFF color -->
+    <style name="label_gray_very_low">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_very_low</item>
+    </style>
+
+    <style name="label_gray_low">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_low</item>
+    </style>
+
+    <style name="label_gray_small">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="label_gray">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="label_gray_medium">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="label_gray_large">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="label_gray_vlarge">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_vlarge</item>
+    </style>
+
+    <style name="textsize_gray_vvlarge">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/textsize_vvlarge</item>
+    </style>
 
 </resources>
