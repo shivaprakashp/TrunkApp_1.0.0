@@ -136,26 +136,23 @@ public class OperaUtils {
         Log.e("Exception", " " + e.toString());
     }
 
-    // --------- NETWORK CONNECTIVITY -------
-    public static String NETWORK_CONNECTIVITY_MESG = "Please check your internet connection!";
-
     // --------- VALIDATIONS ------------
 
     private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final String PHONE_REGEX = "\\d{3}-\\d{7}";
 
-    // Error Messages
+   /* // Error Messages
     private static final String EMAIL_MSG = "Invalid data";
-    private static final String PHONE_MSG = "###-#######";
+    private static final String PHONE_MSG = "###-#######";*/
 
     // check email validation
-    public static boolean isEmailAddress(EditText editText, boolean required, String msg) {
-        return isValid(editText, EMAIL_REGEX, EMAIL_MSG, required, msg);
+    public static boolean isEmailAddress(Activity mActivity, EditText editText, boolean required, String msg) {
+        return isValid(editText, EMAIL_REGEX, mActivity.getResources().getString(R.string.invalid_data), required, msg);
     }
 
     // check phone number validation
-    public static boolean isPhoneNumber(EditText editText, boolean required, String msg) {
-        return isValid(editText, PHONE_REGEX, PHONE_MSG, required, msg);
+    public static boolean isPhoneNumber(Activity mActivity, EditText editText, boolean required, String msg) {
+        return isValid(editText, PHONE_REGEX, mActivity.getResources().getString(R.string.invalid_phone_number), required, msg);
     }
 
     public static boolean isValid(EditText editText, String regex, String errMsg, boolean required, String message) {
@@ -169,7 +166,6 @@ public class OperaUtils {
             getSnackbar(editText, errMsg).show();
             return false;
         };
-
         return true;
     }
 
@@ -183,7 +179,6 @@ public class OperaUtils {
             getSnackbar(editText, msg).show();
             return false;
         }
-
         return true;
     }
 }

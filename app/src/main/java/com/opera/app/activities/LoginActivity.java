@@ -132,9 +132,8 @@ public class LoginActivity extends BaseActivity {
                 if(Connections.isConnectionAlive(mActivity)){
                     if (checkValidation()) sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
                 }else{
-                    OperaUtils.getSnackbar(username, OperaUtils.NETWORK_CONNECTIVITY_MESG).show();
+                    OperaUtils.getSnackbar(username, getResources().getString(R.string.internet_error_msg)).show();
                 }
-
                 break;
         }
     }
@@ -142,7 +141,7 @@ public class LoginActivity extends BaseActivity {
     private boolean checkValidation() {
         boolean ret = true;
 
-        if (!OperaUtils.isEmailAddress(username, true, getString(R.string.enter_username))) ret = false;
+        if (!OperaUtils.isEmailAddress(mActivity, username, true, getString(R.string.enter_username))) ret = false;
         else if (!OperaUtils.hasText(password, getString(R.string.enter_password))) ret = false;
 
         return ret;
