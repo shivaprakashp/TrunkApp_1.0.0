@@ -52,7 +52,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RestaurantListing mRestaurantListing = mRestaurantList.get(position);
         holder.mTxtRestaurantName.setText(mRestaurantListing.getmRestaurantName());
-        holder.mTxtRestaurantPlace.setText(mRestaurantListing.getmRestaurantPlace());
+        holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getmRestaurantPlace());
     }
 
     @Override

@@ -107,7 +107,7 @@ public class RegisterActivity extends BaseActivity{
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
+        public void onTaskFinished(Response response) {;
             if (response.body()!=null){
                 RegistrationResponse registrationResponse =
                         (RegistrationResponse) response.body();
@@ -373,8 +373,7 @@ public class RegisterActivity extends BaseActivity{
                         edtRePass.getText().toString()));
     }
 
-    @SuppressLint("ValidFragment")
-    public class DatePickerFragment extends DialogFragment
+    public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override
