@@ -16,6 +16,9 @@
         <item>Menu</item>
     </array>
 
+    <!--Sessoin Manager-->
+    <string name="prefName">userLoginPref</string>
+    <string name="prefUserData">userLoginData</string>
     <!--Language Activity -->
     <string name="english">English</string>
     <string name="arabic">عربى</string>

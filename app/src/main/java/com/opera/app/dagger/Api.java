@@ -1,7 +1,9 @@
 package com.opera.app.dagger;
 
 import com.opera.app.pojo.ResponseData;
+import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.registration.Registration;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,7 +22,10 @@ import retrofit2.http.POST;
 public interface Api {
 
     @POST("login/")
-    Call<PostLogin> userLogin(@Header("Content-Type") String content,
-                              @Body PostLogin postLogin);
+    Call<LoginResponse> userLogin(@Header("Content-Type") String content,
+                                  @Body PostLogin postLogin);
 
+    @POST("Register/")
+    Call<Registration> userRegistration(@Header("Content-Type") String content,
+                                        @Body Registration registration);
 }

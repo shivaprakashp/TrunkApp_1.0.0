@@ -47,6 +47,12 @@ public class PreLoginActivity extends BaseActivity {
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_prelogin);
+
+        validateUserLogin();
+    }
+
+    private void validateUserLogin(){
+
     }
 
     @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})

@@ -12,9 +12,6 @@ public class PostLogin {
     @SerializedName("password")
     @Expose
     private String password;
-    @SerializedName("Error")
-    @Expose
-    private String Error;
 
     public PostLogin(String email, String password){
         this.email = email;
@@ -29,9 +26,5 @@ public class PostLogin {
         return password;
     }
 
-    //return response data as you want
-    @Override
-    public String toString(){
-        return Error;
-    }
+
 }

@@ -6,6 +6,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.registration.Registration;
 
 import retrofit2.Call;
 
@@ -16,9 +17,11 @@ import retrofit2.Call;
 public class MainController {
 
     private Context context;
+    private String contentType;
 
     public MainController(Context context){
         this.context = context;
+        contentType = "application/json";
     }
 
     public void callData(TaskComplete complete, Api api){
@@ -29,7 +32,13 @@ public class MainController {
     }
 
     public void loginPost(TaskComplete taskComplete, Api api, PostLogin postLogin){
-        Call call = api.userLogin("application/json", postLogin);
+        Call call = api.userLogin(contentType, postLogin);
+        DataListener listener = new DataListener(context, taskComplete);
+        listener.dataLoad(call);
+    }
+
+    public void registerPost(TaskComplete taskComplete, Api api, Registration registration){
+        Call call = api.userRegistration(contentType, registration);
         DataListener listener = new DataListener(context, taskComplete);
         listener.dataLoad(call);
     }

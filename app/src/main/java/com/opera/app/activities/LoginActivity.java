@@ -71,7 +71,12 @@ public class LoginActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response) {
-            Log.i("response", response.body().toString());
+            if (response.body()!=null){
+                loginSession((LoginResponse) response.body());
+            }else {
+                //OperaUtils.getSnackbar(response, "");
+            }
+
         }
 
         @Override
@@ -127,10 +132,11 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.btnLogin:
-                //openActivity(mActivity, MainActivity.class);
 
                 if(Connections.isConnectionAlive(mActivity)){
-                    if (checkValidation()) sendPost("manishramanan15@gmail.com", "q1_(0MnpgTK+*g");
+                    if (checkValidation()) sendPost(
+                            username.getText().toString(),
+                            password.getText().toString());
                 }else{
                     OperaUtils.getSnackbar(username, OperaUtils.NETWORK_CONNECTIVITY_MESG).show();
                 }
@@ -172,5 +178,17 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    //maintain login session
+    private void loginSession(LoginResponse loginResponse){
+        try{
+            SessionManager sessionManager = new SessionManager(mActivity);
+            sessionManager.createLoginSession(loginResponse);
+            if (sessionManager.isUserLoggedIn()){
+                openActivity(mActivity, MainActivity.class);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

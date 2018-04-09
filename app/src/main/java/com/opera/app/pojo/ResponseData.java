@@ -9,6 +9,6 @@ public class ResponseData {
 	@Override
  	public String toString(){
 		return 
-			new Gson().toJson(this);
+			new Gson().toJson(ResponseData.this);
 		}
 }
