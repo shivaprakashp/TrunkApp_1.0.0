@@ -19,6 +19,7 @@
     <!--Sessoin Manager-->
     <string name="prefName">userLoginPref</string>
     <string name="prefUserData">userLoginData</string>
+
     <!--Language Activity -->
     <string name="english">English</string>
     <string name="arabic">عربى</string>
@@ -190,4 +191,9 @@
     <!--Restaurants-->
     <string name="reserve_a_table3">RESERVE TABLE</string>
     <string name="restaurants">Restaurants</string>
+
+    <!--Error handling-->
+    <string name="errorUserName">Enter User name</string>
+    <string name="errorUserEmail">Invalid Email Id</string>
+    <string name="errorPassword">Enter Password</string>
 </resources>

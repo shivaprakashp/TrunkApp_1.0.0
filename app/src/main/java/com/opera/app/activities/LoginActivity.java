@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -75,10 +80,13 @@ public class LoginActivity extends BaseActivity {
         public void onTaskFinished(Response response) {
             if (response.body()!=null){
                 loginSession((LoginResponse) response.body());
-            }else {
-                //OperaUtils.getSnackbar(response, "");
+            }else if (response.errorBody()!=null){
+                try {
+                    Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
-
         }
 
         @Override
@@ -113,6 +121,8 @@ public class LoginActivity extends BaseActivity {
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
+        password.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
     }
 
@@ -120,7 +130,6 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_forgotPassword:
-
                 showDialog();
 
                 break;
@@ -147,12 +156,19 @@ public class LoginActivity extends BaseActivity {
     }
 
     private boolean checkValidation() {
-        boolean ret = true;
+        //validation of input field
+        if (TextUtils.isEmpty(username.getText().toString())){
+            username.setError(getString(R.string.errorUserName));
+            return false;
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(username.getText().toString()).matches()){
+            username.setError(getString(R.string.errorUserEmail));
+            return false;
+        } else if (TextUtils.isEmpty(password.getText().toString())){
+            password.setError(getString(R.string.errorPassword));
+            return false;
+        }
 
-        if (!OperaUtils.isEmailAddress(mActivity, username, true, getString(R.string.enter_username))) ret = false;
-        else if (!OperaUtils.hasText(password, getString(R.string.enter_password))) ret = false;
-
-        return ret;
+        return true;
     }
 
     private void sendPost(String emailId, String pwd){

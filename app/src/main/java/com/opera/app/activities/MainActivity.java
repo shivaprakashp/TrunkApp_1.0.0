@@ -25,6 +25,8 @@ import com.opera.app.fragments.HomeFragment;
 import com.opera.app.fragments.ListenFragment;
 import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
+import com.opera.app.pojo.login.LoginResponse;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -91,6 +93,8 @@ public class MainActivity extends BaseActivity implements
             }
         });
     }
+
+
 
     private void initToolbar() {
         setSupportActionBar(toolbar);
