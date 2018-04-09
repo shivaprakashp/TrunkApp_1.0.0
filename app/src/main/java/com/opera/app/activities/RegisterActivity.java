@@ -321,7 +321,8 @@ public class RegisterActivity extends BaseActivity{
         }
     }
 
-    public static class DatePickerFragment extends DialogFragment
+    @SuppressLint("ValidFragment")
+    public class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override
@@ -339,5 +340,6 @@ public class RegisterActivity extends BaseActivity{
             month = month + 1;
             edtDob.setText(year + "-" + month + "-" + day);
         }
+
     }
 }
