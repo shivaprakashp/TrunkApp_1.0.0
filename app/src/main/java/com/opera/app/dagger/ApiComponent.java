@@ -2,6 +2,7 @@ package com.opera.app.dagger;
 
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.RegisterActivity;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,5 @@ import dagger.Component;
 public interface ApiComponent {
     void inject(MainActivity mainActivity);
     void inject(LoginActivity loginActivity);
+    void inject(RegisterActivity registerActivity);
 }

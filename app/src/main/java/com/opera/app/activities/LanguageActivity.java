@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -34,16 +35,26 @@ public class LanguageActivity extends BaseActivity{
     @BindView(R.id.btnArabic)
     Button mButtonArabic;
 
+    private SessionManager manager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mActivity = LanguageActivity.this;
+        manager = new SessionManager(mActivity);
 
+        userSessionLanguage();
+    }
+
+    private void userSessionLanguage(){
         if (!LanguageManager.createInstance().GetSharedPreferences(mActivity,
                 LanguageManager.createInstance().mSelectedLanguage, "").equalsIgnoreCase("")) {
-            openActivity(mActivity,PreLoginActivity.class);
+            if (manager.isUserLoggedIn()){
+                openActivity(mActivity, MainActivity.class);
+            }else {
+                openActivity(mActivity,PreLoginActivity.class);
+            }
             finish();
         } else {
             setContentView(R.layout.activity_language_selection);
