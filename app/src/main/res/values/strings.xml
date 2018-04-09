@@ -183,4 +183,8 @@
 
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
+
+    <!--Restaurants-->
+    <string name="reserve_a_table3">RESERVE TABLE</string>
+    <string name="restaurants">Restaurants</string>
 </resources>
