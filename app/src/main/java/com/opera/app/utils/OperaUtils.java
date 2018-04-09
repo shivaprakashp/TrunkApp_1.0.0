@@ -2,28 +2,20 @@ package com.opera.app.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 
 import com.opera.app.R;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -115,10 +107,6 @@ public class OperaUtils {
         return snackbar;
     }
 
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
     public static void SelectGalleryImage(Activity mActivity, int PICK_IMAGE) {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -141,5 +129,56 @@ public class OperaUtils {
             IsMarshmallow = false;
         }
         return IsMarshmallow;
+    }
+
+    public static void printException(Exception e) {
+        e.printStackTrace();
+        Log.e("Exception", " " + e.toString());
+    }
+
+    // --------- VALIDATIONS ------------
+
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String PHONE_REGEX = "\\d{3}-\\d{7}";
+
+   /* // Error Messages
+    private static final String EMAIL_MSG = "Invalid data";
+    private static final String PHONE_MSG = "###-#######";*/
+
+    // check email validation
+    public static boolean isEmailAddress(Activity mActivity, EditText editText, boolean required, String msg) {
+        return isValid(editText, EMAIL_REGEX, mActivity.getResources().getString(R.string.invalid_data), required, msg);
+    }
+
+    // check phone number validation
+    public static boolean isPhoneNumber(Activity mActivity, EditText editText, boolean required, String msg) {
+        return isValid(editText, PHONE_REGEX, mActivity.getResources().getString(R.string.invalid_phone_number), required, msg);
+    }
+
+    public static boolean isValid(EditText editText, String regex, String errMsg, boolean required, String message) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if ( required && !hasText(editText, message) ) return false;
+
+        if (required && !Pattern.matches(regex, text)) {
+            getSnackbar(editText, errMsg).show();
+            return false;
+        };
+        return true;
+    }
+
+    // check the input field has any text or not
+    public static boolean hasText(EditText editText, String msg) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+
+        if (text.length() == 0) {
+            getSnackbar(editText, msg).show();
+            return false;
+        }
+        return true;
     }
 }
