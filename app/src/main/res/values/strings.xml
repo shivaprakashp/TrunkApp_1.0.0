@@ -177,8 +177,17 @@
     <string name="select_meal_priod">Please select the meal period*</string>
     <string name="select_time">Please select time*</string>
 
+    <!--NETWORK CONNECTIVITY MSG-->
+    <string name="internet_error_msg">Please check your internet connection!</string>
+
     <!--Validation Msg-->
+    <string name="invalid_data">Invalid Data</string>
+    <string name="invalid_phone_number">Invalid Number</string>
 
     <string name="enter_username">Enter Username</string>
-    <string name="enter_password">Enter password</string>
+    <string name="enter_password">Enter Password</string>
+
+    <!--Restaurants-->
+    <string name="reserve_a_table3">RESERVE TABLE</string>
+    <string name="restaurants">Restaurants</string>
 </resources>

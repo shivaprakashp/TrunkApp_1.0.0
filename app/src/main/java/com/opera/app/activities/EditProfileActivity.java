@@ -305,7 +305,7 @@ public class EditProfileActivity extends BaseActivity{
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
 //your code
-                    DialogFragment newFragment = new RegisterActivity.DatePickerFragment();
+                    DialogFragment newFragment = new DatePickerFragment();
                     newFragment.show(getSupportFragmentManager(), "datePicker");
 
                 }
