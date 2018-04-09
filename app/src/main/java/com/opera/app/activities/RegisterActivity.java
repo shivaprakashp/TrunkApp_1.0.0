@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.dagger.Api;
+import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -31,14 +38,25 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 3/22/2018.
  */
 
 public class RegisterActivity extends BaseActivity{
+
+    //injecting retrofit
+    @Inject
+    Retrofit retrofit;
+
+    private Api api;
 
     private Activity mActivity;
     public static EditTextWithFont edtDob;
@@ -85,6 +103,26 @@ public class RegisterActivity extends BaseActivity{
     @BindView(R.id.spinnerCountry)
     Spinner spinnerCountry;
 
+    EditTextWithFont edtEmail, edtPassword, edtRePass;
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response) {
+            if (response.body()!=null){
+                RegistrationResponse registrationResponse =
+                        (RegistrationResponse) response.body();
+                Log.i("Response", registrationResponse.getMessage());
+                openActivity(mActivity, LoginActivity.class);
+                mActivity.finish();
+            }
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t) {
+
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,14 +139,19 @@ public class RegisterActivity extends BaseActivity{
     private void initView() {
         mActivity = RegisterActivity.this;
 
+        ((MainApplication) getApplication()).getNetComponent().inject(RegisterActivity.this);
+
+        api = retrofit.create(Api.class);
+
+
         //edittext
-        EditTextWithFont edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
+        edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));
 
-        EditTextWithFont edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
+        edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
 
-        EditTextWithFont edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
+        edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
 
         EditTextWithFont edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
@@ -307,7 +350,8 @@ public class RegisterActivity extends BaseActivity{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:
-                openActivity(mActivity, MainActivity.class);
+                //openActivity(mActivity, MainActivity.class);
+                registerUser();
                 break;
 
             case R.id.btnLogin:
@@ -319,6 +363,14 @@ public class RegisterActivity extends BaseActivity{
                 break;
 
         }
+    }
+
+    private void registerUser(){
+        MainController controller = new MainController(mActivity);
+        controller.registerPost(taskComplete, api,
+                new Registration(edtEmail.getText().toString(),
+                        edtPassword.getText().toString(),
+                        edtRePass.getText().toString()));
     }
 
     @SuppressLint("ValidFragment")

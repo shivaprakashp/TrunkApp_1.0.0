@@ -16,9 +16,7 @@ public class Registration {
     @SerializedName("confirmPassword")
     @Expose
     private String confirmPassword;
-    @SerializedName("responseString")
-    @Expose
-    private String responseString;
+
 
     public Registration(String email, String password, String confirmPassword){
         this.email = email;
@@ -38,8 +36,4 @@ public class Registration {
         return confirmPassword;
     }
 
-    @Override
-    public String toString(){
-        return new Gson().toJson(Registration.this);
-    }
 }
