@@ -61,7 +61,7 @@
 
                 <com.opera.app.customwidget.ButtonWithFont
                     android:id="@+id/mBtnReserveATable"
-                    style="@style/label_white"
+                    style="@style/label_white_small"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:background="@drawable/btn_ripple_effect"
