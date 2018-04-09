@@ -4,6 +4,7 @@ import com.opera.app.pojo.ResponseData;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.registration.RegistrationResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,6 +27,6 @@ public interface Api {
                                   @Body PostLogin postLogin);
 
     @POST("Register/")
-    Call<Registration> userRegistration(@Header("Content-Type") String content,
-                                        @Body Registration registration);
+    Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,
+                                                @Body Registration registration);
 }
