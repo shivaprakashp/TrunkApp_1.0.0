@@ -9,7 +9,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,7 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
@@ -37,6 +42,7 @@ import com.opera.app.utils.OperaUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -146,9 +152,7 @@ public class RegisterActivity extends BaseActivity{
         mActivity = RegisterActivity.this;
 
         ((MainApplication) getApplication()).getNetComponent().inject(RegisterActivity.this);
-
         api = retrofit.create(Api.class);
-
 
         //edittext
         edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
@@ -156,9 +160,13 @@ public class RegisterActivity extends BaseActivity{
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
+        edtPassword.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
+        edtRePass.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+        edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         EditTextWithFont edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
@@ -338,16 +346,18 @@ public class RegisterActivity extends BaseActivity{
         });
 
 
-        edtDob.setOnTouchListener(new View.OnTouchListener() {
+        edtDob.performClick();
+        edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//your code
-                    DialogFragment newFragment = new DatePickerFragment();
-                    newFragment.show(getSupportFragmentManager(), "datePicker");
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                    }
+                });
 
-                }
-                return false;
+                dialogFragment.show(getSupportFragmentManager(), "Date");
             }
         });
     }
@@ -356,7 +366,6 @@ public class RegisterActivity extends BaseActivity{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:
-                //openActivity(mActivity, MainActivity.class);
                 registerUser();
                 break;
 
@@ -373,31 +382,33 @@ public class RegisterActivity extends BaseActivity{
 
     private void registerUser(){
         MainController controller = new MainController(mActivity);
-        controller.registerPost(taskComplete, api,
-                new Registration(edtEmail.getText().toString(),
-                        edtPassword.getText().toString(),
-                        edtRePass.getText().toString()));
+        if (validateCheck()){
+            controller.registerPost(taskComplete, api,
+                    new Registration(edtEmail.getText().toString(),
+                            edtPassword.getText().toString(),
+                            edtRePass.getText().toString()));
+        }
+
     }
 
-    @SuppressLint("ValidFragment")
-    public class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-//            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-            return dialog;
+    private boolean validateCheck(){
+        if (TextUtils.isEmpty(edtEmail.getText().toString())){
+            edtEmail.setError(getString(R.string.errorEmailId));
+            return false;
+        }else if( !Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()){
+            edtEmail.setError(getString(R.string.errorUserEmail));
+            return false;
+        }else if(TextUtils.isEmpty(edtPassword.getText().toString())) {
+            edtPassword.setError(getString(R.string.errorPassword));
+            return false;
+        }else if (TextUtils.isEmpty(edtRePass.getText().toString())){
+            edtRePass.setError(getString(R.string.errorPassword));
+            return false;
+        }else if (!edtPassword.getText().toString().equalsIgnoreCase(
+                edtRePass.getText().toString())){
+            edtRePass.setError(getString(R.string.errorMismatchPassword));
+            return false;
         }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            month = month + 1;
-            edtDob.setText(year + "-" + month + "-" + day);
-        }
-
+        return true;
     }
 }
