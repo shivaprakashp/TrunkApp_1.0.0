@@ -5,6 +5,7 @@ import android.content.Context;
 import com.opera.app.dagger.Api;
 import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.registration.Registration;
 
@@ -33,6 +34,12 @@ public class MainController {
 
     public void registerPost(TaskComplete taskComplete, Api api, Registration registration){
         Call call = api.userRegistration(contentType, registration);
+        DataListener listener = new DataListener(context, taskComplete);
+        listener.dataLoad(call);
+    }
+
+    public void editProfilePost(TaskComplete taskComplete, Api api, EditProfile editProfile){
+        Call call = api.userEditprofile(contentType, editProfile);
         DataListener listener = new DataListener(context, taskComplete);
         listener.dataLoad(call);
     }
