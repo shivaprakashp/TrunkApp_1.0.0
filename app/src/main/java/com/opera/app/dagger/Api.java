@@ -27,6 +27,6 @@ public interface Api {
                                                 @Body Registration registration);
 
     @POST("editProfile/")
-    Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content,
+    Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                         @Body EditProfile editProfile);
 }

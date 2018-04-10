@@ -1,13 +1,15 @@
 package com.opera.app.controller;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.opera.app.dagger.Api;
 import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.preferences.SessionManager;
 
 import retrofit2.Call;
 
@@ -19,6 +21,7 @@ public class MainController {
 
     private Context context;
     private String contentType;
+    private SessionManager manager;
 
     public MainController(Context context){
         this.context = context;
@@ -37,8 +40,9 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void editProfilePost(TaskComplete taskComplete, Api api, EditProfile editProfile){
-        Call call = api.userEditprofile(contentType, editProfile);
+    public void editProfilePost(Activity mActivity, TaskComplete taskComplete, Api api, EditProfile editProfile){
+        manager = new SessionManager(mActivity);
+        Call call = api.userEditprofile(contentType, manager.getUserLoginData().getData().getToken() , editProfile);
         DataListener listener = new DataListener(context, taskComplete);
         listener.dataLoad(call);
     }

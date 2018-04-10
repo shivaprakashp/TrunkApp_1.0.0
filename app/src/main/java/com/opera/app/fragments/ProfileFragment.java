@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.EditProfileActivity;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
 import butterknife.BindView;
@@ -27,12 +30,22 @@ public class ProfileFragment extends BaseFragment {
 
     private Activity mActivity;
     private Intent in;
+    private SessionManager manager;
 
     @BindView(R.id.btnEditProfile)
     Button mBtnEditProfile;
 
     @BindView(R.id.btnChangePassword)
     Button mBtnChangePassword;
+
+    @BindView(R.id.tv_profile_address)
+    TextView profile_address;
+
+    @BindView(R.id.tv_profile_email)
+    TextView profile_email;
+
+    @BindView(R.id.tv_profile_mobile)
+    TextView profile_mobile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +63,21 @@ public class ProfileFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initView();
+    }
+
+    private void initView() {
+
+        manager = new SessionManager(mActivity);
+        profile_address.setText(manager.getUserLoginData().getData().getProfile().getCity() + " , " + manager.getUserLoginData().getData().getProfile().getCountry());
+        profile_email.setText(manager.getUserLoginData().getData().getProfile().getEmail());
+        profile_mobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
     }
 
     @OnClick({R.id.btnEditProfile, R.id.btnChangePassword})

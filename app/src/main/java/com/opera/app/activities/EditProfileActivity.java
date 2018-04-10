@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
@@ -129,6 +130,10 @@ public class EditProfileActivity extends BaseActivity{
 
     private void initView() {
         manager = new SessionManager(mActivity);
+
+        ((MainApplication) getApplication()).getNetComponent().inject(EditProfileActivity.this);
+        api = retrofit.create(Api.class);
+
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
@@ -146,7 +151,7 @@ public class EditProfileActivity extends BaseActivity{
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
-        edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
+        edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
@@ -387,7 +392,7 @@ public class EditProfileActivity extends BaseActivity{
     private void EditProfileData(){
         MainController controller = new MainController(mActivity);
         if (validateCheck()){
-            controller.editProfilePost(taskComplete, api,
+            controller.editProfilePost(mActivity,taskComplete, api,
                     editProfileData());
         }
     }
@@ -445,6 +450,7 @@ public class EditProfileActivity extends BaseActivity{
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
                 //openActivity(mActivity, LoginActivity.class);
+                Toast.makeText(mActivity, "", Toast.LENGTH_LONG).show();
                 mActivity.finish();
             }else if (response.errorBody()!=null){
                 try {

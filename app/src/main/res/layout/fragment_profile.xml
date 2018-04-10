@@ -33,13 +33,14 @@
                         android:src="@drawable/ic_address_icon" />
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/tv_profile_address"
                         style="@style/label_black_medium"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center"
                         android:layout_marginLeft="10dp"
                         font:name="Montserrat-Regular"
-                        android:text="@string/setting_allow_notification" />
+                        />
 
                 </LinearLayout>
 
@@ -60,13 +61,14 @@
                         android:src="@drawable/ic_mail_icon" />
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/tv_profile_email"
                         style="@style/label_black_medium"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center"
                         android:layout_marginLeft="10dp"
                         font:name="Montserrat-Regular"
-                        android:text="@string/setting_allow_notification" />
+                        />
 
                 </LinearLayout>
 
@@ -87,13 +89,14 @@
                         android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/tv_profile_mobile"
                         style="@style/label_black_medium"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center"
                         android:layout_marginLeft="10dp"
                         font:name="Montserrat-Regular"
-                        android:text="@string/setting_allow_notification" />
+                        />
 
                 </LinearLayout>
 
