@@ -30,6 +30,7 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 

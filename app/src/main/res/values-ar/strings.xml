@@ -171,4 +171,9 @@
     <!--Restaurants-->
     <string name="reserve_a_table3">احفظ الجدول</string>
     <string name="restaurants">مطاعم</string>
+    <string name="other_restaurants">مطاعم أخرى</string>
+    <string name="sean_connolly">شون كونولي</string>
+    <string name="dubai_opera">في دبي أوبرا</string>
+    <string name="read_more">اقرأ أكثر</string>
+    <string name="read_less">أقرأ أقل</string>
 </resources>
