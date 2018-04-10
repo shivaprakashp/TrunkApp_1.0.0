@@ -7,15 +7,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.opera.app.R;
-
-import java.util.regex.Pattern;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -100,11 +96,6 @@ public class OperaUtils {
                 state_normal);
 
         return drawable;
-    }
-
-    public static Snackbar getSnackbar(View viw, String msg) {
-        Snackbar snackbar = Snackbar.make(viw, msg, Snackbar.LENGTH_LONG);
-        return snackbar;
     }
 
     public static void SelectGalleryImage(Activity mActivity, int PICK_IMAGE) {
