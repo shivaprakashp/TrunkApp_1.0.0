@@ -25,7 +25,6 @@ public class MainController {
         contentType = "application/json";
     }
 
-
     public void loginPost(TaskComplete taskComplete, Api api, PostLogin postLogin){
         Call call = api.userLogin(contentType, postLogin);
         DataListener listener = new DataListener(context, taskComplete);

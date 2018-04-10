@@ -31,6 +31,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class EditProfileActivity extends BaseActivity{
     Retrofit retrofit;
 
     private Api api;
-
+    private SessionManager manager;
     private Activity mActivity;
     public static EditTextWithFont edtDob;
 
@@ -69,7 +70,6 @@ public class EditProfileActivity extends BaseActivity{
 
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
-
 
     @BindView(R.id.btnCancel)
     Button mBtnCancel;
@@ -128,7 +128,7 @@ public class EditProfileActivity extends BaseActivity{
     }
 
     private void initView() {
-
+        manager = new SessionManager(mActivity);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
@@ -138,27 +138,34 @@ public class EditProfileActivity extends BaseActivity{
         //edittext
         edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.edit_email));
+        edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
 
         edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));
+        edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
+        edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
+        edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
 
         edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.edit_mobile));
+        edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
 
         edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
+        edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
 
         edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
+        //edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
 
         //---------------Nationality----------------
         // Initializing a String Array
@@ -381,18 +388,31 @@ public class EditProfileActivity extends BaseActivity{
         MainController controller = new MainController(mActivity);
         if (validateCheck()){
             controller.editProfilePost(taskComplete, api,
-                    new EditProfile(edtEmail.getText().toString(),
-                            edtFirstName.getText().toString(),
-                            edtLastName.getText().toString(),
-                            edtMobile.getText().toString(),
-                            "",
-                            edtEmail.getText().toString(),
-                            edtLastName.getText().toString(),
-                            edtMobile.getText().toString(),
-                            edtAddress.getText().toString(),
-                            edtMobile.getText().toString()
-                    ));
+                    editProfileData());
         }
+    }
+
+    private EditProfile editProfileData(){
+
+        EditProfile data = new EditProfile();
+
+        data.setEmail(edtEmail.getText().toString());
+        data.setFirstName(edtFirstName.getText().toString()!=null?
+                edtFirstName.getText().toString(): "");
+        data.setLastName(edtLastName.getText().toString()!=null?
+                edtLastName.getText().toString() : "");
+        data.setPhoneNumber("");
+        data.setInterest("");
+        data.setNationality("");
+        data.setDateOfBirth(edtDob.getText().toString()!=null?
+                edtDob.getText().toString() : "");
+        data.setMobileNumber(edtMobile.getText().toString()!=null?
+                edtMobile.getText().toString() : "");
+        data.setCity("");
+        data.setCountry("");
+
+        return data;
+
     }
 
     private boolean validateCheck(){
@@ -408,11 +428,11 @@ public class EditProfileActivity extends BaseActivity{
         }else if( !Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()){
             edtEmail.setError(getString(R.string.errorUserEmail));
             return false;
+        }else if (TextUtils.isEmpty(edtDob.getText().toString())){
+            edtDob.setError(getString(R.string.errorDob));
+            return false;
         }else if(TextUtils.isEmpty(edtMobile.getText().toString())) {
             edtMobile.setError(getString(R.string.errorMobile));
-            return false;
-        }else if (TextUtils.isEmpty(edtAddress.getText().toString())){
-            edtAddress.setError(getString(R.string.errorAddress));
             return false;
         }
         return true;

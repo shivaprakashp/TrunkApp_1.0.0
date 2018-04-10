@@ -135,6 +135,7 @@ public class MyProfileActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.img_profile:
                 showDialog();
+                //sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
                 break;
         }
