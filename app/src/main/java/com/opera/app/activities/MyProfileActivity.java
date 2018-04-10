@@ -21,12 +21,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -70,6 +72,11 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.img_profile)
     ImageView img_profile;
 
+    @BindView(R.id.tv_profile_name)
+    TextView tv_profile_name;
+
+    private SessionManager manager;
+
     /*@BindView(R.id.sliding_layout)
     SlidingUpPanelLayout sliding_layout;
 
@@ -97,7 +104,7 @@ public class MyProfileActivity extends BaseActivity {
 
 
     private void initView() {
-
+        manager = new SessionManager(mActivity);
         mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
         mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -112,8 +119,9 @@ public class MyProfileActivity extends BaseActivity {
         adapter.addFragment(new ProfileFragment(), getResources().getString(R.string.tab_profile));
         adapter.addFragment(new LoyaltyPointsFragment(), getResources().getString(R.string.tab_loyalty));
         mViewPager.setAdapter(adapter);
-
         mTabHost.setupWithViewPager(mViewPager);
+
+        tv_profile_name.setText(manager.getUserLoginData().getData().getName());
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

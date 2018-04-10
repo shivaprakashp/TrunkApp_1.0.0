@@ -194,6 +194,8 @@
 
     <!--Error handling-->
     <string name="errorUserName">Enter User name</string>
+    <string name="errorEmailId">Enter Email Id</string>
     <string name="errorUserEmail">Invalid Email Id</string>
     <string name="errorPassword">Enter Password</string>
+    <string name="errorMismatchPassword">Password Mismatch</string>
 </resources>
