@@ -193,11 +193,15 @@
     <string name="restaurants">Restaurants</string>
     <string name="sean_connolly">Sean Connolly</string>
     <string name="read_more">READ MORE</string>
+    <string name="other_restaurants">OTHER RESTAURANTS</string>
+    <string name="dubai_opera">at Dubai Opera</string>
 
     <!--Error handling-->
     <string name="errorUserName">Enter User name</string>
+    <string name="errorEmailId">Enter Email Id</string>
     <string name="errorUserEmail">Invalid Email Id</string>
     <string name="errorPassword">Enter Password</string>
-    <string name="other_restaurants">OTHER RESTAURANTS</string>
-    <string name="dubai_opera">at Dubai Opera</string>
+    <string name="errorMismatchPassword">Password Mismatch</string>
+    <string name="errorDialogue">OK</string>
+    <string name="errorTitle">ERROR</string>
 </resources>

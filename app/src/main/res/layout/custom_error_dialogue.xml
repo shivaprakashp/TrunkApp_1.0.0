@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorBurgendy">
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtErrorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/errorTitle"
+            style="@style/label_white_vlarge"
+            font:name="Montserrat-Regular"
+            android:padding="10dp"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            tools:text="Error"
+            style="@style/label_black_large"
+            font:name="Montserrat-Regular"/>
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/errorDialogue"
+            android:background="@color/colorBurgendy"
+            style="@style/label_white_large"/>
+    </LinearLayout>
+</LinearLayout>
