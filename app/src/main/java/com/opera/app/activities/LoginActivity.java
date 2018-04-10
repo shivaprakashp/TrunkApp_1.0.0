@@ -30,7 +30,6 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -151,7 +150,7 @@ public class LoginActivity extends BaseActivity {
                             username.getText().toString(),
                             password.getText().toString());
                 }else{
-                    OperaUtils.getSnackbar(username, getResources().getString(R.string.internet_error_msg)).show();
+                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
                 break;
         }
