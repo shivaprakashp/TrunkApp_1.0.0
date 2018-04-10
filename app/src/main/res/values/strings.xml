@@ -181,16 +181,23 @@
     <!--NETWORK CONNECTIVITY MSG-->
     <string name="internet_error_msg">Please check your internet connection!</string>
 
+    <!--Validation Msg-->
+    <string name="invalid_data">Invalid Data</string>
+    <string name="invalid_phone_number">Invalid Number</string>
+
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+
     <!--Restaurants-->
     <string name="reserve_a_table3">RESERVE TABLE</string>
     <string name="restaurants">Restaurants</string>
+    <string name="sean_connolly">Sean Connolly</string>
+    <string name="read_more">READ MORE</string>
 
     <!--Error handling-->
     <string name="errorUserName">Enter User name</string>
-    <string name="errorEmailId">Enter Email Id</string>
     <string name="errorUserEmail">Invalid Email Id</string>
     <string name="errorPassword">Enter Password</string>
-    <string name="errorMismatchPassword">Password Mismatch</string>
-    <string name="errorDialogue">OK</string>
-    <string name="errorTitle">ERROR</string>
+    <string name="other_restaurants">OTHER RESTAURANTS</string>
+    <string name="dubai_opera">at Dubai Opera</string>
 </resources>

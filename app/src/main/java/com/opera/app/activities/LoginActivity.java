@@ -22,7 +22,6 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.ErrorDialogue;
 import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.LoginResponse;
@@ -30,6 +29,7 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -82,8 +82,7 @@ public class LoginActivity extends BaseActivity {
                 loginSession((LoginResponse) response.body());
             }else if (response.errorBody()!=null){
                 try {
-                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
-                    dialogue.show();
+                    Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -150,7 +149,7 @@ public class LoginActivity extends BaseActivity {
                             username.getText().toString(),
                             password.getText().toString());
                 }else{
-                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    OperaUtils.getSnackbar(username, getResources().getString(R.string.internet_error_msg)).show();
                 }
                 break;
         }
@@ -208,4 +207,5 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
 }

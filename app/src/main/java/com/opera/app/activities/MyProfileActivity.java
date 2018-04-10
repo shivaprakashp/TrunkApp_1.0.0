@@ -50,7 +50,6 @@ public class MyProfileActivity extends BaseActivity {
     private static final int ACCESS_CAMERA_PERMISSION = 2;
     private static final int CAMERA_REQUEST = 3;
     private Bitmap bmProfileImage;
-    private SessionManager manager;
 
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
@@ -74,7 +73,9 @@ public class MyProfileActivity extends BaseActivity {
     ImageView img_profile;
 
     @BindView(R.id.tv_profile_name)
-    TextView profile_name;
+    TextView tv_profile_name;
+
+    private SessionManager manager;
 
     /*@BindView(R.id.sliding_layout)
     SlidingUpPanelLayout sliding_layout;
@@ -120,7 +121,7 @@ public class MyProfileActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 
-        profile_name.setText(manager.getUserLoginData().getData().getName());
+        tv_profile_name.setText(manager.getUserLoginData().getData().getName());
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -135,8 +136,26 @@ public class MyProfileActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.img_profile:
                 showDialog();
+                //sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
                 break;
+            /*case R.id.linearGallery:
+                CollapseBottomSliding();
+                OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+
+                break;
+            case R.id.linearCamera:
+                CollapseBottomSliding();
+                if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+                    if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
+                    } else {
+                        OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                    }
+                } else {
+                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                }
+                break;*/
         }
     }
 
