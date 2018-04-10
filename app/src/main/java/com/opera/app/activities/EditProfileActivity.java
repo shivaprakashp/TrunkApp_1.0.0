@@ -450,7 +450,7 @@ public class EditProfileActivity extends BaseActivity{
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
                 //openActivity(mActivity, LoginActivity.class);
-                Toast.makeText(mActivity, "Profile was successfully updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
                 mActivity.finish();
             }else if (response.errorBody()!=null){
                 try {
