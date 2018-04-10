@@ -1,46 +1,38 @@
-package com.opera.app.pojo.registration;
+package com.opera.app.pojo.login;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.opera.app.activities.RegisterActivity;
 
-public class Registration {
+public class UserProfile {
 
-    @SerializedName("email")
+    @SerializedName("Email")
     @Expose
     private String email;
-    @SerializedName("password")
-    @Expose
-    private String password;
-    @SerializedName("confirmPassword")
-    @Expose
-    private String confirmPassword;
-    @SerializedName("firstName")
+    @SerializedName("FirstName")
     @Expose
     private String firstName;
-    @SerializedName("lastName")
+    @SerializedName("LastName")
     @Expose
     private String lastName;
-    @SerializedName("phoneNumber")
+    @SerializedName("PhoneNumber")
     @Expose
     private String phoneNumber;
-    @SerializedName("interest")
+    @SerializedName("Interest")
     @Expose
     private String interest;
-    @SerializedName("nationality")
+    @SerializedName("Nationality")
     @Expose
     private String nationality;
-    @SerializedName("dateOfBirth")
+    @SerializedName("DateOfBirth")
     @Expose
     private String dateOfBirth;
-    @SerializedName("mobileNumber")
+    @SerializedName("MobileNumber")
     @Expose
     private String mobileNumber;
-    @SerializedName("city")
+    @SerializedName("City")
     @Expose
     private String city;
-    @SerializedName("country")
+    @SerializedName("Country")
     @Expose
     private String country;
 
@@ -50,22 +42,6 @@ public class Registration {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public String getFirstName() {

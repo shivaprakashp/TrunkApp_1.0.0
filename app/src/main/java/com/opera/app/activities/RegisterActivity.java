@@ -31,6 +31,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.customwidget.ErrorDialogue;
 import com.opera.app.dagger.Api;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
@@ -110,7 +111,14 @@ public class RegisterActivity extends BaseActivity{
     @BindView(R.id.spinnerCountry)
     Spinner spinnerCountry;
 
-    EditTextWithFont edtEmail, edtPassword, edtRePass;
+    EditTextWithFont edtEmail,
+            edtPassword,
+            edtRePass,
+            edtFirstName,
+            edtLastName,
+            edtMobile,
+            edtCity
+    ;
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
@@ -122,7 +130,8 @@ public class RegisterActivity extends BaseActivity{
                 mActivity.finish();
             }else if (response.errorBody()!=null){
                 try {
-                    Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
+                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                    dialogue.show();
                 } catch (Exception e) {
                     Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -168,17 +177,17 @@ public class RegisterActivity extends BaseActivity{
         edtRePass.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
         edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        EditTextWithFont edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
+        edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
 
-        EditTextWithFont edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
+        edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
         edtDob.setFocusable(false);
 
-        EditTextWithFont edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edt);
+        edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.mobile));
 
         EditTextWithFont edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
@@ -384,10 +393,33 @@ public class RegisterActivity extends BaseActivity{
         MainController controller = new MainController(mActivity);
         if (validateCheck()){
             controller.registerPost(taskComplete, api,
-                    new Registration(edtEmail.getText().toString(),
-                            edtPassword.getText().toString(),
-                            edtRePass.getText().toString()));
+                    userRegistration());
         }
+
+    }
+
+    private Registration userRegistration(){
+
+        Registration registration = new Registration();
+
+        registration.setEmail(edtEmail.getText().toString());
+        registration.setPassword(edtPassword.getText().toString());
+        registration.setConfirmPassword(edtRePass.getText().toString());
+        registration.setFirstName(edtFirstName.getText().toString()!=null?
+                edtFirstName.getText().toString(): "");
+        registration.setLastName(edtLastName.getText().toString()!=null?
+                edtLastName.getText().toString() : "");
+        registration.setPhoneNumber("");
+        registration.setInterest("");
+        registration.setNationality("");
+        registration.setDateOfBirth(edtDob.getText().toString()!=null?
+        edtDob.getText().toString() : "");
+        registration.setMobileNumber(edtMobile.getText().toString()!=null?
+        edtMobile.getText().toString() : "");
+        registration.setCity("");
+        registration.setCountry("");
+
+        return registration;
 
     }
 

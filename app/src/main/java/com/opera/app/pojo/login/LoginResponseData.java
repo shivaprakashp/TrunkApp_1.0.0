@@ -14,6 +14,9 @@ public class LoginResponseData {
     @SerializedName("Token")
     @Expose
     private String token;
+    @SerializedName("Profile")
+    @Expose
+    private UserProfile profile;
 
     public String getDisplayName() {
         return displayName;
@@ -37,6 +40,14 @@ public class LoginResponseData {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public UserProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfile profile) {
+        this.profile = profile;
     }
 
 }

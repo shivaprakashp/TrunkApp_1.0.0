@@ -22,6 +22,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
+import com.opera.app.customwidget.ErrorDialogue;
 import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.LoginResponse;
@@ -82,7 +83,8 @@ public class LoginActivity extends BaseActivity {
                 loginSession((LoginResponse) response.body());
             }else if (response.errorBody()!=null){
                 try {
-                    Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
+                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                    dialogue.show();
                 } catch (Exception e) {
                     Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                 }

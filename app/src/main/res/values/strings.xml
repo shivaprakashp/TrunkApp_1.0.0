@@ -198,4 +198,6 @@
     <string name="errorUserEmail">Invalid Email Id</string>
     <string name="errorPassword">Enter Password</string>
     <string name="errorMismatchPassword">Password Mismatch</string>
+    <string name="errorDialogue">OK</string>
+    <string name="errorTitle">ERROR</string>
 </resources>
