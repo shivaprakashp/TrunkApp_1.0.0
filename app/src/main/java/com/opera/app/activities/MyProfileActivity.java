@@ -136,26 +136,8 @@ public class MyProfileActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.img_profile:
                 showDialog();
-                //sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
                 break;
-            /*case R.id.linearGallery:
-                CollapseBottomSliding();
-                OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
-
-                break;
-            case R.id.linearCamera:
-                CollapseBottomSliding();
-                if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
-                    if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
-                    } else {
-                        OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
-                    }
-                } else {
-                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
-                }
-                break;*/
         }
     }
 

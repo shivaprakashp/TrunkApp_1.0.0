@@ -245,4 +245,9 @@
     <string name="errorMismatchPassword">Password Mismatch</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
+    <string name="errorFirstName">Enter First name</string>
+    <string name="errorLastName">Enter Last name</string>
+    <string name="errorMobile">Enter Mobile Number</string>
+    <string name="errorAddress">Enter Address</string>
+    <string name="errorDob">Enter Date of Birth</string>
 </resources>

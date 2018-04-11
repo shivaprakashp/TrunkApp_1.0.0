@@ -164,6 +164,7 @@
                 android:button="@drawable/custom_checkbox" />
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtTermsCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reg_terms_policy"
