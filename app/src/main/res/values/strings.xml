@@ -239,17 +239,35 @@
 
     <!--Error handling-->
     <string name="errorUserName">Username cannot be left blank</string>
-    <string name="errorEmailId">Enter Email Id</string>
-    <string name="errorUserEmail">Invalid Email Id</string>
+    <string name="errorEmailId">Email Address cannot be left blank</string>
     <string name="errorPassword">Password cannot be left blank</string>
-    <string name="errorMismatchPassword">Password Mismatch</string>
+    <string name="errorRePassword">Re-enter Password cannot be left blank</string>
+    <string name="errorFirstName">First Name cannot be left blank</string>
+    <string name="errorLastName">Last Name cannot be left blank</string>
+    <string name="errorCity">City cannot be left blank</string>
+    <string name="errorMobile">Mobile Phone cannot be left blank</string>
+    <string name="errorAddress">Address cannot be left blank</string>
+    <string name="errorDob"> Date of Birth cannot be left blank</string>
+
+    <string name="errorUserEmail">Entered Email Address is invalid</string>
+    <string name="errorMismatchPassword">Entered Password does not match</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
-    <string name="errorFirstName">Enter First name</string>
-    <string name="errorLastName">Enter Last name</string>
-    <string name="errorMobile">Enter Mobile Number</string>
-    <string name="errorAddress">Enter Address</string>
-    <string name="errorDob">Enter Date of Birth</string>
+
+    <string name="errorLengthFirstName">Length of First Name should be between 3 to 30 characters</string>
+    <string name="errorLengthLastName">Length of Last Name should be between 3 to 30 characters</string>
+    <string name="errorLengthPassword">Length of Password should be between 3 to 16 characters</string>
+    <string name="errorSamePasswordAsUsername">Password should not be same as Email</string>
+    <string name="errorLengthMobile">Length of Mobile Phone should be 10 digit</string>
+    <string name="errorLengthCity">Length of City should be between 2 to 15 characters</string>
+    <string name="errorNationality">Select Nationality</string>
+    <string name="errorState">Select Emirate or State</string>
+    <string name="errorCountry">Select Country</string>
+    <string name="errorTerms">You must agree with the terms and privacy policy</string>
+
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. User name is sent to your registered email id and mobile number which can be used for login into Dubai Opera.</string>
+    <string name="success_header">SUCCESS</string>
+    <string name="ok">OK</string>
 
     <array name="states">
         <item>Emirate or State*</item>
@@ -271,7 +289,7 @@
     <item>Algeria</item>
     <item>American Samoa</item>
     <item>"Andorra</item>
-    <item>>Angola</item>
+    <item>Angola</item>
     <item>Anguilla</item>
     <item>Argentina</item>
     <item>Armenia</item>
@@ -308,7 +326,7 @@
     <item>Cuba</item>
     <item>Cyprus</item>
     <item>Czech Republic</item>
-    <item>>Denmark</item>
+    <item>Denmark</item>
     <item>Djibouti</item>
     <item>Dominican Republic</item>
     <item>Ecuador</item>
@@ -455,7 +473,7 @@
         <item>Brunei</item>
         <item>Bulgaria</item>
         <item>Burundi</item>
-        <item>>ambodia</item>
+        <item>ambodia</item>
         <item>Cameroon</item>
         <item>Canada</item>
         <item>Central African Republic</item>

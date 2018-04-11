@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:font="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login">
+    android:background="@drawable/bg_login"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,18 +25,18 @@
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="90dp"
-                    android:scaleType="fitXY"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_dubai_opera_logo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_margin="20dp"
-                    android:padding="10dp"
-                    android:background="@drawable/transparent_white">
+                    android:background="@drawable/transparent_white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
 
                     <include
@@ -47,6 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/dark_gray" />
+
                     <include
                         android:id="@+id/reg_edtPassword"
                         layout="@layout/include_edittext" />
@@ -146,8 +147,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,20 +163,20 @@
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtTermsCondition"
+                style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reg_terms_policy"
-                style="@style/label_white"
-                font:name="Montserrat-Light"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:text="@string/reg_terms_policy"
+                font:name="Montserrat-Light" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -184,42 +185,42 @@
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tvSubscribe"
+                style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/check_subscribe"
-                style="@style/label_white"
-                font:name="Montserrat-Light"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:text="@string/check_subscribe"
+                font:name="Montserrat-Light" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnCreateAccount"
-                android:background="@drawable/btn_ripple_effect"
+                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:background="@drawable/btn_ripple_effect"
                 android:text="@string/create_account"
-                style="@style/label_white_medium"
-                font:name="Montserrat-Light"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                font:name="Montserrat-Light" />
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
-                android:background="@drawable/transparent_btn_ripple"
+                style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/already_have_an_account"
-                style="@style/label_white_medium"
-                font:name="Montserrat-Light"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                font:name="Montserrat-Light" />
 
         </LinearLayout>
 
@@ -228,8 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
-            <include
-                layout="@layout/include_guest"/>
+            <include layout="@layout/include_guest" />
         </LinearLayout>
 
     </LinearLayout>
