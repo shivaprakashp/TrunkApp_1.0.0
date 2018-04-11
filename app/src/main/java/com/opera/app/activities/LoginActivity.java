@@ -1,7 +1,6 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +11,8 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +23,7 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.ErrorDialogue;
+import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dagger.Api;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.LoginResponse;
@@ -34,7 +31,6 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -52,6 +48,7 @@ public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
     EditTextWithFont username, password;
+    private Intent in;
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -145,12 +142,15 @@ public class LoginActivity extends BaseActivity {
                 //showDialog();
                 if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                    viewClickable(false);
                 }
                 break;
 
             case R.id.btnSend:
                 if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    viewClickable(true);
                 }
                 break;
 
@@ -159,7 +159,7 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.textView_continue_as_guest:
-                openActivity(mActivity, MainActivity.class);
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
                 break;
 
             case R.id.btnLogin:
@@ -172,6 +172,14 @@ public class LoginActivity extends BaseActivity {
                 }
                 break;
         }
+    }
+
+    //view make it clickable
+    private void viewClickable(boolean flag){
+        mButtonLogin.setClickable(flag);
+        mButtonRegister.setClickable(flag);
+        mTextContinue_as_guest.setClickable(flag);
+
     }
 
     private boolean checkValidation() {
@@ -209,9 +217,7 @@ public class LoginActivity extends BaseActivity {
             SessionManager sessionManager = new SessionManager(mActivity);
             sessionManager.createLoginSession(loginResponse);
             if (sessionManager.isUserLoggedIn()) {
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }
 
         } catch (Exception e) {

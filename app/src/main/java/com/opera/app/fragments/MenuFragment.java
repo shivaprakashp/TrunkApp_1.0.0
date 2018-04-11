@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import android.content.Intent;
+import android.widget.Toast;
+
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
 import butterknife.BindView;
@@ -22,6 +25,7 @@ import butterknife.ButterKnife;
 public class MenuFragment extends BaseFragment {
 
     private Intent in;
+    private SessionManager manager;
 
     @BindView(R.id.menu_profile)
     View menu_profile;
@@ -83,7 +87,8 @@ public class MenuFragment extends BaseFragment {
         initMenu();
     }
 
-    private void initMenu(){
+    private void initMenu() {
+        manager = new SessionManager(mActivity);
 
         //first row
         ImageView imgProfile = (ImageView) menu_profile.findViewById(R.id.menu_icon);
@@ -150,8 +155,13 @@ public class MenuFragment extends BaseFragment {
         menu_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), MyProfileActivity.class);
-                startActivity(in);
+                if (manager.isUserLoggedIn()) {
+                    in = new Intent(getActivity(), MyProfileActivity.class);
+                    startActivity(in);
+                } else {
+                    Toast.makeText(mActivity, "Please login first", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

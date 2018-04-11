@@ -33,6 +33,14 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, startClass);
         startActivity(intent);
         //finish();
+
+    }
+
+    public void openActivityWithClearPreviousActivities(Activity activity, Class<?> startClass) {
+        Intent intent = new Intent(activity, startClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     public String jsonResponse(Response response) {

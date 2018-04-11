@@ -10,9 +10,11 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.text.style.UnderlineSpan;
+import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,8 @@ import com.opera.app.customwidget.ErrorDialogue;
 import com.opera.app.customwidget.SuccessDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.dialogues.PrivacyDialogue;
+import com.opera.app.dialogues.TermsDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
@@ -378,6 +382,8 @@ public class RegisterActivity extends BaseActivity {
 
     private void initSpannableText() {
         try {
+
+            TextView view = new TextView(mActivity);
             SpannableString spannableString = new SpannableString(getResources().
                     getString(R.string.reg_terms_policy));
 
@@ -386,17 +392,50 @@ public class RegisterActivity extends BaseActivity {
                             LanguageManager.createInstance().mSelectedLanguage, "").
                     equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
 
-                spannableString.setSpan(new UnderlineSpan(),
+                spannableString.setSpan(clickSpannString(true),
                         15, 20, 0);
 
-                spannableString.setSpan(new UnderlineSpan(),
+                spannableString.setSpan(clickSpannString(false),
                         25, spannableString.length(), 0);
 
-                txtTermsCondition.setText(spannableString);
+
+            }else{
+                spannableString.setSpan(clickSpannString(true),
+                        16, 20, 0);
+
+                spannableString.setSpan(clickSpannString(false),
+                        1, 14, 0);
+
             }
-        } catch (Exception e) {
+
+            txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
+            txtTermsCondition.setText(spannableString);
+        }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private ClickableSpan clickSpannString(final boolean flag){
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                if (flag){
+                    TermsDialogue dialogue = new TermsDialogue(mActivity);
+                    dialogue.show();
+                }else {
+                    PrivacyDialogue dialogue = new PrivacyDialogue(mActivity);
+                    dialogue.show();
+                }
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(true);
+                ds.setColor(Color.WHITE);
+            }
+        };
+
+        return clickableSpan;
     }
 
     @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})

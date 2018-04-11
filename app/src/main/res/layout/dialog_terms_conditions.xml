@@ -9,18 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/termsNconditions"
-        android:textSize="20dp"
-        android:padding="5dp"
+        style="@style/label_white_medium"
+        android:padding="10dp"
         android:textColor="@color/colorWhite"
-        android:gravity="center"
         android:background="@color/button_bg"
         font:name="Montserrat-Light"/>
 
     <ListView
         android:id="@+id/terms_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:entries="@array/terms_conditions">
     </ListView>
+
+    <com.opera.app.customwidget.ButtonWithFont
+        android:id="@+id/btnError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/errorDialogue"
+        android:background="@color/colorBurgendy"
+        style="@style/label_white_large"/>
 
 </LinearLayout>
