@@ -1,10 +1,7 @@
 package com.opera.app.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,12 +11,9 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,12 +35,9 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -203,9 +194,7 @@ public class RegisterActivity extends BaseActivity{
 
         //---------------Nationality----------------
         // Initializing a String Array
-        String[] nationality_str = new String[]{
-                getResources().getString(R.string.nationality)
-        };
+        String[] nationality_str = getResources().getStringArray(R.array.nationality);
         final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
 
         // Initializing an ArrayAdapter
@@ -244,10 +233,7 @@ public class RegisterActivity extends BaseActivity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-                    // Notify the selected item text
-                    /*Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();*/
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
@@ -257,9 +243,7 @@ public class RegisterActivity extends BaseActivity{
         });
 
         //---------------State----------------
-        String[] state_str = new String[]{
-                getResources().getString(R.string.state)
-        };
+        String[] state_str = getResources().getStringArray(R.array.states);
         final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
 
         // Initializing an ArrayAdapter
@@ -298,10 +282,7 @@ public class RegisterActivity extends BaseActivity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-                    // Notify the selected item text
-                    /*Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();*/
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
@@ -311,9 +292,7 @@ public class RegisterActivity extends BaseActivity{
         });
 
         //---------------Country----------------
-        String[] country_str = new String[]{
-                getResources().getString(R.string.country)
-        };
+        String[] country_str = getResources().getStringArray(R.array.country);
         final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
 
         // Initializing an ArrayAdapter
@@ -352,7 +331,7 @@ public class RegisterActivity extends BaseActivity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
