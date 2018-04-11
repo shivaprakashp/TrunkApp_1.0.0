@@ -121,7 +121,10 @@ public class MyProfileActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 
-        tv_profile_name.setText(manager.getUserLoginData().getData().getName());
+        if (manager.getUserLoginData()!= null) {
+            tv_profile_name.setText(manager.getUserLoginData().getData().getName());
+        }
+
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

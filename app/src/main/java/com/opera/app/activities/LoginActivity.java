@@ -52,6 +52,7 @@ public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
     EditTextWithFont username, password;
+    private Intent in;
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -159,7 +160,7 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.textView_continue_as_guest:
-                openActivity(mActivity, MainActivity.class);
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
                 break;
 
             case R.id.btnLogin:
@@ -209,9 +210,7 @@ public class LoginActivity extends BaseActivity {
             SessionManager sessionManager = new SessionManager(mActivity);
             sessionManager.createLoginSession(loginResponse);
             if (sessionManager.isUserLoggedIn()) {
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }
 
         } catch (Exception e) {
