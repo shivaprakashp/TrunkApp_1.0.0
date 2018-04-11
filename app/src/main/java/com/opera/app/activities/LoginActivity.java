@@ -146,12 +146,15 @@ public class LoginActivity extends BaseActivity {
                 //showDialog();
                 if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                    viewClickable(false);
                 }
                 break;
 
             case R.id.btnSend:
                 if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    viewClickable(true);
                 }
                 break;
 
@@ -173,6 +176,14 @@ public class LoginActivity extends BaseActivity {
                 }
                 break;
         }
+    }
+
+    //view make it clickable
+    private void viewClickable(boolean flag){
+        mButtonLogin.setClickable(flag);
+        mButtonRegister.setClickable(flag);
+        mTextContinue_as_guest.setClickable(flag);
+
     }
 
     private boolean checkValidation() {
