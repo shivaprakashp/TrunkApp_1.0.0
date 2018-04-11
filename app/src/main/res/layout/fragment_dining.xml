@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/tools"
+    xmlns:attribute="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:ignore="NamespaceTypo">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,121 +20,134 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_profile_bg" />
 
-        <LinearLayout
+        <com.opera.app.customwidget.CrescentoContainer
+            android:id="@+id/crescentoContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:layout_marginTop="200dp"
-            android:background="@drawable/bg_linear_shape"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:elevation="20dp"
+            android:scaleType="centerCrop"
+            attribute:gradientDirection="top_to_bottom"
+            attribute:gravity="top"
+            attribute:curvature="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
-                    android:orientation="vertical">
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:id="@+id/mTxtRestaurantName"
-                        style="@style/textsize_vvlarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/sean_connolly"
-                        font:name="Montserrat-Light" />
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:id="@+id/mTxtRestaurantPlace"
-                        style="@style/label_gray_large"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/dubai_opera"
-                        font:name="Montserrat-Light" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <com.opera.app.customwidget.ButtonWithFont
-                        android:id="@+id/mBtnReserveATable"
-                        style="@style/label_white_small"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:background="@drawable/btn_ripple_effect"
-                        android:text="@string/reserve_a_table"
-                        font:name="Montserrat-Light" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/bg_linear_shape"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.opera.app.customwidget.ExpandableTextView
-                        android:id="@+id/expandableTextView"
-                        style="@style/label_white_small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="3"
-                        android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy "
-                        app:animation_duration="1000" />
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linearReadMore"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_weight="0.6"
+                        android:orientation="vertical">
 
                         <com.opera.app.customwidget.TextViewWithFont
-                            android:id="@+id/txtShowmore"
-                            style="@style/label_white_small"
+                            android:id="@+id/mTxtRestaurantName"
+                            style="@style/textsize_vvlarge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/read_more"
-                            android:textAllCaps="false" />
+                            android:layout_centerHorizontal="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/sean_connolly"
+                            font:name="Montserrat-Light" />
 
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:src="@drawable/ic_down_arrow" />
+                        <com.opera.app.customwidget.TextViewWithFont
+                            android:id="@+id/mTxtRestaurantPlace"
+                            style="@style/label_gray_large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/dubai_opera"
+                            font:name="Montserrat-Light" />
+
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <com.opera.app.customwidget.ButtonWithFont
+                            android:id="@+id/mBtnReserveATable"
+                            style="@style/label_white_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:background="@drawable/btn_ripple_effect"
+                            android:text="@string/reserve_a_table"
+                            font:name="Montserrat-Light" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
-            </ScrollView>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.opera.app.customwidget.ExpandableTextView
+                            android:id="@+id/expandableTextView"
+                            style="@style/label_white_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="3"
+                            android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy "
+                            app:animation_duration="500" />
+
+                        <LinearLayout
+                            android:id="@+id/linearReadMore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.opera.app.customwidget.TextViewWithFont
+                                android:id="@+id/txtShowmore"
+                                style="@style/label_white_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/read_more"
+                                android:textAllCaps="false" />
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:src="@drawable/ic_down_arrow" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </com.opera.app.customwidget.CrescentoContainer>
+        <!--here-->
 
     </RelativeLayout>
 
