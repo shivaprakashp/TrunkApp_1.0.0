@@ -1,6 +1,5 @@
-package com.opera.app.customwidget;
+package com.opera.app.dialogues;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,36 +8,28 @@ import android.view.View;
 import android.view.Window;
 
 import com.opera.app.R;
+import com.opera.app.customwidget.ButtonWithFont;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ErrorDialogue extends Dialog {
+public class TermsDialogue extends Dialog {
 
-    private Context context;
-    private String message;
-
-    @BindView(R.id.txtErrorMessage)
-    TextViewWithFont txtErrorMessage;
 
     @BindView(R.id.btnError)
     ButtonWithFont btnError;
 
-    public ErrorDialogue(@NonNull Context context, String message) {
+    public TermsDialogue(@NonNull Context context) {
         super(context);
-
-        this.context = context;
-        this.message = message;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.custom_error_dialogue);
+        setContentView(R.layout.dialog_terms_conditions);
 
         ButterKnife.bind(this);
-        txtErrorMessage.setText(message);
         btnError.setOnClickListener(buttonClose);
     }
 

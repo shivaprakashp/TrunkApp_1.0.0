@@ -1,25 +1,22 @@
 package com.opera.app.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.InputType;
 import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.text.style.UnderlineSpan;
-import android.util.Log;
+import android.text.style.ClickableSpan;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,20 +30,19 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.ErrorDialogue;
+import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.dialogues.PrivacyDialogue;
+import com.opera.app.dialogues.TermsDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -121,7 +117,7 @@ public class RegisterActivity extends BaseActivity{
             edtLastName,
             edtMobile,
             edtCity
-    ;
+                    ;
 
     @BindView(R.id.txtTermsCondition)
     TextViewWithFont txtTermsCondition;
@@ -380,6 +376,8 @@ public class RegisterActivity extends BaseActivity{
 
     private void initSpannableText(){
         try {
+
+            TextView view = new TextView(mActivity);
             SpannableString spannableString = new SpannableString(getResources().
                     getString(R.string.reg_terms_policy));
 
@@ -388,19 +386,41 @@ public class RegisterActivity extends BaseActivity{
                             LanguageManager.createInstance().mSelectedLanguage, "").
                     equalsIgnoreCase(LanguageManager.mLanguageEnglish)){
 
-                spannableString.setSpan(new UnderlineSpan(),
+                spannableString.setSpan(clickSpannString(true),
                         15, 20, 0);
 
-                spannableString.setSpan(new UnderlineSpan(),
+                spannableString.setSpan(clickSpannString(false),
                         25, spannableString.length(), 0);
 
-
-
+                txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
                 txtTermsCondition.setText(spannableString);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private ClickableSpan clickSpannString(final boolean flag){
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                if (flag){
+                    TermsDialogue dialogue = new TermsDialogue(mActivity);
+                    dialogue.show();
+                }else {
+                    PrivacyDialogue dialogue = new PrivacyDialogue(mActivity);
+                    dialogue.show();
+                }
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(true);
+                ds.setColor(Color.WHITE);
+            }
+        };
+
+        return clickableSpan;
     }
 
     @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})
@@ -445,9 +465,9 @@ public class RegisterActivity extends BaseActivity{
         registration.setInterest("");
         registration.setNationality("");
         registration.setDateOfBirth(edtDob.getText().toString()!=null?
-        edtDob.getText().toString() : "");
+                edtDob.getText().toString() : "");
         registration.setMobileNumber(edtMobile.getText().toString()!=null?
-        edtMobile.getText().toString() : "");
+                edtMobile.getText().toString() : "");
         registration.setCity("");
         registration.setCountry("");
 
