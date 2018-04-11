@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
@@ -21,6 +22,7 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.ErrorDialogue;
 import com.opera.app.dagger.Api;
@@ -67,8 +69,13 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_password)
     View login_password;
 
-    @BindView(R.id.linearParent)
-    LinearLayout mLinearParent;
+    @BindView(R.id.bottom_sheet)
+    LinearLayout layoutBottomSheet;
+
+    @BindView(R.id.btnSend)
+    ButtonWithFont btnSend;
+
+    BottomSheetBehavior sheetBehavior;
 
     //injecting retrofit
     @Inject
@@ -102,19 +109,18 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mActivity = LoginActivity.this;
-
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
 
         setContentView(R.layout.activity_login);
-
         initView();
     }
 
     private void initView() {
 
-        ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
+        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
+        ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
         api = retrofit.create(Api.class);
 
         //edittext
@@ -125,15 +131,23 @@ public class LoginActivity extends BaseActivity {
         password.setHint(getString(R.string.password));
         password.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
     }
 
-    @OnClick({R.id.tv_forgotPassword,R.id.btnRegister,R.id.textView_continue_as_guest,R.id.btnLogin})
+    @OnClick({R.id.tv_forgotPassword,R.id.btnRegister,R.id.textView_continue_as_guest,
+            R.id.btnLogin, R.id.btnSend})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_forgotPassword:
-                showDialog();
+                //showDialog();
+                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+                break;
 
+            case R.id.btnSend:
+                if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
                 break;
 
             case R.id.btnRegister:
@@ -145,7 +159,6 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.btnLogin:
-
                 if(Connections.isConnectionAlive(mActivity)){
                     if (checkValidation()) sendPost(
                             username.getText().toString(),
@@ -177,24 +190,6 @@ public class LoginActivity extends BaseActivity {
 
         MainController controller = new MainController(LoginActivity.this);
         controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
-    }
-
-    public void showDialog() {
-        final Dialog dialog = new Dialog(mActivity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-
-        //For Language setting
-        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        dialog.setContentView(R.layout.popup_forgotpassword);
-
-        TextView tv_forgotPassword = (TextView) dialog.findViewById(R.id.tv_forgotPassword);
-        EditText et_username = (EditText) dialog.findViewById(R.id.et_username);
-        Button btnSend = (Button) dialog.findViewById(R.id.btnSend);
-
-        dialog.show();
-
     }
 
     //maintain login session

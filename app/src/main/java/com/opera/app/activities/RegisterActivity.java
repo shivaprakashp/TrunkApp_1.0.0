@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.InputType;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
@@ -32,6 +34,7 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.ErrorDialogue;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
@@ -120,6 +123,9 @@ public class RegisterActivity extends BaseActivity{
             edtCity
     ;
 
+    @BindView(R.id.txtTermsCondition)
+    TextViewWithFont txtTermsCondition;
+
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response) {
@@ -155,6 +161,7 @@ public class RegisterActivity extends BaseActivity{
         setContentView(R.layout.activity_registration);
 
         initView();
+        initSpannableText();
     }
 
     private void initView() {
@@ -369,6 +376,31 @@ public class RegisterActivity extends BaseActivity{
                 dialogFragment.show(getSupportFragmentManager(), "Date");
             }
         });
+    }
+
+    private void initSpannableText(){
+        try {
+            SpannableString spannableString = new SpannableString(getResources().
+                    getString(R.string.reg_terms_policy));
+
+            if (LanguageManager.createInstance().
+                    GetSharedPreferences(mActivity,
+                            LanguageManager.createInstance().mSelectedLanguage, "").
+                    equalsIgnoreCase(LanguageManager.mLanguageEnglish)){
+
+                spannableString.setSpan(new UnderlineSpan(),
+                        15, 20, 0);
+
+                spannableString.setSpan(new UnderlineSpan(),
+                        25, spannableString.length(), 0);
+
+
+
+                txtTermsCondition.setText(spannableString);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})

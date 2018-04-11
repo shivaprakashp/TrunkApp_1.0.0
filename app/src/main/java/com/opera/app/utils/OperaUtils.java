@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 
