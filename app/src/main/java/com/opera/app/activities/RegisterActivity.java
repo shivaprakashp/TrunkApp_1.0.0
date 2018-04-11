@@ -392,9 +392,18 @@ public class RegisterActivity extends BaseActivity{
                 spannableString.setSpan(clickSpannString(false),
                         25, spannableString.length(), 0);
 
-                txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
-                txtTermsCondition.setText(spannableString);
+
+            }else{
+                spannableString.setSpan(clickSpannString(true),
+                        16, 20, 0);
+
+                spannableString.setSpan(clickSpannString(false),
+                        1, 14, 0);
+
             }
+
+            txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
+            txtTermsCondition.setText(spannableString);
         }catch (Exception e){
             e.printStackTrace();
         }
