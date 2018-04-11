@@ -21,7 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:src="@drawable/ic_back_arrrow" />
+                android:src="@drawable/ic_back_arrrow"
+                android:visibility="gone" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:src="@drawable/ic_close" />
+                android:src="@drawable/ic_close"
+                android:visibility="gone" />
         </FrameLayout>
 
         <LinearLayout
@@ -47,8 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                font:name="Montserrat-Regular"
-                android:text="@string/menu_guest" />
+                android:text="@string/menu_guest"
+                font:name="Montserrat-Regular" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 style="@style/label_white"
@@ -58,8 +60,8 @@
                 android:background="@drawable/transparent_btn_ripple"
                 android:gravity="center"
                 android:padding="10dp"
-                font:name="Montserrat-Regular"
-                android:text="@string/menu_account" />
+                android:text="@string/menu_account"
+                font:name="Montserrat-Regular" />
         </LinearLayout>
     </LinearLayout>
 
