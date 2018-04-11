@@ -15,6 +15,7 @@ import com.opera.app.activities.EditProfileActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.ReserveATableActivity;
+import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -32,6 +33,9 @@ public class DiningFragment extends BaseFragment {
 
     @BindView(R.id.txtShowmore)
     TextView txtShowmore;
+
+    @BindView(R.id.expandableTextView)
+    ExpandableTextView mExpandableTextView;
 
     @BindView(R.id.btnOtherRestaurants)
     Button mBtnOtherRestaurants;
@@ -55,16 +59,16 @@ public class DiningFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick({R.id.linearReadMore,R.id.btnOtherRestaurants,R.id.mBtnReserveATable})
+    @OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.linearReadMore:
-                if (txtShowmore.getText().toString().equalsIgnoreCase(getResources().getString(R.string.read_more))) {
-                    txtShowmore.setMaxLines(1000);//your TextView
-                    txtShowmore.setText(getResources().getString(R.string.read_less));
+                if (mExpandableTextView.isExpanded()) {
+                    mExpandableTextView.collapse();
+                    txtShowmore.setText(R.string.read_more);
                 } else {
-                    txtShowmore.setMaxLines(3);//your TextView
-                    txtShowmore.setText(getResources().getString(R.string.read_more));
+                    mExpandableTextView.expand();
+                    txtShowmore.setText(R.string.read_less);
                 }
                 break;
             case R.id.btnOtherRestaurants:

@@ -6,7 +6,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="dont_have_an_account">Don\'t have an account? Create one</string>
+    <string name="dont_have_an_account">Don\'t have an Account? Create one</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -238,10 +238,10 @@
     <string name="dubai_opera">at Dubai Opera</string>
 
     <!--Error handling-->
-    <string name="errorUserName">Enter User name</string>
+    <string name="errorUserName">Username cannot be left blank</string>
     <string name="errorEmailId">Enter Email Id</string>
     <string name="errorUserEmail">Invalid Email Id</string>
-    <string name="errorPassword">Enter Password</string>
+    <string name="errorPassword">Password cannot be left blank</string>
     <string name="errorMismatchPassword">Password Mismatch</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
