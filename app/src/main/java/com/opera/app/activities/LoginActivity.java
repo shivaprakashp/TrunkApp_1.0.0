@@ -2,6 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -86,9 +88,9 @@ public class LoginActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response) {
-            if (response.body()!=null){
+            if (response.body() != null) {
                 loginSession((LoginResponse) response.body());
-            }else if (response.errorBody()!=null){
+            } else if (response.errorBody() != null) {
                 try {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
@@ -126,14 +128,16 @@ public class LoginActivity extends BaseActivity {
         //edittext
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
+        username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
-        password.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setImeOptions(EditorInfo.IME_ACTION_DONE);
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
-    @OnClick({R.id.tv_forgotPassword,R.id.btnRegister,R.id.textView_continue_as_guest,
+    @OnClick({R.id.tv_forgotPassword, R.id.btnRegister, R.id.textView_continue_as_guest,
             R.id.btnLogin, R.id.btnSend})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -159,11 +163,11 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.btnLogin:
-                if(Connections.isConnectionAlive(mActivity)){
+                if (Connections.isConnectionAlive(mActivity)) {
                     if (checkValidation()) sendPost(
                             username.getText().toString(),
                             password.getText().toString());
-                }else{
+                } else {
                     Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -171,14 +175,21 @@ public class LoginActivity extends BaseActivity {
     }
 
     private boolean checkValidation() {
+        //Removing previous validations
+        username.setError(null);
+        password.setError(null);
         //validation of input field
-        if (TextUtils.isEmpty(username.getText().toString())){
+        if (TextUtils.isEmpty(username.getText().toString().trim()) && TextUtils.isEmpty(password.getText().toString().trim())) {
+            username.setError(getString(R.string.errorUserName));
+            password.setError(getString(R.string.errorPassword));
+            return false;
+        } else if (TextUtils.isEmpty(username.getText().toString().trim())) {
             username.setError(getString(R.string.errorUserName));
             return false;
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(username.getText().toString()).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(username.getText().toString().trim()).matches()) {
             username.setError(getString(R.string.errorUserEmail));
             return false;
-        } else if (TextUtils.isEmpty(password.getText().toString())){
+        } else if (TextUtils.isEmpty(password.getText().toString().trim())) {
             password.setError(getString(R.string.errorPassword));
             return false;
         }
@@ -186,21 +197,24 @@ public class LoginActivity extends BaseActivity {
         return true;
     }
 
-    private void sendPost(String emailId, String pwd){
+    private void sendPost(String emailId, String pwd) {
 
         MainController controller = new MainController(LoginActivity.this);
         controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
     }
 
     //maintain login session
-    private void loginSession(LoginResponse loginResponse){
-        try{
+    private void loginSession(LoginResponse loginResponse) {
+        try {
             SessionManager sessionManager = new SessionManager(mActivity);
             sessionManager.createLoginSession(loginResponse);
-            if (sessionManager.isUserLoggedIn()){
-                openActivity(mActivity, MainActivity.class);
+            if (sessionManager.isUserLoggedIn()) {
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
