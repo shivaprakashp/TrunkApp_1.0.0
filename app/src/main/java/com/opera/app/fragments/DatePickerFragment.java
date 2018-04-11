@@ -25,9 +25,14 @@ public class DatePickerFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar cal = Calendar.getInstance();
 
-        return new DatePickerDialog(getActivity(),
+        DatePickerDialog mDatePickerDialog=null;
+        mDatePickerDialog =new DatePickerDialog(getActivity(),
                 mDateSetListener, cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+
+        mDatePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+        return mDatePickerDialog;
     }
 
 }

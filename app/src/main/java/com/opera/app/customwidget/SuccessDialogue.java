@@ -2,33 +2,43 @@ package com.opera.app.customwidget;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 
+import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.activities.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ErrorDialogue extends Dialog {
 
-    private Context context;
-    private String message;
+public class SuccessDialogue extends Dialog {
+
+    private Activity mActivity;
+    private BaseActivity mBaseActivity;
+    private String message,mFrom,mPopUpBtnTxt,mPopUpHeader;
 
     @BindView(R.id.txtErrorMessage)
     TextViewWithFont txtErrorMessage;
 
+    @BindView(R.id.txtErrorTitle)
+    TextViewWithFont txtErrorTitle;
+
     @BindView(R.id.btnError)
     ButtonWithFont btnError;
 
-    public ErrorDialogue(@NonNull Context context, String message) {
-        super(context);
+    public SuccessDialogue(@NonNull Activity mActivity, String message, String mPopUpHeader, String mPopUpBtnTxt, String mFrom) {
+        super(mActivity);
 
-        this.context = context;
+        this.mActivity = mActivity;
         this.message = message;
+        this.mPopUpHeader = mPopUpHeader;
+        this.mPopUpBtnTxt = mPopUpBtnTxt;
+        this.mFrom = mFrom;
+        mBaseActivity= (BaseActivity) mActivity;
     }
 
     @Override
@@ -39,14 +49,21 @@ public class ErrorDialogue extends Dialog {
 
         ButterKnife.bind(this);
         txtErrorMessage.setText(message);
+        btnError.setText(mPopUpBtnTxt);
+        txtErrorTitle.setText(mPopUpHeader);
         btnError.setOnClickListener(buttonClose);
+
     }
 
     private View.OnClickListener buttonClose = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             dismiss();
-
+            if(mFrom.equalsIgnoreCase("Register"))
+            {
+                mBaseActivity.openActivity(mActivity, LoginActivity.class);
+            }
+            mActivity.finish();
         }
     };
 }
