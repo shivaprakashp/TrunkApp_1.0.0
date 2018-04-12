@@ -14,6 +14,7 @@ import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -144,39 +145,45 @@ public class EditProfileActivity extends BaseActivity{
         edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.edit_email));
         edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
+        edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtEmail.setEnabled(false);
 
         edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));
         edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
+        edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
+        edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
         edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
+        edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.edit_mobile));
         edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
+        edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
         edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
+        edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
+        edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
         //edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
 
         //---------------Nationality----------------
         // Initializing a String Array
-        String[] nationality_str = new String[]{
-                getResources().getString(R.string.edit_nationality)
-        };
+        String[] nationality_str = getResources().getStringArray(R.array.nationality);
         final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
 
         // Initializing an ArrayAdapter
@@ -210,15 +217,13 @@ public class EditProfileActivity extends BaseActivity{
         spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner);
 
         spinnerNationality.setAdapter(spinnerArrayAdapter);
+        spinnerNationality.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getNationality()));
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-                    // Notify the selected item text
-                    /*Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();*/
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
@@ -228,9 +233,7 @@ public class EditProfileActivity extends BaseActivity{
         });
 
         //---------------State----------------
-        String[] state_str = new String[]{
-                getResources().getString(R.string.edit_state)
-        };
+        String[] state_str = getResources().getStringArray(R.array.states);
         final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
 
         // Initializing an ArrayAdapter
@@ -264,27 +267,22 @@ public class EditProfileActivity extends BaseActivity{
         spinnerArrayAdapter1.setDropDownViewResource(R.layout.custom_spinner);
 
         spinnerState.setAdapter(spinnerArrayAdapter1);
+        //spinnerState.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().get));
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-                    // Notify the selected item text
-                    /*Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();*/
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
         //---------------Country----------------
-        String[] country_str = new String[]{
-                getResources().getString(R.string.edit_country)
-        };
+        String[] country_str = getResources().getStringArray(R.array.country);
         final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
 
         // Initializing an ArrayAdapter
@@ -318,12 +316,13 @@ public class EditProfileActivity extends BaseActivity{
         spinnerArrayAdapter2.setDropDownViewResource(R.layout.custom_spinner);
 
         spinnerCountry.setAdapter(spinnerArrayAdapter2);
+        spinnerCountry.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 if (position > 0) {
-
+                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
 
@@ -357,13 +356,14 @@ public class EditProfileActivity extends BaseActivity{
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-//            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             return dialog;
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             month = month + 1;
-            edtDob.setText(year + "-" + month + "-" + day);
+            //edtDob.setText(year + "-" + month + "-" + day);
+            edtDob.setText(day + "/" + (month) + "/" + year);
         }
     }
 
@@ -401,43 +401,111 @@ public class EditProfileActivity extends BaseActivity{
 
         EditProfile data = new EditProfile();
 
-        data.setEmail(edtEmail.getText().toString());
+        //data.setEmail(edtEmail.getText().toString());
         data.setFirstName(edtFirstName.getText().toString()!=null?
                 edtFirstName.getText().toString(): "");
         data.setLastName(edtLastName.getText().toString()!=null?
                 edtLastName.getText().toString() : "");
-        data.setPhoneNumber("");
-        data.setInterest("");
-        data.setNationality("");
+        //data.setPhoneNumber("");
+        //data.setInterest("");
+        data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
         data.setDateOfBirth(edtDob.getText().toString()!=null?
                 edtDob.getText().toString() : "");
         data.setMobileNumber(edtMobile.getText().toString()!=null?
                 edtMobile.getText().toString() : "");
-        data.setCity("");
-        data.setCountry("");
+        data.setCity(edtCity.getText().toString().trim() != null ?
+                edtCity.getText().toString().trim() : "");
+        data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
 
         return data;
 
     }
 
     private boolean validateCheck(){
-        if(TextUtils.isEmpty(edtFirstName.getText().toString())) {
+
+        //Removing previous validations
+        edtEmail.setError(null);
+        //edtPassword.setError(null);
+        //edtRePass.setError(null);
+        edtFirstName.setError(null);
+        edtLastName.setError(null);
+        edtMobile.setError(null);
+        edtCity.setError(null);
+        edtDob.setError(null);
+
+        //validation of input field
+        if (TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
+                TextUtils.isEmpty(edtLastName.getText().toString().trim()) &&
+                TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
+                TextUtils.isEmpty(edtDob.getText().toString().trim()) &&
+                TextUtils.isEmpty(edtMobile.getText().toString().trim()) &&
+                TextUtils.isEmpty(edtCity.getText().toString().trim())) {
+            edtFirstName.setError(getString(R.string.errorFirstName));
+            edtLastName.setError(getString(R.string.errorLastName));
+            edtEmail.setError(getString(R.string.errorEmailId));
+            edtDob.setError(getString(R.string.errorDob));
+            edtMobile.setError(getString(R.string.errorMobile));
+            edtCity.setError(getString(R.string.errorCity));
+            return false;
+        }
+        //firstName
+        else if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             edtFirstName.setError(getString(R.string.errorFirstName));
             return false;
-        }else if (TextUtils.isEmpty(edtLastName.getText().toString())){
+        } else if (edtFirstName.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 30) {
+            edtFirstName.setError(getString(R.string.errorLengthFirstName));
+            return false;
+        }
+        //lastName
+        else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
             edtLastName.setError(getString(R.string.errorLastName));
             return false;
-        }else if (TextUtils.isEmpty(edtEmail.getText().toString())){
+        } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
+            edtLastName.setError(getString(R.string.errorLengthLastName));
+            return false;
+        }
+        //email
+        else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
             edtEmail.setError(getString(R.string.errorEmailId));
             return false;
-        }else if( !Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()){
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
             edtEmail.setError(getString(R.string.errorUserEmail));
             return false;
-        }else if (TextUtils.isEmpty(edtDob.getText().toString())){
+        }
+        //nationality
+        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))){
+            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality) , Toast.LENGTH_LONG).show();
+            return false;
+        }
+        //dob
+        else if (TextUtils.isEmpty(edtDob.getText().toString())) {
             edtDob.setError(getString(R.string.errorDob));
             return false;
-        }else if(TextUtils.isEmpty(edtMobile.getText().toString())) {
+        }
+        //mobile
+        else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
             edtMobile.setError(getString(R.string.errorMobile));
+            return false;
+        } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
+            edtMobile.setError(getString(R.string.errorLengthMobile));
+            return false;
+        }
+        //city
+        else if (TextUtils.isEmpty(edtCity.getText().toString())) {
+            edtCity.setError(getString(R.string.errorCity));
+            return false;
+        } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
+            edtCity.setError(getString(R.string.errorLengthCity));
+            return false;
+        }
+        //state
+        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))){
+            Toast.makeText(mActivity, getResources().getString(R.string.errorState) , Toast.LENGTH_LONG).show();
+            return false;
+        }
+        //country
+        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))){
+            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry) , Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -449,8 +517,8 @@ public class EditProfileActivity extends BaseActivity{
             if (response.body()!=null){
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
-                //openActivity(mActivity, LoginActivity.class);
                 Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
+                editProfileSession((EditProfileResponse) response.body());
                 mActivity.finish();
             }else if (response.errorBody()!=null){
                 try {
@@ -466,5 +534,17 @@ public class EditProfileActivity extends BaseActivity{
 
         }
     };
+    //maintain edit profile
+    private void editProfileSession(EditProfileResponse editProfileResponse) {
+        try {
+            SessionManager sessionManager = new SessionManager(mActivity);
+            sessionManager.createEditProfileSession(editProfileResponse);
+            /*if (sessionManager.isUserLoggedIn()) {
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
+            }*/
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

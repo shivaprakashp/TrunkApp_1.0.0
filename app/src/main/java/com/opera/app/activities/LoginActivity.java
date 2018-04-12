@@ -7,9 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -23,8 +21,8 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dagger.Api;
+import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -79,6 +77,7 @@ public class LoginActivity extends BaseActivity {
     //injecting retrofit
     @Inject
     Retrofit retrofit;
+    String emailPattern = "[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,64}(\\.[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,25})+";
 
     private Api api;
 
@@ -129,9 +128,9 @@ public class LoginActivity extends BaseActivity {
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
-        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        //password.setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
     @OnClick({R.id.tv_forgotPassword, R.id.btnRegister, R.id.textView_continue_as_guest,
@@ -194,7 +193,7 @@ public class LoginActivity extends BaseActivity {
         } else if (TextUtils.isEmpty(username.getText().toString().trim())) {
             username.setError(getString(R.string.errorUserName));
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(username.getText().toString().trim()).matches()) {
+        } else if (!username.getText().toString().matches(emailPattern)) {
             username.setError(getString(R.string.errorUserEmail));
             return false;
         } else if (TextUtils.isEmpty(password.getText().toString().trim())) {
