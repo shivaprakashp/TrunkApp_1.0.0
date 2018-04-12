@@ -4,5 +4,6 @@
         android:drawable="@drawable/ic_check_box_tick" />
     <item android:state_pressed="true"
         android:drawable="@drawable/ic_check_box_tick" />
-    <item android:drawable="@drawable/unchecked" />
+    <item android:drawable="@drawable/ic_checkbox" />
+
 </selector>

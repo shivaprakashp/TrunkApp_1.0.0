@@ -2,6 +2,7 @@ package com.opera.app.pojo.profile;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.login.LoginResponseData;
 
 public class EditProfileResponse {
 
@@ -11,6 +12,10 @@ public class EditProfileResponse {
         @SerializedName("message")
         @Expose
         private String message;
+
+        @SerializedName("data")
+        @Expose
+        private LoginResponseData data;
 
         public String getStatus() {
             return status;
@@ -28,4 +33,11 @@ public class EditProfileResponse {
             this.message = message;
         }
 
+        public LoginResponseData getData() {
+        return data;
+    }
+
+        public void setData(LoginResponseData data) {
+        this.data = data;
+    }
 }
