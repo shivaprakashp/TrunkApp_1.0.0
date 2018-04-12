@@ -308,7 +308,6 @@ public class RegisterActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -362,7 +361,6 @@ public class RegisterActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
 
         edtDob.performClick();
         edtDob.setOnClickListener(new View.OnClickListener() {
@@ -478,13 +476,14 @@ public class RegisterActivity extends BaseActivity {
                 edtLastName.getText().toString().trim() : "");
         registration.setPhoneNumber("");
         registration.setInterest("");
-        registration.setNationality("");
+        registration.setNationality(spinnerNationality.getSelectedItem().toString().trim());
         registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
                 edtDob.getText().toString().trim() : "");
         registration.setMobileNumber(edtMobile.getText().toString().trim() != null ?
                 edtMobile.getText().toString().trim() : "");
-        registration.setCity("");
-        registration.setCountry("");
+        registration.setCity(edtCity.getText().toString().trim() != null ?
+                edtCity.getText().toString().trim() : "");
+        registration.setCountry(spinnerCountry.getSelectedItem().toString().trim());
 
         return registration;
 

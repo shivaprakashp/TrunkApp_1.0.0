@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.opera.app.R;
 import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.pojo.login.LoginResponse;
+import com.opera.app.pojo.profile.EditProfileResponse;
 
 public class SessionManager {
 
@@ -36,6 +37,13 @@ public class SessionManager {
     public void createLoginSession(LoginResponse loginResponse){
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(context.getString(R.string.prefUserData), gson.toJson(loginResponse));
+        editor.commit();
+    }
+
+    /*Create edit profile session*/
+    public void createEditProfileSession(EditProfileResponse editProfileResponse){
+        editor.putBoolean(IS_USER_LOGIN, true);
+        editor.putString(context.getString(R.string.prefUserData), gson.toJson(editProfileResponse));
         editor.commit();
     }
 
