@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -13,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -166,6 +169,15 @@ public class ProfileFragment extends BaseFragment {
         profile_address.setText(manager.getUserLoginData().getData().getProfile().getCity() + " , " + manager.getUserLoginData().getData().getProfile().getCountry());
         profile_email.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         profile_mobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
+
+        mEdtCurrentPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtCurrentPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
+        mEdtNewPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtNewPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
+        mEdtConfNewPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtConfNewPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
     }
 
     @OnClick({R.id.btnEditProfile, R.id.btnChangePassword, R.id.btnCancel, R.id.btnSave, R.id.imgClose})
