@@ -32,6 +32,6 @@ public interface Api {
                                                         @Body EditProfile editProfile);
 
     @POST("ChangePassword/")
-    Call<EditProfileResponse> ChangePassword(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content, @Header("Authorization") String token,
                                               @Body PostChangePassword mPostChangePassword);
 }

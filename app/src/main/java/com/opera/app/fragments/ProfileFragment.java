@@ -32,6 +32,7 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.PostChangePassword;
+import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
@@ -102,16 +103,25 @@ public class ProfileFragment extends BaseFragment {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response) {
-            /*if (response.body() != null) {
-                loginSession((LoginResponse) response.body());
+            ErrorDialogue dialogue;
+            if (response.body() != null) {
+                RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
+                if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
+                    SessionManager sessionManager = new SessionManager(mActivity);
+                    sessionManager.clearLoginSession();
+                } else {
+                    dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
+                    dialogue.show();
+                }
+
             } else if (response.errorBody() != null) {
                 try {
-                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                    dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
                 } catch (Exception e) {
                     Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-            }*/
+            }
             Log.e("response", response.toString());
         }
 
@@ -170,8 +180,6 @@ public class ProfileFragment extends BaseFragment {
                /* showDialog();*/
                 if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-                    viewClickable(false);
                 }
                 break;
 
@@ -179,10 +187,12 @@ public class ProfileFragment extends BaseFragment {
                 CloseChangePwdSheet();
                 break;
             case R.id.btnSave:
-                CloseChangePwdSheet();
                 if (Connections.isConnectionAlive(mActivity)) {
-                    if (checkValidation())
+                    if (checkValidation()) {
+                        CloseChangePwdSheet();
                         sendChangePassword(mEdtCurrentPassword.getText().toString().trim(), mEdtNewPassword.getText().toString().trim());
+                    }
+
                 } else {
                     Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
@@ -196,32 +206,54 @@ public class ProfileFragment extends BaseFragment {
     private void CloseChangePwdSheet() {
         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            viewClickable(true);
         }
     }
 
-    //view make it clickable
-    private void viewClickable(boolean flag) {
-        mBtnEditProfile.setClickable(flag);
-        mBtnChangePassword.setClickable(flag);
 
-    }
 
     private boolean checkValidation() {
         //Removing previous validations
         mEdtCurrentPassword.setError(null);
         mEdtNewPassword.setError(null);
         mEdtConfNewPassword.setError(null);
-    /*if (TextUtils.isEmpty(username.getText().toString().trim())) {
-            username.setError(getString(R.string.errorUserName));
+        if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString().trim()) &&
+                TextUtils.isEmpty(mEdtNewPassword.getText().toString().trim()) &&
+                TextUtils.isEmpty(mEdtConfNewPassword.getText().toString().trim())) {
+            mEdtCurrentPassword.setError(getString(R.string.errorCurrentPassword));
+            mEdtNewPassword.setError(getString(R.string.errorNewPassword));
+            mEdtConfNewPassword.setError(getString(R.string.errorConfirmNewPassword));
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(username.getText().toString().trim()).matches()) {
-            username.setError(getString(R.string.errorUserEmail));
+        }
+
+        //password
+        else if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString())) {
+            mEdtCurrentPassword.setError(getString(R.string.errorCurrentPassword));
             return false;
-        } else if (TextUtils.isEmpty(password.getText().toString().trim())) {
-            password.setError(getString(R.string.errorPassword));
+        } else if (mEdtCurrentPassword.getText().toString().length() < 3 || mEdtCurrentPassword.getText().toString().length() > 16) {
+            mEdtCurrentPassword.setError(getString(R.string.errorLengthPassword));
             return false;
-        }*/
+        }
+        //re-enterPassword
+        else if (TextUtils.isEmpty(mEdtNewPassword.getText().toString())) {
+            mEdtNewPassword.setError(getString(R.string.errorNewPassword));
+            return false;
+        } else if (mEdtCurrentPassword.getText().toString().equalsIgnoreCase(
+                mEdtNewPassword.getText().toString())) {
+            mEdtNewPassword.setError(getString(R.string.errorPreviousAndNewPassword));
+            return false;
+        } else if (mEdtNewPassword.getText().toString().length() < 3 || mEdtNewPassword.getText().toString().length() > 16) {
+            mEdtNewPassword.setError(getString(R.string.errorLengthPassword));
+            return false;
+        }  else if (TextUtils.isEmpty(mEdtConfNewPassword.getText().toString())) {
+            mEdtConfNewPassword.setError(getString(R.string.errorConfirmNewPassword));
+            return false;
+        } else if (mEdtConfNewPassword.getText().toString().length() < 3 || mEdtConfNewPassword.getText().toString().length() > 16) {
+            mEdtConfNewPassword.setError(getString(R.string.errorLengthPassword));
+            return false;
+        } else if (!mEdtConfNewPassword.getText().toString().trim().equalsIgnoreCase(mEdtNewPassword.getText().toString().trim())) {
+            mEdtConfNewPassword.setError(getString(R.string.errorPasswordMatch));
+            return false;
+        }
 
         return true;
     }

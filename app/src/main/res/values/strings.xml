@@ -241,6 +241,9 @@
     <string name="errorUserName">Username cannot be left blank</string>
     <string name="errorEmailId">Email Address cannot be left blank</string>
     <string name="errorPassword">Password cannot be left blank</string>
+    <string name="errorCurrentPassword">Current password cannot be left blank</string>
+    <string name="errorNewPassword">New password cannot be left blank</string>
+    <string name="errorConfirmNewPassword">Confirm new password cannot be left blank</string>
     <string name="errorRePassword">Re-enter Password cannot be left blank</string>
     <string name="errorFirstName">First Name cannot be left blank</string>
     <string name="errorLastName">Last Name cannot be left blank</string>
@@ -251,6 +254,8 @@
 
     <string name="errorUserEmail">Entered Email Address is invalid</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
+    <string name="errorPreviousAndNewPassword">Current password and new password should not be equal</string>
+    <string name="errorPasswordMatch">New password and confirm new password should be equal</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
 

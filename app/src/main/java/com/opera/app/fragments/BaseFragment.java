@@ -7,6 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import retrofit2.Response;
+
 /**
  * Created by 1000779 on 3/22/2018.
  */
@@ -38,5 +45,19 @@ public class BaseFragment extends Fragment {
         Intent intent = new Intent(activity, startClass);
         activity.startActivity(intent);
         //finish();
+    }
+
+    public String jsonResponse(Response response) {
+
+        try {
+            JSONObject jObjError = new JSONObject(response.errorBody().string());
+            return jObjError.getString("message");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

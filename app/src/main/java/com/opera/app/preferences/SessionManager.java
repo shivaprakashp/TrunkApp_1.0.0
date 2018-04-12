@@ -1,11 +1,14 @@
 package com.opera.app.preferences;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.profile.EditProfileResponse;
@@ -16,45 +19,54 @@ public class SessionManager {
     private static String IS_USER_LOGIN = "IsUserLoggedIn";
     private SharedPreferences.Editor editor;
     Context context;
-    int prefMode = 0 ;
-
+    int prefMode = 0;
     private Gson gson;
+    BaseActivity mBaseActivity;
 
-    public SessionManager(Context context){
+    public SessionManager(Context context) {
         this.context = context;
         loginPref = context.getSharedPreferences(context.getString(R.string.prefName), prefMode);
         editor = loginPref.edit();
-
+        mBaseActivity = (BaseActivity) context;
         gson = new Gson();
     }
 
     // Get Login State
-    public boolean isUserLoggedIn(){
+    public boolean isUserLoggedIn() {
         return loginPref.getBoolean(IS_USER_LOGIN, false);
     }
 
     /*Create login session*/
-    public void createLoginSession(LoginResponse loginResponse){
+    public void createLoginSession(LoginResponse loginResponse) {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(context.getString(R.string.prefUserData), gson.toJson(loginResponse));
         editor.commit();
     }
 
+    /*Clear login session*/
+    public void clearLoginSession() {
+        editor.putBoolean(IS_USER_LOGIN, false);
+        editor.putString(context.getString(R.string.prefUserData), "");
+        editor.commit();
+
+        mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
+    }
+
     /*Create edit profile session*/
-    public void createEditProfileSession(EditProfileResponse editProfileResponse){
+    public void createEditProfileSession(EditProfileResponse editProfileResponse) {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(context.getString(R.string.prefUserData), gson.toJson(editProfileResponse));
         editor.commit();
     }
 
     //get stored user login data
-    public LoginResponse getUserLoginData(){
+    public LoginResponse getUserLoginData() {
         String userData = loginPref.getString(context.getString(R.string.prefUserData), "");
         return gson.fromJson(userData, LoginResponse.class);
     }
 
     //clear login session
-    public void logoutUser(){
+    public void logoutUser() {
         //clear all data from shared preference
         editor.clear();
         editor.commit();
