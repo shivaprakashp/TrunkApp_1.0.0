@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,11 @@ import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.profile.PostChangePassword;
+import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
@@ -72,6 +76,9 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.btnSend)
     ButtonWithFont btnSend;
 
+    @BindView(R.id.et_username)
+    EditText mEt_username;
+
     BottomSheetBehavior sheetBehavior;
 
     //injecting retrofit
@@ -83,21 +90,44 @@ public class LoginActivity extends BaseActivity {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
-            if (response.body() != null) {
-                loginSession((LoginResponse) response.body());
-            } else if (response.errorBody() != null) {
-                try {
-                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
-                    dialogue.show();
-                } catch (Exception e) {
-                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+        public void onTaskFinished(Response response, String mRequestKey) {
+            ErrorDialogue dialogue;
+            if (mRequestKey.equalsIgnoreCase(getResources().getString(R.string.loginRequest))) {
+                if (response.body() != null) {
+                    loginSession((LoginResponse) response.body());
+                } else if (response.errorBody() != null) {
+                    try {
+                        dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else if (mRequestKey.equalsIgnoreCase(getResources().getString(R.string.forgotPasswordRequest))) {
+                if (response.body() != null) {
+                    RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
+                    if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
+                        SessionManager sessionManager = new SessionManager(mActivity);
+                        sessionManager.clearLoginSession();
+                    } else {
+                        dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
+                        dialogue.show();
+                    }
+
+                } else if (response.errorBody() != null) {
+                    try {
+                        dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
+
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t) {
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("Error", call.toString());
         }
     };
@@ -146,9 +176,18 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.btnSend:
-                if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    viewClickable(true);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    if (checkValidationForgotPassword()) {
+                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                            viewClickable(true);
+                        }
+                        sendForgotPassword(mEt_username.getText().toString().trim());
+                        mEt_username.setText("");
+                    }
+
+                } else {
+                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
                 break;
 
@@ -172,8 +211,20 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    private boolean checkValidationForgotPassword() {
+        if (TextUtils.isEmpty(mEt_username.getText().toString().trim())) {
+            mEt_username.setError(getString(R.string.errorEmail));
+            return false;
+        } else if (!mEt_username.getText().toString().matches(emailPattern)) {
+            mEt_username.setError(getString(R.string.errorUserEmail));
+            return false;
+        }
+
+        return true;
+    }
+
     //view make it clickable
-    private void viewClickable(boolean flag){
+    private void viewClickable(boolean flag) {
         mButtonLogin.setClickable(flag);
         mButtonRegister.setClickable(flag);
         mTextContinue_as_guest.setClickable(flag);
@@ -206,7 +257,7 @@ public class LoginActivity extends BaseActivity {
     private void sendPost(String emailId, String pwd) {
 
         MainController controller = new MainController(LoginActivity.this);
-        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
+        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd), getResources().getString(R.string.loginRequest));
     }
 
     //maintain login session
@@ -221,5 +272,10 @@ public class LoginActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendForgotPassword(String mEmail) {
+        MainController controller = new MainController(mActivity);
+        controller.forgotPassword(taskComplete, api, new ForgotPasswordPojo(mEmail), getResources().getString(R.string.forgotPasswordRequest));
     }
 }

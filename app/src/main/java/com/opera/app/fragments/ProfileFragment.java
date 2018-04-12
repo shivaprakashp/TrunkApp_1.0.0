@@ -105,7 +105,7 @@ public class ProfileFragment extends BaseFragment {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
+        public void onTaskFinished(Response response,String mRequestKey) {
             ErrorDialogue dialogue;
             if (response.body() != null) {
                 RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
@@ -129,7 +129,7 @@ public class ProfileFragment extends BaseFragment {
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t) {
+        public void onTaskError(Call call, Throwable t,String mRequestKey) {
             Log.e("Error", call.toString());
         }
     };
@@ -273,6 +273,6 @@ public class ProfileFragment extends BaseFragment {
     private void sendChangePassword(String mPwd, String mNewPwd) {
 
         MainController controller = new MainController(mActivity);
-        controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd));
+        controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd),mActivity.getResources().getString(R.string.changePasswordRequest));
     }
 }
