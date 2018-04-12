@@ -48,7 +48,7 @@
     <string name="and">and </string>
     <string name="privacy"><u>privacy policy</u> </string>
     <string name="check_subscribe">Subscribe to Dubai opera newsletter</string>
-    <string name="create_account">Create account</string>
+    <string name="create_account">Create Account</string>
 
     <!--Setting activity-->
     <string name="setting_alert_show">Alert on the show timings</string>

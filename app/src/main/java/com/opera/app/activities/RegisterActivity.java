@@ -32,8 +32,9 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.SuccessDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
@@ -107,13 +108,13 @@ public class RegisterActivity extends BaseActivity {
     View reg_edtCity;
 
     @BindView(R.id.spinnerNationality)
-    Spinner spinnerNationality;
+    CustomSpinner spinnerNationality;
 
     @BindView(R.id.spinnerState)
-    Spinner spinnerState;
+    CustomSpinner spinnerState;
 
     @BindView(R.id.spinnerCountry)
-    Spinner spinnerCountry;
+    CustomSpinner spinnerCountry;
 
     @BindView(R.id.ckbTerms)
     CheckBox ckbTerms;
@@ -136,7 +137,10 @@ public class RegisterActivity extends BaseActivity {
                 RegistrationResponse registrationResponse =
                         (RegistrationResponse) response.body();
 
-                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg),getResources().getString(R.string.success_header),getResources().getString(R.string.ok),"Register");
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity,
+                        getResources().getString(R.string.successMsg),
+                        getResources().getString(R.string.success_header),
+                        getResources().getString(R.string.ok),"Register");
                 dialogue.show();
             } else if (response.errorBody() != null) {
                 try {
@@ -166,6 +170,7 @@ public class RegisterActivity extends BaseActivity {
 
         initView();
         initSpannableText();
+        initSpinners();
     }
 
     private void initView() {
@@ -205,6 +210,7 @@ public class RegisterActivity extends BaseActivity {
         edtDob.setHint(getString(R.string.dob));
         edtDob.setFocusable(false);
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtDob.performClick();
 
         edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.mobile));
@@ -215,156 +221,7 @@ public class RegisterActivity extends BaseActivity {
         edtCity.setHint(getString(R.string.city));
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-        //---------------Nationality----------------
-        // Initializing a String Array
-        String[] nationality_str = getResources().getStringArray(R.array.nationality);
-        final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
 
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, List) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerNationality.setAdapter(spinnerArrayAdapter);
-        spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        //---------------State----------------
-        String[] state_str = getResources().getStringArray(R.array.states);
-        final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
-
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, stateList) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter1.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerState.setAdapter(spinnerArrayAdapter1);
-        spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        //---------------Country----------------
-        String[] country_str = getResources().getStringArray(R.array.country);
-        final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
-
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, countryList) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter2.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerCountry.setAdapter(spinnerArrayAdapter2);
-        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-
-        edtDob.performClick();
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -380,10 +237,34 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+    //find all spinner at one place
+    private void initSpinners(){
+        //---------------Nationality----------------
+        // Initializing a String Array
+        ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
+
+        spinnerNationality.setAdapter(nationalAdapter);
+
+        //---------------State----------------
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(mActivity,
+                R.layout.custom_spinner,
+                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.states)))));
+        spinnerState.setAdapter(stateAdapter);
+
+        //---------------Country----------------
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
+                R.layout.custom_spinner,
+                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
+        spinnerState.setAdapter(stateAdapter);
+        spinnerCountry.setAdapter(countryAdapter);
+
+    }
+
+    //terms and privacy policy clickable
     private void initSpannableText() {
         try {
-
-            TextView view = new TextView(mActivity);
             SpannableString spannableString = new SpannableString(getResources().
                     getString(R.string.reg_terms_policy));
 
