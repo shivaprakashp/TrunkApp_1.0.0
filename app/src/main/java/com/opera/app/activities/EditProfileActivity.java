@@ -146,6 +146,7 @@ public class EditProfileActivity extends BaseActivity{
         edtEmail.setHint(getString(R.string.edit_email));
         edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtEmail.setEnabled(false);
 
         edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));

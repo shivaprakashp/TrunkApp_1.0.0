@@ -13,9 +13,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
-import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -68,7 +66,7 @@ public class RegisterActivity extends BaseActivity {
     Retrofit retrofit;
 
     private Api api;
-
+    String emailPattern = "[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,64}(\\.[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,25})+";
     private Activity mActivity;
     public static EditTextWithFont edtDob;
     private String blockCharacterSet = "~#^|$%&*!1234567890";
@@ -181,14 +179,14 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
-        edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtRePass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
@@ -524,7 +522,7 @@ public class RegisterActivity extends BaseActivity {
         else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
             edtEmail.setError(getString(R.string.errorEmailId));
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
+        } else if (!edtEmail.getText().toString().matches(emailPattern)) {
             edtEmail.setError(getString(R.string.errorUserEmail));
             return false;
         }
@@ -624,5 +622,4 @@ public class RegisterActivity extends BaseActivity {
             return null;
         }
     };
-
 }
