@@ -16,29 +16,45 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="250dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_profile_bg" />
 
-        <com.opera.app.customwidget.CrescentoContainer
-            android:id="@+id/crescentoContainer"
+        <!--     <com.opera.app.customwidget.CrescentoContainer
+                 android:id="@+id/crescentoContainer"
+                 android:layout_width="match_parent"
+                 android:layout_height="300dp"
+                 android:layout_marginTop="200dp"
+                 android:elevation="20dp"
+                 android:scaleType="centerCrop"
+                 attribute:gradientDirection="bottom_to_top"
+                 attribute:gravity="bottom"
+                 attribute:curvature="20dp">-->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="200dp"
-            android:elevation="20dp"
-            android:scaleType="centerCrop"
-            attribute:gradientDirection="top_to_bottom"
-            attribute:gravity="top"
-            attribute:curvature="20dp">
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="180dp"
+            android:orientation="vertical">
+
+            <com.opera.app.customwidget.CrescentoContainer
+                android:id="@+id/crescentoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
+                android:background="@null"
+                android:elevation="15dp"
+                attribute:curvature="15dp" ></com.opera.app.customwidget.CrescentoContainer>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/bg_linear_shape"
-                android:orientation="vertical"
+                android:layout_height="0dp"
+                android:paddingRight="10dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:background="@drawable/bg_linear_shape"
+                android:layout_weight="0.85"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,56 +113,52 @@
 
                 </LinearLayout>
 
-                <ScrollView
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.opera.app.customwidget.ExpandableTextView
+                        android:id="@+id/expandableTextView"
+                        style="@style/label_white_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy "
+                        app:animation_duration="100" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:id="@+id/linearReadMore"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                        <com.opera.app.customwidget.ExpandableTextView
-                            android:id="@+id/expandableTextView"
+                        <com.opera.app.customwidget.TextViewWithFont
+                            android:id="@+id/txtShowmore"
                             style="@style/label_white_small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="3"
-                            android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy "
-                            app:animation_duration="500" />
+                            android:layout_marginRight="10dp"
+                            android:text="@string/read_more"
+                            android:textAllCaps="false" />
 
-                        <LinearLayout
-                            android:id="@+id/linearReadMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.opera.app.customwidget.TextViewWithFont
-                                android:id="@+id/txtShowmore"
-                                style="@style/label_white_small"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
-                                android:text="@string/read_more"
-                                android:textAllCaps="false" />
-
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:src="@drawable/ic_down_arrow" />
-                        </LinearLayout>
-
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@drawable/ic_down_arrow" />
                     </LinearLayout>
 
-                </ScrollView>
+                </LinearLayout>
 
 
             </LinearLayout>
-        </com.opera.app.customwidget.CrescentoContainer>
+        </LinearLayout>
+        <!--</com.opera.app.customwidget.CrescentoContainer>-->
         <!--here-->
 
     </RelativeLayout>

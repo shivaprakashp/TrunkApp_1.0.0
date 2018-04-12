@@ -21,7 +21,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -208,7 +207,7 @@ public class CrescentoImageView extends AppCompatImageView {
     }
 
     private void pickColorFromBitmap(Bitmap bitmap) {
-        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+       /* Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
                 if (tintMode == TintMode.AUTOMATIC) {
@@ -230,7 +229,7 @@ public class CrescentoImageView extends AppCompatImageView {
                     tintPaint.setAlpha(tintAmount);
                 }
             }
-        });
+        });*/
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -118,7 +118,6 @@ public class LoginActivity extends BaseActivity {
     private void initView() {
 
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
-
         ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
         api = retrofit.create(Api.class);
 

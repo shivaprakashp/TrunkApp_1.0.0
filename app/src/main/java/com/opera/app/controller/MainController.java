@@ -8,6 +8,7 @@ import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
+import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.preferences.SessionManager;
 
@@ -26,6 +27,7 @@ public class MainController {
     public MainController(Context context){
         this.context = context;
         contentType = "application/json";
+        manager = new SessionManager(context);
     }
 
     public void loginPost(TaskComplete taskComplete, Api api, PostLogin postLogin){
@@ -41,8 +43,13 @@ public class MainController {
     }
 
     public void editProfilePost(Activity mActivity, TaskComplete taskComplete, Api api, EditProfile editProfile){
-        manager = new SessionManager(mActivity);
         Call call = api.userEditprofile(contentType, manager.getUserLoginData().getData().getToken() , editProfile);
+        DataListener listener = new DataListener(context, taskComplete);
+        listener.dataLoad(call);
+    }
+
+    public void changePassword(TaskComplete taskComplete, Api api, PostChangePassword mPostChangePwd){
+        Call call = api.ChangePassword(contentType, manager.getUserLoginData().getData().getToken(), mPostChangePwd);
         DataListener listener = new DataListener(context, taskComplete);
         listener.dataLoad(call);
     }
