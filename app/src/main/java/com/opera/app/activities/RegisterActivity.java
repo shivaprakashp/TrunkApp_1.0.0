@@ -130,7 +130,7 @@ public class RegisterActivity extends BaseActivity {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
+        public void onTaskFinished(Response response,String mRequestKey) {
             if (response.body() != null) {
                 RegistrationResponse registrationResponse =
                         (RegistrationResponse) response.body();
@@ -148,7 +148,7 @@ public class RegisterActivity extends BaseActivity {
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t) {
+        public void onTaskError(Call call, Throwable t,String mRequestKey) {
 
         }
     };
@@ -458,7 +458,7 @@ public class RegisterActivity extends BaseActivity {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
             controller.registerPost(taskComplete, api,
-                    userRegistration());
+                    userRegistration(), getResources().getString(R.string.registerRequest));
         }
 
     }

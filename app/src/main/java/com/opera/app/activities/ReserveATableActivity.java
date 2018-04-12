@@ -59,11 +59,11 @@ public class ReserveATableActivity extends BaseActivity {
     @BindView(R.id.reserve_edtEmail)
     View reserve_edtEmail;
 
-    @BindView(R.id.imageMinus)
-    ImageView mImageMinus;
+    @BindView(R.id.txtMinus)
+    TextView mTxtMinus;
 
-    @BindView(R.id.imagePlus)
-    ImageView mImagePlus;
+    @BindView(R.id.txtPlus)
+    TextView mTxtPlus;
 
     @BindView(R.id.txtNumberOfGuests)
     TextView mTxtNumberOfGuests;
@@ -131,16 +131,16 @@ public class ReserveATableActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.imagePlus, R.id.imageMinus, R.id.editDOB})
+    @OnClick({R.id.txtMinus, R.id.txtPlus, R.id.editDOB})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.imagePlus:
+            case R.id.txtPlus:
                 int valuePlus = Integer.parseInt(mTxtNumberOfGuests.getText().toString());
                 valuePlus++;
                 mTxtNumberOfGuests.setText(valuePlus + "");
                 break;
 
-            case R.id.imageMinus:
+            case R.id.txtMinus:
                 if (!mTxtNumberOfGuests.getText().toString().equalsIgnoreCase("0")) {
                     int valueMinus = Integer.parseInt(mTxtNumberOfGuests.getText().toString());
                     valueMinus--;

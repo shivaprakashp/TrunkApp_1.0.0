@@ -76,7 +76,8 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="25dp"
-                    android:layout_weight="0.1" />
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_calendar" />
 
             </LinearLayout>
 
@@ -118,12 +119,17 @@
                     android:hint="@string/total_no_of_guests"
                     font:name="Montserrat-Regular" />
 
-                <ImageView
-                    android:id="@+id/imageMinus"
-                    android:layout_width="0dp"
-                    android:layout_height="22dp"
-                    android:layout_weight="0.05"
-                    android:src="@drawable/ic_down_arrow" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtMinus"
+                    style="@style/label_black_vlarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="-"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    font:name="Montserrat-Regular" />
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/txtNumberOfGuests"
@@ -135,12 +141,23 @@
                     android:text="1"
                     font:name="Montserrat-Regular" />
 
-                <ImageView
-                    android:id="@+id/imagePlus"
-                    android:layout_width="0dp"
-                    android:layout_height="22dp"
-                    android:layout_weight="0.05"
-                    android:src="@drawable/ic_down_arrow" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtPlus"
+                    style="@style/label_black_vlarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="+"
+                    android:textSize="18sp"
+                    font:name="Montserrat-Regular" />
+
+                <!-- <ImageView
+                     android:id="@+id/imagePlus"
+                     android:layout_width="0dp"
+                     android:layout_height="22dp"
+                     android:layout_weight="0.05"
+                     android:src="@drawable/ic_down_arrow" />-->
 
             </LinearLayout>
 
