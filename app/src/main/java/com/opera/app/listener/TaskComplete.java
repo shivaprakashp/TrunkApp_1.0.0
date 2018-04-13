@@ -8,6 +8,6 @@ import retrofit2.Response;
  */
 
 public interface TaskComplete {
-    void onTaskFinished(Response response);
-    void onTaskError(Call call, Throwable t);
+    void onTaskFinished(Response response,String mRequestKey);
+    void onTaskError(Call call, Throwable t,String mRequestKey);
 }

@@ -27,7 +27,7 @@ public class DataListener {
         dialog = new ProgressDialog(context);
     }
 
-    public void dataLoad(Call call) {
+    public void dataLoad(Call call, final String mRequestKey) {
         try {
 
             dialog.setMessage(context.getResources().getString(R.string.loading));
@@ -37,13 +37,13 @@ public class DataListener {
                 @Override
                 public void onResponse(Call call, Response response) {
                     dialog.dismiss();
-                    taskComplete.onTaskFinished(response);
+                    taskComplete.onTaskFinished(response,mRequestKey);
                 }
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
                     dialog.dismiss();
-                    taskComplete.onTaskError(call, t);
+                    taskComplete.onTaskError(call, t,mRequestKey);
                 }
             });
         }catch (Exception e){

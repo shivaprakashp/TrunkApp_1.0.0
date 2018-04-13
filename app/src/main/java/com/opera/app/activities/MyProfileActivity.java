@@ -122,7 +122,7 @@ public class MyProfileActivity extends BaseActivity {
         mTabHost.setupWithViewPager(mViewPager);
 
         if (manager.getUserLoginData()!= null) {
-            tv_profile_name.setText(manager.getUserLoginData().getData().getName());
+            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " " + manager.getUserLoginData().getData().getProfile().getLastName());
         }
 
     }

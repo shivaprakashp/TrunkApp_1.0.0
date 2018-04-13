@@ -393,7 +393,7 @@ public class EditProfileActivity extends BaseActivity{
         MainController controller = new MainController(mActivity);
         if (validateCheck()){
             controller.editProfilePost(mActivity,taskComplete, api,
-                    editProfileData());
+                    editProfileData(), getResources().getString(R.string.editProfileRequest));
         }
     }
 
@@ -513,7 +513,7 @@ public class EditProfileActivity extends BaseActivity{
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
+        public void onTaskFinished(Response response,String mRequestKey) {
             if (response.body()!=null){
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
@@ -530,7 +530,7 @@ public class EditProfileActivity extends BaseActivity{
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t) {
+        public void onTaskError(Call call, Throwable t,String mRequestKey) {
 
         }
     };

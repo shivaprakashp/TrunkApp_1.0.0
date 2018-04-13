@@ -34,7 +34,7 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.dialogues.SuccessDialogue;
+import com.opera.app.customwidget.SuccessDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
@@ -49,6 +49,7 @@ import com.opera.app.utils.LanguageManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -69,7 +70,7 @@ public class RegisterActivity extends BaseActivity {
     Retrofit retrofit;
 
     private Api api;
-
+    String emailPattern = "[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,64}(\\.[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,25})+";
     private Activity mActivity;
     public static EditTextWithFont edtDob;
     private String blockCharacterSet = "~#^|$%&*!1234567890";
@@ -108,13 +109,13 @@ public class RegisterActivity extends BaseActivity {
     View reg_edtCity;
 
     @BindView(R.id.spinnerNationality)
-    CustomSpinner spinnerNationality;
+    Spinner spinnerNationality;
 
     @BindView(R.id.spinnerState)
-    CustomSpinner spinnerState;
+    Spinner spinnerState;
 
     @BindView(R.id.spinnerCountry)
-    CustomSpinner spinnerCountry;
+    Spinner spinnerCountry;
 
     @BindView(R.id.ckbTerms)
     CheckBox ckbTerms;
@@ -132,15 +133,12 @@ public class RegisterActivity extends BaseActivity {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response) {
+        public void onTaskFinished(Response response,String mRequestKey) {
             if (response.body() != null) {
                 RegistrationResponse registrationResponse =
                         (RegistrationResponse) response.body();
 
-                SuccessDialogue dialogue = new SuccessDialogue(mActivity,
-                        getResources().getString(R.string.successMsg),
-                        getResources().getString(R.string.success_header),
-                        getResources().getString(R.string.ok),"Register");
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
                 dialogue.show();
             } else if (response.errorBody() != null) {
                 try {
@@ -170,7 +168,6 @@ public class RegisterActivity extends BaseActivity {
 
         initView();
         initSpannableText();
-        initSpinners();
     }
 
     private void initView() {
@@ -186,14 +183,14 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
-        edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtRePass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
@@ -265,6 +262,8 @@ public class RegisterActivity extends BaseActivity {
     //terms and privacy policy clickable
     private void initSpannableText() {
         try {
+
+            TextView view = new TextView(mActivity);
             SpannableString spannableString = new SpannableString(getResources().
                     getString(R.string.reg_terms_policy));
 
@@ -280,7 +279,7 @@ public class RegisterActivity extends BaseActivity {
                         25, spannableString.length(), 0);
 
 
-            }else{
+            } else {
                 spannableString.setSpan(clickSpannString(true),
                         16, 20, 0);
 
@@ -308,6 +307,7 @@ public class RegisterActivity extends BaseActivity {
                     dialogue.show();
                 }
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -341,7 +341,7 @@ public class RegisterActivity extends BaseActivity {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
             controller.registerPost(taskComplete, api,
-                    userRegistration());
+                    userRegistration(), getResources().getString(R.string.registerRequest));
         }
 
     }
@@ -359,7 +359,7 @@ public class RegisterActivity extends BaseActivity {
                 edtLastName.getText().toString().trim() : "");
         registration.setPhoneNumber("");
         registration.setInterest("");
-        registration.setNationality("");
+        registration.setNationality(spinnerNationality.getSelectedItem().toString().trim());
         registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
                 edtDob.getText().toString().trim() : "");
         registration.setMobileNumber(edtMobile.getText().toString().trim() != null ?
@@ -406,7 +406,7 @@ public class RegisterActivity extends BaseActivity {
         else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
             edtEmail.setError(getString(R.string.errorEmailId));
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
+        } else if (!edtEmail.getText().toString().matches(emailPattern)) {
             edtEmail.setError(getString(R.string.errorUserEmail));
             return false;
         }
@@ -451,8 +451,8 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //nationality
-        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality) , Toast.LENGTH_LONG).show();
+        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality), Toast.LENGTH_LONG).show();
             return false;
         }
         //dob
@@ -477,23 +477,34 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //state
-        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorState) , Toast.LENGTH_LONG).show();
+        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorState), Toast.LENGTH_LONG).show();
             return false;
         }
         //country
-        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry) , Toast.LENGTH_LONG).show();
+        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry), Toast.LENGTH_LONG).show();
             return false;
         }
         //TermsCheckbox
-        else if (!ckbTerms.isChecked()){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorTerms) , Toast.LENGTH_LONG).show();
+        else if (!ckbTerms.isChecked()) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorTerms), Toast.LENGTH_LONG).show();
             return false;
         }
 
         return true;
     }
+
+    public static final Pattern EMAIL_ADDRESS
+            = Pattern.compile(
+            "[\\p{L}0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[\\p{L}0-9][\\\\p{L}0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[\\p{L}0-9][\\\\p{L}0-9\\-]{0,25}" +
+                    ")+"
+    );
 
     private InputFilter filter = new InputFilter() {
 
