@@ -14,6 +14,9 @@
         android:inputType="text"
         android:padding="5dp"
         style="@style/label_black"
-        font:name="Montserrat-Regular"/>
+        font:name="Montserrat-Regular">
+
+        <requestFocus/>
+    </com.opera.app.customwidget.EditTextWithFont>
 
 </LinearLayout>

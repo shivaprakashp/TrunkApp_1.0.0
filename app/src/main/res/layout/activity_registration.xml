@@ -38,6 +38,24 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
+                    <include
+                        android:id="@+id/reg_edtFirstName"
+                        layout="@layout/include_edittext" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
+
+                    <include
+                        android:id="@+id/reg_edtLastName"
+                        layout="@layout/include_edittext" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray" />
+
 
                     <include
                         android:id="@+id/reg_edtEmail"
@@ -66,25 +84,8 @@
                         android:layout_height="1dp"
                         android:background="@color/dark_gray" />
 
-                    <include
-                        android:id="@+id/reg_edtFirstName"
-                        layout="@layout/include_edittext" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dark_gray" />
-
-                    <include
-                        android:id="@+id/reg_edtLastName"
-                        layout="@layout/include_edittext" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/dark_gray" />
-
-                    <Spinner
+                    <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerNationality"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -122,7 +123,7 @@
                         android:layout_height="1dp"
                         android:background="@color/dark_gray" />
 
-                    <Spinner
+                    <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerState"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -133,7 +134,7 @@
                         android:layout_height="1dp"
                         android:background="@color/dark_gray" />
 
-                    <Spinner
+                    <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerCountry"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -164,8 +165,8 @@
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtTermsCondition"
                 style="@style/label_white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="@string/reg_terms_policy"
@@ -186,8 +187,8 @@
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tvSubscribe"
                 style="@style/label_white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="@string/check_subscribe"
@@ -221,14 +222,12 @@
                 android:text="@string/already_have_an_account"
                 android:textAllCaps="false"
                 font:name="Montserrat-Light" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
-
             <include layout="@layout/include_guest" />
         </LinearLayout>
 
