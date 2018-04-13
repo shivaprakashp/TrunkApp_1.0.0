@@ -34,11 +34,11 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.SuccessDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.PrivacyDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.dialogues.TermsDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
@@ -151,7 +151,7 @@ public class RegisterActivity extends BaseActivity {
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t) {
+        public void onTaskError(Call call, Throwable t,String mRequestKey) {
 
         }
     };
