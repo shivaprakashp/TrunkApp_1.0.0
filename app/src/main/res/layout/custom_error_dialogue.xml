@@ -23,8 +23,6 @@
             font:name="Montserrat-Regular"
             android:padding="10dp"/>
 
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -49,6 +47,6 @@
             android:text="@string/errorDialogue"
             android:layout_gravity="center"
             android:background="@color/colorBurgendy"
-            style="@style/label_white_large"/>
+            style="@style/label_white_medium"/>
     </LinearLayout>
 </LinearLayout>

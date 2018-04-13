@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrunkApp.iml" filepath="$PROJECT_DIR$/TrunkApp.iml" />
       <module fileurl="file://D:/Prach/Code/OPERA/androidapprepository/TrunkApp.iml" filepath="D:/Prach/Code/OPERA/androidapprepository/TrunkApp.iml" />
+      <module fileurl="file://D:/MyWorkspace/DubaiOpera_21-Mar-2018/androidapprepository/TrunkApp.iml" filepath="D:/MyWorkspace/DubaiOpera_21-Mar-2018/androidapprepository/TrunkApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidapprepository.iml" filepath="$PROJECT_DIR$/androidapprepository.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
