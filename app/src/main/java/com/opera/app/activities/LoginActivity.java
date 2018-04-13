@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -163,7 +164,7 @@ public class LoginActivity extends BaseActivity {
         password.setHint(getString(R.string.password));
         password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        //password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
     @OnClick({R.id.tv_forgotPassword, R.id.btnRegister, R.id.textView_continue_as_guest,

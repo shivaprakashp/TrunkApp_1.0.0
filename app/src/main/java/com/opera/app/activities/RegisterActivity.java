@@ -17,14 +17,11 @@ import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,8 +45,6 @@ import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 

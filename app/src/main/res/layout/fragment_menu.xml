@@ -45,11 +45,12 @@
             android:orientation="vertical">
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/tv_menu_guest"
                 style="@style/label_white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/menu_guest"
+
                 font:name="Montserrat-Regular" />
 
             <com.opera.app.customwidget.TextViewWithFont
