@@ -357,6 +357,7 @@ public class RegisterActivity extends BaseActivity {
 
     private Registration userRegistration() {
 
+
         Registration registration = new Registration();
 
         registration.setEmail(edtEmail.getText().toString().trim());
