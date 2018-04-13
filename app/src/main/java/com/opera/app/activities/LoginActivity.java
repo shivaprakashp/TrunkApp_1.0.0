@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +30,6 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
-import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
@@ -78,6 +79,9 @@ public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.et_username)
     EditText mEt_username;
+
+    @BindView(R.id.imgClose)
+    ImageView mImgClose;
 
     BottomSheetBehavior sheetBehavior;
 
@@ -154,16 +158,17 @@ public class LoginActivity extends BaseActivity {
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        username.requestFocus();
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
         password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        //password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
     @OnClick({R.id.tv_forgotPassword, R.id.btnRegister, R.id.textView_continue_as_guest,
-            R.id.btnLogin, R.id.btnSend})
+            R.id.btnLogin, R.id.btnSend, R.id.imgClose})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_forgotPassword:
@@ -208,6 +213,14 @@ public class LoginActivity extends BaseActivity {
                     Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
                 break;
+            case R.id.imgClose:
+                CloseChangePwdSheet();
+                break;
+        }
+    }
+    private void CloseChangePwdSheet() {
+        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 

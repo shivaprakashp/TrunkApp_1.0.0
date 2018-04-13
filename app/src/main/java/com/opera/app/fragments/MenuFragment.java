@@ -1,14 +1,14 @@
 package com.opera.app.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import android.content.Intent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opera.app.R;
@@ -54,9 +54,12 @@ public class MenuFragment extends BaseFragment {
     @BindView(R.id.menu_setting)
     View menu_setting;
 
-
     @BindView(R.id.menu_save_card)
     View menu_save_card;
+
+    @BindView(R.id.tv_menu_guest)
+    TextView tv_menu_guest;
+
 
     private Activity mActivity;
 
@@ -89,7 +92,7 @@ public class MenuFragment extends BaseFragment {
 
     private void initMenu() {
         manager = new SessionManager(mActivity);
-
+        tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "+manager.getUserLoginData().getData().getProfile().getFirstName() + "! ");
         //first row
         ImageView imgProfile = (ImageView) menu_profile.findViewById(R.id.menu_icon);
         TextViewWithFont txtProfile = (TextViewWithFont) menu_profile.findViewById(R.id.menu_icon_text);
