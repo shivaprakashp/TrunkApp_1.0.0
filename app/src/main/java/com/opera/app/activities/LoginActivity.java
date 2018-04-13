@@ -154,6 +154,7 @@ public class LoginActivity extends BaseActivity {
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        username.requestFocus();
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
