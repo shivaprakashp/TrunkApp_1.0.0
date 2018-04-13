@@ -254,21 +254,11 @@ public class MyProfileActivity extends BaseActivity {
         mEdtCurrentPassword.setError(null);
         mEdtNewPassword.setError(null);
         mEdtConfNewPassword.setError(null);
-        if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString().trim()) &&
-                TextUtils.isEmpty(mEdtNewPassword.getText().toString().trim()) &&
-                TextUtils.isEmpty(mEdtConfNewPassword.getText().toString().trim())) {
-            mEdtCurrentPassword.setError(getString(R.string.errorCurrentPassword));
-            mEdtNewPassword.setError(getString(R.string.errorNewPassword));
-            mEdtConfNewPassword.setError(getString(R.string.errorConfirmNewPassword));
-            return false;
-        }
 
         //password
-        else if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString())) {
+        if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString()) &&
+                (mEdtCurrentPassword.getText().toString().length() < 3 || mEdtCurrentPassword.getText().toString().length() > 16)) {
             mEdtCurrentPassword.setError(getString(R.string.errorCurrentPassword));
-            return false;
-        } else if (mEdtCurrentPassword.getText().toString().length() < 3 || mEdtCurrentPassword.getText().toString().length() > 16) {
-            mEdtCurrentPassword.setError(getString(R.string.errorLengthPassword));
             return false;
         }
         //re-enterPassword
@@ -279,6 +269,7 @@ public class MyProfileActivity extends BaseActivity {
                 mEdtNewPassword.getText().toString())) {
             mEdtNewPassword.setError(getString(R.string.errorPreviousAndNewPassword));
             return false;
+
         } else if (mEdtNewPassword.getText().toString().length() < 3 || mEdtNewPassword.getText().toString().length() > 16) {
             mEdtNewPassword.setError(getString(R.string.errorLengthPassword));
             return false;

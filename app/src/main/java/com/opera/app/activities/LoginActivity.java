@@ -3,8 +3,11 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -70,20 +73,9 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_password)
     View login_password;
 
-    @BindView(R.id.bottom_sheet)
-    LinearLayout layoutBottomSheet;
+    EditTextWithFont mEt_username;
 
-    @BindView(R.id.btnSend)
-    ButtonWithFont btnSend;
-
-    @BindView(R.id.et_username)
-    EditText mEt_username;
-
-    @BindView(R.id.imgClose)
-    ImageView mImgClose;
-
-    BottomSheetBehavior sheetBehavior;
-
+    BottomSheetDialog dialog;
     //injecting retrofit
     @Inject
     Retrofit retrofit;
@@ -145,11 +137,10 @@ public class LoginActivity extends BaseActivity {
 
         setContentView(R.layout.activity_login);
         initView();
+        initBottomSlideDown();
     }
 
     private void initView() {
-
-        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
         ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
         api = retrofit.create(Api.class);
 
@@ -157,42 +148,54 @@ public class LoginActivity extends BaseActivity {
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        username.setFilters(new InputFilter[] { new InputFilter.LengthFilter(50) });
         username.requestFocus();
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
-        password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setFilters(new InputFilter[] { new InputFilter.LengthFilter(16) });
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        //password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
     }
 
+    private void initBottomSlideDown(){
+        dialog = new BottomSheetDialog(mActivity);
+        View view = getLayoutInflater().inflate(R.layout.popup_forgotpassword, null);
+        dialog.setContentView(view);
+
+        mEt_username = (EditTextWithFont) view.findViewById(R.id.et_username);
+        view.findViewById(R.id.imgClose).setOnClickListener(imageClose);
+        view.findViewById(R.id.btnSend).setOnClickListener(forgotPassword);
+    }
+
+    private View.OnClickListener imageClose = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener forgotPassword = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (Connections.isConnectionAlive(mActivity)) {
+                if (checkValidationForgotPassword()) {
+                    sendForgotPassword(mEt_username.getText().toString().trim());
+                    mEt_username.setText("");
+                }
+            } else {
+                Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            }
+        }
+    };
+
     @OnClick({R.id.tv_forgotPassword, R.id.btnRegister, R.id.textView_continue_as_guest,
-            R.id.btnLogin, R.id.btnSend, R.id.imgClose})
+            R.id.btnLogin})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_forgotPassword:
-                //showDialog();
-                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                    sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-                    viewClickable(false);
-                }
-                break;
-
-            case R.id.btnSend:
-                if (Connections.isConnectionAlive(mActivity)) {
-                    if (checkValidationForgotPassword()) {
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            viewClickable(true);
-                        }
-                        sendForgotPassword(mEt_username.getText().toString().trim());
-                        mEt_username.setText("");
-                    }
-
-                } else {
-                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
-                }
+                dialog.show();
                 break;
 
             case R.id.btnRegister:
@@ -213,13 +216,8 @@ public class LoginActivity extends BaseActivity {
                 }
                 break;
             case R.id.imgClose:
-                CloseChangePwdSheet();
+                dialog.dismiss();
                 break;
-        }
-    }
-    private void CloseChangePwdSheet() {
-        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 
@@ -233,14 +231,6 @@ public class LoginActivity extends BaseActivity {
         }
 
         return true;
-    }
-
-    //view make it clickable
-    private void viewClickable(boolean flag) {
-        mButtonLogin.setClickable(flag);
-        mButtonRegister.setClickable(flag);
-        mTextContinue_as_guest.setClickable(flag);
-
     }
 
     private boolean checkValidation() {

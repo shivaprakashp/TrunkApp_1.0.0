@@ -70,6 +70,7 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
         if (!TextUtils.isEmpty(_strHintText)) {
             ArrayAdapter arrayAdapter = new ArrayAdapter(_context, R.layout
                     .custom_spinner, new String[]{_strHintText});
+
             _isFromInit = true;
             setAdapter(arrayAdapter);
         }
@@ -133,6 +134,8 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
     public void setTitle(String strTitle) {
         _searchableListDialog.setTitle(strTitle);
     }
+
+
 
     public void setPositiveButton(String strPositiveButtonText) {
         _searchableListDialog.setPositiveButton(strPositiveButtonText);
