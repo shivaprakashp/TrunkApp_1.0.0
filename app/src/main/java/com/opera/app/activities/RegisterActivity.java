@@ -31,7 +31,6 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.EditTextWithFont;
-import com.opera.app.customwidget.SuccessDialogue;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
