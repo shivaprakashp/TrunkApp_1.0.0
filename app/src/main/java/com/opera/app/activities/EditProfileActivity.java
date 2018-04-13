@@ -53,7 +53,7 @@ import retrofit2.Retrofit;
  * Created by 58001 on 03-04-2018.
  */
 
-public class EditProfileActivity extends BaseActivity{
+public class EditProfileActivity extends BaseActivity {
 
     //injecting retrofit
     @Inject
@@ -267,7 +267,7 @@ public class EditProfileActivity extends BaseActivity{
         spinnerArrayAdapter1.setDropDownViewResource(R.layout.custom_spinner);
 
         spinnerState.setAdapter(spinnerArrayAdapter1);
-        //spinnerState.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().get));
+        //spinnerState.setSelection(spinnerArrayAdapter1.getPosition(manager.getUserLoginData().getData().getProfile().get));
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -276,6 +276,7 @@ public class EditProfileActivity extends BaseActivity{
                     ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -313,10 +314,12 @@ public class EditProfileActivity extends BaseActivity{
                 return view;
             }
         };
+
+
         spinnerArrayAdapter2.setDropDownViewResource(R.layout.custom_spinner);
 
         spinnerCountry.setAdapter(spinnerArrayAdapter2);
-        spinnerCountry.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
+        spinnerCountry.setSelection(spinnerArrayAdapter2.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -374,7 +377,7 @@ public class EditProfileActivity extends BaseActivity{
         }
     };
 
-    @OnClick({R.id.btnSave,R.id.btnCancel})
+    @OnClick({R.id.btnSave, R.id.btnCancel})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:
@@ -389,29 +392,29 @@ public class EditProfileActivity extends BaseActivity{
         }
     }
 
-    private void EditProfileData(){
+    private void EditProfileData() {
         MainController controller = new MainController(mActivity);
-        if (validateCheck()){
-            controller.editProfilePost(mActivity,taskComplete, api,
+        if (validateCheck()) {
+            controller.editProfilePost(mActivity, taskComplete, api,
                     editProfileData(), getResources().getString(R.string.editProfileRequest));
         }
     }
 
-    private EditProfile editProfileData(){
+    private EditProfile editProfileData() {
 
         EditProfile data = new EditProfile();
 
         //data.setEmail(edtEmail.getText().toString());
-        data.setFirstName(edtFirstName.getText().toString()!=null?
-                edtFirstName.getText().toString(): "");
-        data.setLastName(edtLastName.getText().toString()!=null?
+        data.setFirstName(edtFirstName.getText().toString() != null ?
+                edtFirstName.getText().toString() : "");
+        data.setLastName(edtLastName.getText().toString() != null ?
                 edtLastName.getText().toString() : "");
         //data.setPhoneNumber("");
         //data.setInterest("");
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
-        data.setDateOfBirth(edtDob.getText().toString()!=null?
+        data.setDateOfBirth(edtDob.getText().toString() != null ?
                 edtDob.getText().toString() : "");
-        data.setMobileNumber(edtMobile.getText().toString()!=null?
+        data.setMobileNumber(edtMobile.getText().toString() != null ?
                 edtMobile.getText().toString() : "");
         data.setCity(edtCity.getText().toString().trim() != null ?
                 edtCity.getText().toString().trim() : "");
@@ -421,7 +424,7 @@ public class EditProfileActivity extends BaseActivity{
 
     }
 
-    private boolean validateCheck(){
+    private boolean validateCheck() {
 
         //Removing previous validations
         edtEmail.setError(null);
@@ -473,8 +476,8 @@ public class EditProfileActivity extends BaseActivity{
             return false;
         }
         //nationality
-        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality) , Toast.LENGTH_LONG).show();
+        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality), Toast.LENGTH_LONG).show();
             return false;
         }
         //dob
@@ -499,13 +502,13 @@ public class EditProfileActivity extends BaseActivity{
             return false;
         }
         //state
-        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorState) , Toast.LENGTH_LONG).show();
+        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorState), Toast.LENGTH_LONG).show();
             return false;
         }
         //country
-        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))){
-            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry) , Toast.LENGTH_LONG).show();
+        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
+            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry), Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -513,14 +516,14 @@ public class EditProfileActivity extends BaseActivity{
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response,String mRequestKey) {
-            if (response.body()!=null){
+        public void onTaskFinished(Response response, String mRequestKey) {
+            if (response.body() != null) {
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
                 Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
                 editProfileSession((EditProfileResponse) response.body());
                 mActivity.finish();
-            }else if (response.errorBody()!=null){
+            } else if (response.errorBody() != null) {
                 try {
                     Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
@@ -530,10 +533,11 @@ public class EditProfileActivity extends BaseActivity{
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t,String mRequestKey) {
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
 
         }
     };
+
     //maintain edit profile
     private void editProfileSession(EditProfileResponse editProfileResponse) {
         try {
