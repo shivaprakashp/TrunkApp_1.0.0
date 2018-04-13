@@ -1,4 +1,4 @@
-package com.opera.app.customwidget;
+package com.opera.app.dialogues;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,6 +10,8 @@ import android.view.Window;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
+import com.opera.app.customwidget.ButtonWithFont;
+import com.opera.app.customwidget.TextViewWithFont;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

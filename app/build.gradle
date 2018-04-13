@@ -20,7 +20,7 @@ android {
 
     flavorDimensions "default"
 
-    productFlavors{
+    productFlavors {
         prod {
             applicationId "com.opera.app.prod"
             minSdkVersion 21
