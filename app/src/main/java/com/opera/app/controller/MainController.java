@@ -3,9 +3,11 @@ package com.opera.app.controller;
 import android.app.Activity;
 import android.content.Context;
 
+import com.opera.app.constants.AppConstants;
 import com.opera.app.dagger.Api;
 import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.RequestProperties;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
@@ -24,40 +26,48 @@ public class MainController {
     private Context context;
     private String contentType;
     private SessionManager manager;
+    private RequestProperties properties;
 
     public MainController(Context context) {
         this.context = context;
         contentType = "application/json";
         manager = new SessionManager(context);
+        properties = new RequestProperties();
     }
 
-    public void loginPost(TaskComplete taskComplete, Api api, PostLogin postLogin,String mRequestKey) {
+    public void loginPost(TaskComplete taskComplete, Api api, PostLogin postLogin) {
+
         Call call = api.userLogin(contentType, postLogin);
-        DataListener listener = new DataListener(context, taskComplete);
-        listener.dataLoad(call,mRequestKey);
+        properties.setRequestKey(AppConstants.LOGIN.LOGIN);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
     }
 
-    public void registerPost(TaskComplete taskComplete, Api api, Registration registration,String mRequestKey) {
+    public void registerPost(TaskComplete taskComplete, Api api, Registration registration) {
         Call call = api.userRegistration(contentType, registration);
-        DataListener listener = new DataListener(context, taskComplete);
-        listener.dataLoad(call,mRequestKey);
+        properties.setRequestKey(AppConstants.REGISTER.REGISTER);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
     }
 
-    public void editProfilePost(Activity mActivity, TaskComplete taskComplete, Api api, EditProfile editProfile,String mRequestKey) {
+    public void editProfilePost(TaskComplete taskComplete, Api api, EditProfile editProfile) {
         Call call = api.userEditprofile(contentType, manager.getUserLoginData().getData().getToken(), editProfile);
-        DataListener listener = new DataListener(context, taskComplete);
-        listener.dataLoad(call,mRequestKey);
+        properties.setRequestKey(AppConstants.EDITPROFILE.EDITPROFILE);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
     }
 
-    public void changePassword(TaskComplete taskComplete, Api api, PostChangePassword mPostChangePwd,String mRequestKey) {
+    public void changePassword(TaskComplete taskComplete, Api api, PostChangePassword mPostChangePwd) {
         Call call = api.ChangePassword(contentType, manager.getUserLoginData().getData().getToken(), mPostChangePwd);
-        DataListener listener = new DataListener(context, taskComplete);
-        listener.dataLoad(call,mRequestKey);
+        properties.setRequestKey(AppConstants.CHANGEPASSWORD.CHANGEPASSWORD);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
     }
 
-    public void forgotPassword(TaskComplete taskComplete, Api api, ForgotPasswordPojo mForgotPasswordPojo,String mRequestKey) {
+    public void forgotPassword(TaskComplete taskComplete, Api api, ForgotPasswordPojo mForgotPasswordPojo) {
         Call call = api.ForgotPassword(contentType, mForgotPasswordPojo);
-        DataListener listener = new DataListener(context, taskComplete);
-        listener.dataLoad(call,mRequestKey);
+        properties.setRequestKey(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
     }
 }

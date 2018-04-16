@@ -45,12 +45,11 @@
             android:orientation="vertical">
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/tv_menu_guest"
+                android:id="@+id/txt_menu_guest"
                 style="@style/label_white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-
                 font:name="Montserrat-Regular" />
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -62,7 +61,8 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/menu_account"
-                font:name="Montserrat-Regular" />
+                font:name="Montserrat-Regular"
+                android:id="@+id/txtCreateAccount"/>
         </LinearLayout>
     </LinearLayout>
 

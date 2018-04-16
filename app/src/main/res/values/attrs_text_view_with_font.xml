@@ -73,6 +73,7 @@
         <attr name="gradientStartColor" format="color"/>
         <attr name="gradientEndColor" format="color"/>
     </declare-styleable>
+
     //spinner search
     <declare-styleable name="SearchableSpinner">
         <attr name="hintText" format="string"/>

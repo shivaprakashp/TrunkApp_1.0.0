@@ -27,6 +27,8 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomSpinner;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -55,6 +57,7 @@ import retrofit2.Retrofit;
 
 public class EditProfileActivity extends BaseActivity {
 
+    private CustomToast customToast;
     //injecting retrofit
     @Inject
     Retrofit retrofit;
@@ -107,7 +110,7 @@ public class EditProfileActivity extends BaseActivity {
     Spinner spinnerState;
 
     @BindView(R.id.spinnerCountry)
-    Spinner spinnerCountry;
+    CustomSpinner spinnerCountry;
 
     EditTextWithFont edtEmail, edtFirstName, edtLastName, edtMobile, edtCity, edtAddress;
 
@@ -130,6 +133,8 @@ public class EditProfileActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        customToast = new CustomToast(mActivity);
         manager = new SessionManager(mActivity);
 
         ((MainApplication) getApplication()).getNetComponent().inject(EditProfileActivity.this);
@@ -152,6 +157,7 @@ public class EditProfileActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.edit_firstname));
         edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
@@ -381,9 +387,7 @@ public class EditProfileActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:
-
                 EditProfileData();
-
                 break;
 
             case R.id.btnCancel:
@@ -395,8 +399,8 @@ public class EditProfileActivity extends BaseActivity {
     private void EditProfileData() {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
-            controller.editProfilePost(mActivity, taskComplete, api,
-                    editProfileData(), getResources().getString(R.string.editProfileRequest));
+            controller.editProfilePost(taskComplete, api,
+                    editProfileData());
         }
     }
 
@@ -421,7 +425,6 @@ public class EditProfileActivity extends BaseActivity {
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
 
         return data;
-
     }
 
     private boolean validateCheck() {
@@ -437,7 +440,7 @@ public class EditProfileActivity extends BaseActivity {
         edtDob.setError(null);
 
         //validation of input field
-        if (TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
+        /*if (TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtLastName.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtDob.getText().toString().trim()) &&
@@ -450,65 +453,65 @@ public class EditProfileActivity extends BaseActivity {
             edtMobile.setError(getString(R.string.errorMobile));
             edtCity.setError(getString(R.string.errorCity));
             return false;
-        }
+        }*/
         //firstName
-        else if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
-            edtFirstName.setError(getString(R.string.errorFirstName));
+        if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
         } else if (edtFirstName.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 30) {
-            edtFirstName.setError(getString(R.string.errorLengthFirstName));
+            customToast.showErrorToast(getString(R.string.errorLengthFirstName));
             return false;
         }
         //lastName
         else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
-            edtLastName.setError(getString(R.string.errorLastName));
+            customToast.showErrorToast(getString(R.string.errorLastName));
             return false;
         } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
-            edtLastName.setError(getString(R.string.errorLengthLastName));
+            customToast.showErrorToast(getString(R.string.errorLengthLastName));
             return false;
         }
         //email
         else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-            edtEmail.setError(getString(R.string.errorEmailId));
+            customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-            edtEmail.setError(getString(R.string.errorUserEmail));
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         }
         //nationality
         else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality), Toast.LENGTH_LONG).show();
+            customToast.showErrorToast(getResources().getString(R.string.errorNationality));
             return false;
         }
         //dob
         else if (TextUtils.isEmpty(edtDob.getText().toString())) {
-            edtDob.setError(getString(R.string.errorDob));
+            customToast.showErrorToast(getString(R.string.errorDob));
             return false;
         }
         //mobile
         else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
-            edtMobile.setError(getString(R.string.errorMobile));
+            customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
         } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
-            edtMobile.setError(getString(R.string.errorLengthMobile));
+            customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
         }
         //city
         else if (TextUtils.isEmpty(edtCity.getText().toString())) {
-            edtCity.setError(getString(R.string.errorCity));
+            customToast.showErrorToast(getString(R.string.errorCity));
             return false;
         } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
-            edtCity.setError(getString(R.string.errorLengthCity));
+            customToast.showErrorToast(getString(R.string.errorLengthCity));
             return false;
         }
         //state
         else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorState), Toast.LENGTH_LONG).show();
+            customToast.showErrorToast(getResources().getString(R.string.errorState));
             return false;
         }
         //country
         else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry), Toast.LENGTH_LONG).show();
+            customToast.showErrorToast(getResources().getString(R.string.errorCountry));
             return false;
         }
         return true;
@@ -546,7 +549,6 @@ public class EditProfileActivity extends BaseActivity {
             /*if (sessionManager.isUserLoggedIn()) {
                 openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }*/
-
         } catch (Exception e) {
             e.printStackTrace();
         }

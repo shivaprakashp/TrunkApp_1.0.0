@@ -18,6 +18,7 @@ import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,6 +31,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomSpinner;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -125,6 +127,8 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.txtTermsCondition)
     TextViewWithFont txtTermsCondition;
 
+    private CustomToast customToast;
+
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response,String mRequestKey) {
@@ -168,6 +172,8 @@ public class RegisterActivity extends BaseActivity {
 
     private void initView() {
         mActivity = RegisterActivity.this;
+
+        customToast = new CustomToast(mActivity);
 
         ((MainApplication) getApplication()).getNetComponent().inject(RegisterActivity.this);
         api = retrofit.create(Api.class);
@@ -247,13 +253,40 @@ public class RegisterActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
 
         spinnerNationality.setAdapter(nationalAdapter);
+        spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerNationality.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.nationality))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
         //---------------State----------------
         ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(mActivity,
                 R.layout.custom_spinner,
                 new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.states)))));
         spinnerState.setAdapter(stateAdapter);
 
+        spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerState.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.state))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         //---------------Country----------------
         ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
                 R.layout.custom_spinner,
@@ -261,6 +294,20 @@ public class RegisterActivity extends BaseActivity {
 
         spinnerCountry.setAdapter(countryAdapter);
 
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     //terms and privacy policy clickable
@@ -345,13 +392,12 @@ public class RegisterActivity extends BaseActivity {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
             controller.registerPost(taskComplete, api,
-                    userRegistration(), getResources().getString(R.string.registerRequest));
+                    userRegistration());
         }
 
     }
 
     private Registration userRegistration() {
-
 
         Registration registration = new Registration();
 
@@ -410,93 +456,93 @@ public class RegisterActivity extends BaseActivity {
 
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
-            edtFirstName.setError(getString(R.string.errorFirstName));
+            customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
         } else if (edtFirstName.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 30) {
-            edtFirstName.setError(getString(R.string.errorLengthFirstName));
+            customToast.showErrorToast(getString(R.string.errorLengthFirstName));
             return false;
         }
         //lastName
         else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
-            edtLastName.setError(getString(R.string.errorLastName));
+            customToast.showErrorToast(getString(R.string.errorLastName));
             return false;
         } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
-            edtLastName.setError(getString(R.string.errorLengthLastName));
+            customToast.showErrorToast(getString(R.string.errorLengthLastName));
             return false;
         }else
 
         //email
          if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-            edtEmail.setError(getString(R.string.errorEmailId));
+             customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-            edtEmail.setError(getString(R.string.errorUserEmail));
+             customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         }
         //password
         else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
-            edtPassword.setError(getString(R.string.errorPassword));
+             customToast.showErrorToast(getString(R.string.errorPassword));
             return false;
         } else if (edtPassword.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
-            edtPassword.setError(getString(R.string.errorLengthPassword));
+             customToast.showErrorToast(getString(R.string.errorLengthPassword));
             return false;
         } else if (edtEmail.getText().toString().equalsIgnoreCase(
                 edtPassword.getText().toString())) {
-            edtPassword.setError(getString(R.string.errorSamePasswordAsUsername));
+             customToast.showErrorToast(getString(R.string.errorSamePasswordAsUsername));
             return false;
         }
         //re-enterPassword
         else if (TextUtils.isEmpty(edtRePass.getText().toString())) {
-            edtRePass.setError(getString(R.string.errorRePassword));
+             customToast.showErrorToast(getString(R.string.errorRePassword));
             return false;
         } else if (!edtPassword.getText().toString().equalsIgnoreCase(
                 edtRePass.getText().toString())) {
-            edtRePass.setError(getString(R.string.errorMismatchPassword));
+             customToast.showErrorToast(getString(R.string.errorMismatchPassword));
             return false;
         } else if (edtRePass.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
-            edtRePass.setError(getString(R.string.errorLengthPassword));
+             customToast.showErrorToast(getString(R.string.errorLengthPassword));
             return false;
         }
 
         //nationality
         else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorNationality), Toast.LENGTH_LONG).show();
+             customToast.showErrorToast(getResources().getString(R.string.errorNationality));
             return false;
         }
         //dob
         else if (TextUtils.isEmpty(edtDob.getText().toString())) {
-            edtDob.setError(getString(R.string.errorDob));
+             customToast.showErrorToast(getString(R.string.errorDob));
             return false;
         }
         //mobile
         else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
-            edtMobile.setError(getString(R.string.errorMobile));
+             customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
         } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
-            edtMobile.setError(getString(R.string.errorLengthMobile));
+             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
         }
         //city
         else if (TextUtils.isEmpty(edtCity.getText().toString())) {
-            edtCity.setError(getString(R.string.errorCity));
+             customToast.showErrorToast(getString(R.string.errorCity));
             return false;
         } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
-            edtCity.setError(getString(R.string.errorLengthCity));
+             customToast.showErrorToast(getString(R.string.errorLengthCity));
             return false;
         }
         //state
         else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorState), Toast.LENGTH_LONG).show();
+             customToast.showErrorToast(getResources().getString(R.string.errorState));
             return false;
         }
         //country
         else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorCountry), Toast.LENGTH_LONG).show();
+             customToast.showErrorToast(getResources().getString(R.string.errorCountry));
             return false;
         }
         //TermsCheckbox
         else if (!ckbTerms.isChecked()) {
-            Toast.makeText(mActivity, getResources().getString(R.string.errorTerms), Toast.LENGTH_LONG).show();
+             customToast.showErrorToast(getResources().getString(R.string.errorTerms));
             return false;
         }
 

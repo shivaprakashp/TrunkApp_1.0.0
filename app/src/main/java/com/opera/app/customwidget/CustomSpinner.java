@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,7 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
     private ArrayAdapter _arrayAdapter;
     private String _strHintText;
     private boolean _isFromInit;
+    private OnSelectionChangeListener mListener;
 
     public CustomSpinner(Context context) {
         super(context);
@@ -107,8 +109,9 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
         if (!_isFromInit) {
             _arrayAdapter = (ArrayAdapter) adapter;
             if (!TextUtils.isEmpty(_strHintText) && !_isDirty) {
-                ArrayAdapter arrayAdapter = new ArrayAdapter(_context, android.R.layout
-                        .simple_list_item_1, new String[]{_strHintText});
+                ArrayAdapter arrayAdapter = new ArrayAdapter(_context, R.layout
+                        .custom_spinner, new String[]{_strHintText});
+
                 super.setAdapter(arrayAdapter);
             } else {
                 super.setAdapter(adapter);
@@ -128,6 +131,10 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
             _isDirty = true;
             setAdapter(_arrayAdapter);
             setSelection(_items.indexOf(item));
+        }
+
+        if (mListener != null) {
+            mListener.onSelectionChanged(_items.indexOf(item));
         }
     }
 
@@ -176,5 +183,13 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
         } else {
             return super.getSelectedItem();
         }
+    }
+
+    public void setOnSelectionChangeListener(OnSelectionChangeListener listener) {
+        mListener = listener;
+    }
+
+    public interface OnSelectionChangeListener {
+        public void onSelectionChanged(Object selection);
     }
 }

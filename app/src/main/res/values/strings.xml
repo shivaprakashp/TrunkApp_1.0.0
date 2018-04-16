@@ -76,6 +76,7 @@
 
     <string name="menu_guest">Welcome </string>
     <string name="menu_account">CREATE ACCOUNT</string>
+    <string name="menu_welcome_guest">Welcome Guest!</string>
 
     <string name="termsNconditions">Ticketing Terms and Conditions</string>
     <array name="terms_conditions">
@@ -239,6 +240,7 @@
     <string name="dubai_opera">at Dubai Opera</string>
 
     <!--Error handling-->
+    <string name="editError">Error</string>
     <string name="errorUserName">Username cannot be left blank</string>
     <string name="errorEmailId">Email Address cannot be left blank</string>
     <string name="errorPassword">Password cannot be left blank</string>

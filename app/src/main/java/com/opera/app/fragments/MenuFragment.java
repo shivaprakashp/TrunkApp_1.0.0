@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.MyProfileActivity;
+import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.preferences.SessionManager;
@@ -21,10 +22,11 @@ import com.opera.app.utils.LanguageManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MenuFragment extends BaseFragment {
 
-    private Intent in;
+    private Intent intent;
     private SessionManager manager;
 
     @BindView(R.id.menu_profile)
@@ -57,9 +59,11 @@ public class MenuFragment extends BaseFragment {
     @BindView(R.id.menu_save_card)
     View menu_save_card;
 
-    @BindView(R.id.tv_menu_guest)
+    @BindView(R.id.txt_menu_guest)
     TextView tv_menu_guest;
 
+    @BindView(R.id.txtCreateAccount)
+    TextViewWithFont creatAccount;
 
     private Activity mActivity;
 
@@ -88,11 +92,22 @@ public class MenuFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         initMenu();
+        initUser();
+    }
+
+    private void initUser(){
+        manager = new SessionManager(mActivity);
+        if (manager.isUserLoggedIn()){
+            tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "
+                    +manager.getUserLoginData().getData().getProfile().getFirstName() + "! ");
+            creatAccount.setVisibility(View.GONE);
+        }else{
+            tv_menu_guest.setText(R.string.menu_welcome_guest);
+       }
     }
 
     private void initMenu() {
-        manager = new SessionManager(mActivity);
-        tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "+manager.getUserLoginData().getData().getProfile().getFirstName() + "! ");
+
         //first row
         ImageView imgProfile = (ImageView) menu_profile.findViewById(R.id.menu_icon);
         TextViewWithFont txtProfile = (TextViewWithFont) menu_profile.findViewById(R.id.menu_icon_text);
@@ -150,8 +165,8 @@ public class MenuFragment extends BaseFragment {
         menu_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(in);
+                intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -159,8 +174,8 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (manager.isUserLoggedIn()) {
-                    in = new Intent(getActivity(), MyProfileActivity.class);
-                    startActivity(in);
+                    intent = new Intent(getActivity(), MyProfileActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(mActivity, "Please login first", Toast.LENGTH_SHORT).show();
                 }
@@ -171,9 +186,16 @@ public class MenuFragment extends BaseFragment {
         menu_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), ContactUsActivity.class);
-                startActivity(in);
+                intent = new Intent(getActivity(), ContactUsActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    @OnClick(R.id.txtCreateAccount)
+    public void createAccount(){
+        intent = new Intent(getActivity(), RegisterActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

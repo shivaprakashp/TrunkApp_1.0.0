@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ButtonWithFont;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -95,34 +97,18 @@ public class MyProfileActivity extends BaseActivity {
     TextView tv_profile_name;
 
     private SessionManager manager;
-    private BottomSheetBehavior sheetBehavior;
-    //injecting retrofit
+     //injecting retrofit
     @Inject
     Retrofit retrofit;
 
     private Api api;
 
-    @BindView(R.id.bottom_sheet)
-    LinearLayout layoutBottomSheet;
+    EditTextWithFont mEdtCurrentPassword,
+            mEdtNewPassword,
+            mEdtConfNewPassword;
 
-    @BindView(R.id.edtCurrentPassword)
-    EditTextWithFont mEdtCurrentPassword;
-
-    @BindView(R.id.edtNewPassword)
-    EditTextWithFont mEdtNewPassword;
-
-    @BindView(R.id.edtConfNewPassword)
-    EditTextWithFont mEdtConfNewPassword;
-
-    @BindView(R.id.btnCancel)
-    ButtonWithFont mBtnCancel;
-
-    @BindView(R.id.btnSave)
-    ButtonWithFont mBtnSave;
-
-    @BindView(R.id.imgClose)
-    ImageView mImgClose;
-
+    private BottomSheetDialog dialog;
+    private CustomToast customToast;
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
@@ -171,10 +157,10 @@ public class MyProfileActivity extends BaseActivity {
 
     private void initView() {
 
+        customToast = new CustomToast(mActivity);
+
         ((MainApplication) mActivity.getApplication()).getNetComponent().inject(MyProfileActivity.this);
         api = retrofit.create(Api.class);
-
-        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
         manager = new SessionManager(mActivity);
         mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
@@ -194,15 +180,49 @@ public class MyProfileActivity extends BaseActivity {
         mTabHost.setupWithViewPager(mViewPager);
 
         if (manager.getUserLoginData()!= null) {
-            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " " + manager.getUserLoginData().getData().getProfile().getLastName());
+            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
+                    + manager.getUserLoginData().getData().getProfile().getLastName());
         }
     }
 
     public void changePassword(){
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
+        dialog = new BottomSheetDialog(mActivity);
+        View view = getLayoutInflater().inflate(R.layout.popup_changepassword, null);
+        dialog.setContentView(view);
+
+        view.findViewById(R.id.imgClose).setOnClickListener(dismissDialog);
+        view.findViewById(R.id.btnCancel).setOnClickListener(dismissDialog);
+        view.findViewById(R.id.btnSave).setOnClickListener(saveChangePassword);
+
+        mEdtCurrentPassword = (EditTextWithFont) view.findViewById(R.id.edtCurrentPassword);
+        mEdtNewPassword = (EditTextWithFont) view.findViewById(R.id.edtNewPassword);
+        mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
+
+        dialog.show();
     }
+
+    //dismiss pop dialog
+    private View.OnClickListener dismissDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dialog.dismiss();
+        }
+    };
+
+    //update save paasword
+    private View.OnClickListener saveChangePassword = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (Connections.isConnectionAlive(mActivity)) {
+                if (checkValidation()) {
+                    //CloseChangePwdSheet();
+                    sendChangePassword(mEdtCurrentPassword.getText().toString().trim(), mEdtNewPassword.getText().toString().trim());
+                }
+            } else {
+                Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 
     private View.OnClickListener backPress = new View.OnClickListener() {
         @Override
@@ -211,36 +231,12 @@ public class MyProfileActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.img_profile,  R.id.btnCancel, R.id.btnSave, R.id.imgClose })
+    @OnClick({R.id.img_profile})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_profile:
                 showDialog();
                 break;
-
-            case R.id.btnCancel:
-                CloseChangePwdSheet();
-                break;
-            case R.id.btnSave:
-                if (Connections.isConnectionAlive(mActivity)) {
-                    if (checkValidation()) {
-                        CloseChangePwdSheet();
-                        sendChangePassword(mEdtCurrentPassword.getText().toString().trim(), mEdtNewPassword.getText().toString().trim());
-                    }
-
-                } else {
-                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.imgClose:
-                CloseChangePwdSheet();
-                break;
-        }
-    }
-
-    private void CloseChangePwdSheet() {
-        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 
@@ -253,29 +249,29 @@ public class MyProfileActivity extends BaseActivity {
         //password
         if (TextUtils.isEmpty(mEdtCurrentPassword.getText().toString()) &&
                 (mEdtCurrentPassword.getText().toString().length() < 3 || mEdtCurrentPassword.getText().toString().length() > 16)) {
-            mEdtCurrentPassword.setError(getString(R.string.errorCurrentPassword));
+            customToast.showErrorToast(getString(R.string.errorCurrentPassword));
             return false;
         }
         //re-enterPassword
         else if (TextUtils.isEmpty(mEdtNewPassword.getText().toString())) {
-            mEdtNewPassword.setError(getString(R.string.errorNewPassword));
+            customToast.showErrorToast(getString(R.string.errorNewPassword));
             return false;
         } else if (mEdtCurrentPassword.getText().toString().equalsIgnoreCase(
                 mEdtNewPassword.getText().toString())) {
-            mEdtNewPassword.setError(getString(R.string.errorPreviousAndNewPassword));
+            customToast.showErrorToast(getString(R.string.errorPreviousAndNewPassword));
             return false;
 
         } else if (mEdtNewPassword.getText().toString().length() < 3 || mEdtNewPassword.getText().toString().length() > 16) {
-            mEdtNewPassword.setError(getString(R.string.errorLengthPassword));
+            customToast.showErrorToast(getString(R.string.errorLengthPassword));
             return false;
         }  else if (TextUtils.isEmpty(mEdtConfNewPassword.getText().toString())) {
-            mEdtConfNewPassword.setError(getString(R.string.errorConfirmNewPassword));
+            customToast.showErrorToast(getString(R.string.errorConfirmNewPassword));
             return false;
         } else if (mEdtConfNewPassword.getText().toString().length() < 3 || mEdtConfNewPassword.getText().toString().length() > 16) {
-            mEdtConfNewPassword.setError(getString(R.string.errorLengthPassword));
+            customToast.showErrorToast(getString(R.string.errorLengthPassword));
             return false;
         } else if (!mEdtConfNewPassword.getText().toString().trim().equalsIgnoreCase(mEdtNewPassword.getText().toString().trim())) {
-            mEdtConfNewPassword.setError(getString(R.string.errorPasswordMatch));
+            customToast.showErrorToast(getString(R.string.errorPasswordMatch));
             return false;
         }
 
@@ -285,8 +281,7 @@ public class MyProfileActivity extends BaseActivity {
     private void sendChangePassword(String mPwd, String mNewPwd) {
 
         MainController controller = new MainController(mActivity);
-        controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd),
-                mActivity.getResources().getString(R.string.changePasswordRequest));
+        controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd));
     }
 
     public void showDialog() {

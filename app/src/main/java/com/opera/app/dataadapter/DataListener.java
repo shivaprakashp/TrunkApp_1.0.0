@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.opera.app.R;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.RequestProperties;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,14 +21,16 @@ public class DataListener {
     private ProgressDialog dialog;
     private Context context;
     protected TaskComplete taskComplete = null;
+    private RequestProperties properties;
 
-    public DataListener(Context context, TaskComplete taskComplete) {
+    public DataListener(Context context, TaskComplete taskComplete, RequestProperties properties) {
         this.context = context;
         this.taskComplete = taskComplete;
         dialog = new ProgressDialog(context);
+        this.properties = properties;
     }
 
-    public void dataLoad(Call call, final String mRequestKey) {
+    public void dataLoad(Call call) {
         try {
 
             dialog.setMessage(context.getResources().getString(R.string.loading));
@@ -37,13 +40,13 @@ public class DataListener {
                 @Override
                 public void onResponse(Call call, Response response) {
                     dialog.dismiss();
-                    taskComplete.onTaskFinished(response,mRequestKey);
+                    taskComplete.onTaskFinished(response,properties.getRequestKey());
                 }
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
                     dialog.dismiss();
-                    taskComplete.onTaskError(call, t,mRequestKey);
+                    taskComplete.onTaskError(call, t,properties.getRequestKey());
                 }
             });
         }catch (Exception e){

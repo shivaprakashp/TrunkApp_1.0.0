@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.TextInputLayout;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -23,8 +24,10 @@ import android.widget.Toast;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ButtonWithFont;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
@@ -53,7 +56,6 @@ public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
     EditTextWithFont username, password;
-    private Intent in;
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -73,8 +75,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_password)
     View login_password;
 
-    EditTextWithFont mEt_username;
-
+    EditTextWithFont forgotPassword;
     BottomSheetDialog dialog;
     //injecting retrofit
     @Inject
@@ -82,12 +83,13 @@ public class LoginActivity extends BaseActivity {
     String emailPattern = "[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,64}(\\.[\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9][\\u0621-\\u064A\\u0660-\\u0669a-zA-Z0-9\\-]{0,25})+";
 
     private Api api;
+    private CustomToast customToast;
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             ErrorDialogue dialogue;
-            if (mRequestKey.equalsIgnoreCase(getResources().getString(R.string.loginRequest))) {
+            if (mRequestKey.equals(AppConstants.LOGIN.LOGIN)) {
                 if (response.body() != null) {
                     loginSession((LoginResponse) response.body());
                 } else if (response.errorBody() != null) {
@@ -98,7 +100,7 @@ public class LoginActivity extends BaseActivity {
                         Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
-            } else if (mRequestKey.equalsIgnoreCase(getResources().getString(R.string.forgotPasswordRequest))) {
+            } else if (mRequestKey.equals(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD)) {
                 if (response.body() != null) {
                     RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
                     if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
@@ -144,6 +146,7 @@ public class LoginActivity extends BaseActivity {
         ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
         api = retrofit.create(Api.class);
 
+        customToast = new CustomToast(mActivity);
         //edittext
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.username));
@@ -164,9 +167,9 @@ public class LoginActivity extends BaseActivity {
         View view = getLayoutInflater().inflate(R.layout.popup_forgotpassword, null);
         dialog.setContentView(view);
 
-        mEt_username = (EditTextWithFont) view.findViewById(R.id.et_username);
+        forgotPassword = (EditTextWithFont) view.findViewById(R.id.edtForgotEmail);
         view.findViewById(R.id.imgClose).setOnClickListener(imageClose);
-        view.findViewById(R.id.btnSend).setOnClickListener(forgotPassword);
+        view.findViewById(R.id.btnSend).setOnClickListener(clickEmail);
     }
 
     private View.OnClickListener imageClose = new View.OnClickListener() {
@@ -176,13 +179,13 @@ public class LoginActivity extends BaseActivity {
         }
     };
 
-    private View.OnClickListener forgotPassword = new View.OnClickListener() {
+    private View.OnClickListener clickEmail = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (Connections.isConnectionAlive(mActivity)) {
                 if (checkValidationForgotPassword()) {
-                    sendForgotPassword(mEt_username.getText().toString().trim());
-                    mEt_username.setText("");
+                    sendForgotPassword(forgotPassword.getText().toString().trim());
+                    forgotPassword.setText("");
                 }
             } else {
                 Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
@@ -222,11 +225,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     private boolean checkValidationForgotPassword() {
-        if (TextUtils.isEmpty(mEt_username.getText().toString().trim())) {
-            mEt_username.setError(getString(R.string.errorEmail));
+        if (TextUtils.isEmpty(forgotPassword.getText().toString().trim())) {
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
-        } else if (!mEt_username.getText().toString().matches(emailPattern)) {
-            mEt_username.setError(getString(R.string.errorUserEmail));
+        } else if (!forgotPassword.getText().toString().matches(emailPattern)) {
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         }
 
@@ -239,17 +242,17 @@ public class LoginActivity extends BaseActivity {
         password.setError(null);
         //validation of input field
         if (TextUtils.isEmpty(username.getText().toString().trim()) && TextUtils.isEmpty(password.getText().toString().trim())) {
-            username.setError(getString(R.string.errorUserName));
-            password.setError(getString(R.string.errorPassword));
+            customToast.showErrorToast(getString(R.string.errorUserName));
+            customToast.showErrorToast(getString(R.string.errorPassword));
             return false;
         } else if (TextUtils.isEmpty(username.getText().toString().trim())) {
-            username.setError(getString(R.string.errorUserName));
+            customToast.showErrorToast(getString(R.string.errorUserName));
             return false;
         } else if (!username.getText().toString().matches(emailPattern)) {
-            username.setError(getString(R.string.errorUserEmail));
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         } else if (TextUtils.isEmpty(password.getText().toString().trim())) {
-            password.setError(getString(R.string.errorPassword));
+            customToast.showErrorToast(getString(R.string.errorPassword));
             return false;
         }
 
@@ -259,7 +262,7 @@ public class LoginActivity extends BaseActivity {
     private void sendPost(String emailId, String pwd) {
 
         MainController controller = new MainController(LoginActivity.this);
-        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd), getResources().getString(R.string.loginRequest));
+        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
     }
 
     //maintain login session
@@ -278,6 +281,6 @@ public class LoginActivity extends BaseActivity {
 
     private void sendForgotPassword(String mEmail) {
         MainController controller = new MainController(mActivity);
-        controller.forgotPassword(taskComplete, api, new ForgotPasswordPojo(mEmail), getResources().getString(R.string.forgotPasswordRequest));
+        controller.forgotPassword(taskComplete, api, new ForgotPasswordPojo(mEmail));
     }
 }
