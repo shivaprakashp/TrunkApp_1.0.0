@@ -21,4 +21,8 @@ public interface AppConstants {
     interface CHANGEPASSWORD{
         String CHANGEPASSWORD = "CHANGEPASSWORD";
     }
+
+    interface SETUSERSETTINGS{
+        String SETUSERSETTINGS = "SETUSERSETTINGS";
+    }
 }
