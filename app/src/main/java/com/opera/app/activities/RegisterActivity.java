@@ -435,7 +435,7 @@ public class RegisterActivity extends BaseActivity {
         edtDob.setError(null);
 
         //validation of input field
-        /*if (TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
+        if (TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtPassword.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtRePass.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
@@ -443,16 +443,17 @@ public class RegisterActivity extends BaseActivity {
                 TextUtils.isEmpty(edtMobile.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtCity.getText().toString().trim()) &&
                 TextUtils.isEmpty(edtDob.getText().toString().trim())) {
-            edtEmail.setError(getString(R.string.errorEmailId));
+            /*edtEmail.setError(getString(R.string.errorEmailId));
             edtPassword.setError(getString(R.string.errorPassword));
             edtRePass.setError(getString(R.string.errorRePassword));
             edtFirstName.setError(getString(R.string.errorFirstName));
             edtLastName.setError(getString(R.string.errorLastName));
             edtMobile.setError(getString(R.string.errorMobile));
             edtCity.setError(getString(R.string.errorCity));
-            edtDob.setError(getString(R.string.errorDob));
+            edtDob.setError(getString(R.string.errorDob));*/
+            customToast.showErrorToast(getString(R.string.errorFieldsMandatory));
             return false;
-        }*/
+        }
 
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
