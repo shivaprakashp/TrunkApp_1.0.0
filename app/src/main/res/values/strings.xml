@@ -161,7 +161,7 @@
     <!--My Profile-->
     <string name="my_profile">MY PROFILE</string>
     <string name="profile_name">Simon Pinto</string>
-    <string name="profile_info">Member since March 12, 2014</string>
+    <string name="profile_info">Member since</string>
     <string name="profile_edit_profile">Edit Profile</string>
     <string name="profile_change_password">Change Password</string>
     <string name="tab_profile">PROFILE</string>

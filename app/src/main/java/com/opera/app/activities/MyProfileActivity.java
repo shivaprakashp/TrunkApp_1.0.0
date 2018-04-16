@@ -96,6 +96,9 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.tv_profile_name)
     TextView tv_profile_name;
 
+    @BindView(R.id.tv_profile_info)
+    TextViewWithFont profileInfo;
+
     private SessionManager manager;
      //injecting retrofit
     @Inject
@@ -152,8 +155,18 @@ public class MyProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_my_profile);
 
         initView();
+        updateSessionData();
     }
 
+    private void updateSessionData(){
+        manager = new SessionManager(mActivity);
+        if (manager.getUserLoginData()!= null) {
+            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
+                    + manager.getUserLoginData().getData().getProfile().getLastName());
+
+            //profileInfo.setText(getString(R.string.profile_info)+" "+manager.getUserLoginData().getData().getProfile().getJoinDate());
+        }
+    }
 
     private void initView() {
 
@@ -162,7 +175,6 @@ public class MyProfileActivity extends BaseActivity {
         ((MainApplication) mActivity.getApplication()).getNetComponent().inject(MyProfileActivity.this);
         api = retrofit.create(Api.class);
 
-        manager = new SessionManager(mActivity);
         mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
         mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -179,10 +191,7 @@ public class MyProfileActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 
-        if (manager.getUserLoginData()!= null) {
-            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
-                    + manager.getUserLoginData().getData().getProfile().getLastName());
-        }
+
     }
 
     public void changePassword(){

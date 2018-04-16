@@ -44,6 +44,7 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,9 +68,8 @@ public class RegisterActivity extends BaseActivity {
     Retrofit retrofit;
 
     private Api api;
-   private Activity mActivity;
+    private Activity mActivity;
     public static EditTextWithFont edtDob;
-    private String blockCharacterSet = "~#^|$%&*!1234567890@({)}:;?/.,'][-<>`~+=_";
 
     @BindView(R.id.btnCreateAccount)
     Button mButtonCreateAccount;
@@ -133,8 +133,6 @@ public class RegisterActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response,String mRequestKey) {
             if (response.body() != null) {
-                RegistrationResponse registrationResponse =
-                        (RegistrationResponse) response.body();
 
                 SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
                 dialogue.show();
@@ -186,30 +184,30 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        edtPassword.setInputType( InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtPassword.setFilters(new InputFilter[] { new InputFilter.LengthFilter(16) });
+        edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
         edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtRePass.setFilters(new InputFilter[] { new InputFilter.LengthFilter(16) });
+        edtRePass.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[] { filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(30) });
         edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] { filter,new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[] { OperaUtils.filter,new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
@@ -227,7 +225,7 @@ public class RegisterActivity extends BaseActivity {
         edtCity.setHint(getString(R.string.city));
         edtCity.setInputType(InputType.TYPE_CLASS_TEXT);
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtCity.setFilters(new InputFilter[] { filter, new InputFilter.LengthFilter(30) });
+        edtCity.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(26) });
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -435,25 +433,6 @@ public class RegisterActivity extends BaseActivity {
         edtDob.setError(null);
 
         //validation of input field
-        /*if (TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtPassword.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtRePass.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtLastName.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtMobile.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtCity.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtDob.getText().toString().trim())) {
-            edtEmail.setError(getString(R.string.errorEmailId));
-            edtPassword.setError(getString(R.string.errorPassword));
-            edtRePass.setError(getString(R.string.errorRePassword));
-            edtFirstName.setError(getString(R.string.errorFirstName));
-            edtLastName.setError(getString(R.string.errorLastName));
-            edtMobile.setError(getString(R.string.errorMobile));
-            edtCity.setError(getString(R.string.errorCity));
-            edtDob.setError(getString(R.string.errorDob));
-            return false;
-        }*/
-
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
@@ -471,94 +450,86 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }else
 
-        //email
-         if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorEmailId));
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-             customToast.showErrorToast(getString(R.string.errorUserEmail));
-            return false;
-        }
-        //password
-        else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorPassword));
-            return false;
-        } else if (edtPassword.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
-             customToast.showErrorToast(getString(R.string.errorLengthPassword));
-            return false;
-        } else if (edtEmail.getText().toString().equalsIgnoreCase(
-                edtPassword.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorSamePasswordAsUsername));
-            return false;
-        }
-        //re-enterPassword
-        else if (TextUtils.isEmpty(edtRePass.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorRePassword));
-            return false;
-        } else if (!edtPassword.getText().toString().equalsIgnoreCase(
-                edtRePass.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorMismatchPassword));
-            return false;
-        } else if (edtRePass.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
-             customToast.showErrorToast(getString(R.string.errorLengthPassword));
-            return false;
-        }
+            //email
+            if (TextUtils.isEmpty(edtEmail.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorEmailId));
+                return false;
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
+                customToast.showErrorToast(getString(R.string.errorUserEmail));
+                return false;
+            }
+            //password
+            else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorPassword));
+                return false;
+            } else if (edtPassword.getText().toString().length() < 3 || edtPassword.getText().toString().length() > 16) {
+                customToast.showErrorToast(getString(R.string.errorLengthPassword));
+                return false;
+            } else if (edtEmail.getText().toString().equalsIgnoreCase(
+                    edtPassword.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorSamePasswordAsUsername));
+                return false;
+            }
+            //re-enterPassword
+            else if (TextUtils.isEmpty(edtRePass.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorRePassword));
+                return false;
+            } else if (!edtPassword.getText().toString().equalsIgnoreCase(
+                    edtRePass.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorMismatchPassword));
+                return false;
+            } else if (edtRePass.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
+                customToast.showErrorToast(getString(R.string.errorLengthPassword));
+                return false;
+            }
 
-        //nationality
-        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
-             customToast.showErrorToast(getResources().getString(R.string.errorNationality));
-            return false;
-        }
-        //dob
-        else if (TextUtils.isEmpty(edtDob.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorDob));
-            return false;
-        }
-        //mobile
-        else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorMobile));
-            return false;
-        } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
-             customToast.showErrorToast(getString(R.string.errorLengthMobile));
-            return false;
-        }
-        //city
-        else if (TextUtils.isEmpty(edtCity.getText().toString())) {
-             customToast.showErrorToast(getString(R.string.errorCity));
-            return false;
-        } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
-             customToast.showErrorToast(getString(R.string.errorLengthCity));
-            return false;
-        }
-        //state
-        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
-             customToast.showErrorToast(getResources().getString(R.string.errorState));
-            return false;
-        }
-        //country
-        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
-             customToast.showErrorToast(getResources().getString(R.string.errorCountry));
-            return false;
-        }
-        //TermsCheckbox
-        else if (!ckbTerms.isChecked()) {
-             customToast.showErrorToast(getResources().getString(R.string.errorTerms));
-            return false;
-        }
+            //nationality
+            else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
+                customToast.showErrorToast(getResources().getString(R.string.errorNationality));
+                return false;
+            }
+            //dob
+            else if (TextUtils.isEmpty(edtDob.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorDob));
+                return false;
+            }
+            //mobile
+            else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorMobile));
+                return false;
+            } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
+                customToast.showErrorToast(getString(R.string.errorLengthMobile));
+                return false;
+            }
+            //city
+            else if (TextUtils.isEmpty(edtCity.getText().toString())) {
+                customToast.showErrorToast(getString(R.string.errorCity));
+                return false;
+            } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
+                customToast.showErrorToast(getString(R.string.errorLengthCity));
+                return false;
+            }
+            //state
+            else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
+                customToast.showErrorToast(getResources().getString(R.string.errorState));
+                return false;
+            }
+            //country
+            else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
+                customToast.showErrorToast(getResources().getString(R.string.errorCountry));
+                return false;
+            }
+            //TermsCheckbox
+            else if (!ckbTerms.isChecked()) {
+                customToast.showErrorToast(getResources().getString(R.string.errorTerms));
+                return false;
+            }
 
         return true;
     }
 
-    private InputFilter filter = new InputFilter() {
 
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
 
-            if (source != null && blockCharacterSet.contains(("" + source))) {
-                return "";
-            }
-            return null;
-        }
-    };
+
 
 }

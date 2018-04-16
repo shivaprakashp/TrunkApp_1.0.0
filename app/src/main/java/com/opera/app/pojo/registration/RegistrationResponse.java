@@ -2,6 +2,7 @@ package com.opera.app.pojo.registration;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.login.LoginResponseData;
 
 public class RegistrationResponse {
 
@@ -11,6 +12,9 @@ public class RegistrationResponse {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("data")
+    @Expose
+    private LoginResponseData data;
 
     public String getStatus() {
         return status;
@@ -26,6 +30,14 @@ public class RegistrationResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public LoginResponseData getData() {
+        return data;
+    }
+
+    public void setData(LoginResponseData data) {
+        this.data = data;
     }
 
 }
