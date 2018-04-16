@@ -223,13 +223,6 @@
     <!--NETWORK CONNECTIVITY MSG-->
     <string name="internet_error_msg">Please check your internet connection!</string>
 
-    <!--Validation Msg-->
-    <string name="invalid_data">Invalid Data</string>
-    <string name="invalid_phone_number">Invalid Number</string>
-
-    <string name="enter_username">Enter Username</string>
-    <string name="enter_password">Enter Password</string>
-
     <!--Restaurants-->
     <string name="reserve_a_table3">RESERVE TABLE</string>
     <string name="restaurants">Restaurants</string>
@@ -254,7 +247,7 @@
     <string name="errorMobile">Mobile Phone cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorDob"> Date of Birth cannot be left blank</string>
-    <string name="errorEmail">Entered email address cannot be left blank</string>
+    <string name="errorEmail">Email address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
 
     <string name="errorUserEmail">Entered Email Address is invalid</string>
@@ -298,7 +291,7 @@
     <item>Albania</item>
     <item>Algeria</item>
     <item>American Samoa</item>
-    <item>"Andorra</item>
+    <item>Andorra</item>
     <item>Angola</item>
     <item>Anguilla</item>
     <item>Argentina</item>
