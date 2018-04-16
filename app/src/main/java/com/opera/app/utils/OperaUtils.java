@@ -8,7 +8,9 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.text.InputFilter;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 
@@ -19,6 +21,8 @@ import com.opera.app.R;
  */
 
 public class OperaUtils {
+
+    private static String blockCharacterSet = "~#^|$%&*!1234567890@({)}:;?/.,'][-<>`~+=_";
 
     private static OperaUtils mOperaUtils = null;
 
@@ -127,4 +131,31 @@ public class OperaUtils {
         e.printStackTrace();
         Log.e("Exception", " " + e.toString());
     }
+
+    //stopped white space in edit text for password
+    public static InputFilter filterSpace = new InputFilter() {
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (Character.isSpaceChar(source.charAt(i))) {
+                    return "";
+                }
+            }
+            return null;
+
+
+        }
+    };
+
+    public static InputFilter filter = new InputFilter() {
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+            if (source != null && blockCharacterSet.contains(("" + source))) {
+                return "";
+            }
+            return null;
+        }
+    };
 }

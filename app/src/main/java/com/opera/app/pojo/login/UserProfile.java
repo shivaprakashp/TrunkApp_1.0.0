@@ -14,12 +14,6 @@ public class UserProfile {
     @SerializedName("LastName")
     @Expose
     private String lastName;
-    @SerializedName("PhoneNumber")
-    @Expose
-    private String phoneNumber;
-    @SerializedName("Interest")
-    @Expose
-    private String interest;
     @SerializedName("Nationality")
     @Expose
     private String nationality;
@@ -35,6 +29,12 @@ public class UserProfile {
     @SerializedName("Country")
     @Expose
     private String country;
+    @SerializedName("State")
+    @Expose
+    private String state;
+    @SerializedName("JoinDate")
+    @Expose
+    private String joinDate;
 
     public String getEmail() {
         return email;
@@ -58,22 +58,6 @@ public class UserProfile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest;
     }
 
     public String getNationality() {
@@ -114,6 +98,22 @@ public class UserProfile {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(String joinDate) {
+        this.joinDate = joinDate;
     }
 
 }
