@@ -380,7 +380,7 @@ public class RegisterActivity extends BaseActivity {
                 break;
 
             case R.id.textView_continue_as_guest:
-                openActivity(mActivity, MainActivity.class);
+                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
                 break;
 
         }

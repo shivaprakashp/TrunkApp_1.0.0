@@ -55,7 +55,8 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".activities.ContactUsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".activities.CommonWebViewActivity"
             android:screenOrientation="portrait" />

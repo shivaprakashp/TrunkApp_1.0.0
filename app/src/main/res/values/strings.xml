@@ -61,6 +61,7 @@
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
     <string name="arabic_in_english">Arabic</string>
+    <string name="save1">Save</string>
 
     <!--Menu Fragment -->
     <string name="menu_profile">Profile</string>
@@ -134,12 +135,12 @@
             for collecting, using, maintaining, protecting and disclosing that information.
         </item>
         <item>This policy applies to information we collect:</item>
-        <item>1. On this Website.</item>
-        <item>2. In e-mail, text and other electronic messages between you and this Website.</item>
-        <item>3. Through mobile and desktop applications you may download from this Website, which
+        <!--<item>1. On this Website.</item>-->
+        <item>1. In e-mail, text and other electronic messages between you and this Website.</item>
+        <item>2. Through mobile and desktop applications you may download from this Website, which
             provide dedicated non-browser-based interaction between you and this Website.
         </item>
-        <item>4. When you interact with our advertising and applications on third-party websites and
+        <item>3. When you interact with our advertising and applications on third-party websites and
             services, if those applications or advertising include links to this policy.
         </item>
         <item>It does not apply to information collected by:</item>
@@ -223,13 +224,6 @@
     <!--NETWORK CONNECTIVITY MSG-->
     <string name="internet_error_msg">Please check your internet connection!</string>
 
-    <!--Validation Msg-->
-    <string name="invalid_data">Invalid Data</string>
-    <string name="invalid_phone_number">Invalid Number</string>
-
-    <string name="enter_username">Enter Username</string>
-    <string name="enter_password">Enter Password</string>
-
     <!--Restaurants-->
     <string name="reserve_a_table3">RESERVE TABLE</string>
     <string name="restaurants">Restaurants</string>
@@ -254,7 +248,8 @@
     <string name="errorMobile">Mobile Phone cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorDob"> Date of Birth cannot be left blank</string>
-    <string name="errorEmail">Entered email address cannot be left blank</string>
+    <string name="errorEmail">Email address cannot be left blank</string>
+    <string name="errorFieldsMandatory">All fields are mandatory</string>
 
     <string name="errorUserEmail">Entered Email Address is invalid</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
@@ -297,7 +292,7 @@
     <item>Albania</item>
     <item>Algeria</item>
     <item>American Samoa</item>
-    <item>"Andorra</item>
+    <item>Andorra</item>
     <item>Angola</item>
     <item>Anguilla</item>
     <item>Argentina</item>
@@ -622,4 +617,5 @@
     <string name="editProfileRequest">EditProfile</string>
     <string name="registerRequest">Register</string>
     <string name="changePasswordRequest">ChangePasswordRequest</string>
+    <string name="update">Update</string>
 </resources>

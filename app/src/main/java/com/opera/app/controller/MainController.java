@@ -13,6 +13,7 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.settings.SettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
 import retrofit2.Call;
@@ -67,6 +68,13 @@ public class MainController {
     public void forgotPassword(TaskComplete taskComplete, Api api, ForgotPasswordPojo mForgotPasswordPojo) {
         Call call = api.ForgotPassword(contentType, mForgotPasswordPojo);
         properties.setRequestKey(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void updateSettings(TaskComplete taskComplete, Api api, SettingsPojo mSettingsPojo) {
+        Call call = api.UpdateSettings(contentType, mSettingsPojo);
+        properties.setRequestKey(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
