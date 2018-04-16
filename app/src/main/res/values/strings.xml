@@ -60,7 +60,7 @@
     <string name="setting_reminder_booked_show">Reminders for the booked show</string>
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
-    <string name="arabic_in_english">Arabic</string>
+    <string name="arabic_in_english">عربى</string>
 
     <!--Menu Fragment -->
     <string name="menu_profile">Profile</string>
