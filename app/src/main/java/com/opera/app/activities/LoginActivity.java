@@ -39,6 +39,7 @@ import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -157,7 +158,7 @@ public class LoginActivity extends BaseActivity {
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        password.setFilters(new InputFilter[] { new InputFilter.LengthFilter(16) });
+        password.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
     }
