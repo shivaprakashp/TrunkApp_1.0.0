@@ -61,6 +61,7 @@
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
     <string name="arabic_in_english">Arabic</string>
+    <string name="save1">Save</string>
 
     <!--Menu Fragment -->
     <string name="menu_profile">Profile</string>
@@ -623,4 +624,5 @@
     <string name="editProfileRequest">EditProfile</string>
     <string name="registerRequest">Register</string>
     <string name="changePasswordRequest">ChangePasswordRequest</string>
+    <string name="update">Update</string>
 </resources>

@@ -108,6 +108,7 @@
     <string name="setting_language">لغة</string>
     <string name="logout">الخروج</string>
     <string name="arabic_in_english">عربى</string>
+    <string name="save1">حفظ</string>
 
     <!--My Profile-->
     <string name="my_profile">ملفي</string>
@@ -175,4 +176,5 @@
     <string name="dubai_opera">في دبي أوبرا</string>
     <string name="read_more">اقرأ أكثر</string>
     <string name="read_less">أقرأ أقل</string>
+    <string name="update">Update</string>
 </resources>
