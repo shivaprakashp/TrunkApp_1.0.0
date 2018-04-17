@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -90,9 +91,9 @@
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerNationality"
+                        style="@style/label_black"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        style="@style/label_black"
                         font:name="Montserrat-Regular" />
 
                     <View
@@ -131,8 +132,7 @@
                         android:id="@+id/spinnerState"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        font:name="Montserrat-Regular"
-                        />
+                        font:name="Montserrat-Regular" />
 
                     <View
                         android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                         android:id="@+id/spinnerCountry"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -236,6 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
+
             <include layout="@layout/include_guest" />
         </LinearLayout>
 

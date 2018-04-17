@@ -2,6 +2,7 @@ package com.opera.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import org.json.JSONException;
@@ -18,6 +19,9 @@ import retrofit2.Response;
 
 public class BaseActivity extends AppCompatActivity {
 
+    public SharedPreferences mSharedPreferences;
+    private int prefMode = 0;
+
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
@@ -26,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void bindViews() {
         ButterKnife.bind(this);
-
+        mSharedPreferences=getSharedPreferences(getResources().getString(R.string.prefName), prefMode);
     }
 
     public void openActivity(Activity activity, Class<?> startClass) {

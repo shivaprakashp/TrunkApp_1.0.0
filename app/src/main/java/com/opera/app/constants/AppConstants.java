@@ -25,4 +25,8 @@ public interface AppConstants {
     interface SETUSERSETTINGS{
         String SETUSERSETTINGS = "SETUSERSETTINGS";
     }
+
+    interface GETUSERSETTINGS{
+        String GETUSERSETTINGS = "GETUSERSETTINGS";
+    }
 }

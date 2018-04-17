@@ -17,19 +17,17 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.login.LoginResponse;
-import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.registration.RegistrationResponse;
-import com.opera.app.pojo.settings.SettingsPojo;
+import com.opera.app.pojo.settings.GetSettingsPojo;
+import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import javax.inject.Inject;
 
@@ -46,6 +44,8 @@ import retrofit2.Retrofit;
 public class SettingsActivity extends BaseActivity {
 
     private Activity mActivity;
+    private SessionManager mSessionManager;
+    private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", mNewLanguage = "";
     private Api api;
     @Inject
     Retrofit retrofit;
@@ -106,7 +106,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void initView() {
-
+        mSessionManager = new SessionManager(mActivity);
         ((MainApplication) getApplication()).getNetComponent().inject(SettingsActivity.this);
         api = retrofit.create(Api.class);
 
@@ -116,17 +116,16 @@ public class SettingsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
-
-        if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
-                LanguageManager.createInstance().mSelectedLanguage,
-                LanguageManager.createInstance().mLanguageEnglish).
-                equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
-            englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+        if (mSessionManager.GetUserSettings()) {
+            SetAlreadyUpdatedSettings();
         } else {
-            englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            GetUpdatedUserSettings();
         }
+    }
+
+    private void GetUpdatedUserSettings() {
+        MainController controller = new MainController(SettingsActivity.this);
+        controller.getUpdatedSettings(taskComplete, api);
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -142,26 +141,28 @@ public class SettingsActivity extends BaseActivity {
             case R.id.englishSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
+              /*  LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                         LanguageManager.createInstance().mSelectedLanguage,
                         LanguageManager.createInstance().mLanguageEnglish);
 
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
             }
             break;
 
             case R.id.arabicSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
+               /* LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                         LanguageManager.createInstance().mSelectedLanguage,
                         LanguageManager.createInstance().mLanguageArabic);
 
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
             }
             break;
 
@@ -171,7 +172,7 @@ public class SettingsActivity extends BaseActivity {
             case R.id.btnSave:
                 if (Connections.isConnectionAlive(mActivity)) {
                     sendUpdatedSettings();
-                }else {
+                } else {
                     Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -179,18 +180,82 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void sendUpdatedSettings() {
-        String mNotifSwitch=mNotificationSwitch.isChecked()?"true":"false";
-        String mPromoSwitch=mPromotionSwitch.isChecked()?"true":"false";
-        String mFeedbackNotifSwitch=mFeedbackSwitch.isChecked()?"true":"false";
-        String mNewsletterSwitch=mNewletterSwitch.isChecked()?"true":"false";
-        String mBookedShowSwitch=mReminderSwitch.isChecked()?"true":"false";
+        mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
+        mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
+        mFeedbackNotifSwitch = mFeedbackSwitch.isChecked() ? "true" : "false";
+        mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
+        mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
+
+        /*mSelectedLanguage = LanguageManager.createInstance().GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, LanguageManager.createInstance().mLanguageEnglish);*/
 
         MainController controller = new MainController(SettingsActivity.this);
-        controller.updateSettings(taskComplete, api, new SettingsPojo(mNotifSwitch,mPromoSwitch,mFeedbackNotifSwitch,mNewsletterSwitch,mBookedShowSwitch));
+        controller.updateSettings(taskComplete, api, new SetSettingsPojo(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage));
     }
+
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
+            if (mRequestKey.equalsIgnoreCase(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS)) {
+                if (response.body() != null) {
+                    RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
+                    if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
+                        SessionManager sessionManager = new SessionManager(mActivity);
+                        sessionManager.UpdateUserSettings(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch);
+
+                        LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                                LanguageManager.createInstance().mSelectedLanguage,
+                                mNewLanguage);
+
+                        SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successSettingsUpdation), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "setUserSettings");
+                        dialogue.show();
+                    } else {
+                        try {
+                            ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                            dialogue.show();
+                        } catch (Exception e) {
+                            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                } else if (response.errorBody() != null) {
+                    try {
+                        ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
+                if (response.body() != null) {
+                    GetSettingsPojo mSettingsResponse = (GetSettingsPojo) response.body();
+                    if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
+
+                        SessionManager sessionManager = new SessionManager(mActivity);
+                        sessionManager.UpdateUserSettings(mSettingsResponse.getData().getAllowNotification(), mSettingsResponse.getData().getAllowPromotion(),
+                                mSettingsResponse.getData().getAllowFeedbackNotification(), mSettingsResponse.getData().getWeeklyNewsLetters(), mSettingsResponse.getData().getRemindersForBookedShow());
+
+                        /*LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                                LanguageManager.createInstance().mSelectedLanguage,
+                                mSettingsResponse.getData().getLanguage());*/
+                        SetAlreadyUpdatedSettings();
+                    } else {
+                        try {
+                            ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                            dialogue.show();
+                        } catch (Exception e) {
+                            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                } else if (response.errorBody() != null) {
+                    try {
+                        ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
 
 
         }
@@ -200,4 +265,51 @@ public class SettingsActivity extends BaseActivity {
             Log.e("Error", call.toString());
         }
     };
+
+
+    private void SetAlreadyUpdatedSettings() {
+
+        if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "false").equalsIgnoreCase("true")) {
+            mNotificationSwitch.setChecked(true);
+        } else {
+            mNotificationSwitch.setChecked(false);
+        }
+
+        if (mSharedPreferences.getString(getString(R.string.PromotionSwitchValue), "false").equalsIgnoreCase("true")) {
+            mPromotionSwitch.setChecked(true);
+        } else {
+            mPromotionSwitch.setChecked(false);
+        }
+
+        if (mSharedPreferences.getString(getString(R.string.FeedbackNotiSwitchValue), "false").equalsIgnoreCase("true")) {
+            mFeedbackSwitch.setChecked(true);
+        } else {
+            mFeedbackSwitch.setChecked(false);
+        }
+
+        if (mSharedPreferences.getString(getString(R.string.NewsLetterSwitchValue), "false").equalsIgnoreCase("true")) {
+            mNewletterSwitch.setChecked(true);
+        } else {
+            mNewletterSwitch.setChecked(false);
+        }
+
+        if (mSharedPreferences.getString(getString(R.string.BookedShowSwitchValue), "false").equalsIgnoreCase("true")) {
+            mReminderSwitch.setChecked(true);
+        } else {
+            mReminderSwitch.setChecked(false);
+        }
+
+        if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
+                LanguageManager.createInstance().mSelectedLanguage,
+                LanguageManager.createInstance().mLanguageEnglish).
+                equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+            mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
+        } else {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
+        }
+    }
 }
