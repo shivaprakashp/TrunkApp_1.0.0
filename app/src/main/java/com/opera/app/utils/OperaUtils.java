@@ -16,6 +16,10 @@ import android.view.View;
 
 import com.opera.app.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by 1000779 on 2/3/2018.
  */
@@ -158,4 +162,13 @@ public class OperaUtils {
             return null;
         }
     };
+
+    //get current date
+    public static String getCurrentDate(){
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(c);
+    }
 }

@@ -3,8 +3,6 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -22,7 +20,6 @@ import com.opera.app.R;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 import java.util.Calendar;
 
@@ -36,6 +33,7 @@ import butterknife.OnClick;
 public class ReserveATableActivity extends BaseActivity {
 
     private Activity mActivity;
+    private ImageView DOB;
     static EditText editDOB;
 
     @BindView(R.id.toolbarReserveATable)
@@ -92,7 +90,8 @@ public class ReserveATableActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        editDOB = (EditText) findViewById(R.id.editDOB);
+        DOB = (ImageView) findViewById(R.id.ivDOB);
+        editDOB= (EditText) findViewById(R.id.editDOB);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.reserve_a_table));
@@ -131,7 +130,7 @@ public class ReserveATableActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.txtMinus, R.id.txtPlus, R.id.editDOB})
+    @OnClick({R.id.txtMinus, R.id.txtPlus, R.id.editDOB ,R.id.ivDOB})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtPlus:
@@ -151,7 +150,11 @@ public class ReserveATableActivity extends BaseActivity {
             case R.id.editDOB:
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "datePicker");
+                break;
 
+            case R.id.ivDOB:
+                DialogFragment neFragment = new DatePickerFragment();
+                neFragment.show(getSupportFragmentManager(), "datePicker");
                 break;
 
         }
