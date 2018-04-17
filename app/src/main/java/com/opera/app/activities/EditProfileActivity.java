@@ -2,18 +2,15 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,11 +35,10 @@ import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -159,33 +155,39 @@ public class EditProfileActivity extends BaseActivity {
         edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
         edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtDob.performClick();
 
         edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edt);
         edtMobile.setHint(getString(R.string.edit_mobile));
         edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
         edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
         edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtCity.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(26) });
 
         edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
         edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(150) });
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -301,13 +303,10 @@ public class EditProfileActivity extends BaseActivity {
 
         EditProfile data = new EditProfile();
 
-        //data.setEmail(edtEmail.getText().toString());
         data.setFirstName(edtFirstName.getText().toString() != null ?
                 edtFirstName.getText().toString() : "");
         data.setLastName(edtLastName.getText().toString() != null ?
                 edtLastName.getText().toString() : "");
-        //data.setPhoneNumber("");
-        //data.setInterest("");
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
         data.setDateOfBirth(edtDob.getText().toString() != null ?
                 edtDob.getText().toString() : "");
@@ -324,29 +323,12 @@ public class EditProfileActivity extends BaseActivity {
 
         //Removing previous validations
         edtEmail.setError(null);
-        //edtPassword.setError(null);
-        //edtRePass.setError(null);
         edtFirstName.setError(null);
         edtLastName.setError(null);
         edtMobile.setError(null);
         edtCity.setError(null);
         edtDob.setError(null);
 
-        //validation of input field
-        /*if (TextUtils.isEmpty(edtFirstName.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtLastName.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtEmail.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtDob.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtMobile.getText().toString().trim()) &&
-                TextUtils.isEmpty(edtCity.getText().toString().trim())) {
-            edtFirstName.setError(getString(R.string.errorFirstName));
-            edtLastName.setError(getString(R.string.errorLastName));
-            edtEmail.setError(getString(R.string.errorEmailId));
-            edtDob.setError(getString(R.string.errorDob));
-            edtMobile.setError(getString(R.string.errorMobile));
-            edtCity.setError(getString(R.string.errorCity));
-            return false;
-        }*/
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
@@ -439,9 +421,6 @@ public class EditProfileActivity extends BaseActivity {
         try {
             SessionManager sessionManager = new SessionManager(mActivity);
             sessionManager.createEditProfileSession(editProfileResponse);
-            /*if (sessionManager.isUserLoggedIn()) {
-                openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
-            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }

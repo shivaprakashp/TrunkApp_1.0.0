@@ -35,7 +35,6 @@
             android:id="@+id/txtErrorMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Error"
             android:layout_margin="20dp"
             style="@style/label_black_medium"
             font:name="Montserrat-Regular"/>

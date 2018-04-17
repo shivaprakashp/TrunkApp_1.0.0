@@ -173,7 +173,7 @@
         android:gravity="center">
 
         <com.opera.app.customwidget.ButtonWithFont
-            android:id="@+id/updateProfile"
+            android:id="@+id/btnSendMessage"
             style="@style/label_white_medium"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"

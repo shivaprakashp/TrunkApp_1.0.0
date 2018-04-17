@@ -6,23 +6,37 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
+import com.opera.app.listener.TaskComplete;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by 1000632 on 4/3/2018.
@@ -32,6 +46,7 @@ public class ContactUsActivity extends BaseActivity {
 
     private Activity mActivity;
     private Intent intent;
+    private CustomToast customToast;
 
     @BindView(R.id.toolbar_contactUs)
     Toolbar toolbar;
@@ -72,6 +87,11 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.linearFacebook)
     LinearLayout mLinearFacebook;
 
+    @BindView(R.id.btnSendMessage)
+    Button mBtnSend;
+
+    EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail, mEdtMessage;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +103,11 @@ public class ContactUsActivity extends BaseActivity {
 
         initToolbar();
         initView();
+        initSpinner();
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
     }
 
     private void initView() {
@@ -92,32 +117,53 @@ public class ContactUsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
 
-        EditTextWithFont mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
+        mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
         mEdtFullName.setHint(getString(R.string.full_name));
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
+        mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        EditTextWithFont mEdtPhoneNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
-        mEdtPhoneNumber.setHint(getString(R.string.phone_number));
-        mEdtPhoneNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
+        mEdtMobileNumber.setHint(getString(R.string.phone_number));
+        mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
-        EditTextWithFont mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
+        mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email2));
         mEdtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        mEdtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
-        EditTextWithFont mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
+        mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
         mEdtMessage.setHint(getString(R.string.message));
         mEdtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         mEdtMessage.setSingleLine(false);
+        mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(150) });
 
+    }
+
+    private void initSpinner() {
         String[] arrEnquiryOptions = {getResources().getString(R.string.enquiry_type), getResources().getString(R.string.press_enquiry), getResources().getString(R.string.ticketting_enquiry),
                 getResources().getString(R.string.venue_booking), getResources().getString(R.string.careers)};
 
         ArrayAdapter<String> adapterEnquiry = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrEnquiryOptions);
         spinnerEnquiryType.setAdapter(adapterEnquiry);
-    }
+        spinnerEnquiryType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerEnquiryType.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.enquiry_type))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    private void initToolbar() {
-        setSupportActionBar(toolbar);
+            }
+        });
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -127,7 +173,7 @@ public class ContactUsActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.imgNumber, R.id.linearTwitter, R.id.linearInstagram, R.id.linearFacebook})
+    @OnClick({R.id.imgNumber, R.id.linearTwitter, R.id.linearInstagram, R.id.linearFacebook, R.id.btnSendMessage})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgNumber:
@@ -150,7 +196,85 @@ public class ContactUsActivity extends BaseActivity {
                 intent.putExtra("URL", OperaUtils.OPERA_FACEBOOK_URL);
                 startActivity(intent);
                 break;
-
+            case R.id.btnSendMessage:
+                ContactUsData();
+                break;
         }
     }
+
+    private void ContactUsData() {
+        MainController controller = new MainController(mActivity);
+        if (validateCheck()) {
+            /*controller.editProfilePost(taskComplete, api,
+                    editProfileData());*/
+        }
+    }
+
+    private boolean validateCheck() {
+        //Removing previous validations
+        mEdtFullName.setError(null);
+        mEdtMobileNumber.setError(null);
+        mEdtEmail.setError(null);
+        mEdtMessage.setError(null);
+
+        //FullName
+        if (TextUtils.isEmpty(mEdtFullName.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorFullName));
+            return false;
+        } else if (mEdtFullName.getText().toString().length() < 3 || mEdtFullName.getText().toString().length() > 30) {
+            customToast.showErrorToast(getString(R.string.errorLengthFullName));
+            return false;
+        }
+        //mobile
+        else if (TextUtils.isEmpty(mEdtMobileNumber.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorMobile));
+            return false;
+        } else if (mEdtMobileNumber.getText().toString().length() < 10 || mEdtMobileNumber.getText().toString().length() > 10) {
+            customToast.showErrorToast(getString(R.string.errorLengthMobile));
+            return false;
+        }
+        //email
+        else if (TextUtils.isEmpty(mEdtEmail.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorEmailId));
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(mEdtEmail.getText()).matches()) {
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
+            return false;
+        }
+        //nationality
+        else if (spinnerEnquiryType.getSelectedItem().toString().equals(getResources().getString(R.string.enquiry_type))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorEnquiryType));
+            return false;
+        }
+        //message
+        else if (TextUtils.isEmpty(mEdtMessage.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorMessage));
+            return false;
+        } else if (mEdtMessage.getText().toString().length() > 150) {
+            customToast.showErrorToast(getString(R.string.errorLengthMessage));
+            return false;
+        }
+        return true;
+    }
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response, String mRequestKey) {
+            if (response.body() != null) {
+
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.contactUsSuccessMsg), getResources().getString(R.string.contactUs_header), getResources().getString(R.string.ok), "ContactUs");
+                dialogue.show();
+            } else if (response.errorBody() != null) {
+                try {
+                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                    dialogue.show();
+                } catch (Exception e) {
+                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+        @Override
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
+        }
+    };
 }
