@@ -10,6 +10,7 @@ import android.view.Window;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
+import com.opera.app.activities.MainActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 
@@ -21,7 +22,7 @@ public class SuccessDialogue extends Dialog {
 
     private Activity mActivity;
     private BaseActivity mBaseActivity;
-    private String message,mFrom,mPopUpBtnTxt,mPopUpHeader;
+    private String message, mFrom, mPopUpBtnTxt, mPopUpHeader;
 
     @BindView(R.id.txtErrorMessage)
     TextViewWithFont txtErrorMessage;
@@ -40,11 +41,11 @@ public class SuccessDialogue extends Dialog {
         this.mPopUpHeader = mPopUpHeader;
         this.mPopUpBtnTxt = mPopUpBtnTxt;
         this.mFrom = mFrom;
-        mBaseActivity= (BaseActivity) mActivity;
+        mBaseActivity = (BaseActivity) mActivity;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_error_dialogue);
@@ -61,9 +62,11 @@ public class SuccessDialogue extends Dialog {
         @Override
         public void onClick(View v) {
             dismiss();
-            if(mFrom.equalsIgnoreCase("Register"))
-            {
+            if (mFrom.equalsIgnoreCase("Register")) {
                 mBaseActivity.openActivity(mActivity, LoginActivity.class);
+            } else if (mFrom.equalsIgnoreCase("setUserSettings")) {
+                mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
+
             }
             mActivity.finish();
         }

@@ -45,7 +45,7 @@ public class SettingsActivity extends BaseActivity {
 
     private Activity mActivity;
     private SessionManager mSessionManager;
-    private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", mSelectedLanguage = "";
+    private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", mNewLanguage = "";
     private Api api;
     @Inject
     Retrofit retrofit;
@@ -116,18 +116,6 @@ public class SettingsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
-
-        if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
-                LanguageManager.createInstance().mSelectedLanguage,
-                LanguageManager.createInstance().mLanguageEnglish).
-                equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
-            englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-        } else {
-            englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-        }
-
         if (mSessionManager.GetUserSettings()) {
             SetAlreadyUpdatedSettings();
         } else {
@@ -153,26 +141,28 @@ public class SettingsActivity extends BaseActivity {
             case R.id.englishSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
+              /*  LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                         LanguageManager.createInstance().mSelectedLanguage,
                         LanguageManager.createInstance().mLanguageEnglish);
 
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
             }
             break;
 
             case R.id.arabicSwitch: {
                 englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                 arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-                LanguageManager.createInstance().StoreInSharedPreference(mActivity,
+                mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
+               /* LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                         LanguageManager.createInstance().mSelectedLanguage,
                         LanguageManager.createInstance().mLanguageArabic);
 
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
             }
             break;
 
@@ -196,10 +186,10 @@ public class SettingsActivity extends BaseActivity {
         mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
         mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
 
-        mSelectedLanguage = LanguageManager.createInstance().GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, LanguageManager.createInstance().mLanguageEnglish);
+        /*mSelectedLanguage = LanguageManager.createInstance().GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, LanguageManager.createInstance().mLanguageEnglish);*/
 
         MainController controller = new MainController(SettingsActivity.this);
-        controller.updateSettings(taskComplete, api, new SetSettingsPojo(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mSelectedLanguage));
+        controller.updateSettings(taskComplete, api, new SetSettingsPojo(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage));
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -214,9 +204,9 @@ public class SettingsActivity extends BaseActivity {
 
                         LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                                 LanguageManager.createInstance().mSelectedLanguage,
-                                mSelectedLanguage);
+                                mNewLanguage);
 
-                        SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successSettingsUpdation), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "");
+                        SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successSettingsUpdation), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "setUserSettings");
                         dialogue.show();
                     } else {
                         try {
@@ -307,6 +297,19 @@ public class SettingsActivity extends BaseActivity {
             mReminderSwitch.setChecked(true);
         } else {
             mReminderSwitch.setChecked(false);
+        }
+
+        if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
+                LanguageManager.createInstance().mSelectedLanguage,
+                LanguageManager.createInstance().mLanguageEnglish).
+                equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+            mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
+        } else {
+            englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
+            arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
         }
     }
 }

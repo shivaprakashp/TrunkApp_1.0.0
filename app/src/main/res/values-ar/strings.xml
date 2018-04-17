@@ -177,5 +177,9 @@
     <string name="read_more">اقرأ أكثر</string>
     <string name="read_less">أقرأ أقل</string>
     <string name="update">Update</string>
-    <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
+    <string name="successSettingsUpdation">تهانينا ، لقد قمت بتحديث إعداداتك بنجاح.</string>
+
+    <!--Error handling-->
+    <string name="success_header">نجاح</string>
+    <string name="ok">حسنا</string>
 </resources>
