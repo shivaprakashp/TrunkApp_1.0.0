@@ -1,6 +1,5 @@
 package com.opera.app.controller;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.opera.app.constants.AppConstants;
@@ -13,7 +12,7 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
-import com.opera.app.pojo.settings.SettingsPojo;
+import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
 import retrofit2.Call;
@@ -72,9 +71,16 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void updateSettings(TaskComplete taskComplete, Api api, SettingsPojo mSettingsPojo) {
-        Call call = api.UpdateSettings(contentType, mSettingsPojo);
+    public void updateSettings(TaskComplete taskComplete, Api api, SetSettingsPojo mSettingsPojo) {
+        Call call = api.UpdateSettings(contentType, manager.getUserLoginData().getData().getToken(),mSettingsPojo);
         properties.setRequestKey(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void getUpdatedSettings(TaskComplete taskComplete, Api api) {
+        Call call = api.GetUpdatedSettings(contentType, manager.getUserLoginData().getData().getToken());
+        properties.setRequestKey(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }

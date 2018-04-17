@@ -17,6 +17,7 @@ public class SessionManager {
 
     private static SharedPreferences loginPref;
     private static String IS_USER_LOGIN = "IsUserLoggedIn";
+    private static String IS_SETTING_DATA_UPDATED = "IsSettingsDataUpdated";
     private SharedPreferences.Editor editor;
     Context context;
     int prefMode = 0;
@@ -78,6 +79,23 @@ public class SessionManager {
         //start new activity
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    /*Update Settings*/
+    public void UpdateUserSettings(String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch) {
+        editor.putBoolean(IS_SETTING_DATA_UPDATED, true);
+        editor.putString(context.getString(R.string.NotificationSwitchValue), mNotifSwitch);
+        editor.putString(context.getString(R.string.PromotionSwitchValue), mPromoSwitch);
+        editor.putString(context.getString(R.string.FeedbackNotiSwitchValue), mFeedbackNotifSwitch);
+        editor.putString(context.getString(R.string.NewsLetterSwitchValue), mNewsletterSwitch);
+        editor.putString(context.getString(R.string.BookedShowSwitchValue), mBookedShowSwitch);
+        editor.commit();
+    }
+
+    /*Get Settings*/
+    public boolean GetUserSettings() {
+        boolean IsUserSettingsCache = loginPref.getBoolean(IS_SETTING_DATA_UPDATED, false);
+        return IsUserSettingsCache;
     }
 
 

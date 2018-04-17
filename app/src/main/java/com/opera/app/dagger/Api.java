@@ -8,7 +8,8 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
-import com.opera.app.pojo.settings.SettingsPojo;
+import com.opera.app.pojo.settings.GetSettingsPojo;
+import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -42,6 +43,9 @@ public interface Api {
                                               @Body ForgotPasswordPojo mForgotPasswordPojo);
 
     @POST("setUserSettings/")
-    Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content,
-                                              @Body SettingsPojo mSettingsPojo);
+    Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                              @Body SetSettingsPojo mSettingsPojo);
+
+    @POST("GetUserSettings/")
+    Call<GetSettingsPojo> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
 }

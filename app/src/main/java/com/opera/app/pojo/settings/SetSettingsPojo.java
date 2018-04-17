@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by 1000632 on 4/16/2018.
  */
 
-public class SettingsPojo {
+public class SetSettingsPojo {
 
     @SerializedName("AllowNotification")
     @Expose
@@ -21,20 +21,41 @@ public class SettingsPojo {
     @Expose
     private String AllowFeedbackNotification;
 
-    @SerializedName("WeeklyNewsletter")
+    @SerializedName("WeeklyNewsLetters")
     @Expose
-    private String WeeklyNewsletter;
+    private String WeeklyNewsLetters;
 
     @SerializedName("RemindersForBookedShow")
     @Expose
     private String RemindersForBookedShow;
 
-    public SettingsPojo(String allowNotification, String allowPromotion, String allowFeedbackNotification, String weeklyNewsletter, String remindersForBookedShow) {
+    @SerializedName("Language")
+    @Expose
+    private String Language;
+
+    public SetSettingsPojo(String allowNotification, String allowPromotion, String allowFeedbackNotification, String weeklyNewsletter, String remindersForBookedShow, String language) {
         AllowNotification = allowNotification;
         AllowPromotion = allowPromotion;
         AllowFeedbackNotification = allowFeedbackNotification;
-        WeeklyNewsletter = weeklyNewsletter;
+        WeeklyNewsLetters = weeklyNewsletter;
         RemindersForBookedShow = remindersForBookedShow;
+        Language=language;
+    }
+
+    public String getWeeklyNewsLetters() {
+        return WeeklyNewsLetters;
+    }
+
+    public void setWeeklyNewsLetters(String weeklyNewsLetters) {
+        WeeklyNewsLetters = weeklyNewsLetters;
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+
+    public void setLanguage(String language) {
+        Language = language;
     }
 
     public String getAllowNotification() {
@@ -59,14 +80,6 @@ public class SettingsPojo {
 
     public void setAllowFeedbackNotification(String allowFeedbackNotification) {
         AllowFeedbackNotification = allowFeedbackNotification;
-    }
-
-    public String getWeeklyNewsletter() {
-        return WeeklyNewsletter;
-    }
-
-    public void setWeeklyNewsletter(String weeklyNewsletter) {
-        WeeklyNewsletter = weeklyNewsletter;
     }
 
     public String getRemindersForBookedShow() {
