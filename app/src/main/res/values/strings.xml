@@ -251,7 +251,7 @@
     <string name="errorEmail">Email address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
 
-    <string name="errorUserEmail">Entered Email Address is invalid</string>
+    <string name="errorUserEmail">Enter valid Username</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
     <string name="errorPreviousAndNewPassword">Current password and new password should not be equal</string>
     <string name="errorPasswordMatch">New password and confirm new password should be equal</string>
