@@ -180,11 +180,11 @@ public class RegisterActivity extends BaseActivity {
         edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtEmail.setFilters(new InputFilter[] { new InputFilter.LengthFilter(50) });
+        edtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType( InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        edtPassword.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
@@ -200,14 +200,14 @@ public class RegisterActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
         edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] { OperaUtils.filter,new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
