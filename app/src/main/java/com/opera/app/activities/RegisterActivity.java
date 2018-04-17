@@ -406,15 +406,15 @@ public class RegisterActivity extends BaseActivity {
                 edtFirstName.getText().toString().trim() : "");
         registration.setLastName(edtLastName.getText().toString().trim() != null ?
                 edtLastName.getText().toString().trim() : "");
-        registration.setPhoneNumber("");
-        registration.setInterest("");
-        registration.setNationality("");
+        registration.setNationality(spinnerNationality.getSelectedItem().toString());
         registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
                 edtDob.getText().toString().trim() : "");
         registration.setMobileNumber(edtMobile.getText().toString().trim() != null ?
                 edtMobile.getText().toString().trim() : "");
-        registration.setCity("");
-        registration.setCountry("");
+        registration.setCity(edtCity.getText().toString());
+        registration.setCountry(spinnerCountry.getSelectedItem().toString());
+        registration.setState(spinnerState.getSelectedItem().toString());
+        registration.setJoinDate(OperaUtils.getCurrentDate());
 
         return registration;
 
