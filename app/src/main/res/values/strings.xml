@@ -38,7 +38,7 @@
     <string name="lastname">Last Name*</string>
     <string name="nationality">Nationality*</string>
     <string name="dob">Date of Birth*</string>
-    <string name="mobile">Mobile Phone*</string>
+    <string name="mobile">Mobile Number*</string>
     <string name="city">City*</string>
     <string name="state">Emirate or State*</string>
     <string name="country">Country*</string>
@@ -186,7 +186,7 @@
     <string name="edit_lastname">Last Name</string>
     <string name="edit_nationality">Nationality</string>
     <string name="edit_dob">Date of Birth</string>
-    <string name="edit_mobile">Mobile Phone</string>
+    <string name="edit_mobile">Mobile Number</string>
     <string name="edit_city">City</string>
     <string name="edit_state">Emirate or State</string>
     <string name="edit_country">Country</string>
@@ -198,11 +198,11 @@
     <string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
     <string name="send_message">Send message</string>
     <string name="contact_us">Contact Us</string>
-    <string name="full_name">FULL NAME</string>
-    <string name="phone_number">PHONE NUMBER</string>
-    <string name="email2">EMAIL</string>
-    <string name="message">MESSAGE</string>
-    <string name="enquiry_type">ENQUIRY TYPE</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Mobile Number</string>
+    <string name="email2">Email Address</string>
+    <string name="message">Message</string>
+    <string name="enquiry_type">Enquiry Type</string>
     <string name="press_enquiry">Press Enquiry</string>
     <string name="ticketting_enquiry">Ticketting Enquiry</string>
     <string name="venue_booking">Venue Booking</string>
@@ -212,8 +212,8 @@
     <string name="reserve_a_table2">Reserve a table</string>
     <string name="sean_connolly_dubai_opera">\@Sean Connolly at Dubai Opera</string>
     <string name="preffereed_date">Preffered date of reservation*</string>
-    <string name="telephone_no">Telephone number</string>
-    <string name="email3">Email</string>
+    <string name="telephone_no">Mobile Number</string>
+    <string name="email3">Email Address</string>
     <string name="window_table">Window table</string>
     <string name="total_no_of_guests">Please select total number of guests*</string>
     <string name="full_name1">Full name</string>

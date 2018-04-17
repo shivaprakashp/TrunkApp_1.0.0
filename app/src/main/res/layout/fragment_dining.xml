@@ -95,7 +95,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.5"
                         android:orientation="vertical"
                         android:padding="10dp">
 
@@ -106,6 +106,8 @@
                             android:layout_height="@dimen/button_height"
                             android:background="@drawable/btn_ripple_effect"
                             android:text="@string/reserve_a_table"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
                             font:name="Montserrat-Light" />
 
                     </LinearLayout>
