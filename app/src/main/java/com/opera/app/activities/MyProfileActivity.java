@@ -164,7 +164,7 @@ public class MyProfileActivity extends BaseActivity {
             tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
                     + manager.getUserLoginData().getData().getProfile().getLastName());
 
-            //profileInfo.setText(getString(R.string.profile_info)+" "+manager.getUserLoginData().getData().getProfile().getJoinDate());
+            profileInfo.setText(getString(R.string.profile_info)+" "+manager.getUserLoginData().getData().getProfile().getJoinDate());
         }
     }
 

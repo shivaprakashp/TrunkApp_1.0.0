@@ -32,6 +32,7 @@ import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
@@ -126,25 +127,25 @@ public class EditProfileActivity extends BaseActivity {
 
         initToolbar();
         initView();
+        initSpinners();
     }
 
     private void initToolbar() {
         setSupportActionBar(toolbar);
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.my_profile));
+
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
     }
 
     private void initView() {
-
         customToast = new CustomToast(mActivity);
         manager = new SessionManager(mActivity);
 
         ((MainApplication) getApplication()).getNetComponent().inject(EditProfileActivity.this);
         api = retrofit.create(Api.class);
-
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.my_profile));
 
         //edittext
         edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
@@ -185,196 +186,88 @@ public class EditProfileActivity extends BaseActivity {
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
         edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        //edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
 
+        edtDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        edtDob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+                });
+                dialogFragment.show(getSupportFragmentManager(), "Date");
+            }
+        });
+    }
+
+    //find all spinner at one place
+    private void initSpinners(){
         //---------------Nationality----------------
         // Initializing a String Array
-        String[] nationality_str = getResources().getStringArray(R.array.nationality);
-        final List<String> List = new ArrayList<>(Arrays.asList(nationality_str));
+        ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
 
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, List) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerNationality.setAdapter(spinnerArrayAdapter);
-        spinnerNationality.setSelection(spinnerArrayAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getNationality()));
+        spinnerNationality.setAdapter(nationalAdapter);
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
+                if (!spinnerNationality.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.nationality))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-
         //---------------State----------------
-        String[] state_str = getResources().getStringArray(R.array.states);
-        final List<String> stateList = new ArrayList<>(Arrays.asList(state_str));
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(mActivity,
+                R.layout.custom_spinner,
+                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.states)))));
+        spinnerState.setAdapter(stateAdapter);
 
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, stateList) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter1.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerState.setAdapter(spinnerArrayAdapter1);
-        //spinnerState.setSelection(spinnerArrayAdapter1.getPosition(manager.getUserLoginData().getData().getProfile().get));
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
+                if (!spinnerState.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.state))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-
         //---------------Country----------------
-        String[] country_str = getResources().getStringArray(R.array.country);
-        final List<String> countryList = new ArrayList<>(Arrays.asList(country_str));
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
+                R.layout.custom_spinner,
+                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
 
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>(
-                this, R.layout.custom_spinner, countryList) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
-            }
+        spinnerCountry.setAdapter(countryAdapter);
 
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
-
-        spinnerArrayAdapter2.setDropDownViewResource(R.layout.custom_spinner);
-
-        spinnerCountry.setAdapter(spinnerArrayAdapter2);
-        spinnerCountry.setSelection(spinnerArrayAdapter2.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if (position > 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
+                if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
-
-        edtDob.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//your code
-                    DialogFragment newFragment = new DatePickerFragment();
-                    newFragment.show(getSupportFragmentManager(), "datePicker");
-
-                }
-                return false;
             }
         });
     }
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            month = month + 1;
-            //edtDob.setText(year + "-" + month + "-" + day);
-            edtDob.setText(day + "/" + (month) + "/" + year);
-        }
-    }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
         @Override
