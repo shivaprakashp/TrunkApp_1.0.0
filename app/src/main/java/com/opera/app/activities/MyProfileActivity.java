@@ -2,14 +2,12 @@ package com.opera.app.activities;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -22,7 +20,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,7 +29,6 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -49,7 +45,10 @@ import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -155,6 +154,11 @@ public class MyProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_my_profile);
 
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         updateSessionData();
     }
 
@@ -164,7 +168,23 @@ public class MyProfileActivity extends BaseActivity {
             tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
                     + manager.getUserLoginData().getData().getProfile().getLastName());
 
-            profileInfo.setText(getString(R.string.profile_info)+" "+manager.getUserLoginData().getData().getProfile().getJoinDate());
+            if(manager.getUserLoginData().getData().getProfile().getJoinDate() != null) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat(
+                        "dd/MM/yyyy");
+                Date myDate = null;
+                try {
+                    myDate = dateFormat.parse(manager.getUserLoginData().getData().getProfile().getJoinDate());
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
+                String finalDate = timeFormat.format(myDate);
+                profileInfo.setText(getString(R.string.profile_info) + " " + finalDate);
+            }
+            else {
+                profileInfo.setText("");
+            }
         }
     }
 
@@ -192,22 +212,6 @@ public class MyProfileActivity extends BaseActivity {
         mTabHost.setupWithViewPager(mViewPager);
 
 
-    }
-
-    public void changePassword(){
-        dialog = new BottomSheetDialog(mActivity);
-        View view = getLayoutInflater().inflate(R.layout.popup_changepassword, null);
-        dialog.setContentView(view);
-
-        view.findViewById(R.id.imgClose).setOnClickListener(dismissDialog);
-        view.findViewById(R.id.btnCancel).setOnClickListener(dismissDialog);
-        view.findViewById(R.id.btnSave).setOnClickListener(saveChangePassword);
-
-        mEdtCurrentPassword = (EditTextWithFont) view.findViewById(R.id.edtCurrentPassword);
-        mEdtNewPassword = (EditTextWithFont) view.findViewById(R.id.edtNewPassword);
-        mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
-
-        dialog.show();
     }
 
     //dismiss pop dialog
@@ -244,9 +248,61 @@ public class MyProfileActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_profile:
-                showDialog();
+                imageSelection();
                 break;
         }
+    }
+
+    public void imageSelection(){
+        dialog = new BottomSheetDialog(mActivity);
+        View view = getLayoutInflater().inflate(R.layout.dialog_image_selection, null);
+        dialog.setContentView(view);
+
+        view.findViewById(R.id.imgClose).setOnClickListener(dismissDialog);
+        view.findViewById(R.id.linearGallery).setOnClickListener(linearGallery);
+        view.findViewById(R.id.linearCamera).setOnClickListener(linearCamera);
+
+        dialog.show();
+    }
+
+    //gallery selection
+    private View.OnClickListener linearGallery = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+        }
+    };
+
+    //camera selection
+    private View.OnClickListener linearCamera = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+                if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
+                } else {
+                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                }
+            } else {
+                OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+            }
+        }
+    };
+
+    public void changePassword(){
+        dialog = new BottomSheetDialog(mActivity);
+        View view = getLayoutInflater().inflate(R.layout.popup_changepassword, null);
+        dialog.setContentView(view);
+
+        view.findViewById(R.id.imgClose).setOnClickListener(dismissDialog);
+        view.findViewById(R.id.btnCancel).setOnClickListener(dismissDialog);
+        view.findViewById(R.id.btnSave).setOnClickListener(saveChangePassword);
+
+        mEdtCurrentPassword = (EditTextWithFont) view.findViewById(R.id.edtCurrentPassword);
+        mEdtNewPassword = (EditTextWithFont) view.findViewById(R.id.edtNewPassword);
+        mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
+
+        dialog.show();
     }
 
     private boolean checkValidation() {
@@ -293,7 +349,7 @@ public class MyProfileActivity extends BaseActivity {
         controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd));
     }
 
-    public void showDialog() {
+    /*public void showDialog() {
         final Dialog dialog = new Dialog(mActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -328,7 +384,7 @@ public class MyProfileActivity extends BaseActivity {
             }
         });
         dialog.show();
-    }
+    }*/
 
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {

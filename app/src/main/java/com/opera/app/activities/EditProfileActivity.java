@@ -213,6 +213,7 @@ public class EditProfileActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
 
         spinnerNationality.setAdapter(nationalAdapter);
+        spinnerNationality.setSelection(nationalAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getNationality()));
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -232,7 +233,7 @@ public class EditProfileActivity extends BaseActivity {
                 R.layout.custom_spinner,
                 new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.states)))));
         spinnerState.setAdapter(stateAdapter);
-
+        spinnerState.setSelection(stateAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getState()));
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -253,7 +254,7 @@ public class EditProfileActivity extends BaseActivity {
                 new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
 
         spinnerCountry.setAdapter(countryAdapter);
-
+        spinnerCountry.setSelection(countryAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -314,6 +315,7 @@ public class EditProfileActivity extends BaseActivity {
                 edtMobile.getText().toString() : "");
         data.setCity(edtCity.getText().toString().trim() != null ?
                 edtCity.getText().toString().trim() : "");
+        data.setState(spinnerState.getSelectedItem().toString().trim());
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
 
         return data;
@@ -322,7 +324,7 @@ public class EditProfileActivity extends BaseActivity {
     private boolean validateCheck() {
 
         //Removing previous validations
-        edtEmail.setError(null);
+        //edtEmail.setError(null);
         edtFirstName.setError(null);
         edtLastName.setError(null);
         edtMobile.setError(null);
@@ -412,7 +414,6 @@ public class EditProfileActivity extends BaseActivity {
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
-
         }
     };
 

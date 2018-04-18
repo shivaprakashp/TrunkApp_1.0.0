@@ -167,7 +167,7 @@
     </array>
 
     <!--My Profile-->
-    <string name="my_profile">MY PROFILE</string>
+    <string name="my_profile">My Profile</string>
     <string name="profile_name">Simon Pinto</string>
     <string name="profile_info">Member since</string>
     <string name="profile_edit_profile">Edit Profile</string>
@@ -181,6 +181,7 @@
     <string name="permissionGranted">Permission Granted</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save Changes</string>
+    <string name="profile_choose_photo">Choose Photo</string>
 
     <!--Change Password Popup -->
     <string name="curr_password">Current Password</string>
