@@ -4,8 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/grey_corner"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.opera.app.customwidget.TextViewWithFont
+            style="@style/label_white_large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:padding="10dp"
+            android:text="@string/profile_choose_photo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@color/colorBurgendy"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgClose"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_close" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_corner"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
 
     <LinearLayout
         android:id="@+id/linearGallery"
@@ -14,16 +51,17 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:src="@drawable/ic_gallery_icon" />
 
         <com.opera.app.customwidget.TextViewWithFont
-            style="@style/label_black_medium"
+            style="@style/label_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -39,21 +77,22 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:src="@drawable/ic_camera_icon" />
 
         <com.opera.app.customwidget.TextViewWithFont
-            style="@style/label_black_medium"
+            style="@style/label_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/camera"
             font:name="Montserrat-Light" />
     </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

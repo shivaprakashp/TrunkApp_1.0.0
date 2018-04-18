@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class EditProfile {
 
-    /*@SerializedName("email")
-    @Expose
-    private String email;*/
-
     @SerializedName("firstName")
     @Expose
     private String firstName;
@@ -16,14 +12,6 @@ public class EditProfile {
     @SerializedName("lastName")
     @Expose
     private String lastName;
-
-    /*@SerializedName("phoneNumber")
-    @Expose
-    private String phoneNumber;
-
-    @SerializedName("interest")
-    @Expose
-    private String interest;*/
 
     @SerializedName("nationality")
     @Expose
@@ -41,17 +29,13 @@ public class EditProfile {
     @Expose
     private String city;
 
+    @SerializedName("state")
+    @Expose
+    private String state;
+
     @SerializedName("country")
     @Expose
     private String country;
-
-   /* public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }*/
 
     public String getFirstName() {
         return firstName;
@@ -69,21 +53,13 @@ public class EditProfile {
         this.lastName = lastName;
     }
 
-    /*public String getPhoneNumber() {
-        return phoneNumber;
+    public String getState() {
+        return state;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setState(String state) {
+        this.state = state;
     }
-
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest;
-    }*/
 
     public String getNationality() {
         return nationality;

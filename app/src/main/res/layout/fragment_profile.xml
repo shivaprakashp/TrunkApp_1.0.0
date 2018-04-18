@@ -42,7 +42,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="20dp"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -69,7 +69,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="20dp"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -96,7 +96,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="20dp"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -111,24 +111,19 @@
             </ScrollView>
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark_gray" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="10dp">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnEditProfile"
                 style="@style/label_white"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/profile_edit_profile"
@@ -140,7 +135,7 @@
                 style="@style/label_white"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/profile_change_password"
