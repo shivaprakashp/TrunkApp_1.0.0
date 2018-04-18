@@ -252,35 +252,38 @@
     <string name="errorFirstName">First Name cannot be left blank</string>
     <string name="errorLastName">Last Name cannot be left blank</string>
     <string name="errorCity">City cannot be left blank</string>
-    <string name="errorMobile">Mobile Phone cannot be left blank</string>
+    <string name="errorMobile">Mobile Number cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorDob"> Date of Birth cannot be left blank</string>
-    <string name="errorEmail">Email address cannot be left blank</string>
+    <string name="errorEmail">Email Address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
-
     <string name="errorUserEmail">Enter valid Username</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
     <string name="errorPreviousAndNewPassword">Current password and new password should not be equal</string>
     <string name="errorPasswordMatch">New password and confirm new password should be equal</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
-
     <string name="errorLengthFirstName">Length of First Name should be between 3 to 30 characters</string>
     <string name="errorLengthLastName">Length of Last Name should be between 3 to 30 characters</string>
     <string name="errorLengthPassword">Length of Password should be between 3 to 16 characters</string>
     <string name="errorSamePasswordAsUsername">Password should not be same as Email</string>
-    <string name="errorLengthMobile">Length of Mobile Phone should be 10 digit</string>
+    <string name="errorLengthMobile">Length of Mobile Number should be 10 digit</string>
     <string name="errorLengthCity">Length of City should be between 2 to 15 characters</string>
     <string name="errorNationality">Select Nationality</string>
     <string name="errorState">Select Emirate or State</string>
     <string name="errorCountry">Select Country</string>
     <string name="errorTerms">You must agree with the terms and privacy policy</string>
-
     <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. User name is sent to your registered email id and mobile number which can be used for login into Dubai Opera.</string>
     <string name="success_header">SUCCESS</string>
     <string name="ok">OK</string>
     <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
-
+    <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible</string>
+    <string name="contactUs_header">Thank You!!</string>
+    <string name="errorFullName">Full Name cannot be left blank</string>
+    <string name="errorLengthFullName">Length of First Name should be between 3 to 30 characters</string>
+    <string name="errorMessage">City cannot be left blank</string>
+    <string name="errorLengthMessage">Length of Message should not be more than 150 characters</string>
+    <string name="errorEnquiryType">Select Enquiry Type</string>
 
     <array name="states">
         <item>Emirate or State*</item>
@@ -627,4 +630,5 @@
     <string name="registerRequest">Register</string>
     <string name="changePasswordRequest">ChangePasswordRequest</string>
     <string name="update">Update</string>
+
 </resources>
