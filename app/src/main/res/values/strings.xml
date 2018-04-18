@@ -630,5 +630,6 @@
     <string name="registerRequest">Register</string>
     <string name="changePasswordRequest">ChangePasswordRequest</string>
     <string name="update">Update</string>
+    <string name="OnBackPressed">OnBackPressed</string>
 
 </resources>

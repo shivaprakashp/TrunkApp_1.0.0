@@ -7,6 +7,7 @@ import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.fragments.ProfileFragment;
+import com.opera.app.services.SettingsService;
 
 import javax.inject.Singleton;
 
@@ -25,4 +26,5 @@ public interface ApiComponent {
     void inject(EditProfileActivity editProfileActivity);
     void inject(MyProfileActivity mProfileFragment);
     void inject(SettingsActivity mSettingsActivity);
+    void inject(SettingsService mSettingsService);
 }

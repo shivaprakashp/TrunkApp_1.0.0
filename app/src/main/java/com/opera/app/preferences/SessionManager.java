@@ -71,14 +71,7 @@ public class SessionManager {
         //clear all data from shared preference
         editor.clear();
         editor.commit();
-
-        //call Intent to redirect to particular page
-        Intent intent = new Intent(context, PreLoginActivity.class);
-        //clear all the top activities
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //start new activity
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
     }
 
     /*Update Settings*/

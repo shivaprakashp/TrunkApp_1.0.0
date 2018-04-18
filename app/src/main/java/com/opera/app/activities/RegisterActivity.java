@@ -131,7 +131,7 @@ public class RegisterActivity extends BaseActivity {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response,String mRequestKey) {
+        public void onTaskFinished(Response response, String mRequestKey) {
             if (response.body() != null) {
 
                 SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
@@ -147,7 +147,7 @@ public class RegisterActivity extends BaseActivity {
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t,String mRequestKey) {
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
 
         }
 
@@ -180,34 +180,34 @@ public class RegisterActivity extends BaseActivity {
         edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        edtEmail.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
         edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtRePass.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtRePass.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30)});
         edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30)});
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
@@ -219,13 +219,13 @@ public class RegisterActivity extends BaseActivity {
         edtMobile.setHint(getString(R.string.mobile));
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+        edtMobile.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
         edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.city));
         edtCity.setInputType(InputType.TYPE_CLASS_TEXT);
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtCity.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(26) });
+        edtCity.setFilters(new InputFilter[]{OperaUtils.filter, new InputFilter.LengthFilter(26)});
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,7 +243,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     //find all spinner at one place
-    private void initSpinners(){
+    private void initSpinners() {
         //---------------Nationality----------------
         // Initializing a String Array
         ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
@@ -255,11 +255,12 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerNationality.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.nationality))){
+                        getResources().getString(R.string.nationality))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -275,11 +276,12 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerState.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.state))){
+                        getResources().getString(R.string.state))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -296,11 +298,12 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country))){
+                        getResources().getString(R.string.country))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -339,7 +342,7 @@ public class RegisterActivity extends BaseActivity {
 
             txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
             txtTermsCondition.setText(spannableString);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -348,10 +351,10 @@ public class RegisterActivity extends BaseActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
-                if (flag){
+                if (flag) {
                     TermsDialogue dialogue = new TermsDialogue(mActivity);
                     dialogue.show();
-                }else {
+                } else {
                     PrivacyDialogue dialogue = new PrivacyDialogue(mActivity);
                     dialogue.show();
                 }
@@ -448,7 +451,7 @@ public class RegisterActivity extends BaseActivity {
         } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthLastName));
             return false;
-        }else
+        } else
 
             //email
             if (TextUtils.isEmpty(edtEmail.getText().toString())) {
@@ -527,9 +530,6 @@ public class RegisterActivity extends BaseActivity {
 
         return true;
     }
-
-
-
 
 
 }

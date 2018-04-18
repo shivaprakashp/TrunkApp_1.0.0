@@ -67,6 +67,8 @@
         <activity
             android:name=".activities.OtherRestaurantsActivity"
             android:screenOrientation="portrait"></activity>
+
+        <service android:name=".services.SettingsService" />
     </application>
 
 </manifest>
