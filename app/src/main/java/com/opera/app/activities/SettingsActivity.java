@@ -269,31 +269,31 @@ public class SettingsActivity extends BaseActivity {
 
     private void SetAlreadyUpdatedSettings() {
 
-        if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "false").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "true").equalsIgnoreCase("true")) {
             mNotificationSwitch.setChecked(true);
         } else {
             mNotificationSwitch.setChecked(false);
         }
 
-        if (mSharedPreferences.getString(getString(R.string.PromotionSwitchValue), "false").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.PromotionSwitchValue), "true").equalsIgnoreCase("true")) {
             mPromotionSwitch.setChecked(true);
         } else {
             mPromotionSwitch.setChecked(false);
         }
 
-        if (mSharedPreferences.getString(getString(R.string.FeedbackNotiSwitchValue), "false").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.FeedbackNotiSwitchValue), "true").equalsIgnoreCase("true")) {
             mFeedbackSwitch.setChecked(true);
         } else {
             mFeedbackSwitch.setChecked(false);
         }
 
-        if (mSharedPreferences.getString(getString(R.string.NewsLetterSwitchValue), "false").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.NewsLetterSwitchValue), "true").equalsIgnoreCase("true")) {
             mNewletterSwitch.setChecked(true);
         } else {
             mNewletterSwitch.setChecked(false);
         }
 
-        if (mSharedPreferences.getString(getString(R.string.BookedShowSwitchValue), "false").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.BookedShowSwitchValue), "true").equalsIgnoreCase("true")) {
             mReminderSwitch.setChecked(true);
         } else {
             mReminderSwitch.setChecked(false);
