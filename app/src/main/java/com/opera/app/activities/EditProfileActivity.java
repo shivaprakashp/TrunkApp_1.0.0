@@ -319,6 +319,8 @@ public class EditProfileActivity extends BaseActivity {
                 edtCity.getText().toString().trim() : "");
         data.setState(spinnerState.getSelectedItem().toString().trim());
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
+        data.setAddress(edtAddress.getText().toString() != null ?
+                edtAddress.getText().toString() : "");
 
         return data;
     }
@@ -326,12 +328,12 @@ public class EditProfileActivity extends BaseActivity {
     private boolean validateCheck() {
 
         //Removing previous validations
-        //edtEmail.setError(null);
+        /*edtEmail.setError(null);
         edtFirstName.setError(null);
         edtLastName.setError(null);
         edtMobile.setError(null);
         edtCity.setError(null);
-        edtDob.setError(null);
+        edtDob.setError(null);*/
 
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {

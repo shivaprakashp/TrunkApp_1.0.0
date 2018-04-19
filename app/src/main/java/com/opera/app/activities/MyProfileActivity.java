@@ -168,12 +168,12 @@ public class MyProfileActivity extends BaseActivity {
             tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
                     + manager.getUserLoginData().getData().getProfile().getLastName());
 
-            if(manager.getUserLoginData().getData().getProfile().getJoinDate() != null) {
+            if(manager.getUserLoginData().getData().getProfile().getJoinDate() != null && !manager.getUserLoginData().getData().getProfile().getJoinDate().isEmpty()) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(
                         "dd/MM/yyyy");
                 Date myDate = null;
                 try {
-                    myDate = dateFormat.parse(manager.getUserLoginData().getData().getProfile().getJoinDate());
+                    myDate = dateFormat.parse(manager.getUserLoginData().getData().getProfile().getJoinDate().toString());
 
                 } catch (ParseException e) {
                     e.printStackTrace();

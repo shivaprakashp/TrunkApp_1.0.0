@@ -69,9 +69,16 @@ public class ProfileFragment extends BaseFragment {
 
     private void updateSessionData() {
         manager = new SessionManager(mActivity);
-        profile_address.setText(manager.getUserLoginData().getData().getProfile().getCity() + ", "
-                + manager.getUserLoginData().getData().getProfile().getState()+ ", "
-                + manager.getUserLoginData().getData().getProfile().getCountry());
+
+        if(manager.getUserLoginData().getData().getProfile().getAddress() != null && !manager.getUserLoginData().getData().getProfile().getAddress().isEmpty())
+        {
+            profile_address.setText(manager.getUserLoginData().getData().getProfile().getAddress());
+        }
+        else{
+            profile_address.setText(manager.getUserLoginData().getData().getProfile().getCity() + ", "
+                    + manager.getUserLoginData().getData().getProfile().getState() + ", "
+                    + manager.getUserLoginData().getData().getProfile().getCountry());
+        }
         profile_email.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         profile_mobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
     }

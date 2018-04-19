@@ -35,6 +35,9 @@ public class UserProfile {
     @SerializedName("JoinDate")
     @Expose
     private String joinDate;
+    @SerializedName("Address")
+    @Expose
+    private String Address;
 
     public String getEmail() {
         return email;
@@ -114,6 +117,14 @@ public class UserProfile {
 
     public void setJoinDate(String joinDate) {
         this.joinDate = joinDate;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
     }
 
 }

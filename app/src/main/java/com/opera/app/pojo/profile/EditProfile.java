@@ -8,34 +8,31 @@ public class EditProfile {
     @SerializedName("firstName")
     @Expose
     private String firstName;
-
     @SerializedName("lastName")
     @Expose
     private String lastName;
-
     @SerializedName("nationality")
     @Expose
     private String nationality;
-
     @SerializedName("dateOfBirth")
     @Expose
     private String dateOfBirth;
-
     @SerializedName("mobileNumber")
     @Expose
     private String mobileNumber;
-
     @SerializedName("city")
     @Expose
     private String city;
-
     @SerializedName("state")
     @Expose
     private String state;
-
     @SerializedName("country")
     @Expose
     private String country;
+    private String joinDate;
+    @SerializedName("Address")
+    @Expose
+    private String Address;
 
     public String getFirstName() {
         return firstName;
@@ -100,4 +97,13 @@ public class EditProfile {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
 }
