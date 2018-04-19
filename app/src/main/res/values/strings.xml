@@ -632,5 +632,6 @@
     <string name="changePasswordRequest">ChangePasswordRequest</string>
     <string name="update">Update</string>
     <string name="OnBackPressed">OnBackPressed</string>
+    <string name="OnLanguageChange">OnLanguageChange</string>
 
 </resources>

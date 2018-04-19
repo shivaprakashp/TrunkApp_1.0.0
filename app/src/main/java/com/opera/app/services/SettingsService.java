@@ -26,6 +26,11 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -47,6 +52,7 @@ public class SettingsService extends IntentService {
     Retrofit retrofit;
     public static Activity mActivity;
     static SessionManager mSessionManager;
+    private static ProgressDialog mProgressDialog;
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -57,7 +63,7 @@ public class SettingsService extends IntentService {
         super("SettingsService");
     }
 
-    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String mFrom) {
+    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From) {
         mActivity = activity;
         Intent i = new Intent(mActivity, SettingsService.class);
         i.putExtra("NotificationSwitch", mNotifSwitch);
@@ -68,7 +74,17 @@ public class SettingsService extends IntentService {
         i.putExtra("SelecteLanguage", mNewLanguage);
         mActivity.startService(i);
         mSessionManager = new SessionManager(mActivity);
-        this.mFrom = mFrom;
+        this.mFrom = From;
+
+        if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {
+            try {
+                mProgressDialog = new ProgressDialog(mActivity);
+                mProgressDialog.setMessage(mActivity.getResources().getString(R.string.loading));
+                mProgressDialog.show();
+            } catch (Resources.NotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -86,7 +102,7 @@ public class SettingsService extends IntentService {
         if (Connections.isConnectionAlive(mActivity)) {
             sendUpdatedSettings();
         } else {
-            Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -101,12 +117,17 @@ public class SettingsService extends IntentService {
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
+                    try {
+                        mProgressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if (response.body() != null) {
                         RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
                         if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
                             SessionManager sessionManager = new SessionManager(mActivity);
                             sessionManager.UpdateUserSettings(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch);
-                            if (!mFrom.equalsIgnoreCase(getResources().getString(R.string.OnBackPressed))) {
+                            if (mFrom.equalsIgnoreCase(getResources().getString(R.string.OnLanguageChange))) {
 
                                 LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                                         LanguageManager.createInstance().mSelectedLanguage,
@@ -116,7 +137,14 @@ public class SettingsService extends IntentService {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 mActivity.finish();
+                            } else if (mFrom.equalsIgnoreCase(getResources().getString(R.string.logout))) {
+                                mSessionManager.logoutUser();
                             }
+                        }
+                    } else {
+                        if (mFrom.equalsIgnoreCase(getResources().getString(R.string.OnLanguageChange)) || mFrom.equalsIgnoreCase(getResources().getString(R.string.logout))) {
+                            ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                            dialogue.show();
                         }
                     }
 
@@ -125,6 +153,11 @@ public class SettingsService extends IntentService {
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
+                    try {
+                        mProgressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     stopService();
                 }
             });
@@ -138,5 +171,19 @@ public class SettingsService extends IntentService {
     private void stopService() {
         Intent i = new Intent(mActivity, SettingsService.class);
         mActivity.stopService(i);
+    }
+
+    public String jsonResponse(Response response) {
+
+        try {
+            JSONObject jObjError = new JSONObject(response.errorBody().string());
+            return jObjError.getString("message");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
