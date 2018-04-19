@@ -37,6 +37,7 @@
     <string name="continue_as_guest"><u>Continue as Guest</u></string>
     <string name="create_an_account">Create an Account</string>
 
+    <string name="select">Select</string>
     <string name="send">Send</string>
     <string name="email">Email Address*</string>
     <string name="pass">Password*</string>
@@ -288,12 +289,12 @@
 
     <array name="states">
         <item>Emirate or State*</item>
+        <item>Dubai</item>
         <item>Abu Dhabi</item>
         <item>Ajman</item>
-        <item>Sharjah</item>
-        <item>Dubai</item>
         <item>Fujairah</item>
         <item>Ras Al Khaimah</item>
+        <item>Sharjah</item>
         <item>Umm Al Quwain</item>
     </array>
 
