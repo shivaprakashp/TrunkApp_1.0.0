@@ -169,7 +169,7 @@ public class SearchableListDialog extends DialogFragment implements
         _listViewItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                _searchableItem.onSearchableItemClicked(listAdapter.getItem(position), position);
+                _searchableItem.onSearchableItemClicked(listAdapter.getItem(position+1), position+1);
                 getDialog().dismiss();
             }
         });

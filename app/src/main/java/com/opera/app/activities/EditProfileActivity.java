@@ -101,10 +101,10 @@ public class EditProfileActivity extends BaseActivity {
     View edit_edtAddress;
 
     @BindView(R.id.spinnerNationality)
-    Spinner spinnerNationality;
+    CustomSpinner spinnerNationality;
 
     @BindView(R.id.spinnerState)
-    Spinner spinnerState;
+    CustomSpinner spinnerState;
 
     @BindView(R.id.spinnerCountry)
     CustomSpinner spinnerCountry;
@@ -212,7 +212,7 @@ public class EditProfileActivity extends BaseActivity {
         ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
                 mActivity, R.layout.custom_spinner,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
-
+        spinnerNationality.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_nationality));
         spinnerNationality.setAdapter(nationalAdapter);
         spinnerNationality.setSelection(nationalAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getNationality()));
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -233,6 +233,8 @@ public class EditProfileActivity extends BaseActivity {
         ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(mActivity,
                 R.layout.custom_spinner,
                 new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.states)))));
+
+        spinnerState.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_state));
         spinnerState.setAdapter(stateAdapter);
         spinnerState.setSelection(stateAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getState()));
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -253,7 +255,7 @@ public class EditProfileActivity extends BaseActivity {
         ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
                 R.layout.custom_spinner,
                 new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
-
+        spinnerCountry.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_country));
         spinnerCountry.setAdapter(countryAdapter);
         spinnerCountry.setSelection(countryAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

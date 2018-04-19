@@ -93,7 +93,10 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
                 // spinner every time it is loaded with items in the adapter.
                 _items.clear();
                 for (int i = 0; i < _arrayAdapter.getCount(); i++) {
-                    _items.add(_arrayAdapter.getItem(i));
+                    if (i != 0) {
+                        _items.add(_arrayAdapter.getItem(i));
+                    }
+
                 }
                 // Change end.
 
@@ -141,7 +144,6 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
     public void setTitle(String strTitle) {
         _searchableListDialog.setTitle(strTitle);
     }
-
 
 
     public void setPositiveButton(String strPositiveButtonText) {
