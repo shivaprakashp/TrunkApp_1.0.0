@@ -126,26 +126,18 @@ public class SettingsActivity extends BaseActivity {
                 GetUpdatedUserSettings();
             }
         } else {
-            //Guest user
 
+            //Guest user
+            mLinearLogout.setVisibility(View.GONE);
             mFeedbackSwitch.setClickable(false);
             mFeedbackSwitch.setChecked(false);
             mNewletterSwitch.setClickable(false);
             mNewletterSwitch.setChecked(false);
             mReminderSwitch.setClickable(false);
             mReminderSwitch.setChecked(false);
-            if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
-                    LanguageManager.createInstance().mSelectedLanguage,
-                    LanguageManager.createInstance().mLanguageEnglish).
-                    equalsIgnoreCase(LanguageManager.createInstance().mLanguageEnglish)) {
-                englishSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-                arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
-            } else {
-                englishSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
-                arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
-                mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
-            }
+
+            SetLanguageForPage();
+
         }
     }
 
@@ -170,13 +162,17 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void StartServiceUpdateSettings(String mFrom) {
-        mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
-        mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
-        mFeedbackNotifSwitch = mFeedbackSwitch.isChecked() ? "true" : "false";
-        mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
-        mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
+        if (Connections.isConnectionAlive(mActivity)) {
+            mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
+            mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
+            mFeedbackNotifSwitch = mFeedbackSwitch.isChecked() ? "true" : "false";
+            mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
+            mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
 
-        mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom);
+            mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom);
+        } else {
+            Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+        }
     }
 
     @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout, R.id.linearLogout})
@@ -188,7 +184,7 @@ public class SettingsActivity extends BaseActivity {
                     arabicSwitch.setBackgroundColor(getResources().getColor(R.color.dark_gray));
                     mNewLanguage = LanguageManager.createInstance().mLanguageEnglish;
 
-                    StartServiceUpdateSettings("");
+                    StartServiceUpdateSettings(getResources().getString(R.string.OnLanguageChange));
                     /*sendUpdatedSettings();*/
                 } else {
                     RedirectToHome(LanguageManager.createInstance().mLanguageEnglish);
@@ -202,7 +198,7 @@ public class SettingsActivity extends BaseActivity {
                     arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
                     mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
 
-                    StartServiceUpdateSettings("");
+                    StartServiceUpdateSettings(getResources().getString(R.string.OnLanguageChange));
                     /*sendUpdatedSettings();*/
                 } else {
                     RedirectToHome(LanguageManager.createInstance().mLanguageArabic);
@@ -212,11 +208,13 @@ public class SettingsActivity extends BaseActivity {
             break;
 
             case R.id.linearLogout:
-                mSessionManager.logoutUser();
+                StartServiceUpdateSettings(getResources().getString(R.string.logout));
+               /* mSessionManager.logoutUser();*/
                 break;
 
             case R.id.tvLogout:
-                mSessionManager.logoutUser();
+                StartServiceUpdateSettings(getResources().getString(R.string.logout));
+                /*mSessionManager.logoutUser();*/
                 break;
 
         }
@@ -231,53 +229,10 @@ public class SettingsActivity extends BaseActivity {
 
     }
 
-   /* private void sendUpdatedSettings() {
-        mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
-        mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
-        mFeedbackNotifSwitch = mFeedbackSwitch.isChecked() ? "true" : "false";
-        mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
-        mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
-
-        *//*mNewLanguage = LanguageManager.createInstance().GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, LanguageManager.createInstance().mLanguageEnglish);*//*
-
-        MainController controller = new MainController(SettingsActivity.this);
-        controller.updateSettings(taskComplete, api, new SetSettingsPojo(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage));
-    }*/
-
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-           /* if (mRequestKey.equalsIgnoreCase(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS)) {
-                if (response.body() != null) {
-                    RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
-                    if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
-                        SessionManager sessionManager = new SessionManager(mActivity);
-                        sessionManager.UpdateUserSettings(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch);
-
-                        LanguageManager.createInstance().StoreInSharedPreference(mActivity,
-                                LanguageManager.createInstance().mSelectedLanguage,
-                                mNewLanguage);
-
-                        RedirectToHome(mNewLanguage);
-                    } else {
-                        try {
-                            ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
-                            dialogue.show();
-                        } catch (Exception e) {
-                            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                } else if (response.errorBody() != null) {
-                    try {
-                        ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
-                        dialogue.show();
-                    } catch (Exception e) {
-                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-            } else*/
-                if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
+            if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 if (response.body() != null) {
                     GetSettingsPojo mSettingsResponse = (GetSettingsPojo) response.body();
                     if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
@@ -348,7 +303,10 @@ public class SettingsActivity extends BaseActivity {
         } else {
             mReminderSwitch.setChecked(false);
         }
+        SetLanguageForPage();
+    }
 
+    private void SetLanguageForPage() {
         if (LanguageManager.createInstance().GetSharedPreferences(mActivity,
                 LanguageManager.createInstance().mSelectedLanguage,
                 LanguageManager.createInstance().mLanguageEnglish).
