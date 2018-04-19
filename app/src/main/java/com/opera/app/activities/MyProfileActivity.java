@@ -3,8 +3,10 @@ package com.opera.app.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,6 +47,7 @@ import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,6 +74,7 @@ public class MyProfileActivity extends BaseActivity {
     private static final int ACCESS_CAMERA_PERMISSION = 2;
     private static final int CAMERA_REQUEST = 3;
     private Bitmap bmProfileImage;
+    SharedPreferences sp;
 
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
@@ -154,6 +159,7 @@ public class MyProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_my_profile);
 
         initView();
+        getProfilePicture();
     }
 
     @Override
@@ -349,43 +355,6 @@ public class MyProfileActivity extends BaseActivity {
         controller.changePassword(taskComplete, api, new PostChangePassword(mPwd, mNewPwd));
     }
 
-    /*public void showDialog() {
-        final Dialog dialog = new Dialog(mActivity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(true);
-
-        //For Language setting
-        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        dialog.setContentView(R.layout.dialog_image_selection);
-
-        //LinearLayout
-        LinearLayout linearGallery = (LinearLayout) dialog.findViewById(R.id.linearGallery);
-        LinearLayout linearCamera = (LinearLayout) dialog.findViewById(R.id.linearCamera);
-
-        linearGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
-            }
-        });
-        linearCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
-                    if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
-                    } else {
-                        OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
-                    }
-                } else {
-                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
-                }
-            }
-        });
-        dialog.show();
-    }*/
-
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -419,6 +388,9 @@ public class MyProfileActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        dialog.dismiss();
+
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
                 if (data != null) {
@@ -429,42 +401,32 @@ public class MyProfileActivity extends BaseActivity {
                     }
                 }
                 img_profile.setImageBitmap(bmProfileImage);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bmProfileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+                byte[] b = baos.toByteArray();
+                String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                sp.edit().putString("dp", encodedImage).commit();
+
             } else {
                 bmProfileImage = (Bitmap) data.getExtras().get("data");
                 img_profile.setImageBitmap(bmProfileImage);
-            }
-
-        }
-        //CollapseBottomSliding();
-    }
-
-
-   /* @Override
-    public void onBackPressed() {
-        if (sliding_layout != null &&
-                (sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || sliding_layout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
-            CollapseBottomSliding();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    public void CollapseBottomSliding() {
-        sliding_layout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == ACCESS_CAMERA_PERMISSION) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                OperaUtils.createInstance().getSnackbar(sliding_layout, getResources().getString(R.string.permissionGranted)).show();
-                OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
-            } else {
-                OperaUtils.createInstance().getSnackbar(sliding_layout, getResources().getString(R.string.permissionDenied)).show();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bmProfileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+                byte[] b = baos.toByteArray();
+                String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                sp.edit().putString("dp", encodedImage).commit();
             }
         }
-    }*/
+    }
+
+    public void getProfilePicture() {
+        sp=getSharedPreferences("profilePicture",MODE_PRIVATE);
+
+        if(!sp.getString("dp","").equals("")){
+            byte[] decodedString = Base64.decode(sp.getString("dp", ""), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            img_profile.setImageBitmap(decodedByte);
+        }
+    }
 
 }
