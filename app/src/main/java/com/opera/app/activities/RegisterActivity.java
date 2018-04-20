@@ -9,7 +9,6 @@ import android.support.v4.app.DialogFragment;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -42,7 +41,6 @@ import com.opera.app.dialogues.TermsDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
-import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -116,6 +114,9 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.ckbTerms)
     CheckBox ckbTerms;
 
+    @BindView(R.id.ckbNewsLetters)
+    CheckBox ckbNewsLetters;
+
     EditTextWithFont edtEmail,
             edtPassword,
             edtRePass,
@@ -184,17 +185,18 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        //edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
-        edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtRePass.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
@@ -414,7 +416,10 @@ public class RegisterActivity extends BaseActivity {
         registration.setCountry(spinnerCountry.getSelectedItem().toString());
         registration.setState(spinnerState.getSelectedItem().toString());
         registration.setJoinDate(OperaUtils.getCurrentDate());
-
+        if (ckbNewsLetters.isChecked())
+            registration.setWeeklyNewsLetters(true);
+        else
+            registration.setWeeklyNewsLetters(false);
         return registration;
 
     }

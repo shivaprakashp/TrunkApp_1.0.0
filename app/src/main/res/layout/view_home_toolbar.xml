@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_back_arrrow"
+            android:rotationY="@integer/locale_mirror_flip"
             android:padding="10dp"
             android:visibility="gone"/>
 

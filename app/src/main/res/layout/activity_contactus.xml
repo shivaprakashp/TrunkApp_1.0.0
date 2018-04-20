@@ -65,6 +65,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="5dp"
+                        android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_telephone" />
 
 
