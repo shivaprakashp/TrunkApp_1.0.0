@@ -142,7 +142,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void GetUpdatedUserSettings() {
-        MainController controller = new MainController(SettingsActivity.this);
+        MainController controller = new MainController(mActivity);
         controller.getUpdatedSettings(taskComplete, api);
     }
 

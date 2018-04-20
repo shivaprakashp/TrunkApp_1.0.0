@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--  FFFFFF color -->
     <style name="label_white_very_low">
@@ -154,5 +154,4 @@
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:textSize">@dimen/textsize_vvlarge</item>
     </style>
-
 </resources>

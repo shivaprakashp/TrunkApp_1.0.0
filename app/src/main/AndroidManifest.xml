@@ -67,6 +67,13 @@
         <activity
             android:name=".activities.OtherRestaurantsActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.TestAct"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+
 
         <service android:name=".services.SettingsService" />
     </application>

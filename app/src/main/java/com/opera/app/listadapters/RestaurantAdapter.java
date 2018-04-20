@@ -1,5 +1,6 @@
 package com.opera.app.listadapters;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.pojo.restaurant.RestaurantListing;
+import com.opera.app.pojo.restaurant.restaurantsData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,8 @@ import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> {
 
-    private ArrayList<RestaurantListing> mRestaurantList;
+    private ArrayList<restaurantsData> mRestaurantList;
+    private Activity mActivity;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTxtRestaurantName, mTxtRestaurantPlace;
@@ -36,7 +40,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         }
     }
 
-    public RestaurantAdapter(ArrayList<RestaurantListing> mRestaurantList) {
+    public void refreshList(ArrayList<restaurantsData> mRestaurantList) {
+        this.mRestaurantList = mRestaurantList;
+    }
+
+    public RestaurantAdapter(Activity mActivity, ArrayList<restaurantsData> mRestaurantList) {
+        this.mActivity = mActivity;
         this.mRestaurantList = mRestaurantList;
     }
 
@@ -50,9 +59,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RestaurantListing mRestaurantListing = mRestaurantList.get(position);
-        holder.mTxtRestaurantName.setText(mRestaurantListing.getmRestaurantName());
-        holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getmRestaurantPlace());
+        restaurantsData mRestaurantListing = mRestaurantList.get(position);
+        holder.mTxtRestaurantName.setText(mRestaurantListing.getRestName());
+        holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getRestPlace());
+
+        Picasso.with(mActivity).load(mRestaurantListing.getRestImage()).fit().centerCrop()
+                .placeholder(R.drawable.ic_profile_bg)
+                .error(R.drawable.ic_profile_bg)
+                .into(holder.mImgRestaurantImage);
     }
 
     @Override

@@ -29,4 +29,8 @@ public interface AppConstants {
     interface GETUSERSETTINGS{
         String GETUSERSETTINGS = "GETUSERSETTINGS";
     }
+
+    interface GETRESTAURANTLISTING{
+        String GETRESTAURANTLISTING = "GETRESTAURANTLISTING";
+    }
 }

@@ -84,4 +84,11 @@ public class MainController {
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
+
+    public void getRestaurantListing(TaskComplete taskComplete, Api api) {
+        Call call = api.GetRestaurantListing(contentType);          // need to add auth token
+        properties.setRequestKey(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
 }

@@ -2,6 +2,9 @@ package com.opera.app.pojo.restaurant;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.login.LoginResponseData;
+
+import java.util.ArrayList;
 
 /**
  * Created by 1000632 on 4/9/2018.
@@ -9,46 +12,39 @@ import com.google.gson.annotations.SerializedName;
 
 public class RestaurantListing {
 
-    @SerializedName("mRestaurantImage")
+    @SerializedName("status")
     @Expose
-    String mRestaurantImage;
+    String status;
 
-    @SerializedName("mRestaurantName")
+    @SerializedName("message")
     @Expose
-    String mRestaurantName;
+    String message;
 
-    @SerializedName("mRestaurantPlace")
+    @SerializedName("restaurants")
     @Expose
-    String mRestaurantPlace;
+    private ArrayList<restaurantsData> data;
 
-
-    public RestaurantListing(String mRestaurantImage, String mRestaurantName, String mRestaurantPlace) {
-        this.mRestaurantImage = mRestaurantImage;
-        this.mRestaurantName = mRestaurantName;
-        this.mRestaurantPlace = mRestaurantPlace;
+    public String getStatus() {
+        return status;
     }
 
-    public String getmRestaurantImage() {
-        return mRestaurantImage;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setmRestaurantImage(String mRestaurantImage) {
-        this.mRestaurantImage = mRestaurantImage;
+    public String getMessage() {
+        return message;
     }
 
-    public String getmRestaurantName() {
-        return mRestaurantName;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setmRestaurantName(String mRestaurantName) {
-        this.mRestaurantName = mRestaurantName;
+    public ArrayList<restaurantsData> getData() {
+        return data;
     }
 
-    public String getmRestaurantPlace() {
-        return mRestaurantPlace;
-    }
-
-    public void setmRestaurantPlace(String mRestaurantPlace) {
-        this.mRestaurantPlace = mRestaurantPlace;
+    public void setData(ArrayList<restaurantsData> data) {
+        this.data = data;
     }
 }
