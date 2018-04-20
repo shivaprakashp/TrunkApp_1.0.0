@@ -18,6 +18,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="5dp"
+            android:rotationY="@integer/locale_mirror_flip"
             android:src="@drawable/ic_profile"/>
 
         <com.opera.app.customwidget.TextViewWithFont

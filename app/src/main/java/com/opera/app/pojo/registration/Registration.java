@@ -1,9 +1,7 @@
 package com.opera.app.pojo.registration;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.opera.app.activities.RegisterActivity;
 
 public class Registration {
 
@@ -43,6 +41,17 @@ public class Registration {
     @SerializedName("joinDate")
     @Expose
     private String joinDate;
+    @SerializedName("WeeklyNewsLetters")
+    @Expose
+    private Boolean WeeklyNewsLetters;
+
+    public Boolean getWeeklyNewsLetters() {
+        return WeeklyNewsLetters;
+    }
+
+    public void setWeeklyNewsLetters(Boolean weeklyNewsLetters) {
+        WeeklyNewsLetters = weeklyNewsLetters;
+    }
 
     public String getEmail() {
         return email;
