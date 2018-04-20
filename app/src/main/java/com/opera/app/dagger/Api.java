@@ -8,11 +8,13 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
+import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
@@ -48,4 +50,7 @@ public interface Api {
 
     @POST("GetUserSettings/")
     Call<GetSettingsPojo> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+
+    @GET("5ad987d22f00000e00cfdd84/")
+    Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
 }
