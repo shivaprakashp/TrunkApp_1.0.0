@@ -624,7 +624,6 @@
         <item>other...</item>
     </array>
 
-
     <!--Request keys-->
     <string name="loginRequest">Login</string>
     <string name="forgotPasswordRequest">ForgotPassword</string>
@@ -634,5 +633,9 @@
     <string name="update">Update</string>
     <string name="OnBackPressed">OnBackPressed</string>
     <string name="OnLanguageChange">OnLanguageChange</string>
+
+    <!--Guest MSG-->
+    <string name="guest_msg">Dear Customer, Kindly login to use this feature of application.</string>
+
 
 </resources>

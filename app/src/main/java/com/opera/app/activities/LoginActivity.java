@@ -1,13 +1,9 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.TextInputLayout;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -15,9 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +19,6 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
@@ -150,7 +142,7 @@ public class LoginActivity extends BaseActivity {
         customToast = new CustomToast(mActivity);
         //edittext
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
-        username.setHint(getString(R.string.username));
+        username.setHint(getString(R.string.email2));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         username.setFilters(new InputFilter[] { new InputFilter.LengthFilter(50) });
         username.requestFocus();

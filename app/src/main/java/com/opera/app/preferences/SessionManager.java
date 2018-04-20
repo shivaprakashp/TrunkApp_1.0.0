@@ -2,14 +2,12 @@ package com.opera.app.preferences;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
-import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.profile.EditProfileResponse;
 
@@ -90,6 +88,5 @@ public class SessionManager {
         boolean IsUserSettingsCache = loginPref.getBoolean(IS_SETTING_DATA_UPDATED, false);
         return IsUserSettingsCache;
     }
-
 
 }

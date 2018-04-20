@@ -177,9 +177,8 @@ public class MenuFragment extends BaseFragment {
                     intent = new Intent(getActivity(), MyProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(mActivity, "Please login first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
