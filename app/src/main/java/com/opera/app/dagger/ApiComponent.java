@@ -6,6 +6,7 @@ import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.RegisterActivity;
+import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.services.SettingsService;
@@ -29,4 +30,6 @@ public interface ApiComponent {
     void inject(SettingsActivity mSettingsActivity);
     void inject(SettingsService mSettingsService);
     void inject(OtherRestaurantsActivity mOtherRestaurantsActivity);
+    void inject(ReserveATableActivity mReserveATableActivity);
+
 }

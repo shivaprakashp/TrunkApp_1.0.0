@@ -40,10 +40,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         }
     }
 
-    public void refreshList(ArrayList<restaurantsData> mRestaurantList) {
-        this.mRestaurantList = mRestaurantList;
-    }
-
     public RestaurantAdapter(Activity mActivity, ArrayList<restaurantsData> mRestaurantList) {
         this.mActivity = mActivity;
         this.mRestaurantList = mRestaurantList;

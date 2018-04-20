@@ -235,6 +235,7 @@ public class RegisterActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         edtDob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
