@@ -636,6 +636,11 @@
 
     <!--Guest MSG-->
     <string name="guest_msg">Dear Customer, Kindly login to use this feature of application.</string>
+    <string name="special_requests">Special Requests/Occasions</string>
+    <string name="select_title">Select title</string>
+    <string name="mr">Mr.</string>
+    <string name="ms">Ms</string>
+    <string name="mrs">Mrs</string>
 
 
 </resources>

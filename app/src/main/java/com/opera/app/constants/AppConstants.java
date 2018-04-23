@@ -2,35 +2,41 @@ package com.opera.app.constants;
 
 public interface AppConstants {
 
-    interface LOGIN{
+    static String SEAN_CONOLLY_RESTAURANT_ID = "40";
+
+    interface LOGIN {
         String LOGIN = "LOGIN";
     }
 
-    interface FORGOTPASSWORD{
+    interface FORGOTPASSWORD {
         String FORGOTPASSWORD = "FORGOTPASSWORD";
     }
 
-    interface REGISTER{
+    interface REGISTER {
         String REGISTER = "REGISTER";
     }
 
-    interface EDITPROFILE{
+    interface EDITPROFILE {
         String EDITPROFILE = "EDITPROFILE";
     }
 
-    interface CHANGEPASSWORD{
+    interface CHANGEPASSWORD {
         String CHANGEPASSWORD = "CHANGEPASSWORD";
     }
 
-    interface SETUSERSETTINGS{
+    interface SETUSERSETTINGS {
         String SETUSERSETTINGS = "SETUSERSETTINGS";
     }
 
-    interface GETUSERSETTINGS{
+    interface GETUSERSETTINGS {
         String GETUSERSETTINGS = "GETUSERSETTINGS";
     }
 
-    interface GETRESTAURANTLISTING{
+    interface GETRESTAURANTLISTING {
         String GETRESTAURANTLISTING = "GETRESTAURANTLISTING";
+    }
+
+    interface BOOKATABLE {
+        String BOOKATABLE = "BOOKATABLE";
     }
 }

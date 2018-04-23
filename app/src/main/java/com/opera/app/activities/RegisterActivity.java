@@ -185,11 +185,11 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
+        //edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        //edtPassword.setGravity(View.TEXT_ALIGNMENT_VIEW_START);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
@@ -237,6 +237,7 @@ public class RegisterActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         edtDob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");

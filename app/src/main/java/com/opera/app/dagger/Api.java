@@ -9,6 +9,8 @@ import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
+import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
+import com.opera.app.pojo.restaurant.booktable.RestaurantMasterDetails;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
@@ -24,33 +26,37 @@ import retrofit2.http.POST;
 
 public interface Api {
 
-    @POST("login/")
+    @POST("accounts/extended/login/")
     Call<LoginResponse> userLogin(@Header("Content-Type") String content,
                                   @Body PostLogin postLogin);
 
-    @POST("Register/")
+    @POST("accounts/extended/Register/")
     Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,
                                                 @Body Registration registration);
 
-    @POST("editProfile/")
+    @POST("accounts/extended/editProfile/")
     Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                         @Body EditProfile editProfile);
 
-    @POST("ChangePassword/")
+    @POST("accounts/extended/ChangePassword/")
     Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content, @Header("Authorization") String token,
                                               @Body PostChangePassword mPostChangePassword);
 
-    @POST("ForgotPassword/")
+    @POST("accounts/extended/ForgotPassword/")
     Call<RegistrationResponse> ForgotPassword(@Header("Content-Type") String content,
                                               @Body ForgotPasswordPojo mForgotPasswordPojo);
 
-    @POST("setUserSettings/")
+    @POST("accounts/extended/setUserSettings/")
     Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content, @Header("Authorization") String token,
                                               @Body SetSettingsPojo mSettingsPojo);
 
-    @POST("GetUserSettings/")
+    @POST("accounts/extended/GetUserSettings/")
     Call<GetSettingsPojo> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
 
     @GET("5ad987d22f00000e00cfdd84/")
     Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
+
+    @POST("restaurants/extended/GetMasterDetails/")
+    Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                                 @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 }

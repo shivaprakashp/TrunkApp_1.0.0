@@ -12,6 +12,7 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
@@ -88,6 +89,13 @@ public class MainController {
     public void getRestaurantListing(TaskComplete taskComplete, Api api) {
         Call call = api.GetRestaurantListing(contentType);          // need to add auth token
         properties.setRequestKey(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void bookRestaurant(TaskComplete taskComplete, Api api,GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
+        Call call = api.RestaurantsGetMasterDetails(contentType,manager.getUserLoginData().getData().getToken(),getMasterDetailsRequestPojo);          // need to add auth token
+        properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }

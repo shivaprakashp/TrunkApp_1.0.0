@@ -182,4 +182,9 @@
     <!--Error handling-->
     <string name="success_header">نجاح</string>
     <string name="ok">حسنا</string>
+    <string name="special_requests">طلبات خاصة / مناسبات</string>
+    <string name="select_title">اختر العنوان</string>
+    <string name="mr">السيد</string>
+    <string name="ms">الآنسة</string>
+    <string name="mrs">السيدة</string>
 </resources>
