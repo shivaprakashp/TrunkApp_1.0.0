@@ -185,18 +185,18 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
-        edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        //edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        //edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtRePass.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
         edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        //edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));

@@ -14,14 +14,14 @@ import java.util.ArrayList;
 
 
 import android.app.Activity;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.BaseAdapter;
-        import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-        import com.opera.app.R;
-        import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
+import com.opera.app.R;
+import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
 import com.opera.app.pojo.restaurant.booktable.Time_Segment_Responses;
 import com.opera.app.pojo.restaurant.booktable.Time_Segments;
 
@@ -61,15 +61,19 @@ public class AdapterTimeSegments extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mActivity).inflate(R.layout.custom_spinner, parent, false);
+            convertView = LayoutInflater.from(mActivity).inflate(R.layout.custom_spinner_black_text, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        String mCompleteTime = mTimeSegments.get(position).getMeal_Period_Time();
+        String[] split = mCompleteTime.split("T");
+        String mOnlyTime = split[1];
+
        /* Meal_Periods currentItem = (Meal_Periods) getItem(position);*/
-        viewHolder.txtSpnnierName.setText(mTimeSegments.get(position).getMeal_Period_Time());
+        viewHolder.txtSpnnierName.setText(mOnlyTime);
 
         return convertView;
     }

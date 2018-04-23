@@ -43,6 +43,7 @@ import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
@@ -60,7 +61,8 @@ public class ReserveATableActivity extends BaseActivity {
 
     private Activity mActivity;
     private ImageView DOB;
-    private String mMaxPartySize="";
+    private String mMaxPartySize = "";
+    private int maxPartySize = 0;
     private RestaurantMasterDetails mRestaurantMasterDetails;
     EditText editDOB;
     //injecting retrofit
@@ -107,6 +109,9 @@ public class ReserveATableActivity extends BaseActivity {
 
     @BindView(R.id.spinnerSelectTime)
     Spinner mSpinnerSelectTime;
+
+    @BindView(R.id.spinnerSelectTitle)
+    Spinner mSpinnerSelectTitle;
 
     //Meal Period
     private AdapterMealPeriod mAdapterMealPeriod;
@@ -158,13 +163,26 @@ public class ReserveATableActivity extends BaseActivity {
 
         String[] arrMealPeriod = {getResources().getString(R.string.select_meal_priod)};
 
-        /*ArrayAdapter<String> adapterMealPeriod = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrMealPeriod);
-        mSpinnerMealPeriod.setAdapter(adapterMealPeriod);*/
+        ArrayAdapter<String> adapterMealPeriod = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrMealPeriod);
+        mSpinnerMealPeriod.setAdapter(adapterMealPeriod);
 
         String[] arrSelectTime = {getResources().getString(R.string.select_time)};
 
         ArrayAdapter<String> adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
         mSpinnerSelectTime.setAdapter(adapterSelectTime);
+
+        String[] arrSelectTitle = {getResources().getString(R.string.select_title),getResources().getString(R.string.mr),getResources().getString(R.string.ms),getResources().getString(R.string.mrs)};
+
+        ArrayAdapter<String> adapterSelectTitle = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTitle);
+        mSpinnerSelectTitle.setAdapter(adapterSelectTitle);
+
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+        CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
     }
 
     private void initToolbar() {
@@ -184,11 +202,15 @@ public class ReserveATableActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.txtPlus:
                 int valuePlus = Integer.parseInt(mTxtNumberOfGuests.getText().toString());
-                valuePlus++;
-                mTxtNumberOfGuests.setText(valuePlus + "");
-                mEdtNoOfGuests.setText(valuePlus + "");
 
-                ChangeTimeSegmentsField(valuePlus + "");
+                if (valuePlus != maxPartySize) {
+                    valuePlus++;
+                    mTxtNumberOfGuests.setText(valuePlus + "");
+                    mEdtNoOfGuests.setText(valuePlus + "");
+
+                    ChangeTimeSegmentsField(valuePlus + "");
+                }
+
                 break;
 
             case R.id.txtMinus:
@@ -254,10 +276,14 @@ public class ReserveATableActivity extends BaseActivity {
             arrMealPeriods = new ArrayList<>();
             arrTimeSegments = new ArrayList<>();
 
-            mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
+            //Resetting No of guests
+            mTxtNumberOfGuests.setText("1");
+            mEdtNoOfGuests.setText("1");
 
+            mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
             arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
             arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
+            maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
 
             mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
             mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);

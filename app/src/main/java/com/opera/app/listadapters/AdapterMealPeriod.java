@@ -46,7 +46,7 @@ public class AdapterMealPeriod extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mActivity).inflate(R.layout.custom_spinner, parent, false);
+            convertView = LayoutInflater.from(mActivity).inflate(R.layout.custom_spinner_black_text, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
