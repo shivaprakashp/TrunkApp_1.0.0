@@ -1,13 +1,12 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -21,11 +20,8 @@ import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.settings.GetSettingsPojo;
-import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
@@ -50,6 +46,8 @@ public class SettingsActivity extends BaseActivity {
     private SettingsService mSettingsService = new SettingsService();
     private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", mNewLanguage = "";
     private Api api;
+    SharedPreferences sp;
+
     @Inject
     Retrofit retrofit;
 
@@ -129,6 +127,14 @@ public class SettingsActivity extends BaseActivity {
 
             //Guest user
             mLinearLogout.setVisibility(View.GONE);
+
+            sp=getSharedPreferences("guest_switchs",MODE_PRIVATE);
+            if(sp.getString("notificationSwitch","true").equals("true")) mNotificationSwitch.setChecked(true);
+            else mNotificationSwitch.setChecked(false);
+
+            if(sp.getString("promotionSwitch","true").equals("true")) mPromotionSwitch.setChecked(true);
+            else mPromotionSwitch.setChecked(false);
+
             mFeedbackSwitch.setClickable(false);
             mFeedbackSwitch.setChecked(false);
             mNewletterSwitch.setClickable(false);
@@ -175,7 +181,7 @@ public class SettingsActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout, R.id.linearLogout})
+    @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout, R.id.linearLogout, R.id.notificationSwitch,  R.id.promotionSwitch})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.englishSwitch: {
@@ -203,7 +209,6 @@ public class SettingsActivity extends BaseActivity {
                 } else {
                     RedirectToHome(LanguageManager.createInstance().mLanguageArabic);
                 }
-
             }
             break;
 
@@ -216,7 +221,18 @@ public class SettingsActivity extends BaseActivity {
                 StartServiceUpdateSettings(getResources().getString(R.string.logout));
                 /*mSessionManager.logoutUser();*/
                 break;
-
+            case R.id.notificationSwitch:
+                if (!mSessionManager.isUserLoggedIn()) {
+                    mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
+                    sp.edit().putString("notificationSwitch", mNotifSwitch).commit();
+                }
+                break;
+            case R.id.promotionSwitch:
+                if (!mSessionManager.isUserLoggedIn()) {
+                    mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
+                    sp.edit().putString("promotionSwitch", mPromoSwitch).commit();
+                }
+                break;
         }
     }
 
@@ -263,8 +279,6 @@ public class SettingsActivity extends BaseActivity {
                     }
                 }
             }
-
-
         }
 
         @Override

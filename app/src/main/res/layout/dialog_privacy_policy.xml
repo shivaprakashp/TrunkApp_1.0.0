@@ -19,10 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
-        android:entries="@array/privacy_policy">
+        android:layout_marginTop="10dp"
+        android:entries="@array/privacy_policy"
+        style="@style/label_white_small">
     </ListView>
 
     <com.opera.app.customwidget.ButtonWithFont
@@ -31,6 +32,6 @@
         android:layout_height="wrap_content"
         android:text="@string/errorDialogue"
         android:background="@color/colorBurgendy"
-        style="@style/label_white_large"/>
+        style="@style/label_white_medium"/>
 
 </LinearLayout>

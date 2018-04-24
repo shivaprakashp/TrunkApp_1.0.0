@@ -2,8 +2,10 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.InputFilter;
@@ -96,9 +98,6 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.reg_edtDob)
     View reg_edtDob;
 
-    @BindView(R.id.reg_edtMobile)
-    View reg_edtMobile;
-
     @BindView(R.id.reg_edtCity)
     View reg_edtCity;
 
@@ -116,6 +115,13 @@ public class RegisterActivity extends BaseActivity {
 
     @BindView(R.id.ckbNewsLetters)
     CheckBox ckbNewsLetters;
+
+    @BindView(R.id.reg_edtMobile)
+    View reg_edtMobile;
+
+    CustomSpinner spinnerCountryCode;
+
+    String countryCode;
 
     EditTextWithFont edtEmail,
             edtPassword,
@@ -202,14 +208,14 @@ public class RegisterActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
         edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
@@ -217,17 +223,11 @@ public class RegisterActivity extends BaseActivity {
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtDob.performClick();
 
-        edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edt);
-        edtMobile.setHint(getString(R.string.mobile));
-        edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
-        edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
-
         edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.city));
         edtCity.setInputType(InputType.TYPE_CLASS_TEXT);
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtCity.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(26) });
+        edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,6 +241,45 @@ public class RegisterActivity extends BaseActivity {
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
+            }
+        });
+
+        edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edtMobile);
+        edtMobile.setHint(getString(R.string.mobile));
+        edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
+        edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+
+        spinnerCountryCode = (CustomSpinner) reg_edtMobile.findViewById(R.id.spinnerCountryCode);
+        //---------------Country Code----------------
+        // Initializing a String Array
+        ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
+        spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
+        spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country_code_with_asterisk))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    if(position>0) {
+                        SharedPreferences sharedPreferences = PreferenceManager
+                                .getDefaultSharedPreferences(mActivity);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
+                        editor.apply();
+                        //sp.edit().putString("countryCode", spinnerCountryCode.getSelectedItem().toString()).commit();
+                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                        //customToast.showErrorToast(spinnerCountryCode);
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -411,8 +450,7 @@ public class RegisterActivity extends BaseActivity {
         registration.setNationality(spinnerNationality.getSelectedItem().toString());
         registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
                 edtDob.getText().toString().trim() : "");
-        registration.setMobileNumber(edtMobile.getText().toString().trim() != null ?
-                edtMobile.getText().toString().trim() : "");
+        registration.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
         registration.setCity(edtCity.getText().toString());
         registration.setCountry(spinnerCountry.getSelectedItem().toString());
         registration.setState(spinnerState.getSelectedItem().toString());
@@ -498,6 +536,11 @@ public class RegisterActivity extends BaseActivity {
                 customToast.showErrorToast(getString(R.string.errorDob));
                 return false;
             }
+            //country code
+            else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+                customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
+                return false;
+            }
             //mobile
             else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
                 customToast.showErrorToast(getString(R.string.errorMobile));
@@ -532,9 +575,5 @@ public class RegisterActivity extends BaseActivity {
 
         return true;
     }
-
-
-
-
 
 }
