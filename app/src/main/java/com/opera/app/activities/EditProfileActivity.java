@@ -250,6 +250,11 @@ public class EditProfileActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                     if(position>0) {
+                        SharedPreferences sharedPreferences = PreferenceManager
+                                .getDefaultSharedPreferences(mActivity);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
+                        editor.apply();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                         //customToast.showErrorToast(spinnerCountryCode);
                     }
