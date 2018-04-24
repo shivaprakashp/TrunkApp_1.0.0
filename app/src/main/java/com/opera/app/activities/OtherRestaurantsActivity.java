@@ -104,7 +104,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.restaurants));
 
-        mAdapter = new RestaurantAdapter(mActivity,mRestaurantListing);
+        mAdapter = new RestaurantAdapter(mActivity, mRestaurantListing);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerRestaurants.setLayoutManager(mLayoutManager);
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());

@@ -3,6 +3,7 @@ package com.opera.app.constants;
 public interface AppConstants {
 
     static String SEAN_CONOLLY_RESTAURANT_ID = "40";
+    static String SEAN_CONOLLY_R_STATUS = "3";
 
     interface LOGIN {
         String LOGIN = "LOGIN";
@@ -34,6 +35,10 @@ public interface AppConstants {
 
     interface GETRESTAURANTLISTING {
         String GETRESTAURANTLISTING = "GETRESTAURANTLISTING";
+    }
+
+    interface GETMASTERDETAILS {
+        String GETMASTERDETAILS = "GETMASTERDETAILS";
     }
 
     interface BOOKATABLE {

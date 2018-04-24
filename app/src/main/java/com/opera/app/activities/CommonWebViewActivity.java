@@ -25,7 +25,7 @@ public class CommonWebViewActivity extends BaseActivity {
     @BindView(R.id.webview)
     WebView mWebView;
 
-    private String URL = "";
+    private String URL = "",Header="";
     private ProgressDialog mDialog;
     private Activity mActivity;
 
@@ -52,8 +52,7 @@ public class CommonWebViewActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.social_media));
+
     }
 
     private void webView() {
@@ -64,11 +63,15 @@ public class CommonWebViewActivity extends BaseActivity {
 
         Intent in = getIntent();
         URL = in.getStringExtra("URL");
+        Header = in.getStringExtra("Header");
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.loadUrl(URL);
         mWebView.requestFocus();
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(Header);
     }
 
     private class MyWebViewClient extends WebViewClient {

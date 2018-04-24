@@ -184,16 +184,19 @@ public class ContactUsActivity extends BaseActivity {
             case R.id.linearTwitter:
                 intent = new Intent(mActivity, CommonWebViewActivity.class);
                 intent.putExtra("URL", OperaUtils.OPERA_TWITTER_URL);
+                intent.putExtra("Header", getResources().getString(R.string.social_media));
                 startActivity(intent);
                 break;
             case R.id.linearInstagram:
                 intent = new Intent(mActivity, CommonWebViewActivity.class);
                 intent.putExtra("URL", OperaUtils.OPERA_INSTAGRAM_URL);
+                intent.putExtra("Header", getResources().getString(R.string.social_media));
                 startActivity(intent);
                 break;
             case R.id.linearFacebook:
                 intent = new Intent(mActivity, CommonWebViewActivity.class);
                 intent.putExtra("URL", OperaUtils.OPERA_FACEBOOK_URL);
+                intent.putExtra("Header", getResources().getString(R.string.social_media));
                 startActivity(intent);
                 break;
             case R.id.btnSendMessage:

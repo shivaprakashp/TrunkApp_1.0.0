@@ -1,17 +1,22 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.customwidget.AVLoadingIndicatorView;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.restaurantsData;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,6 +35,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         public TextView mTxtRestaurantName, mTxtRestaurantPlace;
         public ImageView mImgRestaurantImage;
         public Button mBtnReserveATable;
+        public ProgressBar progressImageLoader;
 
         public MyViewHolder(View view) {
             super(view);
@@ -37,6 +43,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             mTxtRestaurantPlace = (TextView) view.findViewById(R.id.mTxtRestaurantPlace);
             mImgRestaurantImage = (ImageView) view.findViewById(R.id.mImgRestaurantImage);
             mBtnReserveATable = (Button) view.findViewById(R.id.mBtnReserveATable);
+            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         }
     }
 
@@ -54,15 +61,34 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        restaurantsData mRestaurantListing = mRestaurantList.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final restaurantsData mRestaurantListing = mRestaurantList.get(position);
         holder.mTxtRestaurantName.setText(mRestaurantListing.getRestName());
         holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getRestPlace());
 
         Picasso.with(mActivity).load(mRestaurantListing.getRestImage()).fit().centerCrop()
-                .placeholder(R.drawable.ic_profile_bg)
-                .error(R.drawable.ic_profile_bg)
-                .into(holder.mImgRestaurantImage);
+                .into(holder.mImgRestaurantImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        holder.progressImageLoader.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        holder.progressImageLoader.setVisibility(View.GONE);
+                    }
+                });
+
+        holder.mBtnReserveATable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mRestaurantListing.getRestBookUrl());
+                in.putExtra("Header", mRestaurantListing.getRestName());
+
+                mActivity.startActivity(in);
+            }
+        });
     }
 
     @Override

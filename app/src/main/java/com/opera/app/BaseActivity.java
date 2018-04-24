@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
+import com.opera.app.customwidget.CustomToast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +22,7 @@ import retrofit2.Response;
 public class BaseActivity extends AppCompatActivity {
 
     public SharedPreferences mSharedPreferences;
+    public CustomToast customToast;
     private int prefMode = 0;
 
     @Override
@@ -31,6 +34,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void bindViews() {
         ButterKnife.bind(this);
         mSharedPreferences=getSharedPreferences(getResources().getString(R.string.prefName), prefMode);
+        customToast = new CustomToast(BaseActivity.this);
     }
 
     public void openActivity(Activity activity, Class<?> startClass) {

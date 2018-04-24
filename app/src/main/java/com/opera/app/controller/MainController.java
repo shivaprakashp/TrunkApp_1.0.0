@@ -13,6 +13,7 @@ import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
+import com.opera.app.pojo.restaurant.booktable.SubmitSaveRestaurantReservationRequestPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
@@ -93,8 +94,15 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void bookRestaurant(TaskComplete taskComplete, Api api,GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
+    public void fetchMasterDetails(TaskComplete taskComplete, Api api,GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
         Call call = api.RestaurantsGetMasterDetails(contentType,manager.getUserLoginData().getData().getToken(),getMasterDetailsRequestPojo);          // need to add auth token
+        properties.setRequestKey(AppConstants.GETMASTERDETAILS.GETMASTERDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void bookRestaurant(TaskComplete taskComplete, Api api,SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
+        Call call = api.ReserveRestaurantSeat(contentType,manager.getUserLoginData().getData().getToken(),mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);

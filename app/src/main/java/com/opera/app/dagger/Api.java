@@ -11,6 +11,7 @@ import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.booktable.RestaurantMasterDetails;
+import com.opera.app.pojo.restaurant.booktable.SubmitSaveRestaurantReservationRequestPojo;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
@@ -53,10 +54,14 @@ public interface Api {
     @POST("accounts/extended/GetUserSettings/")
     Call<GetSettingsPojo> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
 
-    @GET("5ad987d22f00000e00cfdd84/")
+    @POST("restaurants/extended/GetRestaurantDetails/")
     Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
 
     @POST("restaurants/extended/GetMasterDetails/")
     Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                  @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
+
+    @POST("restaurants/extended/BookTable/")
+    Call<RestaurantMasterDetails> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                                              @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
 }

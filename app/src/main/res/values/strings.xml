@@ -641,6 +641,31 @@
     <string name="mr">Mr.</string>
     <string name="ms">Ms</string>
     <string name="mrs">Mrs</string>
+    <string name="base64_hpt1">bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==</string>
+    <string name="UDF1">sample string 23</string>
+    <string name="promotion_code">sample string 18</string>
+    <string name="UDF2">sample string 24</string>
+    <string name="reservation_id">sample string 1</string>
+    <string name="full_reservation_id">sample string 2</string>
+    <string name="udf5">sample string 27</string>
+    <string name="udf3">sample string 25</string>
+    <string name="udf4">sample string 26</string>
+    <string name="table_position">sample string 17</string>
+    <string name="device_id">sample string 22</string>
+    <string name="area_name">sample string 4</string>
+    <string name="coupon_code">sample string 19</string>
+    <string name="referral_name">sample string 14</string>
+    <string name="occassion_name">sample string 16</string>
+    <string name="referral_code">sample string 20</string>
+    <string name="source_host">sample string 21</string>
+    <string name="phone_number1">sample string 10</string>
+    <string name="organisation">sample string 13</string>
+    <string name="address2">sample string 6</string>
+    <string name="state_request">sample string 8</string>
+    <string name="address1">sample string 5</string>
+    <string name="post_code">sample string 9</string>
+    <string name="suburb">sample string 7</string>
+    <string name="position">sample string 14</string>
 
 
 </resources>
