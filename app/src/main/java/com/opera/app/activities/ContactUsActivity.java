@@ -146,7 +146,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         mEdtMessage.setSingleLine(false);
         mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(150) });
+        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
 
         mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
         mEdtMobileNumber.setHint(getString(R.string.phone_number));
@@ -243,8 +243,8 @@ public class ContactUsActivity extends BaseActivity {
     private void ContactUsData() {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
-            /*controller.editProfilePost(taskComplete, api,
-                    editProfileData());*/
+            /*controller.registerPost(taskComplete, api,
+                    userRegistration());*/
         }
     }
 
