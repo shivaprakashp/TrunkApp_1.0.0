@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -32,6 +33,9 @@ import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -91,6 +95,8 @@ public class ContactUsActivity extends BaseActivity {
     Button mBtnSend;
 
     EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail, mEdtMessage;
+    CustomSpinner spinnerCountryCode;
+    String countryCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,7 +127,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtFullName.setHint(getString(R.string.full_name));
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
         mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
         mEdtMobileNumber.setHint(getString(R.string.phone_number));
@@ -142,6 +148,38 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
         mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(150) });
 
+        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
+        mEdtMobileNumber.setHint(getString(R.string.phone_number));
+        mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+
+        spinnerCountryCode = (CustomSpinner) edtPhoneNumber.findViewById(R.id.spinnerCountryCode);
+        //---------------Country Code----------------
+        // Initializing a String Array
+        ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
+        spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
+        spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country_code_with_asterisk))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    if(position>0) {
+                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                        //customToast.showErrorToast(spinnerCountryCode);
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initSpinner() {

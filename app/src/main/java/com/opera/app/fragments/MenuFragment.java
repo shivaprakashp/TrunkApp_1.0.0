@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
@@ -17,6 +16,7 @@ import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
@@ -99,7 +99,7 @@ public class MenuFragment extends BaseFragment {
         manager = new SessionManager(mActivity);
         if (manager.isUserLoggedIn()){
             tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "
-                    +manager.getUserLoginData().getData().getProfile().getFirstName() + "! ");
+                    +manager.getUserLoginData().getData().getProfile().getFirstName());
             creatAccount.setVisibility(View.GONE);
         }else{
             tv_menu_guest.setText(R.string.menu_welcome_guest);
@@ -177,7 +177,9 @@ public class MenuFragment extends BaseFragment {
                     intent = new Intent(getActivity(), MyProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
+                    dialog.show();
                 }
             }
         });

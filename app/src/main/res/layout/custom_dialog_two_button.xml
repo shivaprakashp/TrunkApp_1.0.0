@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:orientation="vertical">
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtTitle"
+            style="@style/label_white_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            font:name="Montserrat-Regular" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtMessage"
+            style="@style/label_black_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            font:name="Montserrat-Regular" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnLogin"
+                style="@style/label_white"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorBurgendy"
+                android:text="@string/login"
+                font:name="Montserrat-Regular" />
+
+            <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnCancel"
+                style="@style/label_white"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorBurgendy"
+                android:text="@string/cancel"
+                font:name="Montserrat-Regular" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

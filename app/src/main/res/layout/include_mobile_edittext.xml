@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.opera.app.customwidget.CustomSpinner
+        android:id="@+id/spinnerCountryCode"
+        style="@style/label_black"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        font:name="Montserrat-Regular" />
+
+    <com.opera.app.customwidget.EditTextWithFont
+        android:id="@+id/edtMobile"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:hint="@string/username"
+        android:padding="5dp"
+        android:layout_weight="1"
+        style="@style/label_black"
+        font:name="Montserrat-Regular">
+
+        <requestFocus/>
+    </com.opera.app.customwidget.EditTextWithFont>
+
+</LinearLayout>

@@ -19,10 +19,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -307,6 +310,18 @@ public class MyProfileActivity extends BaseActivity {
         mEdtCurrentPassword = (EditTextWithFont) view.findViewById(R.id.edtCurrentPassword);
         mEdtNewPassword = (EditTextWithFont) view.findViewById(R.id.edtNewPassword);
         mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
+
+        mEdtCurrentPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtCurrentPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtCurrentPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
+        mEdtNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtNewPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtNewPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
+        mEdtConfNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mEdtConfNewPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtConfNewPassword.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         dialog.show();
     }

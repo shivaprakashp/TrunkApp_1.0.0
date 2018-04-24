@@ -44,7 +44,7 @@ public class OperaUtils {
     public static String OPERA_FACEBOOK_URL = "https://www.facebook.com/dubaiopera";
 
     //restricted user to create instance
-    private OperaUtils() {
+    public OperaUtils() {
     }
 
     public static OperaUtils createInstance() {
@@ -136,6 +136,32 @@ public class OperaUtils {
     }
 
     //stopped white space in edit text for password
+    /*public static InputFilter filterSpaceExceptFirst = new InputFilter() {
+        boolean canEnterSpace = false;
+
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            if(editText.getText().toString().equals(""))
+            {
+                canEnterSpace = false;
+            }
+            //StringBuilder builder = new StringBuilder();
+            for (int i = start; i < end; i++) {
+                char currentChar = source.charAt(i);
+
+                if (Character.isLetterOrDigit(currentChar) || currentChar == '_') {
+                    //builder.append(currentChar);
+                    canEnterSpace = true;
+                }
+                if(Character.isWhitespace(currentChar) && canEnterSpace) {
+                    //builder.append(currentChar);
+                }
+            }
+            return null;
+        }
+    };*/
+
+    //stopped white space in edit text for password
     public static InputFilter filterSpace = new InputFilter() {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
@@ -145,8 +171,21 @@ public class OperaUtils {
                 }
             }
             return null;
+        }
+    };
 
+    //stopped white space in edit text for password
+    public static InputFilter filterSpaceExceptFirst = new InputFilter() {
 
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (Character.isWhitespace(source.charAt(i))) {
+                    if (dstart == 0)
+                        return "";
+                }
+            }
+            return null;
         }
     };
 
@@ -170,4 +209,5 @@ public class OperaUtils {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(c);
     }
+
 }

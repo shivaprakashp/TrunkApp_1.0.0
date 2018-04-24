@@ -2,7 +2,9 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -110,7 +111,8 @@ public class EditProfileActivity extends BaseActivity {
     CustomSpinner spinnerCountry;
 
     EditTextWithFont edtEmail, edtFirstName, edtLastName, edtMobile, edtCity, edtAddress;
-
+    CustomSpinner spinnerCountryCode;
+    String countryCode;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,13 +157,13 @@ public class EditProfileActivity extends BaseActivity {
         edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
@@ -170,17 +172,11 @@ public class EditProfileActivity extends BaseActivity {
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtDob.performClick();
 
-        edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edt);
-        edtMobile.setHint(getString(R.string.edit_mobile));
-        edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
-        edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
-
         edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
         edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
         edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtCity.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(26) });
+        edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });
 
         edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
@@ -201,6 +197,67 @@ public class EditProfileActivity extends BaseActivity {
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
+            }
+        });
+
+        edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+        edtMobile.setHint(getString(R.string.edit_mobile));
+
+        edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+
+        if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+            String Number = manager.getUserLoginData().getData().getProfile().getMobileNumber();
+            String mobile = Number.substring(Number.lastIndexOf(")") + 1);
+            edtMobile.setText(mobile);
+        }else{
+            edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
+        }
+
+        spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
+        //---------------Country Code----------------
+        // Initializing a String Array
+        ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
+        spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
+        spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(mActivity);
+            String name = sharedPreferences.getString("countryCode", "default value");
+            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        }
+        /*if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+            String Number = manager.getUserLoginData().getData().getProfile().getMobileNumber();
+            String counrtyCode = Number.substring(Number.indexOf("(") + 1, Number.indexOf(")"));
+
+            String[] myResArray = getResources().getStringArray(R.array.country_code);
+            //List<String> Lines = Arrays.asList(getResources().getStringArray(R.array.country_code));
+            for (int i = 0; i < arrData.length ; i++){
+                if(arrData[i].getCode().contains(counrtyCode)){
+                    int spinnerPosition = CountryCodeAdapter.getPosition(arrData[i]);
+                    spinnerCountryCode.setSelection(spinnerPosition);
+                }
+            }
+            //spinnerNationality.setSelection(CountryCodeAdapter.getPosition("(" + counrtyCode + ")"));
+        }*/
+        spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country_code_with_asterisk))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    if(position>0) {
+                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                        //customToast.showErrorToast(spinnerCountryCode);
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -274,7 +331,6 @@ public class EditProfileActivity extends BaseActivity {
         });
     }
 
-
     private View.OnClickListener backPress = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -314,8 +370,9 @@ public class EditProfileActivity extends BaseActivity {
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
         data.setDateOfBirth(edtDob.getText().toString() != null ?
                 edtDob.getText().toString() : "");
-        data.setMobileNumber(edtMobile.getText().toString() != null ?
-                edtMobile.getText().toString() : "");
+        /*data.setMobileNumber(edtMobile.getText().toString() != null ?
+                edtMobile.getText().toString() : "");*/
+        data.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
         data.setCity(edtCity.getText().toString().trim() != null ?
                 edtCity.getText().toString().trim() : "");
         data.setState(spinnerState.getSelectedItem().toString().trim());
@@ -368,6 +425,11 @@ public class EditProfileActivity extends BaseActivity {
         //dob
         else if (TextUtils.isEmpty(edtDob.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorDob));
+            return false;
+        }
+        //country code
+        else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
         //mobile

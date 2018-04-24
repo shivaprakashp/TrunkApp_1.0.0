@@ -22,6 +22,8 @@
         android:layout_weight="1"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
+        android:layout_marginTop="10dp"
+        style="@style/label_white_small"
         android:entries="@array/terms_conditions">
     </ListView>
 
@@ -31,6 +33,6 @@
         android:layout_height="wrap_content"
         android:text="@string/errorDialogue"
         android:background="@color/colorBurgendy"
-        style="@style/label_white_large"/>
+        style="@style/label_white_medium"/>
 
 </LinearLayout>

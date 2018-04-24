@@ -144,7 +144,7 @@ public class LoginActivity extends BaseActivity {
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.email2));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        username.setFilters(new InputFilter[] { new InputFilter.LengthFilter(50) });
+        username.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
         username.requestFocus();
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
@@ -161,6 +161,11 @@ public class LoginActivity extends BaseActivity {
         dialog.setContentView(view);
 
         forgotPassword = (EditTextWithFont) view.findViewById(R.id.edtForgotEmail);
+
+        forgotPassword.requestFocus();
+        forgotPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        forgotPassword.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
         view.findViewById(R.id.imgClose).setOnClickListener(imageClose);
         view.findViewById(R.id.btnSend).setOnClickListener(clickEmail);
     }

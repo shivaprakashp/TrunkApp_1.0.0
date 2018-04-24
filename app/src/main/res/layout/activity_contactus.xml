@@ -99,7 +99,7 @@
 
                 <include
                     android:id="@+id/edtPhoneNumber"
-                    layout="@layout/include_edittext" />
+                    layout="@layout/include_mobile_edittext" />
 
                 <View
                     android:layout_width="match_parent"
