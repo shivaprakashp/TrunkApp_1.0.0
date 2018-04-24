@@ -184,7 +184,7 @@ public class EditProfileActivity extends BaseActivity {
         edtAddress.setSingleLine(false);
         edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
         edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
-        edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(150) });
+        edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override

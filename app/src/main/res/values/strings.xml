@@ -270,7 +270,7 @@
     <string name="errorLengthPassword">Length of Password should be between 3 to 16 characters</string>
     <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
     <string name="errorLengthMobile">Length of Mobile Number should be 10 digit</string>
-    <string name="errorLengthCity">Length of City should be between 2 to 15 characters</string>
+    <string name="errorLengthCity">Length of City should be between 2 to 26 characters</string>
     <string name="errorNationality">Select Nationality</string>
     <string name="errorState">Select Emirate or State</string>
     <string name="errorCountry">Select Country</string>
@@ -626,7 +626,7 @@
 </array>
 
     <array name="country_code">
-        <item>Country Code*</item>
+        <item>Code*</item>
         <item>UAE (971)</item>
         <item>Afghanistan (93)</item>
         <item>Albania (355)</item>
