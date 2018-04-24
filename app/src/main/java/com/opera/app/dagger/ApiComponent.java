@@ -1,5 +1,6 @@
 package com.opera.app.dagger;
 
+import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.EditProfileActivity;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
@@ -8,7 +9,6 @@ import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
-import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.services.SettingsService;
 
 import javax.inject.Singleton;
@@ -31,5 +31,5 @@ public interface ApiComponent {
     void inject(SettingsService mSettingsService);
     void inject(OtherRestaurantsActivity mOtherRestaurantsActivity);
     void inject(ReserveATableActivity mReserveATableActivity);
-
+    void inject(ContactUsActivity mContactUsActivity);
 }

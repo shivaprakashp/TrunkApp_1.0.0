@@ -262,7 +262,7 @@
     <string name="errorUserEmail">Enter valid Email Address</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
     <string name="errorPreviousAndNewPassword">Current password and new password should not be equal</string>
-    <string name="errorPasswordMatch">New password and confirm new password should be equal</string>
+    <string name="errorPasswordMatch">Entered Password does not match</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
     <string name="errorLengthFirstName">Length of First Name should be between 3 to 30 characters</string>
@@ -284,9 +284,12 @@
     <string name="errorFullName">Full Name cannot be left blank</string>
     <string name="errorLengthFullName">Length of First Name should be between 3 to 30 characters</string>
     <string name="errorMessage">City cannot be left blank</string>
-    <string name="errorLengthMessage">Length of Message should not be more than 150 characters</string>
+    <string name="errorLengthMessage">Length of Message should not be more than 70 characters</string>
     <string name="errorEnquiryType">Select Enquiry Type</string>
     <string name="errorCountryCode">Select Country Code</string>
+
+    <string name="country_code">Country Code</string>
+    <string name="country_code_with_asterisk">Code*</string>
 
     <array name="states">
         <item>Emirate or State*</item>
@@ -885,6 +888,5 @@
     <string name="post_code">sample string 9</string>
     <string name="suburb">sample string 7</string>
     <string name="position">sample string 14</string>
-
 
 </resources>

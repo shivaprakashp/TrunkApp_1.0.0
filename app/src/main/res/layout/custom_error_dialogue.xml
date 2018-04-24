@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/errorTitle"
+            android:gravity="center"
             style="@style/label_white_large"
             font:name="Montserrat-Regular"
             android:padding="10dp"/>

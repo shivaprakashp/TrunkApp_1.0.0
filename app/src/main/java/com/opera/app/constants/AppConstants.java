@@ -44,4 +44,8 @@ public interface AppConstants {
     interface BOOKATABLE {
         String BOOKATABLE = "BOOKATABLE";
     }
+
+    interface CONTACTUS {
+        String CONTACTUS = "CONTACTUS";
+    }
 }

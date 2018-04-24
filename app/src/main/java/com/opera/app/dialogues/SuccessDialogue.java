@@ -66,7 +66,8 @@ public class SuccessDialogue extends Dialog {
                 mBaseActivity.openActivity(mActivity, LoginActivity.class);
             } else if (mFrom.equalsIgnoreCase("setUserSettings")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
-
+            } else if (mFrom.equalsIgnoreCase("ContactUs")) {
+                mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }
             mActivity.finish();
         }

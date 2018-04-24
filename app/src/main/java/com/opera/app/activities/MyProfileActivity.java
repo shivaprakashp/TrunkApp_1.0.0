@@ -443,5 +443,4 @@ public class MyProfileActivity extends BaseActivity {
             img_profile.setImageBitmap(decodedByte);
         }
     }
-
 }
