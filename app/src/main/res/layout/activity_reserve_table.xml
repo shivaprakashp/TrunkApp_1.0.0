@@ -207,7 +207,7 @@
 
                 <include
                     android:id="@+id/reserve_edtFulNo"
-                    layout="@layout/include_edittext" />
+                    layout="@layout/include_mobile_edittext" />
 
                 <View
                     android:layout_width="match_parent"

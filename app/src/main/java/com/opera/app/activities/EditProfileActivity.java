@@ -148,44 +148,56 @@ public class EditProfileActivity extends BaseActivity {
         //edittext
         edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.edit_email));
-        edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtEmail.setTextColor(getResources().getColor(R.color.dark_gray));
         edtEmail.setEnabled(false);
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getEmail() != null) {
+            edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
+        }
 
         edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));
-        edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
         edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null) {
+            edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
+        }
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
-        edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
+            edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
+        }
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
-        edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtDob.performClick();
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getDateOfBirth() != null) {
+            edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
+        }
 
         edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
-        edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
         edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getCity() != null) {
+            edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
+        }
 
         edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
         edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
         edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getAddress() != null) {
+            edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
+        }
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,16 +215,17 @@ public class EditProfileActivity extends BaseActivity {
 
         edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
         edtMobile.setHint(getString(R.string.edit_mobile));
-
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
-        if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            String Number = manager.getUserLoginData().getData().getProfile().getMobileNumber();
-            String mobile = Number.substring(Number.lastIndexOf(")") + 1);
-            edtMobile.setText(mobile);
-        }else{
-            edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
+            if (manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+                String Number = manager.getUserLoginData().getData().getProfile().getMobileNumber();
+                String mobile = Number.substring(Number.lastIndexOf(")") + 1);
+                edtMobile.setText(mobile);
+            } else {
+                edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
+            }
         }
 
         spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
