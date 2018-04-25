@@ -20,8 +20,11 @@ import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by 1000779 on 1/22/2018.
@@ -74,5 +77,8 @@ public interface Api {
     @POST("restaurants/extended/BookTable/")
     Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
                                                   @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+
+    @POST("restaurants/extended/GetRestaurant/")
+    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);
 
 }
