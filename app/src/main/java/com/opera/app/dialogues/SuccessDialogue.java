@@ -13,6 +13,7 @@ import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.preferences.SessionManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,7 @@ public class SuccessDialogue extends Dialog {
         this.mPopUpBtnTxt = mPopUpBtnTxt;
         this.mFrom = mFrom;
         mBaseActivity = (BaseActivity) mActivity;
+
     }
 
     @Override
@@ -68,6 +70,9 @@ public class SuccessDialogue extends Dialog {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             } else if (mFrom.equalsIgnoreCase("ContactUs")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
+            }else if (mFrom.equalsIgnoreCase("MyProfileChangePassword")) {
+                SessionManager sessionManager = new SessionManager(mActivity);
+                sessionManager.clearLoginSession();
             }
             mActivity.finish();
         }

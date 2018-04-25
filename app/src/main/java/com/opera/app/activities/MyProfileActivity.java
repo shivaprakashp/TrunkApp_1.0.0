@@ -40,6 +40,7 @@ import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.listener.TaskComplete;
@@ -127,8 +128,10 @@ public class MyProfileActivity extends BaseActivity {
             if (response.body() != null) {
                 RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
                 if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
-                    SessionManager sessionManager = new SessionManager(mActivity);
-                    sessionManager.clearLoginSession();
+                    SuccessDialogue dialog = new SuccessDialogue(mActivity, getResources().getString(R.string.changedPasswordSuccessMsg), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
+                    dialog.show();
+                    /*SessionManager sessionManager = new SessionManager(mActivity);
+                    sessionManager.clearLoginSession();*/
                 } else {
                     dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
                     dialogue.show();

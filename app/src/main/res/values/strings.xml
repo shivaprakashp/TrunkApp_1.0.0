@@ -261,7 +261,7 @@
     <string name="errorFieldsMandatory">All fields are mandatory</string>
     <string name="errorUserEmail">Enter valid Email Address</string>
     <string name="errorMismatchPassword">Entered Password does not match</string>
-    <string name="errorPreviousAndNewPassword">Current password and new password should not be equal</string>
+    <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
     <string name="errorPasswordMatch">Entered Password does not match</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
@@ -290,6 +290,9 @@
 
     <string name="country_code">Country Code</string>
     <string name="country_code_with_asterisk">Code*</string>
+
+    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
+    <string name="changedPassword_header">SUCCESS</string>
 
     <array name="states">
         <item>Emirate or State*</item>
