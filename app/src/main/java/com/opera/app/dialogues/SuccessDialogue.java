@@ -58,6 +58,9 @@ public class SuccessDialogue extends Dialog {
         txtErrorTitle.setText(mPopUpHeader);
         btnError.setOnClickListener(buttonClose);
 
+        setCancelable(false);
+        setCanceledOnTouchOutside(false);
+
     }
 
     private View.OnClickListener buttonClose = new View.OnClickListener() {
@@ -70,7 +73,7 @@ public class SuccessDialogue extends Dialog {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             } else if (mFrom.equalsIgnoreCase("ContactUs")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
-            }else if (mFrom.equalsIgnoreCase("MyProfileChangePassword")) {
+            } else if (mFrom.equalsIgnoreCase("MyProfileChangePassword")) {
                 SessionManager sessionManager = new SessionManager(mActivity);
                 sessionManager.clearLoginSession();
             }
