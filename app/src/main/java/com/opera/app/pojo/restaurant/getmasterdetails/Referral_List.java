@@ -1,4 +1,4 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

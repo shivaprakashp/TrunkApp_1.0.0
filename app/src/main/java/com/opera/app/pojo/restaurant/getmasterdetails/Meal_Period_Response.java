@@ -1,4 +1,4 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -37,11 +37,11 @@ public class Meal_Period_Response
         this.Result = Result;
     }
 
-    public ArrayList<com.opera.app.pojo.restaurant.booktable.Meal_Periods> getMeal_Periods() {
+    public ArrayList<com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods> getMeal_Periods() {
         return Meal_Periods;
     }
 
-    public void setMeal_Periods(ArrayList<com.opera.app.pojo.restaurant.booktable.Meal_Periods> meal_Periods) {
+    public void setMeal_Periods(ArrayList<com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods> meal_Periods) {
         Meal_Periods = meal_Periods;
     }
 

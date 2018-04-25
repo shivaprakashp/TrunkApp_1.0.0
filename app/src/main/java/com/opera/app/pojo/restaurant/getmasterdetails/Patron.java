@@ -1,8 +1,9 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 /**
- * Created by 1000632 on 4/24/2018.
+ * Created by 1000632 on 4/23/2018.
  */
+
 public class Patron
 {
     private String Phone;
@@ -32,6 +33,23 @@ public class Patron
     private String Lastname;
 
     private String Person_ID;
+
+    public Patron(String phone, String organisation, String title, String address_2, String state, String email, String address_1, String postCode, String suburb, String mobile, String position, String firstname, String lastname, String person_ID) {
+        Phone = phone;
+        Organisation = organisation;
+        Title = title;
+        Address_2 = address_2;
+        State = state;
+        Email = email;
+        Address_1 = address_1;
+        PostCode = postCode;
+        Suburb = suburb;
+        Mobile = mobile;
+        Position = position;
+        Firstname = firstname;
+        Lastname = lastname;
+        Person_ID = person_ID;
+    }
 
     public String getPhone ()
     {

@@ -169,8 +169,16 @@ public class SearchableListDialog extends DialogFragment implements
         _listViewItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                _searchableItem.onSearchableItemClicked(listAdapter.getItem(position+1), position+1);
-                getDialog().dismiss();
+                try {
+                    _searchableItem.onSearchableItemClicked(listAdapter.getItem(position), position);
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+                if (!listAdapter.getItem(position).toString().equalsIgnoreCase("")) {
+                    getDialog().dismiss();
+                }
+
             }
         });
     }
@@ -181,8 +189,7 @@ public class SearchableListDialog extends DialogFragment implements
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
         dismiss();
     }

@@ -93,7 +93,9 @@ public class CustomSpinner extends android.support.v7.widget.AppCompatSpinner im
                 // spinner every time it is loaded with items in the adapter.
                 _items.clear();
                 for (int i = 0; i < _arrayAdapter.getCount(); i++) {
-                    if (i != 0) {
+                    if (i == 0) {
+                        _items.add("");
+                    } else {
                         _items.add(_arrayAdapter.getItem(i));
                     }
 

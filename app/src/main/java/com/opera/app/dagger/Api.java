@@ -9,15 +9,15 @@ import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
-import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
-import com.opera.app.pojo.restaurant.booktable.RestaurantMasterDetails;
-import com.opera.app.pojo.restaurant.booktable.SubmitSaveRestaurantReservationRequestPojo;
+import com.opera.app.pojo.restaurant.booktable.BookTableResponse;
+import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
+import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
+import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReservationRequestPojo;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
@@ -62,6 +62,6 @@ public interface Api {
                                                  @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
     @POST("restaurants/extended/BookTable/")
-    Call<RestaurantMasterDetails> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                                              @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+    Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
+                                                  @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
 }

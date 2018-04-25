@@ -3,59 +3,156 @@ package com.opera.app.pojo.restaurant.booktable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 /**
- * Created by 1000632 on 4/20/2018.
+ * Created by 1000632 on 4/24/2018.
  */
 
 public class Data
 {
-    @SerializedName("Result")
+    @SerializedName("EncryptedString")
     @Expose
-    private Result Result;
+    private String EncryptedString;
 
-    @SerializedName("Control_Values_Response")
+    @SerializedName("RRO_Subject")
     @Expose
-    private Control_Values_Response Control_Values_Response;
+    private String RRO_Subject;
 
-    @SerializedName("Time_Segment_Responses")
+    @SerializedName("Session_ID")
     @Expose
-    private ArrayList<Time_Segment_Responses> Time_Segment_Responses;
+    private String Session_ID;
 
-    public Result getResult ()
+    @SerializedName("Send_Email_To_Reservation")
+    @Expose
+    private String Send_Email_To_Reservation;
+
+    @SerializedName("Respak_Reservation")
+    @Expose
+    private Respak_Reservation Respak_Reservation;
+
+    @SerializedName("Patron")
+    @Expose
+    private Patron Patron;
+
+    @SerializedName("Save_Transaction")
+    @Expose
+    private String Save_Transaction;
+
+    @SerializedName("HPT_1")
+    @Expose
+    private String HPT_1;
+
+    @SerializedName("Email_Type")
+    @Expose
+    private String Email_Type;
+
+    @SerializedName("HPT_2")
+    @Expose
+    private String HPT_2;
+
+    public String getEncryptedString ()
+{
+    return EncryptedString;
+}
+
+    public void setEncryptedString (String EncryptedString)
     {
-        return Result;
+        this.EncryptedString = EncryptedString;
     }
 
-    public void setResult (Result Result)
+    public String getRRO_Subject ()
     {
-        this.Result = Result;
+        return RRO_Subject;
     }
 
-    public Control_Values_Response getControl_Values_Response ()
+    public void setRRO_Subject (String RRO_Subject)
     {
-        return Control_Values_Response;
+        this.RRO_Subject = RRO_Subject;
     }
 
-    public void setControl_Values_Response (Control_Values_Response Control_Values_Response)
+    public String getSession_ID ()
     {
-        this.Control_Values_Response = Control_Values_Response;
+        return Session_ID;
     }
 
-    public ArrayList<Time_Segment_Responses> getTime_Segment_Responses ()
+    public void setSession_ID (String Session_ID)
     {
-        return Time_Segment_Responses;
+        this.Session_ID = Session_ID;
     }
 
-    public void setTime_Segment_Responses (ArrayList<Time_Segment_Responses> Time_Segment_Responses)
+    public String getSend_Email_To_Reservation ()
     {
-        this.Time_Segment_Responses = Time_Segment_Responses;
+        return Send_Email_To_Reservation;
+    }
+
+    public void setSend_Email_To_Reservation (String Send_Email_To_Reservation)
+    {
+        this.Send_Email_To_Reservation = Send_Email_To_Reservation;
+    }
+
+    public Respak_Reservation getRespak_Reservation ()
+    {
+        return Respak_Reservation;
+    }
+
+    public void setRespak_Reservation (Respak_Reservation Respak_Reservation)
+    {
+        this.Respak_Reservation = Respak_Reservation;
+    }
+
+    public Patron getPatron ()
+    {
+        return Patron;
+    }
+
+    public void setPatron (Patron Patron)
+    {
+        this.Patron = Patron;
+    }
+
+    public String getSave_Transaction ()
+    {
+        return Save_Transaction;
+    }
+
+    public void setSave_Transaction (String Save_Transaction)
+    {
+        this.Save_Transaction = Save_Transaction;
+    }
+
+    public String getHPT_1 ()
+    {
+        return HPT_1;
+    }
+
+    public void setHPT_1 (String HPT_1)
+    {
+        this.HPT_1 = HPT_1;
+    }
+
+    public String getEmail_Type ()
+    {
+        return Email_Type;
+    }
+
+    public void setEmail_Type (String Email_Type)
+    {
+        this.Email_Type = Email_Type;
+    }
+
+    public String getHPT_2 ()
+{
+    return HPT_2;
+}
+
+    public void setHPT_2 (String HPT_2)
+    {
+        this.HPT_2 = HPT_2;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [Result = "+Result+", Control_Values_Response = "+Control_Values_Response+", Time_Segment_Responses = "+Time_Segment_Responses+"]";
+        return "ClassPojo [EncryptedString = "+EncryptedString+", RRO_Subject = "+RRO_Subject+", Session_ID = "+Session_ID+", Send_Email_To_Reservation = "+Send_Email_To_Reservation+", Respak_Reservation = "+Respak_Reservation+", Patron = "+Patron+", Save_Transaction = "+Save_Transaction+", HPT_1 = "+HPT_1+", Email_Type = "+Email_Type+", HPT_2 = "+HPT_2+"]";
     }
 }
+

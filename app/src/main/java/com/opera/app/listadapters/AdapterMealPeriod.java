@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
+import com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods;
 
 import java.util.ArrayList;
 

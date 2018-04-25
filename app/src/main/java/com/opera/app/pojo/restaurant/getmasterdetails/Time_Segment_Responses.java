@@ -1,4 +1,4 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -33,11 +33,11 @@ public class Time_Segment_Responses
         this.Result = Result;
     }
 
-    public ArrayList<com.opera.app.pojo.restaurant.booktable.Time_Segments> getTime_Segments() {
+    public ArrayList<com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments> getTime_Segments() {
         return Time_Segments;
     }
 
-    public void setTime_Segments(ArrayList<com.opera.app.pojo.restaurant.booktable.Time_Segments> time_Segments) {
+    public void setTime_Segments(ArrayList<com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments> time_Segments) {
         Time_Segments = time_Segments;
     }
 

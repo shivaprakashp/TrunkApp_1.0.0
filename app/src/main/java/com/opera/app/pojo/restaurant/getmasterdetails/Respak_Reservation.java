@@ -1,7 +1,7 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 /**
- * Created by 1000632 on 4/24/2018.
+ * Created by 1000632 on 4/23/2018.
  */
 
 public class Respak_Reservation
@@ -59,6 +59,36 @@ public class Respak_Reservation
     private String Source_Host;
 
     private String Occasion_ID;
+
+    public Respak_Reservation(String UDF1, String promotion_Code, String UDF2, String reservation_ID, String full_Reservation_ID, String meal_Period_ID, String UDF5, String UDF3, String UDF4, String table_Position, String patron_ID, String device_ID, String area_Name, String coupon_Code, String referral_Name, String reservation_Date, String notes, String occasion_Name, String referral_ID, String reservation_Time, String referrer_Code, String meal_Period_Name, String RStatus, String area_ID, String party_Size, String source_Host, String occasion_ID) {
+        this.UDF1 = UDF1;
+        Promotion_Code = promotion_Code;
+        this.UDF2 = UDF2;
+        Reservation_ID = reservation_ID;
+        Full_Reservation_ID = full_Reservation_ID;
+        Meal_Period_ID = meal_Period_ID;
+        this.UDF5 = UDF5;
+        this.UDF3 = UDF3;
+        this.UDF4 = UDF4;
+        Table_Position = table_Position;
+        Patron_ID = patron_ID;
+        Device_ID = device_ID;
+        Area_Name = area_Name;
+        Coupon_Code = coupon_Code;
+        Referral_Name = referral_Name;
+        Reservation_Date = reservation_Date;
+        Notes = notes;
+        Occasion_Name = occasion_Name;
+        Referral_ID = referral_ID;
+        Reservation_Time = reservation_Time;
+        Referrer_Code = referrer_Code;
+        Meal_Period_Name = meal_Period_Name;
+        this.RStatus = RStatus;
+        Area_ID = area_ID;
+        Party_Size = party_Size;
+        Source_Host = source_Host;
+        Occasion_ID = occasion_ID;
+    }
 
     public String getUDF1 ()
     {

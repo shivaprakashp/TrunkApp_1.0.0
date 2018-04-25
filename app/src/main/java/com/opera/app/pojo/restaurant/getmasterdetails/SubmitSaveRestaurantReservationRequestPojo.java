@@ -1,7 +1,4 @@
-package com.opera.app.pojo.restaurant.booktable;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 /**
  * Created by 1000632 on 4/23/2018.
@@ -27,7 +24,7 @@ public class SubmitSaveRestaurantReservationRequestPojo
 
     private String HPT_2;
 
-    public SubmitSaveRestaurantReservationRequestPojo(String encryptedString, String RRO_Subject, String send_Email_To_Reservation, com.opera.app.pojo.restaurant.booktable.Respak_Reservation respak_Reservation, com.opera.app.pojo.restaurant.booktable.Patron patron, String save_Transaction, String HPT_1, String email_Type, String HPT_2) {
+    public SubmitSaveRestaurantReservationRequestPojo(String encryptedString, String RRO_Subject, String send_Email_To_Reservation, com.opera.app.pojo.restaurant.getmasterdetails.Respak_Reservation respak_Reservation, com.opera.app.pojo.restaurant.getmasterdetails.Patron patron, String save_Transaction, String HPT_1, String email_Type, String HPT_2) {
         EncryptedString = encryptedString;
         this.RRO_Subject = RRO_Subject;
         Send_Email_To_Reservation = send_Email_To_Reservation;

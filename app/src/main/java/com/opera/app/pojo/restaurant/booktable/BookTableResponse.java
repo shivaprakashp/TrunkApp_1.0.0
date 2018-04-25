@@ -4,10 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by 1000632 on 4/20/2018.
+ * Created by 1000632 on 4/24/2018.
  */
 
-public class RestaurantMasterDetails
+public class BookTableResponse
 {
     @SerializedName("message")
     @Expose

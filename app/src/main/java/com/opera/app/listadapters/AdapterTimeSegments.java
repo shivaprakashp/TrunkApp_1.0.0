@@ -8,24 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
 
 import java.util.ArrayList;
 
 
-import android.app.Activity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-
-import com.opera.app.R;
-import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
-import com.opera.app.pojo.restaurant.booktable.Time_Segment_Responses;
-import com.opera.app.pojo.restaurant.booktable.Time_Segments;
-
-import java.util.ArrayList;
+import com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments;
 
 /**
  * Created by 1000632 on 4/20/2018.

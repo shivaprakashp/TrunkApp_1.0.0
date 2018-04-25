@@ -1,4 +1,4 @@
-package com.opera.app.pojo.restaurant.booktable;
+package com.opera.app.pojo.restaurant.getmasterdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -43,6 +43,18 @@ public class Time_Segments {
     @SerializedName("Meal_Period_Time")
     @Expose
     private String Meal_Period_Time;
+
+    public Time_Segments(String total_Available, String meal_Period_ID, String total_Booked, String list_Type, String online_Capacity, String online_Booked, String sitting, String total_Capacity, String meal_Period_Time) {
+        Total_Available = total_Available;
+        Meal_Period_ID = meal_Period_ID;
+        Total_Booked = total_Booked;
+        List_Type = list_Type;
+        Online_Capacity = online_Capacity;
+        Online_Booked = online_Booked;
+        Sitting = sitting;
+        Total_Capacity = total_Capacity;
+        Meal_Period_Time = meal_Period_Time;
+    }
 
     public String getTotal_Available() {
         return Total_Available;

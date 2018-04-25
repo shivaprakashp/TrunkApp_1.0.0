@@ -2,7 +2,6 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -20,7 +19,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,26 +27,24 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.SuccessDialogue;
-import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listadapters.AdapterMealPeriod;
 import com.opera.app.listadapters.AdapterTimeSegments;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.restaurant.RestaurantListing;
-import com.opera.app.pojo.restaurant.booktable.GetMasterDetailsRequestPojo;
-import com.opera.app.pojo.restaurant.booktable.Meal_Period_Response;
-import com.opera.app.pojo.restaurant.booktable.Meal_Periods;
-import com.opera.app.pojo.restaurant.booktable.Patron;
-import com.opera.app.pojo.restaurant.booktable.Respak_Reservation;
-import com.opera.app.pojo.restaurant.booktable.RestaurantMasterDetails;
-import com.opera.app.pojo.restaurant.booktable.SubmitSaveRestaurantReservationRequestPojo;
-import com.opera.app.pojo.restaurant.booktable.Time_Segment_Responses;
-import com.opera.app.pojo.restaurant.booktable.Time_Segments;
+import com.opera.app.pojo.profile.EditProfileResponse;
+import com.opera.app.pojo.restaurant.booktable.BookTableResponse;
+import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
+import com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods;
+import com.opera.app.pojo.restaurant.getmasterdetails.Patron;
+import com.opera.app.pojo.restaurant.getmasterdetails.Respak_Reservation;
+import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
+import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReservationRequestPojo;
+import com.opera.app.pojo.restaurant.getmasterdetails.Time_Segment_Responses;
+import com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
@@ -78,7 +74,10 @@ public class ReserveATableActivity extends BaseActivity {
     private int maxPartySize = 0;
     private RestaurantMasterDetails mRestaurantMasterDetails;
     private SessionManager mSessionManager;
+    private String mCurrentSelectedItemTime = "";
     EditText editDOB;
+
+    private ArrayAdapter<String> adapterSelectTime;
     //injecting retrofit
     @Inject
     Retrofit retrofit;
@@ -178,6 +177,7 @@ public class ReserveATableActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                mMealPeriodId=arrMealPeriods.get(position);
+                mCurrentSelectedItemTime = mSpinnerSelectTime.getSelectedItem().toString();
                 if (arrTimeSegmentsAllFilters.size() > 0) {
                     mSelectedTime = arrTimeSegmentsAllFilters.get(position).getMeal_Period_Time();
                 }
@@ -259,8 +259,7 @@ public class ReserveATableActivity extends BaseActivity {
         mSpinnerMealPeriod.setAdapter(adapterMealPeriod);
 
         String[] arrSelectTime = {getResources().getString(R.string.select_time)};
-
-        ArrayAdapter<String> adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
+        adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
         mSpinnerSelectTime.setAdapter(adapterSelectTime);
 
         String[] arrSelectTitle = {getResources().getString(R.string.select_title), getResources().getString(R.string.mr), getResources().getString(R.string.ms), getResources().getString(R.string.mrs)};
@@ -373,7 +372,11 @@ public class ReserveATableActivity extends BaseActivity {
         } else if (edtFulNo.getText().toString().length() < 10 || edtFulNo.getText().toString().length() > 10) {
             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
+        } else if (mCurrentSelectedItemTime.equalsIgnoreCase(getResources().getString(R.string.select_time))) {
+            customToast.showErrorToast(getString(R.string.errorSelectTime));
+            return false;
         }
+
 
         return true;
     }
@@ -412,13 +415,22 @@ public class ReserveATableActivity extends BaseActivity {
 
         for (int j = 0; j < arrTimeSegmentsOnly.size(); j++) {
             if (mMealPeriodId.equalsIgnoreCase(arrTimeSegmentsOnly.get(j).getMeal_Period_ID())) {
-                arrTimeSegmentsAllFilters.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses().get(j).getTime_Segments());
+                /*arrTimeSegmentsAllFilters.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses().get(j).getTime_Segments());*/
+                arrTimeSegmentsAllFilters.add(new Time_Segments(arrTimeSegmentsOnly.get(j).getTotal_Available(), arrTimeSegmentsOnly.get(j).getMeal_Period_ID(), arrTimeSegmentsOnly.get(j).getTotal_Booked()
+                        , arrTimeSegmentsOnly.get(j).getList_Type(), arrTimeSegmentsOnly.get(j).getOnline_Capacity(), arrTimeSegmentsOnly.get(j).getOnline_Booked(), arrTimeSegmentsOnly.get(j).getSitting()
+                        , arrTimeSegmentsOnly.get(j).getTotal_Capacity(), arrTimeSegmentsOnly.get(j).getMeal_Period_Time()));
             }
         }
 
+        if (arrTimeSegmentsAllFilters.size() > 0) {
+            mAdapterTimeSegments = new AdapterTimeSegments(mActivity, arrTimeSegmentsAllFilters);
+            mSpinnerSelectTime.setAdapter(mAdapterTimeSegments);
+        } else {
+            String[] arrSelectTime = {getResources().getString(R.string.select_time)};
+            adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
+            mSpinnerSelectTime.setAdapter(adapterSelectTime);
+        }
 
-        mAdapterTimeSegments = new AdapterTimeSegments(mActivity, arrTimeSegmentsAllFilters);
-        mSpinnerSelectTime.setAdapter(mAdapterTimeSegments);
     }
 
 
@@ -430,20 +442,38 @@ public class ReserveATableActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            arrMealPeriods = new ArrayList<>();
-            arrTimeSegments = new ArrayList<>();
+            if (mRequestKey.equalsIgnoreCase(AppConstants.GETMASTERDETAILS.GETMASTERDETAILS)) {
+                arrMealPeriods = new ArrayList<>();
+                arrTimeSegments = new ArrayList<>();
 
-            //Resetting No of guests
-            mTxtNumberOfGuests.setText("1");
-            mEdtNoOfGuests.setText("1");
+                //Resetting No of guests
+                mTxtNumberOfGuests.setText("1");
+                mEdtNoOfGuests.setText("1");
 
-            mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
-            arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
-            arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
-            maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
+                mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
+                arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
+                arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
+                maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
 
-            mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
-            mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);
+                mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
+                mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);
+            } else if (mRequestKey.equalsIgnoreCase(AppConstants.BOOKATABLE.BOOKATABLE)) {
+                if (response.body() != null) {
+                    BookTableResponse mBookTable =
+                            (BookTableResponse) response.body();
+                    SuccessDialogue dialogue = new SuccessDialogue(mActivity, mBookTable.getMessage(), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookTable");
+                    dialogue.show();
+                } else if (response.errorBody() != null) {
+                    try {
+                        ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+
 
             //Setting time segment according to No of guests
            /* ChangeTimeSegmentsField(mEdtNoOfGuests.getText().toString().trim());*/
