@@ -141,7 +141,7 @@ public class ShapeOfView extends FrameLayout {
                     final Path shadowConvexPath = clipManager.getShadowConvexPath();
                     if (shadowConvexPath != null) {
                         try {
-                            outline.setConvexPath(shadowConvexPath);
+                                outline.setConvexPath(shadowConvexPath);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.activities.ReserveATableActivity;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.AVLoadingIndicatorView;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.restaurantsData;
@@ -82,11 +84,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         holder.mBtnReserveATable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", mRestaurantListing.getRestBookUrl());
-                in.putExtra("Header", mRestaurantListing.getRestName());
+                if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
+                    Intent intent = new Intent(mActivity, ReserveATableActivity.class);
+                    mActivity.startActivity(intent);
+                } else {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", mRestaurantListing.getRestBookUrl());
+                    in.putExtra("Header", mRestaurantListing.getRestName());
+                    mActivity.startActivity(in);
+                }
 
-                mActivity.startActivity(in);
             }
         });
     }
