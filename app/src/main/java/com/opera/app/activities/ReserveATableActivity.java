@@ -2,7 +2,9 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +29,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -35,7 +38,6 @@ import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listadapters.AdapterMealPeriod;
 import com.opera.app.listadapters.AdapterTimeSegments;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.pojo.restaurant.booktable.BookTableResponse;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods;
@@ -50,6 +52,7 @@ import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -131,7 +134,10 @@ public class ReserveATableActivity extends BaseActivity {
 
     @BindView(R.id.btnSubmit)
     Button mBtnSubmit;
-
+    
+    CustomSpinner spinnerCountryCode;
+    String countryCode;
+    
     //Meal Period
     private AdapterMealPeriod mAdapterMealPeriod;
     private ArrayList<Meal_Periods> arrMealPeriods = new ArrayList<>();
@@ -181,7 +187,6 @@ public class ReserveATableActivity extends BaseActivity {
                 if (arrTimeSegmentsAllFilters.size() > 0) {
                     mSelectedTime = arrTimeSegmentsAllFilters.get(position).getMeal_Period_Time();
                 }
-
             }
 
             @Override
@@ -230,11 +235,11 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulName.setMaxLines(1);
         edtFulName.setHint(getString(R.string.full_name1));
 
-        if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getName() != null) {
+        if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName());
         }
 
-        edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edt);
+        /*edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edt);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
         edtFulNo.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(10)});
@@ -242,7 +247,7 @@ public class ReserveATableActivity extends BaseActivity {
 
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
             edtFulNo.setText(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber());
-        }
+        }*/
 
         edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -274,6 +279,54 @@ public class ReserveATableActivity extends BaseActivity {
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
+        
+        edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
+        edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
+        edtFulNo.setMaxLines(1);
+        edtFulNo.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(10)});
+        edtFulNo.setHint(getString(R.string.telephone_no));
+
+        if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
+            if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+                String Number = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber();
+                String mobile = Number.substring(Number.lastIndexOf(")") + 1);
+                edtFulNo.setText(mobile);
+            } else {
+                edtFulNo.setText(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber());
+            }
+        }
+
+        spinnerCountryCode = (CustomSpinner) reserve_edtFulNo.findViewById(R.id.spinnerCountryCode);
+        //---------------Country Code----------------
+        // Initializing a String Array
+        ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
+                mActivity, R.layout.custom_spinner,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
+        spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
+        spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(mActivity);
+            String name = sharedPreferences.getString("countryCode", "default value");
+            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        }
+        spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country_code_with_asterisk))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    if(position>0) {
+                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initToolbar() {
@@ -366,6 +419,9 @@ public class ReserveATableActivity extends BaseActivity {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
             customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
+        } else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
+            return false;
         } else if (TextUtils.isEmpty(edtFulNo.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
@@ -397,7 +453,7 @@ public class ReserveATableActivity extends BaseActivity {
         Patron mPatron = new Patron(getResources().getString(R.string.phone_number1), getResources().getString(R.string.organisation), mSpinnerSelectTitle.getSelectedItem().toString(),
                 getResources().getString(R.string.address2), getResources().getString(R.string.state_request), edtEmail.getText().toString().trim(),
                 getResources().getString(R.string.address1), getResources().getString(R.string.post_code), getResources().getString(R.string.suburb),
-                edtFulNo.getText().toString(), getResources().getString(R.string.position), edtFulName.getText().toString().trim(),
+                "+("+ countryCode +")"+ edtFulNo.getText().toString(), getResources().getString(R.string.position), edtFulName.getText().toString().trim(),
                 "", "");
 
         controller.bookRestaurant(taskComplete, api, new SubmitSaveRestaurantReservationRequestPojo("sample string 8", "sample string 5", "true", mRespak_reservation,
@@ -471,9 +527,7 @@ public class ReserveATableActivity extends BaseActivity {
                         Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
-
             }
-
 
             //Setting time segment according to No of guests
            /* ChangeTimeSegmentsField(mEdtNoOfGuests.getText().toString().trim());*/
