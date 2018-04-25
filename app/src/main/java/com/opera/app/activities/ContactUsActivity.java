@@ -22,25 +22,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomSpinner;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 4/3/2018.
@@ -48,6 +54,9 @@ import retrofit2.Response;
 
 public class ContactUsActivity extends BaseActivity {
 
+    @Inject
+    Retrofit retrofit;
+    private Api api;
     private Activity mActivity;
     private Intent intent;
     private CustomToast customToast;
@@ -117,6 +126,12 @@ public class ContactUsActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        ((MainApplication) getApplication()).getNetComponent().inject(ContactUsActivity.this);
+        api = retrofit.create(Api.class);
+
+        customToast = new CustomToast(mActivity);
+
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
@@ -128,12 +143,6 @@ public class ContactUsActivity extends BaseActivity {
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
         mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
-
-        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
-        mEdtMobileNumber.setHint(getString(R.string.phone_number));
-        mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email2));
@@ -148,7 +157,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
         mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
 
-        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edt);
+        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
         mEdtMobileNumber.setHint(getString(R.string.phone_number));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -171,7 +180,6 @@ public class ContactUsActivity extends BaseActivity {
                             R.style.label_black);
                     if(position>0) {
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
-                        //customToast.showErrorToast(spinnerCountryCode);
                     }
                 }
             }
@@ -246,9 +254,24 @@ public class ContactUsActivity extends BaseActivity {
     private void ContactUsData() {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
-            /*controller.registerPost(taskComplete, api,
-                    userRegistration());*/
+            controller.contactUs(taskComplete, api, contactUs());
         }
+    }
+
+    private ContactUs contactUs() {
+
+        ContactUs contactDate = new ContactUs();
+
+        contactDate.setFullName(mEdtFullName.getText().toString().trim() != null ?
+                mEdtFullName.getText().toString().trim() : "");
+        contactDate.setPhoneNumber("+("+countryCode +")"+ mEdtMobileNumber.getText().toString().trim());
+        contactDate.setEmail(mEdtEmail.getText().toString().trim());
+        contactDate.setEnquiryType(spinnerEnquiryType.getSelectedItem().toString());
+        contactDate.setMessage(mEdtMessage.getText().toString().trim() != null ?
+                mEdtMessage.getText().toString().trim() : "");
+
+        return contactDate;
+
     }
 
     private boolean validateCheck() {
@@ -264,6 +287,11 @@ public class ContactUsActivity extends BaseActivity {
             return false;
         } else if (mEdtFullName.getText().toString().length() < 3 || mEdtFullName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthFullName));
+            return false;
+        }
+        //country code
+        else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
         //mobile
@@ -291,7 +319,7 @@ public class ContactUsActivity extends BaseActivity {
         else if (TextUtils.isEmpty(mEdtMessage.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMessage));
             return false;
-        } else if (mEdtMessage.getText().toString().length() > 150) {
+        } else if (mEdtMessage.getText().toString().length() > 70) {
             customToast.showErrorToast(getString(R.string.errorLengthMessage));
             return false;
         }

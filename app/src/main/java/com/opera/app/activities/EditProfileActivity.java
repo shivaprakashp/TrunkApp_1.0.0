@@ -150,6 +150,7 @@ public class EditProfileActivity extends BaseActivity {
         edtEmail.setHint(getString(R.string.edit_email));
         edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtEmail.setTextColor(getResources().getColor(R.color.dark_gray));
         edtEmail.setEnabled(false);
 
         edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
@@ -449,7 +450,7 @@ public class EditProfileActivity extends BaseActivity {
         else if (TextUtils.isEmpty(edtCity.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorCity));
             return false;
-        } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
+        } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 26) {
             customToast.showErrorToast(getString(R.string.errorLengthCity));
             return false;
         }

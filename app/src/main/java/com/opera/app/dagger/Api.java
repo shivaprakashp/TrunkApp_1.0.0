@@ -1,10 +1,12 @@
 package com.opera.app.dagger;
 
+import com.opera.app.pojo.contactUs.ContactUs;
+import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
-import com.opera.app.pojo.profile.EditProfile;
-import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.profile.EditProfile;
+import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
@@ -62,6 +64,15 @@ public interface Api {
                                                  @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
     @POST("restaurants/extended/BookTable/")
+    Call<RestaurantMasterDetails> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                                              @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+
+    @POST("accounts/extended/SaveContact/")
+    Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
+                                             @Body ContactUs contactUs);
+
+    @POST("restaurants/extended/BookTable/")
     Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
                                                   @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+
 }

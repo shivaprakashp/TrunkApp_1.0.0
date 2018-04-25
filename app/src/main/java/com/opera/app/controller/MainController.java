@@ -7,6 +7,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
+import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
@@ -104,6 +105,12 @@ public class MainController {
     public void bookRestaurant(TaskComplete taskComplete, Api api,SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
         Call call = api.ReserveRestaurantSeat(contentType,mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+    public void contactUs(TaskComplete taskComplete, Api api, ContactUs contact) {
+        Call call = api.contactUs(contentType, contact);
+        properties.setRequestKey(AppConstants.CONTACTUS.CONTACTUS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }

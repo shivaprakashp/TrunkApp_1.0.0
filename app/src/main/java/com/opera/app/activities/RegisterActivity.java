@@ -553,7 +553,7 @@ public class RegisterActivity extends BaseActivity {
             else if (TextUtils.isEmpty(edtCity.getText().toString())) {
                 customToast.showErrorToast(getString(R.string.errorCity));
                 return false;
-            } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 15) {
+            } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 26) {
                 customToast.showErrorToast(getString(R.string.errorLengthCity));
                 return false;
             }
