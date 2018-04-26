@@ -18,6 +18,8 @@ import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReserv
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -67,16 +69,16 @@ public interface Api {
                                                  @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
     @POST("restaurants/extended/BookTable/")
-    Call<RestaurantMasterDetails> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                                              @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+    Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                                  @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
 
     @POST("accounts/extended/SaveContact/")
     Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
                                              @Body ContactUs contactUs);
 
-    @POST("restaurants/extended/BookTable/")
+   /* @POST("restaurants/extended/BookTable/")
     Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
-                                                  @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+                                                  @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);*/
 
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);

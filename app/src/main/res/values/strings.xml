@@ -892,5 +892,6 @@
     <string name="suburb">sample string 7</string>
     <string name="position">sample string 14</string>
     <string name="errorSelectTime">Select time to proceed</string>
+    <string name="sample_string_7">Sample string 7</string>
 
 </resources>
