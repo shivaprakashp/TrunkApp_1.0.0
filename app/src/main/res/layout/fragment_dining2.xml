@@ -5,11 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/img_sean_conolly" />
+        android:layout_height="250dp">
+
+        <ImageView
+            android:id="@+id/restaurantImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <ProgressBar
+            android:id="@+id/progressImageLoader"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +75,7 @@
                             android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@string/sean_connolly"
+                            android:text=""
                             font:name="Montserrat-Light" />
 
                         <com.opera.app.customwidget.TextViewWithFont
@@ -74,7 +86,7 @@
                             android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@string/dubai_opera"
+                            android:text=""
                             font:name="Montserrat-Light" />
 
                     </LinearLayout>
@@ -115,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy " />
+                        android:text="" />
 
                     <LinearLayout
                         android:id="@+id/linearReadMore"
@@ -124,7 +136,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.opera.app.customwidget.TextViewWithFont
                             android:id="@+id/txtShowmore"

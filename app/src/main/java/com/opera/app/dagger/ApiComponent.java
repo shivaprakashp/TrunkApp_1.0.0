@@ -9,6 +9,7 @@ import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
+import com.opera.app.fragments.DiningFragment;
 import com.opera.app.services.SettingsService;
 
 import javax.inject.Singleton;
@@ -32,4 +33,5 @@ public interface ApiComponent {
     void inject(OtherRestaurantsActivity mOtherRestaurantsActivity);
     void inject(ReserveATableActivity mReserveATableActivity);
     void inject(ContactUsActivity mContactUsActivity);
+    void inject(DiningFragment diningFragment);
 }

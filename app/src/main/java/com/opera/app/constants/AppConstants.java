@@ -48,4 +48,8 @@ public interface AppConstants {
     interface CONTACTUS {
         String CONTACTUS = "CONTACTUS";
     }
+
+    interface GETSPECIFICRESTAURANT {
+        String GETSPECIFICRESTAURANT = "GETSPECIFICRESTAURANT";
+    }
 }

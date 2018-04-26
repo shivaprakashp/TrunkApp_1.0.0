@@ -75,7 +75,7 @@ public class MainController {
     }
 
     public void updateSettings(TaskComplete taskComplete, Api api, SetSettingsPojo mSettingsPojo) {
-        Call call = api.UpdateSettings(contentType, manager.getUserLoginData().getData().getToken(),mSettingsPojo);
+        Call call = api.UpdateSettings(contentType, manager.getUserLoginData().getData().getToken(), mSettingsPojo);
         properties.setRequestKey(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
@@ -95,23 +95,33 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void fetchMasterDetails(TaskComplete taskComplete, Api api,GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
-        Call call = api.RestaurantsGetMasterDetails(contentType,manager.getUserLoginData().getData().getToken(),getMasterDetailsRequestPojo);          // need to add auth token
+    public void fetchMasterDetails(TaskComplete taskComplete, Api api, GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
+        Call call = api.RestaurantsGetMasterDetails(contentType, manager.getUserLoginData().getData().getToken(), getMasterDetailsRequestPojo);          // need to add auth token
         properties.setRequestKey(AppConstants.GETMASTERDETAILS.GETMASTERDETAILS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
 
-    public void bookRestaurant(TaskComplete taskComplete, Api api,SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
-        Call call = api.ReserveRestaurantSeat(contentType,mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
+    public void bookRestaurant(TaskComplete taskComplete, Api api, SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
+        Call call = api.ReserveRestaurantSeat(contentType, mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
+
     public void contactUs(TaskComplete taskComplete, Api api, ContactUs contact) {
         Call call = api.contactUs(contentType, contact);
         properties.setRequestKey(AppConstants.CONTACTUS.CONTACTUS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
+
+    public void getSpecificRestaurant(TaskComplete taskComplete, Api api) {
+        Call call = api.GetSpecificRestaurant(contentType,AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
+        properties.setRequestKey(AppConstants.GETSPECIFICRESTAURANT.GETSPECIFICRESTAURANT);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.opera.app.pojo.restaurant.booktable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.restaurant.booktable.Data;
 
 /**
  * Created by 1000632 on 4/24/2018.
