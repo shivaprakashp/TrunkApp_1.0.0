@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -79,8 +80,10 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.edtEmail)
     View edtEmail;
 
+    /*@BindView(R.id.edtMessage)
+    View edtMessage;*/
     @BindView(R.id.edtMessage)
-    View edtMessage;
+    EditText edtMessage;
 
     @BindView(R.id.spinnerEnquiryType)
     Spinner spinnerEnquiryType;
@@ -103,7 +106,7 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
-    EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail, mEdtMessage;
+    EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail;
     CustomSpinner spinnerCountryCode;
     String countryCode;
 
@@ -150,12 +153,12 @@ public class ContactUsActivity extends BaseActivity {
         mEdtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
-        mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
+        /*mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
         mEdtMessage.setHint(getString(R.string.message));
         mEdtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         mEdtMessage.setSingleLine(false);
         mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
+        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });*/
 
         mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
         mEdtMobileNumber.setHint(getString(R.string.phone_number));
@@ -264,11 +267,11 @@ public class ContactUsActivity extends BaseActivity {
 
         contactDate.setFullName(mEdtFullName.getText().toString().trim() != null ?
                 mEdtFullName.getText().toString().trim() : "");
-        contactDate.setPhoneNumber("+("+countryCode +")"+ mEdtMobileNumber.getText().toString().trim());
+        contactDate.setPhoneNumber("("+countryCode +")"+ mEdtMobileNumber.getText().toString().trim());
         contactDate.setEmail(mEdtEmail.getText().toString().trim());
         contactDate.setEnquiryType(spinnerEnquiryType.getSelectedItem().toString());
-        contactDate.setMessage(mEdtMessage.getText().toString().trim() != null ?
-                mEdtMessage.getText().toString().trim() : "");
+        contactDate.setMessage(edtMessage.getText().toString().trim() != null ?
+                edtMessage.getText().toString().trim() : "");
 
         return contactDate;
 
@@ -279,16 +282,16 @@ public class ContactUsActivity extends BaseActivity {
         mEdtFullName.setError(null);
         mEdtMobileNumber.setError(null);
         mEdtEmail.setError(null);
-        mEdtMessage.setError(null);
+        edtMessage.setError(null);
 
         //FullName
         if (TextUtils.isEmpty(mEdtFullName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFullName));
             return false;
-        } else if (mEdtFullName.getText().toString().length() < 3 || mEdtFullName.getText().toString().length() > 30) {
+        } /*else if (mEdtFullName.getText().toString().length() < 1 || mEdtFullName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthFullName));
             return false;
-        }
+        }*/
         //country code
         else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
@@ -316,10 +319,10 @@ public class ContactUsActivity extends BaseActivity {
             return false;
         }
         //message
-        else if (TextUtils.isEmpty(mEdtMessage.getText().toString())) {
+        else if (TextUtils.isEmpty(edtMessage.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMessage));
             return false;
-        } else if (mEdtMessage.getText().toString().length() > 70) {
+        } else if (edtMessage.getText().toString().length() > 70) {
             customToast.showErrorToast(getString(R.string.errorLengthMessage));
             return false;
         }

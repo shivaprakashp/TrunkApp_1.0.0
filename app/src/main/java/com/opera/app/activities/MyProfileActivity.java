@@ -351,7 +351,7 @@ public class MyProfileActivity extends BaseActivity {
             return false;
 
         } else if (mEdtNewPassword.getText().toString().length() < 3 || mEdtNewPassword.getText().toString().length() > 16) {
-            customToast.showErrorToast(getString(R.string.errorLengthPassword));
+            customToast.showErrorToast(getString(R.string.errorLengthNewPassword));
             return false;
         }  else if (TextUtils.isEmpty(mEdtConfNewPassword.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorConfirmNewPassword));

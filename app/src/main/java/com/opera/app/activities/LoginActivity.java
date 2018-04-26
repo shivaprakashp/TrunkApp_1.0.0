@@ -240,8 +240,7 @@ public class LoginActivity extends BaseActivity {
         password.setError(null);
         //validation of input field
         if (TextUtils.isEmpty(username.getText().toString().trim()) && TextUtils.isEmpty(password.getText().toString().trim())) {
-            customToast.showErrorToast(getString(R.string.errorUserName));
-            customToast.showErrorToast(getString(R.string.errorPassword));
+            customToast.showErrorToast(getString(R.string.errorLoginError));
             return false;
         } else if (TextUtils.isEmpty(username.getText().toString().trim())) {
             customToast.showErrorToast(getString(R.string.errorUserName));
