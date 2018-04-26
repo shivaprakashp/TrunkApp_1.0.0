@@ -51,6 +51,8 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -134,10 +136,10 @@ public class ReserveATableActivity extends BaseActivity {
 
     @BindView(R.id.btnSubmit)
     Button mBtnSubmit;
-    
+
     CustomSpinner spinnerCountryCode;
     String countryCode;
-    
+
     //Meal Period
     private AdapterMealPeriod mAdapterMealPeriod;
     private ArrayList<Meal_Periods> arrMealPeriods = new ArrayList<>();
@@ -258,14 +260,7 @@ public class ReserveATableActivity extends BaseActivity {
             edtEmail.setText(mSessionManager.getUserLoginData().getData().getProfile().getEmail());
         }
 
-        String[] arrMealPeriod = {getResources().getString(R.string.select_meal_priod)};
-
-        ArrayAdapter<String> adapterMealPeriod = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrMealPeriod);
-        mSpinnerMealPeriod.setAdapter(adapterMealPeriod);
-
-        String[] arrSelectTime = {getResources().getString(R.string.select_time)};
-        adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
-        mSpinnerSelectTime.setAdapter(adapterSelectTime);
+        EmptyTimeAndMealFields();
 
         String[] arrSelectTitle = {getResources().getString(R.string.select_title), getResources().getString(R.string.mr), getResources().getString(R.string.ms), getResources().getString(R.string.mrs)};
 
@@ -277,9 +272,9 @@ public class ReserveATableActivity extends BaseActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+        editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
-        
+
         edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
@@ -304,7 +299,7 @@ public class ReserveATableActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-        if(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+        if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
             SharedPreferences sharedPreferences = PreferenceManager
                     .getDefaultSharedPreferences(mActivity);
             String name = sharedPreferences.getString("countryCode", "default value");
@@ -314,12 +309,13 @@ public class ReserveATableActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country_code_with_asterisk))){
+                        getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -372,6 +368,7 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        EmptyTimeAndMealFields();
                         editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
@@ -386,6 +383,7 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        EmptyTimeAndMealFields();
                         editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
@@ -400,6 +398,18 @@ public class ReserveATableActivity extends BaseActivity {
                 break;
 
         }
+    }
+
+    private void EmptyTimeAndMealFields() {
+        String[] arrMealPeriod = {getResources().getString(R.string.select_meal_priod)};
+
+        ArrayAdapter<String> adapterMealPeriod = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrMealPeriod);
+        mSpinnerMealPeriod.setAdapter(adapterMealPeriod);
+
+        String[] arrSelectTime = {getResources().getString(R.string.select_time)};
+
+        adapterSelectTime = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTime);
+        mSpinnerSelectTime.setAdapter(adapterSelectTime);
     }
 
     private boolean validateCheck() {
@@ -438,6 +448,8 @@ public class ReserveATableActivity extends BaseActivity {
     private void SubmitSaveReservation() {
         MainController controller = new MainController(mActivity);
 
+//        JSONObject objectOuter = GetFormedJSON();
+
         Respak_Reservation mRespak_reservation = new Respak_Reservation(getResources().getString(R.string.UDF1), getResources().getString(R.string.promotion_code)
                 , getResources().getString(R.string.UDF2), getResources().getString(R.string.reservation_id), getResources().getString(R.string.full_reservation_id)
                 , mMealPeriodId, getResources().getString(R.string.udf5), getResources().getString(R.string.udf3), getResources().getString(R.string.udf4)
@@ -445,17 +457,87 @@ public class ReserveATableActivity extends BaseActivity {
                 getResources().getString(R.string.area_name), getResources().getString(R.string.coupon_code), getResources().getString(R.string.referral_name)
                 , editDOB.getText().toString().trim(), mEdtSpecialRequests.getText().toString().trim(), getResources().getString(R.string.occassion_name)
                 , "", mSelectedTime, getResources().getString(R.string.referral_code),
-                mSpinnerMealPeriod.getSelectedItem().toString(), AppConstants.SEAN_CONOLLY_R_STATUS, AppConstants.SEAN_CONOLLY_RESTAURANT_ID
+                getResources().getString(R.string.sample_string_7), AppConstants.SEAN_CONOLLY_R_STATUS, AppConstants.SEAN_CONOLLY_RESTAURANT_ID
                 , mEdtNoOfGuests.getText().toString().trim(), getResources().getString(R.string.source_host), "");
 
         Patron mPatron = new Patron(getResources().getString(R.string.phone_number1), getResources().getString(R.string.organisation), mSpinnerSelectTitle.getSelectedItem().toString(),
                 getResources().getString(R.string.address2), getResources().getString(R.string.state_request), edtEmail.getText().toString().trim(),
                 getResources().getString(R.string.address1), getResources().getString(R.string.post_code), getResources().getString(R.string.suburb),
-                "+("+ countryCode +")"+ edtFulNo.getText().toString(), getResources().getString(R.string.position), edtFulName.getText().toString().trim(),
+                "+(" + countryCode + ")" + edtFulNo.getText().toString(), getResources().getString(R.string.position), edtFulName.getText().toString().trim(),
                 "", "");
 
         controller.bookRestaurant(taskComplete, api, new SubmitSaveRestaurantReservationRequestPojo("sample string 8", "sample string 5", "true", mRespak_reservation,
                 mPatron, "true", getResources().getString(R.string.base64_hpt1), "sample string 4", ""));
+
+        /*controller.bookRestaurant(taskComplete, api, objectOuter);*/
+    }
+
+    private JSONObject GetFormedJSON() {
+        JSONObject objectOuter = new JSONObject();
+        JSONObject objectPatron = new JSONObject();
+        JSONObject objectRespakReservation = new JSONObject();
+        try {
+            objectPatron.put("Person_ID", "");
+            objectPatron.put("Title", "Mr.");
+            objectPatron.put("Firstname", "Swapnil");
+            objectPatron.put("Lastname", "sample string 4");
+            objectPatron.put("Address_1", "sample string 5");
+            objectPatron.put("Address_2", "sample string 6");
+            objectPatron.put("Suburb", "sample string 7");
+            objectPatron.put("State", "sample string 8");
+            objectPatron.put("PostCode", "sample string 9");
+            objectPatron.put("Phone", "");
+            objectPatron.put("Mobile", "+(62)9029878934");
+            objectPatron.put("Email", "test3@gmail.com");
+            objectPatron.put("Organisation", "sample string 13");
+            objectPatron.put("Position", "sample string 14");
+
+
+            objectRespakReservation.put("Reservation_ID", "sample string 1");
+            objectRespakReservation.put("Full_Reservation_ID", "sample string 2");
+            objectRespakReservation.put("Patron_ID", "");
+            objectRespakReservation.put("Area_Name", "sample string 4");
+            objectRespakReservation.put("Area_ID", "40");
+            objectRespakReservation.put("Meal_Period_ID", "3");
+            objectRespakReservation.put("Meal_Period_Name", "");
+            objectRespakReservation.put("Reservation_Date", "2018-04-28");
+            objectRespakReservation.put("Reservation_Time", "2018-04-28T11:30");
+            objectRespakReservation.put("Party_Size", "1");
+            objectRespakReservation.put("Notes", "fdfdf");
+            objectRespakReservation.put("RStatus", "3");
+            objectRespakReservation.put("Referral_ID", "");
+            objectRespakReservation.put("Referral_Name", "sample string 14");
+            objectRespakReservation.put("Occasion_ID", "");
+            objectRespakReservation.put("Occasion_Name", "sample string 16");
+            objectRespakReservation.put("Table_Position", "sample string 17");
+            objectRespakReservation.put("Promotion_Code", "sample string 18");
+            objectRespakReservation.put("Coupon_Code", "sample string 19");
+            objectRespakReservation.put("Referrer_Code", "sample string 20");
+            objectRespakReservation.put("Source_Host", "sample string 21");
+            objectRespakReservation.put("Device_ID", "sample string 22");
+            objectRespakReservation.put("UDF1", "sample string 23");
+            objectRespakReservation.put("UDF2", "sample string 24");
+            objectRespakReservation.put("UDF3", "sample string 25");
+            objectRespakReservation.put("UDF4", "sample string 26");
+            objectRespakReservation.put("UDF5", "sample string 27");
+
+
+            objectOuter.put("Save_Transaction", "true");
+            objectOuter.put("Send_Email_To_Reservation", "true");
+            objectOuter.put("Email_Type", "sample string 4");
+            objectOuter.put("RRO_Subject", "sample string 5");
+            objectOuter.put("HPT_1", "bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==");
+            objectOuter.put("HPT_2", "");
+            objectOuter.put("EncryptedString", "sample string 8");
+
+            objectOuter.put("Patron", objectPatron);
+            objectOuter.put("Respak_Reservation", objectRespakReservation);
+
+        } catch (Exception ex) {
+
+        }
+
+        return objectOuter;
     }
 
     private void ChangeTimeSegmentsField(String mCurrentNofOfGuestesSelected) {

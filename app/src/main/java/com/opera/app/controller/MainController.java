@@ -18,6 +18,8 @@ import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReserv
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 
 /**
@@ -103,7 +105,13 @@ public class MainController {
     }
 
     public void bookRestaurant(TaskComplete taskComplete, Api api, SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
-        Call call = api.ReserveRestaurantSeat(contentType, mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
+        Call call = null;
+        if (manager.getUserLoginData() != null) {
+            call = api.ReserveRestaurantSeat(contentType, manager.getUserLoginData().getData().getToken(), mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
+        } else {
+            call = api.ReserveRestaurantSeat(contentType, "", mSubmitSaveRestaurantReservationRequestPojo);
+        }
+
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
@@ -117,7 +125,7 @@ public class MainController {
     }
 
     public void getSpecificRestaurant(TaskComplete taskComplete, Api api) {
-        Call call = api.GetSpecificRestaurant(contentType,AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
+        Call call = api.GetSpecificRestaurant(contentType, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
         properties.setRequestKey(AppConstants.GETSPECIFICRESTAURANT.GETSPECIFICRESTAURANT);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
