@@ -127,11 +127,17 @@
                     android:textColor="@color/black"
                     android:textSize="12sp" />-->
 
-                <com.opera.app.customwidget.CustomSpinner
+                <Spinner
+                    android:id="@+id/spinnerEnquiryType"
+                    style="@style/label_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <!--<com.opera.app.customwidget.CustomSpinner
                     android:id="@+id/spinnerEnquiryType"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    font:name="Montserrat-Regular" />
+                    font:name="Montserrat-Regular" />-->
 
                 <View
                     android:layout_width="match_parent"
@@ -149,13 +155,13 @@
                 </LinearLayout>-->
 
                 <com.opera.app.customwidget.EditTextWithFont
-                    android:id="@+id/edtMessage"
+                    android:id="@+id/edit_edtAddress"
                     style="@style/label_black"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:background="@null"
                     android:gravity="start"
-                    android:hint="@string/message"
+                    android:hint="@string/edit_address"
                     android:imeOptions="actionDone"
                     android:maxLength="70"
                     android:padding="5dp"

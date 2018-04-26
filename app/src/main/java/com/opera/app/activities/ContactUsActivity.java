@@ -82,7 +82,7 @@ public class ContactUsActivity extends BaseActivity {
 
     /*@BindView(R.id.edtMessage)
     View edtMessage;*/
-    @BindView(R.id.edtMessage)
+    @BindView(R.id.edit_edtAddress)
     EditText edtMessage;
 
     @BindView(R.id.spinnerEnquiryType)

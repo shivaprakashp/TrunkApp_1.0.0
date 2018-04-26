@@ -262,14 +262,15 @@
     <string name="errorMismatchPassword">Your Password has not been confirmed, please retype it correctly.</string>
     <string name="errorNationality">Your Nationality name may not be blank</string>
     <string name="errorDob">Your date of birth may not be blank</string>
+    <string name="errorCountryCode">Your Country Code may not be blank</string>
+    <string name="errorMobile">Your mobile phone must be filled in</string>
+    <string name="errorLengthMobile">Your Mobile Phone minimum length must be of 10 digit</string>
     <string name="errorCity">Your City name may not be blank</string>
     <string name="errorState">Your Emirate or State name may not be blank</string>
     <string name="errorCountry">Your Country Name name may not be blank</string>
-
     <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
     <string name="errorLengthCity">City should be between 2 to 26 character long</string>
     <string name="errorTerms">You need to accept the terms to proceed for registration</string>
-    <string name="successMsg">“Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
 
     <!--Guest msg-->
     <string name="guest_title">ALERT !!</string>
@@ -294,19 +295,17 @@
 
     <!--Error handling (UNChanged one's)-->
     <string name="errorRePassword">Re-enter Password cannot be left blank</string>
-    <string name="errorMobile">Mobile Number cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorEmail">Email Address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
     <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
     <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
     <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
-    <string name="errorLengthMobile">Length of Mobile Number should be 10 digit</string>
-    <string name="errorCountryCode">Select Country Code</string>
     <string name="country_code">Country Code</string>
     <string name="country_code_with_asterisk">Code*</string>
 
-    <!--error and success dialog-->
+    <!--error and success dialog msg-->
+    <string name="successMsg">“Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
     <string name="success_header">SUCCESS</string>
