@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,9 +117,13 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.ckbNewsLetters)
     CheckBox ckbNewsLetters;
 
-    @BindView(R.id.reg_edtMobile)
-    View reg_edtMobile;
+    /*@BindView(R.id.reg_edtMobile)
+    View reg_edtMobile;*/
 
+    @BindView(R.id.edtMobile)
+    EditText edtMobile;
+
+    @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
 
     String countryCode;
@@ -128,7 +133,6 @@ public class RegisterActivity extends BaseActivity {
             edtRePass,
             edtFirstName,
             edtLastName,
-            edtMobile,
             edtCity;
 
     @BindView(R.id.txtTermsCondition)
@@ -244,13 +248,13 @@ public class RegisterActivity extends BaseActivity {
             }
         });
 
-        edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edtMobile);
+        //edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edtMobile);
         edtMobile.setHint(getString(R.string.mobile));
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtMobile.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
-        spinnerCountryCode = (CustomSpinner) reg_edtMobile.findViewById(R.id.spinnerCountryCode);
+        //spinnerCountryCode = (CustomSpinner) reg_edtMobile.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
@@ -265,7 +269,7 @@ public class RegisterActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    if (position > 0) {
+
                         SharedPreferences sharedPreferences = PreferenceManager
                                 .getDefaultSharedPreferences(mActivity);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -274,7 +278,7 @@ public class RegisterActivity extends BaseActivity {
                         //sp.edit().putString("countryCode", spinnerCountryCode.getSelectedItem().toString()).commit();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                         //customToast.showErrorToast(spinnerCountryCode);
-                    }
+
                 }
             }
 

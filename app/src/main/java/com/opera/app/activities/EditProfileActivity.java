@@ -267,7 +267,7 @@ public class EditProfileActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))){
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    if(position>0) {
+
                         SharedPreferences sharedPreferences = PreferenceManager
                                 .getDefaultSharedPreferences(mActivity);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -275,7 +275,7 @@ public class EditProfileActivity extends BaseActivity {
                         editor.apply();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                         //customToast.showErrorToast(spinnerCountryCode);
-                    }
+
                 }
             }
             @Override

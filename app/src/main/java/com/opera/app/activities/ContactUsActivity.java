@@ -74,8 +74,8 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.edtFullName)
     View edtFullName;
 
-    @BindView(R.id.edtPhoneNumber)
-    View edtPhoneNumber;
+    /*@BindView(R.id.edtPhoneNumber)
+    View edtPhoneNumber;*/
 
     @BindView(R.id.edtEmail)
     View edtEmail;
@@ -106,8 +106,13 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
-    EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail;
+    @BindView(R.id.edtMobile)
+    EditText mEdtMobileNumber;
+
+    @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
+
+    EditTextWithFont mEdtFullName, mEdtEmail;
     String countryCode;
 
     @Override
@@ -160,13 +165,13 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
         mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });*/
 
-        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
+        //mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
         mEdtMobileNumber.setHint(getString(R.string.phone_number));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
-        spinnerCountryCode = (CustomSpinner) edtPhoneNumber.findViewById(R.id.spinnerCountryCode);
+        //spinnerCountryCode = (CustomSpinner) edtPhoneNumber.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
