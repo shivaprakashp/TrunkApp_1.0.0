@@ -316,7 +316,6 @@
     <string name="contactUs_header">Thank You!!</string>
 
     <array name="states">
-        <item>Emirate or State*</item>
         <item>Dubai</item>
         <item>Abu Dhabi</item>
         <item>Ajman</item>
@@ -328,7 +327,6 @@
 
 
     <array name="nationality">
-        <item>Nationality*</item>
         <item>United Arab Emirates</item>
         <item>Afghanistan</item>
         <item>Albania</item>
@@ -490,7 +488,6 @@
     </array>
 
     <array name="country">
-    <item>Country*</item>
     <item>UAE</item>
     <item>Afghanistan</item>
     <item>Albania</item>
@@ -653,7 +650,6 @@
 </array>
 
     <array name="country_code">
-        <item>Code*</item>
         <item>UAE (971)</item>
         <item>Afghanistan (93)</item>
         <item>Albania (355)</item>
