@@ -138,7 +138,7 @@ public class RegisterActivity extends BaseActivity {
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
-        public void onTaskFinished(Response response,String mRequestKey) {
+        public void onTaskFinished(Response response, String mRequestKey) {
             if (response.body() != null) {
 
                 SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
@@ -154,7 +154,7 @@ public class RegisterActivity extends BaseActivity {
         }
 
         @Override
-        public void onTaskError(Call call, Throwable t,String mRequestKey) {
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
 
         }
 
@@ -187,20 +187,20 @@ public class RegisterActivity extends BaseActivity {
         edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        edtEmail.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
 
         edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
         //edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtRePass.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        edtRePass.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -208,14 +208,14 @@ public class RegisterActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
         edtFirstName.requestFocus();
 
         edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
 
         edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
@@ -227,7 +227,7 @@ public class RegisterActivity extends BaseActivity {
         edtCity.setHint(getString(R.string.city));
         edtCity.setInputType(InputType.TYPE_CLASS_TEXT);
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });
+        edtCity.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26)});
 
         edtDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +248,7 @@ public class RegisterActivity extends BaseActivity {
         edtMobile.setHint(getString(R.string.mobile));
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+        edtMobile.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
         spinnerCountryCode = (CustomSpinner) reg_edtMobile.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
@@ -262,10 +262,10 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country_code_with_asterisk))){
+                        getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    if(position>0) {
+                    if (position > 0) {
                         SharedPreferences sharedPreferences = PreferenceManager
                                 .getDefaultSharedPreferences(mActivity);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -277,6 +277,7 @@ public class RegisterActivity extends BaseActivity {
                     }
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -285,23 +286,25 @@ public class RegisterActivity extends BaseActivity {
     }
 
     //find all spinner at one place
-    private void initSpinners(){
+    private void initSpinners() {
         //---------------Nationality----------------
         // Initializing a String Array
         ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
                 mActivity, R.layout.custom_spinner,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
         spinnerNationality.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_nationality));
+
         spinnerNationality.setAdapter(nationalAdapter);
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerNationality.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.nationality))){
+                        getResources().getString(R.string.nationality))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -317,11 +320,12 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerState.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.state))){
+                        getResources().getString(R.string.state))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -337,11 +341,12 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country))){
+                        getResources().getString(R.string.country))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -380,7 +385,7 @@ public class RegisterActivity extends BaseActivity {
 
             txtTermsCondition.setMovementMethod(LinkMovementMethod.getInstance());
             txtTermsCondition.setText(spannableString);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -389,10 +394,10 @@ public class RegisterActivity extends BaseActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
-                if (flag){
+                if (flag) {
                     TermsDialogue dialogue = new TermsDialogue(mActivity);
                     dialogue.show();
-                }else {
+                } else {
                     PrivacyDialogue dialogue = new PrivacyDialogue(mActivity);
                     dialogue.show();
                 }
@@ -450,7 +455,7 @@ public class RegisterActivity extends BaseActivity {
         registration.setNationality(spinnerNationality.getSelectedItem().toString());
         registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
                 edtDob.getText().toString().trim() : "");
-        registration.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
+        registration.setMobileNumber("+(" + countryCode + ")" + edtMobile.getText().toString().trim());
         registration.setCity(edtCity.getText().toString());
         registration.setCountry(spinnerCountry.getSelectedItem().toString());
         registration.setState(spinnerState.getSelectedItem().toString());
@@ -480,98 +485,96 @@ public class RegisterActivity extends BaseActivity {
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
-        } else if (edtFirstName.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 30) {
+        }/* else if (edtFirstName.getText().toString().length() < 1 || edtFirstName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthFirstName));
             return false;
-        }
+        }*/
         //lastName
         else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorLastName));
             return false;
-        } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
+        } /*else if (edtLastName.getText().toString().length() < 1 || edtLastName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthLastName));
             return false;
-        }else
-
-            //email
-            if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorEmailId));
-                return false;
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-                customToast.showErrorToast(getString(R.string.errorUserEmail));
-                return false;
-            }
-            //password
-            else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorPassword));
-                return false;
-            } else if (edtPassword.getText().toString().length() < 3 || edtPassword.getText().toString().length() > 16) {
-                customToast.showErrorToast(getString(R.string.errorLengthPassword));
-                return false;
-            } else if (edtEmail.getText().toString().equalsIgnoreCase(
-                    edtPassword.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorSamePasswordAsUsername));
-                return false;
-            }
-            //re-enterPassword
-            else if (TextUtils.isEmpty(edtRePass.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorRePassword));
-                return false;
-            } else if (!edtPassword.getText().toString().equalsIgnoreCase(
-                    edtRePass.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorMismatchPassword));
-                return false;
-            } else if (edtRePass.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
-                customToast.showErrorToast(getString(R.string.errorLengthPassword));
-                return false;
-            }
-
-            //nationality
-            else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
-                customToast.showErrorToast(getResources().getString(R.string.errorNationality));
-                return false;
-            }
-            //dob
-            else if (TextUtils.isEmpty(edtDob.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorDob));
-                return false;
-            }
-            //country code
-            else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
-                customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
-                return false;
-            }
-            //mobile
-            else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorMobile));
-                return false;
-            } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
-                customToast.showErrorToast(getString(R.string.errorLengthMobile));
-                return false;
-            }
-            //city
-            else if (TextUtils.isEmpty(edtCity.getText().toString())) {
-                customToast.showErrorToast(getString(R.string.errorCity));
-                return false;
-            } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 26) {
-                customToast.showErrorToast(getString(R.string.errorLengthCity));
-                return false;
-            }
-            //state
-            else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
-                customToast.showErrorToast(getResources().getString(R.string.errorState));
-                return false;
-            }
-            //country
-            else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
-                customToast.showErrorToast(getResources().getString(R.string.errorCountry));
-                return false;
-            }
-            //TermsCheckbox
-            else if (!ckbTerms.isChecked()) {
-                customToast.showErrorToast(getResources().getString(R.string.errorTerms));
-                return false;
-            }
+        }*/
+        //email
+        else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorEmailId));
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
+            customToast.showErrorToast(getString(R.string.errorEmailInvalid));
+            return false;
+        }
+        //password
+        else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorPasswordEmpty));
+            return false;
+        } else if (edtPassword.getText().toString().length() < 3 || edtPassword.getText().toString().length() > 16) {
+            customToast.showErrorToast(getString(R.string.errorLengthPassword));
+            return false;
+        } else if (edtEmail.getText().toString().equalsIgnoreCase(
+                edtPassword.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorSamePasswordAsUsername));
+            return false;
+        }
+        //re-enterPassword
+        else if (TextUtils.isEmpty(edtRePass.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorMismatchPassword));
+            return false;
+        } else if (!edtPassword.getText().toString().equalsIgnoreCase(
+                edtRePass.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorMismatchPassword));
+            return false;
+        } else if (edtRePass.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 16) {
+            customToast.showErrorToast(getString(R.string.errorLengthPassword));
+            return false;
+        }
+        //nationality
+        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorNationality));
+            return false;
+        }
+        //dob
+        else if (TextUtils.isEmpty(edtDob.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorDob));
+            return false;
+        }
+        //country code
+        else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
+            return false;
+        }
+        //mobile
+        else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorMobile));
+            return false;
+        } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
+            customToast.showErrorToast(getString(R.string.errorLengthMobile));
+            return false;
+        }
+        //city
+        else if (TextUtils.isEmpty(edtCity.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorCity));
+            return false;
+        } else if (edtCity.getText().toString().length() < 2 || edtCity.getText().toString().length() > 26) {
+            customToast.showErrorToast(getString(R.string.errorLengthCity));
+            return false;
+        }
+        //state
+        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorState));
+            return false;
+        }
+        //country
+        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorCountry));
+            return false;
+        }
+        //TermsCheckbox
+        else if (!ckbTerms.isChecked()) {
+            customToast.showErrorToast(getResources().getString(R.string.errorTerms));
+            return false;
+        }
 
         return true;
     }

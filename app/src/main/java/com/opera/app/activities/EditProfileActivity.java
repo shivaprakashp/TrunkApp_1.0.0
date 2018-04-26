@@ -9,15 +9,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,8 +97,10 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.edit_edtCity)
     View edit_edtCity;
 
+    /*@BindView(R.id.edit_edtAddress)
+    View edit_edtAddress;*/
     @BindView(R.id.edit_edtAddress)
-    View edit_edtAddress;
+    EditText edit_edtAddress;
 
     @BindView(R.id.spinnerNationality)
     CustomSpinner spinnerNationality;
@@ -110,7 +111,7 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.spinnerCountry)
     CustomSpinner spinnerCountry;
 
-    EditTextWithFont edtEmail, edtFirstName, edtLastName, edtMobile, edtCity, edtAddress;
+    EditTextWithFont edtEmail, edtFirstName, edtLastName, edtMobile, edtCity;
     CustomSpinner spinnerCountryCode;
     String countryCode;
     @Override
@@ -121,7 +122,7 @@ public class EditProfileActivity extends BaseActivity {
 
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.activity_edit_password);
+        setContentView(R.layout.activity_edit_profile);
 
         initToolbar();
         initView();
@@ -189,7 +190,7 @@ public class EditProfileActivity extends BaseActivity {
             edtCity.setText(manager.getUserLoginData().getData().getProfile().getCity());
         }
 
-        edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
+        /*edtAddress = (EditTextWithFont) edit_edtAddress.findViewById(R.id.edt);
         edtAddress.setHint(getString(R.string.edit_address));
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
@@ -197,6 +198,9 @@ public class EditProfileActivity extends BaseActivity {
         edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getAddress() != null) {
             edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
+        }*/
+        if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getAddress() != null) {
+            edit_edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
         }
 
         edtDob.setOnClickListener(new View.OnClickListener() {
@@ -396,46 +400,31 @@ public class EditProfileActivity extends BaseActivity {
                 edtCity.getText().toString().trim() : "");
         data.setState(spinnerState.getSelectedItem().toString().trim());
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
-        data.setAddress(edtAddress.getText().toString() != null ?
-                edtAddress.getText().toString() : "");
+        data.setAddress(edit_edtAddress.getText().toString() != null ?
+                edit_edtAddress.getText().toString() : "");
 
         return data;
     }
 
     private boolean validateCheck() {
 
-        //Removing previous validations
-        /*edtEmail.setError(null);
-        edtFirstName.setError(null);
-        edtLastName.setError(null);
-        edtMobile.setError(null);
-        edtCity.setError(null);
-        edtDob.setError(null);*/
-
+        //validation of input field
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
-        } else if (edtFirstName.getText().toString().length() < 3 || edtFirstName.getText().toString().length() > 30) {
+        } /*else if (edtFirstName.getText().toString().length() < 1 || edtFirstName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthFirstName));
             return false;
-        }
+        }*/
         //lastName
         else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorLastName));
             return false;
-        } else if (edtLastName.getText().toString().length() < 3 || edtLastName.getText().toString().length() > 30) {
+        } /*else if (edtLastName.getText().toString().length() < 1 || edtLastName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthLastName));
             return false;
-        }
-        //email
-        else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-            customToast.showErrorToast(getString(R.string.errorEmailId));
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-            customToast.showErrorToast(getString(R.string.errorUserEmail));
-            return false;
-        }
+        }*/
         //nationality
         else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
             customToast.showErrorToast(getResources().getString(R.string.errorNationality));

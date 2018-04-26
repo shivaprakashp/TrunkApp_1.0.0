@@ -242,60 +242,80 @@
     <string name="other_restaurants">OTHER RESTAURANTS</string>
     <string name="dubai_opera">at Dubai Opera</string>
 
-    <!--Error handling-->
+    <!--Error handling (Changed one's)-->
+   <!--login-->
     <string name="editError">Error</string>
-    <string name="errorUserName">Email Address cannot be left blank</string>
-    <string name="errorEmailId">Email Address cannot be left blank</string>
-    <string name="errorPassword">Password cannot be left blank</string>
-    <string name="errorCurrentPassword">Current password cannot be left blank</string>
-    <string name="errorNewPassword">New password cannot be left blank</string>
-    <string name="errorConfirmNewPassword">Confirm new password cannot be left blank</string>
+    <string name="errorLoginError">Please enter your login details</string>
+    <string name="errorUserEmail">Incorrect Email Address or Password</string>
+    <string name="errorPassword">Incorrect Email Address or Password</string>
+    <string name="errorUserName">Please enter your login details</string>
+
+    <!--server-->
+    <string name="errorServerError">Server Error! Please try again later</string>
+
+    <!--registration-->
+    <string name="errorFirstName">Your First Name may not be blank</string>
+    <string name="errorLastName">Your Last Name may not be blank</string>
+    <string name="errorEmailId">Your Email Address cannot be blank</string>
+    <string name="errorEmailInvalid">Your Email Address is not valid</string>
+    <string name="errorPasswordEmpty">Your Password cannot be blank</string>
+    <string name="errorMismatchPassword">Your Password has not been confirmed, please retype it correctly.</string>
+    <string name="errorNationality">Your Nationality name may not be blank</string>
+    <string name="errorDob">Your date of birth may not be blank</string>
+    <string name="errorCity">Your City name may not be blank</string>
+    <string name="errorState">Your Emirate or State name may not be blank</string>
+    <string name="errorCountry">Your Country Name name may not be blank</string>
+
+    <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
+    <string name="errorLengthCity">City should be between 2 to 26 character long</string>
+    <string name="errorTerms">You need to accept the terms to proceed for registration</string>
+    <string name="successMsg">“Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
+
+    <!--Guest msg-->
+    <string name="guest_title">ALERT !!</string>
+    <string name="guest_msg">You should be logged in to use this features.</string>
+
+    <!--change password-->
+    <string name="errorCurrentPassword">Your Current Password cannot be blank</string>
+    <string name="errorNewPassword">Your New Password Cannot be blank</string>
+    <string name="errorConfirmNewPassword">Your Password has not been confirmed, please retype it correctly.</string>
+    <string name="errorPasswordMatch">Your Password has not been confirmed, please retype it correctly</string>
+    <string name="errorLengthNewPassword">New Password should be between 3 to 16 character long</string>
+    <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
+    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
+    <string name="changedPassword_header">SUCCESS</string>
+
+    <!--contact us-->
+    <string name="errorFullName">Your Full Name cannot be blank</string>
+    <string name="errorLengthFullName">Length of Full Name should be between 1 to 30 characters</string>
+    <string name="errorMessage">Message cannot be blank</string>
+    <string name="errorLengthMessage">Message should not be more than 70 characters</string>
+    <string name="errorEnquiryType">Enquiry Type may not be blank</string>
+
+    <!--Error handling (UNChanged one's)-->
     <string name="errorRePassword">Re-enter Password cannot be left blank</string>
-    <string name="errorFirstName">First Name cannot be left blank</string>
-    <string name="errorLastName">Last Name cannot be left blank</string>
-    <string name="errorCity">City cannot be left blank</string>
     <string name="errorMobile">Mobile Number cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
-    <string name="errorDob"> Date of Birth cannot be left blank</string>
     <string name="errorEmail">Email Address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
-    <string name="errorUserEmail">Enter valid Email Address</string>
-    <string name="errorMismatchPassword">Entered Password does not match</string>
-    <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
-    <string name="errorPasswordMatch">Entered Password does not match</string>
-    <string name="errorDialogue">OK</string>
-    <string name="errorTitle">ERROR</string>
-    <string name="errorLengthFirstName">Length of First Name should be between 3 to 30 characters</string>
-    <string name="errorLengthLastName">Length of Last Name should be between 3 to 30 characters</string>
-    <string name="errorLengthPassword">Length of Password should be between 3 to 16 characters</string>
+    <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
+    <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
     <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
     <string name="errorLengthMobile">Length of Mobile Number should be 10 digit</string>
-    <string name="errorLengthCity">Length of City should be between 2 to 26 characters</string>
-    <string name="errorNationality">Select Nationality</string>
-    <string name="errorState">Select Emirate or State</string>
-    <string name="errorCountry">Select Country</string>
-    <string name="errorTerms">You must agree with the terms and privacy policy</string>
-    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. User name is sent to your registered email id and mobile number which can be used for login into Dubai Opera.</string>
+    <string name="errorCountryCode">Select Country Code</string>
+    <string name="country_code">Country Code</string>
+    <string name="country_code_with_asterisk">Code*</string>
+
+    <!--error and success dialog-->
+    <string name="errorDialogue">OK</string>
+    <string name="errorTitle">ERROR</string>
     <string name="success_header">SUCCESS</string>
     <string name="ok">OK</string>
     <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
     <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible</string>
     <string name="contactUs_header">Thank You!!</string>
-    <string name="errorFullName">Full Name cannot be left blank</string>
-    <string name="errorLengthFullName">Length of First Name should be between 3 to 30 characters</string>
-    <string name="errorMessage">City cannot be left blank</string>
-    <string name="errorLengthMessage">Length of Message should not be more than 70 characters</string>
-    <string name="errorEnquiryType">Select Enquiry Type</string>
-    <string name="errorCountryCode">Select Country Code</string>
-
-    <string name="country_code">Country Code</string>
-    <string name="country_code_with_asterisk">Code*</string>
-
-    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
-    <string name="changedPassword_header">SUCCESS</string>
 
     <array name="states">
-        <item>Emirate or State*</item>
         <item>Dubai</item>
         <item>Abu Dhabi</item>
         <item>Ajman</item>
@@ -307,7 +327,6 @@
 
 
     <array name="nationality">
-        <item>Nationality*</item>
         <item>United Arab Emirates</item>
         <item>Afghanistan</item>
         <item>Albania</item>
@@ -469,7 +488,6 @@
     </array>
 
     <array name="country">
-    <item>Country*</item>
     <item>UAE</item>
     <item>Afghanistan</item>
     <item>Albania</item>
@@ -632,7 +650,6 @@
 </array>
 
     <array name="country_code">
-        <item>Code*</item>
         <item>UAE (971)</item>
         <item>Afghanistan (93)</item>
         <item>Albania (355)</item>
@@ -858,9 +875,7 @@
     <string name="OnBackPressed">OnBackPressed</string>
     <string name="OnLanguageChange">OnLanguageChange</string>
 
-    <!--Guest MSG-->
-    <string name="guest_title">ALERT !!</string>
-    <string name="guest_msg">You should be logged in to use this features.</string>
+
     <string name="special_requests">Special Requests/Occasions</string>
     <string name="select_title">Select title</string>
     <string name="mr">Mr.</string>

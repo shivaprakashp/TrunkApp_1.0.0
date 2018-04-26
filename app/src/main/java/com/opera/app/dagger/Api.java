@@ -72,7 +72,7 @@ public interface Api {
     Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                   @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
 
-    @POST("accounts/extended/SaveContact/")
+    @POST("contatcus/extended/SaveContact/")
     Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
                                              @Body ContactUs contactUs);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,7 +12,8 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        font:name="Montserrat-Regular" />
+        font:name="Montserrat-Regular"
+        app:hintText="@string/country_code_with_asterisk"/>
 
     <com.opera.app.customwidget.EditTextWithFont
         android:id="@+id/edtMobile"

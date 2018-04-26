@@ -139,18 +139,28 @@
                     android:background="@color/dark_gray"
                     android:layout_marginBottom="5dp"/>
 
-                <!--<include
-                        android:id="@+id/edtMessage"
-                        layout="@layout/include_edittext" />-->
-
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="120dp">
 
                     <include
                         android:id="@+id/edtMessage"
                         layout="@layout/include_edittext" />
-                </LinearLayout>
+                </LinearLayout>-->
+
+                <com.opera.app.customwidget.EditTextWithFont
+                    android:id="@+id/edtMessage"
+                    style="@style/label_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="@string/message"
+                    android:imeOptions="actionDone"
+                    android:maxLength="70"
+                    android:padding="5dp"
+                    android:singleLine="false"
+                    font:name="Montserrat-Regular" />
 
             </LinearLayout>
         </ScrollView>

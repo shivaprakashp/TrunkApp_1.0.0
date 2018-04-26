@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!--  FFFFFF color -->
     <style name="label_white_very_low">
@@ -114,7 +114,7 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
-    <!--  FFFFFF color -->
+    <!--  9E9E9E color -->
     <style name="label_gray_very_low">
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:textSize">@dimen/textsize_very_low</item>
@@ -154,4 +154,47 @@
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:textSize">@dimen/textsize_vvlarge</item>
     </style>
+
+
+    <!--  E0E0E0 color -->
+    <style name="label_light_gray_very_low">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_very_low</item>
+    </style>
+
+    <style name="label_light_gray_low">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_low</item>
+    </style>
+
+    <style name="label_light_gray_small">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="label_light_gray">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="label_light_gray_medium">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+    </style>
+
+    <style name="label_light_gray_large">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="label_light_gray_vlarge">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_vlarge</item>
+    </style>
+
+    <style name="textsize_light_gray_vvlarge">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textSize">@dimen/textsize_vvlarge</item>
+    </style>
+
 </resources>

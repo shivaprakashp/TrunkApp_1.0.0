@@ -115,11 +115,8 @@ public class OtherRestaurantsActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
-
             mRestaurantListing.addAll(mRestaurantPojo.getData());
-
             mAdapter.notifyDataSetChanged();
         }
 
