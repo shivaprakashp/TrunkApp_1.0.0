@@ -293,6 +293,7 @@ public class RegisterActivity extends BaseActivity {
                 mActivity, R.layout.custom_spinner,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.nationality))));
         spinnerNationality.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_nationality));
+
         spinnerNationality.setAdapter(nationalAdapter);
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
