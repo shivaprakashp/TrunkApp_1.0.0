@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:text="@string/home"
             android:gravity="center"
-            style="@style/label_white"
-            font:name="Montserrat-Regular"/>
+            style="@style/label_white_large"
+            font:name="Montserrat-Light"/>
     </FrameLayout>
 </LinearLayout>

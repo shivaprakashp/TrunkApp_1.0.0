@@ -2,16 +2,14 @@ package com.opera.app.pojo.restaurant.booktable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.restaurant.booktable.Data;
 
 /**
  * Created by 1000632 on 4/24/2018.
  */
 
-public class Data
+public class BookTableRequest
 {
-    @SerializedName("Session_ID")
-    @Expose
-    private String sessionID;
     @SerializedName("Patron")
     @Expose
     private Patron patron;
@@ -32,20 +30,25 @@ public class Data
     private String rROSubject;
     @SerializedName("HPT_1")
     @Expose
-    private Object hPT1;
+    private String hPT1;
     @SerializedName("HPT_2")
     @Expose
-    private Object hPT2;
+    private String hPT2;
     @SerializedName("EncryptedString")
     @Expose
-    private Object encryptedString;
+    private String encryptedString;
 
-    public String getSessionID() {
-        return sessionID;
-    }
+    public BookTableRequest(Patron patron, RespakReservation respakReservation){
+        this.patron = patron;
+        this.respakReservation = respakReservation;
+        saveTransaction = true;
+        sendEmailToReservation = true;
+        emailType = "sample String";
+        rROSubject = "sample String";
+        hPT1 = "bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==";
+        hPT2 = "";
+        encryptedString = "sample String";
 
-    public void setSessionID(String sessionID) {
-        this.sessionID = sessionID;
     }
 
     public Patron getPatron() {
@@ -96,27 +99,27 @@ public class Data
         this.rROSubject = rROSubject;
     }
 
-    public Object getHPT1() {
+    public String getHPT1() {
         return hPT1;
     }
 
-    public void setHPT1(Object hPT1) {
+    public void setHPT1(String hPT1) {
         this.hPT1 = hPT1;
     }
 
-    public Object getHPT2() {
+    public String getHPT2() {
         return hPT2;
     }
 
-    public void setHPT2(Object hPT2) {
+    public void setHPT2(String hPT2) {
         this.hPT2 = hPT2;
     }
 
-    public Object getEncryptedString() {
+    public String getEncryptedString() {
         return encryptedString;
     }
 
-    public void setEncryptedString(Object encryptedString) {
+    public void setEncryptedString(String encryptedString) {
         this.encryptedString = encryptedString;
     }
 

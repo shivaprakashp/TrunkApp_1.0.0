@@ -11,17 +11,15 @@ import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
-import com.opera.app.pojo.restaurant.booktable.BookTableResponse;
+import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
+import com.opera.app.pojo.restaurant.booktable.ReserveResponse;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
-import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReservationRequestPojo;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -66,17 +64,13 @@ public interface Api {
     Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                  @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
-    @POST("restaurants/extended/BookTable/")
-    Call<RestaurantMasterDetails> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                                              @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
-
     @POST("contatcus/extended/SaveContact/")
     Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
                                              @Body ContactUs contactUs);
 
     @POST("restaurants/extended/BookTable/")
-    Call<BookTableResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
-                                                  @Body SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo);
+    Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
+                                                @Body BookTableRequest tableResponse);
 
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);

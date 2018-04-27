@@ -13,8 +13,8 @@ import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
-import com.opera.app.pojo.restaurant.getmasterdetails.SubmitSaveRestaurantReservationRequestPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
@@ -102,8 +102,8 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void bookRestaurant(TaskComplete taskComplete, Api api, SubmitSaveRestaurantReservationRequestPojo mSubmitSaveRestaurantReservationRequestPojo) {
-        Call call = api.ReserveRestaurantSeat(contentType, mSubmitSaveRestaurantReservationRequestPojo);          // need to add auth token
+    public void reserveTable(TaskComplete taskComplete, Api api, BookTableRequest tableResponse){
+        Call call = api.ReserveRestaurantSeat(contentType, tableResponse);          // need to add auth token
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);

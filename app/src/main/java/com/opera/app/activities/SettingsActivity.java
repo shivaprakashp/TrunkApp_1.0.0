@@ -44,7 +44,12 @@ public class SettingsActivity extends BaseActivity {
     private Activity mActivity;
     private SessionManager mSessionManager;
     private SettingsService mSettingsService = new SettingsService();
-    private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", mNewLanguage = "";
+    private String mNotifSwitch = "",
+            mPromoSwitch = "",
+            mFeedbackNotifSwitch = "",
+            mNewsletterSwitch = "",
+            mBookedShowSwitch = "",
+            mNewLanguage = "";
     private Api api;
     SharedPreferences sp;
 

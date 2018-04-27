@@ -3,179 +3,181 @@ package com.opera.app.pojo.restaurant.booktable;
 /**
  * Created by 1000632 on 4/24/2018.
  */
-public class Patron
-{
-    private String Phone;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String Organisation;
+public class Patron {
 
-    private String Title;
+    @SerializedName("Person_ID")
+    @Expose
+    private String personID;
+    @SerializedName("Title")
+    @Expose
+    private String title;
+    @SerializedName("Firstname")
+    @Expose
+    private String firstname;
+    @SerializedName("Lastname")
+    @Expose
+    private String lastname;
+    @SerializedName("Address_1")
+    @Expose
+    private String address1;
+    @SerializedName("Address_2")
+    @Expose
+    private String address2;
+    @SerializedName("Suburb")
+    @Expose
+    private String suburb;
+    @SerializedName("State")
+    @Expose
+    private String state;
+    @SerializedName("PostCode")
+    @Expose
+    private String postCode;
+    @SerializedName("Phone")
+    @Expose
+    private String phone;
+    @SerializedName("Mobile")
+    @Expose
+    private String mobile;
+    @SerializedName("Email")
+    @Expose
+    private String email;
+    @SerializedName("Organisation")
+    @Expose
+    private String organisation;
+    @SerializedName("Position")
+    @Expose
+    private String position;
 
-    private String Address_2;
-
-    private String State;
-
-    private String Email;
-
-    private String Address_1;
-
-    private String PostCode;
-
-    private String Suburb;
-
-    private String Mobile;
-
-    private String Position;
-
-    private String Firstname;
-
-    private String Lastname;
-
-    private String Person_ID;
-
-    public String getPhone ()
-    {
-        return Phone;
+    public Patron(String firstname, String lastname, String mobile, String email, String title){
+        personID = "";
+        this.title = title;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        address1 = "sample string";
+        address2 = "sample string";
+        suburb = "sample string";
+        state = "sample string";
+        postCode = "sample string";
+        phone = "sample string";
+        this.mobile = mobile;
+        this.email = email;
+        organisation = "sample string";
+        position = "sample string";
     }
 
-    public void setPhone (String Phone)
-    {
-        this.Phone = Phone;
+    public String getPersonID() {
+        return personID;
     }
 
-    public String getOrganisation ()
-    {
-        return Organisation;
+    public void setPersonID(String personID) {
+        this.personID = personID;
     }
 
-    public void setOrganisation (String Organisation)
-    {
-        this.Organisation = Organisation;
+    public String getTitle() {
+        return title;
     }
 
-    public String getTitle ()
-    {
-        return Title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setTitle (String Title)
-    {
-        this.Title = Title;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String getAddress_2 ()
-    {
-        return Address_2;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setAddress_2 (String Address_2)
-    {
-        this.Address_2 = Address_2;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getState ()
-    {
-        return State;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void setState (String State)
-    {
-        this.State = State;
+    public String getAddress1() {
+        return address1;
     }
 
-    public String getEmail ()
-    {
-        return Email;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
-    public void setEmail (String Email)
-    {
-        this.Email = Email;
+    public String getAddress2() {
+        return address2;
     }
 
-    public String getAddress_1 ()
-    {
-        return Address_1;
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
-    public void setAddress_1 (String Address_1)
-    {
-        this.Address_1 = Address_1;
+    public String getSuburb() {
+        return suburb;
     }
 
-    public String getPostCode ()
-    {
-        return PostCode;
+    public void setSuburb(String suburb) {
+        this.suburb = suburb;
     }
 
-    public void setPostCode (String PostCode)
-    {
-        this.PostCode = PostCode;
+    public String getState() {
+        return state;
     }
 
-    public String getSuburb ()
-    {
-        return Suburb;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public void setSuburb (String Suburb)
-    {
-        this.Suburb = Suburb;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public String getMobile ()
-    {
-        return Mobile;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
-    public void setMobile (String Mobile)
-    {
-        this.Mobile = Mobile;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getPosition ()
-    {
-        return Position;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setPosition (String Position)
-    {
-        this.Position = Position;
+    public String getMobile() {
+        return mobile;
     }
 
-    public String getFirstname ()
-    {
-        return Firstname;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public void setFirstname (String Firstname)
-    {
-        this.Firstname = Firstname;
+    public String getEmail() {
+        return email;
     }
 
-    public String getLastname ()
-    {
-        return Lastname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setLastname (String Lastname)
-    {
-        this.Lastname = Lastname;
+    public String getOrganisation() {
+        return organisation;
     }
 
-    public String getPerson_ID ()
-    {
-        return Person_ID;
+    public void setOrganisation(String organisation) {
+        this.organisation = organisation;
     }
 
-    public void setPerson_ID (String Person_ID)
-    {
-        this.Person_ID = Person_ID;
+    public String getPosition() {
+        return position;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [Phone = "+Phone+", Organisation = "+Organisation+", Title = "+Title+", Address_2 = "+Address_2+", State = "+State+", Email = "+Email+", Address_1 = "+Address_1+", PostCode = "+PostCode+", Suburb = "+Suburb+", Mobile = "+Mobile+", Position = "+Position+", Firstname = "+Firstname+", Lastname = "+Lastname+", Person_ID = "+Person_ID+"]";
+    public void setPosition(String position) {
+        this.position = position;
     }
+
 }

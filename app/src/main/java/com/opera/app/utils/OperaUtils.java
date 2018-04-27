@@ -210,4 +210,7 @@ public class OperaUtils {
         return df.format(c);
     }
 
+    public static String[] splitDate(){
+        return getCurrentDate().split("/");
+    }
 }

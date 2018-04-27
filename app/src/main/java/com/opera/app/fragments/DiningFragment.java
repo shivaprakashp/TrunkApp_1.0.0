@@ -107,6 +107,7 @@ public class DiningFragment extends BaseFragment {
     @OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.linearReadMore:
                 if (mExpandableTextView.isExpanded()) {
                     mExpandableTextView.collapse();
