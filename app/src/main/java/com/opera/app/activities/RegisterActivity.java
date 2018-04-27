@@ -534,7 +534,7 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //nationality
-        else if (spinnerNationality.getSelectedItem().toString() == null) {
+        else if (spinnerNationality.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorNationality));
             return false;
         }
@@ -544,7 +544,7 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //country code
-        else if (spinnerCountryCode.getSelectedItem().toString() == null) {
+        else if (spinnerCountryCode.getSelectedItem()== null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
@@ -565,12 +565,12 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //state
-        else if (spinnerState.getSelectedItem().toString() == null) {
+        else if (spinnerState.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorState));
             return false;
         }
         //country
-        else if (spinnerCountry.getSelectedItem().toString() == null) {
+        else if (spinnerCountry.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountry));
             return false;
         }

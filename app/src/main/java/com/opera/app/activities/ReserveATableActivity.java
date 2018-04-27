@@ -427,7 +427,7 @@ public class ReserveATableActivity extends BaseActivity {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
             customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
-        } else if (spinnerCountryCode.getSelectedItem().toString() == null) {
+        } else if (spinnerCountryCode.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         } else if (TextUtils.isEmpty(edtFulNo.getText().toString())) {

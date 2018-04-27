@@ -285,7 +285,7 @@ public class ContactUsActivity extends BaseActivity {
             return false;
         }
         //country code
-        else if (spinnerCountryCode.getSelectedItem().toString() == null) {
+        else if (spinnerCountryCode.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
