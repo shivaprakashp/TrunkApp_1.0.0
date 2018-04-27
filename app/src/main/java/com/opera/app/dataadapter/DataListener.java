@@ -3,8 +3,8 @@ package com.opera.app.dataadapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-
 import com.opera.app.R;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
 
@@ -22,6 +22,7 @@ public class DataListener {
     private Context context;
     protected TaskComplete taskComplete = null;
     private RequestProperties properties;
+    private CustomToast customToast;
 
     public DataListener(Context context, TaskComplete taskComplete, RequestProperties properties) {
         this.context = context;
@@ -32,6 +33,7 @@ public class DataListener {
 
     public void dataLoad(Call call) {
         try {
+            customToast = new CustomToast(context);
 
             dialog.setMessage(context.getResources().getString(R.string.loading));
             dialog.setCancelable(false);
@@ -46,6 +48,7 @@ public class DataListener {
                 @Override
                 public void onFailure(Call call, Throwable t) {
                     dialog.dismiss();
+                    customToast.showErrorToast(context.getString(R.string.errorServerError));
                     taskComplete.onTaskError(call, t,properties.getRequestKey());
                 }
             });
