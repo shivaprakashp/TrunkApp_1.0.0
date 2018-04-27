@@ -117,7 +117,7 @@ public class MainController {
     }
 
     public void getSpecificRestaurant(TaskComplete taskComplete, Api api) {
-        Call call = api.GetSpecificRestaurant(contentType,AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
+        Call call = api.GetSpecificRestaurant(contentType, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
         properties.setRequestKey(AppConstants.GETSPECIFICRESTAURANT.GETSPECIFICRESTAURANT);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);

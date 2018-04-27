@@ -74,15 +74,12 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.edtFullName)
     View edtFullName;
 
-    @BindView(R.id.edtPhoneNumber)
-    View edtPhoneNumber;
-
     @BindView(R.id.edtEmail)
     View edtEmail;
 
     /*@BindView(R.id.edtMessage)
     View edtMessage;*/
-    @BindView(R.id.edtMessage)
+    @BindView(R.id.edit_edtAddress)
     EditText edtMessage;
 
     @BindView(R.id.spinnerEnquiryType)
@@ -106,8 +103,13 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
-    EditTextWithFont mEdtFullName, mEdtMobileNumber, mEdtEmail;
+    @BindView(R.id.edtMobile)
+    EditText mEdtMobileNumber;
+
+    @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
+
+    EditTextWithFont mEdtFullName, mEdtEmail;
     String countryCode;
 
     @Override
@@ -148,25 +150,18 @@ public class ContactUsActivity extends BaseActivity {
         mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
-        mEdtEmail.setHint(getString(R.string.email2));
+        mEdtEmail.setHint(getString(R.string.email));
         mEdtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         mEdtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
-        /*mEdtMessage = (EditTextWithFont) edtMessage.findViewById(R.id.edt);
-        mEdtMessage.setHint(getString(R.string.message));
-        mEdtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        mEdtMessage.setSingleLine(false);
-        mEdtMessage.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        mEdtMessage.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });*/
-
-        mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
-        mEdtMobileNumber.setHint(getString(R.string.phone_number));
+        //mEdtMobileNumber = (EditTextWithFont) edtPhoneNumber.findViewById(R.id.edtMobile);
+        mEdtMobileNumber.setHint(getString(R.string.mobile));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
-        spinnerCountryCode = (CustomSpinner) edtPhoneNumber.findViewById(R.id.spinnerCountryCode);
+        //spinnerCountryCode = (CustomSpinner) edtPhoneNumber.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
@@ -288,12 +283,9 @@ public class ContactUsActivity extends BaseActivity {
         if (TextUtils.isEmpty(mEdtFullName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFullName));
             return false;
-        } /*else if (mEdtFullName.getText().toString().length() < 1 || mEdtFullName.getText().toString().length() > 30) {
-            customToast.showErrorToast(getString(R.string.errorLengthFullName));
-            return false;
-        }*/
+        }
         //country code
-        else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+        else if (spinnerCountryCode.getSelectedItem() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
@@ -313,7 +305,7 @@ public class ContactUsActivity extends BaseActivity {
             customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         }
-        //nationality
+        //enquiry type
         else if (spinnerEnquiryType.getSelectedItem().toString().equals(getResources().getString(R.string.enquiry_type))) {
             customToast.showErrorToast(getResources().getString(R.string.errorEnquiryType));
             return false;
