@@ -207,11 +207,11 @@
     <string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
     <string name="send_message">Send message</string>
     <string name="contact_us">Contact Us</string>
-    <string name="full_name">Full Name</string>
+    <string name="full_name">Full Name*</string>
     <string name="phone_number">Mobile Number</string>
     <string name="email2">Email Address</string>
     <string name="message">Message</string>
-    <string name="enquiry_type">Enquiry Type</string>
+    <string name="enquiry_type">Enquiry Type*</string>
     <string name="press_enquiry">Press Enquiry</string>
     <string name="ticketting_enquiry">Ticketting Enquiry</string>
     <string name="venue_booking">Venue Booking</string>

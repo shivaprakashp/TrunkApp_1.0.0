@@ -534,7 +534,7 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //nationality
-        else if (spinnerNationality.getSelectedItem().toString().equals(getResources().getString(R.string.nationality))) {
+        else if (spinnerNationality.getSelectedItem().toString() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorNationality));
             return false;
         }
@@ -544,7 +544,7 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //country code
-        else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
+        else if (spinnerCountryCode.getSelectedItem().toString() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
             return false;
         }
@@ -565,12 +565,12 @@ public class RegisterActivity extends BaseActivity {
             return false;
         }
         //state
-        else if (spinnerState.getSelectedItem().toString().equals(getResources().getString(R.string.state))) {
+        else if (spinnerState.getSelectedItem().toString() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorState));
             return false;
         }
         //country
-        else if (spinnerCountry.getSelectedItem().toString().equals(getResources().getString(R.string.country))) {
+        else if (spinnerCountry.getSelectedItem().toString() == null) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountry));
             return false;
         }
@@ -579,7 +579,6 @@ public class RegisterActivity extends BaseActivity {
             customToast.showErrorToast(getResources().getString(R.string.errorTerms));
             return false;
         }
-
         return true;
     }
 

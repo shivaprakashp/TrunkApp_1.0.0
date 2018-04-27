@@ -97,10 +97,6 @@
                     android:background="@color/dark_gray"
                     android:layout_marginBottom="5dp"/>
 
-                <!--<include
-                    android:id="@+id/edtPhoneNumber"
-                    layout="@layout/include_mobile_edittext" />-->
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -144,42 +140,17 @@
                     android:background="@color/dark_gray"
                     android:layout_marginBottom="5dp"/>
 
-                <!--<Spinner
-                    android:id="@+id/spinnerEnquiryType"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/spinner_bg"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />-->
-
                 <Spinner
                     android:id="@+id/spinnerEnquiryType"
                     style="@style/label_black"
                     android:layout_width="match_parent"
                     android:layout_height="40dp" />
 
-                <!--<com.opera.app.customwidget.CustomSpinner
-                    android:id="@+id/spinnerEnquiryType"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    font:name="Montserrat-Regular" />-->
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray"
                     android:layout_marginBottom="5dp"/>
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp">
-
-                    <include
-                        android:id="@+id/edtMessage"
-                        layout="@layout/include_edittext" />
-                </LinearLayout>-->
 
                 <com.opera.app.customwidget.EditTextWithFont
                     android:id="@+id/edit_edtAddress"
@@ -198,13 +169,6 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
-    <!--<View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/dark_gray" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -290,7 +254,5 @@
 
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
