@@ -210,7 +210,7 @@
     <string name="full_name">Full Name*</string>
     <string name="phone_number">Mobile Number</string>
     <string name="email2">Email Address</string>
-    <string name="message">Message*</string>
+    <string name="message">Message</string>
     <string name="enquiry_type">Enquiry Type*</string>
     <string name="press_enquiry">Press Enquiry</string>
     <string name="ticketting_enquiry">Ticketting Enquiry</string>

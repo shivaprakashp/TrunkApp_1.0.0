@@ -158,18 +158,18 @@ public class EditProfileActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.edit_firstname));
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null) {
             edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         }
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
             edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
         }
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
@@ -244,20 +244,7 @@ public class EditProfileActivity extends BaseActivity {
             String name = sharedPreferences.getString("countryCode", "default value");
             spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
         }
-        /*if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            String Number = manager.getUserLoginData().getData().getProfile().getMobileNumber();
-            String counrtyCode = Number.substring(Number.indexOf("(") + 1, Number.indexOf(")"));
 
-            String[] myResArray = getResources().getStringArray(R.array.country_code);
-            //List<String> Lines = Arrays.asList(getResources().getStringArray(R.array.country_code));
-            for (int i = 0; i < arrData.length ; i++){
-                if(arrData[i].getCode().contains(counrtyCode)){
-                    int spinnerPosition = CountryCodeAdapter.getPosition(arrData[i]);
-                    spinnerCountryCode.setSelection(spinnerPosition);
-                }
-            }
-            //spinnerNationality.setSelection(CountryCodeAdapter.getPosition("(" + counrtyCode + ")"));
-        }*/
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -272,8 +259,6 @@ public class EditProfileActivity extends BaseActivity {
                         editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
                         editor.apply();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
-                        //customToast.showErrorToast(spinnerCountryCode);
-
                 }
             }
             @Override

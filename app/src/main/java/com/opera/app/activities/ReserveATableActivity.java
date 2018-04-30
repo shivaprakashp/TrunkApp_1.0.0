@@ -2,7 +2,9 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -191,13 +193,33 @@ public class ReserveATableActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(mActivity);
+            String name = sharedPreferences.getString("countryCode", "default value");
+            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        }
+        spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country_code_with_asterisk))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
     }
 
     private void initData(){
-          if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null) {
+          /*if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName());
-        }
+        }*/
 
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getEmail() != null) {
             edtEmail.setText(mSessionManager.getUserLoginData().getData().getProfile().getEmail());
@@ -268,6 +290,9 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFulName.setMaxLines(1);
         edtFulName.setHint(getString(R.string.full_name1));
+        if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null && mSessionManager.getUserLoginData().getData().getProfile().getLastName() != null) {
+            edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName() + " " + mSessionManager.getUserLoginData().getData().getProfile().getLastName());
+        }
         edtFulName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
@@ -412,9 +437,9 @@ public class ReserveATableActivity extends BaseActivity {
     private void SubmitSaveReservation() {
         MainController controller = new MainController(mActivity);
 
-        Patron patron = new Patron(edtFulName.getText().toString().trim(),
+        Patron patron = new Patron(edtFulName.getText().toString(),
                 mSessionManager.getUserLoginData().getData().getProfile().getLastName(),
-                spinnerCountryCode.getSelectedItem().toString(),
+                "("+countryCode +")"+ edtFulNo.getText().toString().trim(),
                 edtEmail.getText().toString().trim(), mSpinnerSelectTitle.getSelectedItem().toString());
 
         RespakReservation respakReservation = new RespakReservation(editDOB.getText().toString().trim(), mSelectedTime,
