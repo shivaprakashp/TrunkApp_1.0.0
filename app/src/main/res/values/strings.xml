@@ -217,6 +217,7 @@
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
     <string name="social_media">Social media</string>
+
     <string name="reserve_a_table">Reserve a Table</string>
     <string name="reserve_a_table2">Reserve a table</string>
     <string name="sean_connolly_dubai_opera">\@Sean Connolly at Dubai Opera</string>
@@ -243,7 +244,7 @@
     <string name="dubai_opera">at Dubai Opera</string>
 
     <!--Error handling (Changed one's)-->
-   <!--login-->
+    <!--login-->
     <string name="editError">Error</string>
     <string name="errorLoginError">Please enter your login details</string>
     <string name="errorUserEmail">Incorrect Email Address or Password</string>
@@ -263,8 +264,8 @@
     <string name="errorNationality">Your Nationality name may not be blank</string>
     <string name="errorDob">Your date of birth may not be blank</string>
     <string name="errorCountryCode">Your Country Code may not be blank</string>
-    <string name="errorMobile">Your mobile phone must be filled in</string>
-    <string name="errorLengthMobile">Your Mobile Phone minimum length must be of 10 digit</string>
+    <string name="errorMobile">Your mobile number must be filled in</string>
+    <string name="errorLengthMobile">Your Mobile number minimum length must be of 10 digit</string>
     <string name="errorCity">Your City name may not be blank</string>
     <string name="errorState">Your Emirate or State name may not be blank</string>
     <string name="errorCountry">Your Country Name name may not be blank</string>
@@ -283,8 +284,6 @@
     <string name="errorPasswordMatch">Your Password has not been confirmed, please retype it correctly</string>
     <string name="errorLengthNewPassword">New Password should be between 3 to 16 character long</string>
     <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
-    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
-    <string name="changedPassword_header">SUCCESS</string>
 
     <!--contact us-->
     <string name="errorFullName">Your Full Name cannot be blank</string>
@@ -294,13 +293,13 @@
     <string name="errorEnquiryType">Enquiry Type may not be blank</string>
 
     <!--Error handling (UNChanged one's)-->
-    <string name="errorRePassword">Re-enter Password cannot be left blank</string>
+    <!--<string name="errorRePassword">Re-enter Password cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorEmail">Email Address cannot be left blank</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
     <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
     <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
-    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
+    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>-->
     <string name="country_code">Country Code</string>
     <string name="country_code_with_asterisk">Code*</string>
 
@@ -313,6 +312,9 @@
     <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
     <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible</string>
     <string name="contactUs_header">Thank You!!</string>
+    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
+    <string name="changedPassword_header">SUCCESS</string>
+
 
     <array name="states">
         <item>Dubai</item>
@@ -487,166 +489,166 @@
     </array>
 
     <array name="country">
-    <item>UAE</item>
-    <item>Afghanistan</item>
-    <item>Albania</item>
-    <item>Algeria</item>
-    <item>American Samoa</item>
-    <item>Andorra</item>
-    <item>Angola</item>
-    <item>Anguilla</item>
-    <item>Argentina</item>
-    <item>Armenia</item>
-    <item>Australia</item>
-    <item>Austria</item>
-    <item>Azerbaijan</item>
-    <item>Bahamas</item>
-    <item>Bahrain</item>
-    <item>Bangladesh</item>
-    <item>Barbados</item>
-    <item>Belarus</item>
-    <item>Belgium</item>
-    <item>Belize</item>
-    <item>Benin</item>
-    <item>Bosnia and Herzegovina</item>
-    <item>Botswana</item>
-    <item>Bolivia, Plurinational State of</item>
-    <item>Brazil</item>
-    <item>Brunei</item>
-    <item>Bulgaria</item>
-    <item>Burundi</item>
-    <item>ambodia</item>
-    <item>Cameroon</item>
-    <item>Canada</item>
-    <item>Central African Republic</item>
-    <item>Chad</item>
-    <item>Chile</item>
-    <item>China</item>
-    <item>Colombia</item>
-    <item>Comoros</item>
-    <item>Congo</item>
-    <item>Costa Rica</item>
-    <item>Croatia</item>
-    <item>Cuba</item>
-    <item>Cyprus</item>
-    <item>Czech Republic</item>
-    <item>Denmark</item>
-    <item>Djibouti</item>
-    <item>Dominican Republic</item>
-    <item>Ecuador</item>
-    <item>Egypt</item>
-    <item>Estonia</item>
-    <item>Ethiopia</item>
-    <item>Finland</item>
-    <item>France</item>
-    <item>Georgia</item>
-    <item>Ghana</item>
-    <item>Greece</item>
-    <item>Germany</item>
-    <item>Guam</item>
-    <item>Guinea</item>
-    <item>Hong Kong</item>
-    <item>Hungary</item>
-    <item>Iran, Islamic Republic of</item>
-    <item>Iraq</item>
-    <item>Iceland</item>
-    <item>India</item>
-    <item>Indonesia</item>
-    <item>Ireland</item>
-    <item>Italy</item>
-    <item>Ivory Coast</item>
-    <item>Jamaica</item>
-    <item>Japan</item>
-    <item>Jordan</item>
-    <item>Kazakhstan</item>
-    <item>Kenya</item>
-    <item>Korea</item>
-    <item>Kuwait</item>
-    <item>Kyrgyzstan</item>
-    <item>Latvia</item>
-    <item>Lebanon</item>
-    <item>Liberia</item>
-    <item>Libya</item>
-    <item>Liechtenstein</item>
-    <item>Lithuania</item>
-    <item>Luxembourg</item>
-    <item>Macau</item>
-    <item>Macedonia</item>
-    <item>Madagascar</item>
-    <item>Malawi</item>
-    <item>Malaysia</item>
-    <item>Maldives</item>
-    <item>Mali</item>
-    <item>Malta</item>
-    <item>Mauritania</item>
-    <item>Mauritius</item>
-    <item>Mexico</item>
-    <item>Micronesia</item>
-    <item>Moldova, Republic of</item>
-    <item>Monaco</item>
-    <item>Mongolia</item>
-    <item>Montenegro</item>
-    <item>Morocco</item>
-    <item>Nepal</item>
-    <item>Netherlands</item>
-    <item>New Caledonia</item>
-    <item>New Zealand</item>
-    <item>Niger</item>
-    <item>Nigeria</item>
-    <item>Norway</item>
-    <item>Oman</item>
-    <item>Pakistan</item>
-    <item>Palestine, State of</item>
-    <item>Panama</item>
-    <item>Papua New Guinea</item>
-    <item>Paraguay</item>
-    <item>Peru</item>
-    <item>Philippines</item>
-    <item>Poland</item>
-    <item>Portugal</item>
-    <item>Puerto Rico</item>
-    <item>Qatar</item>
-    <item>Romania</item>
-    <item>Russian Federation</item>
-    <item>Saudi Arabia</item>
-    <item>Senegal</item>
-    <item>Serbia</item>
-    <item>Seychelles</item>
-    <item>Singapore</item>
-    <item>Slovakia</item>
-    <item>Slovenia</item>
-    <item>Somalia</item>
-    <item>South Africa</item>
-    <item>South Korea</item>
-    <item>South Sudan</item>
-    <item>Spain</item>
-    <item>Sri Lanka</item>
-    <item>Sudan</item>
-    <item>Swaziland</item>
-    <item>Sweden</item>
-    <item>Switzerland</item>
-    <item>Syrian Arab Republic</item>
-    <item>Taiwan</item>
-    <item>Tajikistan</item>
-    <item>Tanzania</item>
-    <item>Thailand</item>
-    <item>Togo</item>
-    <item>Tunisia</item>
-    <item>Turkey</item>
-    <item>Turkmenistan</item>
-    <item>Uganda</item>
-    <item>Ukraine</item>
-    <item>UK</item>
-    <item>USA</item>
-    <item>Uruguay</item>
-    <item>Uzbekistan</item>
-    <item>Venezuela, Bolivarian Republic of</item>
-    <item>Viet Nam</item>
-    <item>Yemen</item>
-    <item>Zambia</item>
-    <item>Zimbabwe</item>
-    <item>other...</item>
-</array>
+        <item>UAE</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Botswana</item>
+        <item>Bolivia, Plurinational State of</item>
+        <item>Brazil</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burundi</item>
+        <item>ambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominican Republic</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Georgia</item>
+        <item>Ghana</item>
+        <item>Greece</item>
+        <item>Germany</item>
+        <item>Guam</item>
+        <item>Guinea</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iran, Islamic Republic of</item>
+        <item>Iraq</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>Ivory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Korea</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macau</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova, Republic of</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Morocco</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palestine, State of</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Romania</item>
+        <item>Russian Federation</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Korea</item>
+        <item>South Sudan</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syrian Arab Republic</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>UK</item>
+        <item>USA</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Venezuela, Bolivarian Republic of</item>
+        <item>Viet Nam</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+        <item>other...</item>
+    </array>
 
     <array name="country_code">
         <item>UAE (971)</item>
@@ -795,7 +797,7 @@
         <item>Nigeria (234)</item>
         <item>Niue (683)</item>
         <item>North Korea (850)</item>
-        <item>North Yemen  (967)</item>
+        <item>North Yemen (967)</item>
         <item>Norway (47)</item>
         <item>Oman (968)</item>
         <item>Pakistan (92)</item>
