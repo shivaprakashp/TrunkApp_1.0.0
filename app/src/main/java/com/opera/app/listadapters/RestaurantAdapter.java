@@ -54,6 +54,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         this.mRestaurantList = mRestaurantList;
     }
 
+    public void RefreshList(ArrayList<restaurantsData> mRestaurantList){
+        this.mRestaurantList = mRestaurantList;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())

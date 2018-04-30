@@ -39,7 +39,6 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.booktable.Patron;
 import com.opera.app.pojo.restaurant.booktable.ReserveResponse;
-import com.opera.app.pojo.restaurant.booktable.RespakReservation;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.Meal_Periods;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;

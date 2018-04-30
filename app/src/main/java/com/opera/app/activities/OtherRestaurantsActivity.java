@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,6 +19,8 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.DBManager;
+import com.opera.app.database.DatabaseHelper;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.RestaurantAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -26,6 +29,7 @@ import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.restaurantsData;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -59,6 +63,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
     private RestaurantAdapter mAdapter;
     private Activity mActivity;
     private Api api;
+    private DBManager dbManager;
     @Inject
     Retrofit retrofit;
 
@@ -74,7 +79,11 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
         initToolbar();
         initViews();
-        GetRestauarantDetails();
+        if (Connections.isConnectionAlive(mActivity)) {
+            GetRestauarantDetails();
+        } else {
+            FetchDataFromDB();
+        }
 
     }
 
@@ -110,6 +119,8 @@ public class OtherRestaurantsActivity extends BaseActivity {
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
         mRecyclerRestaurants.setAdapter(mAdapter);
 
+        dbManager = new DBManager(this);
+        dbManager.open();
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -118,11 +129,34 @@ public class OtherRestaurantsActivity extends BaseActivity {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
             mRestaurantListing.addAll(mRestaurantPojo.getData());
             mAdapter.notifyDataSetChanged();
+
+            dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
+            dbManager.insertOtherRestaurants(mRestaurantListing);
         }
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
-            Log.e("Error", call.toString());
+            FetchDataFromDB();
         }
     };
+
+    private void FetchDataFromDB() {
+        mRestaurantListing = new ArrayList<>();
+        Cursor cursor = dbManager.fetchOtherRestaurantDetails();
+        if (cursor.moveToFirst()) {
+            do {
+                restaurantsData mRestaurantData = new restaurantsData();
+
+                mRestaurantData.setRestId(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_ID)));
+                mRestaurantData.setRestName(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_NAME)));
+                mRestaurantData.setRestPlace(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PLACE)));
+                mRestaurantData.setRestDetails(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_DETAILS)));
+                mRestaurantData.setRestImage(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_IMAGE_URL)));
+
+                mRestaurantListing.add(mRestaurantData);
+            } while (cursor.moveToNext());
+        }
+        mAdapter.RefreshList(mRestaurantListing);
+        mAdapter.notifyDataSetChanged();
+    }
 }
