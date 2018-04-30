@@ -8,27 +8,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.DBManager;
 import com.opera.app.database.DatabaseHelper;
-import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.RestaurantAdapter;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.restaurantsData;
-import com.opera.app.pojo.settings.GetSettingsPojo;
-import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
@@ -133,7 +125,6 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
             dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
             dbManager.insertOtherRestaurants(mRestaurantListing);
-            dbManager.close();
         }
 
         @Override
@@ -160,6 +151,5 @@ public class OtherRestaurantsActivity extends BaseActivity {
         }
         mAdapter.RefreshList(mRestaurantListing);
         mAdapter.notifyDataSetChanged();
-        dbManager.close();
     }
 }
