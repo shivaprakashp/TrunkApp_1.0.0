@@ -217,6 +217,8 @@
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
     <string name="social_media">Social Media</string>
+    <string name="country_code">Country Code</string>
+    <string name="country_code_with_asterisk">Code*</string>
 
     <!--Dining-->
     <string name="reserve_a_table">Reserve a Table</string>
@@ -231,11 +233,6 @@
     <string name="submit">Submit</string>
     <string name="select_meal_priod">Please select the meal period*</string>
     <string name="select_time">Please select time*</string>
-
-    <!--NETWORK CONNECTIVITY MSG-->
-    <string name="internet_error_msg">Please check your internet connection!</string>
-
-    <!--Restaurants-->
     <string name="reserve_a_table3">RESERVE TABLE</string>
     <string name="restaurants">Restaurants</string>
     <string name="sean_connolly">Sean Connolly</string>
@@ -244,6 +241,16 @@
     <string name="other_restaurants">OTHER RESTAURANTS</string>
     <string name="dubai_opera">at Dubai Opera</string>
 
+    <!--NETWORK CONNECTIVITY MSG-->
+    <string name="internet_error_msg">Please check your internet connection!</string>
+
+    <!--server-->
+    <string name="errorServerError">Server Error! Please try again later</string>
+
+    <!--Guest msg-->
+    <string name="guest_title">ALERT !!</string>
+    <string name="guest_msg">You should be logged in to use this features.</string>
+
     <!--Error handling (Changed one's)-->
     <!--login-->
     <string name="editError">Error</string>
@@ -251,9 +258,6 @@
     <string name="errorUserEmail">Incorrect Email Address or Password</string>
     <string name="errorPassword">Incorrect Email Address or Password</string>
     <string name="errorUserName">Please enter your login details</string>
-
-    <!--server-->
-    <string name="errorServerError">Server Error! Please try again later</string>
 
     <!--registration-->
     <string name="errorFirstName">Your First Name may not be blank</string>
@@ -273,10 +277,6 @@
     <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
     <string name="errorLengthCity">City should be between 2 to 26 character long</string>
     <string name="errorTerms">You need to accept the terms to proceed for registration</string>
-
-    <!--Guest msg-->
-    <string name="guest_title">ALERT !!</string>
-    <string name="guest_msg">You should be logged in to use this features.</string>
 
     <!--change password-->
     <string name="errorCurrentPassword">Your Current Password cannot be blank</string>
@@ -302,8 +302,6 @@
     <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
     <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
     <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
-    <string name="country_code">Country Code</string>
-    <string name="country_code_with_asterisk">Code*</string>
 
     <!--error and success dialog msg-->
     <string name="successMsg">“Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
@@ -317,7 +315,6 @@
     <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
     <string name="changedPassword_header">SUCCESS</string>
 
-
     <array name="states">
         <item>Dubai</item>
         <item>Abu Dhabi</item>
@@ -327,7 +324,6 @@
         <item>Sharjah</item>
         <item>Umm Al Quwain</item>
     </array>
-
 
     <array name="nationality">
         <item>United Arab Emirates</item>
@@ -875,15 +871,9 @@
     <string name="registerRequest">Register</string>
     <string name="changePasswordRequest">ChangePasswordRequest</string>
     <string name="update">Update</string>
+
     <string name="OnBackPressed">OnBackPressed</string>
     <string name="OnLanguageChange">OnLanguageChange</string>
-
-
-    <string name="special_requests">Special Requests/Occasions</string>
-    <string name="select_title">Select title</string>
-    <string name="mr">Mr.</string>
-    <string name="ms">Ms</string>
-    <string name="mrs">Mrs</string>
     <string name="base64_hpt1">bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==</string>
     <string name="UDF1">sample string 23</string>
     <string name="promotion_code">sample string 18</string>
@@ -911,5 +901,11 @@
     <string name="position">sample string 14</string>
     <string name="errorSelectTime">Select time to proceed</string>
     <string name="sample_string_7">Sample string 7</string>
+
+    <string name="mr">Mr.</string>
+    <string name="ms">Ms</string>
+    <string name="mrs">Mrs</string>
+    <string name="special_requests">Special Requests/Occasions</string>
+    <string name="select_title">Select title</string>
 
 </resources>
