@@ -97,8 +97,6 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.edit_edtCity)
     View edit_edtCity;
 
-    /*@BindView(R.id.edit_edtAddress)
-    View edit_edtAddress;*/
     @BindView(R.id.edit_edtAddress)
     EditText edit_edtAddress;
 
