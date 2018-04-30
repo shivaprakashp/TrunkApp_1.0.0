@@ -63,7 +63,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
     private RestaurantAdapter mAdapter;
     private Activity mActivity;
     private Api api;
-    private DBManager dbManager;
+    private DatabaseHelper dbManager;
     @Inject
     Retrofit retrofit;
 
@@ -79,6 +79,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
         initToolbar();
         initViews();
+
         if (Connections.isConnectionAlive(mActivity)) {
             GetRestauarantDetails();
         } else {
@@ -119,7 +120,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
         mRecyclerRestaurants.setAdapter(mAdapter);
 
-        dbManager = new DBManager(this);
+        dbManager = new DatabaseHelper(this);
         dbManager.open();
     }
 
@@ -132,6 +133,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
             dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
             dbManager.insertOtherRestaurants(mRestaurantListing);
+            dbManager.close();
         }
 
         @Override
@@ -158,5 +160,6 @@ public class OtherRestaurantsActivity extends BaseActivity {
         }
         mAdapter.RefreshList(mRestaurantListing);
         mAdapter.notifyDataSetChanged();
+        dbManager.close();
     }
 }
