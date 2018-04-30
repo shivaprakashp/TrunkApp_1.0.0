@@ -268,6 +268,7 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFulName.setMaxLines(1);
         edtFulName.setHint(getString(R.string.full_name1));
+        edtFulName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
         edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -381,10 +382,10 @@ public class ReserveATableActivity extends BaseActivity {
         if (TextUtils.isEmpty(edtFulName.getText().toString().trim())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
-        } else if (edtFulName.getText().toString().length() < 3 || edtFulName.getText().toString().length() > 30) {
+        } /*else if (edtFulName.getText().toString().length() < 1 || edtFulName.getText().toString().length() > 30) {
             customToast.showErrorToast(getString(R.string.errorLengthFirstName));
             return false;
-        } else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
+        }*/ else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {

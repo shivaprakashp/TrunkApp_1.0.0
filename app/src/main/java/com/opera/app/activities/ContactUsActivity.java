@@ -77,9 +77,7 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.edtEmail)
     View edtEmail;
 
-    /*@BindView(R.id.edtMessage)
-    View edtMessage;*/
-    @BindView(R.id.edit_edtAddress)
+    @BindView(R.id.edtMessage)
     EditText edtMessage;
 
     @BindView(R.id.spinnerEnquiryType)
@@ -302,7 +300,7 @@ public class ContactUsActivity extends BaseActivity {
             customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(mEdtEmail.getText()).matches()) {
-            customToast.showErrorToast(getString(R.string.errorUserEmail));
+            customToast.showErrorToast(getString(R.string.errorEmailAddress));
             return false;
         }
         //enquiry type

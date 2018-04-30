@@ -210,13 +210,13 @@
     <string name="full_name">Full Name*</string>
     <string name="phone_number">Mobile Number</string>
     <string name="email2">Email Address</string>
-    <string name="message">Message</string>
+    <string name="message">Message*</string>
     <string name="enquiry_type">Enquiry Type*</string>
     <string name="press_enquiry">Press Enquiry</string>
     <string name="ticketting_enquiry">Ticketting Enquiry</string>
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
-    <string name="social_media">Social media</string>
+    <string name="social_media">Social Media</string>
 
     <string name="reserve_a_table">Reserve a Table</string>
     <string name="reserve_a_table2">Reserve a table</string>
@@ -224,9 +224,9 @@
     <string name="preffereed_date">Preffered date of reservation*</string>
     <string name="telephone_no">Mobile Number</string>
     <string name="email3">Email Address</string>
-    <string name="window_table">Window table</string>
+    <string name="window_table">Window Table</string>
     <string name="total_no_of_guests">Please select total number of guests*</string>
-    <string name="full_name1">Full name</string>
+    <string name="full_name1">Full Name</string>
     <string name="submit">Submit</string>
     <string name="select_meal_priod">Please select the meal period*</string>
     <string name="select_time">Please select time*</string>
@@ -293,13 +293,14 @@
     <string name="errorEnquiryType">Enquiry Type may not be blank</string>
 
     <!--Error handling (UNChanged one's)-->
-    <!--<string name="errorRePassword">Re-enter Password cannot be left blank</string>
+    <string name="errorRePassword">Re-enter Password cannot be left blank</string>
     <string name="errorAddress">Address cannot be left blank</string>
     <string name="errorEmail">Email Address cannot be left blank</string>
+    <string name="errorEmailAddress">Incorrect Email Address</string>
     <string name="errorFieldsMandatory">All fields are mandatory</string>
     <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
     <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
-    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>-->
+    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
     <string name="country_code">Country Code</string>
     <string name="country_code_with_asterisk">Code*</string>
 

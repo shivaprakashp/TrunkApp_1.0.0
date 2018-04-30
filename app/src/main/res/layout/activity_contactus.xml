@@ -153,13 +153,13 @@
                     android:layout_marginBottom="5dp"/>
 
                 <com.opera.app.customwidget.EditTextWithFont
-                    android:id="@+id/edit_edtAddress"
+                    android:id="@+id/edtMessage"
                     style="@style/label_black"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:background="@null"
                     android:gravity="start"
-                    android:hint="@string/edit_address"
+                    android:hint="@string/message"
                     android:imeOptions="actionDone"
                     android:maxLength="70"
                     android:padding="5dp"
