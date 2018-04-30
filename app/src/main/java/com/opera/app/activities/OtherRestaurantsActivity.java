@@ -152,7 +152,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
                 mRestaurantData.setRestPlace(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PLACE)));
                 mRestaurantData.setRestDetails(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_DETAILS)));
                 mRestaurantData.setRestImage(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_IMAGE_URL)));
-
+                mRestaurantData.setRestBookUrl(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_BOOKING_URL)));
                 mRestaurantListing.add(mRestaurantData);
             } while (cursor.moveToNext());
         }

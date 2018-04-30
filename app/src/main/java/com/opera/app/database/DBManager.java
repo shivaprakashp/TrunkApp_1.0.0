@@ -43,6 +43,7 @@ public class DBManager {
             contentValue.put(DatabaseHelper.REASTAURANT_PLACE, mRestaurantListing.get(i).getRestPlace());
             contentValue.put(DatabaseHelper.REASTAURANT_DETAILS, mRestaurantListing.get(i).getRestDetails());
             contentValue.put(DatabaseHelper.REASTAURANT_IMAGE_URL, mRestaurantListing.get(i).getRestImage());
+            contentValue.put(DatabaseHelper.REASTAURANT_BOOKING_URL, mRestaurantListing.get(i).getRestBookUrl());
             long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
 
             Log.e("row", row + "");
@@ -52,7 +53,8 @@ public class DBManager {
     }
 
     public Cursor fetchOtherRestaurantDetails() {
-        String[] columns = new String[]{DatabaseHelper.REASTAURANT_ID, DatabaseHelper.REASTAURANT_NAME, DatabaseHelper.REASTAURANT_PLACE, DatabaseHelper.REASTAURANT_DETAILS, DatabaseHelper.REASTAURANT_IMAGE_URL};
+        String[] columns = new String[]{DatabaseHelper.REASTAURANT_ID, DatabaseHelper.REASTAURANT_NAME, DatabaseHelper.REASTAURANT_PLACE
+                , DatabaseHelper.REASTAURANT_DETAILS, DatabaseHelper.REASTAURANT_IMAGE_URL, DatabaseHelper.REASTAURANT_BOOKING_URL};
         Cursor cursor = database.query(DatabaseHelper.TABLE_OTHER_RESTAURANTS, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
