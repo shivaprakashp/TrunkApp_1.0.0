@@ -903,8 +903,8 @@
     <string name="sample_string_7">Sample string 7</string>
 
     <string name="mr">Mr.</string>
-    <string name="ms">Ms</string>
-    <string name="mrs">Mrs</string>
+    <string name="ms">Ms.</string>
+    <string name="mrs">Mrs.</string>
     <string name="special_requests">Special Requests/Occasions</string>
     <string name="select_title">Select title</string>
 
@@ -913,6 +913,7 @@
     <string name="tab_today_events">TODAY</string>
     <string name="tab_favourites_events">FAVOURITES</string>
     <string name="tab_genres_events">GENRES</string>
-
+    <string name="buy_tickets">BUY TICKETS</string>
+    Buy tickets
 
 </resources>
