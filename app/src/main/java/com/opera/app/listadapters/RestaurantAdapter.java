@@ -15,14 +15,11 @@ import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.constants.AppConstants;
-import com.opera.app.customwidget.AVLoadingIndicatorView;
-import com.opera.app.pojo.restaurant.RestaurantListing;
-import com.opera.app.pojo.restaurant.restaurantsData;
+import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 1000632 on 4/9/2018.
@@ -30,7 +27,7 @@ import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> {
 
-    private ArrayList<restaurantsData> mRestaurantList;
+    private ArrayList<RestaurantsData> mRestaurantList;
     private Activity mActivity;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -49,12 +46,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         }
     }
 
-    public RestaurantAdapter(Activity mActivity, ArrayList<restaurantsData> mRestaurantList) {
+    public RestaurantAdapter(Activity mActivity, ArrayList<RestaurantsData> mRestaurantList) {
         this.mActivity = mActivity;
         this.mRestaurantList = mRestaurantList;
     }
 
-    public void RefreshList(ArrayList<restaurantsData> mRestaurantList){
+    public void RefreshList(ArrayList<RestaurantsData> mRestaurantList){
         this.mRestaurantList = mRestaurantList;
     }
 
@@ -68,7 +65,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final restaurantsData mRestaurantListing = mRestaurantList.get(position);
+        final RestaurantsData mRestaurantListing = mRestaurantList.get(position);
         holder.mTxtRestaurantName.setText(mRestaurantListing.getRestName());
         holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getRestPlace());
 

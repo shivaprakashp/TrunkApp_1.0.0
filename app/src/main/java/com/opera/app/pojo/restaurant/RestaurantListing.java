@@ -2,7 +2,6 @@ package com.opera.app.pojo.restaurant;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.opera.app.pojo.login.LoginResponseData;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,7 @@ public class RestaurantListing {
 
     @SerializedName("restaurants")
     @Expose
-    private ArrayList<restaurantsData> data;
+    private ArrayList<RestaurantsData> data;
 
     public String getStatus() {
         return status;
@@ -40,11 +39,11 @@ public class RestaurantListing {
         this.message = message;
     }
 
-    public ArrayList<restaurantsData> getData() {
+    public ArrayList<RestaurantsData> getData() {
         return data;
     }
 
-    public void setData(ArrayList<restaurantsData> data) {
+    public void setData(ArrayList<RestaurantsData> data) {
         this.data = data;
     }
 }

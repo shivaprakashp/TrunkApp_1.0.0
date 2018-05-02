@@ -1,13 +1,13 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.opera.app.BaseActivity;
@@ -16,12 +16,11 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.DatabaseHelper;
+import com.opera.app.database.restaurants.DatabaseHelper;
 import com.opera.app.listadapters.RestaurantAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
-import com.opera.app.pojo.restaurant.restaurantsData;
-import com.opera.app.utils.Connections;
+import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
 
-    private ArrayList<restaurantsData> mRestaurantListing = new ArrayList<>();
+    private ArrayList<RestaurantsData> mRestaurantListing = new ArrayList<>();
     private RestaurantAdapter mAdapter;
     private Activity mActivity;
     private Api api;
@@ -71,13 +70,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
         initToolbar();
         initViews();
-
-        if (Connections.isConnectionAlive(mActivity)) {
-            GetRestauarantDetails();
-        } else {
-            FetchDataFromDB();
-        }
-
+        GetRestauarantDetails();
     }
 
     private void GetRestauarantDetails() {
@@ -112,44 +105,36 @@ public class OtherRestaurantsActivity extends BaseActivity {
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
         mRecyclerRestaurants.setAdapter(mAdapter);
 
-        dbManager = new DatabaseHelper(this);
-        dbManager.open();
+        dbManager = new DatabaseHelper(mActivity);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
-            mRestaurantListing.addAll(mRestaurantPojo.getData());
-            mAdapter.notifyDataSetChanged();
+            try {
+                if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")){
+                    dbManager.open();
+                    dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
+                    dbManager.insertOtherRestaurants(mRestaurantPojo.getData());
+                    fetchDataFromDB();
+                }
+            }catch (Exception e){
+                Log.e("Message", e.getMessage());
+                e.printStackTrace();}
 
-            dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
-            dbManager.insertOtherRestaurants(mRestaurantListing);
         }
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
-            FetchDataFromDB();
+            dbManager.open();
+            fetchDataFromDB();
         }
     };
 
-    private void FetchDataFromDB() {
-        mRestaurantListing = new ArrayList<>();
-        Cursor cursor = dbManager.fetchOtherRestaurantDetails();
-        if (cursor.moveToFirst()) {
-            do {
-                restaurantsData mRestaurantData = new restaurantsData();
-
-                mRestaurantData.setRestId(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_ID)));
-                mRestaurantData.setRestName(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_NAME)));
-                mRestaurantData.setRestPlace(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PLACE)));
-                mRestaurantData.setRestDetails(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_DETAILS)));
-                mRestaurantData.setRestImage(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_IMAGE_URL)));
-                mRestaurantData.setRestBookUrl(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_BOOKING_URL)));
-                mRestaurantListing.add(mRestaurantData);
-            } while (cursor.moveToNext());
-        }
-        mAdapter.RefreshList(mRestaurantListing);
+    private void fetchDataFromDB() {
+        mAdapter.RefreshList(dbManager.fetchOtherRestaurantDetails());
+        dbManager.close();
         mAdapter.notifyDataSetChanged();
     }
 }

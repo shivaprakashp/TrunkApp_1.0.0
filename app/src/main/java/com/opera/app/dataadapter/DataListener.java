@@ -22,7 +22,6 @@ public class DataListener {
     private Context context;
     protected TaskComplete taskComplete = null;
     private RequestProperties properties;
-    private CustomToast customToast;
 
     public DataListener(Context context, TaskComplete taskComplete, RequestProperties properties) {
         this.context = context;
@@ -33,8 +32,6 @@ public class DataListener {
 
     public void dataLoad(Call call) {
         try {
-            customToast = new CustomToast(context);
-
             dialog.setMessage(context.getResources().getString(R.string.loading));
             dialog.setCancelable(false);
             dialog.show();
@@ -47,9 +44,8 @@ public class DataListener {
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
-                    dialog.dismiss();
-                    customToast.showErrorToast(context.getString(R.string.errorServerError));
-                    taskComplete.onTaskError(call, t,properties.getRequestKey());
+                   dialog.dismiss();
+                   taskComplete.onTaskError(call, t,properties.getRequestKey());
                 }
             });
         }catch (Exception e){
