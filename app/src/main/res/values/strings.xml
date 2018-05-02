@@ -907,5 +907,9 @@
     <string name="mrs">Mrs</string>
     <string name="special_requests">Special Requests/Occasions</string>
     <string name="select_title">Select title</string>
+    <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
+    <string name="search">Search</string>
+    <string name="whats_on">What\'s on</string>
+    <string name="empty" ></string>
 
 </resources>

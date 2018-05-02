@@ -14,6 +14,8 @@
     <dimen name="textsize_ex_v_large">30dp</dimen>
 
     <dimen name="button_height">40dp</dimen>
+    <dimen name="cover_width">120dp</dimen>
+    <dimen name="cover_height">150dp</dimen>
 
 
 </resources>
