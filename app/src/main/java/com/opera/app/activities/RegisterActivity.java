@@ -276,7 +276,8 @@ public class RegisterActivity extends BaseActivity {
                         editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
                         editor.apply();
                         //sp.edit().putString("countryCode", spinnerCountryCode.getSelectedItem().toString()).commit();
-                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                        countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
+                                spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                         //customToast.showErrorToast(spinnerCountryCode);
 
                 }

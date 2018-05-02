@@ -22,8 +22,10 @@ import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.restaurants.SeanRestOpeation;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
+import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
@@ -70,6 +72,7 @@ public class DiningFragment extends BaseFragment {
     @BindView(R.id.progressImageLoader)
     ProgressBar mProgressImageLoader;
 
+    SeanRestOpeation restOpeation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,6 @@ public class DiningFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_dining2, container, false);
 
         initData(view);
-
         GetSeanConollyDetails();
 
         return view;
@@ -97,6 +99,8 @@ public class DiningFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         ((MainApplication) mActivity.getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
+
+        restOpeation = new SeanRestOpeation(mActivity);
     }
 
     private void GetSeanConollyDetails() {
@@ -123,8 +127,6 @@ public class DiningFragment extends BaseFragment {
             case R.id.mBtnReserveATable:
                 openActivity(mActivity, ReserveATableActivity.class);
                 break;
-
-
         }
     }
 
@@ -135,36 +137,45 @@ public class DiningFragment extends BaseFragment {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
             if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
-                mLinearReadMore.setVisibility(View.VISIBLE);
-                try {
-                    mTxtRestaurantName.setText(mRestaurantPojo.getData().get(0).getRestName());
-                    mTxtRestaurantPlace.setText("at " + mRestaurantPojo.getData().get(0).getRestPlace());
-                    mExpandableTextView.setText("at " + mRestaurantPojo.getData().get(0).getRestDetails());
-
-                    Picasso.with(mActivity).load(mRestaurantPojo.getData().get(0).getRestImage()).fit().centerCrop()
-                            .into(mRestaurantImage, new Callback() {
-                                @Override
-                                public void onSuccess() {
-                                    mProgressImageLoader.setVisibility(View.GONE);
-                                }
-
-                                @Override
-                                public void onError() {
-                                    mProgressImageLoader.setVisibility(View.GONE);
-                                }
-                            });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                restOpeation.open();
+                restOpeation.removeSeanConnolly();
+                restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
+                getSeanConnollyData();
             }
-
         }
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("Error", call.toString());
+            restOpeation.open();
+            getSeanConnollyData();
         }
     };
 
+    private void getSeanConnollyData(){
+        mLinearReadMore.setVisibility(View.VISIBLE);
 
+        RestaurantsData data = restOpeation.getSeanConnolly();
+        restOpeation.close();
+        try {
+            mTxtRestaurantName.setText(data.getRestName());
+            mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+            mExpandableTextView.setText("at " + data.getRestDetails());
+
+            Picasso.with(mActivity).load(data.getRestImage()).fit().centerCrop()
+                    .into(mRestaurantImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressImageLoader.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mProgressImageLoader.setVisibility(View.GONE);
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
