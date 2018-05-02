@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by 1000632 on 4/20/2018.
  */
 
-public class restaurantsData {
+public class RestaurantsData {
 
     @SerializedName("restId")
     @Expose
-    String restId;
+    public String restId;
 
     @SerializedName("restName")
     @Expose
@@ -49,18 +49,6 @@ public class restaurantsData {
     @Expose
     String phoneNumber;
 
-  /*  public restaurantsData(String restId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber) {
-        this.restId = restId;
-        this.restName = restName;
-        this.restImage = restImage;
-        this.restPlace = restPlace;
-        this.restLocation = restLocation;
-        this.restBookUrl = restBookUrl;
-        this.restStatus = restStatus;
-        this.restDetails = restDetails;
-        this.openHour = openHour;
-        this.phoneNumber = phoneNumber;
-    }*/
 
     public String getRestId() {
         return restId;
