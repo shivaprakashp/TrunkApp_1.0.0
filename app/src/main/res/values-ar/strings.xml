@@ -189,8 +189,9 @@
     <string name="mrs">السيدة</string>
 
 
-    <!--Home Page-->
+    <!--Home fragment-->
     <string name="enter_keywords">أدخل الكلمات الرئيسية للبحث عن أنواع الأحداث وما إلى ذلك.</string>
     <string name="search">بحث</string>
     <string name="whats_on">ماذا يجري</string>
+    <string name="buy_tickets">اشتري تذاكر</string>
 </resources>

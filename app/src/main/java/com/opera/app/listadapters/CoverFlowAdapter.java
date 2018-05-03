@@ -13,31 +13,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.pojo.GameEntity;
+import com.opera.app.pojo.events.events;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class CoverFlowAdapter extends BaseAdapter {
 
-    private ArrayList<GameEntity> mData = new ArrayList<>(0);
+    private ArrayList<events> mHighlightedEvents = new ArrayList<>(0);
     private Context mContext;
 
-    public CoverFlowAdapter(Context context) {
+    public CoverFlowAdapter(Context context, ArrayList<events> mHighlightedEvents) {
         mContext = context;
-    }
-
-    public void setData(ArrayList<GameEntity> data) {
-        mData = data;
+        this.mHighlightedEvents = mHighlightedEvents;
     }
 
     @Override
     public int getCount() {
-        return mData.size();
+        return mHighlightedEvents.size();
     }
 
     @Override
     public Object getItem(int pos) {
-        return mData.get(pos);
+        return pos;
     }
 
     @Override
@@ -63,8 +62,19 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        holder.image.setImageResource(mData.get(position).imageResId);
-        holder.text.setText(mData.get(position).titleResId);
+        Picasso.with(mContext).load(mHighlightedEvents.get(position).getEventThumbImage()).fit().centerCrop()
+                .into(holder.image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        /*holder.progressImageLoader.setVisibility(View.GONE);*/
+                    }
+
+                    @Override
+                    public void onError() {
+                       /* holder.progressImageLoader.setVisibility(View.GONE);*/
+                    }
+                });
+
 
         return rowView;
     }

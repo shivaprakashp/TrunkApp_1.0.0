@@ -36,77 +36,91 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.15"
+            android:layout_weight="0.55"
             android:background="@color/colorBurgendy"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:fillViewport="true"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorWhite"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <com.opera.app.customwidget.EditTextWithFont
-                    android:id="@+id/edt"
-                    style="@style/label_black"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="0.7"
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:hint="@string/enter_keywords"
-                    android:padding="5dp"
-                    android:singleLine="true"
-                    font:name="Montserrat-Regular">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
 
-                </com.opera.app.customwidget.EditTextWithFont>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorWhite"
+                        android:orientation="horizontal">
 
-                <com.opera.app.customwidget.ButtonWithFont
-                    android:id="@+id/btnSendMessage"
-                    style="@style/label_white_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="0.3"
-                    android:background="@drawable/btn_ripple_effect"
-                    android:text="@string/search"
-                    font:name="Montserrat-Light" />
+                        <com.opera.app.customwidget.EditTextWithFont
+                            android:id="@+id/edt"
+                            style="@style/label_black"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="0.7"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:hint="@string/enter_keywords"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            font:name="Montserrat-Regular">
+
+                        </com.opera.app.customwidget.EditTextWithFont>
+
+                        <com.opera.app.customwidget.ButtonWithFont
+                            android:id="@+id/btnSendMessage"
+                            style="@style/label_white_medium"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="0.3"
+                            android:background="@drawable/btn_ripple_effect"
+                            android:text="@string/search"
+                            font:name="Montserrat-Light" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:background="@color/colorBurgendy"
+                    android:orientation="vertical">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtNumber"
+                        style="@style/label_light_gray_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/whats_on"
+                        font:name="Montserrat-Light" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
 
             </LinearLayout>
-
-            <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/txtNumber"
-                style="@style/label_light_gray_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/whats_on"
-                font:name="Montserrat-Light" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4"
-            android:background="@color/colorBurgendy"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-
+        </ScrollView>
     </LinearLayout>
-
 </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.opera.app.dagger;
 
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
+import com.opera.app.pojo.events.AllEventsOfDubaiOpera;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -20,6 +21,7 @@ import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -74,5 +76,8 @@ public interface Api {
 
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);
+
+    @GET("5ae709882f00004a00f05966/")
+    Call<AllEventsOfDubaiOpera> GetEventListing();
 
 }
