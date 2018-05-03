@@ -248,7 +248,6 @@ public class RegisterActivity extends BaseActivity {
             }
         });
 
-        //edtMobile = (EditTextWithFont) reg_edtMobile.findViewById(R.id.edtMobile);
         edtMobile.setHint(getString(R.string.mobile));
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
