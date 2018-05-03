@@ -31,15 +31,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
         android:text="@string/reserve_a_table2"
         android:textColor="@color/colorWhite"
-        font:name="Montserrat-Regular" />
+        font:name="Montserrat-Regular"
+        android:visibility="gone"/>
 
     <com.opera.app.customwidget.TextViewWithFont
         style="@style/label_gray_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:text="@string/sean_connolly_dubai_opera"
         android:textColor="@color/colorWhite"

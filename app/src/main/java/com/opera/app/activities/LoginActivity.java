@@ -224,10 +224,10 @@ public class LoginActivity extends BaseActivity {
 
     private boolean checkValidationForgotPassword() {
         if (TextUtils.isEmpty(forgotPassword.getText().toString().trim())) {
-            customToast.showErrorToast(getString(R.string.errorUserEmail));
+            customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!forgotPassword.getText().toString().matches(emailPattern)) {
-            customToast.showErrorToast(getString(R.string.errorUserEmail));
+            customToast.showErrorToast(getString(R.string.errorEmailInvalid));
             return false;
         }
 
