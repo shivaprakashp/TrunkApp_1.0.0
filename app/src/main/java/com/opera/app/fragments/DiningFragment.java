@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.EditProfileActivity;
-import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.controller.MainController;
@@ -27,7 +25,6 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +50,9 @@ public class DiningFragment extends BaseFragment {
 
     @BindView(R.id.txtShowmore)
     TextView txtShowmore;
+
+    @BindView(R.id.ivShowmore)
+    ImageView ivShowmore;
 
     @BindView(R.id.expandableTextView)
     ExpandableTextView mExpandableTextView;
@@ -116,9 +116,11 @@ public class DiningFragment extends BaseFragment {
                 if (mExpandableTextView.isExpanded()) {
                     mExpandableTextView.collapse();
                     txtShowmore.setText(R.string.read_more);
+                    ivShowmore.setScaleY(1);
                 } else {
                     mExpandableTextView.expand();
                     txtShowmore.setText(R.string.read_less);
+                    ivShowmore.setScaleY(-1);
                 }
                 break;
             case R.id.btnOtherRestaurants:
@@ -160,7 +162,7 @@ public class DiningFragment extends BaseFragment {
         try {
             mTxtRestaurantName.setText(data.getRestName());
             mTxtRestaurantPlace.setText("at " + data.getRestPlace());
-            mExpandableTextView.setText("at " + data.getRestDetails());
+            mExpandableTextView.setText(data.getRestDetails());
 
             Picasso.with(mActivity).load(data.getRestImage()).fit().centerCrop()
                     .into(mRestaurantImage, new Callback() {

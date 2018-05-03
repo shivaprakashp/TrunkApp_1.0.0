@@ -134,7 +134,7 @@ public class ReserveATableActivity extends BaseActivity {
     Button mBtnSubmit;
 
     CustomSpinner spinnerCountryCode;
-    String countryCode;
+    String countryCode, dateOFBirth;
 
     //Meal Period
     private AdapterMealPeriod mAdapterMealPeriod;
@@ -373,7 +373,8 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
+                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
@@ -387,7 +388,8 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
+                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
@@ -399,7 +401,6 @@ public class ReserveATableActivity extends BaseActivity {
                     SubmitSaveReservation();
                 }
                 break;
-
         }
     }
 
@@ -444,7 +445,7 @@ public class ReserveATableActivity extends BaseActivity {
                 "("+countryCode +")"+ edtFulNo.getText().toString().trim(),
                 edtEmail.getText().toString().trim(), mSpinnerSelectTitle.getSelectedItem().toString());
 
-        RespakReservation respakReservation = new RespakReservation(editDOB.getText().toString().trim(), mSelectedTime,
+        RespakReservation respakReservation = new RespakReservation(dateOFBirth, mSelectedTime,
                 Integer.valueOf(mEdtNoOfGuests.getText().toString()),
                 Integer.valueOf(mMealPeriodId));
 
@@ -501,6 +502,7 @@ public class ReserveATableActivity extends BaseActivity {
                 mEdtNoOfGuests.setText("1");
 
                 mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
+                //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
                 arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
                 if (mRestaurantMasterDetails.getData().getTime_Segment_Responses()!=null)
                 arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());

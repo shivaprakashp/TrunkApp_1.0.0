@@ -37,6 +37,11 @@ public class Meal_Periods
         this.Meal_Period_Name = Meal_Period_Name;
     }
 
+    public Meal_Periods(String meal_Period_ID, String meal_Period_Name) {
+        Meal_Period_ID = meal_Period_ID;
+        Meal_Period_Name = meal_Period_Name;
+    }
+
     @Override
     public String toString()
     {
