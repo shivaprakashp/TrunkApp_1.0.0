@@ -259,7 +259,8 @@ public class EditProfileActivity extends BaseActivity {
                         editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
                         editor.apply();
                         //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
-
+                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
+                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                 }
             }
             @Override

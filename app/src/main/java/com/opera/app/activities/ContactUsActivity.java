@@ -189,11 +189,13 @@ public class ContactUsActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-        if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(mActivity);
-            String name = sharedPreferences.getString("countryCode", "default value");
-            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        if (manager.getUserLoginData() != null){
+            if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(mActivity);
+                String name = sharedPreferences.getString("countryCode", "default value");
+                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+            }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

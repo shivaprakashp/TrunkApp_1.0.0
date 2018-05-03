@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -193,11 +194,13 @@ public class ReserveATableActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-        if(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(mActivity);
-            String name = sharedPreferences.getString("countryCode", "default value");
-            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        if (mSessionManager.getUserLoginData() != null) {
+            if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(mActivity);
+                String name = sharedPreferences.getString("countryCode", "default value");
+                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+            }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -305,9 +308,8 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
-        edtFulNo.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(10)});
         edtFulNo.setHint(getString(R.string.telephone_no));
-
+        edtFulNo.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
                 String Number = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber();
@@ -317,6 +319,7 @@ public class ReserveATableActivity extends BaseActivity {
                 edtFulNo.setText(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber());
             }
         }
+        edtFulNo.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         CallMasterService(OperaUtils.splitDate()[2] + "-" + (OperaUtils.splitDate()[1] + 1) + "-" + OperaUtils.splitDate()[0]);
     }

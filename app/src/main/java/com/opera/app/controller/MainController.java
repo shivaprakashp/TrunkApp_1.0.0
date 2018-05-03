@@ -15,6 +15,7 @@ import com.opera.app.pojo.profile.PostChangePassword;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
+import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
@@ -96,7 +97,13 @@ public class MainController {
     }
 
     public void fetchMasterDetails(TaskComplete taskComplete, Api api, GetMasterDetailsRequestPojo getMasterDetailsRequestPojo) {
-        Call call = api.RestaurantsGetMasterDetails(contentType, manager.getUserLoginData().getData().getToken(), getMasterDetailsRequestPojo);          // need to add auth token
+
+        Call<RestaurantMasterDetails> call;
+        if (manager.getUserLoginData() != null) {
+            call = api.RestaurantsGetMasterDetails(contentType, manager.getUserLoginData().getData().getToken(), getMasterDetailsRequestPojo);
+        } else {
+            call = api.RestaurantsGetMasterDetails(contentType, "", getMasterDetailsRequestPojo);
+        }
         properties.setRequestKey(AppConstants.GETMASTERDETAILS.GETMASTERDETAILS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
