@@ -92,10 +92,16 @@ public class MenuFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         initMenu();
-        initUser();
     }
 
-    private void initUser(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateSessionData();
+    }
+
+
+    private void updateSessionData(){
         manager = new SessionManager(mActivity);
         if (manager.isUserLoggedIn()){
             tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "

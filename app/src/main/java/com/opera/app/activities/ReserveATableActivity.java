@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -134,7 +135,7 @@ public class ReserveATableActivity extends BaseActivity {
     Button mBtnSubmit;
 
     CustomSpinner spinnerCountryCode;
-    String countryCode;
+    String countryCode, dateOFBirth;
 
     //Meal Period
     private AdapterMealPeriod mAdapterMealPeriod;
@@ -193,11 +194,13 @@ public class ReserveATableActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-        if(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(mActivity);
-            String name = sharedPreferences.getString("countryCode", "default value");
-            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+        if (mSessionManager.getUserLoginData() != null) {
+            if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(mActivity);
+                String name = sharedPreferences.getString("countryCode", "default value");
+                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+            }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -206,7 +209,9 @@ public class ReserveATableActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))){
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                    //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
+                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                 }
             }
             @Override
@@ -303,9 +308,8 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
-        edtFulNo.setFilters(new InputFilter[]{OperaUtils.filterSpace, OperaUtils.filter, new InputFilter.LengthFilter(10)});
         edtFulNo.setHint(getString(R.string.telephone_no));
-
+        edtFulNo.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
                 String Number = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber();
@@ -315,6 +319,7 @@ public class ReserveATableActivity extends BaseActivity {
                 edtFulNo.setText(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber());
             }
         }
+        edtFulNo.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         CallMasterService(OperaUtils.splitDate()[2] + "-" + (OperaUtils.splitDate()[1] + 1) + "-" + OperaUtils.splitDate()[0]);
     }
@@ -371,7 +376,8 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
+                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
@@ -385,7 +391,8 @@ public class ReserveATableActivity extends BaseActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        editDOB.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
+                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
                     }
                 });
@@ -397,7 +404,6 @@ public class ReserveATableActivity extends BaseActivity {
                     SubmitSaveReservation();
                 }
                 break;
-
         }
     }
 
@@ -442,7 +448,7 @@ public class ReserveATableActivity extends BaseActivity {
                 "("+countryCode +")"+ edtFulNo.getText().toString().trim(),
                 edtEmail.getText().toString().trim(), mSpinnerSelectTitle.getSelectedItem().toString());
 
-        RespakReservation respakReservation = new RespakReservation(editDOB.getText().toString().trim(), mSelectedTime,
+        RespakReservation respakReservation = new RespakReservation(dateOFBirth, mSelectedTime,
                 Integer.valueOf(mEdtNoOfGuests.getText().toString()),
                 Integer.valueOf(mMealPeriodId));
 
@@ -499,6 +505,7 @@ public class ReserveATableActivity extends BaseActivity {
                 mEdtNoOfGuests.setText("1");
 
                 mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
+                //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
                 arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
                 if (mRestaurantMasterDetails.getData().getTime_Segment_Responses()!=null)
                 arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());

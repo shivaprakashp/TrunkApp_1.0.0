@@ -149,6 +149,7 @@
                             android:textAllCaps="false" />
 
                         <ImageView
+                            android:id="@+id/ivShowmore"
                             android:layout_width="10dp"
                             android:layout_height="10dp"
                             android:src="@drawable/ic_down_arrow" />
@@ -164,7 +165,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.156"
             android:background="@color/colorBlack"
             android:gravity="center"
             android:orientation="vertical">
@@ -177,6 +178,7 @@
                 android:background="@drawable/btn_ripple_effect"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/other_restaurants"
                 android:textAllCaps="false"
                 font:name="Montserrat-Light" />
