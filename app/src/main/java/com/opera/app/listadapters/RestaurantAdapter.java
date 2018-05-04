@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.utils.Connections;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -85,16 +87,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         holder.mBtnReserveATable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
-                    Intent intent = new Intent(mActivity, ReserveATableActivity.class);
-                    mActivity.startActivity(intent);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
+                        Intent intent = new Intent(mActivity, ReserveATableActivity.class);
+                        mActivity.startActivity(intent);
+                    } else {
+                        Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                        in.putExtra("URL", mRestaurantListing.getRestBookUrl());
+                        in.putExtra("Header", mRestaurantListing.getRestName());
+                        mActivity.startActivity(in);
+                    }
                 } else {
-                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                    in.putExtra("URL", mRestaurantListing.getRestBookUrl());
-                    in.putExtra("Header", mRestaurantListing.getRestName());
-                    mActivity.startActivity(in);
+                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
-
             }
         });
     }

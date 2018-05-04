@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
@@ -24,6 +25,7 @@ import com.opera.app.database.restaurants.SeanRestOpeation;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -127,7 +129,11 @@ public class DiningFragment extends BaseFragment {
                 openActivity(mActivity, OtherRestaurantsActivity.class);
                 break;
             case R.id.mBtnReserveATable:
+                if (Connections.isConnectionAlive(mActivity)) {
                 openActivity(mActivity, ReserveATableActivity.class);
+                } else {
+                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
