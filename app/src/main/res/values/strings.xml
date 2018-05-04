@@ -915,6 +915,10 @@
     <string name="tab_favourites_events">FAVOURITE</string>
     <string name="tab_genres_events">GENRES</string>
     <string name="buy_tickets">BUY TICKETS</string>
-    Buy tickets
 
+    <!--Home fragment-->
+    <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
+    <string name="search">Search</string>
+    <string name="whats_on">What\'s on</string>
+    <string name="empty" ></string>
 </resources>

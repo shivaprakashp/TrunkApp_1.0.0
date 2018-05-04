@@ -52,4 +52,8 @@ public interface AppConstants {
     interface GETSPECIFICRESTAURANT {
         String GETSPECIFICRESTAURANT = "GETSPECIFICRESTAURANT";
     }
+
+    interface GETEVENTLISTING {
+        String GETEVENTLISTING = "GETEVENTLISTING";
+    }
 }
