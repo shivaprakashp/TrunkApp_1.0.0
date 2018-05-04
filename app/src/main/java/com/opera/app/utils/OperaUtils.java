@@ -210,6 +210,15 @@ public class OperaUtils {
         return df.format(c);
     }
 
+    //get current date
+    public static String getCurrentDate2(){
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        return df.format(c);
+    }
+
     public static String[] splitDate(){
         return getCurrentDate().split("/");
     }

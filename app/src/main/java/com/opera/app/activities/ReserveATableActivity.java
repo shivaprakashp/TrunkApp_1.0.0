@@ -167,14 +167,14 @@ public class ReserveATableActivity extends BaseActivity {
         initData();
     }
 
-    private void initSessionData(){
+    private void initSessionData() {
         mSessionManager = new SessionManager(mActivity);
         ((MainApplication) getApplication()).getNetComponent().inject(ReserveATableActivity.this);
         api = retrofit.create(Api.class);
 
     }
 
-    private void initSpinnervalues(){
+    private void initSpinnervalues() {
         String[] arrMealPeriod = {getResources().getString(R.string.select_meal_priod)};
 
         ArrayAdapter<String> adapterMealPeriod = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrMealPeriod);
@@ -209,14 +209,15 @@ public class ReserveATableActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country_code_with_asterisk))){
+                        getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                     //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
-                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
+                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -224,7 +225,7 @@ public class ReserveATableActivity extends BaseActivity {
         });
     }
 
-    private void initData(){
+    private void initData() {
           /*if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName());
         }*/
@@ -233,7 +234,11 @@ public class ReserveATableActivity extends BaseActivity {
             edtEmail.setText(mSessionManager.getUserLoginData().getData().getProfile().getEmail());
         }
 
+        //getCurrentDate to display in one format
         editDOB.setText(OperaUtils.getCurrentDate());
+
+        //getCurrentDate2 to send to backend in another format
+        CallMasterService(OperaUtils.getCurrentDate2());
     }
 
     private void Onclicks() {
@@ -301,7 +306,7 @@ public class ReserveATableActivity extends BaseActivity {
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null && mSessionManager.getUserLoginData().getData().getProfile().getLastName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName() + " " + mSessionManager.getUserLoginData().getData().getProfile().getLastName());
         }
-        edtFulName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFulName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
 
         edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -322,9 +327,7 @@ public class ReserveATableActivity extends BaseActivity {
                 edtFulNo.setText(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber());
             }
         }
-        edtFulNo.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
-
-        CallMasterService(OperaUtils.splitDate()[2] + "-" + (OperaUtils.splitDate()[1] + 1) + "-" + OperaUtils.splitDate()[0]);
+        edtFulNo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
     }
 
     private void initToolbar() {
@@ -466,7 +469,7 @@ public class ReserveATableActivity extends BaseActivity {
 
         Patron patron = new Patron(edtFulName.getText().toString(),
                 mSessionManager.getUserLoginData().getData().getProfile().getLastName(),
-                "("+countryCode +")"+ edtFulNo.getText().toString().trim(),
+                "(" + countryCode + ")" + edtFulNo.getText().toString().trim(),
                 edtEmail.getText().toString().trim(), mSpinnerSelectTitle.getSelectedItem().toString());
 
         RespakReservation respakReservation = new RespakReservation(dateOFBirth, mSelectedTime,
@@ -528,8 +531,8 @@ public class ReserveATableActivity extends BaseActivity {
                 mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
                 //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
                 arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
-                if (mRestaurantMasterDetails.getData().getTime_Segment_Responses()!=null)
-                arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
+                if (mRestaurantMasterDetails.getData().getTime_Segment_Responses() != null)
+                    arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
                 maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
 
                 mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
