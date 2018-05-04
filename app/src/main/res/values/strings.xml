@@ -915,6 +915,8 @@
     <string name="tab_favourites_events">FAVOURITE</string>
     <string name="tab_genres_events">GENRES</string>
     <string name="buy_tickets">BUY TICKETS</string>
+    <string name="video">VIDEO</string>
+    <string name="you_also_like">You might also like...</string>
 
     <!--Home fragment-->
     <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
