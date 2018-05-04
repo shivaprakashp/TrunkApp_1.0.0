@@ -52,8 +52,11 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -294,7 +297,7 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulName = (EditTextWithFont) reserve_edtFulName.findViewById(R.id.edt);
         edtFulName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFulName.setMaxLines(1);
-        edtFulName.setHint(getString(R.string.full_name1));
+        edtFulName.setHint(getString(R.string.full_name));
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null && mSessionManager.getUserLoginData().getData().getProfile().getLastName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName() + " " + mSessionManager.getUserLoginData().getData().getProfile().getLastName());
         }
@@ -303,12 +306,12 @@ public class ReserveATableActivity extends BaseActivity {
         edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         edtEmail.setMaxLines(1);
-        edtEmail.setHint(getString(R.string.email3));
+        edtEmail.setHint(getString(R.string.email));
 
         edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
-        edtFulNo.setHint(getString(R.string.telephone_no));
+        edtFulNo.setHint(getString(R.string.mobile));
         edtFulNo.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
@@ -377,8 +380,18 @@ public class ReserveATableActivity extends BaseActivity {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
-                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                                "yyyy-MM-dd");
+                        Date myDate = null;
+                        try {
+                            myDate = dateFormat.parse(dateOFBirth);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        String finalDate = timeFormat.format(myDate);
+                        editDOB.setText(finalDate);
+                        CallMasterService(dateOFBirth);
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
@@ -392,8 +405,18 @@ public class ReserveATableActivity extends BaseActivity {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 //                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                         dateOFBirth = (year + "-" + (month + 1) + "-" + dayOfMonth);
-                        editDOB.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                        CallMasterService(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                                "yyyy-MM-dd");
+                        Date myDate = null;
+                        try {
+                            myDate = dateFormat.parse(dateOFBirth);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        String finalDate = timeFormat.format(myDate);
+                        editDOB.setText(finalDate);
+                        CallMasterService(dateOFBirth);
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
@@ -409,18 +432,14 @@ public class ReserveATableActivity extends BaseActivity {
 
     private boolean validateCheck() {
         //validation of input field
-        //firstName
-        if (TextUtils.isEmpty(edtFulName.getText().toString().trim())) {
-            customToast.showErrorToast(getString(R.string.errorFirstName));
+        if (mCurrentSelectedItemTime.equalsIgnoreCase(getResources().getString(R.string.select_time))) {
+            customToast.showErrorToast(getString(R.string.errorSelectTime));
             return false;
-        } /*else if (edtFulName.getText().toString().length() < 1 || edtFulName.getText().toString().length() > 30) {
-            customToast.showErrorToast(getString(R.string.errorLengthFirstName));
+        } else if (mSpinnerSelectTitle.getSelectedItem().toString().equals(getResources().getString(R.string.select_title))) {
+            customToast.showErrorToast(getResources().getString(R.string.errorSelectTitle));
             return false;
-        }*/ else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
-            customToast.showErrorToast(getString(R.string.errorEmailId));
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
-            customToast.showErrorToast(getString(R.string.errorUserEmail));
+        } else if (TextUtils.isEmpty(edtFulName.getText().toString().trim())) {
+            customToast.showErrorToast(getString(R.string.errorFullName));
             return false;
         } else if (spinnerCountryCode.getSelectedItem().toString().equals(getResources().getString(R.string.country_code_with_asterisk))) {
             customToast.showErrorToast(getResources().getString(R.string.errorCountryCode));
@@ -431,11 +450,13 @@ public class ReserveATableActivity extends BaseActivity {
         } else if (edtFulNo.getText().toString().length() < 10 || edtFulNo.getText().toString().length() > 10) {
             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
-        } else if (mCurrentSelectedItemTime.equalsIgnoreCase(getResources().getString(R.string.select_time))) {
-            customToast.showErrorToast(getString(R.string.errorSelectTime));
+        } else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
+            customToast.showErrorToast(getString(R.string.errorEmailId));
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches()) {
+            customToast.showErrorToast(getString(R.string.errorUserEmail));
             return false;
         }
-
 
         return true;
     }

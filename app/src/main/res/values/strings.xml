@@ -213,7 +213,7 @@
     <string name="message">Message</string>
     <string name="enquiry_type">Enquiry Type*</string>
     <string name="press_enquiry">Press Enquiry</string>
-    <string name="ticketting_enquiry">Ticketting Enquiry</string>
+    <string name="ticketting_enquiry">Ticketing Enquiry</string>
     <string name="venue_booking">Venue Booking</string>
     <string name="careers">Careers</string>
     <string name="social_media">Social Media</string>
@@ -223,7 +223,7 @@
     <!--Dining-->
     <string name="reserve_a_table">Reserve a Table</string>
     <string name="reserve_a_table2">Reserve a table</string>
-    <string name="sean_connolly_dubai_opera">\@Sean Connolly at Dubai Opera</string>
+    <string name="sean_connolly_dubai_opera">Sean Connolly at Dubai Opera</string>
     <string name="preffereed_date">Preffered date of reservation*</string>
     <string name="telephone_no">Mobile Number</string>
     <string name="email3">Email Address</string>
@@ -269,14 +269,15 @@
     <string name="errorNationality">Your Nationality name may not be blank</string>
     <string name="errorDob">Your date of birth may not be blank</string>
     <string name="errorCountryCode">Your Country Code may not be blank</string>
-    <string name="errorMobile">Your mobile number must be filled in</string>
-    <string name="errorLengthMobile">Your Mobile number minimum length must be of 10 digit</string>
+    <string name="errorMobile">Your Mobile Number must be filled in</string>
+    <string name="errorLengthMobile">Your Mobile Number minimum length must be of 10 digit</string>
     <string name="errorCity">Your City name may not be blank</string>
     <string name="errorState">Your Emirate or State name may not be blank</string>
     <string name="errorCountry">Your Country Name name may not be blank</string>
     <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
     <string name="errorLengthCity">City should be between 2 to 26 character long</string>
     <string name="errorTerms">You need to accept the terms to proceed for registration</string>
+    <string name="errorSelectTitle">Your Title may not be blank</string>
 
     <!--change password-->
     <string name="errorCurrentPassword">Your Current Password cannot be blank</string>
@@ -287,9 +288,9 @@
     <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
 
     <!--contact us-->
-    <string name="errorFullName">Your Full Name cannot be blank</string>
+    <string name="errorFullName">Your Full Name may not be blank</string>
     <string name="errorLengthFullName">Length of Full Name should be between 1 to 30 characters</string>
-    <string name="errorMessage">Message cannot be blank</string>
+    <string name="errorMessage">Message may not be blank</string>
     <string name="errorLengthMessage">Message should not be more than 70 characters</string>
     <string name="errorEnquiryType">Enquiry Type may not be blank</string>
 
@@ -906,12 +907,12 @@
     <string name="ms">Ms.</string>
     <string name="mrs">Mrs.</string>
     <string name="special_requests">Special Requests/Occasions</string>
-    <string name="select_title">Select title</string>
+    <string name="select_title">Select title*</string>
 
     <!--Events Fragment-->
     <string name="tab_all_events">ALL</string>
     <string name="tab_today_events">TODAY</string>
-    <string name="tab_favourites_events">FAVOURITES</string>
+    <string name="tab_favourites_events">FAVOURITE</string>
     <string name="tab_genres_events">GENRES</string>
     <string name="buy_tickets">BUY TICKETS</string>
 
