@@ -38,84 +38,86 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.55"
+            android:background="@color/colorBurgendy"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:padding="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.55"
-                android:background="@color/colorBurgendy"
-                android:fillViewport="true"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_weight="0.15"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_height="@dimen/button_height_small"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height_small"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/colorWhite"
-                        android:orientation="horizontal">
-
-                        <com.opera.app.customwidget.EditTextWithFont
-                            android:id="@+id/edtSearch"
-                            style="@style/label_black_small"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.7"
-                            android:background="@null"
-                            android:ellipsize="end"
-                            android:hint="@string/enter_keywords"
-                            android:imeOptions="actionDone"
-                            android:padding="5dp"
-                            android:singleLine="true"
-                            font:name="Montserrat-Regular">
-
-                        </com.opera.app.customwidget.EditTextWithFont>
-
-                        <com.opera.app.customwidget.ButtonWithFont
-                            android:id="@+id/btnSearch"
-                            style="@style/label_white_small"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="0.3"
-                            android:background="@drawable/btn_ripple_effect"
-                            android:text="@string/search"
-                            android:textAllCaps="false"
-                            font:name="Montserrat-Light" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorBurgendy"
-                    android:orientation="vertical">
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:id="@+id/txtNumber"
-                        style="@style/label_light_gray_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/whats_on"
-                        font:name="Montserrat-Light" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerList"
-                        android:layout_width="match_parent"
+                    <com.opera.app.customwidget.EditTextWithFont
+                        android:id="@+id/edtSearch"
+                        style="@style/label_black_small"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                        android:layout_weight="0.7"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:hint="@string/enter_keywords"
+                        android:imeOptions="actionDone"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        font:name="Montserrat-Regular">
+
+                    </com.opera.app.customwidget.EditTextWithFont>
+
+                    <com.opera.app.customwidget.ButtonWithFont
+                        android:id="@+id/btnSearch"
+                        style="@style/label_white_small"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/btn_ripple_effect"
+                        android:text="@string/search"
+                        android:textAllCaps="false"
+                        font:name="Montserrat-Light" />
 
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.85"
+                android:background="@color/colorBurgendy"
+                android:orientation="vertical">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtNumber"
+                    style="@style/label_light_gray_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/whats_on"
+                    font:name="Montserrat-Light" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 

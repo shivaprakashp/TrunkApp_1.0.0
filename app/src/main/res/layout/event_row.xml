@@ -6,7 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_marginRight="30dp">
 
         <ImageView
             android:id="@+id/imgEvent"
@@ -73,12 +74,12 @@
 
         <LinearLayout
             android:id="@+id/linearHolder"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/colorTransparentBurgendy"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:visibility="gone">
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtEventInfo"
