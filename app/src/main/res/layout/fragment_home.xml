@@ -25,6 +25,7 @@
                 android:id="@+id/coverflow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/transparent_black"
                 android:visibility="gone"
                 coverflow:coverHeight="@dimen/cover_height"
                 coverflow:coverWidth="@dimen/cover_width"
@@ -66,7 +67,7 @@
                         android:orientation="horizontal">
 
                         <com.opera.app.customwidget.EditTextWithFont
-                            android:id="@+id/edt"
+                            android:id="@+id/edtSearch"
                             style="@style/label_black"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
@@ -74,6 +75,7 @@
                             android:background="@null"
                             android:ellipsize="end"
                             android:hint="@string/enter_keywords"
+                            android:imeOptions="actionDone"
                             android:padding="5dp"
                             android:singleLine="true"
                             font:name="Montserrat-Regular">
@@ -81,7 +83,7 @@
                         </com.opera.app.customwidget.EditTextWithFont>
 
                         <com.opera.app.customwidget.ButtonWithFont
-                            android:id="@+id/btnSendMessage"
+                            android:id="@+id/btnSearch"
                             style="@style/label_white_medium"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/button_height"

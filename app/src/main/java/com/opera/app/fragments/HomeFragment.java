@@ -1,6 +1,7 @@
 package com.opera.app.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
@@ -28,6 +32,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -51,6 +56,12 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.coverflow)
     FeatureCoverFlow mCoverFlow;
+
+    @BindView(R.id.btnSearch)
+    Button mBtnSearch;
+
+    @BindView(R.id.edtSearch)
+    EditText mEdtSearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -138,5 +149,16 @@ public class HomeFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
         mCoverFlow.setAdapter(mAdapter);
         mCoverFlow.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick({R.id.btnSearch})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSearch:
+                Intent in = new Intent(mActivity, SearchEventActivity.class);
+                in.putExtra("SearchedData", mEdtSearch.getText().toString().trim());
+                startActivity(in);
+                break;
+        }
     }
 }
