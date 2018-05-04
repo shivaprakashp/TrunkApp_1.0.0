@@ -16,6 +16,9 @@
     <color name="colorBurgendy">#782327</color>
     <color name="colorTransparentBurgendy">#66782327</color>
     <color name="colorLightBurgendy">#812C31</color>
+    <color name="colorDarkBurgendy">#380A0C</color>
+
+
     <color name="colorBlack">#000000</color>
     <color name="transparent_black">#D9000000</color>
     <color name="transparent">#00000000</color>
