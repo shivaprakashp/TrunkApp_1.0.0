@@ -11,20 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterOfSearchedEvents;
 import com.opera.app.pojo.events.events;
 import com.opera.app.utils.LanguageManager;
@@ -32,6 +26,7 @@ import com.opera.app.utils.LanguageManager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 5/3/2018.
@@ -42,7 +37,7 @@ public class SearchEventActivity extends BaseActivity {
     private String SearchedData = "";
     private AdapterOfSearchedEvents adapterSearchedEvents;
     private ArrayList<events> mEventListingData = new ArrayList<>();
-    private EventDetailsDB mEventDetailsDB;
+    private EventListingDB mEventDetailsDB;
     private Activity mActivity;
 
     @BindView(R.id.edtSearchedData)
@@ -63,6 +58,9 @@ public class SearchEventActivity extends BaseActivity {
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
 
+    @BindView(R.id.btnSearch)
+    Button mBtnSearch;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +79,7 @@ public class SearchEventActivity extends BaseActivity {
         Intent in = getIntent();
         SearchedData = in.getStringExtra("SearchedData");
 
-        mEventDetailsDB = new EventDetailsDB(mActivity);
+        mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
@@ -104,16 +102,20 @@ public class SearchEventActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().equalsIgnoreCase("")) {
-                    filter(s.toString());
-                    mTxtSearch.setVisibility(View.VISIBLE);
-                } else {
-                    mTxtSearch.setVisibility(View.GONE);
-                    adapterSearchedEvents.filterList(mEventListingData);
-                }
+                ApplyFilter(s.toString());
             }
         });
         mEdtSearchedData.setText(SearchedData);
+    }
+
+    private void ApplyFilter(String s) {
+        if (!s.toString().equalsIgnoreCase("")) {
+            filter(s.toString());
+            mTxtSearch.setVisibility(View.VISIBLE);
+        } else {
+            mTxtSearch.setVisibility(View.GONE);
+            adapterSearchedEvents.filterList(mEventListingData);
+        }
     }
 
     private void filter(String mSearchedTxt) {
@@ -143,5 +145,14 @@ public class SearchEventActivity extends BaseActivity {
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.search));
+    }
+
+    @OnClick({R.id.btnSearch})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSearch:
+                ApplyFilter(mEdtSearchedData.getText().toString().trim());
+                break;
+        }
     }
 }

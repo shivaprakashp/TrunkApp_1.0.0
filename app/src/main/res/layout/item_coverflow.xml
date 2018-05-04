@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/cover_width"
     android:layout_height="@dimen/cover_height"
+    android:id="@+id/frameParent"
     android:clickable="true"
     android:foreground="@drawable/cover_selector">
 

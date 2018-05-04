@@ -56,4 +56,8 @@ public interface AppConstants {
     interface GETEVENTLISTING {
         String GETEVENTLISTING = "GETEVENTLISTING";
     }
+
+    interface GETEVENTDETAILS {
+        String GETEVENTDETAILS = "GETEVENTDETAILS";
+    }
 }

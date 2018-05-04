@@ -3,6 +3,7 @@ package com.opera.app.dagger;
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.events.AllEventsOfDubaiOpera;
+import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -77,7 +78,12 @@ public interface Api {
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);
 
+    //GET for mock service
     @GET("5ae709882f00004a00f05966/")
     Call<AllEventsOfDubaiOpera> GetEventListing();
+
+    //GET for mock service
+    @GET("5ae71be52f00003600f059ab/")
+    Call<EventDetailsPojo> GetEventDetails();
 
 }
