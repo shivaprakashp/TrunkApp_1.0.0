@@ -32,6 +32,7 @@ import com.opera.app.utils.LanguageManager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by 1000632 on 5/3/2018.
@@ -62,6 +63,9 @@ public class SearchEventActivity extends BaseActivity {
 
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
+
+    @BindView(R.id.btnSearch)
+    Button mBtnSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,16 +108,20 @@ public class SearchEventActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!s.toString().equalsIgnoreCase("")) {
-                    filter(s.toString());
-                    mTxtSearch.setVisibility(View.VISIBLE);
-                } else {
-                    mTxtSearch.setVisibility(View.GONE);
-                    adapterSearchedEvents.filterList(mEventListingData);
-                }
+                ApplyFilter(s.toString());
             }
         });
         mEdtSearchedData.setText(SearchedData);
+    }
+
+    private void ApplyFilter(String s) {
+        if (!s.toString().equalsIgnoreCase("")) {
+            filter(s.toString());
+            mTxtSearch.setVisibility(View.VISIBLE);
+        } else {
+            mTxtSearch.setVisibility(View.GONE);
+            adapterSearchedEvents.filterList(mEventListingData);
+        }
     }
 
     private void filter(String mSearchedTxt) {
@@ -143,5 +151,14 @@ public class SearchEventActivity extends BaseActivity {
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.search));
+    }
+
+    @OnClick({R.id.btnSearch})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSearch:
+                ApplyFilter(mEdtSearchedData.getText().toString().trim());
+                break;
+        }
     }
 }
