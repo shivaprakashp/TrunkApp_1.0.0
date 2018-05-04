@@ -5,14 +5,17 @@ package com.opera.app.listadapters;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -45,7 +48,7 @@ public class CoverFlowAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View rowView = convertView;
 
@@ -57,6 +60,8 @@ public class CoverFlowAdapter extends BaseAdapter {
             viewHolder.text = (TextView) rowView.findViewById(R.id.label);
             viewHolder.image = (ImageView) rowView
                     .findViewById(R.id.image);
+            viewHolder.frameParent = (FrameLayout) rowView.findViewById(R.id.frameParent);
+
             rowView.setTag(viewHolder);
         }
 
@@ -75,6 +80,14 @@ public class CoverFlowAdapter extends BaseAdapter {
                     }
                 });
 
+        holder.frameParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mContext, EventDetailsActivity.class);
+                in.putExtra("EventId", mHighlightedEvents.get(position).getEventId());
+                mContext.startActivity(in);
+            }
+        });
 
         return rowView;
     }
@@ -82,6 +95,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 
     static class ViewHolder {
         public TextView text;
+        public FrameLayout frameParent;
         public ImageView image;
     }
 }

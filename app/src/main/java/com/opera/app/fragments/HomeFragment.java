@@ -18,7 +18,7 @@ import com.opera.app.R;
 import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment {
 
     private Activity mActivity;
     private CoverFlowAdapter mAdapter;
-    private EventDetailsDB mEventDetailsDB;
+    private EventListingDB mEventListingDB;
     private ArrayList<events> mHighlightedEvents = new ArrayList<>();
 
     private AdapterEvent mAdapterEvent;
@@ -95,7 +95,7 @@ public class HomeFragment extends BaseFragment {
         ((MainApplication) getActivity().getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
 
-        mEventDetailsDB = new EventDetailsDB(mActivity);
+        mEventListingDB = new EventListingDB(mActivity);
         //Highlighted events
         mAdapter = new CoverFlowAdapter(getActivity(), mHighlightedEvents);
         /*mCoverFlow.setAdapter(mAdapter);*/
@@ -114,9 +114,9 @@ public class HomeFragment extends BaseFragment {
             AllEventsOfDubaiOpera mEventDataPojo = (AllEventsOfDubaiOpera) response.body();
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                    mEventDetailsDB.open();
-                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
-                    mEventDetailsDB.insertOtherEvents(mEventDataPojo.getEvents());
+                    mEventListingDB.open();
+                    mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_DETAILS);
+                    mEventListingDB.insertOtherEvents(mEventDataPojo.getEvents());
                     fetchDataFromDB();
 
                 }
@@ -129,15 +129,15 @@ public class HomeFragment extends BaseFragment {
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            mEventDetailsDB.open();
+            mEventListingDB.open();
             fetchDataFromDB();
         }
     };
 
     private void fetchDataFromDB() {
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        mEventListingData = mEventListingDB.fetchAllEvents();
         mAdapterEvent.RefreshList(mEventListingData);
-        mEventDetailsDB.close();
+        mEventListingDB.close();
         mAdapterEvent.notifyDataSetChanged();
 
         for (int i = 0; i < mEventListingData.size(); i++) {

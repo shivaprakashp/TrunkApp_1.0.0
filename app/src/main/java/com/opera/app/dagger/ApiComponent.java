@@ -2,6 +2,7 @@ package com.opera.app.dagger;
 
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.EditProfileActivity;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.MyProfileActivity;
@@ -36,4 +37,5 @@ public interface ApiComponent {
     void inject(ContactUsActivity mContactUsActivity);
     void inject(DiningFragment diningFragment);
     void inject(HomeFragment mHomeFragment);
+    void inject(EventDetailsActivity mEventDetailsActivity);
 }

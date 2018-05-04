@@ -137,5 +137,12 @@ public class MainController {
         listener.dataLoad(call);
     }
 
+    public void getEventDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.GetEventDetails();          // need to add auth token
+        properties.setRequestKey(AppConstants.GETEVENTDETAILS.GETEVENTDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
 
 }

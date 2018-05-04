@@ -11,20 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterOfSearchedEvents;
 import com.opera.app.pojo.events.events;
 import com.opera.app.utils.LanguageManager;
@@ -43,7 +37,7 @@ public class SearchEventActivity extends BaseActivity {
     private String SearchedData = "";
     private AdapterOfSearchedEvents adapterSearchedEvents;
     private ArrayList<events> mEventListingData = new ArrayList<>();
-    private EventDetailsDB mEventDetailsDB;
+    private EventListingDB mEventDetailsDB;
     private Activity mActivity;
 
     @BindView(R.id.edtSearchedData)
@@ -85,7 +79,7 @@ public class SearchEventActivity extends BaseActivity {
         Intent in = getIntent();
         SearchedData = in.getStringExtra("SearchedData");
 
-        mEventDetailsDB = new EventDetailsDB(mActivity);
+        mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
