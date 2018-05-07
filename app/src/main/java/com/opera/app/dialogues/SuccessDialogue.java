@@ -11,6 +11,7 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.preferences.SessionManager;
@@ -69,6 +70,8 @@ public class SuccessDialogue extends Dialog {
             dismiss();
             if (mFrom.equalsIgnoreCase("Register")) {
                 mBaseActivity.openActivity(mActivity, LoginActivity.class);
+            }else if (mFrom.equalsIgnoreCase("Editprofile")) {
+                mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MyProfileActivity.class);
             } else if (mFrom.equalsIgnoreCase("setUserSettings")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             } else if (mFrom.equalsIgnoreCase("ContactUs")) {

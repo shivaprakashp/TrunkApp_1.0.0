@@ -10,7 +10,7 @@ import android.view.Window;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
-import com.opera.app.activities.LoginActivity;
+import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 
@@ -62,7 +62,7 @@ public class GuestDialog extends Dialog {
         public void onClick(View v) {
             /*SessionManager sessionManager = new SessionManager(context);
             sessionManager.clearLoginSession();*/
-            mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
+            mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, PreLoginActivity.class);
             dismiss();
         }
     };
