@@ -26,42 +26,43 @@ public class SeanRestOpeation {
     private static final String REST_PHONE_NUMBER = "phoneNumber";
     //creating table
     public static final String CREATE_TABLE =
-            "CREATE TABLE "+ TABLE_NAME +"("+ REST_ID +" INTEGER," +
-                     REST_NAME +" TEXT,"+
-                     REST_IMAGE +" TEXT,"+
-                     REST_PLACE +" TEXT,"+
-                     REST_LOCATION +" TEXT,"+
-                     REST_BOOK_URL +" TEXT,"+
-                    REST_STATUS+" TEXT,"+
-                    REST_DETAILS+" TEXT,"+
-                    REST_OPEN_HOURS+" TEXT,"+
-                    REST_PHONE_NUMBER+" TEXT,"+
+            "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " INTEGER," +
+                    REST_NAME + " TEXT," +
+                    REST_IMAGE + " TEXT," +
+                    REST_PLACE + " TEXT," +
+                    REST_LOCATION + " TEXT," +
+                    REST_BOOK_URL + " TEXT," +
+                    REST_STATUS + " TEXT," +
+                    REST_DETAILS + " TEXT," +
+                    REST_OPEN_HOURS + " TEXT," +
+                    REST_PHONE_NUMBER + " TEXT," +
                     "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
 
 
     SQLiteOpenHelper openHelper;
     SQLiteDatabase database;
 
-    public SeanRestOpeation(Context context){
+    public SeanRestOpeation(Context context) {
         openHelper = OperaDBHandler.getInstance(context);
     }
 
-    public void open(){
-        Log.i("Database","Database Opened");
+    public void open() {
+        Log.i("Database", "Database Opened");
         database = openHelper.getWritableDatabase();
 
 
     }
-    public void close(){
+
+    public void close() {
         Log.i("Database", "Database Closed");
         openHelper.close();
     }
 
     //insert values
-    public RestaurantsData addSeanConnollyData(RestaurantsData data){
+    public RestaurantsData addSeanConnollyData(RestaurantsData data) {
         try {
 
-            ContentValues values  = new ContentValues();
+            ContentValues values = new ContentValues();
             values.put(REST_ID, data.getRestId());
             values.put(REST_NAME, data.getRestName());
             values.put(REST_IMAGE, data.getRestImage());
@@ -73,20 +74,21 @@ public class SeanRestOpeation {
             values.put(REST_OPEN_HOURS, data.getOpenHour());
             values.put(REST_PHONE_NUMBER, data.getPhoneNumber());
 
-            database.insert(TABLE_NAME,null, values);
-        }catch (SQLException e){
-            Log.e("error1", e.getMessage());e.printStackTrace();
+            database.insert(TABLE_NAME, null, values);
+        } catch (SQLException e) {
+            Log.e("error1", e.getMessage());
+            e.printStackTrace();
         }
         return data;
     }
 
     //returns the stored data
-    public RestaurantsData getSeanConnolly(){
+    public RestaurantsData getSeanConnolly() {
         RestaurantsData data = new RestaurantsData();
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
-            if (cursor!=null){
+            if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 data.setRestId(cursor.getString(0));
                 data.setRestName(cursor.getString(1));
@@ -101,15 +103,16 @@ public class SeanRestOpeation {
 
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-            Log.e("error2", e.getMessage());e.printStackTrace();
+            Log.e("error2", e.getMessage());
+            e.printStackTrace();
         }
 
         return data;
     }
 
-    public void removeSeanConnolly(){
-        database.delete(TABLE_NAME,null,null);
+    public void removeSeanConnolly() {
+        database.delete(TABLE_NAME, null, null);
     }
 }

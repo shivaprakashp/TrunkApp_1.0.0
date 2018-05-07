@@ -108,7 +108,7 @@ public class EventListingDB {
         Gson gson = new Gson();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_DETAILS, null);
-            if (cursor != null) {
+            if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
                     events mEvents = new events();
