@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:id="@+id/linearToolbarParent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorBurgendy">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -28,5 +29,14 @@
             android:gravity="center"
             style="@style/label_white_large"
             font:name="Montserrat-Light"/>
+
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_search"
+            android:padding="10dp"
+            android:layout_gravity="right|center"
+            android:visibility="gone"/>
     </FrameLayout>
 </LinearLayout>

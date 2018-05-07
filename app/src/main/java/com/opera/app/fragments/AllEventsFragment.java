@@ -2,8 +2,6 @@ package com.opera.app.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,17 +47,17 @@ public class AllEventsFragment extends BaseFragment {
     private void InitView(View view) {
         ButterKnife.bind(this, view);
 
-        mEventDetailsDB = new EventDetailsDB(mActivity);
+       /* mEventDetailsDB = new EventDetailsDB(mActivity);
 
-        /*ArrayList<events> mEventListingData = mEventDetailsDB.fetchAllEvents();
+        *//*ArrayList<events> mEventListingData = mEventDetailsDB.fetchAllEvents();
 
         mEventDetailsDB.close();
         mAdapterEvent.notifyDataSetChanged();
 
-        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);*/
+        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);*//*
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerEvents.setLayoutManager(mLayoutManager);
         mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerEvents.setAdapter(mAdapterEvent);
+        mRecyclerEvents.setAdapter(mAdapterEvent);*/
     }
 }

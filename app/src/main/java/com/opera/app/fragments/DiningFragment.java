@@ -1,7 +1,6 @@
 package com.opera.app.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +47,6 @@ import retrofit2.Retrofit;
 public class DiningFragment extends BaseFragment {
 
     private Activity mActivity;
-    private Intent in;
     private Api api;
     private SessionManager manager;
     private CustomToast customToast;
@@ -155,16 +153,22 @@ public class DiningFragment extends BaseFragment {
                 break;
             case R.id.mBtnReserveATable:
                 if (Connections.isConnectionAlive(mActivity)) {
-                    if (data.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
-                        openActivity(mActivity, ReserveATableActivity.class);
-                    }else{
-                        Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                        in.putExtra("URL", data.getRestBookUrl());
-                        in.putExtra("Header", data.getRestName());
-                        mActivity.startActivity(in);
+                    if (manager.isUserLoggedIn()) {
+                        if (data.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
+                            openActivity(mActivity, ReserveATableActivity.class);
+                        } else {
+                            Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                            in.putExtra("URL", data.getRestBookUrl());
+                            in.putExtra("Header", data.getRestName());
+                            mActivity.startActivity(in);
+                        }
+                    }else {
+                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                        dialog.show();
                     }
                 } else {
-                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
                 }
                 break;
         }
@@ -201,6 +205,7 @@ public class DiningFragment extends BaseFragment {
     private void setRestaurant(RestaurantsData data){
         mLinearReadMore.setVisibility(View.VISIBLE);
         try {
+            this.data = data;
             mTxtRestaurantName.setText(data.getRestName());
             mTxtRestaurantPlace.setText("at " + data.getRestPlace());
             mExpandableTextView.setText(data.getRestDetails());
@@ -221,5 +226,4 @@ public class DiningFragment extends BaseFragment {
             e.printStackTrace();
         }
     }
-
 }

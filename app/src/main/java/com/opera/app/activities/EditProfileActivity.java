@@ -28,6 +28,7 @@ import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.EditProfile;
@@ -460,9 +461,13 @@ public class EditProfileActivity extends BaseActivity {
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
                 //Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
-                customToast.showErrorToast(editProfileResponse.getMessage());
+                //customToast.showErrorToast(editProfileResponse.getMessage());
+
                 editProfileSession((EditProfileResponse) response.body());
-                mActivity.finish();
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, editProfileResponse.getMessage(), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Editprofile");
+                dialogue.show();
+
+                //mActivity.finish();
             } else if (response.errorBody() != null) {
                 try {
                     //Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();

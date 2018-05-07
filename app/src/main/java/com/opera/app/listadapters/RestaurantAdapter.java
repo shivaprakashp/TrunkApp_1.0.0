@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,12 +33,60 @@ import java.util.ArrayList;
  * Created by 1000632 on 4/9/2018.
  */
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> {
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> implements Filterable{
 
     private ArrayList<RestaurantsData> mRestaurantList;
     private Activity mActivity;
     private SessionManager manager;
     private CustomToast customToast;
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
+                ArrayList<RestaurantsData> FilteredArrList = new ArrayList<RestaurantsData>();
+
+                if (mRestaurantList == null) {
+                    mRestaurantList = new ArrayList<RestaurantsData>(mRestaurantList); // saves the original data in mOriginalValues
+                }
+
+                /********
+                 *
+                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
+                 *  else does the Filtering and returns FilteredArrList(Filtered)
+                 *
+                 ********/
+                if (constraint == null || constraint.length() == 0) {
+
+                    // set the Original result to return
+                    results.count = mRestaurantList.size();
+                    results.values = mRestaurantList;
+                } else {
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < mRestaurantList.size(); i++) {
+                        String data = mRestaurantList.get(i).restName;
+                        if (data.toLowerCase().startsWith(constraint.toString())) {
+                            FilteredArrList.add(new RestaurantsData(mRestaurantList.get(i).restName));
+                        }
+                    }
+                    // set the Filtered result to return
+                    results.count = FilteredArrList.size();
+                    results.values = FilteredArrList;
+                }
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mRestaurantList  = (ArrayList<RestaurantsData>) results.values; // has the filtered values
+                notifyDataSetChanged();  // notifies the data with new filtered values
+            }
+        };
+
+        return filter;
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTxtRestaurantName, mTxtRestaurantPlace;
