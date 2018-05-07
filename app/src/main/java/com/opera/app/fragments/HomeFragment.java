@@ -75,11 +75,11 @@ public class HomeFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
 
-        InitView(view);
+        //InitView(view);
 
-        GetCurrentEvents();
+        //GetCurrentEvents();
 
         return view;
     }
