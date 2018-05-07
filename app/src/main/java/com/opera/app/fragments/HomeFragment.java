@@ -129,8 +129,12 @@ public class HomeFragment extends BaseFragment {
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            mEventListingDB.open();
-            fetchDataFromDB();
+            try {
+                mEventListingDB.open();
+                fetchDataFromDB();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
 
@@ -146,9 +150,12 @@ public class HomeFragment extends BaseFragment {
             }
 
         }
-        mAdapter.notifyDataSetChanged();
-        mCoverFlow.setAdapter(mAdapter);
-        mCoverFlow.setVisibility(View.VISIBLE);
+        if (mEventListingData.size() > 0) {
+            mAdapter.notifyDataSetChanged();
+            mCoverFlow.setAdapter(mAdapter);
+            mCoverFlow.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @OnClick({R.id.btnSearch})
