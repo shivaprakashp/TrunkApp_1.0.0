@@ -49,6 +49,9 @@ public class OtherRestaurantsActivity extends BaseActivity {
     @BindView(R.id.imgCommonToolBack)
     View inc_set_toolbar;
 
+    @BindView(R.id.imgSearch)
+    View imgSearch;
+
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
 
@@ -101,6 +104,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        imgSearch.findViewById(R.id.imgSearch).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);

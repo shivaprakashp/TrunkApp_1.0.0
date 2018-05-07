@@ -206,6 +206,7 @@ public class DiningFragment extends BaseFragment {
     private void setRestaurant(RestaurantsData data){
         mLinearReadMore.setVisibility(View.VISIBLE);
         try {
+            this.data = data;
             mTxtRestaurantName.setText(data.getRestName());
             mTxtRestaurantPlace.setText("at " + data.getRestPlace());
             mExpandableTextView.setText(data.getRestDetails());
