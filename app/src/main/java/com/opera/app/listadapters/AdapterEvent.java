@@ -2,6 +2,7 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.pojo.events.events;
-import com.opera.app.pojo.restaurant.RestaurantsData;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+import com.opera.app.pojo.events.eventlisiting.Events;
 
 import java.util.ArrayList;
 
@@ -27,7 +25,7 @@ import java.util.ArrayList;
 
 public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder> {
 
-    private ArrayList<events> mEventListingData;
+    private ArrayList<Events> mEventListingData;
     private Activity mActivity;
     Animation slide_in_left;
     Animation slide_out_left;
@@ -53,7 +51,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         }
     }
 
-    public AdapterEvent(Activity mActivity, ArrayList<events> mEventListingData) {
+    public AdapterEvent(Activity mActivity, ArrayList<Events> mEventListingData) {
         this.mActivity = mActivity;
         this.mEventListingData = mEventListingData;
 
@@ -64,7 +62,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 R.anim.anim_slide_out_left);
     }
 
-    public void RefreshList(ArrayList<events> mEventListingData) {
+    public void RefreshList(ArrayList<Events> mEventListingData) {
         this.mEventListingData = mEventListingData;
     }
 
@@ -78,10 +76,10 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final events mEventPojo = mEventListingData.get(position);
+        final Events mEventPojo = mEventListingData.get(position);
 
-        holder.txtEventDate.setText(mEventPojo.getEventDate());
-        holder.txtEventInfo.setText(mEventPojo.getEventInfo());
+        holder.txtEventDate.setText(mEventPojo.getFrom() + " " + mEventPojo.getStartTime());
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
     /*    Picasso.with(mActivity).load(mEventPojo.getEventThumbImage()).fit().centerCrop()
                 .into(holder.imgEvent, new Callback() {
                     @Override

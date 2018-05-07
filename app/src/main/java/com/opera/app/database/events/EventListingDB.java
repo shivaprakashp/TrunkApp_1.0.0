@@ -11,12 +11,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.opera.app.database.OperaDBHandler;
-import com.opera.app.database.restaurants.DatabaseHelper;
-import com.opera.app.pojo.events.EventKey;
-import com.opera.app.pojo.events.EventTime;
-import com.opera.app.pojo.events.GenreType;
-import com.opera.app.pojo.events.events;
-import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.pojo.events.eventlisiting.Events;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -29,28 +24,36 @@ public class EventListingDB {
 
     public static final String TABLE_EVENT_DETAILS = "TABLE_EVENT_DETAILS";
     private static final String EVENT_ID = "_id";
-    private static final String EVENT_TITLE = "EVENT_TITLE";
+    private static final String EVENT_NAME = "EVENT_NAME";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
     private static final String EVENT_INFO = "EVENT_INFO";
-    private static final String EVENT_IS_HIGHLIGHTED = "EVENT_IS_HIGHLIGHTED";
+    private static final String EVENT_BUY_NOW_LINK = "EVENT_BUY_NOW_LINK";
     private static final String EVENT_IS_WHATS_ON = "EVENT_IS_WHATS_ON";
-    private static final String EVENT_DATE = "EVENT_DATE";
-    private static final String EVENT_TIME = "EVENT_TIME";
-    private static final String EVENT_KEY = "EVENT_KEY";
-    private static final String EVENT_GENRE_TYPE = "EVENT_GENRE_TYPE";
+    private static final String EVENT_FROM_DATE = "EVENT_FROM_DATE";
+    private static final String EVENT_TO_DATE = "EVENT_TO_DATE";
+    private static final String EVENT_PRICE_FROM = "EVENT_PRICE_FROM";
+    private static final String EVENT_VIDEO = "EVENT_VIDEO";
+    private static final String EVENT_ACTIVE = "EVENT_ACTIVE";
+    private static final String EVENT_START_TIME = "EVENT_START_TIME";
+    private static final String EVENT_END_TIME = "EVENT_END_TIME";
+    private static final String EVENT_INTERNAL_NAME = "EVENT_INTERNAL_NAME";
 
     //creating table
     public static final String CREATE_TABLE_EVENT_DETAILS =
             "CREATE TABLE " + TABLE_EVENT_DETAILS + "(" + EVENT_ID + " INTEGER,"
-                    + EVENT_TITLE + " TEXT,"
+                    + EVENT_NAME + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"
-                    + EVENT_IS_HIGHLIGHTED + " TEXT,"
+                    + EVENT_BUY_NOW_LINK + " TEXT,"
                     + EVENT_IS_WHATS_ON + " TEXT,"
-                    + EVENT_DATE + " TEXT,"
-                    + EVENT_TIME + " TEXT,"
-                    + EVENT_KEY + " TEXT,"
-                    + EVENT_GENRE_TYPE + " TEXT);";
+                    + EVENT_FROM_DATE + " TEXT,"
+                    + EVENT_TO_DATE + " TEXT,"
+                    + EVENT_PRICE_FROM + " TEXT,"
+                    + EVENT_VIDEO + " TEXT,"
+                    + EVENT_ACTIVE + " TEXT,"
+                    + EVENT_START_TIME + " TEXT,"
+                    + EVENT_END_TIME + " TEXT,"
+                    + EVENT_INTERNAL_NAME + " TEXT);";
 
     private SQLiteDatabase database;
     SQLiteOpenHelper openHelper;
@@ -73,26 +76,32 @@ public class EventListingDB {
     }
 
     //insterting data
-    public void insertOtherEvents(ArrayList<events> mEventListingData) {
+    public void insertOtherEvents(ArrayList<Events> mEventListingData) {
         ContentValues contentValue = new ContentValues();
         Gson gson = new Gson();
         try {
             for (int i = 0; i < mEventListingData.size(); i++) {
                 contentValue.put(EVENT_ID, mEventListingData.get(i).getEventId());
-                contentValue.put(EVENT_TITLE, mEventListingData.get(i).getEventTitle());
-                contentValue.put(EVENT_IMAGE, mEventListingData.get(i).getEventThumbImage());
-                contentValue.put(EVENT_INFO, mEventListingData.get(i).getEventInfo());
-                contentValue.put(EVENT_IS_HIGHLIGHTED, mEventListingData.get(i).getEventIsHighlighted());
-                contentValue.put(EVENT_IS_WHATS_ON, mEventListingData.get(i).getEventIsWhatsOn());
-                contentValue.put(EVENT_DATE, mEventListingData.get(i).getEventDate());
+                contentValue.put(EVENT_NAME, mEventListingData.get(i).getName());
+                contentValue.put(EVENT_IMAGE, mEventListingData.get(i).getImage());
+                contentValue.put(EVENT_INFO, mEventListingData.get(i).getDescription());
+                contentValue.put(EVENT_BUY_NOW_LINK, mEventListingData.get(i).getBuyNowLink());
+                contentValue.put(EVENT_IS_WHATS_ON, mEventListingData.get(i).getWhatsOn());
+                contentValue.put(EVENT_FROM_DATE, mEventListingData.get(i).getFrom());
+                contentValue.put(EVENT_TO_DATE, mEventListingData.get(i).getTo());
 
-                String mEventTimes = gson.toJson(mEventListingData.get(i).getEventTime());
+
+                contentValue.put(EVENT_PRICE_FROM, mEventListingData.get(i).getPriceFrom());
+                contentValue.put(EVENT_VIDEO, mEventListingData.get(i).getVideo());
+                contentValue.put(EVENT_ACTIVE, mEventListingData.get(i).getActive());
+
+                contentValue.put(EVENT_START_TIME, mEventListingData.get(i).getStartTime());
+                contentValue.put(EVENT_END_TIME, mEventListingData.get(i).getEndTime());
+                contentValue.put(EVENT_INTERNAL_NAME, mEventListingData.get(i).getInternalName());
+
+                /*String mEventTimes = gson.toJson(mEventListingData.get(i).getEventTime());
                 String mEventKeys = gson.toJson(mEventListingData.get(i).getEventKey());
-                String mGenreType = gson.toJson(mEventListingData.get(i).getGenreType());
-
-                contentValue.put(EVENT_TIME, mEventTimes);
-                contentValue.put(EVENT_KEY, mEventKeys);
-                contentValue.put(EVENT_GENRE_TYPE, mGenreType);
+                String mGenreType = gson.toJson(mEventListingData.get(i).getGenreType());*/
                 long row = database.insert(TABLE_EVENT_DETAILS, null, contentValue);
 
                 Log.e("row", row + "");
@@ -102,26 +111,34 @@ public class EventListingDB {
         }
     }
 
-    public ArrayList<events> fetchAllEvents() {
+    public ArrayList<Events> fetchAllEvents() {
 
-        ArrayList<events> dataArrayEvents = new ArrayList<>();
+        ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_DETAILS, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
-                    events mEvents = new events();
+                    Events mEvents = new Events();
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
-                    mEvents.setEventTitle(cursor.getString(cursor.getColumnIndex(EVENT_TITLE)));
-                    mEvents.setEventThumbImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
-                    mEvents.setEventInfo(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
-                    mEvents.setEventIsHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
-                    mEvents.setEventIsWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
-                    mEvents.setEventDate(cursor.getString(cursor.getColumnIndex(EVENT_DATE)));
+                    mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
+                    mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
+                    mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
+                    mEvents.setBuyNowLink(cursor.getString(cursor.getColumnIndex(EVENT_BUY_NOW_LINK)));
+                    mEvents.setWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
+                    mEvents.setFrom(cursor.getString(cursor.getColumnIndex(EVENT_FROM_DATE)));
 
-                    Type type1 = new TypeToken<ArrayList<EventTime>>() {
+                    mEvents.setTo(cursor.getString(cursor.getColumnIndex(EVENT_TO_DATE)));
+                    mEvents.setPriceFrom(cursor.getString(cursor.getColumnIndex(EVENT_PRICE_FROM)));
+                    mEvents.setVideo(cursor.getString(cursor.getColumnIndex(EVENT_VIDEO)));
+                    mEvents.setActive(cursor.getString(cursor.getColumnIndex(EVENT_ACTIVE)));
+                    mEvents.setStartTime(cursor.getString(cursor.getColumnIndex(EVENT_START_TIME)));
+                    mEvents.setEndTime(cursor.getString(cursor.getColumnIndex(EVENT_END_TIME)));
+                    mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
+
+                  /*  Type type1 = new TypeToken<ArrayList<EventTime>>() {
                     }.getType();
                     ArrayList<EventTime> eventTimeTypeArray = gson.fromJson(cursor.getString(cursor.getColumnIndex(EVENT_TIME)), type1);
 
@@ -135,7 +152,7 @@ public class EventListingDB {
 
                     mEvents.setEventTime(eventTimeTypeArray);
                     mEvents.setEventKey(eventKeyArray);
-                    mEvents.setGenreType(eventGenreTypeArray);
+                    mEvents.setGenreType(eventGenreTypeArray);*/
                     dataArrayEvents.add(mEvents);
                 } while (cursor.moveToNext());
             }

@@ -20,7 +20,6 @@ import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterOfSearchedEvents;
-import com.opera.app.pojo.events.events;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
