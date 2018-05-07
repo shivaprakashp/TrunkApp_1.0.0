@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,6 +14,7 @@ import android.view.View;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -52,11 +54,16 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
     private ArrayList<RestaurantsData> mRestaurantListing = new ArrayList<>();
     private RestaurantAdapter mAdapter;
-    private Activity mActivity;
+    private static Activity mActivity;
     private Api api;
     private DatabaseHelper dbManager;
     @Inject
     Retrofit retrofit;
+
+    public static OtherRestaurantsActivity getInstance(){
+        return  (OtherRestaurantsActivity)mActivity;
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,5 +143,20 @@ public class OtherRestaurantsActivity extends BaseActivity {
         mAdapter.RefreshList(dbManager.fetchOtherRestaurantDetails());
         dbManager.close();
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void diningDetails(RestaurantsData data){
+        Intent intent = new Intent(mActivity, MainActivity.class);
+        intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, data);
+        startActivity(intent);
+        mActivity.finish();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (mActivity!=null){
+            mActivity = null;
+        }
     }
 }

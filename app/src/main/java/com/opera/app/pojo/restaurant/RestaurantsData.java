@@ -3,11 +3,13 @@ package com.opera.app.pojo.restaurant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by 1000632 on 4/20/2018.
  */
 
-public class RestaurantsData {
+public class RestaurantsData implements Serializable{
 
     @SerializedName("restId")
     @Expose

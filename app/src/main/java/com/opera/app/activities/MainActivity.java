@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.fragments.BaseFragment;
@@ -26,6 +27,7 @@ import com.opera.app.fragments.ListenFragment;
 import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
 import com.opera.app.pojo.login.LoginResponse;
+import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity implements
 
     private FragNavController mNavController;
     private Activity mActivity;
+    private RestaurantsData data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class MainActivity extends BaseActivity implements
 
         initToolbar();
         initTabs();
-        initFragmentControl(savedInstanceState);
+        intentData(savedInstanceState);
 
         bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -94,6 +97,18 @@ public class MainActivity extends BaseActivity implements
         });
     }
 
+    private void intentData(Bundle bundle){
+        data = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        if (data!=null){
+            initFragmentControl(bundle, 2);
+            switchTab(2);
+            bottomTabLayout.getTabAt(2).select();
+
+        }else {
+            initFragmentControl(bundle, 0);
+
+        }
+    }
 
 
     private void initToolbar() {
@@ -112,13 +127,13 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-    private void initFragmentControl(Bundle savedInstanceState) {
+    private void initFragmentControl(Bundle savedInstanceState, int position) {
         mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.content_frame)
                 .transactionListener(this)
                 .rootFragmentListener(this, TABS.length)
                 .build();
 
-        switchTab(0);
+        switchTab(position);
     }
 
     private View getTabView(int position) {
@@ -154,7 +169,7 @@ public class MainActivity extends BaseActivity implements
             case FragNavController.TAB2:
                 return new EventsFragment();
             case FragNavController.TAB3:
-                return new DiningFragment();
+                return DiningFragment.newDiningFragment(data);
             case FragNavController.TAB4:
                 return new ListenFragment();
             case FragNavController.TAB5:

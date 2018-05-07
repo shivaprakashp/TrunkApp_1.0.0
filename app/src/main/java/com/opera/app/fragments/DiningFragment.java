@@ -1,6 +1,7 @@
 package com.opera.app.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +17,10 @@ import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.ReserveATableActivity;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.dagger.Api;
@@ -74,7 +77,17 @@ public class DiningFragment extends BaseFragment {
     @BindView(R.id.progressImageLoader)
     ProgressBar mProgressImageLoader;
 
-    SeanRestOpeation restOpeation;
+    private SeanRestOpeation restOpeation;
+    private RestaurantsData data = null;
+
+    public static DiningFragment newDiningFragment(RestaurantsData data){
+        DiningFragment fragment = new DiningFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, data);
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +104,13 @@ public class DiningFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_dining2, container, false);
 
         initData(view);
-        GetSeanConollyDetails();
+
+        data = (RestaurantsData)getArguments().getSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        if (data!=null){
+            setRestaurant(data);
+        }else{
+            GetSeanConollyDetails();
+        }
 
         return view;
     }
@@ -130,7 +149,14 @@ public class DiningFragment extends BaseFragment {
                 break;
             case R.id.mBtnReserveATable:
                 if (Connections.isConnectionAlive(mActivity)) {
-                openActivity(mActivity, ReserveATableActivity.class);
+                    if (data.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
+                        openActivity(mActivity, ReserveATableActivity.class);
+                    }else{
+                        Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                        in.putExtra("URL", data.getRestBookUrl());
+                        in.putExtra("Header", data.getRestName());
+                        mActivity.startActivity(in);
+                    }
                 } else {
                     Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 }
@@ -161,10 +187,13 @@ public class DiningFragment extends BaseFragment {
     };
 
     private void getSeanConnollyData(){
-        mLinearReadMore.setVisibility(View.VISIBLE);
-
-        RestaurantsData data = restOpeation.getSeanConnolly();
+        setRestaurant(restOpeation.getSeanConnolly());
         restOpeation.close();
+
+    }
+
+    private void setRestaurant(RestaurantsData data){
+        mLinearReadMore.setVisibility(View.VISIBLE);
         try {
             mTxtRestaurantName.setText(data.getRestName());
             mTxtRestaurantPlace.setText("at " + data.getRestPlace());
@@ -186,4 +215,5 @@ public class DiningFragment extends BaseFragment {
             e.printStackTrace();
         }
     }
+
 }
