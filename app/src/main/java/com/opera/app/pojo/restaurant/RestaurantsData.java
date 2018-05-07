@@ -17,7 +17,7 @@ public class RestaurantsData implements Serializable{
 
     @SerializedName("restName")
     @Expose
-    String restName;
+    public String restName;
 
     @SerializedName("restImage")
     @Expose
@@ -51,6 +51,12 @@ public class RestaurantsData implements Serializable{
     @Expose
     String phoneNumber;
 
+    public RestaurantsData(){
+    }
+
+    public RestaurantsData(String restName){
+        this.restName = restName;
+    }
 
     public String getRestId() {
         return restId;

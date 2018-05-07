@@ -16,6 +16,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.restaurants.DatabaseHelper;
@@ -54,6 +55,15 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
+
+    @BindView(R.id.linearSearch)
+    View viewSearch;
+
+    @BindView(R.id.edtSearch)
+    EditTextWithFont edtSearch;
+
+    @BindView(R.id.btnSearch)
+    View btnSearch;
 
     private ArrayList<RestaurantsData> mRestaurantListing = new ArrayList<>();
     private RestaurantAdapter mAdapter;
@@ -99,6 +109,20 @@ public class OtherRestaurantsActivity extends BaseActivity {
         }
     };
 
+    private View.OnClickListener layoutSearch = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            viewSearch.setVisibility(View.VISIBLE);
+        }
+    };
+
+    private View.OnClickListener searchList = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mAdapter.getFilter().filter(edtSearch.getText().toString());
+        }
+    };
+
     private void initViews() {
         ((MainApplication) getApplication()).getNetComponent().inject(OtherRestaurantsActivity.this);
         api = retrofit.create(Api.class);
@@ -106,6 +130,9 @@ public class OtherRestaurantsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         imgSearch.findViewById(R.id.imgSearch).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+        imgSearch.findViewById(R.id.imgSearch).setOnClickListener(layoutSearch);
+        btnSearch.findViewById(R.id.btnSearch).setOnClickListener(searchList);
+        edtSearch.setHint(R.string.rest_search);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.restaurants));
