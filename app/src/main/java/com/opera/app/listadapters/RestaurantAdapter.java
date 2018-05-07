@@ -3,6 +3,7 @@ package com.opera.app.listadapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
@@ -114,6 +116,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                     //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
                 }
+            }
+        });
+
+        holder.mImgRestaurantImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherRestaurantsActivity.getInstance().diningDetails(mRestaurantListing);
             }
         });
     }
