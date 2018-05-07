@@ -29,7 +29,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -142,7 +141,8 @@ public class MyProfileActivity extends BaseActivity {
                     dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
                 } catch (Exception e) {
-                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(e.getMessage());
                 }
             }
             Log.e("response", response.toString());
@@ -244,7 +244,8 @@ public class MyProfileActivity extends BaseActivity {
                     sendChangePassword(mEdtCurrentPassword.getText().toString().trim(), mEdtNewPassword.getText().toString().trim());
                 }
             } else {
-                Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             }
         }
     };

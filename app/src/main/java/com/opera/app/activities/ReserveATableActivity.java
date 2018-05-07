@@ -23,7 +23,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -548,7 +547,8 @@ public class ReserveATableActivity extends BaseActivity {
                         ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                         dialogue.show();
                     } catch (Exception e) {
-                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        customToast.showErrorToast(e.getMessage());
                     }
                 }
             }

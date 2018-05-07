@@ -26,7 +26,6 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -152,7 +151,8 @@ public class RegisterActivity extends BaseActivity {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
                 } catch (Exception e) {
-                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(e.getMessage());
                 }
             }
         }

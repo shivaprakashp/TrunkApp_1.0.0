@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -460,14 +459,17 @@ public class EditProfileActivity extends BaseActivity {
             if (response.body() != null) {
                 EditProfileResponse editProfileResponse =
                         (EditProfileResponse) response.body();
-                Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(mActivity, editProfileResponse.getMessage(), Toast.LENGTH_LONG).show();
+                customToast.showErrorToast(editProfileResponse.getMessage());
                 editProfileSession((EditProfileResponse) response.body());
                 mActivity.finish();
             } else if (response.errorBody() != null) {
                 try {
-                    Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, jsonResponse(response), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(jsonResponse(response));
                 } catch (Exception e) {
-                    Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(e.getMessage());
                 }
             }
         }

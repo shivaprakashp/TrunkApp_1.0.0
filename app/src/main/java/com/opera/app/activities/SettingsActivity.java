@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -182,7 +181,8 @@ public class SettingsActivity extends BaseActivity {
 
             mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom);
         } else {
-            Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
         }
     }
 
@@ -271,7 +271,8 @@ public class SettingsActivity extends BaseActivity {
                             ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                             dialogue.show();
                         } catch (Exception e) {
-                            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                            customToast.showErrorToast(e.getMessage());
                         }
                     }
 
@@ -280,7 +281,8 @@ public class SettingsActivity extends BaseActivity {
                         ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                         dialogue.show();
                     } catch (Exception e) {
-                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        customToast.showErrorToast(e.getMessage());
                     }
                 }
             }

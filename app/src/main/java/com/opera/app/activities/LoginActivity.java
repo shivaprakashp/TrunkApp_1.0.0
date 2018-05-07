@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -90,7 +89,8 @@ public class LoginActivity extends BaseActivity {
                         dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                         dialogue.show();
                     } catch (Exception e) {
-                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        customToast.showErrorToast(e.getMessage());
                     }
                 }
             } else if (mRequestKey.equals(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD)) {
@@ -109,7 +109,8 @@ public class LoginActivity extends BaseActivity {
                         dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                         dialogue.show();
                     } catch (Exception e) {
-                        Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        customToast.showErrorToast(e.getMessage());
                     }
                 }
             }
@@ -186,7 +187,8 @@ public class LoginActivity extends BaseActivity {
                     forgotPassword.setText("");
                 }
             } else {
-                Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             }
         }
     };
@@ -213,7 +215,8 @@ public class LoginActivity extends BaseActivity {
                             username.getText().toString(),
                             password.getText().toString());
                 } else {
-                    Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
                 }
                 break;
             case R.id.imgClose:
