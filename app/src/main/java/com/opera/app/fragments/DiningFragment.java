@@ -12,19 +12,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.restaurants.SeanRestOpeation;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
@@ -44,6 +46,9 @@ public class DiningFragment extends BaseFragment {
     private Activity mActivity;
     private Intent in;
     private Api api;
+    private SessionManager manager;
+    private CustomToast customToast;
+
     @Inject
     Retrofit retrofit;
 
@@ -97,11 +102,11 @@ public class DiningFragment extends BaseFragment {
     }
 
     private void initData(View view) {
-
         ButterKnife.bind(this, view);
         ((MainApplication) mActivity.getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
-
+        manager = new SessionManager(mActivity);
+        customToast = new CustomToast(mActivity);
         restOpeation = new SeanRestOpeation(mActivity);
     }
 
@@ -130,9 +135,16 @@ public class DiningFragment extends BaseFragment {
                 break;
             case R.id.mBtnReserveATable:
                 if (Connections.isConnectionAlive(mActivity)) {
-                openActivity(mActivity, ReserveATableActivity.class);
+                    if (manager.isUserLoggedIn()) {
+                        openActivity(mActivity, ReserveATableActivity.class);
+                    } else {
+                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                        dialog.show();
+                    }
                 } else {
-                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
+
                 }
                 break;
         }

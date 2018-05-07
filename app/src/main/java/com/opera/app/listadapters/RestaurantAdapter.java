@@ -10,13 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.constants.AppConstants;
+import com.opera.app.customwidget.CustomToast;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -31,6 +33,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
     private ArrayList<RestaurantsData> mRestaurantList;
     private Activity mActivity;
+    private SessionManager manager;
+    private CustomToast customToast;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTxtRestaurantName, mTxtRestaurantPlace;
@@ -45,6 +49,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             mImgRestaurantImage = (ImageView) view.findViewById(R.id.mImgRestaurantImage);
             mBtnReserveATable = (Button) view.findViewById(R.id.mBtnReserveATable);
             progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
+
+            manager = new SessionManager(mActivity);
+            customToast = new CustomToast(mActivity);
         }
     }
 
@@ -88,17 +95,24 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             @Override
             public void onClick(View v) {
                 if (Connections.isConnectionAlive(mActivity)) {
-                    if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
-                        Intent intent = new Intent(mActivity, ReserveATableActivity.class);
-                        mActivity.startActivity(intent);
-                    } else {
-                        Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                        in.putExtra("URL", mRestaurantListing.getRestBookUrl());
-                        in.putExtra("Header", mRestaurantListing.getRestName());
-                        mActivity.startActivity(in);
+                    if (manager.isUserLoggedIn()) {
+                        if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
+                            Intent intent = new Intent(mActivity, ReserveATableActivity.class);
+                            mActivity.startActivity(intent);
+                        }
+                        else {
+                            Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                            in.putExtra("URL", mRestaurantListing.getRestBookUrl());
+                            in.putExtra("Header", mRestaurantListing.getRestName());
+                            mActivity.startActivity(in);
+                        }
+                    }else {
+                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                        dialog.show();
                     }
                 } else {
-                    Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+                    customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
                 }
             }
         });

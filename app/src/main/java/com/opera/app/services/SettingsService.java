@@ -3,24 +3,17 @@ package com.opera.app.services;
 import android.app.Activity;
 import android.app.IntentService;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.SettingsActivity;
-import com.opera.app.constants.AppConstants;
-import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.RegistrationResponse;
-import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
@@ -48,6 +41,7 @@ public class SettingsService extends IntentService {
     private String contentType = "application/json";
     static String mFrom = "";
     private Api api;
+    private CustomToast customToast;
     @Inject
     Retrofit retrofit;
     public static Activity mActivity;
@@ -74,6 +68,7 @@ public class SettingsService extends IntentService {
         i.putExtra("SelecteLanguage", mNewLanguage);
         mActivity.startService(i);
         mSessionManager = new SessionManager(mActivity);
+        customToast = new CustomToast(mActivity);
         this.mFrom = From;
 
         if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {
@@ -102,7 +97,8 @@ public class SettingsService extends IntentService {
         if (Connections.isConnectionAlive(mActivity)) {
             sendUpdatedSettings();
         } else {
-            Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
         }
     }
 
