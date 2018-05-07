@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_small"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <com.opera.app.customwidget.EditTextWithFont
+            android:id="@+id/edtSearch"
+            style="@style/label_black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="@string/enter_keywords"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            font:name="Montserrat-Regular">
+
+        </com.opera.app.customwidget.EditTextWithFont>
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnSearch"
+            style="@style/label_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_ripple_effect"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            font:name="Montserrat-Light" />
+
+    </LinearLayout>
+
+</LinearLayout>

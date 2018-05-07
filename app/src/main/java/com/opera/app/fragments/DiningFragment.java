@@ -47,7 +47,6 @@ import retrofit2.Retrofit;
 public class DiningFragment extends BaseFragment {
 
     private Activity mActivity;
-    private Intent in;
     private Api api;
     private SessionManager manager;
     private CustomToast customToast;
@@ -227,5 +226,4 @@ public class DiningFragment extends BaseFragment {
             e.printStackTrace();
         }
     }
-
 }

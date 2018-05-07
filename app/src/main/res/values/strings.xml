@@ -240,6 +240,7 @@
     <string name="read_less">READ LESS</string>
     <string name="other_restaurants">OTHER RESTAURANTS</string>
     <string name="dubai_opera">at Dubai Opera</string>
+    <string name="rest_search">Enter keyword to search for Restaurant</string>
 
     <!--NETWORK CONNECTIVITY MSG-->
     <string name="internet_error_msg">Please check your internet connection!</string>
