@@ -3,6 +3,7 @@ package com.opera.app.dagger;
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
+import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
@@ -22,7 +23,6 @@ import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -82,6 +82,6 @@ public interface Api {
     Call<AllEvents> GetEventListing();
 
     @POST("events/extended/GetEvents/GetEventByName/")
-    Call<EventDetailsPojo> GetEventDetails(@Query("eventName") String eventName);
+    Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
 
 }

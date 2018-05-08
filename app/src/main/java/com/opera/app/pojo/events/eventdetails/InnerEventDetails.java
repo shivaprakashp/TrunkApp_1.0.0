@@ -1,4 +1,4 @@
-package com.opera.app.pojo.events.eventdetails2;
+package com.opera.app.pojo.events.eventdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

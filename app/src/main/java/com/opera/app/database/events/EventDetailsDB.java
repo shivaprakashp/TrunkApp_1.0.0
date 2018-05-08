@@ -9,14 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.opera.app.database.OperaDBHandler;
 import com.opera.app.pojo.events.eventdetails.EventDetails;
 import com.opera.app.pojo.events.eventdetails.EventVenue;
 import com.opera.app.pojo.events.eventdetails.FavouriteEvents;
-import com.opera.app.pojo.events.eventdetails2.InnerEventDetails;
+import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**

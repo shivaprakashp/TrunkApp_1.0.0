@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -20,11 +21,11 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.eventdetails.EventDetails;
-import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
-import com.opera.app.pojo.events.eventdetails2.GetEventDetails;
-import com.opera.app.pojo.events.eventdetails2.InnerEventDetails;
+import com.opera.app.pojo.events.eventdetails.GetEventDetails;
+import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
 import com.opera.app.utils.LanguageManager;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -66,6 +67,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerRestaurants;
+
+    @BindView(R.id.cover_image)
+    ImageView mCover_image;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,8 +145,21 @@ public class EventDetailsActivity extends BaseActivity {
         if (mEventListingData.size() > 0) {
             mExpandableTextView.setText(mEventListingData.get(0).getDescription());
             txtToolbarName.setText(mEventListingData.get(0).getName());
-        }
 
+
+            Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
+                    .into(mCover_image, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        /*holder.progressImageLoader.setVisibility(View.GONE);*/
+                        }
+
+                        @Override
+                        public void onError() {
+                       /* holder.progressImageLoader.setVisibility(View.GONE);*/
+                        }
+                    });
+        }
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
