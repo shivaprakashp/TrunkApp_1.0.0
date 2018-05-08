@@ -255,9 +255,9 @@
     <!--Error handling (Changed one's)-->
     <!--login-->
     <string name="editError">Error</string>
-    <string name="errorLoginError">Please enter your login details</string>
-    <string name="errorUserEmail">Incorrect Email Address or Password</string>
-    <string name="errorPassword">Incorrect Email Address or Password</string>
+    <string name="errorLoginError">Please enter your login details.</string>
+    <string name="errorUserEmail">Incorrect Email Address or Password.</string>
+    <string name="errorPassword">Incorrect Email Address or Password.</string>
     <string name="errorUserName">Please enter your login details</string>
 
     <!--registration-->
