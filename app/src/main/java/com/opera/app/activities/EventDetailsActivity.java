@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -148,7 +149,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
 
         if (mEventListingData.size() > 0) {
-            mExpandableTextView.setText(mEventListingData.get(0).getDescription());
+            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
             txtToolbarName.setText(mEventListingData.get(0).getName());
             mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
