@@ -22,8 +22,8 @@ import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.AllEventsOfDubaiOpera;
-import com.opera.app.pojo.events.events;
+import com.opera.app.pojo.events.eventlisiting.AllEvents;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -43,10 +43,10 @@ public class HomeFragment extends BaseFragment {
     private Activity mActivity;
     private CoverFlowAdapter mAdapter;
     private EventListingDB mEventListingDB;
-    private ArrayList<events> mHighlightedEvents = new ArrayList<>();
+    private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
 
     private AdapterEvent mAdapterEvent;
-    private ArrayList<events> mEventListingData = new ArrayList<>();
+    private ArrayList<Events> mEventListingData = new ArrayList<>();
     private Api api;
     @Inject
     Retrofit retrofit;
@@ -111,7 +111,7 @@ public class HomeFragment extends BaseFragment {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            AllEventsOfDubaiOpera mEventDataPojo = (AllEventsOfDubaiOpera) response.body();
+            AllEvents mEventDataPojo = (AllEvents) response.body();
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventListingDB.open();
@@ -145,11 +145,11 @@ public class HomeFragment extends BaseFragment {
         mAdapterEvent.notifyDataSetChanged();
 
         for (int i = 0; i < mEventListingData.size(); i++) {
-            if (mEventListingData.get(i).getEventIsHighlighted().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new events(mEventListingData.get(i).getEventDate(), "http://61.12.113.197:8199/-/media/Habitat/Images/Restaurants/SC-HR-5.jpg"));
+            if (mEventListingData.get(i).getActive().equalsIgnoreCase("true")) {
+                mHighlightedEvents.add(new Events(mEventListingData.get(i).getFrom(), mEventListingData.get(i).getImage()));
             }
-
         }
+
         if (mEventListingData.size() > 0) {
             mAdapter.notifyDataSetChanged();
             mCoverFlow.setAdapter(mAdapter);

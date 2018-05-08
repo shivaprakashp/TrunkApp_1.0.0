@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -18,17 +19,13 @@ import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
-import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.eventdetails.EventDetails;
-import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
-import com.opera.app.pojo.events.eventdetails.EventPriceFrom;
-import com.opera.app.pojo.events.eventdetails.EventVenue;
-import com.opera.app.pojo.events.eventdetails.FavouriteEvents;
-import com.opera.app.pojo.events.eventdetails.VenueDateTime;
-import com.opera.app.pojo.events.events;
+import com.opera.app.pojo.events.eventdetails.GetEventDetails;
+import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
 import com.opera.app.utils.LanguageManager;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,11 +42,11 @@ import retrofit2.Retrofit;
 
 public class EventDetailsActivity extends BaseActivity {
 
-    private String EventId = "";
+    private String EventInternalName = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
-    private ArrayList<EventDetails> mEventListingData = new ArrayList<>();
+    private ArrayList<InnerEventDetails> mEventListingData = new ArrayList<>();
     private TextViewWithFont txtToolbarName;
     private AdapterEvent mAdapterEvent;
 
@@ -71,6 +68,9 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerRestaurants;
 
+    @BindView(R.id.cover_image)
+    ImageView mCover_image;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +91,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventDetailsDB = new EventDetailsDB(mActivity);
 
         Intent in = getIntent();
-        EventId = in.getStringExtra("EventId");
+        EventInternalName = in.getStringExtra("EventInternalName");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -109,51 +109,23 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void GetSpecificEventDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getEventDetails(taskComplete, api);
+        controller.getEventDetails(taskComplete, api, EventInternalName);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            EventDetailsPojo mEventDataPojo = (EventDetailsPojo) response.body();
-            String eventPerformType, eventVideo, eventGenreType, eventId, eventTitle, eventImage, eventDetail;
+            GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
+            /*String eventPerformType, eventVideo, eventGenreType, eventId, eventTitle, eventImage, eventDetail;
             String venueImage, venueType, dateTime;
             String ticketId, ticketType, ticketPrice;
-            String eventId_favouriteEvents, eventTitle_favouriteEvents, eventInfo_favouriteEvents, eventThumbImage_favouriteEvents;
+            String eventId_favouriteEvents, eventTitle_favouriteEvents, eventInfo_favouriteEvents, eventThumbImage_favouriteEvents;*/
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
                     mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_INNER_DETAILS);
-                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEventDetails());
+                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvent());
                     fetchDataFromDB();
-                   /* for(EventDetails detailsPojo: mEventDataPojo.getEventDetails()){
-                        eventPerformType = detailsPojo.getEventPerformType();
-                        eventVideo = detailsPojo.getEventVideo();
-                        eventGenreType = detailsPojo.getEventGenreType();
-                        eventId = detailsPojo.getEventId();
-                        eventTitle = detailsPojo.getEventTitle();
-                        eventImage = detailsPojo.getEventImage();
-                        eventDetail = detailsPojo.getEventDetail();
-
-                        for(EventVenue eventVenue : detailsPojo.getEventVenue()){
-                            venueImage = eventVenue.getVenueImage();
-                            venueType = eventVenue.getVenueType();
-                            for(VenueDateTime venueDateTime: eventVenue.getVenueDateTime()){
-                                dateTime = venueDateTime.getDateTime();
-                            }
-                            for(EventPriceFrom eventPriceFrom: eventVenue.getEventPriceFrom()){
-                                ticketId = eventPriceFrom.getTicketId();
-                                ticketType = eventPriceFrom.getTicketType();
-                                ticketPrice = eventPriceFrom.getTicketPrice();
-                            }
-                        }
-                        for(FavouriteEvents favouriteEvents : detailsPojo.getFavouriteEvents()){
-                            eventId_favouriteEvents = favouriteEvents.getEventId();
-                            eventTitle_favouriteEvents = favouriteEvents.getEventTitle();
-                            eventInfo_favouriteEvents = favouriteEvents.getEventInfo();
-                            eventThumbImage_favouriteEvents = favouriteEvents.getEventThumbImage();
-                        }
-                    }*/
 
                 }
             } catch (Exception e) {
@@ -171,10 +143,23 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
 
         if (mEventListingData.size() > 0) {
-            mExpandableTextView.setText(mEventListingData.get(0).getEventDetail());
-            txtToolbarName.setText(mEventListingData.get(0).getEventTitle());
-        }
+            mExpandableTextView.setText(mEventListingData.get(0).getDescription());
+            txtToolbarName.setText(mEventListingData.get(0).getName());
 
+
+            Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
+                    .into(mCover_image, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        /*holder.progressImageLoader.setVisibility(View.GONE);*/
+                        }
+
+                        @Override
+                        public void onError() {
+                       /* holder.progressImageLoader.setVisibility(View.GONE);*/
+                        }
+                    });
+        }
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

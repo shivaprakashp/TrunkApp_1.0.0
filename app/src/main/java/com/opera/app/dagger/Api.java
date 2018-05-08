@@ -2,8 +2,9 @@ package com.opera.app.dagger;
 
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
-import com.opera.app.pojo.events.AllEventsOfDubaiOpera;
 import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
+import com.opera.app.pojo.events.eventdetails.GetEventDetails;
+import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -22,7 +23,6 @@ import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -43,7 +43,7 @@ public interface Api {
 
     @POST("accounts/extended/editProfile/")
     Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                                        @Body EditProfile editProfile);
+                                              @Body EditProfile editProfile);
 
     @POST("accounts/extended/ChangePassword/")
     Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content, @Header("Authorization") String token,
@@ -65,25 +65,23 @@ public interface Api {
 
     @POST("restaurants/extended/GetMasterDetails/")
     Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                                 @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
+                                                              @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
     @POST("contatcus/extended/SaveContact/")
     Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
-                                             @Body ContactUs contactUs);
+                                      @Body ContactUs contactUs);
 
     @POST("restaurants/extended/BookTable/")
     Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
                                                 @Body BookTableRequest tableResponse);
 
     @POST("restaurants/extended/GetRestaurant/")
-    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,@Query("restaurantId") String restaurantId);
+    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
 
-    //GET for mock service
-    @GET("5ae709882f00004a00f05966/")
-    Call<AllEventsOfDubaiOpera> GetEventListing();
+    @POST("events/extended/GetEvents/")
+    Call<AllEvents> GetEventListing();
 
-    //GET for mock service
-    @GET("5ae71be52f00003600f059ab/")
-    Call<EventDetailsPojo> GetEventDetails();
+    @POST("events/extended/GetEvents/GetEventByName/")
+    Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
 
 }

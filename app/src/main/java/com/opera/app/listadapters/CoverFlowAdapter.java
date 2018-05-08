@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.EventDetailsActivity;
-import com.opera.app.pojo.events.events;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -24,10 +24,10 @@ import java.util.ArrayList;
 
 public class CoverFlowAdapter extends BaseAdapter {
 
-    private ArrayList<events> mHighlightedEvents = new ArrayList<>(0);
+    private ArrayList<Events> mHighlightedEvents = new ArrayList<>(0);
     private Context mContext;
 
-    public CoverFlowAdapter(Context context, ArrayList<events> mHighlightedEvents) {
+    public CoverFlowAdapter(Context context, ArrayList<Events> mHighlightedEvents) {
         mContext = context;
         this.mHighlightedEvents = mHighlightedEvents;
     }
@@ -67,7 +67,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        Picasso.with(mContext).load(mHighlightedEvents.get(position).getEventThumbImage()).fit().centerCrop()
+        Picasso.with(mContext).load(mHighlightedEvents.get(position).getImage()).fit().centerCrop()
                 .into(holder.image, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -84,7 +84,7 @@ public class CoverFlowAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(mContext, EventDetailsActivity.class);
-                in.putExtra("EventId", mHighlightedEvents.get(position).getEventId());
+                in.putExtra("EventInternalName", mHighlightedEvents.get(position).getInternalName());
                 mContext.startActivity(in);
             }
         });
