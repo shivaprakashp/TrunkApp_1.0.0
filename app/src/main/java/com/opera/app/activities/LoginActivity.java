@@ -22,6 +22,7 @@ import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
@@ -97,8 +98,10 @@ public class LoginActivity extends BaseActivity {
                 if (response.body() != null) {
                     RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
                     if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
-                        SessionManager sessionManager = new SessionManager(mActivity);
-                        sessionManager.clearLoginSession();
+                        /*SessionManager sessionManager = new SessionManager(mActivity);
+                        sessionManager.clearLoginSession();*/
+                        SuccessDialogue dialog = new SuccessDialogue(mActivity, getResources().getString(R.string.ForgotPsswordSuccessMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "forgot_password");
+                        dialog.show();
                     } else {
                         dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
                         dialogue.show();
@@ -114,7 +117,6 @@ public class LoginActivity extends BaseActivity {
                     }
                 }
             }
-
         }
 
         @Override

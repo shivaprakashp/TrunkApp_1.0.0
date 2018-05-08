@@ -79,6 +79,9 @@ public class SuccessDialogue extends Dialog {
             } else if (mFrom.equalsIgnoreCase("MyProfileChangePassword")) {
                 SessionManager sessionManager = new SessionManager(mActivity);
                 sessionManager.clearLoginSession();
+            } else if (mFrom.equalsIgnoreCase("forgot_password")) {
+                SessionManager sessionManager = new SessionManager(mActivity);
+                sessionManager.clearLoginSession();
             }
             mActivity.finish();
         }

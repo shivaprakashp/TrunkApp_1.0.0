@@ -255,9 +255,9 @@
     <!--Error handling (Changed one's)-->
     <!--login-->
     <string name="editError">Error</string>
-    <string name="errorLoginError">Please enter your login details</string>
-    <string name="errorUserEmail">Incorrect Email Address or Password</string>
-    <string name="errorPassword">Incorrect Email Address or Password</string>
+    <string name="errorLoginError">Please enter your login details.</string>
+    <string name="errorUserEmail">Incorrect Email Address or Password.</string>
+    <string name="errorPassword">Incorrect Email Address or Password.</string>
     <string name="errorUserName">Please enter your login details</string>
 
     <!--registration-->
@@ -306,16 +306,17 @@
     <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
 
     <!--error and success dialog msg-->
-    <string name="successMsg">“Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
     <string name="success_header">SUCCESS</string>
     <string name="ok">OK</string>
     <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
-    <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible</string>
+    <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible.</string>
     <string name="contactUs_header">Thank You!!</string>
     <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
     <string name="changedPassword_header">SUCCESS</string>
+    <string name="ForgotPsswordSuccessMsg">A link to reset your password has been sent to your email.</string>
 
     <array name="states">
         <item>Dubai</item>
