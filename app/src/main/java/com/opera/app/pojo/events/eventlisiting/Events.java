@@ -71,9 +71,17 @@ public class Events
     public Events() {
     }
 
-    public Events(String from,String image) {
+    public Events(String from,String image,String InternalName) {
         From = from;
         Image = image;
+        this.InternalName=InternalName;
+    }
+
+    public Events(String Name,String From,String Description,String Image) {
+        this.Name = Name;
+        this.From = From;
+        this.Description=Description;
+        this.Image=Image;
     }
 
     public String getEventId() {

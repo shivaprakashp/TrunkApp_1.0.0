@@ -8,8 +8,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -23,6 +25,7 @@ import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -46,7 +49,7 @@ public class EventDetailsActivity extends BaseActivity {
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
-    private ArrayList<InnerEventDetails> mEventListingData = new ArrayList<>();
+    private ArrayList<Events> mEventListingData = new ArrayList<>();
     private TextViewWithFont txtToolbarName;
     private AdapterEvent mAdapterEvent;
 
@@ -62,7 +65,7 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
 
-    @BindView(R.id.expandableTextView)
+    @BindView(R.id.expandableTextViewInfo)
     ExpandableTextView mExpandableTextView;
 
     @BindView(R.id.recyclerList)
@@ -70,6 +73,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.cover_image)
     ImageView mCover_image;
+
+    @BindView(R.id.txtTicketPrice)
+    TextView mTxtTicketPrice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +106,7 @@ public class EventDetailsActivity extends BaseActivity {
         txtToolbarName.setText(getString(R.string.menu_settings));
 
         //What's on events
-//        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
+        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         mRecyclerRestaurants.setLayoutManager(mLayoutManager);
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
@@ -143,8 +149,9 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
 
         if (mEventListingData.size() > 0) {
-            mExpandableTextView.setText(mEventListingData.get(0).getDescription());
+            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
             txtToolbarName.setText(mEventListingData.get(0).getName());
+            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
 
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
@@ -159,6 +166,8 @@ public class EventDetailsActivity extends BaseActivity {
                        /* holder.progressImageLoader.setVisibility(View.GONE);*/
                         }
                     });
+            mAdapterEvent.RefreshList(mEventListingData);
+            mAdapterEvent.notifyDataSetChanged();
         }
     }
 

@@ -81,7 +81,7 @@ public interface Api {
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();
 
-    @POST("events/extended/GetEvents/GetEventByName/")
+    @POST("events/extended/GetEventByName/")
     Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
 
     @POST("events/extended/GetGeneres/")
