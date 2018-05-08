@@ -52,7 +52,7 @@ public class HomeFragment extends BaseFragment {
     Retrofit retrofit;
 
     @BindView(R.id.recyclerList)
-    RecyclerView mRecyclerRestaurants;
+    RecyclerView mRecyclerEvents;
 
     @BindView(R.id.coverflow)
     FeatureCoverFlow mCoverFlow;
@@ -77,9 +77,9 @@ public class HomeFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //InitView(view);
+        InitView(view);
 
-        //GetCurrentEvents();
+        GetCurrentEvents();
 
         return view;
     }
@@ -102,10 +102,10 @@ public class HomeFragment extends BaseFragment {
 
         //What's on events
         mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerRestaurants.setLayoutManager(mLayoutManager);
-        mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerRestaurants.setAdapter(mAdapterEvent);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerEvents.setLayoutManager(mLayoutManager);
+        mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerEvents.setAdapter(mAdapterEvent);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -146,7 +146,7 @@ public class HomeFragment extends BaseFragment {
 
         for (int i = 0; i < mEventListingData.size(); i++) {
             if (mEventListingData.get(i).getActive().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new Events(mEventListingData.get(i).getFrom(), mEventListingData.get(i).getImage()));
+                mHighlightedEvents.add(new Events(mEventListingData.get(i).getFrom(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName()));
             }
         }
 

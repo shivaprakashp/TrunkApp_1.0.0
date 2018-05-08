@@ -2,6 +2,7 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +24,9 @@ import java.util.ArrayList;
 public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearchedEvents.MyViewHolder> {
 
     private Activity mActivity;
-    private ArrayList<events> mEventListingData;
+    private ArrayList<Events> mEventListingData;
 
-    public AdapterOfSearchedEvents(Activity mActivity, ArrayList<events> mEventListingData) {
+    public AdapterOfSearchedEvents(Activity mActivity, ArrayList<Events> mEventListingData) {
         this.mActivity = mActivity;
         this.mEventListingData = mEventListingData;
     }
@@ -39,13 +41,13 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final events mEventPojo = mEventListingData.get(position);
+        final Events mEventPojo = mEventListingData.get(position);
 
-        holder.txtEventName.setText(mEventPojo.getEventTitle());
-        holder.txtEventDate.setText(mEventPojo.getEventDate());
-        holder.txtEventInfo.setText(mEventPojo.getEventInfo());
+        holder.txtEventName.setText(mEventPojo.getName());
+        holder.txtEventDate.setText(mEventPojo.getFrom());
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
 
-        Picasso.with(mActivity).load(mEventPojo.getEventThumbImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -64,7 +66,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         return mEventListingData.size();
     }
 
-    public void filterList(ArrayList<events> mEventListingData) {
+    public void filterList(ArrayList<Events> mEventListingData) {
         this.mEventListingData = mEventListingData;
         notifyDataSetChanged();
     }

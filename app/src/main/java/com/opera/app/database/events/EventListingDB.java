@@ -40,7 +40,7 @@ public class EventListingDB {
 
     //creating table
     public static final String CREATE_TABLE_EVENT_DETAILS =
-            "CREATE TABLE " + TABLE_EVENT_DETAILS + "(" + EVENT_ID + " INTEGER,"
+            "CREATE TABLE " + TABLE_EVENT_DETAILS + "(" + EVENT_ID + " TEXT,"
                     + EVENT_NAME + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"

@@ -20,6 +20,7 @@ import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterOfSearchedEvents;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class SearchEventActivity extends BaseActivity {
 
     private String SearchedData = "";
     private AdapterOfSearchedEvents adapterSearchedEvents;
-    private ArrayList<events> mEventListingData = new ArrayList<>();
+    private ArrayList<Events> mEventListingData = new ArrayList<>();
     private EventListingDB mEventDetailsDB;
     private Activity mActivity;
 
@@ -118,11 +119,11 @@ public class SearchEventActivity extends BaseActivity {
     }
 
     private void filter(String mSearchedTxt) {
-        ArrayList<events> mFilteredNames = new ArrayList<>();
+        ArrayList<Events> mFilteredNames = new ArrayList<>();
 
         for (int i = 0; i < mEventListingData.size(); i++) {
-            if (mEventListingData.get(i).getEventTitle().toLowerCase().contains(mSearchedTxt.toLowerCase())) {
-                mFilteredNames.addAll(mEventListingData);
+            if (mEventListingData.get(i).getName().toLowerCase().contains(mSearchedTxt.toLowerCase())) {
+                mFilteredNames.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).getImage()));
             }
         }
         mTxtSearch.setText("You searched for " + mSearchedTxt + " ,found " + mFilteredNames.size() + " results");

@@ -10,10 +10,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.opera.app.database.OperaDBHandler;
-import com.opera.app.pojo.events.eventdetails.EventDetails;
-import com.opera.app.pojo.events.eventdetails.EventVenue;
-import com.opera.app.pojo.events.eventdetails.FavouriteEvents;
-import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
+import com.opera.app.pojo.events.eventlisiting.Events;
 
 import java.util.ArrayList;
 
@@ -78,7 +75,7 @@ public class EventDetailsDB {
     }
 
     //insterting data
-    public void insertIntoEventsDetails(InnerEventDetails mEventDetailsData) {
+    public void insertIntoEventsDetails(Events mEventDetailsData) {
         ContentValues contentValue = new ContentValues();
         Gson gson = new Gson();
         try {
@@ -106,16 +103,16 @@ public class EventDetailsDB {
         }
     }
 
-    public ArrayList<InnerEventDetails> fetchSpecificEventDetails() {
+    public ArrayList<Events> fetchSpecificEventDetails() {
 
-        ArrayList<InnerEventDetails> dataArrayEventDetails = new ArrayList<>();
+        ArrayList<Events> dataArrayEventDetails = new ArrayList<>();
         Gson gson = new Gson();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_INNER_DETAILS, null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {
-                    InnerEventDetails mEventDetails = new InnerEventDetails();
+                    Events mEventDetails = new Events();
 
                     mEventDetails.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEventDetails.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));

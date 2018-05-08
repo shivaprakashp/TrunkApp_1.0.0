@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,7 +49,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
             txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
             txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
-            ;
+            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         }
     }
 
@@ -80,7 +82,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " " + mEventPojo.getStartTime());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
-    /*    Picasso.with(mActivity).load(mEventPojo.getEventThumbImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -91,7 +93,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     public void onError() {
                         holder.progressImageLoader.setVisibility(View.GONE);
                     }
-                });*/
+                });
 
         holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override

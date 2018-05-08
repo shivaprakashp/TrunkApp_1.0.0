@@ -2,6 +2,7 @@ package com.opera.app.pojo.events.eventdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.events.eventlisiting.Events;
 
 /**
  * Created by 1000632 on 5/7/2018.
@@ -18,7 +19,7 @@ public class GetEventDetails {
 
     @SerializedName("Event")
     @Expose
-    private InnerEventDetails Event;
+    private Events Event;
 
     public String getStatus() {
         return Status;
@@ -36,11 +37,11 @@ public class GetEventDetails {
         this.Message = Message;
     }
 
-    public InnerEventDetails getEvent() {
+    public Events getEvent() {
         return Event;
     }
 
-    public void setEvent(InnerEventDetails Event) {
+    public void setEvent(Events Event) {
         this.Event = Event;
     }
 
