@@ -2,9 +2,9 @@ package com.opera.app.dagger;
 
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
-import com.opera.app.pojo.events.eventdetails.EventDetailsPojo;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
+import com.opera.app.pojo.events.genreslisting.GenresEvents;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -83,5 +83,8 @@ public interface Api {
 
     @POST("events/extended/GetEvents/GetEventByName/")
     Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
+
+    @POST("events/extended/GetGeneres/")
+    Call<GenresEvents> GetGenresListing();
 
 }

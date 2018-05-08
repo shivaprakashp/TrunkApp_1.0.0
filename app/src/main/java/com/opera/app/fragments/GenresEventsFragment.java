@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.utils.LanguageManager;
 
@@ -26,6 +28,9 @@ import retrofit2.Retrofit;
 public class GenresEventsFragment extends BaseFragment {
 
     private Activity mActivity;
+
+    private EventListingDB mEventListingDB;
+
     private Api api;
     @Inject
     Retrofit retrofit;
@@ -57,6 +62,9 @@ public class GenresEventsFragment extends BaseFragment {
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
+        ((MainApplication) getActivity().getApplication()).getNetComponent().inject(this);
+        api = retrofit.create(Api.class);
+
     }
 
     private void GetGenres() {
