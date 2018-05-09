@@ -84,9 +84,11 @@ public class DiningFragment extends BaseFragment {
     private SeanRestOpeation restOpeation;
     private RestaurantsData data = null;
 
+    private static Bundle bundle;
+
     public static DiningFragment newDiningFragment(RestaurantsData data){
         DiningFragment fragment = new DiningFragment();
-        Bundle bundle = new Bundle();
+        bundle = new Bundle();
         bundle.putSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, data);
         fragment.setArguments(bundle);
 
@@ -131,6 +133,13 @@ public class DiningFragment extends BaseFragment {
     private void GetSeanConollyDetails() {
         MainController controller = new MainController(mActivity);
         controller.getSpecificRestaurant(taskComplete, api);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.i("onStop", "onStop");
+        bundle.clear();
     }
 
     @OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
