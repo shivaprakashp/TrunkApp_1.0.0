@@ -69,9 +69,10 @@ public class DatabaseHelper{
                 contentValue.put(DatabaseHelper.REASTAURANT_DETAILS, mRestaurantListing.get(i).getRestDetails());
                 contentValue.put(DatabaseHelper.REASTAURANT_IMAGE_URL, mRestaurantListing.get(i).getRestImage());
                 contentValue.put(DatabaseHelper.REASTAURANT_BOOKING_URL, mRestaurantListing.get(i).getRestBookUrl());
-                long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
 
-                Log.e("row", row + "");
+                //if(!mRestaurantListing.get(i).getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
+                    long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
+                //}
             }
         }catch (SQLException e){e.printStackTrace();}
     }
