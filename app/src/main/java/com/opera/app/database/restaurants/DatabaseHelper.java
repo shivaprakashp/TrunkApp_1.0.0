@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.opera.app.constants.AppConstants;
 import com.opera.app.database.OperaDBHandler;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 
@@ -70,9 +71,9 @@ public class DatabaseHelper{
                 contentValue.put(DatabaseHelper.REASTAURANT_IMAGE_URL, mRestaurantListing.get(i).getRestImage());
                 contentValue.put(DatabaseHelper.REASTAURANT_BOOKING_URL, mRestaurantListing.get(i).getRestBookUrl());
 
-                //if(!mRestaurantListing.get(i).getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
+                if(!mRestaurantListing.get(i).getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
                     long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
-                //}
+                }
             }
         }catch (SQLException e){e.printStackTrace();}
     }
@@ -82,7 +83,7 @@ public class DatabaseHelper{
         ArrayList<RestaurantsData> dataArrayList = new ArrayList<>();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_OTHER_RESTAURANTS, null);
-            if (cursor != null) {
+            if (cursor != null && cursor.getCount()>0) {
                 cursor.moveToFirst();
                 do {
                     RestaurantsData mRestaurantData = new RestaurantsData();
