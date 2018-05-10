@@ -84,6 +84,7 @@ public class CoverFlowAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(mContext, EventDetailsActivity.class);
+                in.putExtra("EventId", mHighlightedEvents.get(position).getEventId());
                 in.putExtra("EventInternalName", mHighlightedEvents.get(position).getInternalName());
                 mContext.startActivity(in);
             }

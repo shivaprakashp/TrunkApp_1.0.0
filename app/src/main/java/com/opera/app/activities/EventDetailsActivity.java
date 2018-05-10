@@ -17,15 +17,18 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -35,6 +38,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -45,7 +49,7 @@ import retrofit2.Retrofit;
 
 public class EventDetailsActivity extends BaseActivity {
 
-    private String EventInternalName = "";
+    private String EventInternalName = "", EventId = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
@@ -80,6 +84,12 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.txtTicketPrice)
     TextView mTxtTicketPrice;
 
+    @BindView(R.id.txtShowmore)
+    TextView txtShowmore;
+
+    @BindView(R.id.ivShowmore)
+    ImageView ivShowmore;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +111,7 @@ public class EventDetailsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
 
@@ -110,6 +120,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventDetailsDB = new EventDetailsDB(mActivity);
 
         Intent in = getIntent();
+        EventId = in.getStringExtra("EventId");
         EventInternalName = in.getStringExtra("EventInternalName");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -120,7 +131,7 @@ public class EventDetailsActivity extends BaseActivity {
 
         //What's on events
         mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerRestaurants.setLayoutManager(mLayoutManager);
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
         mRecyclerRestaurants.setAdapter(mAdapterEvent);
@@ -128,22 +139,19 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void GetSpecificEventDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getEventDetails(taskComplete, api, EventInternalName);
+        controller.getEventDetails(taskComplete, api, EventId);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
-            /*String eventPerformType, eventVideo, eventGenreType, eventId, eventTitle, eventImage, eventDetail;
-            String venueImage, venueType, dateTime;
-            String ticketId, ticketType, ticketPrice;
-            String eventId_favouriteEvents, eventTitle_favouriteEvents, eventInfo_favouriteEvents, eventThumbImage_favouriteEvents;*/
+
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
-                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_INNER_DETAILS);
-//                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvent());
+                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
+                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
                     fetchDataFromDB();
 
                 }
@@ -162,11 +170,6 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
 
         if (mEventListingData.size() > 0) {
-            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
-            txtToolbarName.setText(mEventListingData.get(0).getName());
-//            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
-
-
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
                     .into(mCover_image, new Callback() {
                         @Override
@@ -179,6 +182,12 @@ public class EventDetailsActivity extends BaseActivity {
                        /* holder.progressImageLoader.setVisibility(View.GONE);*/
                         }
                     });
+
+            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
+            txtToolbarName.setText(mEventListingData.get(0).getName());
+            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
+
+
             mAdapterEvent.RefreshList(mEventListingData);
             mAdapterEvent.notifyDataSetChanged();
         }
@@ -190,4 +199,22 @@ public class EventDetailsActivity extends BaseActivity {
             onBackPressed();
         }
     };
+
+    @OnClick({R.id.linearReadMore})
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.linearReadMore:
+                if (mExpandableTextView.isExpanded()) {
+                    mExpandableTextView.collapse();
+                    txtShowmore.setText(R.string.read_more);
+                    ivShowmore.setScaleY(1);
+                } else {
+                    mExpandableTextView.expand();
+                    txtShowmore.setText(R.string.read_less);
+                    ivShowmore.setScaleY(-1);
+                }
+                break;
+        }
+    }
 }

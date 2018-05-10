@@ -82,10 +82,7 @@ public interface Api {
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();
 
-    @GET("5af1927e3000006c00ba80ac/")
-    Call<GetEventDetails> GetEventDetails();
-
-    @POST("events/extended/GetGeneres/")
-    Call<GenresEvents> GetGenresListing();
+    @POST("events/extended/GetEventById/")
+    Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
 
 }

@@ -107,7 +107,7 @@ public class DiningFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_dining2, container, false);
+        View view = inflater.inflate(R.layout.fragment_dining, container, false);
 
         initData(view);
 

@@ -15,13 +15,13 @@ public class GetEventDetails
     @Expose
     private String Status;
 
-    @SerializedName("EventDetails")
-    @Expose
-    private ArrayList<EventDetails> EventDetails;
-
     @SerializedName("Message")
     @Expose
     private String Message;
+
+    @SerializedName("Events")
+    @Expose
+    private ArrayList<Events> Events;
 
     public String getStatus ()
     {
@@ -31,16 +31,6 @@ public class GetEventDetails
     public void setStatus (String Status)
     {
         this.Status = Status;
-    }
-
-    public ArrayList<EventDetails> getEventDetails ()
-    {
-        return EventDetails;
-    }
-
-    public void setEventDetails (ArrayList<EventDetails> EventDetails)
-    {
-        this.EventDetails = EventDetails;
     }
 
     public String getMessage ()
@@ -53,10 +43,19 @@ public class GetEventDetails
         this.Message = Message;
     }
 
+    public ArrayList<Events> getEvents ()
+    {
+        return Events;
+    }
+
+    public void setEvents (ArrayList<Events> Events)
+    {
+        this.Events = Events;
+    }
+
     @Override
     public String toString()
     {
-        return "ClassPojo [Status = "+Status+", EventDetails = "+EventDetails+", Message = "+Message+"]";
+        return "ClassPojo [Status = "+Status+", Message = "+Message+", Events = "+Events+"]";
     }
 }
-

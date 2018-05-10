@@ -118,7 +118,7 @@ public class HomeFragment extends BaseFragment {
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventListingDB.open();
-                    mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_DETAILS);
+                    mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
                     mEventListingDB.insertOtherEvents(mEventDataPojo.getEvents());
                     fetchDataFromDB();
 
@@ -150,7 +150,7 @@ public class HomeFragment extends BaseFragment {
 
         for (int i = 0; i < mEventAllData.size(); i++) {
             if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName()));
+                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId()));
             }
 
 //            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {

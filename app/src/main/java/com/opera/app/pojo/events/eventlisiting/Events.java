@@ -96,9 +96,10 @@ public class Events {
     public Events() {
     }
 
-    public Events(String image, String internalName) {
+    public Events(String image, String internalName,String EventId) {
         Image = image;
         InternalName = internalName;
+        this.EventId=EventId;
     }
 
     public Events(String Name, String image, String internalName, String startDate, String endDate, String Description) {

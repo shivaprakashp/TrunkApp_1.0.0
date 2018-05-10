@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class EventListingDB {
 
-    public static final String TABLE_EVENT_DETAILS = "TABLE_EVENT_DETAILS";
+    public static final String TABLE_EVENT_LISTING = "TABLE_EVENT_LISTING";
     private static final String EVENT_ID = "_id";
     private static final String EVENT_NAME = "EVENT_NAME";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
@@ -56,8 +56,8 @@ public class EventListingDB {
 
     private static final String EVENT_TIMES = "EVENT_TIMES";
 
-    public static final String CREATE_TABLE_EVENT_DETAILS =
-            "CREATE TABLE " + TABLE_EVENT_DETAILS + "(" + EVENT_ID + " TEXT,"
+    public static final String CREATE_TABLE_EVENT_LISTING =
+            "CREATE TABLE " + TABLE_EVENT_LISTING + "(" + EVENT_ID + " TEXT,"
                     + EVENT_NAME + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"
@@ -131,7 +131,7 @@ public class EventListingDB {
                 String mEventDatesAndTimes = gson.toJson(mEventListingData.get(i).getEventTime());
                 contentValue.put(EVENT_TIMES, mEventDatesAndTimes);
 
-                long row = database.insert(TABLE_EVENT_DETAILS, null, contentValue);
+                long row = database.insert(TABLE_EVENT_LISTING, null, contentValue);
 
                 Log.e("row", row + "");
             }
@@ -145,7 +145,7 @@ public class EventListingDB {
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_DETAILS, null);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
