@@ -61,7 +61,7 @@ public class GenresEventsFragment extends BaseFragment {
 
     private void GetGenres() {
         MainController controller = new MainController(mActivity);
-        controller.getGenresListing(taskComplete, api);
+//        controller.getGenresListing(taskComplete, api);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {

@@ -138,16 +138,16 @@ public class MainController {
     }
 
     public void getEventDetails(TaskComplete taskComplete, Api api,String EventInternalName) {
-        Call call = api.GetEventDetails(EventInternalName);          // need to add auth token
+        Call call = api.GetEventDetails();
         properties.setRequestKey(AppConstants.GETEVENTDETAILS.GETEVENTDETAILS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
-    public void getGenresListing(TaskComplete taskComplete, Api api) {
+    /*public void getGenresListing(TaskComplete taskComplete, Api api) {
         Call call = api.GetEventListing();          // need to add auth token
         properties.setRequestKey(AppConstants.GETEVENTLISTING.GETEVENTLISTING);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
-    }
+    }*/
 
 }

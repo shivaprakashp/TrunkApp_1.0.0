@@ -81,7 +81,7 @@ public class DatabaseHelper{
         ArrayList<RestaurantsData> dataArrayList = new ArrayList<>();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_OTHER_RESTAURANTS, null);
-            if (cursor != null) {
+            if (cursor != null && cursor.getCount()>0) {
                 cursor.moveToFirst();
                 do {
                     RestaurantsData mRestaurantData = new RestaurantsData();

@@ -120,12 +120,25 @@ public class SearchEventActivity extends BaseActivity {
 
     private void filter(String mSearchedTxt) {
         ArrayList<Events> mFilteredNames = new ArrayList<>();
+//        String mEventStartDate = "", mEventEndDate = "";
 
         for (int i = 0; i < mEventListingData.size(); i++) {
             if (mEventListingData.get(i).getName().toLowerCase().contains(mSearchedTxt.toLowerCase())) {
-                mFilteredNames.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).getImage()));
+
+              /*  for (int j = 0; j < mEventListingData.get(i).getEventDates().size(); j++) {
+                    if (j == 0) {
+                        mEventStartDate = mEventListingData.get(i).getEventDates().get(j).getEventDate();
+                    }
+
+                    if (j == mEventListingData.get(i).getEventDates().size() - 1) {
+                        mEventEndDate = mEventListingData.get(i).getEventDates().get(j).getEventDate();
+                    }
+                }*/
+
+                mFilteredNames.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getStartDate(), mEventListingData.get(i).getEndDate(), mEventListingData.get(i).getDescription()));
             }
         }
+
         mTxtSearch.setText("You searched for " + mSearchedTxt + " ,found " + mFilteredNames.size() + " results");
         adapterSearchedEvents.filterList(mFilteredNames);
     }

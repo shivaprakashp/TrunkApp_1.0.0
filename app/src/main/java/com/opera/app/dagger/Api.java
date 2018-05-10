@@ -22,6 +22,7 @@ import com.opera.app.pojo.settings.SetSettingsPojo;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -77,10 +78,10 @@ public interface Api {
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
 
-    @POST("events/extended/GetEvents/")
+    @POST("5af29be1300000be1eba8401")
     Call<AllEvents> GetEventListing();
 
-    @POST("events/extended/GetEventByName/")
-    Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
+    @GET("5af1927e3000006c00ba80ac/")
+    Call<GetEventDetails> GetEventDetails();
 
 }
