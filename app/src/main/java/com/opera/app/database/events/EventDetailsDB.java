@@ -24,13 +24,14 @@ public class EventDetailsDB {
     private static final String EVENT_ID = "_id";
     private static final String EVENT_NAME = "EVENT_NAME";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
-    private static final String EVENT_INFO = "EVENT_INFO";
+    private static final String EVENT_PRICE_FROM = "EVENT_PRICE_FROM";
     private static final String EVENT_BUY_NOW_LINK = "EVENT_BUY_NOW_LINK";
+    private static final String EVENT_VIDEO = "EVENT_VIDEO";
+
+    private static final String EVENT_INFO = "EVENT_INFO";
     private static final String EVENT_IS_WHATS_ON = "EVENT_IS_WHATS_ON";
     private static final String EVENT_FROM_DATE = "EVENT_FROM_DATE";
     private static final String EVENT_TO_DATE = "EVENT_TO_DATE";
-    private static final String EVENT_PRICE_FROM = "EVENT_PRICE_FROM";
-    private static final String EVENT_VIDEO = "EVENT_VIDEO";
     private static final String EVENT_ACTIVE = "EVENT_ACTIVE";
     private static final String EVENT_START_TIME = "EVENT_START_TIME";
     private static final String EVENT_END_TIME = "EVENT_END_TIME";
@@ -79,8 +80,7 @@ public class EventDetailsDB {
         ContentValues contentValue = new ContentValues();
         Gson gson = new Gson();
         try {
-//            for (int i = 0; i < mEventDetailsData.size(); i++) {
-                contentValue.put(EVENT_ID, mEventDetailsData.getEventId());
+               /* contentValue.put(EVENT_ID, mEventDetailsData.getEventId());
                 contentValue.put(EVENT_NAME, mEventDetailsData.getName());
                 contentValue.put(EVENT_IMAGE, mEventDetailsData.getImage());
                 contentValue.put(EVENT_INFO, mEventDetailsData.getDescription());
@@ -96,8 +96,7 @@ public class EventDetailsDB {
                 contentValue.put(EVENT_INTERNAL_NAME, mEventDetailsData.getInternalName());
                 long row = database.insert(TABLE_EVENT_INNER_DETAILS, null, contentValue);
 
-                Log.e("row", row + "");
-//            }
+                Log.e("row", row + "");*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -114,7 +113,7 @@ public class EventDetailsDB {
                 do {
                     Events mEventDetails = new Events();
 
-                    mEventDetails.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
+                   /* mEventDetails.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEventDetails.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
                     mEventDetails.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEventDetails.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
@@ -127,7 +126,7 @@ public class EventDetailsDB {
                     mEventDetails.setActive(cursor.getString(cursor.getColumnIndex(EVENT_ACTIVE)));
                     mEventDetails.setStartTime(cursor.getString(cursor.getColumnIndex(EVENT_START_TIME)));
                     mEventDetails.setEndTime(cursor.getString(cursor.getColumnIndex(EVENT_END_TIME)));
-                    mEventDetails.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
+                    mEventDetails.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));*/
 
                     dataArrayEventDetails.add(mEventDetails);
                 } while (cursor.moveToNext());

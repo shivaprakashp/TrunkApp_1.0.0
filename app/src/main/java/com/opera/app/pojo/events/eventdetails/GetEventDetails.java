@@ -4,49 +4,59 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.opera.app.pojo.events.eventlisiting.Events;
 
+import java.util.ArrayList;
+
 /**
  * Created by 1000632 on 5/7/2018.
  */
-
-public class GetEventDetails {
+public class GetEventDetails
+{
     @SerializedName("Status")
     @Expose
     private String Status;
+
+    @SerializedName("EventDetails")
+    @Expose
+    private ArrayList<EventDetails> EventDetails;
 
     @SerializedName("Message")
     @Expose
     private String Message;
 
-    @SerializedName("Event")
-    @Expose
-    private Events Event;
-
-    public String getStatus() {
+    public String getStatus ()
+    {
         return Status;
     }
 
-    public void setStatus(String Status) {
+    public void setStatus (String Status)
+    {
         this.Status = Status;
     }
 
-    public String getMessage() {
+    public ArrayList<EventDetails> getEventDetails ()
+    {
+        return EventDetails;
+    }
+
+    public void setEventDetails (ArrayList<EventDetails> EventDetails)
+    {
+        this.EventDetails = EventDetails;
+    }
+
+    public String getMessage ()
+    {
         return Message;
     }
 
-    public void setMessage(String Message) {
+    public void setMessage (String Message)
+    {
         this.Message = Message;
     }
 
-    public Events getEvent() {
-        return Event;
-    }
-
-    public void setEvent(Events Event) {
-        this.Event = Event;
-    }
-
     @Override
-    public String toString() {
-        return "ClassPojo [Status = " + Status + ", Message = " + Message + ", Event = " + Event + "]";
+    public String toString()
+    {
+        return "ClassPojo [Status = "+Status+", EventDetails = "+EventDetails+", Message = "+Message+"]";
     }
 }
+

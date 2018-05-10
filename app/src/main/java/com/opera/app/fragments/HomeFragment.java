@@ -24,9 +24,11 @@ import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -44,9 +46,10 @@ public class HomeFragment extends BaseFragment {
     private CoverFlowAdapter mAdapter;
     private EventListingDB mEventListingDB;
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
+    private ArrayList<Events> mWhatsEvents = new ArrayList<>();
 
     private AdapterEvent mAdapterEvent;
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
+    private ArrayList<Events> mEventAllData = new ArrayList<>();
     private Api api;
     @Inject
     Retrofit retrofit;
@@ -75,7 +78,7 @@ public class HomeFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_home_2, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //InitView(view);
 
@@ -101,7 +104,7 @@ public class HomeFragment extends BaseFragment {
         /*mCoverFlow.setAdapter(mAdapter);*/
 
         //What's on events
-        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
+        mAdapterEvent = new AdapterEvent(mActivity, mEventAllData);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerEvents.setLayoutManager(mLayoutManager);
         mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());
@@ -119,6 +122,8 @@ public class HomeFragment extends BaseFragment {
                     mEventListingDB.insertOtherEvents(mEventDataPojo.getEvents());
                     fetchDataFromDB();
 
+                    HashMap<String, ArrayList<GenreList>> mHashGenresList = new HashMap<String, ArrayList<GenreList>>();
+                    mHashGenresList.put("GenreList", mEventDataPojo.getGenreList());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -139,23 +144,26 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
-        mEventListingData = mEventListingDB.fetchAllEvents();
-        mAdapterEvent.RefreshList(mEventListingData);
+        mEventAllData = mEventListingDB.fetchAllEvents();
         mEventListingDB.close();
         mAdapterEvent.notifyDataSetChanged();
 
-        for (int i = 0; i < mEventListingData.size(); i++) {
-            if (mEventListingData.get(i).getActive().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new Events(mEventListingData.get(i).getFrom(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName()));
+        for (int i = 0; i < mEventAllData.size(); i++) {
+            if (mEventAllData.get(i).getEventIsHighlighted().equalsIgnoreCase("true")) {
+                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName()));
             }
+
+//            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
+            mWhatsEvents.add(new Events(mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getStartDate(), mEventAllData.get(i).getEndDate(), mEventAllData.get(i).getDescription()));
+//            }
         }
 
-        if (mEventListingData.size() > 0) {
+        if (mEventAllData.size() > 0) {
+            mAdapterEvent.RefreshList(mWhatsEvents);
             mAdapter.notifyDataSetChanged();
             mCoverFlow.setAdapter(mAdapter);
             mCoverFlow.setVisibility(View.VISIBLE);
         }
-
     }
 
     @OnClick({R.id.btnSearch})

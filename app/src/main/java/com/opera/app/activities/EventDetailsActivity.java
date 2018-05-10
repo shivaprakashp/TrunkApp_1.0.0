@@ -24,7 +24,6 @@ import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
-import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
@@ -92,6 +91,14 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
     private void InitView() {
+
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.menu_settings));
+
+
         ((MainApplication) getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
         mEventDetailsDB = new EventDetailsDB(mActivity);
@@ -130,7 +137,7 @@ public class EventDetailsActivity extends BaseActivity {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
                     mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_INNER_DETAILS);
-                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvent());
+//                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvent());
                     fetchDataFromDB();
 
                 }
@@ -151,7 +158,7 @@ public class EventDetailsActivity extends BaseActivity {
         if (mEventListingData.size() > 0) {
             mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
             txtToolbarName.setText(mEventListingData.get(0).getName());
-            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
+//            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
 
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()

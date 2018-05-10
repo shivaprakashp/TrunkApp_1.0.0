@@ -44,7 +44,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         final Events mEventPojo = mEventListingData.get(position);
 
         holder.txtEventName.setText(mEventPojo.getName());
-        holder.txtEventDate.setText(mEventPojo.getFrom());
+        holder.txtEventDate.setText(mEventPojo.getStartDate() + " to " + mEventPojo.getEndDate());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
 
         Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
