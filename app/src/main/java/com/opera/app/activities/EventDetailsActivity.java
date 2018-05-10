@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -55,8 +56,11 @@ public class EventDetailsActivity extends BaseActivity {
     @Inject
     Retrofit retrofit;
 
-    @BindView(R.id.toolbar_setting)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar_event_details)
+    Toolbar mToolbar;
+
+    @BindView(R.id.inc_set_toolbar)
+    LinearLayout mLinearLayout;
 
     @BindView(R.id.imgCommonToolBack)
     View inc_set_toolbar;
@@ -92,6 +96,8 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void InitView() {
 
+        mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
