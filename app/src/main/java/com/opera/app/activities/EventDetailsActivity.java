@@ -17,19 +17,16 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
-import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
-import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -131,7 +128,6 @@ public class EventDetailsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.menu_settings));
 
         //What's on events
         mAdapterEvent = new AdapterEvent(mActivity, mEventsWithSameGenres);
