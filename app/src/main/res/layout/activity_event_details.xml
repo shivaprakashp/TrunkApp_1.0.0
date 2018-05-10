@@ -123,7 +123,7 @@
                                             android:layout_centerHorizontal="true"
                                             android:ellipsize="end"
                                             android:singleLine="true"
-                                            android:text="AED 200"
+                                            android:text=""
                                             android:textStyle="bold"
                                             font:name="Montserrat-Light" />
 
@@ -182,11 +182,11 @@
                                         android:id="@+id/expandableTextViewInfo"
                                         style="@style/label_white_small"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_margin="10dp"
                                         android:ellipsize="end"
                                         android:maxLines="3"
-                                        android:text="fdsad" />
+                                        android:text="" />
 
                                     <LinearLayout
                                         android:id="@+id/linearReadMore"

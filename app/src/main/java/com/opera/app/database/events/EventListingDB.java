@@ -150,7 +150,7 @@ public class EventListingDB {
                 cursor.moveToFirst();
                 do {
                     Events mEvents = new Events();
-                    GenreList mGenreList=new GenreList();
+                    GenreList mGenreList = new GenreList();
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
@@ -182,6 +182,59 @@ public class EventListingDB {
                     mEvents.setEventTime(mArrayEventDateAndTime);
 
                     dataArrayEvents.add(mEvents);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            Log.e("ErrorMessage", e.getMessage());
+        }
+
+        return dataArrayEvents;
+    }
+
+    public ArrayList<Events> fetchEventsOfSpecificGenres(String mGenreId) {
+
+        ArrayList<Events> dataArrayEvents = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    Events mEvents = new Events();
+                    GenreList mGenreList = new GenreList();
+
+                    mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
+                    mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
+                    mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
+                    mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
+                    mEvents.setBuyNowLink(cursor.getString(cursor.getColumnIndex(EVENT_BUY_NOW)));
+                    mEvents.setWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
+                    mEvents.setFrom(cursor.getString(cursor.getColumnIndex(EVENT_FROM_DATE)));
+                    mEvents.setTo(cursor.getString(cursor.getColumnIndex(EVENT_TO_DATE)));
+                    mEvents.setPriceFrom(cursor.getString(cursor.getColumnIndex(EVENT_PRICE_FROM)));
+                    mEvents.setVideo(cursor.getString(cursor.getColumnIndex(EVENT_VIDEO)));
+                    mEvents.setActive(cursor.getString(cursor.getColumnIndex(EVENT_ACTIVE)));
+                    mEvents.setStartTime(cursor.getString(cursor.getColumnIndex(EVENT_START_TIME)));
+                    mEvents.setEndTime(cursor.getString(cursor.getColumnIndex(EVENT_END_TIME)));
+                    mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
+                    mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
+
+                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
+                    mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
+                    mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
+                    mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
+                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
+                    mEvents.setGenreList(mGenreList);
+
+                    Type type1 = new TypeToken<ArrayList<EventTime>>() {
+                    }.getType();
+                    ArrayList<EventTime> mArrayEventDateAndTime = gson.fromJson(cursor.getString(cursor.getColumnIndex(EVENT_TIMES)), type1);
+
+                    mEvents.setEventTime(mArrayEventDateAndTime);
+
+                    if (mGenreId.equalsIgnoreCase(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)))) {
+                        dataArrayEvents.add(mEvents);
+                    }
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {

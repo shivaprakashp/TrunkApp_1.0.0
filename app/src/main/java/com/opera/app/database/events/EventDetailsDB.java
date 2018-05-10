@@ -162,10 +162,10 @@ public class EventDetailsDB {
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
 
                     mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
+                    mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
+                    mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
+                    mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
+                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
                     mEvents.setGenreList(mGenreList);
 
                     Type type1 = new TypeToken<ArrayList<EventTime>>() {
