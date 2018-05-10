@@ -143,11 +143,11 @@ public class MainController {
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
-    /*public void getGenresListing(TaskComplete taskComplete, Api api) {
-        Call call = api.GetEventListing();          // need to add auth token
-        properties.setRequestKey(AppConstants.GETEVENTLISTING.GETEVENTLISTING);
+    public void getGenresListing(TaskComplete taskComplete, Api api) {
+        Call call = api.GetGenresListing();          // need to add auth token
+        properties.setRequestKey(AppConstants.GETGENRESLISTING.GETGENRESLISTING);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
-    }*/
+    }
 
 }

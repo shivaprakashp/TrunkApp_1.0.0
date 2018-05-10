@@ -60,4 +60,9 @@ public interface AppConstants {
     interface GETEVENTDETAILS {
         String GETEVENTDETAILS = "GETEVENTDETAILS";
     }
+
+    interface GETGENRESLISTING {
+        String GETGENRESLISTING = "GETGENRESLISTING";
+    }
+
 }

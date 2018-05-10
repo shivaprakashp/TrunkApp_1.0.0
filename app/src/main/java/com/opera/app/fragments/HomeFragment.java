@@ -80,9 +80,9 @@ public class HomeFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        InitView(view);
+        //InitView(view);
 
-        GetCurrentEvents();
+        //GetCurrentEvents();
 
         return view;
     }

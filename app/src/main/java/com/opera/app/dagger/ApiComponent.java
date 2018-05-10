@@ -11,6 +11,7 @@ import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.fragments.DiningFragment;
+import com.opera.app.fragments.GenresEventsFragment;
 import com.opera.app.fragments.HomeFragment;
 import com.opera.app.services.SettingsService;
 
@@ -38,4 +39,5 @@ public interface ApiComponent {
     void inject(DiningFragment diningFragment);
     void inject(HomeFragment mHomeFragment);
     void inject(EventDetailsActivity mEventDetailsActivity);
+    void inject(GenresEventsFragment mGenresEventsFragment);
 }

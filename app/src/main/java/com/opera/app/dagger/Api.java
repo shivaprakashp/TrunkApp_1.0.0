@@ -4,6 +4,7 @@ import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
+import com.opera.app.pojo.events.genreslisting.GenresEvents;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -83,5 +84,8 @@ public interface Api {
 
     @GET("5af1927e3000006c00ba80ac/")
     Call<GetEventDetails> GetEventDetails();
+
+    @POST("events/extended/GetGeneres/")
+    Call<GenresEvents> GetGenresListing();
 
 }

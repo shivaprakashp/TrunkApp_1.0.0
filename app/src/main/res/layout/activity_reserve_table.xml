@@ -68,7 +68,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/editDOB"
@@ -89,30 +90,6 @@
                         android:src="@drawable/ic_calendar" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <Spinner
-                    android:id="@+id/spinnerMealPeriod"
-                    style="@style/label_black"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <Spinner
-                    android:id="@+id/spinnerSelectTime"
-                    style="@style/label_black"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -177,6 +154,30 @@
                         font:name="Montserrat-Regular" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_gray" />
+
+                <Spinner
+                    android:id="@+id/spinnerMealPeriod"
+                    style="@style/label_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/dark_gray" />
+
+                <Spinner
+                    android:id="@+id/spinnerSelectTime"
+                    style="@style/label_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
 
                 <View
                     android:layout_width="match_parent"
