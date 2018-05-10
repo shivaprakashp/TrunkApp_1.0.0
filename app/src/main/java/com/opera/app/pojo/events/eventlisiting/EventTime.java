@@ -6,34 +6,24 @@ package com.opera.app.pojo.events.eventlisiting;
 
 public class EventTime
 {
-    private String startTime;
+    private String FromTime;
 
-    private String endTime;
+    private String ToTime;
 
-    public String getStartTime ()
-    {
-        return startTime;
+    public String getFromTime() {
+        return FromTime;
     }
 
-    public void setStartTime (String startTime)
-    {
-        this.startTime = startTime;
+    public void setFromTime(String fromTime) {
+        FromTime = fromTime;
     }
 
-    public String getEndTime ()
-    {
-        return endTime;
+    public String getToTime() {
+        return ToTime;
     }
 
-    public void setEndTime (String endTime)
-    {
-        this.endTime = endTime;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [startTime = "+startTime+", endTime = "+endTime+"]";
+    public void setToTime(String toTime) {
+        ToTime = toTime;
     }
 }
 

@@ -81,7 +81,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Events mEventPojo = mEventListingData.get(position);
 
-        holder.txtEventDate.setText(mEventPojo.getStartDate() + " to " + mEventPojo.getEndDate());
+        holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
         Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
                 .into(holder.imgEvent, new Callback() {

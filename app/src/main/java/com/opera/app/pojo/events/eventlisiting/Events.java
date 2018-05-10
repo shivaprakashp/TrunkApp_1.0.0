@@ -18,17 +18,17 @@ public class Events {
     @Expose
     private String Active;
 
-    @SerializedName("eventIsHighlighted")
+    @SerializedName("Highlighted")
     @Expose
-    private String eventIsHighlighted;
+    private String Highlighted;
 
     @SerializedName("Description")
     @Expose
     private String Description;
 
-    @SerializedName("EventGenres")
+    /*@SerializedName("EventGenres")
     @Expose
-    private ArrayList<EventGenres> EventGenres;
+    private ArrayList<EventGenres> EventGenres;*/
 
     @SerializedName("Image")
     @Expose
@@ -42,17 +42,47 @@ public class Events {
     @Expose
     private String EventId;
 
-    @SerializedName("EventDates")
+    @SerializedName("EventTime")
     @Expose
-    private ArrayList<EventDates> EventDates;
+    private ArrayList<EventTime> EventTime;
 
-    @SerializedName("eventIsWhatsOn")
+    @SerializedName("WhatsOn")
     @Expose
-    private String eventIsWhatsOn;
+    private String WhatsOn;
+
+    @SerializedName("BuyNowLink")
+    @Expose
+    private String BuyNowLink;
+
+    @SerializedName("From")
+    @Expose
+    private String From;
+
+    @SerializedName("To")
+    @Expose
+    private String To;
+
+    @SerializedName("PriceFrom")
+    @Expose
+    private String PriceFrom;
+
+    @SerializedName("Video")
+    @Expose
+    private String Video;
+
+    @SerializedName("StartTime")
+    @Expose
+    private String StartTime;
+
+    @SerializedName("EndTime")
+    @Expose
+    private String EndTime;
+
+    @SerializedName("Genre")
+    @Expose
+    private GenreList Genre;
 
     boolean IsInfoOpen = false;
-    private String StartDate;
-    private String EndDate;
 
     public boolean isInfoOpen() {
         return IsInfoOpen;
@@ -71,116 +101,157 @@ public class Events {
         InternalName = internalName;
     }
 
-    public Events(String Name,String image, String internalName, String startDate, String endDate,String Description) {
+    public Events(String Name, String image, String internalName, String startDate, String endDate, String Description) {
         this.Name = Name;
         Image = image;
         InternalName = internalName;
-        StartDate = startDate;
-        EndDate = endDate;
+        From = startDate;
+        To = endDate;
         this.Description = Description;
-    }
-
-
-
-    public String getStartDate() {
-        return StartDate;
-    }
-
-    public void setStartDate(String startDate) {
-        StartDate = startDate;
-    }
-
-    public String getEndDate() {
-        return EndDate;
-    }
-
-    public void setEndDate(String endDate) {
-        EndDate = endDate;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getActive() {
         return Active;
     }
 
-    public void setActive(String Active) {
-        this.Active = Active;
+    public void setActive(String active) {
+        Active = active;
     }
 
-    public String getEventIsHighlighted() {
-        return eventIsHighlighted;
+    public String getHighlighted() {
+        return Highlighted;
     }
 
-    public void setEventIsHighlighted(String eventIsHighlighted) {
-        this.eventIsHighlighted = eventIsHighlighted;
+    public void setHighlighted(String highlighted) {
+        Highlighted = highlighted;
     }
 
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        Description = description;
     }
 
-    public ArrayList<EventGenres> getEventGenres() {
+   /* public ArrayList<com.opera.app.pojo.events.eventlisiting.EventGenres> getEventGenres() {
         return EventGenres;
     }
 
-    public void setEventGenres(ArrayList<EventGenres> EventGenres) {
-        this.EventGenres = EventGenres;
-    }
+    public void setEventGenres(ArrayList<EventGenres> eventGenres) {
+        EventGenres = eventGenres;
+    }*/
 
     public String getImage() {
         return Image;
     }
 
-    public void setImage(String Image) {
-        this.Image = Image;
+    public void setImage(String image) {
+        Image = image;
     }
 
     public String getInternalName() {
         return InternalName;
     }
 
-    public void setInternalName(String InternalName) {
-        this.InternalName = InternalName;
+    public void setInternalName(String internalName) {
+        InternalName = internalName;
     }
 
     public String getEventId() {
         return EventId;
     }
 
-    public void setEventId(String EventId) {
-        this.EventId = EventId;
+    public void setEventId(String eventId) {
+        EventId = eventId;
     }
 
-    public ArrayList<EventDates> getEventDates() {
-        return EventDates;
+    public ArrayList<EventTime> getEventTime() {
+        return EventTime;
     }
 
-    public void setEventDates(ArrayList<EventDates> EventDates) {
-        this.EventDates = EventDates;
+    public void setEventTime(ArrayList<EventTime> eventTime) {
+        EventTime = eventTime;
     }
 
-    public String getEventIsWhatsOn() {
-        return eventIsWhatsOn;
+    public String getWhatsOn() {
+        return WhatsOn;
     }
 
-    public void setEventIsWhatsOn(String eventIsWhatsOn) {
-        this.eventIsWhatsOn = eventIsWhatsOn;
+    public void setWhatsOn(String whatsOn) {
+        WhatsOn = whatsOn;
     }
 
-    @Override
-    public String toString() {
-        return "ClassPojo [Name = " + Name + ", Active = " + Active + ", eventIsHighlighted = " + eventIsHighlighted + ", Description = " + Description + ", EventGenres = " + EventGenres + ", Image = " + Image + ", InternalName = " + InternalName + ", EventId = " + EventId + ", EventDates = " + EventDates + ", eventIsWhatsOn = " + eventIsWhatsOn + "]";
+    public String getBuyNowLink() {
+        return BuyNowLink;
+    }
+
+    public void setBuyNowLink(String buyNowLink) {
+        BuyNowLink = buyNowLink;
+    }
+
+    public String getFrom() {
+        return From;
+    }
+
+    public void setFrom(String from) {
+        From = from;
+    }
+
+    public String getTo() {
+        return To;
+    }
+
+    public void setTo(String to) {
+        To = to;
+    }
+
+    public String getPriceFrom() {
+        return PriceFrom;
+    }
+
+    public void setPriceFrom(String priceFrom) {
+        PriceFrom = priceFrom;
+    }
+
+    public String getVideo() {
+        return Video;
+    }
+
+    public void setVideo(String video) {
+        Video = video;
+    }
+
+    public String getStartTime() {
+        return StartTime;
+    }
+
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
+    }
+
+    public String getEndTime() {
+        return EndTime;
+    }
+
+    public void setEndTime(String endTime) {
+        EndTime = endTime;
+    }
+
+    public GenreList getGenreList() {
+        return Genre;
+    }
+
+    public void setGenreList(GenreList genreList) {
+        Genre = genreList;
     }
 }
 

@@ -80,9 +80,9 @@ public class HomeFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //InitView(view);
+        InitView(view);
 
-        //GetCurrentEvents();
+        GetCurrentEvents();
 
         return view;
     }
@@ -149,12 +149,12 @@ public class HomeFragment extends BaseFragment {
         mAdapterEvent.notifyDataSetChanged();
 
         for (int i = 0; i < mEventAllData.size(); i++) {
-            if (mEventAllData.get(i).getEventIsHighlighted().equalsIgnoreCase("true")) {
+            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
                 mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName()));
             }
 
 //            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
-            mWhatsEvents.add(new Events(mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getStartDate(), mEventAllData.get(i).getEndDate(), mEventAllData.get(i).getDescription()));
+            mWhatsEvents.add(new Events(mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription()));
 //            }
         }
 

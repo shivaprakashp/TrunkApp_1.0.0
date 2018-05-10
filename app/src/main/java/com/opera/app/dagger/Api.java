@@ -79,7 +79,7 @@ public interface Api {
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
 
-    @POST("5af29be1300000be1eba8401")
+    @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();
 
     @GET("5af1927e3000006c00ba80ac/")
