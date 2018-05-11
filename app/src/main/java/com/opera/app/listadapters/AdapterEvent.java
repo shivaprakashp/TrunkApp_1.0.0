@@ -1,6 +1,7 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -121,6 +123,16 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     mEventPojo.setInfoOpen(true);
                 }
 
+            }
+        });
+
+        holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mEventPojo.getBuyNowLink());
+                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                mActivity.startActivity(in);
             }
         });
     }

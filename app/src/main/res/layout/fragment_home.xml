@@ -109,11 +109,16 @@
                     android:text="@string/whats_on"
                     font:name="Montserrat-Light" />
 
-                <android.support.v7.widget.RecyclerView
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpagerWhatsOnShows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--<android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>-->
 
             </LinearLayout>
 

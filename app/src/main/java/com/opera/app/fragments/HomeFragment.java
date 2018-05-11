@@ -3,6 +3,7 @@ package com.opera.app.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.CoverFlowAdapter;
+import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -48,14 +50,18 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
     private ArrayList<Events> mWhatsEvents = new ArrayList<>();
 
-    private AdapterEvent mAdapterEvent;
+    private WhatsOnPagerAdapter mWhatsOnPagerAdapter;
+    //    private AdapterEvent mAdapterEvent;
     private ArrayList<Events> mEventAllData = new ArrayList<>();
     private Api api;
     @Inject
     Retrofit retrofit;
 
-    @BindView(R.id.recyclerList)
-    RecyclerView mRecyclerEvents;
+    /*@BindView(R.id.recyclerList)
+    RecyclerView mRecyclerEvents;*/
+
+    @BindView(R.id.viewpagerWhatsOnShows)
+    ViewPager mViewpagerWhatsOnShows;
 
     @BindView(R.id.coverflow)
     FeatureCoverFlow mCoverFlow;
@@ -102,13 +108,36 @@ public class HomeFragment extends BaseFragment {
         //Highlighted events
         mAdapter = new CoverFlowAdapter(getActivity(), mHighlightedEvents);
         /*mCoverFlow.setAdapter(mAdapter);*/
-
+        mViewpagerWhatsOnShows.setClipToPadding(false);
+        mViewpagerWhatsOnShows.setPageMargin(20);
         //What's on events
-        mAdapterEvent = new AdapterEvent(mActivity, mEventAllData);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerEvents.setLayoutManager(mLayoutManager);
-        mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerEvents.setAdapter(mAdapterEvent);
+        mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents);
+        /*RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mViewpagerWhatsOnShows.setLayoutManager(mLayoutManager);
+        mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());*/
+        mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
+
+        mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.e("onPageScrolled", position + "");
+                if (position == 0) {
+                    mViewpagerWhatsOnShows.setPadding(0, 0, 70, 0);
+                } else if (mWhatsEvents.size() - 1 == position) {
+                    mViewpagerWhatsOnShows.setPadding(70, 0, 0, 0);
+                } else {
+                    mViewpagerWhatsOnShows.setPadding(70, 0, 70, 0);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int position) {
+            }
+        });
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -144,11 +173,12 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
-       /* mEventAllData=new ArrayList<>();
-        mHighlightedEvents=new ArrayList<>();*/
+        mEventAllData = new ArrayList<>();
+        mWhatsEvents = new ArrayList<>();
+
         mEventAllData = mEventListingDB.fetchAllEvents();
         mEventListingDB.close();
-        mAdapterEvent.notifyDataSetChanged();
+       /* mAdapterEvent.notifyDataSetChanged();*/
 
         for (int i = 0; i < mEventAllData.size(); i++) {
             if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
@@ -161,7 +191,7 @@ public class HomeFragment extends BaseFragment {
         }
 
         if (mEventAllData.size() > 0) {
-            mAdapterEvent.RefreshList(mWhatsEvents);
+            mWhatsOnPagerAdapter.RefreshList(mWhatsEvents);
             mAdapter.notifyDataSetChanged();
             mCoverFlow.setAdapter(mAdapter);
             mCoverFlow.setVisibility(View.VISIBLE);
