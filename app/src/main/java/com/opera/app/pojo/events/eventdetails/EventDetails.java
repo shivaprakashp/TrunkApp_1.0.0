@@ -3,17 +3,14 @@ package com.opera.app.pojo.events.eventdetails;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
- * Created by 1000632 on 5/7/2018.
+ * Created by 1000632 on 5/10/2018.
  */
 
-public class InnerEventDetails
+public class EventDetails
 {
-
-    @SerializedName("EventId")
-    @Expose
-    private String EventId;
-
     @SerializedName("PriceFrom")
     @Expose
     private String PriceFrom;
@@ -22,21 +19,17 @@ public class InnerEventDetails
     @Expose
     private String Name;
 
-    @SerializedName("Active")
-    @Expose
-    private String Active;
-
     @SerializedName("Description")
     @Expose
     private String Description;
 
+    @SerializedName("EventGenres")
+    @Expose
+    private ArrayList<EventGenres> EventGenres;
+
     @SerializedName("BuyNowLink")
     @Expose
     private String BuyNowLink;
-
-    @SerializedName("To")
-    @Expose
-    private String To;
 
     @SerializedName("Image")
     @Expose
@@ -50,10 +43,6 @@ public class InnerEventDetails
     @Expose
     private String EndTime;
 
-    @SerializedName("WhatsOn")
-    @Expose
-    private String WhatsOn;
-
     @SerializedName("StartTime")
     @Expose
     private String StartTime;
@@ -61,18 +50,6 @@ public class InnerEventDetails
     @SerializedName("Video")
     @Expose
     private String Video;
-
-    @SerializedName("From")
-    @Expose
-    private String From;
-
-    public String getEventId() {
-        return EventId;
-    }
-
-    public void setEventId(String eventId) {
-        EventId = eventId;
-    }
 
     public String getPriceFrom ()
     {
@@ -94,16 +71,6 @@ public class InnerEventDetails
         this.Name = Name;
     }
 
-    public String getActive ()
-    {
-        return Active;
-    }
-
-    public void setActive (String Active)
-    {
-        this.Active = Active;
-    }
-
     public String getDescription ()
     {
         return Description;
@@ -114,6 +81,16 @@ public class InnerEventDetails
         this.Description = Description;
     }
 
+    public ArrayList<EventGenres> getEventGenres ()
+    {
+        return EventGenres;
+    }
+
+    public void setEventGenres (ArrayList<EventGenres> EventGenres)
+    {
+        this.EventGenres = EventGenres;
+    }
+
     public String getBuyNowLink ()
     {
         return BuyNowLink;
@@ -122,16 +99,6 @@ public class InnerEventDetails
     public void setBuyNowLink (String BuyNowLink)
     {
         this.BuyNowLink = BuyNowLink;
-    }
-
-    public String getTo ()
-    {
-        return To;
-    }
-
-    public void setTo (String To)
-    {
-        this.To = To;
     }
 
     public String getImage ()
@@ -164,16 +131,6 @@ public class InnerEventDetails
         this.EndTime = EndTime;
     }
 
-    public String getWhatsOn ()
-    {
-        return WhatsOn;
-    }
-
-    public void setWhatsOn (String WhatsOn)
-    {
-        this.WhatsOn = WhatsOn;
-    }
-
     public String getStartTime ()
     {
         return StartTime;
@@ -194,19 +151,11 @@ public class InnerEventDetails
         this.Video = Video;
     }
 
-    public String getFrom ()
-    {
-        return From;
-    }
-
-    public void setFrom (String From)
-    {
-        this.From = From;
-    }
-
     @Override
     public String toString()
     {
-        return "ClassPojo [PriceFrom = "+PriceFrom+", Name = "+Name+", Active = "+Active+", Description = "+Description+", BuyNowLink = "+BuyNowLink+", To = "+To+", Image = "+Image+", InternalName = "+InternalName+", EndTime = "+EndTime+", WhatsOn = "+WhatsOn+", StartTime = "+StartTime+", Video = "+Video+", From = "+From+"]";
+        return "ClassPojo [PriceFrom = "+PriceFrom+", Name = "+Name+", Description = "+Description+", EventGenres = "+EventGenres+", BuyNowLink = "+BuyNowLink+", Image = "+Image+", InternalName = "+InternalName+", EndTime = "+EndTime+", StartTime = "+StartTime+", Video = "+Video+"]";
     }
 }
+
+

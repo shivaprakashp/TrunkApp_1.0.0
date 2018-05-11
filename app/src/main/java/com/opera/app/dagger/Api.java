@@ -83,11 +83,8 @@ public interface Api {
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();
 
-    @POST("events/extended/GetEventByName/")
-    Call<GetEventDetails> GetEventDetails(@Query("eventName") String eventName);
-
-    @POST("events/extended/GetGeneres/")
-    Call<GenresEvents> GetGenresListing();
+    @POST("events/extended/GetEventById/")
+    Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
 
     @GET("http://www.mocky.io/v2/5af48dda55000057007a535e")
     Call<WalletDetails> getWalletDetails();

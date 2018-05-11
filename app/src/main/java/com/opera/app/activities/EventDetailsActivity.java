@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -21,10 +22,10 @@ import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
-import com.opera.app.pojo.events.eventdetails.InnerEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -45,19 +47,24 @@ import retrofit2.Retrofit;
 
 public class EventDetailsActivity extends BaseActivity {
 
-    private String EventInternalName = "";
+    private String EventInternalName = "", EventId = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
+    private EventListingDB mEventListingDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
+    private ArrayList<Events> mEventsWithSameGenres = new ArrayList<>();
     private TextViewWithFont txtToolbarName;
     private AdapterEvent mAdapterEvent;
 
     @Inject
     Retrofit retrofit;
 
-    @BindView(R.id.toolbar_setting)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar_event_details)
+    Toolbar mToolbar;
+
+    @BindView(R.id.inc_set_toolbar)
+    LinearLayout mLinearLayout;
 
     @BindView(R.id.imgCommonToolBack)
     View inc_set_toolbar;
@@ -77,6 +84,12 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.txtTicketPrice)
     TextView mTxtTicketPrice;
 
+    @BindView(R.id.txtShowmore)
+    TextView txtShowmore;
+
+    @BindView(R.id.ivShowmore)
+    ImageView ivShowmore;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,45 +105,59 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
     private void InitView() {
-        ((MainApplication) getApplication()).getNetComponent().inject(this);
-        api = retrofit.create(Api.class);
-        mEventDetailsDB = new EventDetailsDB(mActivity);
 
-        Intent in = getIntent();
-        EventInternalName = in.getStringExtra("EventInternalName");
-
+        mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
+
+        ((MainApplication) getApplication()).getNetComponent().inject(this);
+        api = retrofit.create(Api.class);
+        mEventDetailsDB = new EventDetailsDB(mActivity);
+        mEventListingDB = new EventListingDB(mActivity);
+
+        Intent in = getIntent();
+        EventId = in.getStringExtra("EventId");
+        EventInternalName = in.getStringExtra("EventInternalName");
+
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+
         //What's on events
-        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
+        mAdapterEvent = new AdapterEvent(mActivity, mEventsWithSameGenres);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerRestaurants.setLayoutManager(mLayoutManager);
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
         mRecyclerRestaurants.setAdapter(mAdapterEvent);
+
+        //Expanded Textview
+        mExpandableTextView.expand();
+        txtShowmore.setText(R.string.read_less);
+        ivShowmore.setScaleY(-1);
     }
 
     private void GetSpecificEventDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getEventDetails(taskComplete, api, EventInternalName);
+        controller.getEventDetails(taskComplete, api, EventId);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
-            /*String eventPerformType, eventVideo, eventGenreType, eventId, eventTitle, eventImage, eventDetail;
-            String venueImage, venueType, dateTime;
-            String ticketId, ticketType, ticketPrice;
-            String eventId_favouriteEvents, eventTitle_favouriteEvents, eventInfo_favouriteEvents, eventThumbImage_favouriteEvents;*/
+
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
-                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_INNER_DETAILS);
-                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvent());
+                    mEventListingDB.open();
+                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
+                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
                     fetchDataFromDB();
 
                 }
@@ -147,13 +174,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void fetchDataFromDB() {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
+        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList().getId());
 
         if (mEventListingData.size() > 0) {
-            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
-            txtToolbarName.setText(mEventListingData.get(0).getName());
-            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
-
-
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
                     .into(mCover_image, new Callback() {
                         @Override
@@ -166,9 +189,17 @@ public class EventDetailsActivity extends BaseActivity {
                        /* holder.progressImageLoader.setVisibility(View.GONE);*/
                         }
                     });
-            mAdapterEvent.RefreshList(mEventListingData);
+
+            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
+            txtToolbarName.setText(mEventListingData.get(0).getName());
+            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
+
+            mAdapterEvent.RefreshList(mEventsWithSameGenres);
             mAdapterEvent.notifyDataSetChanged();
         }
+
+        mEventDetailsDB.close();
+        mEventListingDB.close();
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -177,4 +208,22 @@ public class EventDetailsActivity extends BaseActivity {
             onBackPressed();
         }
     };
+
+    @OnClick({R.id.linearReadMore})
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.linearReadMore:
+                if (mExpandableTextView.isExpanded()) {
+                    mExpandableTextView.collapse();
+                    txtShowmore.setText(R.string.read_more);
+                    ivShowmore.setScaleY(1);
+                } else {
+                    mExpandableTextView.expand();
+                    txtShowmore.setText(R.string.read_less);
+                    ivShowmore.setScaleY(-1);
+                }
+                break;
+        }
+    }
 }

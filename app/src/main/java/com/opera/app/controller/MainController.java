@@ -109,7 +109,7 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void reserveTable(TaskComplete taskComplete, Api api, BookTableRequest tableResponse){
+    public void reserveTable(TaskComplete taskComplete, Api api, BookTableRequest tableResponse) {
         Call call = api.ReserveRestaurantSeat(contentType, tableResponse);          // need to add auth token
         properties.setRequestKey(AppConstants.BOOKATABLE.BOOKATABLE);
         DataListener listener = new DataListener(context, taskComplete, properties);
@@ -137,18 +137,18 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void getEventDetails(TaskComplete taskComplete, Api api,String EventInternalName) {
-        Call call = api.GetEventDetails(EventInternalName);          // need to add auth token
+    public void getEventDetails(TaskComplete taskComplete, Api api, String EventId) {
+        Call call = api.GetEventDetails(EventId);
         properties.setRequestKey(AppConstants.GETEVENTDETAILS.GETEVENTDETAILS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
-    public void getGenresListing(TaskComplete taskComplete, Api api) {
+   /* public void getGenresListing(TaskComplete taskComplete, Api api) {
         Call call = api.GetGenresListing();          // need to add auth token
         properties.setRequestKey(AppConstants.GETGENRESLISTING.GETGENRESLISTING);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
-    }
+    }*/
 
     public void getWalletDetails(TaskComplete taskComplete, Api api){
         Call call = api.getWalletDetails();

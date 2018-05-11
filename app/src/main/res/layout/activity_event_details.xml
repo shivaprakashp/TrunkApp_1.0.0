@@ -1,268 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBlack"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp">
-
-                    <ImageView
-                        android:id="@+id/cover_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/ic_profile_bg" />
-
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar_setting"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:contentInsetEnd="0dp"
-                        android:contentInsetLeft="0dp"
-                        android:contentInsetRight="0dp"
-                        android:contentInsetStart="0dp"
-                        app:contentInsetEnd="0dp"
-                        app:contentInsetLeft="0dp"
-                        app:contentInsetRight="0dp"
-                        app:contentInsetStart="0dp">
-
-                        <include
-                            android:id="@+id/inc_set_toolbar"
-                            layout="@layout/view_home_toolbar" />
-                    </android.support.v7.widget.Toolbar>
-
-                </RelativeLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/colorBlack"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:id="@+id/layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="270dp">
+
+                        <ImageView
+                            android:id="@+id/cover_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/ic_profile_bg" />
+
+                        <android.support.v7.widget.Toolbar
+                            android:id="@+id/toolbar_event_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:contentInsetEnd="0dp"
+                            android:contentInsetLeft="0dp"
+                            android:contentInsetRight="0dp"
+                            android:contentInsetStart="0dp"
+                            app:contentInsetEnd="0dp"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetRight="0dp"
+                            app:contentInsetStart="0dp">
+
+                            <include
+                                android:id="@+id/inc_set_toolbar"
+                                layout="@layout/view_home_toolbar" />
+                        </android.support.v7.widget.Toolbar>
+
+                    </RelativeLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.4"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/bg_linear_shape"
-                        android:elevation="4dp"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.4"
                             android:orientation="vertical">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="@color/dark_gray" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/bg_linear_shape"
+                            android:elevation="4dp"
+                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.2"
-                                    android:orientation="vertical">
-
-                                    <com.opera.app.customwidget.TextViewWithFont
-                                        style="@style/label_light_gray_low"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:text="Tickets From"
-                                        font:name="Montserrat-Light" />
-
-                                    <com.opera.app.customwidget.TextViewWithFont
-                                        android:id="@+id/txtTicketPrice"
-                                        style="@style/label_white_large"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:text="AED 200"
-                                        android:textStyle="bold"
-                                        font:name="Montserrat-Light" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.2"
-                                    android:orientation="vertical"
-                                    android:padding="10dp">
-
-                                    <com.opera.app.customwidget.ButtonWithFont
-                                        android:id="@+id/mBtnReserveATable"
-                                        style="@style/label_white_small"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="@dimen/button_height"
-                                        android:background="@drawable/transparent_btn_ripple"
-                                        android:paddingLeft="10dp"
-                                        android:paddingRight="10dp"
-                                        android:text="@string/video"
-                                        font:name="Montserrat-Light" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.1"
-                                    android:src="@drawable/ic_share" />
-
-                                <ImageView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.1"
-                                    android:src="@drawable/ic_favourite" />
-
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="@color/dark_gray" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <com.opera.app.customwidget.ExpandableTextView
-                                    android:id="@+id/expandableTextViewInfo"
-                                    style="@style/label_white_small"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp"
-                                    android:ellipsize="end"
-                                    android:maxLines="3"
-                                    android:text="fdsad" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/dark_gray" />
 
                                 <LinearLayout
-                                    android:id="@+id/linearReadMore"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginLeft="20dp"
                                     android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:visibility="visible">
+                                    android:orientation="horizontal">
 
-                                    <com.opera.app.customwidget.TextViewWithFont
-                                        android:id="@+id/txtShowmore"
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.2"
+                                        android:orientation="vertical">
+
+                                        <com.opera.app.customwidget.TextViewWithFont
+                                            style="@style/label_light_gray_low"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:ellipsize="end"
+                                            android:singleLine="true"
+                                            android:text="Tickets From"
+                                            font:name="Montserrat-Light" />
+
+                                        <com.opera.app.customwidget.TextViewWithFont
+                                            android:id="@+id/txtTicketPrice"
+                                            style="@style/label_white_large"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:ellipsize="end"
+                                            android:singleLine="true"
+                                            android:text=""
+                                            android:textStyle="bold"
+                                            font:name="Montserrat-Light" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.2"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <com.opera.app.customwidget.ButtonWithFont
+                                            android:id="@+id/mBtnReserveATable"
+                                            style="@style/label_white_small"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="@dimen/button_height"
+                                            android:background="@drawable/transparent_btn_ripple"
+                                            android:drawableLeft="@drawable/ic_play_button"
+                                            android:paddingLeft="10dp"
+                                            android:text="@string/video"
+                                            font:name="Montserrat-Light" />
+
+                                    </LinearLayout>
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.1"
+                                        android:src="@drawable/ic_share" />
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.1"
+                                        android:src="@drawable/ic_favourite" />
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.5dp"
+                                    android:background="@color/dark_gray" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <android.support.v7.widget.RecyclerView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="20dp"
+                                        android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+                                    <com.opera.app.customwidget.ExpandableTextView
+                                        android:id="@+id/expandableTextViewInfo"
                                         style="@style/label_white_small"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginRight="10dp"
-                                        android:text="@string/read_more"
-                                        android:textAllCaps="false" />
+                                        android:layout_margin="10dp"
+                                        android:maxLines="3"
+                                        android:text="" />
 
-                                    <ImageView
-                                        android:id="@+id/ivShowmore"
-                                        android:layout_width="10dp"
-                                        android:layout_height="10dp"
-                                        android:src="@drawable/ic_down_arrow" />
+                                    <LinearLayout
+                                        android:id="@+id/linearReadMore"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible">
+
+                                        <com.opera.app.customwidget.TextViewWithFont
+                                            android:id="@+id/txtShowmore"
+                                            style="@style/label_white_small"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="10dp"
+                                            android:text="@string/read_more"
+                                            android:textAllCaps="false" />
+
+                                        <ImageView
+                                            android:id="@+id/ivShowmore"
+                                            android:layout_width="10dp"
+                                            android:layout_height="10dp"
+                                            android:src="@drawable/ic_down_arrow" />
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.156"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.opera.app.customwidget.ButtonWithFont
+                                android:id="@+id/btn"
+                                style="@style/label_white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/button_height"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/btn_ripple_effect"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:text="@string/buy_tickets"
+                                android:textAllCaps="false"
+                                font:name="Montserrat-Light" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.156"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                </RelativeLayout>
+            </LinearLayout>
 
-                        <com.opera.app.customwidget.ButtonWithFont
-                            android:id="@+id/btn"
-                            style="@style/label_white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/button_height"
-                            android:layout_marginBottom="20dp"
-                            android:background="@drawable/btn_ripple_effect"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:text="@string/buy_tickets"
-                            android:textAllCaps="false"
-                            font:name="Montserrat-Light" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:background="@color/colorBurgendy"
-            android:fillViewport="true"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <com.opera.app.customwidget.TextViewWithFont
-                style="@style/label_light_gray_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/you_also_like"
-                font:name="Montserrat-Light" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerList"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:background="@color/colorBurgendy"
+                android:fillViewport="true"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    style="@style/label_light_gray_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/you_also_like"
+                    font:name="Montserrat-Light" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
