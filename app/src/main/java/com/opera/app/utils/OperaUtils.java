@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.opera.app.R;
@@ -221,5 +223,14 @@ public class OperaUtils {
 
     public static String[] splitDate(){
         return getCurrentDate().split("/");
+    }
+
+    public static int dpToPx(float dp, Context context) {
+        return dpToPx(dp, context.getResources());
+    }
+
+    public static int dpToPx(float dp, Resources resources) {
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+        return (int) px;
     }
 }

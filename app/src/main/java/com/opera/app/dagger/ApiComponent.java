@@ -10,6 +10,7 @@ import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
+import com.opera.app.activities.WalletActivity;
 import com.opera.app.fragments.DiningFragment;
 import com.opera.app.fragments.GenresEventsFragment;
 import com.opera.app.fragments.HomeFragment;
@@ -40,4 +41,5 @@ public interface ApiComponent {
     void inject(HomeFragment mHomeFragment);
     void inject(EventDetailsActivity mEventDetailsActivity);
     void inject(GenresEventsFragment mGenresEventsFragment);
+    void inject(WalletActivity walletActivity);
 }

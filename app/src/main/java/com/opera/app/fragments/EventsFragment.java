@@ -43,9 +43,9 @@ public class EventsFragment extends BaseFragment{
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_events_2, container, false);
+        View view = inflater.inflate(R.layout.fragment_events, container, false);
 
-        //initTabs(view);
+        initTabs(view);
         return view;
     }
 

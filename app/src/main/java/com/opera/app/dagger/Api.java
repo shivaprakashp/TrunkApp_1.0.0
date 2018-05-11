@@ -20,6 +20,7 @@ import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPoj
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.pojo.settings.SetSettingsPojo;
+import com.opera.app.pojo.wallet.WalletDetails;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -84,5 +85,8 @@ public interface Api {
 
     @POST("events/extended/GetEventById/")
     Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
+
+    @GET("http://www.mocky.io/v2/5af48dda55000057007a535e")
+    Call<WalletDetails> getWalletDetails();
 
 }

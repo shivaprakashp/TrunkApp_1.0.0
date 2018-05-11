@@ -18,7 +18,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -182,9 +182,8 @@
                                         android:id="@+id/expandableTextViewInfo"
                                         style="@style/label_white_small"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:ellipsize="end"
                                         android:maxLines="3"
                                         android:text="" />
 
@@ -232,7 +231,7 @@
                                 style="@style/label_white"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/button_height"
-                                android:layout_marginBottom="20dp"
+                                android:layout_margin="10dp"
                                 android:background="@drawable/btn_ripple_effect"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
