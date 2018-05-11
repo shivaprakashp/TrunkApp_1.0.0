@@ -150,4 +150,11 @@ public class MainController {
         listener.dataLoad(call);
     }
 
+    public void getWalletDetails(TaskComplete taskComplete, Api api){
+        Call call = api.getWalletDetails();
+        properties.setRequestKey(AppConstants.GETGENRESLISTING.GETGENRESLISTING);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
 }

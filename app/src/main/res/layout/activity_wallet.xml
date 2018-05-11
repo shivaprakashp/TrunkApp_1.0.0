@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBurgendy"
+    tools:context="com.opera.app.activities.WalletActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <include
+            android:id="@+id/inc_set_toolbar"
+            layout="@layout/view_home_toolbar" />
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDarkBurgendy" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorDarkBurgendy">
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnWalletEvent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/walletEvents"
+            style="@style/label_white"
+            font:name="Montserrat-Regular"/>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorLightBurgendy" />
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnWalletRest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/walletRestaurant"
+            style="@style/label_white"
+            font:name="Montserrat-Regular"/>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorLightBurgendy" />
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnWalletGift"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/walletGiftCards"
+            style="@style/label_white"
+            font:name="Montserrat-Regular"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDarkBurgendy" />
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/walletTabHost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_marginTop="4dp"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorWhite"
+        app:tabTextColor="@color/colorTabText" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/walletViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

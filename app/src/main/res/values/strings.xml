@@ -20,6 +20,7 @@
     <!--Sessoin Manager-->
     <string name="prefName">userLoginPref</string>
     <string name="prefUserData">userLoginData</string>
+    <string name="prefWalletData">walletData</string>
 
     <string name="NotificationSwitchValue">notificationSwitchValue</string>
     <string name="PromotionSwitchValue">promotionSwitchValue</string>
@@ -911,6 +912,7 @@
     <string name="special_requests">Special Requests/Occasions</string>
     <string name="select_title">Select title*</string>
 
+
     <!--Events Fragment-->
     <string name="tab_all_events">ALL</string>
     <string name="tab_today_events">TODAY</string>
@@ -924,5 +926,17 @@
     <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
     <string name="search">Search</string>
     <string name="whats_on">What\'s on</string>
-    <string name="empty" ></string>
+    <string name="empty"></string>
+
+    <!--Wallet activity -->
+    <string name="walletTitle">Wallet</string>
+    <string name="walletEvents">EVENTS</string>
+    <string name="walletRestaurant">RESTAURANTS</string>
+    <string name="walletGiftCards">GIFT CARDS</string>
+    <string name="walletToday">TODAY</string>
+    <string name="walletUpcoming">UPCOMING</string>
+    <string name="walletComplete">COMPLETED</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

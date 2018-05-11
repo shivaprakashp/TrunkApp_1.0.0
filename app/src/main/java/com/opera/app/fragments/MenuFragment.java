@@ -15,6 +15,7 @@ import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
+import com.opera.app.activities.WalletActivity;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.preferences.SessionManager;
@@ -195,6 +196,14 @@ public class MenuFragment extends BaseFragment {
             public void onClick(View v) {
                 intent = new Intent(getActivity(), ContactUsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        menu_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), WalletActivity.class);
+                getActivity().startActivity(intent);
             }
         });
     }

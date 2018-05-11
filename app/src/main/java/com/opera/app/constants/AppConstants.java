@@ -65,4 +65,8 @@ public interface AppConstants {
         String GETGENRESLISTING = "GETGENRESLISTING";
     }
 
+    interface GETWALLETDETAIL{
+        String GETWALLETDETAIL = "GETWALLETDETAIL";
+    }
+
 }
