@@ -86,7 +86,7 @@ public class DiningFragment extends BaseFragment {
 
     private static Bundle bundle;
 
-    public static DiningFragment newDiningFragment(RestaurantsData data){
+    public static DiningFragment newDiningFragment(RestaurantsData data) {
         DiningFragment fragment = new DiningFragment();
         bundle = new Bundle();
         bundle.putSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, data);
@@ -94,6 +94,7 @@ public class DiningFragment extends BaseFragment {
 
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +112,10 @@ public class DiningFragment extends BaseFragment {
 
         initData(view);
 
-        data = (RestaurantsData)getArguments().getSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
-        if (data!=null){
+        data = (RestaurantsData) getArguments().getSerializable(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        if (data != null) {
             setRestaurant(data);
-        }else{
+        } else {
             GetSeanConollyDetails();
         }
 
@@ -136,7 +137,7 @@ public class DiningFragment extends BaseFragment {
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         Log.i("onStop", "onStop");
         bundle.clear();
@@ -171,8 +172,8 @@ public class DiningFragment extends BaseFragment {
                             in.putExtra("Header", data.getRestName());
                             mActivity.startActivity(in);
                         }
-                    }else {
-                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                    } else {
+                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
                         dialog.show();
                     }
                 } else {
@@ -205,13 +206,13 @@ public class DiningFragment extends BaseFragment {
         }
     };
 
-    private void getSeanConnollyData(){
+    private void getSeanConnollyData() {
         setRestaurant(restOpeation.getSeanConnolly());
         restOpeation.close();
 
     }
 
-    private void setRestaurant(RestaurantsData data){
+    private void setRestaurant(RestaurantsData data) {
         mLinearReadMore.setVisibility(View.VISIBLE);
         try {
             this.data = data;
