@@ -144,6 +144,8 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
+       /* mEventAllData=new ArrayList<>();
+        mHighlightedEvents=new ArrayList<>();*/
         mEventAllData = mEventListingDB.fetchAllEvents();
         mEventListingDB.close();
         mAdapterEvent.notifyDataSetChanged();
