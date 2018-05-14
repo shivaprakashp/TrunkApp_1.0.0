@@ -173,7 +173,7 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void fetchDataFromDB() {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
-        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList().getId());
+//        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList().getId());
 
         if (mEventListingData.size() > 0) {
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()

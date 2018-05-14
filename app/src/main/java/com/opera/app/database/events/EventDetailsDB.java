@@ -116,11 +116,11 @@ public class EventDetailsDB {
             contentValue.put(EVENT_INTERNAL_NAME, mEventDetailsData.get(0).getInternalName());
             contentValue.put(EVENT_IS_HIGHLIGHTED, mEventDetailsData.get(0).getHighlighted());
 
-            contentValue.put(EVENT_GENRES_ID, mEventDetailsData.get(0).getGenreList().getId());
+           /* contentValue.put(EVENT_GENRES_ID, mEventDetailsData.get(0).getGenreList().getId());
             contentValue.put(EVENT_GENRES_INTERNAL_NAME, mEventDetailsData.get(0).getGenreList().getInternalName());
             contentValue.put(EVENT_GENRE, mEventDetailsData.get(0).getGenreList().getGenere());
             contentValue.put(EVENT_GENRE_DESCRIPTION, mEventDetailsData.get(0).getGenreList().getDescription());
-            contentValue.put(EVENT_GENRES_IMAGE, mEventDetailsData.get(0).getGenreList().getImage());
+            contentValue.put(EVENT_GENRES_IMAGE, mEventDetailsData.get(0).getGenreList().getImage());*/
 
             String mEventDatesAndTimes = gson.toJson(mEventDetailsData.get(0).getEventTime());
             contentValue.put(EVENT_TIMES, mEventDatesAndTimes);
@@ -166,7 +166,7 @@ public class EventDetailsDB {
                     mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
                     mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
                     mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
-                    mEvents.setGenreList(mGenreList);
+//                    mEvents.setGenreList(mGenreList);
 
                     Type type1 = new TypeToken<ArrayList<EventTime>>() {
                     }.getType();

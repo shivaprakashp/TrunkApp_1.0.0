@@ -80,9 +80,18 @@ public class Events {
 
     @SerializedName("Genre")
     @Expose
-    private GenreList Genre;
+    private ArrayList<GenreList> Genre;
 
     boolean IsInfoOpen = false;
+    String IsFavourite="false";
+
+    public String isFavourite() {
+        return IsFavourite;
+    }
+
+    public void setFavourite(String favourite) {
+        IsFavourite = favourite;
+    }
 
     public boolean isInfoOpen() {
         return IsInfoOpen;
@@ -247,11 +256,11 @@ public class Events {
         EndTime = endTime;
     }
 
-    public GenreList getGenreList() {
+    public ArrayList<GenreList> getGenreList() {
         return Genre;
     }
 
-    public void setGenreList(GenreList genreList) {
+    public void setGenreList(ArrayList<GenreList> genreList) {
         Genre = genreList;
     }
 }
