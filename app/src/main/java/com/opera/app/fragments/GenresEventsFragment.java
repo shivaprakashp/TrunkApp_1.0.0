@@ -53,10 +53,11 @@ public class GenresEventsFragment extends BaseFragment {
 
         return view;
     }
-
     private void InitView(View view) {
         ButterKnife.bind(this, view);
         GetGenres();
+        //Onclicks();
+        //initSpinnervalues();
     }
 
     private void GetGenres() {
@@ -71,4 +72,30 @@ public class GenresEventsFragment extends BaseFragment {
         mRecyclerGenre.setItemAnimator(new DefaultItemAnimator());
         mRecyclerGenre.setAdapter(mAdapterGenres);
     }
+
+    /*private void initSpinnervalues() {
+
+        List<String> labels = mEventGenreDB.getAllGenresLabels();
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(mActivity,android.R.layout.simple_spinner_item, labels);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerSelectGenre.setAdapter(dataAdapter);
+    }
+
+    private void Onclicks() {
+        mSpinnerSelectGenre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String label = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), "You selected: " + label,
+                        Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }*/
+
 }

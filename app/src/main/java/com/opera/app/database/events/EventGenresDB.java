@@ -57,7 +57,7 @@ public class EventGenresDB {
     }
 
     //insterting data
-    public void insertOtherEvents(ArrayList<GenreList> mGenresListingData) {
+    public void insertEventsGenres(ArrayList<GenreList> mGenresListingData) {
         ContentValues contentValue = new ContentValues();
         Gson gson = new Gson();
         String mEventStartDate = "", mEventEndDate = "";
@@ -91,10 +91,10 @@ public class EventGenresDB {
                     GenreList mGenreList = new GenreList();
 
                     mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
+                    mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
+                    mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
+                    mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
+                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
 
                     dataArrayEvents.add(mGenreList);
                 } while (cursor.moveToNext());
@@ -138,4 +138,6 @@ public class EventGenresDB {
     public void deleteCompleteTable(String mTableName) {
         database.delete(mTableName, null, null);
     }
+
+
 }

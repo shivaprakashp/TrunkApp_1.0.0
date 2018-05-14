@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +20,6 @@ import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
-import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -163,7 +159,7 @@ public class HomeFragment extends BaseFragment {
 
                     mEventGenresDB.open();
                     mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
-                    mEventGenresDB.insertOtherEvents(mEventDataPojo.getGenreList());
+                    mEventGenresDB.insertEventsGenres(mEventDataPojo.getGenreList());
 
                     fetchDataFromDB();
 

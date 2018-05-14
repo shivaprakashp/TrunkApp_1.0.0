@@ -2,7 +2,6 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,7 @@ public class AdapterGenres extends RecyclerView.Adapter<AdapterGenres.MyViewHold
                 R.anim.anim_slide_out_left);
     }
 
-    public void RefreshList(ArrayList<GenreList> mEventListingData) {
+    public void RefreshGenresList(ArrayList<GenreList> mEventListingData) {
         this.mEventListingData = mEventListingData;
         notifyDataSetChanged();
     }
@@ -68,7 +67,7 @@ public class AdapterGenres extends RecyclerView.Adapter<AdapterGenres.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.event_row, parent, false);
+                .inflate(R.layout.event_row_for_tabs, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -78,7 +77,8 @@ public class AdapterGenres extends RecyclerView.Adapter<AdapterGenres.MyViewHold
         final GenreList mEventPojo = mEventListingData.get(position);
 
         //holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
-        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
+        holder.txtEventInfo.setText(mEventPojo.getDescription());
+        //holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
         Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
                 .into(holder.imgEvent, new Callback() {
                     @Override
