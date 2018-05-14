@@ -11,15 +11,18 @@ public class Restaurant {
     @SerializedName("restName")
     @Expose
     private String restName;
+    @SerializedName("reserveDate")
+    @Expose
+    private String reserveDate;
+    @SerializedName("mealPeriod")
+    @Expose
+    private String mealPeriod;
     @SerializedName("preferDate")
     @Expose
     private String preferDate;
     @SerializedName("prefferTime")
     @Expose
     private String prefferTime;
-    @SerializedName("mealPeriod")
-    @Expose
-    private String mealPeriod;
     @SerializedName("referenceNo")
     @Expose
     private String referenceNo;
@@ -40,6 +43,22 @@ public class Restaurant {
         this.restName = restName;
     }
 
+    public String getReserveDate() {
+        return reserveDate;
+    }
+
+    public void setReserveDate(String reserveDate) {
+        this.reserveDate = reserveDate;
+    }
+
+    public String getMealPeriod() {
+        return mealPeriod;
+    }
+
+    public void setMealPeriod(String mealPeriod) {
+        this.mealPeriod = mealPeriod;
+    }
+
     public String getPreferDate() {
         return preferDate;
     }
@@ -54,14 +73,6 @@ public class Restaurant {
 
     public void setPrefferTime(String prefferTime) {
         this.prefferTime = prefferTime;
-    }
-
-    public String getMealPeriod() {
-        return mealPeriod;
-    }
-
-    public void setMealPeriod(String mealPeriod) {
-        this.mealPeriod = mealPeriod;
     }
 
     public String getReferenceNo() {

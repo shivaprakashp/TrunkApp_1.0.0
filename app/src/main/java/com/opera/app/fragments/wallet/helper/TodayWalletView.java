@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.pojo.wallet.Event;
+import com.opera.app.pojo.wallet.GiftCard;
+import com.opera.app.pojo.wallet.Restaurant;
 
 import java.util.List;
 
@@ -73,6 +75,59 @@ public class TodayWalletView extends LinearLayout {
             txtWalletEventSection.setText(event.getSection());
             txtWalletEventRow.setText(event.getSeatRow());
             txtWalletEventSeat.setText(event.getSeatNo());
+            this.addView(rowView);
+        }
+    }
+
+    public void setRest(List<Restaurant> restaurantList){
+
+        LayoutInflater inflater = (LayoutInflater) getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView;
+
+        TextViewWithFont dateReservation, mealPeriod, preferTime, referNo, bookDate;
+
+        for ( int i = 0 ; i < restaurantList.size() ; i++ ){
+
+            Restaurant restaurant = restaurantList.get(i);
+            rowView = (ViewGroup) inflater
+                    .inflate(R.layout.helper_wallet_rest, null, false);
+
+            dateReservation = (TextViewWithFont) rowView.findViewById(R.id.txtDateReserve);
+            mealPeriod = (TextViewWithFont) rowView.findViewById(R.id.txtDinner);
+            preferTime = (TextViewWithFont) rowView.findViewById(R.id.txtPrefTime);
+            referNo = (TextViewWithFont) rowView.findViewById(R.id.txtReferNo);
+            bookDate = (TextViewWithFont) rowView.findViewById(R.id.txtBookDate);
+
+            dateReservation.setText(" "+restaurant.getReserveDate());
+            mealPeriod.setText(" "+restaurant.getMealPeriod());
+            preferTime.setText(" "+restaurant.getPrefferTime());
+            referNo.setText(" "+restaurant.getReferenceNo());
+            bookDate.setText(" "+restaurant.getPreferDate());
+
+            this.addView(rowView);
+        }
+    }
+
+    public void setGift(List<GiftCard> cardList){
+
+        LayoutInflater inflater = (LayoutInflater) getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView;
+
+        TextViewWithFont txtVoucherAmount;
+
+        for (int i = 0 ; i < cardList.size() ; i++ ){
+
+            GiftCard giftCard = cardList.get(i);
+
+            rowView = (ViewGroup) inflater
+                    .inflate(R.layout.helper_wallet_gift, null, false);
+
+            txtVoucherAmount = (TextViewWithFont) rowView.findViewById(R.id.txtVoucherAmount);
+
+            txtVoucherAmount.setText(giftCard.getVoucherAmount());
+
             this.addView(rowView);
         }
     }

@@ -86,7 +86,7 @@ public interface Api {
     @POST("events/extended/GetEventById/")
     Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
 
-    @GET("http://www.mocky.io/v2/5af48dda55000057007a535e")
+    @GET("http://www.mocky.io/v2/5af5605f5500005f347a55a6")
     Call<WalletDetails> getWalletDetails();
 
 }
