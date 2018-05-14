@@ -27,6 +27,7 @@ import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.preferences.wallet.WalletPreference;
+import com.opera.app.utils.OperaManager;
 
 import javax.inject.Inject;
 
@@ -68,6 +69,8 @@ public class WalletActivity extends BaseActivity {
     Retrofit retrofit;
     private Api api;
 
+    private String enumData;
+
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
@@ -75,7 +78,7 @@ public class WalletActivity extends BaseActivity {
                 WalletPreference preference = new WalletPreference(mActivity);
                 preference.deleteWalletData();
                 preference.setWalletData((WalletDetails) response.body());
-
+                initButtons(WalletEnums.EVENTS);
             }else if (response.errorBody() != null) {
                 try {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
@@ -102,7 +105,7 @@ public class WalletActivity extends BaseActivity {
         initView();
         initToolbar();
         getHistory();
-        initButtons(WalletEnums.EVENTS);
+
 
     }
 
@@ -133,29 +136,38 @@ public class WalletActivity extends BaseActivity {
                 btnEvent.setBackgroundColor(getResources().getColor(R.color.colorLightBurgendy));
                 btnRest.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
                 btnGift.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
-                initFragment();
+                initFragment(WalletEnums.EVENTS);
+
                 break;
             case RESTAURANT:
                 btnEvent.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
                 btnRest.setBackgroundColor(getResources().getColor(R.color.colorLightBurgendy));
                 btnGift.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
-                initFragment();
+                initFragment(WalletEnums.RESTAURANT);
+
                 break;
             case GIFT:
                 btnEvent.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
                 btnRest.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
                 btnGift.setBackgroundColor(getResources().getColor(R.color.colorLightBurgendy));
-                initFragment();
+                initFragment(WalletEnums.GIFT);
+
                 break;
         }
     }
 
-    private void initFragment(){
-        WalletFragmentPagerAdapter adapter = new WalletFragmentPagerAdapter(mActivity, getSupportFragmentManager());
-        walletViewPager.setAdapter(adapter);
+    private void initFragment(WalletEnums enums){
+        OperaManager.createInstance().setWalletData(enums);
+        WalletFragmentPagerAdapter adapter = new WalletFragmentPagerAdapter(mActivity,
+                getSupportFragmentManager());
 
+        walletViewPager.setAdapter(adapter);
         walletTabHost.setupWithViewPager(walletViewPager);
     }
+
+  /*  public static String getEnumData(){
+        return enumData;
+    }*/
 
     private void getHistory(){
         MainController controller = new MainController(WalletActivity.this);

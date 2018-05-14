@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.opera.app.R;
+import com.opera.app.enums.WalletEnums;
 
 public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -20,8 +21,8 @@ public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0: return new TodayWalletFragment();
-            case 1: return new UpcomingWalletFragment();
-            case 2: return new CompletedWalletFragment();
+            case 1: return new TodayWalletFragment();
+            case 2: return new TodayWalletFragment();
         }
 
         return null;
@@ -47,5 +48,4 @@ public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
 }

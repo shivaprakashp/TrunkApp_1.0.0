@@ -112,7 +112,7 @@ public class EventDetailsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.menu_settings));
+        txtToolbarName.setVisibility(View.GONE);
 
 
         ((MainApplication) getApplication()).getNetComponent().inject(this);
@@ -155,7 +155,6 @@ public class EventDetailsActivity extends BaseActivity {
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
-                    mEventListingDB.open();
                     mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
                     mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
                     fetchDataFromDB();

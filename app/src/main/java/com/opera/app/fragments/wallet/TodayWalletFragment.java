@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.enums.WalletEnums;
 import com.opera.app.fragments.wallet.helper.TodayWalletView;
 import com.opera.app.preferences.wallet.WalletPreference;
+import com.opera.app.utils.OperaManager;
 
 
 /**
@@ -19,11 +21,6 @@ import com.opera.app.preferences.wallet.WalletPreference;
 public class TodayWalletFragment extends Fragment {
 
     private TodayWalletView walletView;
-
-    public TodayWalletFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +31,22 @@ public class TodayWalletFragment extends Fragment {
         walletView = (TodayWalletView) view.findViewById(R.id.helperWalletEvent);
 
         WalletPreference preference = new WalletPreference(getActivity());
-        Log.i("data",preference.getWalletData().getMessage());
-        walletView.setEvents(preference.getWalletData().getEvents());
+        if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
+            walletView.setEvents(preference.getWalletData().getEvents());
+        }else if(WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
+            walletView.setRest(preference.getWalletData().getRestaurants());
+        }else if(WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
+            walletView.setGift(preference.getWalletData().getGiftCard());
+        }
+
+
         return view;
     }
 
+    private void readBundle(Bundle bundle) {
+        if (bundle != null) {
+           Log.i("enums", bundle.getString("enum"));
+
+        }
+    }
 }
