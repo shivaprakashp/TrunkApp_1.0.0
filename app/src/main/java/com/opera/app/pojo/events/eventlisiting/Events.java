@@ -111,13 +111,15 @@ public class Events {
         this.EventId=EventId;
     }
 
-    public Events(String Name, String image, String internalName, String startDate, String endDate, String Description) {
+    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String Description,String IsFavourite) {
+        this.EventId=EventId;
         this.Name = Name;
         Image = image;
         InternalName = internalName;
         From = startDate;
         To = endDate;
         this.Description = Description;
+        this.IsFavourite=IsFavourite;
     }
 
     public String getName() {

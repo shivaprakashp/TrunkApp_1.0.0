@@ -1,5 +1,6 @@
 package com.opera.app.database.events;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,6 +17,7 @@ import com.opera.app.pojo.events.eventlisiting.EventGenres;
 import com.opera.app.pojo.events.eventlisiting.EventTime;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
+import com.opera.app.preferences.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,8 +101,9 @@ public class EventListingDB {
     }
 
     //insterting data
-    public void insertOtherEvents(ArrayList<Events> mEventListingData) {
+    public void insertOtherEvents(Activity mActivity, ArrayList<Events> mEventListingData, ArrayList<Events> mEventFavouritesForGuest) {
         ContentValues contentValue = new ContentValues();
+        SessionManager manager = new SessionManager(mActivity);
         Gson gson = new Gson();
         String mEventStartDate = "", mEventEndDate = "";
         try {
@@ -120,13 +123,25 @@ public class EventListingDB {
                 contentValue.put(EVENT_END_TIME, mEventListingData.get(i).getEndTime());
                 contentValue.put(EVENT_INTERNAL_NAME, mEventListingData.get(i).getInternalName());
                 contentValue.put(EVENT_IS_HIGHLIGHTED, mEventListingData.get(i).getHighlighted());
-                contentValue.put(EVENT_IS_FAVOURITE, "false");            // need to update
 
-                /*contentValue.put(EVENT_GENRES_ID, mEventListingData.get(i).getGenreList().getId());
-                contentValue.put(EVENT_GENRES_INTERNAL_NAME, mEventListingData.get(i).getGenreList().getInternalName());
-                contentValue.put(EVENT_GENRE, mEventListingData.get(i).getGenreList().getGenere());
-                contentValue.put(EVENT_GENRE_DESCRIPTION, mEventListingData.get(i).getGenreList().getDescription());
-                contentValue.put(EVENT_GENRES_IMAGE, mEventListingData.get(i).getGenreList().getImage());*/
+                if (manager.isUserLoggedIn()) {
+                    contentValue.put(EVENT_IS_FAVOURITE, mEventListingData.get(i).isFavourite());            // need to update
+                } else {
+                    //Handling for guest user
+                    if (mEventFavouritesForGuest.size() > 0) {
+                        for (int j = 0; j < mEventFavouritesForGuest.size(); j++) {
+                            if (mEventListingData.get(i).getEventId().equalsIgnoreCase(mEventFavouritesForGuest.get(j).getEventId())) {
+                                contentValue.put(EVENT_IS_FAVOURITE, mEventFavouritesForGuest.get(j).isFavourite());
+                            }
+                        }
+
+                    } else {
+                        contentValue.put(EVENT_IS_FAVOURITE, mEventListingData.get(i).isFavourite());
+                    }
+
+                }
+
+
                 String mEventGenres = gson.toJson(mEventListingData.get(i).getGenreList());
                 contentValue.put(EVENT_GENRE, mEventGenres);
 
@@ -142,6 +157,12 @@ public class EventListingDB {
         }
     }
 
+    public void UpdateFavouriteData(String mEventId, String IsFavourite) {
+        ContentValues cv = new ContentValues();
+        cv.put(EVENT_IS_FAVOURITE, IsFavourite);
+        database.update(TABLE_EVENT_LISTING, cv, "_id=" + "=\"" + mEventId + "\"", null);
+    }
+
     public ArrayList<Events> fetchAllEvents() {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
@@ -152,7 +173,6 @@ public class EventListingDB {
                 cursor.moveToFirst();
                 do {
                     Events mEvents = new Events();
-                    GenreList mGenreList = new GenreList();
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
@@ -170,13 +190,6 @@ public class EventListingDB {
                     mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
                     mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
-
-                   /* mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
-                    mEvents.setGenreList(mGenreList);*/
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();
@@ -199,10 +212,33 @@ public class EventListingDB {
         return dataArrayEvents;
     }
 
-    public ArrayList<Events> fetchEventsOfSpecificGenres(String mGenreId) {
+    //For guest only
+    public ArrayList<Events> fetchEventsWithFavouriteForGuest() {
+        ArrayList<Events> dataArrayEvents = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    Events mEvents = new Events();
+                    mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
+                    mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
+
+                    dataArrayEvents.add(mEvents);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            Log.e("ErrorMessage", e.getMessage());
+        }
+
+        return dataArrayEvents;
+    }
+
+    public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists) {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
-        /*Gson gson = new Gson();
+        Gson gson = new Gson();
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
@@ -227,11 +263,11 @@ public class EventListingDB {
                     mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
 
-                    *//*mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
+                    /*mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
                     mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
                     mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
                     mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
-                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));*//*
+                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));*/
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();
@@ -244,14 +280,20 @@ public class EventListingDB {
                     mEvents.setGenreList(mArrayEventGenres);
                     mEvents.setEventTime(mArrayEventDateAndTime);
 
-                    if (mGenreId.equalsIgnoreCase(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)))) {
-                        dataArrayEvents.add(mEvents);
+                    for (int i = 0; i < mArrayEventGenres.size(); i++) {
+                        for (int j = 0; j < mGenreLists.size(); j++) {
+                            if (mArrayEventGenres.get(i).getId().equalsIgnoreCase(mGenreLists.get(j).getId())) {
+                                dataArrayEvents.add(mEvents);
+                                break;
+                            }
+                        }
                     }
+
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
-        }*/
+        }
 
         return dataArrayEvents;
     }

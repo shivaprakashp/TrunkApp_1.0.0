@@ -101,7 +101,7 @@ public class TodayEventsFragment extends BaseFragment {
                 }
 
             if (date.before(todate) && date.after(fromdate) || date.equals(todate) || date.equals(fromdate)) {
-                mFilteredEvents.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription()));
+                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
             }
         }
 

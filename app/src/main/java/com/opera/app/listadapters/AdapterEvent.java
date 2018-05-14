@@ -85,7 +85,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
-        Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {

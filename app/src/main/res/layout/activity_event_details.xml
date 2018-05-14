@@ -178,40 +178,51 @@
                                         android:layout_height="20dp"
                                         android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 
-                                    <com.opera.app.customwidget.ExpandableTextView
-                                        android:id="@+id/expandableTextViewInfo"
-                                        style="@style/label_white_small"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="10dp"
-                                        android:maxLines="3"
-                                        android:text="" />
+                                    <ScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
 
-                                    <LinearLayout
-                                        android:id="@+id/linearReadMore"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_marginTop="10dp"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:visibility="visible">
-
-                                        <com.opera.app.customwidget.TextViewWithFont
-                                            android:id="@+id/txtShowmore"
-                                            style="@style/label_white_small"
-                                            android:layout_width="wrap_content"
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginRight="10dp"
-                                            android:text="@string/read_more"
-                                            android:textAllCaps="false" />
+                                            android:orientation="vertical">
 
-                                        <ImageView
-                                            android:id="@+id/ivShowmore"
-                                            android:layout_width="10dp"
-                                            android:layout_height="10dp"
-                                            android:src="@drawable/ic_down_arrow" />
-                                    </LinearLayout>
+                                            <TextView
+                                                android:id="@+id/expandableTextViewInfo"
+                                                style="@style/label_white_small"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="10dp"
+                                                android:maxLines="3"
+                                                android:text="" />
+
+                                            <LinearLayout
+                                                android:id="@+id/linearReadMore"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_marginTop="10dp"
+                                                android:gravity="center"
+                                                android:orientation="horizontal"
+                                                android:visibility="gone">
+
+                                                <com.opera.app.customwidget.TextViewWithFont
+                                                    android:id="@+id/txtShowmore"
+                                                    style="@style/label_white_small"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="10dp"
+                                                    android:text="@string/read_more"
+                                                    android:textAllCaps="false" />
+
+                                                <ImageView
+                                                    android:id="@+id/ivShowmore"
+                                                    android:layout_width="10dp"
+                                                    android:layout_height="10dp"
+                                                    android:src="@drawable/ic_down_arrow" />
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                    </ScrollView>
 
                                 </LinearLayout>
 
@@ -262,12 +273,17 @@
                     android:text="@string/you_also_like"
                     font:name="Montserrat-Light" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerList"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpagerFavGenres"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="wrap_content" />
 
+                <!-- <android.support.v7.widget.RecyclerView
+                     android:id="@+id/recyclerList"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+ -->
             </LinearLayout>
 
         </LinearLayout>

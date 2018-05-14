@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -55,7 +57,8 @@ public class EventDetailsActivity extends BaseActivity {
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private ArrayList<Events> mEventsWithSameGenres = new ArrayList<>();
     private TextViewWithFont txtToolbarName;
-    private AdapterEvent mAdapterEvent;
+//    private AdapterEvent mAdapterEvent;
+    private WhatsOnPagerAdapter adapterFavGenres;
 
     @Inject
     Retrofit retrofit;
@@ -73,10 +76,13 @@ public class EventDetailsActivity extends BaseActivity {
     View inc_set_toolbar_text;
 
     @BindView(R.id.expandableTextViewInfo)
-    ExpandableTextView mExpandableTextView;
+    TextView mExpandableTextView;
 
-    @BindView(R.id.recyclerList)
-    RecyclerView mRecyclerRestaurants;
+   /* @BindView(R.id.recyclerList)
+    RecyclerView mRecyclerRestaurants;*/
+
+    @BindView(R.id.viewpagerFavGenres)
+    ViewPager mViewpagerFavGenres;
 
     @BindView(R.id.cover_image)
     ImageView mCover_image;
@@ -130,16 +136,22 @@ public class EventDetailsActivity extends BaseActivity {
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
 
         //What's on events
-        mAdapterEvent = new AdapterEvent(mActivity, mEventsWithSameGenres);
+        /*mAdapterEvent = new AdapterEvent(mActivity, mEventsWithSameGenres);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerRestaurants.setLayoutManager(mLayoutManager);
         mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerRestaurants.setAdapter(mAdapterEvent);
+        mRecyclerRestaurants.setAdapter(mAdapterEvent);*/
+
+        mViewpagerFavGenres.setClipToPadding(false);
+        mViewpagerFavGenres.setPageMargin(20);
+        //What's on events
+        adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres);
+        mViewpagerFavGenres.setAdapter(adapterFavGenres);
 
         //Expanded Textview
-        mExpandableTextView.expand();
+        /*mExpandableTextView.expand();
         txtShowmore.setText(R.string.read_less);
-        ivShowmore.setScaleY(-1);
+        ivShowmore.setScaleY(-1);*/
     }
 
     private void GetSpecificEventDetails() {
@@ -155,6 +167,7 @@ public class EventDetailsActivity extends BaseActivity {
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventDetailsDB.open();
+                    mEventListingDB.open();
                     mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
                     mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
                     fetchDataFromDB();
@@ -173,7 +186,7 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void fetchDataFromDB() {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
-//        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList().getId());
+        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList());
 
         if (mEventListingData.size() > 0) {
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
@@ -193,8 +206,7 @@ public class EventDetailsActivity extends BaseActivity {
             txtToolbarName.setText(mEventListingData.get(0).getName());
             mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
-            mAdapterEvent.RefreshList(mEventsWithSameGenres);
-            mAdapterEvent.notifyDataSetChanged();
+            adapterFavGenres.RefreshList(mEventsWithSameGenres);
         }
 
         mEventDetailsDB.close();
@@ -212,7 +224,7 @@ public class EventDetailsActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.linearReadMore:
+           /* case R.id.linearReadMore:
                 if (mExpandableTextView.isExpanded()) {
                     mExpandableTextView.collapse();
                     txtShowmore.setText(R.string.read_more);
@@ -222,7 +234,7 @@ public class EventDetailsActivity extends BaseActivity {
                     txtShowmore.setText(R.string.read_less);
                     ivShowmore.setScaleY(-1);
                 }
-                break;
+                break;*/
         }
     }
 }

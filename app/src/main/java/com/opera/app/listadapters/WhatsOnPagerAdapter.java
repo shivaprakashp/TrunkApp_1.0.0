@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -31,6 +32,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<Events> mWhatsEvents;
+    private EventListingDB mEventListingDB;
     Animation slide_in_left;
     Animation slide_out_left;
 
@@ -43,6 +45,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
 
         slide_out_left = AnimationUtils.loadAnimation(mContext,
                 R.anim.anim_slide_out_left);
+        mEventListingDB = new EventListingDB(mContext);
     }
 
     @Override
@@ -56,11 +59,19 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         final ProgressBar progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
         ImageView imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
+        ImageView imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
+
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
 
         txtEventInfo.setText(Html.fromHtml(eventObject.getDescription()));
         txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
+
+        if (eventObject.isFavourite().equalsIgnoreCase("true")) {
+            imgFavourite.setImageDrawable(mContext.getResources().getDrawable(R.drawable.fav_selected));
+        } else {
+            imgFavourite.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_favourite));
+        }
 
         Picasso.with(mContext).load(eventObject.getImage()).fit().centerCrop()
                 .into(imgEvent, new Callback() {
@@ -87,6 +98,22 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                     linearHolder.setVisibility(View.VISIBLE);
                     eventObject.setInfoOpen(true);
                 }
+            }
+        });
+
+        imgFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEventListingDB.open();
+                if (eventObject.isFavourite().equalsIgnoreCase("true")) {
+                    eventObject.setFavourite("false");
+                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
+                } else {
+                    eventObject.setFavourite("true");
+                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
+                }
+                mEventListingDB.close();
+                notifyDataSetChanged();
             }
         });
 

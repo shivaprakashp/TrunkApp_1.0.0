@@ -16,6 +16,8 @@ import android.widget.EditText;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
@@ -27,6 +29,7 @@ import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -49,6 +52,7 @@ public class HomeFragment extends BaseFragment {
     private EventGenresDB mEventGenresDB;
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
     private ArrayList<Events> mWhatsEvents = new ArrayList<>();
+    private SessionManager manager;
 
     private WhatsOnPagerAdapter mWhatsOnPagerAdapter;
     //    private AdapterEvent mAdapterEvent;
@@ -103,6 +107,7 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         ((MainApplication) getActivity().getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
+        manager = new SessionManager(mActivity);
 
         mEventListingDB = new EventListingDB(mActivity);
         mEventGenresDB = new EventGenresDB(mActivity);
@@ -113,9 +118,6 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setPageMargin(20);
         //What's on events
         mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents);
-        /*RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mViewpagerWhatsOnShows.setLayoutManager(mLayoutManager);
-        mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());*/
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
 
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -145,11 +147,19 @@ public class HomeFragment extends BaseFragment {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             AllEvents mEventDataPojo = (AllEvents) response.body();
+
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mEventListingDB.open();
+
+                    //Calling this function for guest user to take his favourite events
+                    if (!manager.isUserLoggedIn()) {
+                        mEventAllData = new ArrayList<>();
+                        mEventAllData = mEventListingDB.fetchEventsWithFavouriteForGuest();
+                    }
+
                     mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
-                    mEventListingDB.insertOtherEvents(mEventDataPojo.getEvents());
+                    mEventListingDB.insertOtherEvents(mActivity, mEventDataPojo.getEvents(), mEventAllData);
 
                     mEventGenresDB.open();
                     mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
@@ -157,14 +167,6 @@ public class HomeFragment extends BaseFragment {
 
                     fetchDataFromDB();
 
-                    /*HashMap<String, ArrayList<GenreList>> mHashGenresList = new HashMap<String, ArrayList<GenreList>>();
-                    mHashGenresList.put("GenreList", mEventDataPojo.getGenreList());
-                    if(null != mHashGenresList){
-                        ArrayList<GenreList> value = mHashGenresList.get("GenreList");
-                        for(GenreList arrayList  : value){
-                            Log.d("value: ",arrayList.getGenere());
-                        }
-                    }*/
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -197,7 +199,7 @@ public class HomeFragment extends BaseFragment {
             }
 
 //            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
-            mWhatsEvents.add(new Events(mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription()));
+            mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription(), mEventAllData.get(i).isFavourite()));
 //            }
         }
 

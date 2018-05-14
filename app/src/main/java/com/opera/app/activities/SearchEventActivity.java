@@ -135,7 +135,7 @@ public class SearchEventActivity extends BaseActivity {
                     }
                 }*/
 
-                mFilteredNames.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription()));
+                mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
             }
         }
 

@@ -40,15 +40,17 @@ public class EventDetailsDB {
     private static final String EVENT_END_TIME = "EVENT_END_TIME";
     private static final String EVENT_INTERNAL_NAME = "EVENT_INTERNAL_NAME";
     private static final String EVENT_IS_HIGHLIGHTED = "EVENT_IS_HIGHLIGHTED";
+    private static final String EVENT_IS_FAVOURITE = "EVENT_IS_FAVOURITE";
 
-    //Part of Genre JSON Object
+   /* //Part of Genre JSON Object
     private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
     private static final String EVENT_GENRES_INTERNAL_NAME = "EVENT_GENRES_INTERNAL_NAME";
     private static final String EVENT_GENRE = "EVENT_GENRE";
     private static final String EVENT_GENRE_DESCRIPTION = "EVENT_GENRE_DESCRIPTION";
-    private static final String EVENT_GENRES_IMAGE = "EVENT_GENRES_IMAGE";
+    private static final String EVENT_GENRES_IMAGE = "EVENT_GENRES_IMAGE";*/
     //
 
+    private static final String EVENT_GENRE = "EVENT_GENRE";
     private static final String EVENT_TIMES = "EVENT_TIMES";
 
     public static final String CREATE_TABLE_EVENT_DETAILS =
@@ -67,11 +69,8 @@ public class EventDetailsDB {
                     + EVENT_END_TIME + " TEXT,"
                     + EVENT_INTERNAL_NAME + " TEXT,"
                     + EVENT_IS_HIGHLIGHTED + " TEXT,"
-                    + EVENT_GENRES_ID + " TEXT,"
-                    + EVENT_GENRES_INTERNAL_NAME + " TEXT,"
+                    + EVENT_IS_FAVOURITE + " TEXT,"
                     + EVENT_GENRE + " TEXT,"
-                    + EVENT_GENRE_DESCRIPTION + " TEXT,"
-                    + EVENT_GENRES_IMAGE + " TEXT,"
                     + EVENT_TIMES + " TEXT);";
 
 
@@ -115,12 +114,11 @@ public class EventDetailsDB {
             contentValue.put(EVENT_END_TIME, mEventDetailsData.get(0).getEndTime());
             contentValue.put(EVENT_INTERNAL_NAME, mEventDetailsData.get(0).getInternalName());
             contentValue.put(EVENT_IS_HIGHLIGHTED, mEventDetailsData.get(0).getHighlighted());
+            contentValue.put(EVENT_IS_FAVOURITE, mEventDetailsData.get(0).isFavourite());
 
-           /* contentValue.put(EVENT_GENRES_ID, mEventDetailsData.get(0).getGenreList().getId());
-            contentValue.put(EVENT_GENRES_INTERNAL_NAME, mEventDetailsData.get(0).getGenreList().getInternalName());
-            contentValue.put(EVENT_GENRE, mEventDetailsData.get(0).getGenreList().getGenere());
-            contentValue.put(EVENT_GENRE_DESCRIPTION, mEventDetailsData.get(0).getGenreList().getDescription());
-            contentValue.put(EVENT_GENRES_IMAGE, mEventDetailsData.get(0).getGenreList().getImage());*/
+
+            String mEventGenres = gson.toJson(mEventDetailsData.get(0).getGenreList());
+            contentValue.put(EVENT_GENRE, mEventGenres);
 
             String mEventDatesAndTimes = gson.toJson(mEventDetailsData.get(0).getEventTime());
             contentValue.put(EVENT_TIMES, mEventDatesAndTimes);
@@ -160,13 +158,13 @@ public class EventDetailsDB {
                     mEvents.setEndTime(cursor.getString(cursor.getColumnIndex(EVENT_END_TIME)));
                     mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
+                    mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
 
-                    mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
-                    mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
-                    mGenreList.setGenere(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)));
-                    mGenreList.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_GENRE_DESCRIPTION)));
-                    mGenreList.setImage(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_IMAGE)));
-//                    mEvents.setGenreList(mGenreList);
+                    Type type2 = new TypeToken<ArrayList<GenreList>>() {
+                    }.getType();
+                    ArrayList<GenreList> mArrayGenres = gson.fromJson(cursor.getString(cursor.getColumnIndex(EVENT_GENRE)), type2);
+
+                    mEvents.setGenreList(mArrayGenres);
 
                     Type type1 = new TypeToken<ArrayList<EventTime>>() {
                     }.getType();
