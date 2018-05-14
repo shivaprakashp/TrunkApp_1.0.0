@@ -41,7 +41,6 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, startClass);
         startActivity(intent);
         //finish();
-
     }
 
     public void openActivityWithClearPreviousActivities(Activity activity, Class<?> startClass) {

@@ -213,6 +213,33 @@ public class EventListingDB {
     }
 
     //For guest only
+    public boolean IsFavouriteForSpecificEvent(String mEventId) {
+        boolean IsFavourite = false;
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING + " where _id = '" + mEventId + "'", null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    Events mEvents = new Events();
+                    mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
+                    mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
+
+                    if (cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)).equalsIgnoreCase("true")) {
+                        IsFavourite = true;
+                    } else {
+                        IsFavourite = false;
+                    }
+
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            Log.e("ErrorMessage", e.getMessage());
+        }
+
+        return IsFavourite;
+    }
+
+    //For guest only
     public ArrayList<Events> fetchEventsWithFavouriteForGuest() {
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
@@ -235,6 +262,29 @@ public class EventListingDB {
         return dataArrayEvents;
     }
 
+   /* //For guest only
+    public ArrayList<Events> fetchIsFavouriteForSpcificEventId(String mEventId) {
+        ArrayList<Events> dataArrayEvents = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    Events mEvents = new Events();
+                    mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
+                    mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
+
+                    dataArrayEvents.add(mEvents);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            Log.e("ErrorMessage", e.getMessage());
+        }
+
+        return dataArrayEvents;
+    }*/
+
     public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists) {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
@@ -245,7 +295,6 @@ public class EventListingDB {
                 cursor.moveToFirst();
                 do {
                     Events mEvents = new Events();
-                    GenreList mGenreList = new GenreList();
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));

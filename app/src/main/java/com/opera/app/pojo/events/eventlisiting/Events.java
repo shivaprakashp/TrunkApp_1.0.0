@@ -105,10 +105,11 @@ public class Events {
     public Events() {
     }
 
-    public Events(String image, String internalName,String EventId) {
+    public Events(String image, String internalName,String EventId,String IsFavourite) {
         Image = image;
         InternalName = internalName;
         this.EventId=EventId;
+        this.IsFavourite=IsFavourite;
     }
 
     public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String Description,String IsFavourite) {

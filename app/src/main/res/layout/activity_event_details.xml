@@ -276,7 +276,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerFavGenres"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="250dp" />
 
                 <!-- <android.support.v7.widget.RecyclerView
                      android:id="@+id/recyclerList"

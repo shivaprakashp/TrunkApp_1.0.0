@@ -10,9 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -25,10 +28,13 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listadapters.GenresDisplayAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.events.eventlisiting.GenreList;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -49,37 +55,28 @@ import retrofit2.Retrofit;
 
 public class EventDetailsActivity extends BaseActivity {
 
-    private String EventInternalName = "", EventId = "";
+    private String IsFavourite = "false", EventInternalName = "", EventId = "", mEventBuyURL = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
     private EventListingDB mEventListingDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private ArrayList<Events> mEventsWithSameGenres = new ArrayList<>();
+    private ArrayList<GenreList> mGenresListing = new ArrayList<>();
     private TextViewWithFont txtToolbarName;
-//    private AdapterEvent mAdapterEvent;
+    //    private AdapterEvent mAdapterEvent;
     private WhatsOnPagerAdapter adapterFavGenres;
+    private GenresDisplayAdapter mAdapter;
+    private SessionManager manager;
 
     @Inject
     Retrofit retrofit;
 
-    @BindView(R.id.toolbar_event_details)
-    Toolbar mToolbar;
-
-    @BindView(R.id.inc_set_toolbar)
-    LinearLayout mLinearLayout;
-
-    @BindView(R.id.imgCommonToolBack)
-    View inc_set_toolbar;
-
-    @BindView(R.id.txtCommonToolHome)
-    View inc_set_toolbar_text;
-
     @BindView(R.id.expandableTextViewInfo)
-    TextView mExpandableTextView;
+    ExpandableTextView mExpandableTextView;
 
-   /* @BindView(R.id.recyclerList)
-    RecyclerView mRecyclerRestaurants;*/
+    @BindView(R.id.recyclerGenres)
+    RecyclerView recyclerGenres;
 
     @BindView(R.id.viewpagerFavGenres)
     ViewPager mViewpagerFavGenres;
@@ -90,11 +87,30 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.txtTicketPrice)
     TextView mTxtTicketPrice;
 
+    /*@BindView(R.id.txtShowmore)
+    TextView txtShowmore;*/
+
+    @BindView(R.id.txtHeaderEventName)
+    TextView txtHeaderEventName;
+
+    @BindView(R.id.progressImageLoader)
+    ProgressBar progressImageLoader;
+
+    @BindView(R.id.imgBack)
+    ImageView mImgBack;
+
+    @BindView(R.id.btnBuyTickets)
+    Button mBtnBuyTickets;
+
     @BindView(R.id.txtShowmore)
     TextView txtShowmore;
 
     @BindView(R.id.ivShowmore)
     ImageView ivShowmore;
+
+    @BindView(R.id.imgFavourite)
+    ImageView imgFavourite;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,54 +120,64 @@ public class EventDetailsActivity extends BaseActivity {
         mActivity = EventDetailsActivity.this;
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.activity_event_details);
+        setContentView(R.layout.activity_event_details2);
 
         InitView();
         GetSpecificEventDetails();
     }
 
     private void InitView() {
-
-        mToolbar.setBackgroundColor(getResources().getColor(R.color.transparent));
-        mLinearLayout.setBackgroundColor(getResources().getColor(R.color.transparent));
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-
-        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setVisibility(View.GONE);
-
-
         ((MainApplication) getApplication()).getNetComponent().inject(this);
         api = retrofit.create(Api.class);
         mEventDetailsDB = new EventDetailsDB(mActivity);
         mEventListingDB = new EventListingDB(mActivity);
+        manager = new SessionManager(mActivity);
 
         Intent in = getIntent();
         EventId = in.getStringExtra("EventId");
         EventInternalName = in.getStringExtra("EventInternalName");
-
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-
-        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-
-        //What's on events
-        /*mAdapterEvent = new AdapterEvent(mActivity, mEventsWithSameGenres);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerRestaurants.setLayoutManager(mLayoutManager);
-        mRecyclerRestaurants.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerRestaurants.setAdapter(mAdapterEvent);*/
+        IsFavourite = in.getStringExtra("IsFavourite");
 
         mViewpagerFavGenres.setClipToPadding(false);
         mViewpagerFavGenres.setPageMargin(20);
         //What's on events
         adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres);
         mViewpagerFavGenres.setAdapter(adapterFavGenres);
+        mViewpagerFavGenres.setPadding(0, 0, 70, 0);
 
-        //Expanded Textview
-        /*mExpandableTextView.expand();
-        txtShowmore.setText(R.string.read_less);
-        ivShowmore.setScaleY(-1);*/
+        mViewpagerFavGenres.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    mViewpagerFavGenres.setPadding(0, 0, 70, 0);
+                } else if (mEventsWithSameGenres.size() - 1 == position) {
+                    mViewpagerFavGenres.setPadding(70, 0, 0, 0);
+                } else {
+                    mViewpagerFavGenres.setPadding(70, 0, 70, 0);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int position) {
+            }
+        });
+
+        mAdapter = new GenresDisplayAdapter(mActivity, mGenresListing);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerGenres.setLayoutManager(mLayoutManager);
+        recyclerGenres.setItemAnimator(new DefaultItemAnimator());
+        recyclerGenres.setAdapter(mAdapter);
+
+        if (IsFavourite.equalsIgnoreCase("true")) {
+            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+        } else {
+            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+        }
+
     }
 
     private void GetSpecificEventDetails() {
@@ -187,44 +213,62 @@ public class EventDetailsActivity extends BaseActivity {
     private void fetchDataFromDB() {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
         mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList());
+        mGenresListing.addAll(mEventListingData.get(0).getGenreList());
+
+        mEventBuyURL = mEventListingData.get(0).getBuyNowLink();
 
         if (mEventListingData.size() > 0) {
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
                     .into(mCover_image, new Callback() {
                         @Override
                         public void onSuccess() {
-                        /*holder.progressImageLoader.setVisibility(View.GONE);*/
+                            progressImageLoader.setVisibility(View.GONE);
                         }
 
                         @Override
                         public void onError() {
-                       /* holder.progressImageLoader.setVisibility(View.GONE);*/
+                            progressImageLoader.setVisibility(View.GONE);
                         }
                     });
 
             mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
-            txtToolbarName.setText(mEventListingData.get(0).getName());
+            txtHeaderEventName.setText(mEventListingData.get(0).getName());
             mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
+            if (manager.isUserLoggedIn()) {
+                if (mEventListingData.get(0).isFavourite().equalsIgnoreCase("true")) {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+                } else {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+                }
+            } else {
+
+            }
+
             adapterFavGenres.RefreshList(mEventsWithSameGenres);
+            mAdapter.RefreshList(mGenresListing);
         }
 
         mEventDetailsDB.close();
         mEventListingDB.close();
     }
 
-    private View.OnClickListener backPress = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onBackPressed();
-        }
-    };
 
-    @OnClick({R.id.linearReadMore})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.linearReadMore, R.id.imgFavourite})
     public void onClick(View v) {
         switch (v.getId()) {
 
-           /* case R.id.linearReadMore:
+            case R.id.imgBack:
+                finish();
+                break;
+
+            case R.id.btnBuyTickets:
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mEventBuyURL);
+                in.putExtra("Header", EventInternalName);
+                mActivity.startActivity(in);
+                break;
+            case R.id.linearReadMore:
                 if (mExpandableTextView.isExpanded()) {
                     mExpandableTextView.collapse();
                     txtShowmore.setText(R.string.read_more);
@@ -234,7 +278,18 @@ public class EventDetailsActivity extends BaseActivity {
                     txtShowmore.setText(R.string.read_less);
                     ivShowmore.setScaleY(-1);
                 }
-                break;*/
+                break;
+            case R.id.imgFavourite:
+                mEventListingDB.open();
+                if (IsFavourite.equalsIgnoreCase("true")) {
+                    IsFavourite = "false";
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+                } else {
+                    IsFavourite = "true";
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+                }
+                mEventListingDB.UpdateFavouriteData(EventId, IsFavourite);
+                break;
         }
     }
 }

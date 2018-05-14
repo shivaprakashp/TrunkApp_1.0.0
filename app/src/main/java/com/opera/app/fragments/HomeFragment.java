@@ -87,9 +87,7 @@ public class HomeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         InitView(view);
-
         GetCurrentEvents();
-
         return view;
     }
 
@@ -182,30 +180,44 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
+        GetWhatsOnEvents();
+        GetHighlightedEvents();
+        mEventListingDB.close();
+    }
+
+    private void GetWhatsOnEvents() {
+        mEventListingDB.open();
         mEventAllData = new ArrayList<>();
         mWhatsEvents = new ArrayList<>();
-
         mEventAllData = mEventListingDB.fetchAllEvents();
-        mEventListingDB.close();
-       /* mAdapterEvent.notifyDataSetChanged();*/
-
         for (int i = 0; i < mEventAllData.size(); i++) {
-            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId()));
-            }
 
-//            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
+            //            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
             mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription(), mEventAllData.get(i).isFavourite()));
 //            }
         }
 
         if (mEventAllData.size() > 0) {
             mWhatsOnPagerAdapter.RefreshList(mWhatsEvents);
+        }
+    }
+
+    private void GetHighlightedEvents() {
+        mEventListingDB.open();
+        mEventAllData = new ArrayList<>();
+        mEventAllData = mEventListingDB.fetchAllEvents();
+        for (int i = 0; i < mEventAllData.size(); i++) {
+            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
+                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
+            }
+        }
+        if (mEventAllData.size() > 0) {
             mAdapter.notifyDataSetChanged();
             mCoverFlow.setAdapter(mAdapter);
             mCoverFlow.setVisibility(View.VISIBLE);
         }
     }
+
 
     @OnClick({R.id.btnSearch})
     public void onClick(View v) {
@@ -216,5 +228,11 @@ public class HomeFragment extends BaseFragment {
                 startActivity(in);
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GetWhatsOnEvents();
     }
 }

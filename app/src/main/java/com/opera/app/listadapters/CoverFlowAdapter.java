@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -26,10 +27,12 @@ public class CoverFlowAdapter extends BaseAdapter {
 
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>(0);
     private Context mContext;
+    private EventListingDB mEventListingDB;
 
     public CoverFlowAdapter(Context context, ArrayList<Events> mHighlightedEvents) {
         mContext = context;
         this.mHighlightedEvents = mHighlightedEvents;
+        mEventListingDB = new EventListingDB(mContext);
     }
 
     @Override
@@ -86,6 +89,14 @@ public class CoverFlowAdapter extends BaseAdapter {
                 Intent in = new Intent(mContext, EventDetailsActivity.class);
                 in.putExtra("EventId", mHighlightedEvents.get(position).getEventId());
                 in.putExtra("EventInternalName", mHighlightedEvents.get(position).getInternalName());
+
+                mEventListingDB.open();
+                if (mEventListingDB.IsFavouriteForSpecificEvent(mHighlightedEvents.get(position).getEventId())) {
+                    in.putExtra("IsFavourite", "true");
+                } else {
+                    in.putExtra("IsFavourite", "false");
+                }
+                mEventListingDB.close();
                 mContext.startActivity(in);
             }
         });

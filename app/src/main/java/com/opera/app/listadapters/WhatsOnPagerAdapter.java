@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
@@ -130,6 +131,10 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         view.setTag(eventObject);
         collection.addView(view);
         return view;
+    }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override
