@@ -74,7 +74,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.event_row, parent, false);
+                .inflate(R.layout.event_row_for_tabs, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -85,7 +85,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
-        Picasso.with(mActivity).load(mEventPojo.getImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {
