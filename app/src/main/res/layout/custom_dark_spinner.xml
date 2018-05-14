@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.opera.app.customwidget.TextViewWithFont
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/txtSpnnierName"
+    android:singleLine="true"
+    android:textColor="@color/colorWhite"
+    android:layout_height="wrap_content"
+    android:maxLines="1"
+    font:name="Montserrat-Medium"
+    android:textAllCaps="true"
+    android:padding="5dp"/>

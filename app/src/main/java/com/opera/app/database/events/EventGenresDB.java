@@ -13,6 +13,7 @@ import com.opera.app.database.OperaDBHandler;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventGenresDB {
 
@@ -140,4 +141,16 @@ public class EventGenresDB {
     }
 
 
+    public List<String> getAllGenresLabels(){
+        List<String> labels = new ArrayList<String>();
+
+        Cursor cursor = database.rawQuery("SELECT  * FROM " + TABLE_GENRES_LISTING, null);
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return labels;
+    }
 }
