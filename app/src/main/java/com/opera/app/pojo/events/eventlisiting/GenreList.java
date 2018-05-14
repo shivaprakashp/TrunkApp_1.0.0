@@ -29,6 +29,17 @@ public class GenreList {
     @Expose
     private String Image;
 
+    boolean IsInfoOpen = false;
+
+    public boolean isInfoOpen() {
+        return IsInfoOpen;
+    }
+
+    public void setInfoOpen(boolean infoOpen) {
+        IsInfoOpen = infoOpen;
+    }
+
+
     public String getInternalName() {
         return InternalName;
     }

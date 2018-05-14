@@ -2,38 +2,32 @@ package com.opera.app.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
-import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.controller.MainController;
-import com.opera.app.dagger.Api;
-import com.opera.app.database.events.EventListingDB;
-import com.opera.app.listener.TaskComplete;
+import com.opera.app.database.events.EventGenresDB;
+import com.opera.app.listadapters.AdapterGenres;
+import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class GenresEventsFragment extends BaseFragment {
 
     private Activity mActivity;
 
-    private EventListingDB mEventListingDB;
-
-    private Api api;
-    @Inject
-    Retrofit retrofit;
+    private EventGenresDB mEventGenreDB;
+    private ArrayList<GenreList> mGenreListingData = new ArrayList<>();
+    private AdapterGenres mAdapterGenres;
 
     @BindView(R.id.spinnerSelectGenre)
     Spinner mSpinnerSelectGenre;
@@ -56,31 +50,25 @@ public class GenresEventsFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_genres_events, container, false);
 
         InitView(view);
-        GetGenres();
+
         return view;
     }
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-        ((MainApplication) getActivity().getApplication()).getNetComponent().inject(this);
-        api = retrofit.create(Api.class);
-
+        GetGenres();
     }
 
     private void GetGenres() {
-        MainController controller = new MainController(mActivity);
-//        controller.getGenresListing(taskComplete, api);
+        mEventGenreDB = new EventGenresDB(mActivity);
+        mEventGenreDB.open();
+        mGenreListingData = mEventGenreDB.fetchAllEvents();
+        mEventGenreDB.close();
+
+        mAdapterGenres = new AdapterGenres(mActivity, mGenreListingData);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerGenre.setLayoutManager(mLayoutManager);
+        mRecyclerGenre.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerGenre.setAdapter(mAdapterGenres);
     }
-
-    private TaskComplete taskComplete = new TaskComplete() {
-        @Override
-        public void onTaskFinished(Response response, String mRequestKey) {
-
-        }
-
-        @Override
-        public void onTaskError(Call call, Throwable t, String mRequestKey) {
-            Log.e("data", "error");
-        }
-    };
 }

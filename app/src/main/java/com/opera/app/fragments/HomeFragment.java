@@ -18,17 +18,16 @@ import com.opera.app.R;
 import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
-import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -45,6 +44,7 @@ public class HomeFragment extends BaseFragment {
     private Activity mActivity;
     private CoverFlowAdapter mAdapter;
     private EventListingDB mEventListingDB;
+    private EventGenresDB mEventGenresDB;
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
     private ArrayList<Events> mWhatsEvents = new ArrayList<>();
 
@@ -99,6 +99,7 @@ public class HomeFragment extends BaseFragment {
         api = retrofit.create(Api.class);
 
         mEventListingDB = new EventListingDB(mActivity);
+        mEventGenresDB = new EventGenresDB(mActivity);
         //Highlighted events
         mAdapter = new CoverFlowAdapter(getActivity(), mHighlightedEvents);
         /*mCoverFlow.setAdapter(mAdapter);*/
@@ -120,15 +121,25 @@ public class HomeFragment extends BaseFragment {
                     mEventListingDB.open();
                     mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
                     mEventListingDB.insertOtherEvents(mEventDataPojo.getEvents());
+
+                    mEventGenresDB.open();
+                    mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
+                    mEventGenresDB.insertOtherEvents(mEventDataPojo.getGenreList());
+
                     fetchDataFromDB();
 
-                    HashMap<String, ArrayList<GenreList>> mHashGenresList = new HashMap<String, ArrayList<GenreList>>();
+                    /*HashMap<String, ArrayList<GenreList>> mHashGenresList = new HashMap<String, ArrayList<GenreList>>();
                     mHashGenresList.put("GenreList", mEventDataPojo.getGenreList());
+                    if(null != mHashGenresList){
+                        ArrayList<GenreList> value = mHashGenresList.get("GenreList");
+                        for(GenreList arrayList  : value){
+                            Log.d("value: ",arrayList.getGenere());
+                        }
+                    }*/
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         @Override
