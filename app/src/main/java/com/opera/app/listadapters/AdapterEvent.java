@@ -2,6 +2,10 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -24,7 +28,13 @@ import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by 1000632 on 5/2/2018.
@@ -148,12 +158,49 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBodyText = "Check it out. Your message goes here";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
-                mActivity.startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));*/
+                Bitmap image = null;
+                URL url = null;
+                String name = new Date().toString() + ".jpg";
+                try {
+                    url = new URL(mEventPojo.getImage());
+                    image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    String root = Environment.getExternalStorageDirectory().toString();
+                    File myDir = new File(root + "/yourDirectory");
+
+                    if (!myDir.exists()) {
+                        myDir.mkdirs();
+                    }
+
+                    myDir = new File(myDir, name);
+                    FileOutputStream out = new FileOutputStream(myDir);
+                    image.compress(Bitmap.CompressFormat.JPEG, 90, out);
+
+                    out.flush();
+                    out.close();
+                } catch(Exception e){
+                    // some action
+                }
+                File photoFile = mActivity.getFileStreamPath(name);
+                //String path = MediaStore.Images.Media.insertImage(mActivity.getContentResolver(), image, "", null);
+                //Uri pictureUri = Uri.parse(path);
+                /*Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getDescription()));
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                shareIntent.setType("image/*");
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                mActivity.startActivity(Intent.createChooser(shareIntent, "Share images..."));*/
+
+                final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpg");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
+                mActivity.startActivity(Intent.createChooser(shareIntent, "Share image using"));
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
