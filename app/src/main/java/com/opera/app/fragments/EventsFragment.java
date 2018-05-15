@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class EventsFragment extends BaseFragment{
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
-
+    Adapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,23 @@ public class EventsFragment extends BaseFragment{
 
         setupViewPager(mViewPager);
         mTabHost.setupWithViewPager(mViewPager);
+        adapter = new Adapter(getChildFragmentManager());
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float v, final int i2) {
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                EventInterfaceTab fragment = (EventInterfaceTab) adapter.instantiateItem(mViewPager, position);
+                if (fragment != null) {
+                    fragment.onLikeProcessComplete();
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(final int position) {
+            }
+        });
     }
 
     // Add Fragments to Tabs

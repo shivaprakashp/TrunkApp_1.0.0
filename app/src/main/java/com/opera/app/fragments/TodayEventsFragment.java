@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.opera.app.R;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
@@ -27,13 +28,13 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TodayEventsFragment extends BaseFragment {
+public class TodayEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
     private EventListingDB mEventDetailsDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private AdapterEvent mAdapterEvent;
-
+    private EventInterfaceTab listenerToday;
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerEvents;
 
@@ -52,7 +53,7 @@ public class TodayEventsFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_today_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_events_tab, container, false);
 
         InitView(view);
         return view;
@@ -60,6 +61,7 @@ public class TodayEventsFragment extends BaseFragment {
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
+        listenerToday=(TodayEventsFragment)this;
 
         mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
@@ -116,6 +118,12 @@ public class TodayEventsFragment extends BaseFragment {
         } else {
             mRecyclerEvents.setVisibility(View.GONE);
             mtvMsg.setVisibility(View.VISIBLE);
+            mtvMsg.setText(getResources().getString(R.string.no_today_data));
         }
+    }
+
+    @Override
+    public void onLikeProcessComplete() {
+        FetchTodayEvents(OperaUtils.getCurrentDate());
     }
 }
