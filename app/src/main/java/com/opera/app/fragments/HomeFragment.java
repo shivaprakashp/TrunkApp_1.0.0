@@ -111,7 +111,7 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setClipToPadding(false);
         mViewpagerWhatsOnShows.setPageMargin(20);
         //What's on events
-        mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents);
+        mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents,"HomePage");
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
 
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

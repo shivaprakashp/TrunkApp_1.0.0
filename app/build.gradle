@@ -47,7 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.google.code.gson:gson:2.2.4'
-
+    implementation 'com.google.apis:google-api-services-youtube:v3-rev107-1.18.0-rc'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
@@ -56,7 +56,7 @@ dependencies {
     //these two lines are added
     compile 'com.google.dagger:dagger:2.13'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
-
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     //butternife for reduce the effort of defining views
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

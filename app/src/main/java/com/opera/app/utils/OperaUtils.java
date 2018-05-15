@@ -2,24 +2,37 @@ package com.opera.app.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.opera.app.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -44,6 +57,7 @@ public class OperaUtils {
     public static String OPERA_INSTAGRAM_URL = "https://www.instagram.com/dubaiopera/";
 
     public static String OPERA_FACEBOOK_URL = "https://www.facebook.com/dubaiopera";
+    private Target loadtarget;
 
     //restricted user to create instance
     public OperaUtils() {
@@ -60,14 +74,24 @@ public class OperaUtils {
         return mOperaUtils;
     }
 
-    public void ShareEventDetails(Activity mActivity,String mBody){
-        /*String shareBody = "Here is the share content body";
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_using)));*/
+    public static void ShareEventDetails(Context mContext, String mBody, String mImage) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, mBody);
+        shareIntent.setType("image");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mImage);
+        mContext.startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"));
     }
+
+    public static void CloseSoftKeyboard(Activity mActivity) {
+        View view = mActivity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void forceRTLIfSupported(Activity mActivity) {
@@ -213,7 +237,7 @@ public class OperaUtils {
     };
 
     //get current date
-    public static String getCurrentDate(){
+    public static String getCurrentDate() {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
@@ -222,7 +246,7 @@ public class OperaUtils {
     }
 
     //get current date
-    public static String getCurrentDate2(){
+    public static String getCurrentDate2() {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
@@ -230,7 +254,7 @@ public class OperaUtils {
         return df.format(c);
     }
 
-    public static String[] splitDate(){
+    public static String[] splitDate() {
         return getCurrentDate().split("/");
     }
 

@@ -22,6 +22,7 @@ import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterOfSearchedEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 
@@ -135,7 +136,7 @@ public class SearchEventActivity extends BaseActivity {
                     }
                 }*/
 
-                mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
+                mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
             }
         }
 
@@ -167,5 +168,11 @@ public class SearchEventActivity extends BaseActivity {
                 ApplyFilter(mEdtSearchedData.getText().toString().trim());
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        OperaUtils.CloseSoftKeyboard(mActivity);
     }
 }
