@@ -22,8 +22,7 @@
                     android:id="@+id/cover_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_login" />
+                    android:scaleType="fitXY" />
 
                 <ProgressBar
                     android:id="@+id/progressImageLoader"
@@ -209,19 +208,26 @@
                     android:textAllCaps="false"
                     font:name="Montserrat-Light" />
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    style="@style/label_light_gray_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text=""
-                    font:name="Montserrat-Light" />
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpagerFavGenres"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp" />
+                    android:background="@color/colorBurgendy"
+                    android:orientation="vertical">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_light_gray_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/you_also_like"
+                        font:name="Montserrat-Light" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpagerFavGenres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -61,6 +62,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
         ImageView imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
         ImageView imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
+        LinearLayout linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
 
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
@@ -124,6 +126,17 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                 Intent in = new Intent(mContext, CommonWebViewActivity.class);
                 in.putExtra("URL", eventObject.getBuyNowLink());
                 in.putExtra("Header", mContext.getResources().getString(R.string.buy_tickets));
+                mContext.startActivity(in);
+            }
+        });
+
+        linearParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mContext, EventDetailsActivity.class);
+                in.putExtra("EventId", eventObject.getEventId());
+                in.putExtra("EventInternalName", eventObject.getInternalName());
+                in.putExtra("IsFavourite", eventObject.isFavourite());
                 mContext.startActivity(in);
             }
         });

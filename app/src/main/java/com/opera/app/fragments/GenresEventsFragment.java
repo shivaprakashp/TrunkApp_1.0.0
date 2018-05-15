@@ -58,6 +58,7 @@ public class GenresEventsFragment extends BaseFragment {
 
         return view;
     }
+
     private void InitView(View view) {
         ButterKnife.bind(this, view);
         Onclicks();
@@ -82,12 +83,14 @@ public class GenresEventsFragment extends BaseFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ApplyGenreSearch(parent.getItemAtPosition(position).toString());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
     }
+
     private void ApplyGenreSearch(String mSearchedTxt) {
         ArrayList<Events> mFilteredNames = new ArrayList<>();
 
@@ -99,7 +102,7 @@ public class GenresEventsFragment extends BaseFragment {
         for (int i = 0; i < mEventListingData.size(); i++) {
             for (int j = 0; j < mEventListingData.get(i).getGenreList().size(); j++) {
                 if (mEventListingData.get(j).getGenreList().get(j).getGenere().toLowerCase().contains(mSearchedTxt.toLowerCase())) {
-                    mFilteredNames.add(new Events(mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription()));
+                    mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
                 }
             }
         }

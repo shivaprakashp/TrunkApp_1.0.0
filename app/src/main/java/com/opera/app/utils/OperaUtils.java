@@ -60,6 +60,15 @@ public class OperaUtils {
         return mOperaUtils;
     }
 
+    public void ShareEventDetails(Activity mActivity,String mBody){
+        /*String shareBody = "Here is the share content body";
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_using)));*/
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void forceRTLIfSupported(Activity mActivity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
