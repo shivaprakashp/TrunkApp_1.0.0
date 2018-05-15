@@ -921,6 +921,8 @@
     <string name="buy_tickets">BUY TICKETS</string>
     <string name="video">VIDEO</string>
     <string name="you_also_like">You might also like...</string>
+    <string name="no_today_data">No Events for the day!</string>
+    <string name="no_favo_data">No Favourites data!</string>
 
     <!--Home fragment-->
     <string name="enter_keywords">Enter keywords to search for events genres etc.</string>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder> {
 
     private ArrayList<Events> mEventListingData;
+    private EventListingDB mEventListingDB;
     private Activity mActivity;
     Animation slide_in_left;
     Animation slide_out_left;
@@ -64,6 +66,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
         slide_out_left = AnimationUtils.loadAnimation(mActivity,
                 R.anim.anim_slide_out_left);
+        mEventListingDB = new EventListingDB(mActivity);
     }
 
     public void RefreshList(ArrayList<Events> mEventListingData) {
@@ -101,7 +104,16 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mEventListingDB.open();
+                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+                    mEventPojo.setFavourite("false");
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), "false");
+                } else {
+                    mEventPojo.setFavourite("true");
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), "true");
+                }
+                mEventListingDB.close();
+                notifyDataSetChanged();
             }
         });
         holder.imgShare.setOnClickListener(new View.OnClickListener() {

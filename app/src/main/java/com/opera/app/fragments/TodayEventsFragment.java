@@ -116,6 +116,7 @@ public class TodayEventsFragment extends BaseFragment {
         } else {
             mRecyclerEvents.setVisibility(View.GONE);
             mtvMsg.setVisibility(View.VISIBLE);
+            mtvMsg.setText(getResources().getString(R.string.no_today_data));
         }
     }
 }
