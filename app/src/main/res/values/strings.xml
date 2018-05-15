@@ -922,7 +922,8 @@
     <string name="video">VIDEO</string>
     <string name="you_also_like">You might also like...</string>
     <string name="no_today_data">No Events for the day!</string>
-    <string name="no_favo_data">No Favourites data!</string>
+    <string name="no_favo_data">No Favourite data!</string>
+    <string name="no_data">No data!</string>
 
     <!--Home fragment-->
     <string name="enter_keywords">Enter keywords to search for events genres etc.</string>

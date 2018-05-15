@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.opera.app.R;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.LanguageManager;
 
@@ -21,12 +22,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FavouritesEventsFragment extends BaseFragment {
+public class FavouritesEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
     private EventListingDB mEventDetailsDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private AdapterEvent mAdapterEvent;
+    ArrayList<Events> mFilteredEvents = null;
+    private EventInterfaceTab listenerFavourite;
 
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerEvents;
@@ -47,7 +50,7 @@ public class FavouritesEventsFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_today_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_events_tab, container, false);
 
         InitView(view);
         return view;
@@ -55,25 +58,23 @@ public class FavouritesEventsFragment extends BaseFragment {
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-
+        listenerFavourite=(FavouritesEventsFragment)this;
         mEventDetailsDB = new EventListingDB(mActivity);
-        mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
-        mEventDetailsDB.close();
-
-        FetchFavouriteEvents(mEventListingData);
+        FetchFavouriteEvents();
     }
 
-    private void FetchFavouriteEvents(ArrayList<Events> mEventListingData) {
-        ArrayList<Events> mFilteredEvents = new ArrayList<>();
-
+    private void FetchFavouriteEvents() {
+        mEventDetailsDB.open();
+        mEventListingData=new ArrayList<>();
+        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        mEventDetailsDB.close();
+        mFilteredEvents = new ArrayList<>();
         for (int i = 0; i < mEventListingData.size(); i++) {
             if (mEventListingData.get(i).isFavourite().equalsIgnoreCase("true")) {
                 mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
             }
         }
-
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents);
+        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents,listenerFavourite);
         if (mFilteredEvents.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
@@ -86,5 +87,10 @@ public class FavouritesEventsFragment extends BaseFragment {
             mtvMsg.setVisibility(View.VISIBLE);
             mtvMsg.setText(getResources().getString(R.string.no_favo_data));
         }
+    }
+
+    @Override
+    public void onLikeProcessComplete() {
+        FetchFavouriteEvents();
     }
 }

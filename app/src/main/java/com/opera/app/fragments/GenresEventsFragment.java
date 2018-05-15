@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
@@ -26,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GenresEventsFragment extends BaseFragment {
+public class GenresEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
     private EventListingDB mEventDetailsDB;
@@ -34,11 +36,18 @@ public class GenresEventsFragment extends BaseFragment {
     private ArrayList<GenreList> mGenreListingData = new ArrayList<>();
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private AdapterEvent mAdapterEvent;
+    private EventInterfaceTab listenerGenres;
+
     @BindView(R.id.spinnerSelectGenre)
     Spinner mSpinnerSelectGenre;
 
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerGenre;
+
+    @BindView(R.id.tv_msg)
+    TextView mtvMsg;
+
+    String selectedGenre = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +61,7 @@ public class GenresEventsFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_genres_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_events_genres, container, false);
 
         InitView(view);
 
@@ -61,15 +70,14 @@ public class GenresEventsFragment extends BaseFragment {
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
+        listenerGenres=(GenresEventsFragment)this;
         Onclicks();
         initSpinnervalues();
     }
 
     private void initSpinnervalues() {
-
         mEventGenreDB = new EventGenresDB(mActivity);
         mEventGenreDB.open();
-        mGenreListingData = mEventGenreDB.fetchAllEvents();
         List<String> labels = mEventGenreDB.getAllGenresLabels();
         mEventGenreDB.close();
 
@@ -81,7 +89,8 @@ public class GenresEventsFragment extends BaseFragment {
         mSpinnerSelectGenre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ApplyGenreSearch(parent.getItemAtPosition(position).toString());
+                selectedGenre = parent.getItemAtPosition(position).toString();
+                ApplyGenreSearch(selectedGenre);
             }
 
             @Override
@@ -106,11 +115,23 @@ public class GenresEventsFragment extends BaseFragment {
                 }
             }
         }
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredNames);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerGenre.setLayoutManager(mLayoutManager);
-        mRecyclerGenre.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerGenre.setAdapter(mAdapterEvent);
+        mAdapterEvent = new AdapterEvent(mActivity, mFilteredNames,listenerGenres);
+        if (mFilteredNames.size() > 0) {
+            mRecyclerGenre.setVisibility(View.VISIBLE);
+            mtvMsg.setVisibility(View.GONE);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerGenre.setLayoutManager(mLayoutManager);
+            mRecyclerGenre.setItemAnimator(new DefaultItemAnimator());
+            mRecyclerGenre.setAdapter(mAdapterEvent);
+        }
+        else {
+            mRecyclerGenre.setVisibility(View.GONE);
+            mtvMsg.setVisibility(View.VISIBLE);
+            mtvMsg.setText(getResources().getString(R.string.no_data));
+        }
     }
-
+    @Override
+    public void onLikeProcessComplete() {
+        ApplyGenreSearch(selectedGenre);
+    }
 }

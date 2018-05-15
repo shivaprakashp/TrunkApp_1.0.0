@@ -17,7 +17,9 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -35,12 +37,13 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     private Activity mActivity;
     Animation slide_in_left;
     Animation slide_out_left;
+    private EventInterfaceTab listener=null;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgEvent, imgFavourite, imgShare, imgInfo;
         public Button btnBuyTickets;
         public ProgressBar progressImageLoader;
-        public LinearLayout linearHolder;
+        public LinearLayout linearHolder, linearParent;
         public TextView txtEventInfo, txtEventDate;
 
         public MyViewHolder(View view) {
@@ -54,6 +57,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
             txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
             progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
+            linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
         }
     }
 
@@ -67,6 +71,20 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         slide_out_left = AnimationUtils.loadAnimation(mActivity,
                 R.anim.anim_slide_out_left);
         mEventListingDB = new EventListingDB(mActivity);
+    }
+
+    //For Favourite and Genres
+    public AdapterEvent(Activity mActivity, ArrayList<Events> mEventListingData,EventInterfaceTab listener) {
+        this.mActivity = mActivity;
+        this.mEventListingData = mEventListingData;
+
+        slide_in_left = AnimationUtils.loadAnimation(mActivity,
+                R.anim.anim_slide_in_left);
+
+        slide_out_left = AnimationUtils.loadAnimation(mActivity,
+                R.anim.anim_slide_out_left);
+        mEventListingDB = new EventListingDB(mActivity);
+        this.listener=listener;
     }
 
     public void RefreshList(ArrayList<Events> mEventListingData) {
@@ -85,6 +103,12 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Events mEventPojo = mEventListingData.get(position);
+
+        if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+            holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.fav_selected));
+        } else {
+            holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
+        }
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
@@ -114,12 +138,22 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 }
                 mEventListingDB.close();
                 notifyDataSetChanged();
+                RefreshList(mEventListingData);
+
+                if(listener!=null){
+                    listener.onLikeProcessComplete();
+                }
             }
         });
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBodyText = "Check it out. Your message goes here";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+                mActivity.startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));*/
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +178,17 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 Intent in = new Intent(mActivity, CommonWebViewActivity.class);
                 in.putExtra("URL", mEventPojo.getBuyNowLink());
                 in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                mActivity.startActivity(in);
+            }
+        });
+
+        holder.linearParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                in.putExtra("EventId", mEventPojo.getEventId());
+                in.putExtra("EventInternalName", mEventPojo.getInternalName());
+                in.putExtra("IsFavourite", mEventPojo.isFavourite());
                 mActivity.startActivity(in);
             }
         });
