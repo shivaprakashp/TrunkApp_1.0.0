@@ -194,4 +194,5 @@
     <string name="search">بحث</string>
     <string name="whats_on">ماذا يجري</string>
     <string name="buy_tickets">اشتري تذاكر</string>
+    <string name="error_youtube">خطأ في تشغيل youtube video</string>
 </resources>

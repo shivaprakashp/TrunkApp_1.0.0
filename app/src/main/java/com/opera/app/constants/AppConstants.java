@@ -4,6 +4,7 @@ public interface AppConstants {
 
     static String SEAN_CONOLLY_RESTAURANT_ID = "40";
     static String SEAN_CONOLLY_R_STATUS = "3";
+    static String YOUTUBE_DEVELOPER_KEY = "";
 
     interface LOGIN {
         String LOGIN = "LOGIN";

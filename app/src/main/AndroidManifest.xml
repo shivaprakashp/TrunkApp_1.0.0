@@ -82,6 +82,9 @@
 
         <activity android:name=".activities.WalletActivity"
             android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activities.OpenYoutubeVideo"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
