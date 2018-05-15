@@ -90,6 +90,7 @@ public class CoverFlowAdapter extends BaseAdapter {
                 in.putExtra("EventId", mHighlightedEvents.get(position).getEventId());
                 in.putExtra("EventInternalName", mHighlightedEvents.get(position).getInternalName());
 
+                //Taking this value from DB as we are not updating CarouselView for a reason
                 mEventListingDB.open();
                 if (mEventListingDB.IsFavouriteForSpecificEvent(mHighlightedEvents.get(position).getEventId())) {
                     in.putExtra("IsFavourite", "true");

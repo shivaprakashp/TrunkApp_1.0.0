@@ -285,7 +285,7 @@ public class EventListingDB {
         return dataArrayEvents;
     }*/
 
-    public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists) {
+    public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists,String mEventId) {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
@@ -311,6 +311,7 @@ public class EventListingDB {
                     mEvents.setEndTime(cursor.getString(cursor.getColumnIndex(EVENT_END_TIME)));
                     mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
+                    mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
 
                     /*mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
                     mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));
@@ -329,11 +330,19 @@ public class EventListingDB {
                     mEvents.setGenreList(mArrayEventGenres);
                     mEvents.setEventTime(mArrayEventDateAndTime);
 
-                    for (int i = 0; i < mArrayEventGenres.size(); i++) {
+                   /* for (int i = 0; i < mArrayEventGenres.size(); i++) {
                         for (int j = 0; j < mGenreLists.size(); j++) {
                             if (mArrayEventGenres.get(i).getId().equalsIgnoreCase(mGenreLists.get(j).getId())) {
                                 dataArrayEvents.add(mEvents);
                                 break;
+                            }
+                        }
+                    }*/
+
+                    for (int i = 0; i < mGenreLists.size(); i++) {
+                        for (int j = 0; j < mArrayEventGenres.size(); j++) {
+                            if (mGenreLists.get(i).getInternalName().equalsIgnoreCase(mArrayEventGenres.get(j).getInternalName()) && !cursor.getString(cursor.getColumnIndex(EVENT_ID)).equalsIgnoreCase(mEventId)) {
+                                dataArrayEvents.add(mEvents);
                             }
                         }
                     }

@@ -58,6 +58,7 @@ public class GenresEventsFragment extends BaseFragment {
 
         return view;
     }
+
     private void InitView(View view) {
         ButterKnife.bind(this, view);
         Onclicks();
@@ -82,12 +83,14 @@ public class GenresEventsFragment extends BaseFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ApplyGenreSearch(parent.getItemAtPosition(position).toString());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
     }
+
     private void ApplyGenreSearch(String mSearchedTxt) {
         ArrayList<Events> mFilteredNames = new ArrayList<>();
 

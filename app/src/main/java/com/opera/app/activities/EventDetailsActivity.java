@@ -143,7 +143,6 @@ public class EventDetailsActivity extends BaseActivity {
         //What's on events
         adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres);
         mViewpagerFavGenres.setAdapter(adapterFavGenres);
-        mViewpagerFavGenres.setPadding(0, 0, 70, 0);
 
         mViewpagerFavGenres.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -212,7 +211,12 @@ public class EventDetailsActivity extends BaseActivity {
 
     private void fetchDataFromDB() {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
-        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList());
+        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList(), EventId);
+
+        if (mEventsWithSameGenres.size() > 1) {
+            mViewpagerFavGenres.setPadding(0, 0, 70, 0);
+        }
+
         mGenresListing.addAll(mEventListingData.get(0).getGenreList());
 
         mEventBuyURL = mEventListingData.get(0).getBuyNowLink();
@@ -232,6 +236,7 @@ public class EventDetailsActivity extends BaseActivity {
                     });
 
             mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
+
             txtHeaderEventName.setText(mEventListingData.get(0).getName());
             mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
