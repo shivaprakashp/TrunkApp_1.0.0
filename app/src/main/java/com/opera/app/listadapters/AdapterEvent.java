@@ -204,13 +204,13 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 }
                 Uri savedImageURI = Uri.parse(file.getAbsolutePath());
 
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                sharingIntent.setType("image/*");
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+                /*sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);*/
+                sharingIntent.setType("*/*");
                 //sharingIntent.setType("text/html");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getMobileDescription()));
-                sharingIntent.putExtra(Intent.EXTRA_STREAM, "/storage/emulated/0/DCIM/Camera/IMG_20180508_141323.jpg");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, savedImageURI);
                 mActivity.startActivity(Intent.createChooser(sharingIntent, "Share Image Using"));
 
             }
