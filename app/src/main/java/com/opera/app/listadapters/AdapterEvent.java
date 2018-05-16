@@ -122,7 +122,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         }
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
-        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
         Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
@@ -209,7 +209,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 sharingIntent.setType("image/*");
                 //sharingIntent.setType("text/html");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getDescription()));
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getMobileDescription()));
                 sharingIntent.putExtra(Intent.EXTRA_STREAM, "/storage/emulated/0/DCIM/Camera/IMG_20180508_141323.jpg");
                 mActivity.startActivity(Intent.createChooser(sharingIntent, "Share Image Using"));
 
