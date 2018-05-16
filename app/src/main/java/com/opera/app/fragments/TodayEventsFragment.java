@@ -107,7 +107,7 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
             }
         }
 
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents);
+        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerToday);
         if (mFilteredEvents.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
