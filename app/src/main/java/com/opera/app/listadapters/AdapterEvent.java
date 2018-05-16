@@ -1,11 +1,11 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -169,7 +170,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                try {
+                /*try {
                     String root = Environment.getExternalStorageDirectory().toString();
                     File myDir = new File(root + "/yourDirectory");
 
@@ -186,21 +187,32 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 } catch(Exception e){
                     // some action
                 }
-                File photoFile = mActivity.getFileStreamPath(name);
-                //String path = MediaStore.Images.Media.insertImage(mActivity.getContentResolver(), image, "", null);
-                //Uri pictureUri = Uri.parse(path);
-                /*Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getDescription()));
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                shareIntent.setType("image/*");
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                mActivity.startActivity(Intent.createChooser(shareIntent, "Share images..."));*/
+                File photoFile = mActivity.getFileStreamPath(name);*/
 
-                final Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("image/jpg");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
-                mActivity.startActivity(Intent.createChooser(shareIntent, "Share image using"));
+                ContextWrapper wrapper = new ContextWrapper(mActivity);
+                File file = wrapper.getDir("Images",mActivity.MODE_PRIVATE);
+                file = new File(file, name);
+                try{
+                    OutputStream stream = null;
+                    stream = new FileOutputStream(file);
+                    image.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                    stream.flush();
+                    stream.close();
+                }catch (IOException e) // Catch the exception
+                {
+                    e.printStackTrace();
+                }
+                Uri savedImageURI = Uri.parse(file.getAbsolutePath());
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                sharingIntent.setType("image/*");
+                //sharingIntent.setType("text/html");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(mEventPojo.getDescription()));
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, "/storage/emulated/0/DCIM/Camera/IMG_20180508_141323.jpg");
+                mActivity.startActivity(Intent.createChooser(sharingIntent, "Share Image Using"));
+
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
@@ -215,7 +227,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     holder.linearHolder.setVisibility(View.VISIBLE);
                     mEventPojo.setInfoOpen(true);
                 }
-
             }
         });
 
