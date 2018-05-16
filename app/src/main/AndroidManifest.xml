@@ -86,6 +86,9 @@
 
         <activity android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activities.OpenYoutubeVideo"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
