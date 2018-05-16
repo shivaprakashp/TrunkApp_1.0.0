@@ -67,7 +67,7 @@ public class AllEventsFragment extends BaseFragment implements EventInterfaceTab
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
-        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData);
+        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData, listenerAllEvents);
         if (mEventListingData.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
