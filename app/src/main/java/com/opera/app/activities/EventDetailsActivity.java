@@ -114,8 +114,8 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.imgFavourite)
     ImageView imgFavourite;
 
-    @BindView(R.id.mBtnPlayVideo)
-    Button mBtnPlayVideo;
+    @BindView(R.id.linearPlay)
+    LinearLayout mLinearPlay;
 
 
     @Override
@@ -276,11 +276,11 @@ public class EventDetailsActivity extends BaseActivity {
 
         mEventDetailsDB.close();
         mEventListingDB.close();
-//        mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
+        mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getMobileDescription()));
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.mBtnPlayVideo})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -306,7 +306,7 @@ public class EventDetailsActivity extends BaseActivity {
                 }
                 mEventListingDB.UpdateFavouriteData(EventId, IsFavourite);
                 break;
-            case R.id.mBtnPlayVideo:
+            case R.id.linearPlay:
                 in = new Intent(mActivity, OpenYoutubeVideo.class);
                 in.putExtra("YoutubeVideo", mEventYoutubeVideo);
                 startActivity(in);

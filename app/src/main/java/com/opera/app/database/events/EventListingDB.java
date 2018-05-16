@@ -36,6 +36,7 @@ public class EventListingDB {
     private static final String EVENT_NAME = "EVENT_NAME";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
     private static final String EVENT_INFO = "EVENT_INFO";
+    private static final String EVENT_MOBILE_DESCRIPTION = "EVENT_MOBILE_DESCRIPTION";
     private static final String EVENT_BUY_NOW = "EVENT_BUY_NOW";
     private static final String EVENT_IS_WHATS_ON = "EVENT_IS_WHATS_ON";
     private static final String EVENT_FROM_DATE = "EVENT_FROM_DATE";
@@ -65,6 +66,7 @@ public class EventListingDB {
                     + EVENT_NAME + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"
+                    + EVENT_MOBILE_DESCRIPTION + " TEXT,"
                     + EVENT_BUY_NOW + " TEXT,"
                     + EVENT_IS_WHATS_ON + " TEXT,"
                     + EVENT_FROM_DATE + " TEXT,"
@@ -112,6 +114,7 @@ public class EventListingDB {
                 contentValue.put(EVENT_NAME, mEventListingData.get(i).getName());
                 contentValue.put(EVENT_IMAGE, mEventListingData.get(i).getImage());
                 contentValue.put(EVENT_INFO, mEventListingData.get(i).getDescription());
+                contentValue.put(EVENT_MOBILE_DESCRIPTION, mEventListingData.get(i).getMobileDescription());
                 contentValue.put(EVENT_BUY_NOW, mEventListingData.get(i).getBuyNowLink());
                 contentValue.put(EVENT_IS_WHATS_ON, mEventListingData.get(i).getWhatsOn());
                 contentValue.put(EVENT_FROM_DATE, mEventListingData.get(i).getFrom());
@@ -178,6 +181,7 @@ public class EventListingDB {
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
                     mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
+                    mEvents.setMobileDescription(cursor.getString(cursor.getColumnIndex(EVENT_MOBILE_DESCRIPTION)));
                     mEvents.setBuyNowLink(cursor.getString(cursor.getColumnIndex(EVENT_BUY_NOW)));
                     mEvents.setWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
                     mEvents.setFrom(cursor.getString(cursor.getColumnIndex(EVENT_FROM_DATE)));
@@ -285,7 +289,7 @@ public class EventListingDB {
         return dataArrayEvents;
     }*/
 
-    public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists,String mEventId) {
+    public ArrayList<Events> fetchEventsOfSpecificGenres(ArrayList<GenreList> mGenreLists, String mEventId) {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
@@ -300,6 +304,7 @@ public class EventListingDB {
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
                     mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
+                    mEvents.setMobileDescription(cursor.getString(cursor.getColumnIndex(EVENT_MOBILE_DESCRIPTION)));
                     mEvents.setBuyNowLink(cursor.getString(cursor.getColumnIndex(EVENT_BUY_NOW)));
                     mEvents.setWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
                     mEvents.setFrom(cursor.getString(cursor.getColumnIndex(EVENT_FROM_DATE)));

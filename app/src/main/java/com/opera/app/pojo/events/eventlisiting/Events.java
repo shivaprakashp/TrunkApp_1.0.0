@@ -26,9 +26,9 @@ public class Events {
     @Expose
     private String Description;
 
-    /*@SerializedName("EventGenres")
+    @SerializedName("MobileDescription")
     @Expose
-    private ArrayList<EventGenres> EventGenres;*/
+    private String MobileDescription;
 
     @SerializedName("Image")
     @Expose
@@ -112,15 +112,23 @@ public class Events {
         this.IsFavourite=IsFavourite;
     }
 
-    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String Description,String IsFavourite) {
+    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String MobileDescription,String IsFavourite) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
         InternalName = internalName;
         From = startDate;
         To = endDate;
-        this.Description = Description;
+        this.MobileDescription = MobileDescription;
         this.IsFavourite=IsFavourite;
+    }
+
+    public String getMobileDescription() {
+        return MobileDescription;
+    }
+
+    public void setMobileDescription(String mobileDescription) {
+        MobileDescription = mobileDescription;
     }
 
     public String getName() {

@@ -72,7 +72,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
 
-        txtEventInfo.setText(Html.fromHtml(eventObject.getDescription()));
+        txtEventInfo.setText(Html.fromHtml(eventObject.getMobileDescription()));
         txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
