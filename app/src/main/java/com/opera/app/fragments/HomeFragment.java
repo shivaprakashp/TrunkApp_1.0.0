@@ -111,7 +111,7 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setClipToPadding(false);
         mViewpagerWhatsOnShows.setPageMargin(20);
         //What's on events
-        mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents,"HomePage");
+        mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents, "HomePage");
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
 
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -192,9 +192,9 @@ public class HomeFragment extends BaseFragment {
         mEventAllData = mEventListingDB.fetchAllEvents();
         for (int i = 0; i < mEventAllData.size(); i++) {
 
-            //            if (mEventAllData.get(i).getEventIsWhatsOn().equalsIgnoreCase("true")) {
-            mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription(), mEventAllData.get(i).isFavourite()));
-//            }
+            if (mEventAllData.get(i).getWhatsOn().equalsIgnoreCase("true")) {
+                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getDescription(), mEventAllData.get(i).isFavourite()));
+            }
         }
 
         if (mEventAllData.size() > 0) {
@@ -207,11 +207,11 @@ public class HomeFragment extends BaseFragment {
         mEventAllData = new ArrayList<>();
         mEventAllData = mEventListingDB.fetchAllEvents();
         for (int i = 0; i < mEventAllData.size(); i++) {
-            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
-                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
-            }
+//            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
+            mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
+//            }
         }
-        if (mEventAllData.size() > 0) {
+        if (mHighlightedEvents.size() > 0) {
             mAdapter.notifyDataSetChanged();
             mCoverFlow.setAdapter(mAdapter);
             mCoverFlow.setVisibility(View.VISIBLE);

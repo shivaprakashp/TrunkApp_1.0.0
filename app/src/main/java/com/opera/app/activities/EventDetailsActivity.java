@@ -126,7 +126,7 @@ public class EventDetailsActivity extends BaseActivity {
         mActivity = EventDetailsActivity.this;
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.activity_event_details2);
+        setContentView(R.layout.activity_event_details);
 
         InitView();
 
@@ -276,7 +276,7 @@ public class EventDetailsActivity extends BaseActivity {
 
         mEventDetailsDB.close();
         mEventListingDB.close();
-        mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
+//        mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getDescription()));
     }
 
 
