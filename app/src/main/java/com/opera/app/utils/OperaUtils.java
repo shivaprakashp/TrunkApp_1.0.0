@@ -138,32 +138,6 @@ public class OperaUtils {
     }
 
     //stopped white space in edit text for password
-    /*public static InputFilter filterSpaceExceptFirst = new InputFilter() {
-        boolean canEnterSpace = false;
-
-        public CharSequence filter(CharSequence source, int start, int end,
-                                   Spanned dest, int dstart, int dend) {
-            if(editText.getText().toString().equals(""))
-            {
-                canEnterSpace = false;
-            }
-            //StringBuilder builder = new StringBuilder();
-            for (int i = start; i < end; i++) {
-                char currentChar = source.charAt(i);
-
-                if (Character.isLetterOrDigit(currentChar) || currentChar == '_') {
-                    //builder.append(currentChar);
-                    canEnterSpace = true;
-                }
-                if(Character.isWhitespace(currentChar) && canEnterSpace) {
-                    //builder.append(currentChar);
-                }
-            }
-            return null;
-        }
-    };*/
-
-    //stopped white space in edit text for password
     public static InputFilter filterSpace = new InputFilter() {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
@@ -221,6 +195,23 @@ public class OperaUtils {
         return df.format(c);
     }
 
+
+    public static String getCurrentyearMonthDate(){
+        String dateData = null;
+        try{
+            Calendar now = Calendar.getInstance();
+
+            dateData = CurrentDateCalender.currentMonth(now.get(Calendar.MONTH))+" "+
+                    (now.get(Calendar.DAY_OF_MONTH)+1)+","+now.get(Calendar.YEAR)+". "+
+            now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE)
+            +(now.get(Calendar.AM_PM)==0?"AM" : "PM");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return dateData;
+    }
     public static String[] splitDate(){
         return getCurrentDate().split("/");
     }
