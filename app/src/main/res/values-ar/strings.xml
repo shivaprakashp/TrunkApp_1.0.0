@@ -37,21 +37,20 @@
 
     <array name="tab_name">
         <item>الصفحة الرئيسية</item>
-        <item>الفعاليات</item>
-        <item>الطعام</item>
+        <item>العروض</item>
+        <item>تناول الطعام</item>
         <item>استمع</item>
         <item>القائمة</item>
     </array>
 
-
     <!--Menu Fragment -->
     <string name="menu_profile">الملف الشخصي</string>
     <string name="menu_opera_tour">جولة دبي أوبرا</string>
-    <string name="menu_wallet">محفظة نقود</string>
+    <string name="menu_wallet">المحفظة </string>
     <string name="menu_notification">إشعار</string>
     <string name="menu_promotion">العروض الخاصة</string>
     <string name="menu_gift_cards">بطاقات الهدايا</string>
-    <string name="menu_feedback">الرد</string>
+    <string name="menu_feedback">آراء ومقترحات </string>
     <string name="menu_contact_us">تواصل معنا</string>
     <string name="menu_settings">إعدادات</string>
     <string name="menu_save_cards">البطاقات المحفوظة</string>
@@ -94,7 +93,7 @@
         <item>3.من خلال تطبيقات الجوال وجهاز الكومبيوتر، يمكنك التنزيل من موقع الويب هذا ، والذي يوفر تفاعلًا مخصصًا غير قائم على المتصفح بينك وبين هذا الموقع الإلكتروني</item>
         <item>4. عندما تتفاعل مع إعلاناتنا وتطبيقاتنا على مواقع الويب والخدمات التابعة لجهات خارجية</item>
         <item>لا ينطبق على المعلومات التي تم جمعها من قبل:</item>
-        <item>1. نحن غير متصل أو من خلال أي وسيلة أخرى ، بما في ذلك أي موقع آخر تديره أي طرف ثالث ؛</item>
+        <item>1.ان تكون غير متصل أو من خلال أي وسيلة أخرى ، بما في ذلك أي موقع آخر تديره أي طرف ثالث ؛ أو</item>
         <item>2. أي طرف ثالث ، بما في ذلك من خلال أي تطبيق أو محتوى (بما في ذلك الإعلانات) قد يرتبط بالموقع الالكتروني</item>
         <item>يرجى قراءة هذه السياسة بعناية لفهم سياساتنا وممارساتنا المتعلقة بمعلوماتك وكيفية تعاملنا معها. إذا كنت لا توافق على سياساتنا وممارساتنا ، فإن اختيارك هو عدم استخدام موقعنا الإلكتروني. عن طريق الوصول إلى هذا الموقع أو استخدامه ، فإنك توافق على سياسة الخصوصية هذه. قد تتغير هذه السياسة من وقت لآخر. يعتبر استمرار استخدامك لهذا الموقع بعد إجراء التغييرات بمثابة قبول لهذه التغييرات ، لذا يرجى مراجعة السياسة بشكل دوري للحصول على التحديثات</item>
     </array>
@@ -102,32 +101,32 @@
     <!--Settings-->
     <string name="setting_allow_notification">السماح بالإشعار</string>
     <string name="setting_allow_promotion">السماح بالعروض الترويجية</string>
-    <string name="setting_allow_feedback">السماح باستلام الرد</string>
+    <string name="setting_allow_feedback">السماح باستلام المقترحات</string>
     <string name="setting_weekly_newsletters">النشرة الأسبوعية</string>
     <string name="setting_reminder_booked_show">تذكيرات للعرض المحجوز</string>
-    <string name="setting_language">لغة</string>
+    <string name="setting_language">اللغة </string>
     <string name="logout">الخروج</string>
     <string name="arabic_in_english">عربى</string>
     <string name="save1">حفظ</string>
 
     <!--My Profile-->
-    <string name="my_profile">ملفي</string>
+    <string name="my_profile">ملفي </string>
     <string name="profile_edit_profile">تعديل الملف الشخصي</string>
     <string name="profile_change_password">تغيير كلمة السر</string>
     <string name="tab_profile">الملف الشخصي</string>
     <string name="tab_loyalty">نقاط الولاء</string>
     <string name="loyalty_points">نقاط الولاء</string>
-    <string name="gallery">صالة عرض</string>
-    <string name="camera">الة تصوير</string>
-    <string name="permissionDenied">طلب الاذن مرفوض</string>
-    <string name="permissionGranted">تم تأمين التصريح</string>
-    <string name="cancel">إلغاء</string>
-    <string name="save">حفظ التغييرات</string>
+    <string name="gallery">اختيار من الصور </string>
+    <string name="camera">استخدم الكاميرا </string>
+    <string name="permissionDenied">السماح مرفوض </string>
+    <string name="permissionGranted">السماح مقبول </string>
+    <string name="cancel">الغاء </string>
+    <string name="save">احفظ التغيرات </string>
 
     <!--Change Password Popup -->
-    <string name="curr_password">كلمة السر الحالية</string>
-    <string name="new_password">كلمة السر الجديدة</string>
-    <string name="conf_new_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="curr_password">كلمة السر الحالية </string>
+    <string name="new_password">كلمة السر الجديدة </string>
+    <string name="conf_new_password">تأكيد كلمة السر الجديدة </string>
 
     <!--Edit Profile-->
     <string name="edit_email">عنوان البريد الإلكتروني</string>
@@ -139,10 +138,10 @@
     <string name="edit_city">مدينة</string>
     <string name="edit_state">إمارة أو ولاية</string>
     <string name="edit_country">بلد</string>
-    <string name="edit_address">كلمه السر</string>
+    <string name="edit_address">العنوان </string>
 
     <!--Contact us-->
-    <string name="reach_us">تصل إلينا:</string>
+    <string name="reach_us">تواصل معنا</string>
     <string name="contact_us_info">لديك أسئلة؟ املأ النموذج أدناه وسنوافيك بالرد في أقرب وقت ممكن.</string>
     <string name="send_message">ارسل رسالة</string>
     <string name="contact_us">اتصل بنا</string>
@@ -195,4 +194,554 @@
     <string name="whats_on">ماذا يجري</string>
     <string name="buy_tickets">اشتري تذاكر</string>
     <string name="error_youtube">خطأ في تشغيل youtube video</string>
+
+    <array name="states">
+        <item>دبي</item>
+        <item>أبو ظبي</item>
+        <item>عجمان</item>
+        <item>الفجيرة</item>
+        <item>رأس الخيمة</item>
+        <item>الشارقة</item>
+        <item>ام القيوين</item>
+    </array>
+
+    <array name="nationality">
+        <item>الإمارات العربية المتحدة</item>
+        <item>أفغانستان</item>
+        <item>ألبانيا</item>
+        <item>الجزائر</item>
+        <item>ساموا الأمريكية</item>
+        <item>أندورا</item>
+        <item>أنغولا</item>
+        <item>أنغيلا</item>
+        <item>الأرجنتين</item>
+        <item>أرمينيا</item>
+        <item>أستراليا</item>
+        <item>النمسا</item>
+        <item>أذربيجان</item>
+        <item>الباهاما</item>
+        <item>البحرين</item>
+        <item>بنغلاديش</item>
+        <item>بربادوس</item>
+        <item>روسيا البيضاء</item>
+        <item>بلجيكا</item>
+        <item>بليز</item>
+        <item>بنين</item>
+        <item>البوسنة والهرسك</item>
+        <item>بوتسوانا</item>
+        <item>بوليفيا</item>
+        <item>البرازيل</item>
+        <item>بروناي</item>
+        <item>بلغاريا</item>
+        <item>بوروندي</item>
+        <item>كمبوديا</item>
+        <item>الكاميرون</item>
+        <item>كندا</item>
+        <item>جمهورية افريقيا الوسطى</item>
+        <item>تشاد</item>
+        <item>تشيلي</item>
+        <item>الصين</item>
+        <item>كولومبيا</item>
+        <item>جزر القمر</item>
+        <item>الكونغو</item>
+        <item>كوستا ريكا</item>
+        <item>كرواتيا</item>
+        <item>كوبا</item>
+        <item>قبرص</item>
+        <item>جمهورية التشيك</item>
+        <item>الدنمارك</item>
+        <item>جيبوتي</item>
+        <item>جمهورية الدومنيكان</item>
+        <item>الإكوادور</item>
+        <item>مصر</item>
+        <item>استونيا</item>
+        <item>أثيوبيا</item>
+        <item>فنلندا</item>
+        <item>فرنسا</item>
+        <item>جورجيا</item>
+        <item>غانا</item>
+        <item>اليونان</item>
+        <item>ألمانيا</item>
+        <item>غوام</item>
+        <item>غينيا</item>
+        <item>هونغ كونغ</item>
+        <item>اليونان</item>
+        <item>إيران</item>
+        <item>العراق</item>
+        <item>أيسلندا</item>
+        <item>الهند</item>
+        <item>أندونيسيا</item>
+        <item>أيرلندا</item>
+        <item>إيطاليا</item>
+        <item>ساحل العاج</item>
+        <item>جامايكا</item>
+        <item>اليابان</item>
+        <item>الأردن</item>
+        <item>كازاخستان</item>
+        <item>كينيا</item>
+        <item>كوريا</item>
+        <item>الكويت</item>
+        <item>قرغيزستان</item>
+        <item>لاتفيا</item>
+        <item>لبنان</item>
+        <item>ليبيريا</item>
+        <item>ليبيا</item>
+        <item>ليختنشتاين</item>
+        <item>ليتوانيا</item>
+        <item>لوكسمبورغ</item>
+        <item>ماكاو</item>
+        <item>مقدونيا</item>
+        <item>مدغشقر</item>
+        <item>مالاوي</item>
+        <item>ماليزيا</item>
+        <item>جزر المالديف</item>
+        <item>مالي</item>
+        <item>مالطا</item>
+        <item>موريتانيا</item>
+        <item>موريشيوس</item>
+        <item>المكسيك</item>
+        <item>ميكرونيزيا</item>
+        <item>مولدوفا</item>
+        <item>موناكو</item>
+        <item>منغوليا</item>
+        <item>الجبل الأسود</item>
+        <item>المغرب</item>
+        <item>نيبال</item>
+        <item>هولندا</item>
+        <item>كاليدونيا الجديدة</item>
+        <item>نيوزيلاندا</item>
+        <item>النيجر</item>
+        <item>نيجيريا</item>
+        <item>النرويج</item>
+        <item>سلطنة عمان</item>
+        <item>باكستان</item>
+        <item>فلسطين</item>
+        <item>بناما</item>
+        <item>بابوا غينيا الجديدة</item>
+        <item>باراغواي</item>
+        <item>بيرو</item>
+        <item>الفلبين</item>
+        <item>بولندا</item>
+        <item>البرتغال</item>
+        <item>بورتوريكو</item>
+        <item>دولة قطر</item>
+        <item>رومانيا</item>
+        <item>الاتحاد الروسي</item>
+        <item>المملكة العربية السعودية</item>
+        <item>السنغال</item>
+        <item>صربيا</item>
+        <item>سيشيل</item>
+        <item>سنغافورة</item>
+        <item>سلوفاكيا</item>
+        <item>سلوفينيا</item>
+        <item>الصومال</item>
+        <item>جنوب أفريقيا</item>
+        <item>كوريا الجنوبية</item>
+        <item>جنوب السودان</item>
+        <item>إسبانيا</item>
+        <item>سيريلانكا</item>
+        <item>سودان</item>
+        <item>سوازيلاند</item>
+        <item>السويد</item>
+        <item>سويسرا</item>
+        <item>الجمهورية العربية السورية</item>
+        <item>تايوان</item>
+        <item>طاجيكستان</item>
+        <item>تنزانيا</item>
+        <item>تايلاند</item>
+        <item>ليذهب</item>
+        <item>تونس</item>
+        <item>ديك رومي</item>
+        <item>تركمانستان</item>
+        <item>أوغندا</item>
+        <item>أوكرانيا</item>
+        <item>المملكة المتحدة</item>
+        <item>الولايات المتحدة</item>
+        <item>أوروغواي</item>
+        <item>أوزبكستان</item>
+        <item>فنزويلا</item>
+        <item>فيتنام</item>
+        <item>اليمن</item>
+        <item>زامبيا</item>
+        <item>زيمبابوي</item>
+    </array>
+
+    <array name="country">
+        <item>الإمارات العربية المتحدة</item>
+        <item>أفغانستان</item>
+        <item>ألبانيا</item>
+        <item>الجزائر</item>
+        <item>ساموا الأمريكية</item>
+        <item>أندورا</item>
+        <item>أنغولا</item>
+        <item>أنغيلا</item>
+        <item>الأرجنتين</item>
+        <item>أرمينيا</item>
+        <item>أستراليا</item>
+        <item>النمسا</item>
+        <item>أذربيجان</item>
+        <item>الباهاما</item>
+        <item>البحرين</item>
+        <item>بنغلاديش</item>
+        <item>بربادوس</item>
+        <item>روسيا البيضاء</item>
+        <item>بلجيكا</item>
+        <item>بليز</item>
+        <item>بنين</item>
+        <item>البوسنة والهرسك</item>
+        <item>بوتسوانا</item>
+        <item>بوليفيا</item>
+        <item>البرازيل</item>
+        <item>بروناي</item>
+        <item>بلغاريا</item>
+        <item>بوروندي</item>
+        <item>كمبوديا</item>
+        <item>الكاميرون</item>
+        <item>كندا</item>
+        <item>جمهورية افريقيا الوسطى</item>
+        <item>تشاد</item>
+        <item>تشيلي</item>
+        <item>الصين</item>
+        <item>كولومبيا</item>
+        <item>جزر القمر</item>
+        <item>الكونغو</item>
+        <item>كوستا ريكا</item>
+        <item>كرواتيا</item>
+        <item>كوبا</item>
+        <item>قبرص</item>
+        <item>جمهورية التشيك</item>
+        <item>الدنمارك</item>
+        <item>جيبوتي</item>
+        <item>جمهورية الدومنيكان</item>
+        <item>الإكوادور</item>
+        <item>مصر</item>
+        <item>استونيا</item>
+        <item>أثيوبيا</item>
+        <item>فنلندا</item>
+        <item>فرنسا</item>
+        <item>جورجيا</item>
+        <item>غانا</item>
+        <item>اليونان</item>
+        <item>ألمانيا</item>
+        <item>غوام</item>
+        <item>غينيا</item>
+        <item>هونغ كونغ</item>
+        <item>اليونان</item>
+        <item>إيران</item>
+        <item>العراق</item>
+        <item>أيسلندا</item>
+        <item>الهند</item>
+        <item>أندونيسيا</item>
+        <item>أيرلندا</item>
+        <item>إيطاليا</item>
+        <item>ساحل العاج</item>
+        <item>جامايكا</item>
+        <item>اليابان</item>
+        <item>الأردن</item>
+        <item>كازاخستان</item>
+        <item>كينيا</item>
+        <item>كوريا</item>
+        <item>الكويت</item>
+        <item>قرغيزستان</item>
+        <item>لاتفيا</item>
+        <item>لبنان</item>
+        <item>ليبيريا</item>
+        <item>ليبيا</item>
+        <item>ليختنشتاين</item>
+        <item>ليتوانيا</item>
+        <item>لوكسمبورغ</item>
+        <item>ماكاو</item>
+        <item>مقدونيا</item>
+        <item>مدغشقر</item>
+        <item>مالاوي</item>
+        <item>ماليزيا</item>
+        <item>جزر المالديف</item>
+        <item>مالي</item>
+        <item>مالطا</item>
+        <item>موريتانيا</item>
+        <item>موريشيوس</item>
+        <item>المكسيك</item>
+        <item>ميكرونيزيا</item>
+        <item>مولدوفا</item>
+        <item>موناكو</item>
+        <item>منغوليا</item>
+        <item>الجبل الأسود</item>
+        <item>المغرب</item>
+        <item>نيبال</item>
+        <item>هولندا</item>
+        <item>كاليدونيا الجديدة</item>
+        <item>نيوزيلاندا</item>
+        <item>النيجر</item>
+        <item>نيجيريا</item>
+        <item>النرويج</item>
+        <item>سلطنة عمان</item>
+        <item>باكستان</item>
+        <item>فلسطين</item>
+        <item>بناما</item>
+        <item>بابوا غينيا الجديدة</item>
+        <item>باراغواي</item>
+        <item>بيرو</item>
+        <item>الفلبين</item>
+        <item>بولندا</item>
+        <item>البرتغال</item>
+        <item>بورتوريكو</item>
+        <item>دولة قطر</item>
+        <item>رومانيا</item>
+        <item>الاتحاد الروسي</item>
+        <item>المملكة العربية السعودية</item>
+        <item>السنغال</item>
+        <item>صربيا</item>
+        <item>سيشيل</item>
+        <item>سنغافورة</item>
+        <item>سلوفاكيا</item>
+        <item>سلوفينيا</item>
+        <item>الصومال</item>
+        <item>جنوب أفريقيا</item>
+        <item>كوريا الجنوبية</item>
+        <item>جنوب السودان</item>
+        <item>إسبانيا</item>
+        <item>سيريلانكا</item>
+        <item>سودان</item>
+        <item>سوازيلاند</item>
+        <item>السويد</item>
+        <item>سويسرا</item>
+        <item>الجمهورية العربية السورية</item>
+        <item>تايوان</item>
+        <item>طاجيكستان</item>
+        <item>تنزانيا</item>
+        <item>تايلاند</item>
+        <item>ليذهب</item>
+        <item>تونس</item>
+        <item>ديك رومي</item>
+        <item>تركمانستان</item>
+        <item>أوغندا</item>
+        <item>أوكرانيا</item>
+        <item>المملكة المتحدة</item>
+        <item>الولايات المتحدة الأمريكية</item>
+        <item>أوروغواي</item>
+        <item>أوزبكستان</item>
+        <item>فنزويلا</item>
+        <item>فيتنام</item>
+        <item>اليمن</item>
+        <item>زامبيا</item>
+        <item>زيمبابوي</item>
+        <item>آخر...</item>
+    </array>
+
+    <array name="country_code">
+        <item>الإمارات العربية المتحدة ( 971 )</item>
+        <item>أفغانستان ( 93 )</item>
+        <item>ألبانيا ( 355 )</item>
+        <item>الجزائر ( 213 )</item>
+        <item>ساموا الأمريكية ( 684 )</item>
+        <item>أندورا ( 376 )</item>
+        <item>أنغولا ( 244 )</item>
+        <item>أنغيلا ( 809 )</item>
+        <item>أنتيغوا ( 268 )</item>
+        <item>الأرجنتين ( 54 )</item>
+        <item>أرمينيا ( 374 )</item>
+        <item>أروبا ( 297 )</item>
+        <item>جزيرة أسنشن ( 247 )</item>
+        <item>أستراليا ( 61 )</item>
+        <item>المناطق الخارجية الأسترالية ( 672 )</item>
+        <item>النمسا ( 43 )</item>
+        <item>أذربيجان ( 994 )</item>
+        <item>الباهاما ( 242 )</item>
+        <item>البحرين ( 973 )</item>
+        <item>بنغلاديش ( 880 )</item>
+        <item>بربادوس ( 246 )</item>
+        <item>روسيا البيضاء ( 375 )</item>
+        <item>بلجيكا ( 32 )</item>
+        <item>بليز ( 501 )</item>
+        <item>بنين ( 229 )</item>
+        <item>بوتان ( 975 )</item>
+        <item>بوليفيا ( 591 )</item>
+        <item>البوسنة والهرسك ( 387 )</item>
+        <item>بوتسوانا ( 267 )</item>
+        <item>البرازيل ( 55 )</item>
+        <item>جزر فيرجن البريطانية ( 284 )</item>
+        <item>بروناي دار السلام ( 673 )</item>
+        <item>بلغاريا ( 359 )</item>
+        <item>بوركينا فاسو ( 226 )</item>
+        <item>بوروندي ( 257 )</item>
+        <item>كمبوديا ( 855 )</item>
+        <item>الكاميرون ( 237 )</item>
+        <item>كندا ( 1 )</item>
+        <item>جزر الرأس الأخضر ( 238 )</item>
+        <item>جزر كايمان ( 345 )</item>
+        <item>جمهورية افريقيا الوسطى ( 236 )</item>
+        <item>تشاد ( 235 )</item>
+        <item>تشيلي ( 56 )</item>
+        <item>الصين ( 86 )</item>
+        <item>الصين-تايوان ( 886 )</item>
+        <item>كولومبيا ( 57 )</item>
+        <item>جزر القمر و مايوت ( 269 )</item>
+        <item>جزر كوك ( 682 )</item>
+        <item>كوستا ريكا ( 506 )</item>
+        <item>كرواتيا ( 385 )</item>
+        <item>كوبا ( 53 )</item>
+        <item>قبرص ( 357 )</item>
+        <item>جمهورية التشيك ( 420 )</item>
+        <item>الدنمارك ( 45 )</item>
+        <item>جيبوتي ( 253 )</item>
+        <item>دومينيكا ( 767 )</item>
+        <item>الإكوادور ( 593 )</item>
+        <item>مصر ( 20 )</item>
+        <item>السلفادور ( 503 )</item>
+        <item>غينيا الإستوائية ( 240 )</item>
+        <item>إريتريا ( 291 )</item>
+        <item>استونيا ( 372 )</item>
+        <item>أثيوبيا ( 251 )</item>
+        <item>جزر فوكلاند ( 500 )</item>
+        <item>جزر صناعية ( 298 ) </item>
+        <item>فيجي ( 679 )</item>
+        <item>فنلندا ( 358 )</item>
+        <item>فرنسا ( 33 )</item>
+        <item>فرنسا ( 508 )</item>
+        <item>جزر الأنتيل الفرنسية ( 596 )</item>
+        <item>غيانا الفرنسية ( 594 )</item>
+        <item>الغابون ( 241 )</item>
+        <item>غامبيا ( 220 )</item>
+        <item>جورجيا ( 995 )</item>
+        <item>ألمانيا ( 49 )</item>
+        <item>غانا ( 233 )</item>
+        <item>جبل طارق ( 350 )</item>
+        <item>اليونان ( 30 )</item>
+        <item>الأرض الخضراء ( 299 )</item>
+        <item>غرينادا / كاريكو ( 473 )</item>
+        <item>غوام ( 671 )</item>
+        <item>غواتيمالا ( 502 )</item>
+        <item>غينيا ( 224 )</item>
+        <item>غينيا-بيساو ( 245 )</item>
+        <item>غيانا ( 592 )</item>
+        <item>هايتي ( 509 )</item>
+        <item>هندوراس ( 504 )</item>
+        <item>هونغ كونغ ( 852 )</item>
+        <item>اليونان ( 36 )</item>
+        <item>أيسلندا ( 354 )</item>
+        <item>الهند ( 91 )</item>
+        <item>أندونيسيا ( 62 )</item>
+        <item>إيران ( 98 )</item>
+        <item>العراق ( 964 )</item>
+        <item>أيرلندا ( 353 )</item>
+        <item>إسرائيل ( 972 )</item>
+        <item>إيطاليا ( 39 )</item>
+        <item>ساحل العاج ( 225 )</item>
+        <item>جامايكا ( 876 )</item>
+        <item>اليابان ( 81 )</item>
+        <item>الأردن ( 962 )</item>
+        <item>كازاخستان ( 7 )</item>
+        <item>كينيا ( 254 )</item>
+        <item>جمهورية كيريباتي ( 686 )</item>
+        <item>الكويت ( 965 )</item>
+        <item>جمهورية قيرغيزستان ( 996 )</item>
+        <item>لاوس ( 856 )</item>
+        <item>لاتفيا ( 371 )</item>
+        <item>لبنان ( 961 )</item>
+        <item>ليسوتو ( 266 )</item>
+        <item>ليبيريا ( 231 )</item>
+        <item>ليبيا ( 218 )</item>
+        <item>ليختنشتاين ( 423 )</item>
+        <item>ليتوانيا ( 370 )</item>
+        <item>لوكسمبورغ ( 352 )</item>
+        <item>ماكاو ( 853 )</item>
+        <item>مقدونيا ( 389 )</item>
+        <item>مدغشقر ( 261 )</item>
+        <item>مالاوي ( 265 )</item>
+        <item>ماليزيا ( 60 )</item>
+        <item>جزر المالديف ( 960 )</item>
+        <item>مالي ( 223 )</item>
+        <item>مالطا ( 356 )</item>
+        <item>جزر مارشال ( 692 )</item>
+        <item>موريتانيا ( 222 )</item>
+        <item>موريشيوس ( 230 )</item>
+        <item>المكسيك ( 52 )</item>
+        <item>ميكرونيزيا ( 691 )</item>
+        <item>مولدوفا ( 373 )</item>
+        <item>منغوليا ( 976 )</item>
+        <item>المغرب ( 212 )</item>
+        <item>موزمبيق ( 258 )</item>
+        <item>ميانمار ( 95 )</item>
+        <item>ناميبيا ( 264 )</item>
+        <item>ناورو ( 674 )</item>
+        <item>نيبال ( 977 )</item>
+        <item>هولندا ( 31 )</item>
+        <item> جزر الأنتيل الفرنسية ( 599 )</item>
+        <item>نيفيس ( 869 )</item>
+        <item>كاليدونيا الجديدة ( 687 )</item>
+        <item>نيوزيلاندا ( 64 )</item>
+        <item>نيكاراغوا ( 505 )</item>
+        <item>النيجر ( 227 )</item>
+        <item>نيجيريا ( 234 )</item>
+        <item>نيوي ( 683 )</item>
+        <item>كوريا الشمالية ( 850 )</item>
+        <item>شمال اليمن ( 967 )</item>
+        <item>النرويج ( 47 )</item>
+        <item>سلطنة عمان ( 968 )</item>
+        <item>باكستان ( 92 )</item>
+        <item>بالاو ( 680 )</item>
+        <item>بناما ( 507 )</item>
+        <item>بابوا غينيا الجديدة ( 675 )</item>
+        <item>باراغواي ( 595 )</item>
+        <item>بيرو ( 51 )</item>
+        <item>الفلبين ( 63 )</item>
+        <item>بولندا ( 48 )</item>
+        <item>البرتغال ( 351 )</item>
+        <item>بورتوريكو ( 1 787 )</item>
+        <item>دولة قطر ( 974 )</item>
+        <item>جمع شمل ( 262 )</item>
+        <item>رومانيا ( 40 )</item>
+        <item>رواندا ( 250 )</item>
+        <item>سايبان ( 1 670 )</item>
+        <item>سايبان ( 670 )</item>
+        <item>سان مارينو ( 378 )</item>
+        <item>ساو تومي وبرنسيبي ( 239 )</item>
+        <item>المملكة العربية السعودية ( 966 )</item>
+        <item>السنغال ( 221 )</item>
+        <item>صربيا والجبل الأسود ( 381 )</item>
+        <item>سيشيل ( 248 )</item>
+        <item>سيرا ليون ( 232 )</item>
+        <item>سنغافورة ( 65 )</item>
+        <item>سلوفاكيا ( 421 )</item>
+        <item>سلوفينيا ( 386 )</item>
+        <item>جزر سليمان ( 677 )</item>
+        <item>الصومال ( 252 )</item>
+        <item>جنوب أفريقيا ( 27 )</item>
+        <item>كوريا الجنوبية ( 82 )</item>
+        <item>إسبانيا ( 34 )</item>
+        <item>سيريلانكا ( 94 )</item>
+        <item>سانت هيلانة ( 290 )</item>
+        <item>سودان ( 249 )</item>
+        <item>سورينام ( 597 )</item>
+        <item>السويد ( 46 )</item>
+        <item>سويسرا ( 41 )</item>
+        <item>سوريا ( 963 )</item>
+        <item>تاهيتي ( 689 )</item>
+        <item>تنزانيا ( 255 )</item>
+        <item>تايلاند ( 66 )</item>
+        <item>ليذهب ( 228 )</item>
+        <item>توكيلاو ( 690 )</item>
+        <item>تونغا ( 676 )</item>
+        <item>ترينداد وتوباغو ( 1 868 )</item>
+        <item>تونس ( 216 )</item>
+        <item>ديك رومي ( 90 )</item>
+        <item>تركمانستان ( 993 )</item>
+        <item> توفالو ( 688 )</item>
+        <item>أوغندا ( 256 )</item>
+        <item>أوكرانيا ( 380 )</item>
+        <item>الإمارات العربية المتحدة ( 971 )</item>
+        <item>المملكة المتحدة ( 44 )</item>
+        <item>أوروغواي ( 598 )</item>
+        <item>فانواتو ( 678 )</item>
+        <item>فنزويلا ( 58 )</item>
+        <item>فيتنام ( 84 )</item>
+        <item>جزر العذراء ( 1 340 )</item>
+        <item>واليس وفوتونا ( 681 )</item>
+        <item>ساموا الغربية ( 685 )</item>
+        <item>زائير ( 243 )</item>
+        <item>زامبيا ( 260 )</item>
+        <item>زيمبابوي ( 263 )</item>
+
+    </array>
+
 </resources>
