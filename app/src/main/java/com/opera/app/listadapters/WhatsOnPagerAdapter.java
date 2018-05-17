@@ -7,6 +7,9 @@ package com.opera.app.listadapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -30,6 +33,8 @@ import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class WhatsOnPagerAdapter extends PagerAdapter {
@@ -41,7 +46,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
     Animation slide_in_left;
     Animation slide_out_left;
 
-    public WhatsOnPagerAdapter(Activity mActivity, ArrayList<Events> mWhatsEvents,String mFrom) {
+    public WhatsOnPagerAdapter(Activity mActivity, ArrayList<Events> mWhatsEvents, String mFrom) {
         this.mActivity = mActivity;
         this.mWhatsEvents = mWhatsEvents;
 
@@ -65,14 +70,14 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         final ProgressBar progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
         ImageView imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
-        ImageView imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
+        final ImageView imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
         ImageView imgShare = (ImageView) view.findViewById(R.id.imgShare);
         LinearLayout linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
 
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
 
-        txtEventInfo.setText(Html.fromHtml(eventObject.getDescription()));
+        txtEventInfo.setText(Html.fromHtml(eventObject.getMobileDescription()));
         txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
@@ -112,7 +117,20 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OperaUtils.ShareEventDetails(mActivity, eventObject.getDescription(), eventObject.getImage());
+                /*Uri screenshotUri;
+                try {
+                    screenshotUri = new Uri("http://www.google.com/");
+                }
+                catch (URISyntaxException e) {
+                }
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                 screenshotUri = Uri.parse("file:///sdcard/image.jpg");
+                sharingIntent.setType("image*//*");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "Body text of the new status");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+                mActivity.startActivity(Intent.createChooser(sharingIntent, "Share image using"));*/
+//                OperaUtils.ShareEventDetails(mActivity, eventObject.getDescription(), eventObject.getImage());
             }
         });
 
@@ -150,6 +168,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                 in.putExtra("EventInternalName", eventObject.getInternalName());
                 in.putExtra("IsFavourite", eventObject.isFavourite());
                 mActivity.startActivity(in);
+
                 if (!mFrom.equalsIgnoreCase("HomePage")) {
                     mActivity.finish();
                 }

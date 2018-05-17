@@ -29,6 +29,7 @@ public class EventDetailsDB {
     private static final String EVENT_NAME = "EVENT_NAME";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
     private static final String EVENT_INFO = "EVENT_INFO";
+    private static final String EVENT_MOBILE_DESCRIPTION = "EVENT_MOBILE_DESCRIPTION";
     private static final String EVENT_BUY_NOW_LINK = "EVENT_BUY_NOW_LINK";
     private static final String EVENT_IS_WHATS_ON = "EVENT_IS_WHATS_ON";
     private static final String EVENT_FROM_DATE = "EVENT_FROM_DATE";
@@ -58,6 +59,7 @@ public class EventDetailsDB {
                     + EVENT_NAME + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"
+                    + EVENT_MOBILE_DESCRIPTION + " TEXT,"
                     + EVENT_BUY_NOW_LINK + " TEXT,"
                     + EVENT_IS_WHATS_ON + " TEXT,"
                     + EVENT_FROM_DATE + " TEXT,"
@@ -103,6 +105,7 @@ public class EventDetailsDB {
             contentValue.put(EVENT_NAME, mEventDetailsData.get(0).getName());
             contentValue.put(EVENT_IMAGE, mEventDetailsData.get(0).getImage());
             contentValue.put(EVENT_INFO, mEventDetailsData.get(0).getDescription());
+            contentValue.put(EVENT_MOBILE_DESCRIPTION, mEventDetailsData.get(0).getMobileDescription());
             contentValue.put(EVENT_BUY_NOW_LINK, mEventDetailsData.get(0).getBuyNowLink());
             contentValue.put(EVENT_IS_WHATS_ON, mEventDetailsData.get(0).getWhatsOn());
             contentValue.put(EVENT_FROM_DATE, mEventDetailsData.get(0).getFrom());
@@ -147,6 +150,7 @@ public class EventDetailsDB {
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
                     mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
+                    mEvents.setMobileDescription(cursor.getString(cursor.getColumnIndex(EVENT_MOBILE_DESCRIPTION)));
                     mEvents.setBuyNowLink(cursor.getString(cursor.getColumnIndex(EVENT_BUY_NOW_LINK)));
                     mEvents.setWhatsOn(cursor.getString(cursor.getColumnIndex(EVENT_IS_WHATS_ON)));
                     mEvents.setFrom(cursor.getString(cursor.getColumnIndex(EVENT_FROM_DATE)));

@@ -111,7 +111,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         }
 
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
-        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getDescription()));
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
         Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
@@ -147,14 +147,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         });
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                /*Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBodyText = "Check it out. Your message goes here";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
-                mActivity.startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));*/
-            }
+            public void onClick(View v) {}
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +161,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     holder.linearHolder.setVisibility(View.VISIBLE);
                     mEventPojo.setInfoOpen(true);
                 }
-
             }
         });
 

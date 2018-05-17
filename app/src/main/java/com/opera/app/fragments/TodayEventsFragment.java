@@ -103,11 +103,11 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
                 }
 
             if (date.before(todate) && date.after(fromdate) || date.equals(todate) || date.equals(fromdate)) {
-                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getDescription(), mEventListingData.get(i).isFavourite()));
+                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite()));
             }
         }
 
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents);
+        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerToday);
         if (mFilteredEvents.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
