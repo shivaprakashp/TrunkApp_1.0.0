@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="8:00 \n HR"
+                style="@style/label_black_large"
+                font:name="Montserrat-Bold"/>
+        </LinearLayout>
+
+        <view
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBurgendy"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Vivaldi The Four Seasons Featuring Daniel Hope"
+                style="@style/label_black_large"
+                android:lines="2"
+                font:name="Montserrat-Bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.opera.app.customwidget.ButtonWithFont
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    tools:text="View Details"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/grey_corner"
+                    style="@style/label_black"/>
+
+                <com.opera.app.customwidget.ButtonWithFont
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/buy_tickets"
+                    android:background="@drawable/grey_corner"
+                    style="@style/label_black"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
