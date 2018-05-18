@@ -237,7 +237,8 @@ public class ReserveATableActivity extends BaseActivity {
         editDOB.setText(OperaUtils.getCurrentDate());
 
         //getCurrentDate2 to send to backend in another format
-        CallMasterService(OperaUtils.getCurrentDate2());
+        dateOFBirth=OperaUtils.getCurrentDate2();
+        CallMasterService(dateOFBirth);
     }
 
     private void Onclicks() {
@@ -473,7 +474,7 @@ public class ReserveATableActivity extends BaseActivity {
 
         RespakReservation respakReservation = new RespakReservation(dateOFBirth, mSelectedTime,
                 Integer.valueOf(mEdtNoOfGuests.getText().toString()),
-                Integer.valueOf(mMealPeriodId));
+                "");
 
         BookTableRequest tableResponse = new BookTableRequest(patron, respakReservation);
 
@@ -491,12 +492,12 @@ public class ReserveATableActivity extends BaseActivity {
         }
 
         for (int j = 0; j < arrTimeSegmentsOnly.size(); j++) {
-            if (mMealPeriodId.equalsIgnoreCase(arrTimeSegmentsOnly.get(j).getMeal_Period_ID())) {
+//            if (mMealPeriodId.equalsIgnoreCase(arrTimeSegmentsOnly.get(j).getMeal_Period_ID())) {
                 /*arrTimeSegmentsAllFilters.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses().get(j).getTime_Segments());*/
-                arrTimeSegmentsAllFilters.add(new Time_Segments(arrTimeSegmentsOnly.get(j).getTotal_Available(), arrTimeSegmentsOnly.get(j).getMeal_Period_ID(), arrTimeSegmentsOnly.get(j).getTotal_Booked()
-                        , arrTimeSegmentsOnly.get(j).getList_Type(), arrTimeSegmentsOnly.get(j).getOnline_Capacity(), arrTimeSegmentsOnly.get(j).getOnline_Booked(), arrTimeSegmentsOnly.get(j).getSitting()
-                        , arrTimeSegmentsOnly.get(j).getTotal_Capacity(), arrTimeSegmentsOnly.get(j).getMeal_Period_Time()));
-            }
+            arrTimeSegmentsAllFilters.add(new Time_Segments(arrTimeSegmentsOnly.get(j).getTotal_Available(), arrTimeSegmentsOnly.get(j).getMeal_Period_ID(), arrTimeSegmentsOnly.get(j).getTotal_Booked()
+                    , arrTimeSegmentsOnly.get(j).getList_Type(), arrTimeSegmentsOnly.get(j).getOnline_Capacity(), arrTimeSegmentsOnly.get(j).getOnline_Booked(), arrTimeSegmentsOnly.get(j).getSitting()
+                    , arrTimeSegmentsOnly.get(j).getTotal_Capacity(), arrTimeSegmentsOnly.get(j).getMeal_Period_Time()));
+//            }
         }
 
         if (arrTimeSegmentsAllFilters.size() > 0) {
@@ -534,8 +535,9 @@ public class ReserveATableActivity extends BaseActivity {
                     arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
                 maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
 
-                mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
-                mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);
+                /*mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
+                mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);*/
+                ChangeTimeSegmentsField(mEdtNoOfGuests.getText().toString().trim());
             } else if (mRequestKey.equalsIgnoreCase(AppConstants.BOOKATABLE.BOOKATABLE)) {
                 if (response.body() != null) {
                     ReserveResponse mBookTable =

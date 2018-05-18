@@ -22,7 +22,7 @@ public class RespakReservation {
     private Integer areaID;
     @SerializedName("Meal_Period_ID")
     @Expose
-    private Integer mealPeriodID;
+    private String mealPeriodID;
     @SerializedName("Meal_Period_Name")
     @Expose
     private String mealPeriodName;
@@ -88,34 +88,34 @@ public class RespakReservation {
     private String uDF5;
 
     public RespakReservation(String reservationDate,
-                             String reservationTime, int partySize, int mealPeriodID){
-        reservationID = "sample string";
-        fullReservationID = "sample string";
+                             String reservationTime, int partySize, String mealPeriodID) {
+        reservationID = "sample string 1";
+        fullReservationID = "sample string 2";
         patronID = "";
-        areaName = "sample string";
+        areaName = "sample string 4";
         areaID = 40;
         this.mealPeriodID = mealPeriodID;
-        mealPeriodName = "sample string";
+        mealPeriodName = "sample string 7";
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
         this.partySize = partySize;
-        notes = "";
+        notes = "sample string 11";
         rStatus = 3;
         referralID = "";
-        referralName = "sample string";
+        referralName = "sample string 14";
         occasionID = "";
-        occasionName = "sample string";
-        tablePosition = "sample string";
-        promotionCode = "sample string";
-        couponCode = "sample string";
-        referrerCode = "sample string";
-        sourceHost = "sample string";
-        deviceID = "sample string";
-        uDF1 = "sample string";
-        uDF2 = "sample string";
-        uDF3 = "sample string";
-        uDF4 = "sample string";
-        uDF5 = "sample string";
+        occasionName = "sample string 16";
+        tablePosition = "sample string 17";
+        promotionCode = "sample string 18";
+        couponCode = "sample string 19";
+        referrerCode = "sample string 20";
+        sourceHost = "sample string 21";
+        deviceID = "sample string 22";
+        uDF1 = "sample string 23";
+        uDF2 = "sample string 24";
+        uDF3 = "sample string 25";
+        uDF4 = "sample string 26";
+        uDF5 = "sample string 27";
     }
 
     public String getReservationID() {
@@ -158,11 +158,11 @@ public class RespakReservation {
         this.areaID = areaID;
     }
 
-    public Integer getMealPeriodID() {
+    public String getMealPeriodID() {
         return mealPeriodID;
     }
 
-    public void setMealPeriodID(Integer mealPeriodID) {
+    public void setMealPeriodID(String mealPeriodID) {
         this.mealPeriodID = mealPeriodID;
     }
 
