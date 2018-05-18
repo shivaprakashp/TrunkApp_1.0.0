@@ -28,6 +28,7 @@ import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
@@ -210,6 +211,15 @@ public class MainActivity extends BaseActivity implements
                 //For Language setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View homeView = homeInflater.inflate(R.layout.view_home_toolbar, null);
+
+                homeView.findViewById(R.id.img_plan_visit).setVisibility(View.VISIBLE);
+                homeView.findViewById(R.id.img_wallet).setVisibility(View.VISIBLE);
+                homeView.findViewById(R.id.img_profile).setVisibility(View.VISIBLE);
+
+                homeView.findViewById(R.id.img_plan_visit).setOnClickListener(calendarPage);
+                homeView.findViewById(R.id.img_wallet).setOnClickListener(walletPage);
+                homeView.findViewById(R.id.img_profile).setOnClickListener(profilePage);
+
                 toolBarLayout(homeView);
                 break;
 
@@ -249,6 +259,27 @@ public class MainActivity extends BaseActivity implements
                 break;
         }
     }
+
+    private View.OnClickListener calendarPage = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        openActivity(mActivity, CalendarActivity.class);
+        }
+    };
+
+    private View.OnClickListener walletPage = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            openActivity(mActivity, WalletActivity.class);
+        }
+    };
+
+    private View.OnClickListener profilePage = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            openActivity(mActivity, MyProfileActivity.class);
+        }
+    };
 
     private void toolBarLayout(View view){
         toolbar.removeAllViews();

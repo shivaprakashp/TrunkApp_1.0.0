@@ -85,11 +85,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.TestAct"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <service android:name=".services.SettingsService" />
 
-        <activity android:name=".activities.WalletActivity"
+        <activity
+            android:name=".activities.WalletActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity android:name=".activities.OpenYoutubeVideo"
