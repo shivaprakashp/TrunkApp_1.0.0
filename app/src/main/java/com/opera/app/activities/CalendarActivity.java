@@ -3,6 +3,8 @@ package com.opera.app.activities;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
@@ -16,9 +18,13 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.CalendarDateRangeView;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.database.events.EventListingDB;
+import com.opera.app.listadapters.CalendarRecyclerView;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.OperaUtils;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -36,8 +42,8 @@ public class CalendarActivity extends BaseActivity {
     @BindView(R.id.imgVNavRight)
     ImageView imgVNavRight;
 
-    @BindView(R.id.recyclerList)
-    RecyclerView recyclerList;
+    @BindView(R.id.recyclerCalendar)
+    RecyclerView recyclerCalendar;
 
     private Locale locale;
     private Context context;
@@ -53,6 +59,10 @@ public class CalendarActivity extends BaseActivity {
     int margin;
     int todayDate;
 
+    private EventListingDB mEventDetailsDB;
+    private ArrayList<Events> mEventListingData = new ArrayList<>();
+    private CalendarRecyclerView adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +70,27 @@ public class CalendarActivity extends BaseActivity {
 
         context = this;
         initView();
+        initDB();
 
         currentCalendarMonth = OperaUtils.getCurrentMonth();
         initCalendar(currentCalendarMonth);
     }
 
+    private void initDB(){
+        mEventDetailsDB = new EventListingDB(context);
+        mEventDetailsDB.open();
+        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        mEventDetailsDB.close();
+
+        adapter = new CalendarRecyclerView(mEventListingData);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerCalendar.setLayoutManager(mLayoutManager);
+        recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
+        recyclerCalendar.setAdapter(adapter);
+    }
+
     private void initView(){
+
         locale = context.getResources().getConfiguration().locale;
 
         todayDate = OperaUtils.getCurrentMonth().get(Calendar.DAY_OF_MONTH);

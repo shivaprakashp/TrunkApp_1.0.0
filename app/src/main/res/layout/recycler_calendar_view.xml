@@ -8,67 +8,77 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="10dp">
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtCalendarTime"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:text="8:00 \n HR"
+                tools:text="8:00\n PM"
                 style="@style/label_black_large"
                 font:name="Montserrat-Bold"/>
         </LinearLayout>
 
-        <view
+        <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/colorBurgendy"/>
+            android:background="@color/colorBurgendy"></View>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtCalendarEventName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Vivaldi The Four Seasons Featuring Daniel Hope"
                 style="@style/label_black_large"
                 android:lines="2"
-                font:name="Montserrat-Bold"/>
+                font:name="Montserrat-Regular"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <com.opera.app.customwidget.ButtonWithFont
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    tools:text="View Details"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/grey_corner"
-                    style="@style/label_black"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/view_details"
+                    style="@style/label_burgendy"
+                    android:padding="5dp"
+                    font:name="Montserrat-Light"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/grey_corner"/>
 
                 <com.opera.app.customwidget.ButtonWithFont
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/buy_tickets"
-                    android:background="@drawable/grey_corner"
-                    style="@style/label_black"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/buy_tickets"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"
+                    style="@style/label_white"
+                    font:name="Montserrat-Light"
+                    android:background="@drawable/btn_ripple_effect"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBurgendy"/>
 </LinearLayout>
