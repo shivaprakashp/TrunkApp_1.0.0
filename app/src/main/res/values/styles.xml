@@ -114,6 +114,11 @@
         <item name="android:textSize">@dimen/textsize_vlarge</item>
     </style>
 
+    <style name="label_burgendy_vvlarge">
+        <item name="android:textColor">@color/colorBurgendy</item>
+        <item name="android:textSize">@dimen/textsize_vvlarge</item>
+    </style>
+
     <!--  9E9E9E color -->
     <style name="label_gray_very_low">
         <item name="android:textColor">@color/dark_gray</item>
