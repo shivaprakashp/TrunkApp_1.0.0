@@ -62,7 +62,7 @@
                     android:padding="5dp"
                     font:name="Montserrat-Light"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/grey_corner"/>
+                    android:background="@drawable/burgandy_corner"/>
 
                 <com.opera.app.customwidget.ButtonWithFont
                     android:layout_width="wrap_content"
