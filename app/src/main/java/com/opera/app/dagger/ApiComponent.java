@@ -6,6 +6,7 @@ import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.MyProfileActivity;
+import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
@@ -42,4 +43,5 @@ public interface ApiComponent {
     void inject(EventDetailsActivity mEventDetailsActivity);
     void inject(GenresEventsFragment mGenresEventsFragment);
     void inject(WalletActivity walletActivity);
+    void inject(NotificationActivity notificationActivity);
 }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.restaurants.DatabaseHelper;
 import com.opera.app.database.restaurants.SeanRestOpeation;
 
@@ -27,6 +28,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL(EventListingDB.CREATE_TABLE_EVENT_LISTING);
         db.execSQL(EventDetailsDB.CREATE_TABLE_EVENT_DETAILS);
         db.execSQL(EventGenresDB.CREATE_TABLE_GENRES_LISTING);
+        db.execSQL(NotificationDetailsDB.CREATE_TABLE_NOTIFICATION);
     }
 
     @Override
@@ -37,6 +39,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + EventListingDB.TABLE_EVENT_LISTING);
         db.execSQL("DROP TABLE IF EXISTS " + EventDetailsDB.TABLE_EVENT_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + EventGenresDB.TABLE_GENRES_LISTING);
+        db.execSQL("DROP TABLE IF EXISTS " + NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
         onCreate(db);
     }
 

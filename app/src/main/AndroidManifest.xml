@@ -93,6 +93,10 @@
             android:name=".activities.WalletActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait"></activity>
 

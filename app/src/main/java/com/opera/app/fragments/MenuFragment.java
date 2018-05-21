@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.MyProfileActivity;
+import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.activities.WalletActivity;
@@ -203,6 +204,14 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getActivity(), WalletActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        menu_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), NotificationActivity.class);
                 getActivity().startActivity(intent);
             }
         });

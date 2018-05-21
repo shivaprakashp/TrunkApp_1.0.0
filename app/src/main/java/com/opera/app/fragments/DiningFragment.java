@@ -9,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
@@ -22,7 +20,6 @@ import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
-import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.restaurants.SeanRestOpeation;
 import com.opera.app.dialogues.GuestDialog;
@@ -54,7 +51,7 @@ public class DiningFragment extends BaseFragment {
     @Inject
     Retrofit retrofit;
 
-    @BindView(R.id.linearReadMore)
+    /*@BindView(R.id.linearReadMore)
     LinearLayout mLinearReadMore;
 
     @BindView(R.id.txtShowmore)
@@ -64,7 +61,9 @@ public class DiningFragment extends BaseFragment {
     ImageView ivShowmore;
 
     @BindView(R.id.expandableTextView)
-    ExpandableTextView mExpandableTextView;
+    ExpandableTextView mExpandableTextView;*/
+    @BindView(R.id.expandableTextViewInfo)
+    TextView mExpandableTextView;
 
     @BindView(R.id.btnOtherRestaurants)
     Button mBtnOtherRestaurants;
@@ -108,7 +107,7 @@ public class DiningFragment extends BaseFragment {
         mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        View view = inflater.inflate(R.layout.fragment_dining2, container, false);
+        View view = inflater.inflate(R.layout.fragment_dining, container, false);
 
         initData(view);
 
@@ -143,11 +142,12 @@ public class DiningFragment extends BaseFragment {
         bundle.clear();
     }
 
-    @OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
+    //@OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
+    @OnClick({ R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.linearReadMore:
+            /*case R.id.linearReadMore:
                 if (mExpandableTextView.isExpanded()) {
                     mExpandableTextView.collapse();
                     txtShowmore.setText(R.string.read_more);
@@ -157,7 +157,7 @@ public class DiningFragment extends BaseFragment {
                     txtShowmore.setText(R.string.read_less);
                     ivShowmore.setScaleY(-1);
                 }
-                break;
+                break;*/
             case R.id.btnOtherRestaurants:
                 openActivity(mActivity, OtherRestaurantsActivity.class);
                 break;
@@ -213,7 +213,7 @@ public class DiningFragment extends BaseFragment {
     }
 
     private void setRestaurant(RestaurantsData data) {
-        mLinearReadMore.setVisibility(View.VISIBLE);
+        //mLinearReadMore.setVisibility(View.VISIBLE);
         try {
             this.data = data;
             mTxtRestaurantName.setText(data.getRestName());

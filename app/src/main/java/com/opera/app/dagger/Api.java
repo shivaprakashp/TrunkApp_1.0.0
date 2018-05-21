@@ -4,10 +4,10 @@ import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
-import com.opera.app.pojo.events.genreslisting.GenresEvents;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
+import com.opera.app.pojo.notifications.NotificationDetails;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.pojo.profile.PostChangePassword;
@@ -88,5 +88,8 @@ public interface Api {
 
     @GET("http://www.mocky.io/v2/5af5605f5500005f347a55a6")
     Call<WalletDetails> getWalletDetails();
+
+    @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
+    Call<NotificationDetails> getNotificationDetails();
 
 }
