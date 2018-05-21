@@ -117,8 +117,7 @@
             android:name=".activities.OpenYoutubeVideo"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.NotificationActivity"
-            android:screenOrientation="portrait"></activity>
+
 
 
         <!-- [START firebase_service] -->

@@ -1,65 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
-    xmlns:attribute="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:ignore="NamespaceTypo">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85"
-        android:orientation="vertical">
+        android:layout_height="250dp">
 
         <ImageView
+            android:id="@+id/restaurantImage"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_profile_bg" />
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
 
-        <!--     <com.opera.app.customwidget.CrescentoContainer
-                 android:id="@+id/crescentoContainer"
-                 android:layout_width="match_parent"
-                 android:layout_height="300dp"
-                 android:layout_marginTop="200dp"
-                 android:elevation="20dp"
-                 android:scaleType="centerCrop"
-                 attribute:gradientDirection="bottom_to_top"
-                 attribute:gravity="bottom"
-                 attribute:curvature="20dp">-->
+        <ProgressBar
+            android:id="@+id/progressImageLoader"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="180dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
             android:orientation="vertical">
 
-            <com.opera.app.customwidget.ArcView
-                android:id="@+id/crescentoContainer"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/dark_gray"
-                android:layout_weight="0.15"
-                app:arc_cropDirection="outside"
-                app:arc_height="30dp"
-                android:elevation="4dp"
-                app:arc_position="bottom">
+        </LinearLayout>
 
-
-            </com.opera.app.customwidget.ArcView>
+        <com.opera.app.customwidget.ArcView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/bg_linear_shape"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            app:arc_cropDirection="inside"
+            app:arc_height="20dp"
+            app:arc_position="top">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.85"
-                android:background="@drawable/bg_linear_shape"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:paddingTop="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,7 +76,7 @@
                             android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@string/sean_connolly"
+                            tools:text=""
                             font:name="Montserrat-Light" />
 
                         <com.opera.app.customwidget.TextViewWithFont
@@ -92,7 +87,7 @@
                             android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@string/dubai_opera"
+                            android:text=""
                             font:name="Montserrat-Light" />
 
                     </LinearLayout>
@@ -117,11 +112,28 @@
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:scrollbars="vertical"
+                    android:fillViewport="true"
+                    android:layout_height="match_parent">
 
-                <LinearLayout
+                    <TextView
+                        android:id="@+id/expandableTextViewInfo"
+                        style="@style/label_white_small"
+                        android:layout_width="fill_parent"
+                        android:maxLines="10"
+                        android:scrollbars="vertical"
+                        android:layout_weight="1.0"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="10dp"
+                        android:text="" />
+
+                </ScrollView>
+
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -133,8 +145,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy Dummy dummy "
-                        app:animation_duration="100" />
+                        android:text="" />
 
                     <LinearLayout
                         android:id="@+id/linearReadMore"
@@ -143,7 +154,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.opera.app.customwidget.TextViewWithFont
                             android:id="@+id/txtShowmore"
@@ -155,41 +167,41 @@
                             android:textAllCaps="false" />
 
                         <ImageView
+                            android:id="@+id/ivShowmore"
                             android:layout_width="10dp"
                             android:layout_height="10dp"
                             android:src="@drawable/ic_down_arrow" />
                     </LinearLayout>
 
-                </LinearLayout>
-
+                </LinearLayout>-->
 
             </LinearLayout>
+
+        </com.opera.app.customwidget.ArcView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.156"
+            android:background="@color/colorBlack"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnOtherRestaurants"
+                style="@style/label_white"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/btn_ripple_effect"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/other_restaurants"
+                android:textAllCaps="false"
+                font:name="Montserrat-Light" />
+
         </LinearLayout>
-        <!--</com.opera.app.customwidget.CrescentoContainer>-->
-        <!--here-->
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.15"
-        android:background="@color/colorBlack"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <com.opera.app.customwidget.ButtonWithFont
-            android:id="@+id/btnOtherRestaurants"
-            style="@style/label_white"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/button_height"
-            android:background="@drawable/btn_ripple_effect"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/other_restaurants"
-            android:textAllCaps="false"
-            font:name="Montserrat-Light" />
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
