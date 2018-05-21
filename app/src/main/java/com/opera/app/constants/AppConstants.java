@@ -62,12 +62,12 @@ public interface AppConstants {
         String GETEVENTDETAILS = "GETEVENTDETAILS";
     }
 
-    interface GETGENRESLISTING {
-        String GETGENRESLISTING = "GETGENRESLISTING";
-    }
-
     interface GETWALLETDETAIL{
         String GETWALLETDETAIL = "GETWALLETDETAIL";
+    }
+
+    interface GETNOTIFICATIONDETAILS {
+        String GETNOTIFICATIONDETAILS = "GETNOTIFICATIONDETAILS";
     }
 
 }

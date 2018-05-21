@@ -143,18 +143,18 @@ public class MainController {
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
-   /* public void getGenresListing(TaskComplete taskComplete, Api api) {
-        Call call = api.GetGenresListing();          // need to add auth token
-        properties.setRequestKey(AppConstants.GETGENRESLISTING.GETGENRESLISTING);
-        DataListener listener = new DataListener(context, taskComplete, properties);
-        listener.dataLoad(call);
-    }*/
 
     public void getWalletDetails(TaskComplete taskComplete, Api api){
         Call call = api.getWalletDetails();
-        properties.setRequestKey(AppConstants.GETGENRESLISTING.GETGENRESLISTING);
+        properties.setRequestKey(AppConstants.GETWALLETDETAIL.GETWALLETDETAIL);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
 
+     public void getNotificationsDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.getNotificationDetails();
+        properties.setRequestKey(AppConstants.GETNOTIFICATIONDETAILS.GETNOTIFICATIONDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
 }

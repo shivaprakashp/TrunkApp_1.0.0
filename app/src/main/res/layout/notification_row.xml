@@ -4,6 +4,9 @@
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:background="@drawable/burgandy_corner"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     android:layout_height="250dp">
 
     <RelativeLayout
@@ -11,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/mImgRestaurantImage"
+            android:id="@+id/mImgNotifyImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY" />
@@ -37,7 +40,7 @@
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/mTxtRestaurantName"
+                    android:id="@+id/mTxtNotifyTitle"
                     style="@style/label_black_vlarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,7 +51,7 @@
                     font:name="Montserrat-Light" />
 
                 <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/mTxtRestaurantPlace"
+                    android:id="@+id/mTxtNotifyDesc"
                     style="@style/label_black_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,7 +85,7 @@
                     font:name="Montserrat-Medium" />
 
                 <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/mTxtAedvalue"
+                    android:id="@+id/mTxtPriceFrom"
                     style="@style/label_burgendy_vvlarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
