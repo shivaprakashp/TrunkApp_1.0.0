@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "102673554145",
+    "firebase_url": "https://dubai-opera-uat.firebaseio.com",
+    "project_id": "dubai-opera-uat",
+    "storage_bucket": "dubai-opera-uat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102673554145:android:d67db4c9e2e22131",
+        "android_client_info": {
+          "package_name": "com.opera.app.uat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102673554145-u42sqrbgdtcmsotdf7vh27kbhqqep45t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy1hZgY5GMLt2p8KvWt2ibsoqia6mtwlo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

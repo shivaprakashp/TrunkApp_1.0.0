@@ -1,8 +1,11 @@
 package com.opera.app;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 
 import com.opera.app.dagger.ApiComponent;
 import com.opera.app.dagger.ApiModule;
@@ -28,6 +31,19 @@ public class MainApplication extends Application {
         context = getApplicationContext();
         setFont();
         initDagger();
+        initNotification();
+    }
+
+    private void initNotification(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            String channelId  = getString(R.string.default_notification_channel_id);
+            String channelName = getString(R.string.app_name);
+            NotificationManager notificationManager =
+                    getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW));
+        }
     }
 
     private void setFont(){

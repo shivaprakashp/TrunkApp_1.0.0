@@ -246,15 +246,6 @@ public class OperaUtils {
         return dateData;
     }
 
-    public static Calendar getCurrentMonth() {
-        Calendar current = Calendar.getInstance();
-        return current;
-    }
-
-    public static String[] splitDate() {
-        return getCurrentDate().split("/");
-    }
-
     public static int dpToPx(float dp, Context context) {
         return dpToPx(dp, context.getResources());
     }
