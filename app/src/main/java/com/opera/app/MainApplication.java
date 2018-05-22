@@ -13,6 +13,8 @@ import com.opera.app.dagger.AppModule;
 import com.opera.app.dagger.DaggerApiComponent;
 import com.opera.app.utils.OperaUtils;
 
+import org.infobip.mobile.messaging.MobileMessaging;
+
 /**
  * Created by 1000779 on 2/2/2018.
  */
@@ -29,6 +31,7 @@ public class MainApplication extends Application {
         super.onCreate();
 
         context = getApplicationContext();
+
         setFont();
         initDagger();
         initNotification();

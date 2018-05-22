@@ -33,6 +33,8 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import org.infobip.mobile.messaging.MobileMessaging;
+
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +68,7 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
 
         mActivity = MainActivity.this;
+
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_main);

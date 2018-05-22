@@ -101,7 +101,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         // get current year、month and day
         Calendar calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
-        currentMonth = calendar.get(Calendar.MONTH)+1;
+        currentMonth = calendar.get(Calendar.MONTH);
         todayDate = calendar.get(Calendar.DATE);
 
         finalCompareTodayDate = todayDate;
@@ -214,6 +214,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }else {
 
                 currentMonth--;
+
                 monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
                 lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
@@ -280,9 +281,9 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
             String appendData;
             if (String.valueOf(currentMonth).length()==1){
-                appendData = currentYear + "0" + String.valueOf(currentMonth);
+                appendData = currentYear + "0" + String.valueOf(currentMonth+1);
             }else{
-                appendData = currentYear + String.valueOf(currentMonth);
+                appendData = currentYear + String.valueOf(currentMonth+1);
             }
             if (String.valueOf(i).length()==1){
                 appendData = appendData + "0" + String.valueOf(i);
@@ -310,11 +311,10 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private static String getDate(int month, int year) {
         Calendar calendar = Calendar.getInstance();
         // passing month-1 because 0-->jan, 1-->feb... 11-->dec
-        calendar.set(year, month, 1);
-        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        Date date = calendar.getTime();
-        DateFormat DATE_FORMAT = new SimpleDateFormat("dd");
-        return DATE_FORMAT.format(date);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.getActualMaximum(Calendar.DATE);
+        return String.valueOf(calendar.getActualMaximum(Calendar.DATE));
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

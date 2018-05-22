@@ -234,7 +234,7 @@ public class OperaUtils {
         try{
             Calendar now = Calendar.getInstance();
 
-            dateData = CurrentDateCalender.currentMonth(now.get(Calendar.MONTH)+1)+" "+
+            dateData = CurrentDateCalender.currentMonth(now.get(Calendar.MONTH))+" "+
                     (now.get(Calendar.DAY_OF_MONTH))+","+now.get(Calendar.YEAR)+". "+
             now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE)
             +(now.get(Calendar.AM_PM)==0?"AM" : "PM");
