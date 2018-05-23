@@ -20,6 +20,7 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
@@ -255,12 +256,12 @@ public class SettingsActivity extends BaseActivity {
         public void onTaskFinished(Response response, String mRequestKey) {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 if (response.body() != null) {
-                    GetSettingsPojo mSettingsResponse = (GetSettingsPojo) response.body();
+                    FavouriteAndSettingsResponseMain mSettingsResponse = (FavouriteAndSettingsResponseMain) response.body();
                     if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
 
                         SessionManager sessionManager = new SessionManager(mActivity);
-                        sessionManager.UpdateUserSettings(mSettingsResponse.getData().getAllowNotification(), mSettingsResponse.getData().getAllowPromotion(),
-                                mSettingsResponse.getData().getAllowFeedbackNotification(), mSettingsResponse.getData().getWeeklyNewsLetters(), mSettingsResponse.getData().getRemindersForBookedShow());
+                        sessionManager.UpdateUserSettings(mSettingsResponse.getData().getSettings().getAllowNotification(), mSettingsResponse.getData().getSettings().getAllowPromotion(),
+                                mSettingsResponse.getData().getSettings().getAllowFeedbackNotification(), mSettingsResponse.getData().getSettings().getWeeklyNewsLetters(), mSettingsResponse.getData().getSettings().getRemindersForBookedShow());
 
                         /*LanguageManager.createInstance().StoreInSharedPreference(mActivity,
                                 LanguageManager.createInstance().mSelectedLanguage,

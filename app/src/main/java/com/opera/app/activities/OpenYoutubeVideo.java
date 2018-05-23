@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
@@ -19,7 +20,7 @@ import com.opera.app.constants.AppConstants;
  * Created by 1000632 on 5/15/2018.
  */
 
-public class OpenYoutubeVideo extends BaseActivity implements
+public class OpenYoutubeVideo extends YouTubeBaseActivity implements
         YouTubePlayer.OnInitializedListener{
 
     private YouTubePlayerView youTubeView;
@@ -48,7 +49,7 @@ public class OpenYoutubeVideo extends BaseActivity implements
         if (!wasRestored) {
             // loadVideo() will auto play video
             // Use cueVideo() method, if you don't want to play it automatically
-            player.loadVideo(YoutubeVideo);
+            player.loadVideo("LSI5WrYfphU");
 
             // Hiding player controls
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);

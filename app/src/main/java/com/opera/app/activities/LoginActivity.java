@@ -21,6 +21,7 @@ import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
@@ -68,8 +69,9 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_password)
     View login_password;
 
-    EditTextWithFont forgotPassword;
-    BottomSheetDialog dialog;
+    private EditTextWithFont forgotPassword;
+    private EventListingDB mEventListingDB;
+    private BottomSheetDialog dialog;
     //injecting retrofit
     @Inject
     Retrofit retrofit;
@@ -84,6 +86,8 @@ public class LoginActivity extends BaseActivity {
             ErrorDialogue dialogue;
             if (mRequestKey.equals(AppConstants.LOGIN.LOGIN)) {
                 if (response.body() != null) {
+                    mEventListingDB.open();
+                    mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
                     loginSession((LoginResponse) response.body());
                 } else if (response.errorBody() != null) {
                     try {
@@ -143,23 +147,24 @@ public class LoginActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         customToast = new CustomToast(mActivity);
+        mEventListingDB = new EventListingDB(mActivity);
         //edittext
         username = (EditTextWithFont) login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.email2));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         username.setSingleLine(true);
-        username.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        username.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
         username.requestFocus();
 
         password = (EditTextWithFont) login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        password.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        password.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         password.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
     }
 
-    private void initBottomSlideDown(){
+    private void initBottomSlideDown() {
         dialog = new BottomSheetDialog(mActivity);
         View view = getLayoutInflater().inflate(R.layout.popup_forgotpassword, null);
         dialog.setContentView(view);
@@ -167,7 +172,7 @@ public class LoginActivity extends BaseActivity {
         forgotPassword = (EditTextWithFont) view.findViewById(R.id.edtForgotEmail);
 
         forgotPassword.requestFocus();
-        forgotPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        forgotPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
         forgotPassword.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         view.findViewById(R.id.imgClose).setOnClickListener(imageClose);

@@ -856,7 +856,7 @@
         <item>United Arab Emirates ( 971 )</item>
         <item>United Kingdom ( 44 )</item>
         <item>Uruguay ( 598 )</item>
-        <item>Vanuatu  ( 678 )</item>
+        <item>Vanuatu ( 678 )</item>
         <item>Venezuela ( 58 )</item>
         <item>Viet Nam ( 84 )</item>
         <item>Virgin Islands ( 1 340 )</item>
@@ -956,4 +956,5 @@
     <!--Notification -->
     <string name="from">FROM</string>
     <string name="aed">AED</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

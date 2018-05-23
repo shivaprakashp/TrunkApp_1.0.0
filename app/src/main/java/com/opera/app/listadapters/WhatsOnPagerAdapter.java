@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,25 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.activities.LoginActivity;
+import com.opera.app.controller.MainController;
+import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
+import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.listener.MarkFavouriteInterface;
+import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.favouriteandsettings.Favourite;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.favouriteandsettings.Settings;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -36,6 +50,12 @@ import com.squareup.picasso.Picasso;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class WhatsOnPagerAdapter extends PagerAdapter {
 
@@ -45,6 +65,10 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
     private EventListingDB mEventListingDB;
     Animation slide_in_left;
     Animation slide_out_left;
+    private SessionManager sessionManager;
+    private Api api;
+    @Inject
+    Retrofit retrofit;
 
     public WhatsOnPagerAdapter(Activity mActivity, ArrayList<Events> mWhatsEvents, String mFrom) {
         this.mActivity = mActivity;
@@ -57,6 +81,9 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                 R.anim.anim_slide_out_left);
         mEventListingDB = new EventListingDB(mActivity);
         this.mFrom = mFrom;
+        ((MainApplication) mActivity.getApplication()).getNetComponent().inject(WhatsOnPagerAdapter.this);
+        api = retrofit.create(Api.class);
+        sessionManager = new SessionManager(mActivity);
     }
 
     @Override
@@ -137,16 +164,23 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
                 mEventListingDB.open();
                 if (eventObject.isFavourite().equalsIgnoreCase("true")) {
                     eventObject.setFavourite("false");
                     mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
+                    mFavouriteMarked.add(new Favourite("false", eventObject.getEventId()));
                 } else {
                     eventObject.setFavourite("true");
                     mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
+                    mFavouriteMarked.add(new Favourite("true", eventObject.getEventId()));
                 }
                 mEventListingDB.close();
                 notifyDataSetChanged();
+                if (sessionManager.isUserLoggedIn()) {
+                    UpdateFavouriteForLoggedInUser(mFavouriteMarked);
+                }
+
             }
         });
 
@@ -180,6 +214,11 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         return view;
     }
 
+    private void UpdateFavouriteForLoggedInUser(ArrayList<Favourite> mFavouriteMarked) {
+        MainController controller = new MainController(mActivity);
+        controller.updateSettingsAndFavourite(taskComplete, api, new FavouriteAndSettings(mFavouriteMarked));
+    }
+
     public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
@@ -210,4 +249,27 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         return mContext.getString(customPagerEnum.getTitleResId());
     }*/
 
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response, String mRequestKey) {
+            FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
+
+            try {
+                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
+            Log.e("data", "error");
+            try {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 }

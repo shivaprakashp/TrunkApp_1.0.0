@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.profile.EditProfileResponse;
 
@@ -21,6 +22,7 @@ public class SessionManager {
     int prefMode = 0;
     private Gson gson;
     BaseActivity mBaseActivity;
+    private EventListingDB mEventListingDB;
 
     public SessionManager(Context context) {
         this.context = context;
@@ -28,6 +30,7 @@ public class SessionManager {
         editor = loginPref.edit();
         mBaseActivity = (BaseActivity) context;
         gson = new Gson();
+        mEventListingDB = new EventListingDB(context);
     }
 
     // Get Login State
@@ -66,10 +69,18 @@ public class SessionManager {
 
     //clear login session
     public void logoutUser() {
+        //Put all table names which should get cleared on logout
+        DeleteAllTables();
         //clear all data from shared preference
         editor.clear();
         editor.commit();
         mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
+    }
+
+    private void DeleteAllTables() {
+        mEventListingDB.open();
+        mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
+        mEventListingDB.close();
     }
 
     /*Update Settings*/
