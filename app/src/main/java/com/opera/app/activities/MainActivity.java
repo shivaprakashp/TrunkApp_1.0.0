@@ -3,41 +3,34 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.support.v7.widget.Toolbar;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
-import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.fragments.BaseFragment;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.fragments.DiningFragment;
 import com.opera.app.fragments.EventsFragment;
 import com.opera.app.fragments.HomeFragment;
 import com.opera.app.fragments.ListenFragment;
 import com.opera.app.fragments.MenuFragment;
 import com.opera.app.fragments.controller.FragNavController;
-import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.restaurant.RestaurantsData;
-import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
-import org.infobip.mobile.messaging.MobileMessaging;
-
 import butterknife.BindArray;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements
         FragNavController.TransactionListener, FragNavController.RootFragmentListener {
@@ -62,13 +55,14 @@ public class MainActivity extends BaseActivity implements
     private FragNavController mNavController;
     private Activity mActivity;
     private RestaurantsData data;
+    private SessionManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mActivity = MainActivity.this;
-
+        manager = new SessionManager(mActivity);
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_main);
@@ -280,7 +274,13 @@ public class MainActivity extends BaseActivity implements
     private View.OnClickListener profilePage = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            openActivity(mActivity, MyProfileActivity.class);
+            if (manager.isUserLoggedIn()) {
+                openActivity(mActivity, MyProfileActivity.class);
+            } else {
+                //Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
+                GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                dialog.show();
+            }
         }
     };
 

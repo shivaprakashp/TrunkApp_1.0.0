@@ -856,7 +856,7 @@
         <item>United Arab Emirates ( 971 )</item>
         <item>United Kingdom ( 44 )</item>
         <item>Uruguay ( 598 )</item>
-        <item>Vanuatu ( 678 )</item>
+        <item>Vanuatu  ( 678 )</item>
         <item>Venezuela ( 58 )</item>
         <item>Viet Nam ( 84 )</item>
         <item>Virgin Islands ( 1 340 )</item>
@@ -957,5 +957,16 @@
     <string name="from">FROM</string>
     <string name="aed">AED</string>
 
-    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--Dubai Opera Tour activity -->
+    <string name="bookNow">BOOK NOW</string>
+    <string name="detail">Embark on an adventure to discover Dubai’s iconic cultural destination, blending visionary architecture with moments of magic.</string>
+    <string name="experience">The Experience:</string>
+    <string name="experience_details">Listen to our stories about Dubai Opera’s unique heritage and breathtaking design.\nView our exclusive VIP hospitality suite.\nAccess our unique multi-format auditorium</string>
+    <string name="expect">What you will expect:</string>
+    <string name="expect_details">Dubai Opera is located in Downtown Dubai on Sheikh Mohammed Bin Rashid Boulevard.\nTours last approximately one hour and depart from the Box Office.\nTours are conducted in English or Arabic. Other languages are available on advance request.</string>
+    <string name="pubic_tour">Public Tours</string>
+    <string name="pubic_tour_detail">Public Tours are available on most days. Please check dubaiopera.com for the schedule. Tickets can be purchased online and at the Box Office, either in advance or on the day of the tour (subject to availability).</string>
+    <string name="school_private_tour">School and Private Tours</string>
+    <string name="school_private_tour_detail">Please contact tours@dubaiopera.com for pricing and additional information.</string>
+
 </resources>

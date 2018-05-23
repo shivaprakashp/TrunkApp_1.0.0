@@ -16,6 +16,7 @@ import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.notification.NotificationDetailsDB;
+import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.NotificationAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -37,7 +38,8 @@ public class NotificationActivity extends BaseActivity {
     private Activity mActivity;
     private ArrayList<Notification> mNotification = new ArrayList<>();
     private NotificationAdapter mAdapter;
-    private NotificationDetailsDB dbManager;
+    private NotificationDetailsDB dbManagerNotification;
+    private PromotionDetailsDB dbManagerPromotion;
 
     @BindView(R.id.toolbarRecycler)
     Toolbar toolbar;
@@ -54,6 +56,7 @@ public class NotificationActivity extends BaseActivity {
     @Inject
     Retrofit retrofit;
     private Api api;
+    TextViewWithFont txtToolbarName;
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
@@ -62,10 +65,20 @@ public class NotificationActivity extends BaseActivity {
             if (response.body() != null)
                 try {
                     if (mNotificationPojo.getStatus().equalsIgnoreCase("success")) {
-                        dbManager.open();
-                        dbManager.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
-                        dbManager.insertNotifications(mNotificationPojo.getNotification());
-                        fetchDataFromDB();
+                        if(mNotificationPojo.getNotificationType().equalsIgnoreCase("notification")) {
+                            txtToolbarName.setText(getString(R.string.menu_notification));
+                            dbManagerNotification.open();
+                            dbManagerNotification.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
+                            dbManagerNotification.insertNotifications(mNotificationPojo.getNotification());
+                            fetchDataFromNotificationDB();
+                        }
+                        else {
+                            txtToolbarName.setText(getString(R.string.menu_promotion));
+                            dbManagerPromotion.open();
+                            dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
+                            dbManagerPromotion.insertPromotions(mNotificationPojo.getNotification());
+                            fetchDataFromPromotionDB();
+                        }
                     }
                 } catch (Exception e) {
                     Log.e("Message", e.getMessage());
@@ -114,7 +127,7 @@ public class NotificationActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_notification));
 
         mAdapter = new NotificationAdapter(mActivity, mNotification);
@@ -123,7 +136,8 @@ public class NotificationActivity extends BaseActivity {
         mRecyclerNotificatons.setItemAnimator(new DefaultItemAnimator());
         mRecyclerNotificatons.setAdapter(mAdapter);
 
-        dbManager = new NotificationDetailsDB(mActivity);
+        dbManagerNotification = new NotificationDetailsDB(mActivity);
+        dbManagerPromotion = new PromotionDetailsDB(mActivity);
     }
 
     private void initToolbar() {
@@ -142,9 +156,15 @@ public class NotificationActivity extends BaseActivity {
         }
     };
 
-    private void fetchDataFromDB() {
-        mAdapter.RefreshList(dbManager.fetchNotificationDetails());
-        dbManager.close();
+    private void fetchDataFromNotificationDB() {
+        mAdapter.RefreshList(dbManagerNotification.fetchNotificationDetails());
+        dbManagerNotification.close();
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void fetchDataFromPromotionDB() {
+        mAdapter.RefreshList(dbManagerPromotion.fetchPromotionDetails());
+        dbManagerPromotion.close();
         mAdapter.notifyDataSetChanged();
     }
 

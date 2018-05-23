@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
+import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.RegisterActivity;
@@ -212,6 +213,22 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getActivity(), NotificationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        menu_promotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), NotificationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        menu_opera_tour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), DubaiOperaTourActivity.class);
                 getActivity().startActivity(intent);
             }
         });
