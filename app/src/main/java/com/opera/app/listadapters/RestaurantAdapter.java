@@ -68,7 +68,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                     for (int i = 0; i < mRestaurantList.size(); i++) {
                         String data = mRestaurantList.get(i).restName;
                         if (data.toLowerCase().startsWith(constraint.toString())) {
-                            FilteredArrList.add(new RestaurantsData(mRestaurantList.get(i).restName));
+                            FilteredArrList.add(new RestaurantsData(mRestaurantList.get(i).getRestId(),
+                                    mRestaurantList.get(i).getRestName(),
+                                    mRestaurantList.get(i).getRestImage(),
+                                    mRestaurantList.get(i).getRestPlace(),
+                                    mRestaurantList.get(i).getRestLocation(),
+                                    mRestaurantList.get(i).getRestBookUrl(),
+                                    mRestaurantList.get(i).getRestStatus(),
+                                    mRestaurantList.get(i).getRestDetails(),
+                                    mRestaurantList.get(i).getOpenHour(),
+                                    mRestaurantList.get(i).getPhoneNumber()));
                         }
                     }
                     // set the Filtered result to return

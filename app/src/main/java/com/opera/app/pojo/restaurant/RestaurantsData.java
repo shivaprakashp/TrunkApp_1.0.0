@@ -54,8 +54,20 @@ public class RestaurantsData implements Serializable{
     public RestaurantsData(){
     }
 
-    public RestaurantsData(String restName){
+    public RestaurantsData(String restId, String restName, String restImage,
+                           String restPlace, String restLocation, String restBookUrl,
+                           String restStatus, String restDetails, String openHour,
+                           String phoneNumber){
+        this.restId = restId;
         this.restName = restName;
+        this.restImage = restImage;
+        this.restPlace = restPlace;
+        this.restLocation = restLocation;
+        this.restBookUrl = restBookUrl;
+        this.restStatus = restStatus;
+        this.restDetails = restDetails;
+        this.openHour = openHour;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getRestId() {

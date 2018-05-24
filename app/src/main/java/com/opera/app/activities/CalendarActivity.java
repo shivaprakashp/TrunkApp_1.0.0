@@ -251,7 +251,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
         dateLinLayout.removeAllViews();
 
-        for (int i=1;i<=lastDateOfMonth; i++){
+        for ( int i=1 ; i<=lastDateOfMonth; i++ ){
 
             LinearLayout textBackLay = new LinearLayout(context);
             LinearLayout.LayoutParams textBackLayParam = new LinearLayout.LayoutParams(tileWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
