@@ -4,7 +4,7 @@ public interface AppConstants {
 
     static String SEAN_CONOLLY_RESTAURANT_ID = "40";
     static String SEAN_CONOLLY_R_STATUS = "3";
-    static String YOUTUBE_DEVELOPER_KEY = "";
+    static String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
 
     interface LOGIN {
         String LOGIN = "LOGIN";
@@ -68,6 +68,10 @@ public interface AppConstants {
 
     interface GETNOTIFICATIONDETAILS {
         String GETNOTIFICATIONDETAILS = "GETNOTIFICATIONDETAILS";
+    }
+
+    interface MARKFAVOURITEFOREVENT {
+        String MARKFAVOURITEFOREVENT = "MARKFAVOURITEFOREVENT";
     }
 
 }

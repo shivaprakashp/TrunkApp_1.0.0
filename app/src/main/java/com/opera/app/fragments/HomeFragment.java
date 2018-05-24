@@ -16,15 +16,19 @@ import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.activities.SearchEventActivity;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
+import com.opera.app.listener.MarkFavouriteInterface;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.favouriteandsettings.Favourite;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
@@ -48,8 +52,8 @@ public class HomeFragment extends BaseFragment {
     private EventGenresDB mEventGenresDB;
     private ArrayList<Events> mHighlightedEvents = new ArrayList<>();
     private ArrayList<Events> mWhatsEvents = new ArrayList<>();
+    private ArrayList<Favourite> arrFavouriteDataOfLoggedInUser = new ArrayList<>();
     private SessionManager manager;
-
     private WhatsOnPagerAdapter mWhatsOnPagerAdapter;
     //    private AdapterEvent mAdapterEvent;
     private ArrayList<Events> mEventAllData = new ArrayList<>();
@@ -88,7 +92,18 @@ public class HomeFragment extends BaseFragment {
 
         InitView(view);
         GetCurrentEvents();
+
+        //Taking this data for logged in user only (Settings and Favourites)
+        if (manager.isUserLoggedIn()) {
+            GetUserSettings();
+        }
+
         return view;
+    }
+
+    private void GetUserSettings() {
+        MainController controller = new MainController(mActivity);
+        controller.getUpdatedSettings(taskComplete, api);
     }
 
     private void GetCurrentEvents() {
@@ -117,7 +132,6 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("onPageScrolled", position + "");
                 if (position == 0) {
                     mViewpagerWhatsOnShows.setPadding(0, 0, 70, 0);
                 } else if (mWhatsEvents.size() - 1 == position) {
@@ -140,30 +154,41 @@ public class HomeFragment extends BaseFragment {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            AllEvents mEventDataPojo = (AllEvents) response.body();
+            if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
+                FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-            try {
-                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                    mEventListingDB.open();
 
-                    //Calling this function for guest user to take his favourite events
-                    if (!manager.isUserLoggedIn()) {
-                        mEventAllData = new ArrayList<>();
-                        mEventAllData = mEventListingDB.fetchEventsWithFavouriteForGuest();
-                    }
-
-                    mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
-                    mEventListingDB.insertOtherEvents(mActivity, mEventDataPojo.getEvents(), mEventAllData);
-
-                    mEventGenresDB.open();
-                    mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
-                    mEventGenresDB.insertEventsGenres(mEventDataPojo.getGenreList());
-
-                    fetchDataFromDB();
-
+                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    //Adding Favourites data into the arraylist (If it is true)
+                    arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
+                    UpdateFavouriteData();
+                    GetWhatsOnEvents();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                AllEvents mEventDataPojo = (AllEvents) response.body();
+                try {
+                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                        mEventListingDB.open();
+
+                        //Calling this function for guest user to take his favourite events
+                        if (!manager.isUserLoggedIn()) {
+                            mEventAllData = new ArrayList<>();
+                            mEventAllData = mEventListingDB.fetchEventsWithFavouriteForGuest();
+                        }
+
+                        mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
+                        mEventListingDB.insertOtherEvents(mActivity, mEventDataPojo.getEvents(), mEventAllData, arrFavouriteDataOfLoggedInUser);
+
+                        mEventGenresDB.open();
+                        mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
+                        mEventGenresDB.insertEventsGenres(mEventDataPojo.getGenreList());
+
+                        fetchDataFromDB();
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -180,12 +205,34 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
+        Log.e("Event Listing response", "true");
+        UpdateFavouriteData();
         GetWhatsOnEvents();
         GetHighlightedEvents();
+        mEventListingDB.close();
+        arrFavouriteDataOfLoggedInUser = new ArrayList<>();
+    }
+
+    private void UpdateFavouriteData() {
+        mEventListingDB.open();
+        if (arrFavouriteDataOfLoggedInUser.size() > 0) {
+            for (int i = 0; i < arrFavouriteDataOfLoggedInUser.size(); i++) {
+                mEventListingDB.UpdateFavouriteData(arrFavouriteDataOfLoggedInUser.get(i).getFavouriteId().toUpperCase(), arrFavouriteDataOfLoggedInUser.get(i).getIsFavourite());
+            }
+        } else {
+
+            //If no data available in in Favourites(none of the event is marked as true) then put favourites as false against all events
+            if (manager.isUserLoggedIn()) {
+                for (int j = 0; j < mEventAllData.size(); j++) {
+                    mEventListingDB.UpdateFavouriteData(mEventAllData.get(j).getEventId().toUpperCase(), "false");
+                }
+            }
+        }
         mEventListingDB.close();
     }
 
     private void GetWhatsOnEvents() {
+        //Fetching Whats'on events which are at the bottom (Calling this function from on resume as favourites need to be update eveytime)
         mEventListingDB.open();
         mEventAllData = new ArrayList<>();
         mWhatsEvents = new ArrayList<>();
@@ -203,6 +250,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void GetHighlightedEvents() {
+        //Fetching this details only once from DB
         mEventListingDB.open();
         mEventAllData = new ArrayList<>();
         mEventAllData = mEventListingDB.fetchAllEvents();

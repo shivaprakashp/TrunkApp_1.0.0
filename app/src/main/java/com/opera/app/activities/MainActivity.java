@@ -54,6 +54,7 @@ public class MainActivity extends BaseActivity implements
 
     private FragNavController mNavController;
     private Activity mActivity;
+    private String mTabSelected="";
     private RestaurantsData data;
     private SessionManager manager;
 
@@ -200,9 +201,9 @@ public class MainActivity extends BaseActivity implements
     }
 
     public void updateToolBar(int position) {
-        Log.i("Position", position + "");
         switch (position) {
             case 0:
+                mTabSelected="Home";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater homeInflater =(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //For Language setting
@@ -221,16 +222,24 @@ public class MainActivity extends BaseActivity implements
                 break;
 
             case 1:
-
+                mTabSelected="Event";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater eventInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //For Language setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View eventView = eventInflater.inflate(R.layout.view_events_toolbar, null);
+
+                eventView.findViewById(R.id.imgCalendar).setVisibility(View.VISIBLE);
+                eventView.findViewById(R.id.imgSearch).setVisibility(View.VISIBLE);
+
+                eventView.findViewById(R.id.imgCalendar).setOnClickListener(calendarPage);
+                eventView.findViewById(R.id.imgSearch).setOnClickListener(searchPage);
+
                 toolBarLayout(eventView);
                 break;
 
             case 2:
+                mTabSelected="Dining";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater diningInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //For Language setting
@@ -240,6 +249,7 @@ public class MainActivity extends BaseActivity implements
                 break;
 
             case 3:
+                mTabSelected="Listen";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater listenInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //For Language setting
@@ -249,6 +259,7 @@ public class MainActivity extends BaseActivity implements
                 break;
 
             case 4:
+                mTabSelected="Menu";
                 toolbar.setVisibility(View.GONE);
                 break;
 
@@ -256,6 +267,13 @@ public class MainActivity extends BaseActivity implements
                 break;
         }
     }
+
+    private View.OnClickListener searchPage = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            openActivity(mActivity, SearchEventActivity.class);
+        }
+    };
 
     private View.OnClickListener calendarPage = new View.OnClickListener() {
         @Override
@@ -267,7 +285,12 @@ public class MainActivity extends BaseActivity implements
     private View.OnClickListener walletPage = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            openActivity(mActivity, WalletActivity.class);
+            if(mTabSelected.equalsIgnoreCase("Event")){
+                openActivity(mActivity, SearchEventActivity.class);
+            }else{
+                openActivity(mActivity, WalletActivity.class);
+            }
+
         }
     };
 

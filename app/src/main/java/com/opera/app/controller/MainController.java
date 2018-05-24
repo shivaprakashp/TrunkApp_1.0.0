@@ -8,6 +8,8 @@ import com.opera.app.dataadapter.DataListener;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
 import com.opera.app.pojo.contactUs.ContactUs;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
@@ -75,12 +77,12 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void updateSettings(TaskComplete taskComplete, Api api, SetSettingsPojo mSettingsPojo) {
+    /*public void updateSettings(TaskComplete taskComplete, Api api, Settings mSettingsPojo) {
         Call call = api.UpdateSettings(contentType, manager.getUserLoginData().getData().getToken(), mSettingsPojo);
         properties.setRequestKey(AppConstants.SETUSERSETTINGS.SETUSERSETTINGS);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
-    }
+    }*/
 
     public void getUpdatedSettings(TaskComplete taskComplete, Api api) {
         Call call = api.GetUpdatedSettings(contentType, manager.getUserLoginData().getData().getToken());
@@ -154,6 +156,13 @@ public class MainController {
      public void getNotificationsDetails(TaskComplete taskComplete, Api api) {
         Call call = api.getNotificationDetails();
         properties.setRequestKey(AppConstants.GETNOTIFICATIONDETAILS.GETNOTIFICATIONDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void updateSettingsAndFavourite(TaskComplete taskComplete, Api api, FavouriteAndSettings mFavouriteAndSettings) {
+        Call call = api.MarkFavouriteForEvent(contentType, manager.getUserLoginData().getData().getToken(), mFavouriteAndSettings);
+        properties.setRequestKey(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }

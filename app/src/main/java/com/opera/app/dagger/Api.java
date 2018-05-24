@@ -4,6 +4,9 @@ import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -57,10 +60,10 @@ public interface Api {
 
     @POST("accounts/extended/setUserSettings/")
     Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content, @Header("Authorization") String token,
-                                              @Body SetSettingsPojo mSettingsPojo);
+                                              @Body FavouriteAndSettings favouriteAndSettings);
 
     @POST("accounts/extended/GetUserSettings/")
-    Call<GetSettingsPojo> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
 
     @POST("restaurants/extended/GetRestaurantDetails/")
     Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
@@ -91,5 +94,9 @@ public interface Api {
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
     Call<NotificationDetails> getNotificationDetails();
+
+    @POST("accounts/extended/setUserSettings/")
+    Call<FavouriteAndSettingsResponseMain> MarkFavouriteForEvent(@Header("Content-Type") String content, @Header("Authorization") String token,
+                                                                 @Body FavouriteAndSettings mFavouriteAndSettings);
 
 }

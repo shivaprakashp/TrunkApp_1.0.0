@@ -77,8 +77,12 @@ public class SearchEventActivity extends BaseActivity {
 
 
     private void initView() {
-        Intent in = getIntent();
-        SearchedData = in.getStringExtra("SearchedData");
+        try {
+            Intent in = getIntent();
+            SearchedData = in.getStringExtra("SearchedData");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();

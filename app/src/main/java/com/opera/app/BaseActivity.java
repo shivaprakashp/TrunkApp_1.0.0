@@ -35,7 +35,6 @@ public class BaseActivity extends AppCompatActivity {
     private int prefMode = 0;
 
     private MobileMessaging mobileMessaging;
-    private MessageStore messageStore;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -43,8 +42,6 @@ public class BaseActivity extends AppCompatActivity {
         bindViews();
 
         mobileMessaging = MobileMessaging.getInstance(this);
-        messageStore = mobileMessaging.getMessageStore();
-
     }
 
     protected void bindViews() {
@@ -76,7 +73,6 @@ public class BaseActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }

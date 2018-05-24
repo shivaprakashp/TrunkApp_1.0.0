@@ -50,6 +50,7 @@ dependencies {
     implementation 'com.google.apis:google-api-services-youtube:v3-rev107-1.18.0-rc'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.moondroid.coverflow:library:1.0'
     //these two lines are added
     compile 'com.google.dagger:dagger:2.13'

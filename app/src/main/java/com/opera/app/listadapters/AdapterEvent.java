@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,30 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.controller.MainController;
+import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listener.EventInterfaceTab;
+import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.favouriteandsettings.Favourite;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 5/2/2018.
@@ -37,7 +52,11 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     private Activity mActivity;
     Animation slide_in_left;
     Animation slide_out_left;
-    private EventInterfaceTab listener=null;
+    private EventInterfaceTab listener = null;
+    private SessionManager manager;
+    private Api api;
+    @Inject
+    Retrofit retrofit;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgEvent, imgFavourite, imgShare, imgInfo;
@@ -71,10 +90,14 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         slide_out_left = AnimationUtils.loadAnimation(mActivity,
                 R.anim.anim_slide_out_left);
         mEventListingDB = new EventListingDB(mActivity);
+
+        ((MainApplication) mActivity.getApplication()).getNetComponent().inject(AdapterEvent.this);
+        api = retrofit.create(Api.class);
+        manager = new SessionManager(mActivity);
     }
 
     //For Favourite and Genres
-    public AdapterEvent(Activity mActivity, ArrayList<Events> mEventListingData,EventInterfaceTab listener) {
+    public AdapterEvent(Activity mActivity, ArrayList<Events> mEventListingData, EventInterfaceTab listener) {
         this.mActivity = mActivity;
         this.mEventListingData = mEventListingData;
 
@@ -84,7 +107,10 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         slide_out_left = AnimationUtils.loadAnimation(mActivity,
                 R.anim.anim_slide_out_left);
         mEventListingDB = new EventListingDB(mActivity);
-        this.listener=listener;
+        this.listener = listener;
+        ((MainApplication) mActivity.getApplication()).getNetComponent().inject(AdapterEvent.this);
+        api = retrofit.create(Api.class);
+        manager = new SessionManager(mActivity);
     }
 
     public void RefreshList(ArrayList<Events> mEventListingData) {
@@ -125,29 +151,10 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     }
                 });
 
-        holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mEventListingDB.open();
-                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
-                    mEventPojo.setFavourite("false");
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), "false");
-                } else {
-                    mEventPojo.setFavourite("true");
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), "true");
-                }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                RefreshList(mEventListingData);
-
-                if(listener!=null){
-                    listener.onLikeProcessComplete();
-                }
-            }
-        });
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {}
+            public void onClick(View v) {
+            }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,10 +191,76 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 mActivity.startActivity(in);
             }
         });
+
+        holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEventListingDB.open();
+                String IsFavourite = "false";
+                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+                    IsFavourite = "false";
+                    mEventPojo.setFavourite(IsFavourite);
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                } else {
+                    IsFavourite = "true";
+                    mEventPojo.setFavourite(IsFavourite);
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                }
+                mEventListingDB.close();
+                notifyDataSetChanged();
+                RefreshList(mEventListingData);
+
+                if (manager.isUserLoggedIn()) {
+                    UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
+                }
+
+                if (listener != null) {
+                    listener.onLikeProcessComplete();
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return mEventListingData.size();
     }
+
+    private void UpdateFavouriteForLoggedInUser(String IsFavourite, String EventId) {
+        ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
+        mFavouriteMarked.add(new Favourite(IsFavourite, EventId));
+
+        MainController controller = new MainController(mActivity);
+        controller.updateSettingsAndFavourite(taskComplete, api, new FavouriteAndSettings(mFavouriteMarked));
+    }
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response, String mRequestKey) {
+            FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
+
+            try {
+                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    if (mFavouriteAndSettingsResponseMain.getData().getFavourite().size() > 0) {
+                        mEventListingDB.open();
+                        mEventListingDB.UpdateFavouriteData(mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getFavouriteId(), mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getIsFavourite());
+                        mEventListingDB.close();
+
+                        listener.onLikeProcessComplete();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
+            Log.e("data", "error");
+            try {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 }
