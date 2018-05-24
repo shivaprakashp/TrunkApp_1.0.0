@@ -47,7 +47,7 @@
                     android:layout_height="200dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_profile_bg" />
+                    app:srcCompat="@drawable/ic_dubai_opera_tour_banner" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/detail"
                     style="@style/label_black_medium"
-                    font:name="Montserrat-Light"/>
+                    font:name="Montserrat-Regular"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                         android:text="@string/experience"
                         android:layout_marginTop="10dp"
                         style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Medium"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                         android:text="@string/experience_details"
                         android:layout_marginTop="10dp"
                         style="@style/label_black_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Regular"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                         android:text="@string/expect"
                         android:layout_marginTop="10dp"
                         style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Medium"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                         android:text="@string/expect_details"
                         android:layout_marginTop="10dp"
                         style="@style/label_black_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Regular"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                         android:text="@string/pubic_tour"
                         android:layout_marginTop="10dp"
                         style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Medium"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                         android:text="@string/pubic_tour_detail"
                         android:layout_marginTop="10dp"
                         style="@style/label_black_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Regular"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                         android:text="@string/school_private_tour"
                         android:layout_marginTop="10dp"
                         style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Medium"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                         android:text="@string/school_private_tour_detail"
                         android:layout_marginTop="10dp"
                         style="@style/label_black_medium"
-                        font:name="Montserrat-Light"/>
+                        font:name="Montserrat-Regular"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -149,7 +149,7 @@
             android:layout_margin="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            font:name="Montserrat-Light"/>
+            font:name="Montserrat-Regular"/>
     </LinearLayout>
 
 </LinearLayout>

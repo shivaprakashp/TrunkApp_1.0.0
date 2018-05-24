@@ -5,11 +5,7 @@ package com.opera.app.listadapters;
  */
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -26,15 +22,11 @@ import android.widget.TextView;
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
-import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
-import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class WhatsOnPagerAdapter extends PagerAdapter {
@@ -81,7 +73,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
-            imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.fav_selected));
+            imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
         } else {
             imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }

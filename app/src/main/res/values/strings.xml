@@ -222,6 +222,7 @@
     <string name="country_code_with_asterisk">Code*</string>
 
     <!--Dining-->
+    <string name="find_out_more">Find Out More</string>
     <string name="reserve_a_table">Reserve a Table</string>
     <string name="reserve_a_table2">Reserve a table</string>
     <string name="sean_connolly_dubai_opera">Sean Connolly at Dubai Opera</string>
@@ -911,7 +912,8 @@
     <string name="mrs">Mrs.</string>
     <string name="special_requests">Special Requests/Occasions</string>
     <string name="select_title">Select title*</string>
-
+    <string name="call">Call</string>
+    <string name="email_btn">Email</string>
 
     <!--Events Fragment-->
     <string name="tab_all_events">ALL</string>

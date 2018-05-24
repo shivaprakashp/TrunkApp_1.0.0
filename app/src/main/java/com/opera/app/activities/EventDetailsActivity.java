@@ -8,10 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,12 +20,10 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.ExpandableTextView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
-import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.GenresDisplayAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -37,7 +32,6 @@ import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -184,7 +178,7 @@ public class EventDetailsActivity extends BaseActivity {
         recyclerGenres.setAdapter(mAdapter);
 
         if (IsFavourite.equalsIgnoreCase("true")) {
-            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
         } else {
             imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
         }
@@ -262,7 +256,7 @@ public class EventDetailsActivity extends BaseActivity {
 
             if (manager.isUserLoggedIn()) {
                 if (mEventListingData.get(0).isFavourite().equalsIgnoreCase("true")) {
-                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
                 } else {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
                 }
@@ -302,7 +296,7 @@ public class EventDetailsActivity extends BaseActivity {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
                 } else {
                     IsFavourite = "true";
-                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.fav_selected));
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
                 }
                 mEventListingDB.UpdateFavouriteData(EventId, IsFavourite);
                 break;
