@@ -325,7 +325,7 @@ public class ContactUsActivity extends BaseActivity {
         else if (TextUtils.isEmpty(mEdtMobileNumber.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
-        } else if (mEdtMobileNumber.getText().toString().length() < 10 || mEdtMobileNumber.getText().toString().length() > 10) {
+        } else if (mEdtMobileNumber.getText().toString().length() < 9 || mEdtMobileNumber.getText().toString().length() > 10) {
             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
         }

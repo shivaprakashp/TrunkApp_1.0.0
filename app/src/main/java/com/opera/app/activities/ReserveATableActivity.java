@@ -450,7 +450,7 @@ public class ReserveATableActivity extends BaseActivity {
         } else if (TextUtils.isEmpty(edtFulNo.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
-        } else if (edtFulNo.getText().toString().length() < 10 || edtFulNo.getText().toString().length() > 10) {
+        } else if (edtFulNo.getText().toString().length() < 9 || edtFulNo.getText().toString().length() > 10) {
             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
         } else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
