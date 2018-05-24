@@ -1,13 +1,19 @@
 package com.opera.app.fragments.wallet.helper;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.pojo.wallet.Event;
@@ -51,8 +57,10 @@ public class TodayWalletView extends LinearLayout {
                 txtWalletEventDoor,
                 txtWalletEventSection,
                 txtWalletEventRow,
-                txtWalletEventSeat;
-
+                txtWalletEventSeat,
+                txtBarCode;
+        ImageView barCode;
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
         for ( int i = 0 ; i < eventList.size() ; i++ ){
             Event event = eventList.get(i);
@@ -67,6 +75,8 @@ public class TodayWalletView extends LinearLayout {
             txtWalletEventSection = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSection);
             txtWalletEventRow = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventRow);
             txtWalletEventSeat = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSeat);
+            txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
+            barCode = (ImageView) rowView.findViewById(R.id.imgEventBarCode);
 
             txtEventTitle.setText(event.getEventName());
             txtWalletEventGenre.setText(event.getEventGenre());
@@ -75,6 +85,17 @@ public class TodayWalletView extends LinearLayout {
             txtWalletEventSection.setText(event.getSection());
             txtWalletEventRow.setText(event.getSeatRow());
             txtWalletEventSeat.setText(event.getSeatNo());
+
+            try {
+
+                BitMatrix bitMatrix = multiFormatWriter.encode(event.getReserveId(), BarcodeFormat.CODABAR,
+                        400,80);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                barCode.setImageBitmap(bitmap);
+
+                txtBarCode.setText(event.getReserveId());
+            }catch (Exception e){e.printStackTrace();}
             this.addView(rowView);
         }
     }

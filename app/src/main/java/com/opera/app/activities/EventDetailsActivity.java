@@ -51,7 +51,13 @@ import retrofit2.Retrofit;
 
 public class EventDetailsActivity extends BaseActivity {
 
-    private String IsFavourite = "false", EventInternalName = "", EventId = "", mEventBuyURL = "", mEventDescription = "", mEventImage = "", mEventYoutubeVideo = "";
+    private String IsFavourite = "false",
+            EventInternalName = "",
+            EventId = "",
+            mEventBuyURL = "",
+            mEventDescription = "",
+            mEventImage = "",
+            mEventYoutubeVideo = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
@@ -99,12 +105,6 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.btnBuyTickets)
     Button mBtnBuyTickets;
 
-    /*@BindView(R.id.txtShowmore)
-    TextView txtShowmore;
-
-    @BindView(R.id.ivShowmore)
-    ImageView ivShowmore;*/
-
     @BindView(R.id.imgFavourite)
     ImageView imgFavourite;
 
@@ -123,7 +123,6 @@ public class EventDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_event_details);
 
         InitView();
-
     }
 
     @Override

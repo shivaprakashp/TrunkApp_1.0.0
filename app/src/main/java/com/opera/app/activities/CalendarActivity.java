@@ -22,7 +22,9 @@ import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.CalendarRecyclerView;
+import com.opera.app.pojo.events.eventlisiting.EventTime;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.wallet.Event;
 import com.opera.app.utils.CurrentDateCalender;
 import com.opera.app.utils.OperaUtils;
 
@@ -31,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -72,7 +75,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private EventListingDB mEventDetailsDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private CalendarRecyclerView adapter;
-
+    private List<String> eventDates;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,22 +85,24 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
         initToolBar();
         initView();
-        initCalendar();
         initDB();
+        initCalendar();
     }
 
     private void initView(){
         scrWidth = getResources().getDisplayMetrics().widthPixels;
         nextMonthIv.setOnClickListener(this);
         lastMonthIv.setOnClickListener(this);
+
+        eventDates = new ArrayList<>();
     }
 
     private void initCalendar(){
         // get current year、month and day
-
-        currentYear = OperaUtils.getCurrentMonth().get(Calendar.YEAR);
-        currentMonth = OperaUtils.getCurrentMonth().get(Calendar.MONTH);
-        todayDate = OperaUtils.getCurrentMonth().get(Calendar.DATE);
+        Calendar calendar = Calendar.getInstance();
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        todayDate = calendar.get(Calendar.DATE);
 
         finalCompareTodayDate = todayDate;
         finalCompareTodayMonth = currentMonth;
@@ -129,11 +134,22 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
+        updateEventDates(mEventListingData);
+
         adapter = new CalendarRecyclerView(mEventListingData);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerCalendar.setLayoutManager(mLayoutManager);
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
         recyclerCalendar.setAdapter(adapter);
+    }
+
+    private void updateEventDates(List<Events> eventsList){
+        for (int i = 0 ; i < eventsList.size() ; i++){
+
+            for (int k = 0 ; k < eventsList.get(i).getEventTime().size() ; k++ ){
+                eventDates.add(eventsList.get(i).getEventTime().get(k).getFromTime().split("T")[0]);
+            }
+        }
     }
 
     private void scrollBarToDate(){
@@ -149,6 +165,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void calculateValues(int screenWidth, int totalEle) {
+
         tileWidth = screenWidth/totalEle;
         margin = tileWidth/totalEle;
         tileWidth = tileWidth - margin*2;
@@ -197,6 +214,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }else {
 
                 currentMonth--;
+
                 monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
                 lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
@@ -224,19 +242,12 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private void removeOtherSelectedOnClick(){
 
         for (int i=0;i<dateLinLayout.getChildCount();i++){
-
-            ((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0).setBackgroundDrawable(null);
-            ((TextView)((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0)).setTextColor(Color.WHITE);
-
+            ((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0).setBackground(getResources().getDrawable(R.drawable.oval_corner));
+            ((TextView)((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0)).setTextAppearance(context, R.style.label_white_medium);
         }
-
     }
 
     private void updateValues(int lastDateOfMonth, int todayDate, int currentMonth){
-
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.OVAL);
-        drawable.setColor(Color.WHITE);
 
         dateLinLayout.removeAllViews();
 
@@ -267,7 +278,25 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             dotLinLayout.setLayoutParams(dotLinLayoutParam);
             dotLinLayout.setGravity(Gravity.CENTER);
             dotLinLayout.setOrientation(LinearLayout.VERTICAL);
-            dotLinLayout.setBackgroundColor(Color.WHITE);
+
+            String appendData;
+            if (String.valueOf(currentMonth).length()==1){
+                appendData = currentYear + "0" + String.valueOf(currentMonth+1);
+            }else{
+                appendData = currentYear + String.valueOf(currentMonth+1);
+            }
+            if (String.valueOf(i).length()==1){
+                appendData = appendData + "0" + String.valueOf(i);
+            }else{
+                appendData = appendData + String.valueOf(i);
+            }
+            Log.i("appendData", appendData);
+
+            if (eventDates.contains(appendData)){
+                dotLinLayout.setBackgroundColor(Color.WHITE);
+            }else{
+                dotLinLayout.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
+            }
             textBackLay.addView(dotLinLayout);
 
             if (finalCompareTodayDate== todayDate && finalCompareTodayMonth == currentMonth && i == todayDate){
@@ -277,17 +306,15 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 scrollBarToDate();
             }
         }
-
     }
 
     private static String getDate(int month, int year) {
         Calendar calendar = Calendar.getInstance();
         // passing month-1 because 0-->jan, 1-->feb... 11-->dec
-        calendar.set(year, month, 1);
-        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
-        Date date = calendar.getTime();
-        DateFormat DATE_FORMAT = new SimpleDateFormat("dd");
-        return DATE_FORMAT.format(date);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.getActualMaximum(Calendar.DATE);
+        return String.valueOf(calendar.getActualMaximum(Calendar.DATE));
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

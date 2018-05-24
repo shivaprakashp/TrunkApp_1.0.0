@@ -971,4 +971,7 @@
     <string name="school_private_tour">School and Private Tours</string>
     <string name="school_private_tour_detail">Please contact tours@dubaiopera.com for pricing and additional information.</string>
 
+    <!--about push notification -->
+    <string name="google_app_id">102673554145</string>
+    <string name="infobip_application_code">031cce47db1313d8488d8d31023fe6ca-25d928cf-6eda-4a15-88ce-cc163e90667a</string>
 </resources>
