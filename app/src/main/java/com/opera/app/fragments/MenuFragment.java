@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
+import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.RegisterActivity;
@@ -50,7 +52,7 @@ public class MenuFragment extends BaseFragment {
     View menu_gift_card;
 
     @BindView(R.id.menu_feedback)
-    View menu_feedback;
+    LinearLayout menu_feedback;
 
     @BindView(R.id.menu_contact)
     View menu_contact;
@@ -149,10 +151,10 @@ public class MenuFragment extends BaseFragment {
         txtGift.setText(getActivity().getString(R.string.menu_gift_cards));
 
         //third row
-        ImageView imgFeedback = (ImageView) menu_feedback.findViewById(R.id.menu_icon);
+        /*ImageView imgFeedback = (ImageView) menu_feedback.findViewById(R.id.menu_icon);
         TextViewWithFont txtfeedback = (TextViewWithFont) menu_feedback.findViewById(R.id.menu_icon_text);
         imgFeedback.setImageDrawable(getActivity().getDrawable(R.drawable.ic_feedback));
-        txtfeedback.setText(getActivity().getString(R.string.menu_feedback));
+        txtfeedback.setText(getActivity().getString(R.string.menu_feedback));*/
 
         ImageView imgContact = (ImageView) menu_contact.findViewById(R.id.menu_icon);
         TextViewWithFont txtContact = (TextViewWithFont) menu_contact.findViewById(R.id.menu_icon_text);
@@ -212,6 +214,22 @@ public class MenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getActivity(), NotificationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        menu_promotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), NotificationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        menu_opera_tour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), DubaiOperaTourActivity.class);
                 getActivity().startActivity(intent);
             }
         });

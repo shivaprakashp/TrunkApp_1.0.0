@@ -15,16 +15,17 @@
 
         <com.opera.app.customwidget.TicketView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
             app:orientation="horizontal"
             app:scallopRadius="10dp"
-            app:scallopPositionPercent="75"
+            app:scallopPositionPercent="73"
             app:showBorder="true"
             app:borderWidth="1dp"
             app:borderColor="@color/colorBlack"
             app:showDivider="true"
             app:dividerPadding="0dp"
             app:dividerType="dash"
+            android:foregroundGravity="bottom"
             app:cornerType="rounded"
             app:ticketElevation="1dp"/>
 
@@ -32,13 +33,14 @@
             android:id="@+id/ticketView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"/>
 
 
         <LinearLayout
+            android:id="@+id/linearOne"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="230dp"
             android:orientation="vertical"
             android:padding="10dp"
             android:layout_marginLeft="10dp"
@@ -171,6 +173,31 @@
                         font:name="Montserrat-Regular"/>
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            app:layout_constraintBottom_toBottomOf="@+id/linearOne"
+            app:layout_constraintEnd_toEndOf="@+id/ticketView"
+            app:layout_constraintStart_toStartOf="@+id/ticketView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgEventBarCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="123456789"
+                style="@style/label_black_very_low"
+                android:gravity="center"
+                android:padding="2dp"
+                android:id="@+id/txtBarCode"/>
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

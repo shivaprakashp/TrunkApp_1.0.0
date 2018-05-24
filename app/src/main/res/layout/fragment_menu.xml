@@ -202,16 +202,36 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/menu_feedback"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="0dp">
+                android:padding="5dp">
 
-                <include
+                    <ImageView
+                        android:id="@+id/menu_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:rotationY="@integer/locale_mirror_flip"
+                        android:src="@drawable/ic_feedback"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/menu_icon_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/menu_feedback"
+                        android:lines="2"
+                        font:name="Montserrat-Light"
+                        android:layout_marginTop="5dp"
+                        style="@style/label_white_small"/>
+
+
+                <!--<include
                     android:id="@+id/menu_feedback"
-                    layout="@layout/include_menu_items" />
+                    layout="@layout/include_menu_items" />-->
             </LinearLayout>
 
             <View

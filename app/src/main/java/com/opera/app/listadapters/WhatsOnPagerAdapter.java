@@ -5,11 +5,7 @@ package com.opera.app.listadapters;
  */
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
 import android.util.Log;
@@ -108,7 +104,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
-            imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.fav_selected));
+            imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
         } else {
             imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }

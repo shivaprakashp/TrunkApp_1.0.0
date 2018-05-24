@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class NotificationDetails {
 
-    @SerializedName("Status")
+    @SerializedName("status")
     @Expose
     private String status;
     @SerializedName("notificationType")
     @Expose
     private String notificationType;
-    @SerializedName("Message")
+    @SerializedName("message")
     @Expose
     private String message;
     @SerializedName("notification")

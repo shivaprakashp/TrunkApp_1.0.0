@@ -131,7 +131,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         final Events mEventPojo = mEventListingData.get(position);
 
         if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
-            holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.fav_selected));
+            holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
         } else {
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }

@@ -30,6 +30,8 @@ public class DatabaseHelper{
     private static final String REASTAURANT_IMAGE_URL = "REASTAURANT_IMAGE_URL";
     private static final String REASTAURANT_BOOKING_URL = "REASTAURANT_BOOKING_URL";
 
+    private static final String REASTAURANT_PHONE_NUMBER = "REASTAURANT_PHONE_NUMBER";
+    private static final String REASTAURANT_EMAIL = "REASTAURANT_EMAIL";
     //creating table
     public static final String CREATE_TABLE_REASTAURANT =
             "CREATE TABLE " + TABLE_OTHER_RESTAURANTS + "(" + REASTAURANT_ID + " INTEGER,"
@@ -37,7 +39,9 @@ public class DatabaseHelper{
                     + REASTAURANT_PLACE + " TEXT,"
                     + REASTAURANT_DETAILS + " TEXT,"
                     + REASTAURANT_IMAGE_URL + " TEXT,"
-                    + REASTAURANT_BOOKING_URL + " TEXT);";
+                    + REASTAURANT_BOOKING_URL + " TEXT,"
+                    + REASTAURANT_PHONE_NUMBER + " TEXT,"
+                    + REASTAURANT_EMAIL + " TEXT);";
 
 
     private SQLiteDatabase database;
@@ -70,6 +74,8 @@ public class DatabaseHelper{
                 contentValue.put(DatabaseHelper.REASTAURANT_DETAILS, mRestaurantListing.get(i).getRestDetails());
                 contentValue.put(DatabaseHelper.REASTAURANT_IMAGE_URL, mRestaurantListing.get(i).getRestImage());
                 contentValue.put(DatabaseHelper.REASTAURANT_BOOKING_URL, mRestaurantListing.get(i).getRestBookUrl());
+                contentValue.put(DatabaseHelper.REASTAURANT_PHONE_NUMBER, mRestaurantListing.get(i).getPhoneNumber());
+                contentValue.put(DatabaseHelper.REASTAURANT_EMAIL, mRestaurantListing.get(i).getPhoneNumber());
 
                 if(!mRestaurantListing.get(i).getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
                     long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
@@ -94,6 +100,7 @@ public class DatabaseHelper{
                     mRestaurantData.setRestDetails(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_DETAILS)));
                     mRestaurantData.setRestImage(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_IMAGE_URL)));
                     mRestaurantData.setRestBookUrl(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_BOOKING_URL)));
+                    mRestaurantData.setPhoneNumber(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PHONE_NUMBER)));
                     dataArrayList.add(mRestaurantData);
                 } while (cursor.moveToNext());
             }

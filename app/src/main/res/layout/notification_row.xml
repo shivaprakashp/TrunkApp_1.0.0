@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/mImgNotifyImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="165dp"
             android:scaleType="fitXY" />
 
         <ProgressBar
@@ -31,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -41,7 +43,7 @@
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtNotifyTitle"
-                    style="@style/label_black_vlarge"
+                    style="@style/label_black_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -52,12 +54,10 @@
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtNotifyDesc"
-                    style="@style/label_black_medium"
+                    style="@style/label_black_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:ellipsize="end"
-                    android:singleLine="true"
                     android:text="@string/profile_name"
                     font:name="Montserrat-Light" />
 

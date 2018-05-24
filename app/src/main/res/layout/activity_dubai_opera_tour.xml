@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <include
+            android:id="@+id/inc_set_toolbar"
+            layout="@layout/view_home_toolbar" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/header_cover_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_dubai_opera_tour_banner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/detail"
+                    style="@style/label_black_medium"
+                    font:name="Montserrat-Regular"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/experience"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_burgendy_medium"
+                        font:name="Montserrat-Medium"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/experience_details"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_black_medium"
+                        font:name="Montserrat-Regular"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/expect"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_burgendy_medium"
+                        font:name="Montserrat-Medium"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/expect_details"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_black_medium"
+                        font:name="Montserrat-Regular"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pubic_tour"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_burgendy_medium"
+                        font:name="Montserrat-Medium"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pubic_tour_detail"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_black_medium"
+                        font:name="Montserrat-Regular"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/school_private_tour"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_burgendy_medium"
+                        font:name="Montserrat-Medium"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/school_private_tour_detail"
+                        android:layout_marginTop="10dp"
+                        style="@style/label_black_medium"
+                        font:name="Montserrat-Regular"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center">
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnBookNow"
+            style="@style/label_white"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/btn_ripple_effect"
+            android:text="@string/bookNow"
+            android:textAllCaps="true"
+            android:layout_margin="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            font:name="Montserrat-Regular"/>
+    </LinearLayout>
+
+</LinearLayout>
