@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -30,6 +31,9 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
+import com.opera.app.pojo.favouriteandsettings.Favourite;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
@@ -192,21 +196,30 @@ public class EventDetailsActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
+            if(mRequestKey.equalsIgnoreCase(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT)){
+                FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
+                try {
+                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
 
-            try {
-                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                    mEventDetailsDB.open();
-                    mEventListingDB.open();
-                    mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
-                    mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
-                    fetchDataFromDB();
-
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            }else{
+                GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
+                try {
+                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                        mEventDetailsDB.open();
+                        mEventListingDB.open();
+                        mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
+                        mEventDetailsDB.insertIntoEventsDetails(mEventDataPojo.getEvents());
+                        fetchDataFromDB();
 
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         @Override
@@ -253,7 +266,7 @@ public class EventDetailsActivity extends BaseActivity {
             txtHeaderEventName.setText(mEventListingData.get(0).getName());
             mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
-            if (manager.isUserLoggedIn()) {
+           /* if (manager.isUserLoggedIn()) {
                 if (mEventListingData.get(0).isFavourite().equalsIgnoreCase("true")) {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
                 } else {
@@ -261,7 +274,7 @@ public class EventDetailsActivity extends BaseActivity {
                 }
             } else {
 
-            }
+            }*/
 
             adapterFavGenres.RefreshList(mEventsWithSameGenres);
             mAdapter.RefreshList(mGenresListing);
@@ -298,6 +311,9 @@ public class EventDetailsActivity extends BaseActivity {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
                 }
                 mEventListingDB.UpdateFavouriteData(EventId, IsFavourite);
+                if (manager.isUserLoggedIn()) {
+                    UpdateFavouriteForLoggedInUser(IsFavourite);
+                }
                 break;
             case R.id.linearPlay:
                 in = new Intent(mActivity, OpenYoutubeVideo.class);
@@ -305,5 +321,13 @@ public class EventDetailsActivity extends BaseActivity {
                 startActivity(in);
                 break;
         }
+    }
+
+    private void UpdateFavouriteForLoggedInUser(String IsFavourite) {
+        ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
+        mFavouriteMarked.add(new Favourite(IsFavourite, EventId));
+
+        MainController controller = new MainController(mActivity);
+        controller.updateSettingsAndFavourite(taskComplete, api, new FavouriteAndSettings(mFavouriteMarked));
     }
 }

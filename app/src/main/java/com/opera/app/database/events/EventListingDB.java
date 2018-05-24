@@ -17,6 +17,7 @@ import com.opera.app.pojo.events.eventlisiting.EventGenres;
 import com.opera.app.pojo.events.eventlisiting.EventTime;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
+import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.preferences.SessionManager;
 
 import org.json.JSONException;
@@ -103,7 +104,8 @@ public class EventListingDB {
     }
 
     //insterting data
-    public void insertOtherEvents(Activity mActivity, ArrayList<Events> mEventListingData, ArrayList<Events> mEventFavouritesForGuest) {
+    public void insertOtherEvents(Activity mActivity, ArrayList<Events> mEventListingData, ArrayList<Events> mEventFavouritesForGuest
+            , ArrayList<Favourite> arrFavouriteDataOfLoggedInUser) {
         ContentValues contentValue = new ContentValues();
         SessionManager manager = new SessionManager(mActivity);
         Gson gson = new Gson();
@@ -128,7 +130,14 @@ public class EventListingDB {
                 contentValue.put(EVENT_IS_HIGHLIGHTED, mEventListingData.get(i).getHighlighted());
 
                 if (manager.isUserLoggedIn()) {
-                    contentValue.put(EVENT_IS_FAVOURITE, mEventListingData.get(i).isFavourite());            // need to update
+                    String IsFavourite = "false";
+                    for (int j = 0; j < arrFavouriteDataOfLoggedInUser.size(); j++) {
+                        if (mEventListingData.get(i).getEventId().equalsIgnoreCase(arrFavouriteDataOfLoggedInUser.get(j).getFavouriteId().toUpperCase())) {
+                            IsFavourite = "true";
+                        }
+                    }
+                    contentValue.put(EVENT_IS_FAVOURITE, IsFavourite);
+                    // need to update
                 } else {
                     //Handling for guest user
                     if (mEventFavouritesForGuest.size() > 0) {
@@ -153,7 +162,6 @@ public class EventListingDB {
 
                 long row = database.insert(TABLE_EVENT_LISTING, null, contentValue);
 
-                Log.e("row", row + "");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -210,7 +218,6 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
-            Log.e("ErrorMessage", e.getMessage());
         }
 
         return dataArrayEvents;
@@ -237,7 +244,6 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
-            Log.e("ErrorMessage", e.getMessage());
         }
 
         return IsFavourite;
@@ -260,7 +266,6 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
-            Log.e("ErrorMessage", e.getMessage());
         }
 
         return dataArrayEvents;
@@ -355,7 +360,6 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
-            Log.e("ErrorMessage", e.getMessage());
         }
 
         return dataArrayEvents;

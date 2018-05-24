@@ -15,6 +15,8 @@ import com.opera.app.activities.WalletActivity;
 import com.opera.app.fragments.DiningFragment;
 import com.opera.app.fragments.GenresEventsFragment;
 import com.opera.app.fragments.HomeFragment;
+import com.opera.app.listadapters.AdapterEvent;
+import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.services.SettingsService;
 
 import javax.inject.Singleton;
@@ -44,4 +46,6 @@ public interface ApiComponent {
     void inject(GenresEventsFragment mGenresEventsFragment);
     void inject(WalletActivity walletActivity);
     void inject(NotificationActivity notificationActivity);
+    void inject(WhatsOnPagerAdapter mWhatsOnPagerAdapter);
+    void inject(AdapterEvent mAdapterEvent);
 }

@@ -1,6 +1,7 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,10 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.OtherRestaurantsActivity;
+import com.opera.app.activities.CommonWebViewActivity;
+import com.opera.app.activities.ReserveATableActivity;
+import com.opera.app.activities.RestaurantCompleteDetails;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dialogues.FindOutMoreDialogue;
 import com.opera.app.pojo.restaurant.RestaurantsData;
@@ -27,7 +32,7 @@ import java.util.ArrayList;
  * Created by 1000632 on 4/9/2018.
  */
 
-public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> implements Filterable{
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> implements Filterable {
 
     private ArrayList<RestaurantsData> mRestaurantList;
     private Activity mActivity;
@@ -83,7 +88,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                mRestaurantList  = (ArrayList<RestaurantsData>) results.values; // has the filtered values
+                mRestaurantList = (ArrayList<RestaurantsData>) results.values; // has the filtered values
                 notifyDataSetChanged();  // notifies the data with new filtered values
             }
         };
@@ -115,7 +120,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         this.mRestaurantList = mRestaurantList;
     }
 
-    public void RefreshList(ArrayList<RestaurantsData> mRestaurantList){
+    public void RefreshList(ArrayList<RestaurantsData> mRestaurantList) {
         this.mRestaurantList = mRestaurantList;
     }
 
@@ -158,15 +163,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                         if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
                             Intent intent = new Intent(mActivity, ReserveATableActivity.class);
                             mActivity.startActivity(intent);
-                        }
-                        else {
+                        } else {
                             Intent in = new Intent(mActivity, CommonWebViewActivity.class);
                             in.putExtra("URL", mRestaurantListing.getRestBookUrl());
                             in.putExtra("Header", mRestaurantListing.getRestName());
                             mActivity.startActivity(in);
                         }
-                    }else {
-                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
+                    } else {
+                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
                         dialog.show();
                     }
                 } else {
@@ -179,7 +183,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         holder.mImgRestaurantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OtherRestaurantsActivity.getInstance().diningDetails(mRestaurantListing);
+                Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
+                intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
+                mActivity.startActivity(intent);
             }
         });
     }

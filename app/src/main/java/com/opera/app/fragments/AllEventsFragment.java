@@ -57,7 +57,7 @@ public class AllEventsFragment extends BaseFragment implements EventInterfaceTab
     private void InitView(View view) {
         ButterKnife.bind(this, view);
         listenerAllEvents=(AllEventsFragment)this;
-        fetchAllEvents();
+
     }
 
     private void fetchAllEvents() {
@@ -85,6 +85,12 @@ public class AllEventsFragment extends BaseFragment implements EventInterfaceTab
     
     @Override
     public void onLikeProcessComplete() {
+        fetchAllEvents();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         fetchAllEvents();
     }
 }

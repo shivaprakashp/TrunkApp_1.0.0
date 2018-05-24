@@ -13,6 +13,8 @@ import com.opera.app.activities.MainActivity;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
+import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
@@ -103,7 +105,9 @@ public class SettingsService extends IntentService {
     }
 
     private void sendUpdatedSettings() {
-        Call call = api.UpdateSettings(contentType, mSessionManager.getUserLoginData().getData().getToken(), new SetSettingsPojo(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, SelecteLanguage));
+
+        Settings mSettings=new Settings(mBookedShowSwitch,mPromoSwitch,SelecteLanguage,mNewsletterSwitch,mNotifSwitch, mFeedbackNotifSwitch);
+        Call call = api.UpdateSettings(contentType, mSessionManager.getUserLoginData().getData().getToken(), new FavouriteAndSettings(mSettings));
         dataLoad(call);
     }
 
