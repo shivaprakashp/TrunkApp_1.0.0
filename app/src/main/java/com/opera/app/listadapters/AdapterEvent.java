@@ -151,33 +151,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                     }
                 });
 
-        holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mEventListingDB.open();
-                String IsFavourite = "false";
-                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
-                    IsFavourite = "false";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                } else {
-                    IsFavourite = "true";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                RefreshList(mEventListingData);
-
-                if (manager.isUserLoggedIn()) {
-                    UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
-                }
-
-                if (listener != null) {
-                    listener.onLikeProcessComplete();
-                }
-            }
-        });
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,6 +191,34 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 mActivity.startActivity(in);
             }
         });
+
+        holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEventListingDB.open();
+                String IsFavourite = "false";
+                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+                    IsFavourite = "false";
+                    mEventPojo.setFavourite(IsFavourite);
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                } else {
+                    IsFavourite = "true";
+                    mEventPojo.setFavourite(IsFavourite);
+                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                }
+                mEventListingDB.close();
+                notifyDataSetChanged();
+                RefreshList(mEventListingData);
+
+                if (manager.isUserLoggedIn()) {
+                    UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
+                }
+
+                if (listener != null) {
+                    listener.onLikeProcessComplete();
+                }
+            }
+        });
     }
 
     @Override
@@ -240,7 +241,13 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
             try {
                 if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    if (mFavouriteAndSettingsResponseMain.getData().getFavourite().size() > 0) {
+                        mEventListingDB.open();
+                        mEventListingDB.UpdateFavouriteData(mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getFavouriteId(), mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getIsFavourite());
+                        mEventListingDB.close();
 
+                        listener.onLikeProcessComplete();
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

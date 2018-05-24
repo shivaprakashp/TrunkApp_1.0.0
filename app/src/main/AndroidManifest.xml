@@ -101,6 +101,10 @@
 
         <activity android:name=".activities.OpenYoutubeVideo"
             android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".activities.RestaurantCompleteDetails"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

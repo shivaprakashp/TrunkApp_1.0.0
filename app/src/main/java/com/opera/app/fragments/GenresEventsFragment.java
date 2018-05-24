@@ -71,8 +71,6 @@ public class GenresEventsFragment extends BaseFragment implements EventInterface
     private void InitView(View view) {
         ButterKnife.bind(this, view);
         listenerGenres=(GenresEventsFragment)this;
-        Onclicks();
-        initSpinnervalues();
     }
 
     private void initSpinnervalues() {
@@ -133,5 +131,12 @@ public class GenresEventsFragment extends BaseFragment implements EventInterface
     @Override
     public void onLikeProcessComplete() {
         ApplyGenreSearch(selectedGenre);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Onclicks();
+        initSpinnervalues();
     }
 }

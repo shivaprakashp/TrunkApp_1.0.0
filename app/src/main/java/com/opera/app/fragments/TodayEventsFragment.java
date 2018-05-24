@@ -56,6 +56,7 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
         View view = inflater.inflate(R.layout.fragment_events_tab, container, false);
 
         InitView(view);
+
         return view;
     }
 
@@ -64,14 +65,13 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
         listenerToday=(TodayEventsFragment)this;
 
         mEventDetailsDB = new EventListingDB(mActivity);
+    }
+
+    private void FetchTodayEvents(String ToDay) {
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
-        FetchTodayEvents(OperaUtils.getCurrentDate());
-    }
-
-    private void FetchTodayEvents(String ToDay) {
         ArrayList<Events> mFilteredEvents = new ArrayList<>();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -124,6 +124,12 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
 
     @Override
     public void onLikeProcessComplete() {
+        FetchTodayEvents(OperaUtils.getCurrentDate());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         FetchTodayEvents(OperaUtils.getCurrentDate());
     }
 }

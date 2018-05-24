@@ -52,7 +52,7 @@ public class OpenYoutubeVideo extends YouTubeBaseActivity implements
             player.loadVideo("LSI5WrYfphU");
 
             // Hiding player controls
-            player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
         }
     }
 

@@ -60,7 +60,7 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
         ButterKnife.bind(this, view);
         listenerFavourite=(FavouritesEventsFragment)this;
         mEventDetailsDB = new EventListingDB(mActivity);
-        FetchFavouriteEvents();
+
     }
 
     private void FetchFavouriteEvents() {
@@ -91,6 +91,12 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
 
     @Override
     public void onLikeProcessComplete() {
+        FetchFavouriteEvents();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         FetchFavouriteEvents();
     }
 }

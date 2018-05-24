@@ -93,7 +93,8 @@ public class HomeFragment extends BaseFragment {
         InitView(view);
         GetCurrentEvents();
 
-        if(manager.isUserLoggedIn()){
+        //Taking this data for logged in user only (Settings and Favourites)
+        if (manager.isUserLoggedIn()) {
             GetUserSettings();
         }
 
@@ -156,8 +157,9 @@ public class HomeFragment extends BaseFragment {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-                Log.e("GetUserSetting response","true");
+
                 if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    //Adding Favourites data into the arraylist (If it is true)
                     arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
                     UpdateFavouriteData();
                     GetWhatsOnEvents();
@@ -175,7 +177,7 @@ public class HomeFragment extends BaseFragment {
                         }
 
                         mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
-                        mEventListingDB.insertOtherEvents(mActivity, mEventDataPojo.getEvents(), mEventAllData,arrFavouriteDataOfLoggedInUser);
+                        mEventListingDB.insertOtherEvents(mActivity, mEventDataPojo.getEvents(), mEventAllData, arrFavouriteDataOfLoggedInUser);
 
                         mEventGenresDB.open();
                         mEventGenresDB.deleteCompleteTable(EventGenresDB.TABLE_GENRES_LISTING);
@@ -203,7 +205,7 @@ public class HomeFragment extends BaseFragment {
     };
 
     private void fetchDataFromDB() {
-        Log.e("Event Listing response","true");
+        Log.e("Event Listing response", "true");
         UpdateFavouriteData();
         GetWhatsOnEvents();
         GetHighlightedEvents();
@@ -212,16 +214,25 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void UpdateFavouriteData() {
+        mEventListingDB.open();
         if (arrFavouriteDataOfLoggedInUser.size() > 0) {
-            mEventListingDB.open();
             for (int i = 0; i < arrFavouriteDataOfLoggedInUser.size(); i++) {
                 mEventListingDB.UpdateFavouriteData(arrFavouriteDataOfLoggedInUser.get(i).getFavouriteId().toUpperCase(), arrFavouriteDataOfLoggedInUser.get(i).getIsFavourite());
             }
-            mEventListingDB.close();
+        } else {
+
+            //If no data available in in Favourites(none of the event is marked as true) then put favourites as false against all events
+            if (manager.isUserLoggedIn()) {
+                for (int j = 0; j < mEventAllData.size(); j++) {
+                    mEventListingDB.UpdateFavouriteData(mEventAllData.get(j).getEventId().toUpperCase(), "false");
+                }
+            }
         }
+        mEventListingDB.close();
     }
 
     private void GetWhatsOnEvents() {
+        //Fetching Whats'on events which are at the bottom (Calling this function from on resume as favourites need to be update eveytime)
         mEventListingDB.open();
         mEventAllData = new ArrayList<>();
         mWhatsEvents = new ArrayList<>();
@@ -239,6 +250,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void GetHighlightedEvents() {
+        //Fetching this details only once from DB
         mEventListingDB.open();
         mEventAllData = new ArrayList<>();
         mEventAllData = mEventListingDB.fetchAllEvents();
