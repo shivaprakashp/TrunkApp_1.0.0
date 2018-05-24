@@ -1,9 +1,7 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
-import com.opera.app.activities.ReserveATableActivity;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
-import com.opera.app.dialogues.GuestDialog;
+import com.opera.app.dialogues.FindOutMoreDialogue;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
-import com.opera.app.utils.Connections;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -155,7 +149,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         holder.mBtnReserveATable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Connections.isConnectionAlive(mActivity)) {
+
+                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber());
+                dialogue.show();
+
+                /*if (Connections.isConnectionAlive(mActivity)) {
                     if (manager.isUserLoggedIn()) {
                         if (mRestaurantListing.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
                             Intent intent = new Intent(mActivity, ReserveATableActivity.class);
@@ -174,7 +172,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                 } else {
                     //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
-                }
+                }*/
             }
         });
 
