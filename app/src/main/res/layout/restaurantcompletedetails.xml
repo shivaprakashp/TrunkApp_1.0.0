@@ -129,7 +129,7 @@
                             android:background="@drawable/btn_ripple_effect"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="@string/reserve_a_table"
+                            android:text="@string/find_out_more"
                             font:name="Montserrat-Light" />
 
                     </LinearLayout>

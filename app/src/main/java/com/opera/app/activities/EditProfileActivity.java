@@ -429,7 +429,7 @@ public class EditProfileActivity extends BaseActivity {
         else if (TextUtils.isEmpty(edtMobile.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorMobile));
             return false;
-        } else if (edtMobile.getText().toString().length() < 10 || edtMobile.getText().toString().length() > 10) {
+        } else if (edtMobile.getText().toString().length() < 9 || edtMobile.getText().toString().length() > 10) {
             customToast.showErrorToast(getString(R.string.errorLengthMobile));
             return false;
         }
