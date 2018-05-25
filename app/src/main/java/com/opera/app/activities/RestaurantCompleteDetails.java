@@ -1,7 +1,6 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -16,10 +15,9 @@ import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.dialogues.GuestDialog;
+import com.opera.app.dialogues.FindOutMoreDialogue;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
-import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -116,7 +114,11 @@ public class RestaurantCompleteDetails extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mBtnReserveATable:
-                if (Connections.isConnectionAlive(mActivity)) {
+
+                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListingData.getPhoneNumber());
+                dialogue.show();
+
+                /*if (Connections.isConnectionAlive(mActivity)) {
                     if (manager.isUserLoggedIn()) {
                         if (mRestaurantListingData.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
                             openActivity(mActivity, ReserveATableActivity.class);
@@ -133,7 +135,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
                 } else {
                     //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
-                }
+                }*/
                 break;
         }
     }

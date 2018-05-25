@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:background="@color/colorWhite">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_edit_profile"
@@ -44,268 +44,126 @@
                 android:layout_margin="15dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <include
-                        android:id="@+id/edit_edtFirstName"
-                        layout="@layout/include_edittext" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/edit_edtFirstName"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <include
-                        android:id="@+id/edit_edtLastName"
-                        layout="@layout/include_edittext" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/edit_edtLastName"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <include
-                        android:id="@+id/edit_edtEmail"
-                        layout="@layout/include_edittext" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/edit_edtEmail"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
 
-                <LinearLayout
+                <com.opera.app.customwidget.CustomSpinner
+                    android:id="@+id/spinnerNationality"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.CustomSpinner
-                        android:id="@+id/spinnerNationality"
-                        style="@style/label_black"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        font:name="Montserrat-Regular" />
-
-                </LinearLayout>
+                    android:layout_height="40dp"
+                    style="@style/label_black"
+                    font:name="Montserrat-Regular" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <include
-                        android:id="@+id/edit_edtDob"
-                        layout="@layout/include_edittext" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/edit_edtDob"
+                    layout="@layout/include_edittext" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
 
                 <include
                     android:id="@+id/edit_edtMobile"
                     layout="@layout/include_mobile_edittext" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
+
+                <include
+                    android:id="@+id/edit_edtCity"
+                    layout="@layout/include_edittext" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
+
+                <com.opera.app.customwidget.CustomSpinner
+                    android:id="@+id/spinnerState"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    style="@style/label_black"
+                    font:name="Montserrat-Regular"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
+
+                <com.opera.app.customwidget.CustomSpinner
+                    android:id="@+id/spinnerCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    style="@style/label_black"
+                    font:name="Montserrat-Regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_gray"
+                    android:layout_marginBottom="5dp"/>
+
                 <!--<LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.CustomSpinner
-                        android:id="@+id/spinnerCountryCode"
-                        style="@style/label_black"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        font:name="Montserrat-Regular" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.EditTextWithFont
-                        android:id="@+id/edtMobile"
-                        style="@style/label_black"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:hint="@string/username"
-                        android:padding="5dp"
-                        font:name="Montserrat-Regular">
-
-                        <requestFocus />
-                    </com.opera.app.customwidget.EditTextWithFont>
-
+                    android:layout_height="120dp">
+                    <include
+                        android:id="@+id/edit_edtAddress"
+                        layout="@layout/include_edittext" />
                 </LinearLayout>-->
 
-                <View
+                <com.opera.app.customwidget.EditTextWithFont
+                    android:id="@+id/edit_edtAddress"
+                    style="@style/label_black"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <include
-                        android:id="@+id/edit_edtCity"
-                        layout="@layout/include_edittext" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.CustomSpinner
-                        android:id="@+id/spinnerState"
-                        style="@style/label_black"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        font:name="Montserrat-Regular" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.CustomSpinner
-                        android:id="@+id/spinnerCountry"
-                        style="@style/label_black"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        font:name="Montserrat-Regular" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/dark_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_calendar" />
-
-                    <com.opera.app.customwidget.EditTextWithFont
-                        android:id="@+id/edit_edtAddress"
-                        style="@style/label_black"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="@null"
-                        android:gravity="start"
-                        android:hint="@string/edit_address"
-                        android:imeOptions="actionDone"
-                        android:maxLength="70"
-                        android:padding="5dp"
-                        android:singleLine="false"
-                        font:name="Montserrat-Regular" />
-
-                </LinearLayout>
+                    android:layout_height="120dp"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="@string/edit_address"
+                    android:imeOptions="actionDone"
+                    android:maxLength="70"
+                    android:padding="5dp"
+                    android:singleLine="false"
+                    font:name="Montserrat-Regular" />
 
             </LinearLayout>
         </ScrollView>
@@ -321,33 +179,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:gravity="center">
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnCancel"
             style="@style/label_white"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_margin="10dp"
             android:layout_weight="1"
+            android:layout_height="@dimen/button_height"
             android:background="@drawable/btn_ripple_effect_gray"
             android:text="@string/cancel"
             android:textAllCaps="true"
-            font:name="Montserrat-Light" />
+            android:layout_margin="10dp"
+            font:name="Montserrat-Light"/>
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnSave"
             style="@style/label_white"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_margin="10dp"
             android:layout_weight="1"
+            android:layout_height="@dimen/button_height"
             android:background="@drawable/btn_ripple_effect"
             android:text="@string/save"
             android:textAllCaps="true"
-            font:name="Montserrat-Light" />
+            android:layout_margin="10dp"
+            font:name="Montserrat-Light"/>
     </LinearLayout>
 
 </LinearLayout>

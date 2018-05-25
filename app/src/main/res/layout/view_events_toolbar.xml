@@ -27,7 +27,7 @@
             android:layout_gravity="right|center"
             android:layout_toLeftOf="@+id/imgSearch"
             android:padding="10dp"
-            android:src="@drawable/ic_plan_your_visit"
+            android:src="@drawable/ic_calendar_white"
             android:visibility="gone" />
 
         <ImageView
