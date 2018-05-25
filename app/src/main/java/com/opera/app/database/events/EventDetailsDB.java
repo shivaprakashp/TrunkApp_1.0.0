@@ -42,6 +42,8 @@ public class EventDetailsDB {
     private static final String EVENT_INTERNAL_NAME = "EVENT_INTERNAL_NAME";
     private static final String EVENT_IS_HIGHLIGHTED = "EVENT_IS_HIGHLIGHTED";
     private static final String EVENT_IS_FAVOURITE = "EVENT_IS_FAVOURITE";
+    private static final String EVENT_FEEDBACK_URL = "EVENT_FEEDBACK_URL";
+    private static final String EVENT_EVENT_URL = "EVENT_EVENT_URL";
 
    /* //Part of Genre JSON Object
     private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
@@ -72,6 +74,8 @@ public class EventDetailsDB {
                     + EVENT_INTERNAL_NAME + " TEXT,"
                     + EVENT_IS_HIGHLIGHTED + " TEXT,"
                     + EVENT_IS_FAVOURITE + " TEXT,"
+                    + EVENT_FEEDBACK_URL + " TEXT,"
+                    + EVENT_EVENT_URL + " TEXT,"
                     + EVENT_GENRE + " TEXT,"
                     + EVENT_TIMES + " TEXT);";
 
@@ -118,6 +122,8 @@ public class EventDetailsDB {
             contentValue.put(EVENT_INTERNAL_NAME, mEventDetailsData.get(0).getInternalName());
             contentValue.put(EVENT_IS_HIGHLIGHTED, mEventDetailsData.get(0).getHighlighted());
             contentValue.put(EVENT_IS_FAVOURITE, mEventDetailsData.get(0).isFavourite());
+            contentValue.put(EVENT_FEEDBACK_URL, mEventDetailsData.get(0).getFeedbackUrl());
+            contentValue.put(EVENT_EVENT_URL, mEventDetailsData.get(0).getEventUrl());
 
 
             String mEventGenres = gson.toJson(mEventDetailsData.get(0).getGenreList());
@@ -163,6 +169,8 @@ public class EventDetailsDB {
                     mEvents.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_INTERNAL_NAME)));
                     mEvents.setHighlighted(cursor.getString(cursor.getColumnIndex(EVENT_IS_HIGHLIGHTED)));
                     mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
+                    mEvents.setFeedbackUrl(cursor.getString(cursor.getColumnIndex(EVENT_FEEDBACK_URL)));
+                    mEvents.setEventUrl(cursor.getString(cursor.getColumnIndex(EVENT_EVENT_URL)));
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();

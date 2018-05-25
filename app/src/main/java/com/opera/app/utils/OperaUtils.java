@@ -74,14 +74,19 @@ public class OperaUtils {
         return mOperaUtils;
     }
 
-    public static void ShareEventDetails(Context mContext, String mBody, String mImage) {
-        Intent shareIntent = new Intent();
+    public static void ShareEventDetails(Context mContext, String mBody) {
+        /*Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, mBody);
-        shareIntent.setType("image");
+        shareIntent.setType("text/plain");
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, mImage);
-        mContext.startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"));
+        mContext.startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"));*/
+
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mBody);
+        mContext.startActivity(Intent.createChooser(sharingIntent, mContext.getResources().getString(R.string.share_using)));
     }
 
     public static void CloseSoftKeyboard(Activity mActivity) {
@@ -229,17 +234,17 @@ public class OperaUtils {
     }
 
 
-    public static String getCurrentyearMonthDate(){
+    public static String getCurrentyearMonthDate() {
         String dateData = null;
-        try{
+        try {
             Calendar now = Calendar.getInstance();
 
-            dateData = CurrentDateCalender.currentMonth(now.get(Calendar.MONTH))+" "+
-                    (now.get(Calendar.DAY_OF_MONTH))+","+now.get(Calendar.YEAR)+". "+
-            now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE)
-            +(now.get(Calendar.AM_PM)==0?"AM" : "PM");
+            dateData = CurrentDateCalender.currentMonth(now.get(Calendar.MONTH)) + " " +
+                    (now.get(Calendar.DAY_OF_MONTH)) + "," + now.get(Calendar.YEAR) + ". " +
+                    now.get(Calendar.HOUR_OF_DAY) + ":" + now.get(Calendar.MINUTE)
+                    + (now.get(Calendar.AM_PM) == 0 ? "AM" : "PM");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -36,6 +37,7 @@ import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -61,7 +63,8 @@ public class EventDetailsActivity extends BaseActivity {
             mEventBuyURL = "",
             mEventDescription = "",
             mEventImage = "",
-            mEventYoutubeVideo = "";
+            mEventYoutubeVideo = "",
+            mEventURL = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
@@ -114,6 +117,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.linearPlay)
     LinearLayout mLinearPlay;
+
+    @BindView(R.id.linearShare)
+    RelativeLayout linearShare;
 
 
     @Override
@@ -196,16 +202,16 @@ public class EventDetailsActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            if(mRequestKey.equalsIgnoreCase(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT)){
+            if (mRequestKey.equalsIgnoreCase(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT)) {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
-                try {
+                /*try {
                     if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
 
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-            }else{
+                }*/
+            } else {
                 GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
                 try {
                     if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
@@ -247,6 +253,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventDescription = mEventListingData.get(0).getDescription();
         mEventImage = mEventListingData.get(0).getImage();
         mEventYoutubeVideo = mEventListingData.get(0).getVideo();
+        mEventURL = mEventListingData.get(0).getEventUrl();
 
         if (mEventListingData.size() > 0) {
             Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
@@ -286,7 +293,7 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -319,6 +326,10 @@ public class EventDetailsActivity extends BaseActivity {
                 in = new Intent(mActivity, OpenYoutubeVideo.class);
                 in.putExtra("YoutubeVideo", mEventYoutubeVideo);
                 startActivity(in);
+                break;
+
+            case R.id.linearShare:
+                OperaUtils.ShareEventDetails(mActivity, mEventURL);
                 break;
         }
     }

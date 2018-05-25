@@ -1,6 +1,7 @@
 package com.opera.app.listadapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -8,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -59,6 +62,17 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
                        /* holder.progressImageLoader.setVisibility(View.GONE);*/
                     }
                 });
+
+        holder.linearSearchParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                in.putExtra("EventId", mEventPojo.getEventId());
+                in.putExtra("EventInternalName", mEventPojo.getInternalName());
+                in.putExtra("IsFavourite", mEventPojo.isFavourite());
+                mActivity.startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -74,6 +88,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgEvent;
         public Button btnBuyTickets;
+        public LinearLayout linearSearchParent;
         public TextView txtEventName, txtEventInfo, txtEventDate;
 
         public MyViewHolder(View view) {
@@ -83,6 +98,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
             txtEventName = (TextView) view.findViewById(R.id.txtEventName);
             txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
             txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
+            linearSearchParent=(LinearLayout)view.findViewById(R.id.linearSearchParent);
             ;
         }
     }

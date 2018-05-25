@@ -30,6 +30,7 @@ import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -154,6 +155,9 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!mEventPojo.isInfoOpen()) {
+                    OperaUtils.ShareEventDetails(mActivity, mEventPojo.getEventUrl());
+                }
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
@@ -174,48 +178,54 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", mEventPojo.getBuyNowLink());
-                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+                if (!mEventPojo.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", mEventPojo.getBuyNowLink());
+                    in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         holder.linearParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, EventDetailsActivity.class);
-                in.putExtra("EventId", mEventPojo.getEventId());
-                in.putExtra("EventInternalName", mEventPojo.getInternalName());
-                in.putExtra("IsFavourite", mEventPojo.isFavourite());
-                mActivity.startActivity(in);
+                if (!mEventPojo.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", mEventPojo.getEventId());
+                    in.putExtra("EventInternalName", mEventPojo.getInternalName());
+                    in.putExtra("IsFavourite", mEventPojo.isFavourite());
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEventListingDB.open();
-                String IsFavourite = "false";
-                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
-                    IsFavourite = "false";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                } else {
-                    IsFavourite = "true";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                RefreshList(mEventListingData);
+                if (!mEventPojo.isInfoOpen()) {
+                    mEventListingDB.open();
+                    String IsFavourite = "false";
+                    if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+                        IsFavourite = "false";
+                        mEventPojo.setFavourite(IsFavourite);
+                        mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                    } else {
+                        IsFavourite = "true";
+                        mEventPojo.setFavourite(IsFavourite);
+                        mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                    }
+                    mEventListingDB.close();
+                    notifyDataSetChanged();
+                    RefreshList(mEventListingData);
 
-                if (manager.isUserLoggedIn()) {
-                    UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
-                }
+                    if (manager.isUserLoggedIn()) {
+                        UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
+                    }
 
-                if (listener != null) {
-                    listener.onLikeProcessComplete();
+                    if (listener != null) {
+                        listener.onLikeProcessComplete();
+                    }
                 }
             }
         });
