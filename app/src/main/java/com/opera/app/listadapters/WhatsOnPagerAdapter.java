@@ -193,14 +193,16 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         linearParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, EventDetailsActivity.class);
-                in.putExtra("EventId", eventObject.getEventId());
-                in.putExtra("EventInternalName", eventObject.getInternalName());
-                in.putExtra("IsFavourite", eventObject.isFavourite());
-                mActivity.startActivity(in);
+                if(!eventObject.isInfoOpen()){
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", eventObject.getEventId());
+                    in.putExtra("EventInternalName", eventObject.getInternalName());
+                    in.putExtra("IsFavourite", eventObject.isFavourite());
+                    mActivity.startActivity(in);
 
-                if (!mFrom.equalsIgnoreCase("HomePage")) {
-                    mActivity.finish();
+                    if (!mFrom.equalsIgnoreCase("HomePage")) {
+                        mActivity.finish();
+                    }
                 }
             }
         });
