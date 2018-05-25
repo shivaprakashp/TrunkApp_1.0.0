@@ -92,7 +92,7 @@ public class EditProfileActivity extends BaseActivity {
     View edit_edtDob;
 
     @BindView(R.id.edit_edtMobile)
-    View edit_edtMobile;
+    EditTextWithFont edtMobile;
 
     @BindView(R.id.edit_edtCity)
     View edit_edtCity;
@@ -109,8 +109,11 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.spinnerCountry)
     CustomSpinner spinnerCountry;
 
-    EditTextWithFont edtEmail, edtFirstName, edtLastName, edtMobile, edtCity;
+    @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
+
+    EditTextWithFont edtEmail, edtFirstName, edtLastName, edtCity;
+
     String countryCode;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -215,7 +218,7 @@ public class EditProfileActivity extends BaseActivity {
             }
         });
 
-        edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+        //edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
         edtMobile.setHint(getString(R.string.edit_mobile));
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
@@ -230,7 +233,7 @@ public class EditProfileActivity extends BaseActivity {
             }
         }
 
-        spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
+        //spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
