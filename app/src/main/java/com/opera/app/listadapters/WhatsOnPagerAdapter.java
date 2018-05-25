@@ -122,6 +122,12 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                     }
                 });
 
+        if (eventObject.isInfoOpen()) {
+            linearHolder.setVisibility(View.VISIBLE);
+        } else {
+            linearHolder.setVisibility(View.GONE);
+        }
+
         imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,67 +146,61 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Uri screenshotUri;
-                try {
-                    screenshotUri = new Uri("http://www.google.com/");
+                if (!eventObject.isInfoOpen()) {
+                    OperaUtils.ShareEventDetails(mActivity, eventObject.getEventUrl());
                 }
-                catch (URISyntaxException e) {
-                }
-
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                 screenshotUri = Uri.parse("file:///sdcard/image.jpg");
-                sharingIntent.setType("image*//*");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, "Body text of the new status");
-                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-                mActivity.startActivity(Intent.createChooser(sharingIntent, "Share image using"));*/
-//                OperaUtils.ShareEventDetails(mActivity, eventObject.getDescription(), eventObject.getImage());
             }
         });
 
         imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
-                mEventListingDB.open();
-                if (eventObject.isFavourite().equalsIgnoreCase("true")) {
-                    eventObject.setFavourite("false");
-                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
-                    mFavouriteMarked.add(new Favourite("false", eventObject.getEventId()));
-                } else {
-                    eventObject.setFavourite("true");
-                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
-                    mFavouriteMarked.add(new Favourite("true", eventObject.getEventId()));
+                if (!eventObject.isInfoOpen()) {
+                    ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
+                    mEventListingDB.open();
+                    if (eventObject.isFavourite().equalsIgnoreCase("true")) {
+                        eventObject.setFavourite("false");
+                        mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
+                        mFavouriteMarked.add(new Favourite("false", eventObject.getEventId()));
+                    } else {
+                        eventObject.setFavourite("true");
+                        mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
+                        mFavouriteMarked.add(new Favourite("true", eventObject.getEventId()));
+                    }
+                    mEventListingDB.close();
+                    notifyDataSetChanged();
+                    if (sessionManager.isUserLoggedIn()) {
+                        UpdateFavouriteForLoggedInUser(mFavouriteMarked);
+                    }
                 }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                if (sessionManager.isUserLoggedIn()) {
-                    UpdateFavouriteForLoggedInUser(mFavouriteMarked);
-                }
-
             }
         });
 
         btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", eventObject.getBuyNowLink());
-                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+                if (!eventObject.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", eventObject.getBuyNowLink());
+                    in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         linearParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, EventDetailsActivity.class);
-                in.putExtra("EventId", eventObject.getEventId());
-                in.putExtra("EventInternalName", eventObject.getInternalName());
-                in.putExtra("IsFavourite", eventObject.isFavourite());
-                mActivity.startActivity(in);
+                if (!eventObject.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", eventObject.getEventId());
+                    in.putExtra("EventInternalName", eventObject.getInternalName());
+                    in.putExtra("IsFavourite", eventObject.isFavourite());
+                    mActivity.startActivity(in);
 
-                if (!mFrom.equalsIgnoreCase("HomePage")) {
-                    mActivity.finish();
+                    if (!mFrom.equalsIgnoreCase("HomePage")) {
+                        mActivity.finish();
+                    }
                 }
             }
         });
@@ -250,13 +250,13 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         public void onTaskFinished(Response response, String mRequestKey) {
             FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-            try {
+            /*try {
                 if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
 
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         @Override

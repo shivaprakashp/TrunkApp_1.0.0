@@ -125,6 +125,7 @@ public class HomeFragment extends BaseFragment {
         /*mCoverFlow.setAdapter(mAdapter);*/
         mViewpagerWhatsOnShows.setClipToPadding(false);
         mViewpagerWhatsOnShows.setPageMargin(20);
+        mViewpagerWhatsOnShows.setPadding(40, 0, 40, 0);
         //What's on events
         mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents, "HomePage");
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
@@ -132,13 +133,13 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position == 0) {
+                /*if (position == 0) {
                     mViewpagerWhatsOnShows.setPadding(0, 0, 70, 0);
                 } else if (mWhatsEvents.size() - 1 == position) {
                     mViewpagerWhatsOnShows.setPadding(70, 0, 0, 0);
                 } else {
                     mViewpagerWhatsOnShows.setPadding(70, 0, 70, 0);
-                }
+                }*/
             }
 
             @Override
@@ -158,7 +159,7 @@ public class HomeFragment extends BaseFragment {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
 
-                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                if (mFavouriteAndSettingsResponseMain != null && mFavouriteAndSettingsResponseMain.getStatus() != null && mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
                     //Adding Favourites data into the arraylist (If it is true)
                     arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
                     UpdateFavouriteData();
@@ -240,7 +241,7 @@ public class HomeFragment extends BaseFragment {
         for (int i = 0; i < mEventAllData.size(); i++) {
 
             if (mEventAllData.get(i).getWhatsOn().equalsIgnoreCase("true")) {
-                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite()));
+                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite(), mEventAllData.get(i).getEventUrl()));
             }
         }
 

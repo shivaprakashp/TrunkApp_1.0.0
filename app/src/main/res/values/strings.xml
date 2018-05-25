@@ -974,4 +974,5 @@
     <!--about push notification -->
     <string name="google_app_id">102673554145</string>
     <string name="infobip_application_code">031cce47db1313d8488d8d31023fe6ca-25d928cf-6eda-4a15-88ce-cc163e90667a</string>
+    <string name="share_using">Select App to Share Text and Image</string>
 </resources>

@@ -74,6 +74,14 @@ public class Events {
     @Expose
     private String StartTime;
 
+    @SerializedName("EventUrl")
+    @Expose
+    private String EventUrl;
+
+    @SerializedName("FeedbackUrl")
+    @Expose
+    private String FeedbackUrl;
+
     @SerializedName("EndTime")
     @Expose
     private String EndTime;
@@ -112,7 +120,7 @@ public class Events {
         this.IsFavourite=IsFavourite;
     }
 
-    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String MobileDescription,String IsFavourite) {
+    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String MobileDescription,String IsFavourite,String EventUrl) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -121,6 +129,23 @@ public class Events {
         To = endDate;
         this.MobileDescription = MobileDescription;
         this.IsFavourite=IsFavourite;
+        this.EventUrl=EventUrl;
+    }
+
+    public String getFeedbackUrl() {
+        return FeedbackUrl;
+    }
+
+    public void setFeedbackUrl(String feedbackUrl) {
+        FeedbackUrl = feedbackUrl;
+    }
+
+    public String getEventUrl() {
+        return EventUrl;
+    }
+
+    public void setEventUrl(String eventUrl) {
+        EventUrl = eventUrl;
     }
 
     public String getMobileDescription() {
