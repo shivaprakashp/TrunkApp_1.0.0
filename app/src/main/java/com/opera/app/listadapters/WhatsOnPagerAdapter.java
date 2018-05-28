@@ -89,6 +89,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.event_row, collection, false);
 
         TextView txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
+        TextView txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
         TextView txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
         final ProgressBar progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
@@ -100,8 +101,24 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
 
-        txtEventInfo.setText(Html.fromHtml(eventObject.getMobileDescription()));
-        txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
+        txtEventInfo.setText(Html.fromHtml(eventObject.getName()));
+        txtEventDate.setText(OperaUtils.getDateInMonthFormat(eventObject.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(eventObject.getTo()));
+
+        String mAllGenres = "";
+        for (int i = 0; i < eventObject.getGenreList().size(); i++) {
+            if (mAllGenres.equalsIgnoreCase("")) {
+                mAllGenres = eventObject.getGenreList().get(i).getGenere();
+            } else {
+                mAllGenres = mAllGenres + "," + eventObject.getGenreList().get(i).getGenere();
+            }
+
+        }
+        if (mAllGenres.equalsIgnoreCase("")) {
+            txtEventGenre.setVisibility(View.GONE);
+        } else {
+            txtEventGenre.setText(mAllGenres);
+            txtEventGenre.setVisibility(View.VISIBLE);
+        }
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
             imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));

@@ -120,7 +120,9 @@ public class Events {
         this.IsFavourite=IsFavourite;
     }
 
-    public Events(String EventId,String Name, String image, String internalName, String startDate, String endDate, String MobileDescription,String IsFavourite,String EventUrl) {
+    public Events(String EventId,String Name, String image, String internalName, String startDate,
+                  String endDate, String MobileDescription,String IsFavourite,String EventUrl,
+    ArrayList<GenreList> Genre) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -130,6 +132,7 @@ public class Events {
         this.MobileDescription = MobileDescription;
         this.IsFavourite=IsFavourite;
         this.EventUrl=EventUrl;
+        this.Genre=Genre;
     }
 
     public String getFeedbackUrl() {

@@ -97,11 +97,8 @@
                             android:layout_width="0dp"
                             android:layout_height="35dp"
                             android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:layout_weight="0.2"
-                            android:background="@drawable/transparent_btn_ripple"
+                            android:layout_weight="0.08"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -112,15 +109,15 @@
                                 android:layout_marginRight="10dp"
                                 android:src="@drawable/ic_play_button" />
 
-                            <com.opera.app.customwidget.TextViewWithFont
-                                style="@style/label_white_small"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:ellipsize="end"
-                                android:singleLine="true"
-                                android:text="@string/video"
-                                font:name="Montserrat-Light" />
+                            <!--  <com.opera.app.customwidget.TextViewWithFont
+                                  style="@style/label_white_small"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerHorizontal="true"
+                                  android:ellipsize="end"
+                                  android:singleLine="true"
+                                  android:text="@string/video"
+                                  font:name="Montserrat-Light" />-->
 
                         </LinearLayout>
 
@@ -237,8 +234,8 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerFavGenres"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="10dp" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="200dp"  />
             </LinearLayout>
         </RelativeLayout>
 

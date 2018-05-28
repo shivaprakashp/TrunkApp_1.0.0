@@ -29,6 +29,7 @@ import com.squareup.picasso.Target;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -231,6 +232,23 @@ public class OperaUtils {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(c);
+    }
+
+    //get current date
+    public static String getDateInMonthFormat(String mActualDate) {
+        String mDateInNewFormat = "";
+        SimpleDateFormat sdfTargetDate = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdfActualDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+            Date mDatenew = sdfActualDateFormat.parse(mActualDate);
+            mDateInNewFormat = sdfTargetDate.format(mDatenew);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            mDateInNewFormat = mActualDate;
+        }
+
+        return mDateInNewFormat;
     }
 
 
