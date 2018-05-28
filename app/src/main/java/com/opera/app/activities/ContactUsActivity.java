@@ -334,7 +334,7 @@ public class ContactUsActivity extends BaseActivity {
             customToast.showErrorToast(getString(R.string.errorEmailId));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(mEdtEmail.getText()).matches()) {
-            customToast.showErrorToast(getString(R.string.errorEmailAddress));
+            customToast.showErrorToast(getString(R.string.errorEmailInvalid));
             return false;
         }
         //enquiry type

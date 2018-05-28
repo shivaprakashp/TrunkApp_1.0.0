@@ -130,13 +130,14 @@ public class GenresEventsFragment extends BaseFragment implements EventInterface
     }
     @Override
     public void onLikeProcessComplete() {
-        ApplyGenreSearch(selectedGenre);
+        ApplyGenreSearch(mSpinnerSelectGenre.getSelectedItem().toString());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Onclicks();
         initSpinnervalues();
+        Onclicks();
+
     }
 }

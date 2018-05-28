@@ -13,8 +13,6 @@ import android.widget.EditText;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
@@ -23,7 +21,6 @@ import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
-import com.opera.app.listener.MarkFavouriteInterface;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -276,6 +273,7 @@ public class HomeFragment extends BaseFragment {
                 Intent in = new Intent(mActivity, SearchEventActivity.class);
                 in.putExtra("SearchedData", mEdtSearch.getText().toString().trim());
                 startActivity(in);
+
                 break;
         }
     }
@@ -284,5 +282,6 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         GetWhatsOnEvents();
+        mEdtSearch.setText("");
     }
 }

@@ -163,14 +163,18 @@
                         android:layout_margin="5dp"
                         android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 
+                    <android.support.v4.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_margin="10dp">
+
                     <TextView
                         android:id="@+id/expandableTextViewInfo"
                         style="@style/label_white"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
                         android:text="" />
-
+                    </android.support.v4.widget.NestedScrollView>
                     <!--<LinearLayout
                         android:id="@+id/linearReadMore"
                         android:layout_width="wrap_content"
@@ -288,6 +292,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_plan_visit"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -300,6 +305,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_wallet"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -312,6 +318,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_profile"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -320,6 +327,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
 </RelativeLayout>
