@@ -128,6 +128,17 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             linearHolder.setVisibility(View.GONE);
         }
 
+        linearHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (eventObject.isInfoOpen()) {
+                    linearHolder.startAnimation(slide_out_left);
+                    linearHolder.setVisibility(View.GONE);
+                    eventObject.setInfoOpen(false);
+                }
+            }
+        });
+
         imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

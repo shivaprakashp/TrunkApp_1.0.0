@@ -160,6 +160,17 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
                 }
             }
         });
+
+        holder.linearHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mEventPojo.isInfoOpen()) {
+                    holder.linearHolder.startAnimation(slide_out_left);
+                    holder.linearHolder.setVisibility(View.GONE);
+                    mEventPojo.setInfoOpen(false);
+                }
+            }
+        });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
