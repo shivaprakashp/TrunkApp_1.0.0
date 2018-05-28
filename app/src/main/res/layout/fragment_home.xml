@@ -44,8 +44,7 @@
             android:layout_weight="1"
             android:background="@color/colorBurgendy"
             android:fillViewport="true"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,6 +55,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorWhite"
                     android:orientation="horizontal">
@@ -101,13 +101,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/whats_on"
                     font:name="Montserrat-Light" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerWhatsOnShows"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp" />
 
                 <!--<android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerList"

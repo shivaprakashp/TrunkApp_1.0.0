@@ -30,6 +30,7 @@ import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -63,7 +64,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         public Button btnBuyTickets;
         public ProgressBar progressImageLoader;
         public LinearLayout linearHolder, linearParent;
-        public TextView txtEventInfo, txtEventDate;
+        public TextView txtEventInfo, txtEventGenre, txtEventDate;
 
         public MyViewHolder(View view) {
             super(view);
@@ -74,6 +75,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
             linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
             txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
+            txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
             txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
             progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
             linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
@@ -136,8 +138,26 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }
 
-        holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
-        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
+        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getName()));
+
+        String mAllGenres = "";
+        for (int i = 0; i < mEventPojo.getGenreList().size(); i++) {
+            if (mAllGenres.equalsIgnoreCase("")) {
+                mAllGenres = mEventPojo.getGenreList().get(i).getGenere();
+            } else {
+                mAllGenres = mAllGenres + "," + mEventPojo.getGenreList().get(i).getGenere();
+            }
+
+        }
+        if (mAllGenres.equalsIgnoreCase("")) {
+            holder.txtEventGenre.setVisibility(View.GONE);
+        } else {
+            holder.txtEventGenre.setText(mAllGenres);
+            holder.txtEventGenre.setVisibility(View.VISIBLE);
+        }
+
+
         Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
@@ -154,6 +174,20 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!mEventPojo.isInfoOpen()) {
+                    OperaUtils.ShareEventDetails(mActivity, mEventPojo.getEventUrl());
+                }
+            }
+        });
+
+        holder.linearHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mEventPojo.isInfoOpen()) {
+                    holder.linearHolder.startAnimation(slide_out_left);
+                    holder.linearHolder.setVisibility(View.GONE);
+                    mEventPojo.setInfoOpen(false);
+                }
             }
         });
         holder.imgInfo.setOnClickListener(new View.OnClickListener() {
@@ -174,48 +208,54 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", mEventPojo.getBuyNowLink());
-                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+                if (!mEventPojo.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", mEventPojo.getBuyNowLink());
+                    in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         holder.linearParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, EventDetailsActivity.class);
-                in.putExtra("EventId", mEventPojo.getEventId());
-                in.putExtra("EventInternalName", mEventPojo.getInternalName());
-                in.putExtra("IsFavourite", mEventPojo.isFavourite());
-                mActivity.startActivity(in);
+                if (!mEventPojo.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", mEventPojo.getEventId());
+                    in.putExtra("EventInternalName", mEventPojo.getInternalName());
+                    in.putExtra("IsFavourite", mEventPojo.isFavourite());
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         holder.imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEventListingDB.open();
-                String IsFavourite = "false";
-                if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
-                    IsFavourite = "false";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                } else {
-                    IsFavourite = "true";
-                    mEventPojo.setFavourite(IsFavourite);
-                    mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
-                }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                RefreshList(mEventListingData);
+                if (!mEventPojo.isInfoOpen()) {
+                    mEventListingDB.open();
+                    String IsFavourite = "false";
+                    if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+                        IsFavourite = "false";
+                        mEventPojo.setFavourite(IsFavourite);
+                        mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                    } else {
+                        IsFavourite = "true";
+                        mEventPojo.setFavourite(IsFavourite);
+                        mEventListingDB.UpdateFavouriteData(mEventPojo.getEventId(), IsFavourite);
+                    }
+                    mEventListingDB.close();
+                    notifyDataSetChanged();
+                    RefreshList(mEventListingData);
 
-                if (manager.isUserLoggedIn()) {
-                    UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
-                }
+                    if (manager.isUserLoggedIn()) {
+                        UpdateFavouriteForLoggedInUser(IsFavourite, mEventPojo.getEventId());
+                    }
 
-                if (listener != null) {
-                    listener.onLikeProcessComplete();
+                    if (listener != null) {
+                        listener.onLikeProcessComplete();
+                    }
                 }
             }
         });

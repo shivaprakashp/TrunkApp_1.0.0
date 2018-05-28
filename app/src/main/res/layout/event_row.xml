@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_linear_shape"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -88,7 +89,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="1"
+                android:text="test" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtEventGenre"
+                style="@style/label_light_gray_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="test" />
 
             <com.opera.app.customwidget.TextViewWithFont

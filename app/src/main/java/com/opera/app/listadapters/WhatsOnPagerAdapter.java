@@ -89,6 +89,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.event_row, collection, false);
 
         TextView txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
+        TextView txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
         TextView txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
         final ProgressBar progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
         ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
@@ -100,8 +101,24 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
         Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
 
-        txtEventInfo.setText(Html.fromHtml(eventObject.getMobileDescription()));
-        txtEventDate.setText(eventObject.getFrom() + " to " + eventObject.getTo());
+        txtEventInfo.setText(Html.fromHtml(eventObject.getName()));
+        txtEventDate.setText(OperaUtils.getDateInMonthFormat(eventObject.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(eventObject.getTo()));
+
+        String mAllGenres = "";
+        for (int i = 0; i < eventObject.getGenreList().size(); i++) {
+            if (mAllGenres.equalsIgnoreCase("")) {
+                mAllGenres = eventObject.getGenreList().get(i).getGenere();
+            } else {
+                mAllGenres = mAllGenres + "," + eventObject.getGenreList().get(i).getGenere();
+            }
+
+        }
+        if (mAllGenres.equalsIgnoreCase("")) {
+            txtEventGenre.setVisibility(View.GONE);
+        } else {
+            txtEventGenre.setText(mAllGenres);
+            txtEventGenre.setVisibility(View.VISIBLE);
+        }
 
         if (eventObject.isFavourite().equalsIgnoreCase("true")) {
             imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
@@ -122,6 +139,23 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
                     }
                 });
 
+        if (eventObject.isInfoOpen()) {
+            linearHolder.setVisibility(View.VISIBLE);
+        } else {
+            linearHolder.setVisibility(View.GONE);
+        }
+
+        linearHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (eventObject.isInfoOpen()) {
+                    linearHolder.startAnimation(slide_out_left);
+                    linearHolder.setVisibility(View.GONE);
+                    eventObject.setInfoOpen(false);
+                }
+            }
+        });
+
         imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,67 +174,61 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Uri screenshotUri;
-                try {
-                    screenshotUri = new Uri("http://www.google.com/");
+                if (!eventObject.isInfoOpen()) {
+                    OperaUtils.ShareEventDetails(mActivity, eventObject.getEventUrl());
                 }
-                catch (URISyntaxException e) {
-                }
-
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                 screenshotUri = Uri.parse("file:///sdcard/image.jpg");
-                sharingIntent.setType("image*//*");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, "Body text of the new status");
-                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-                mActivity.startActivity(Intent.createChooser(sharingIntent, "Share image using"));*/
-//                OperaUtils.ShareEventDetails(mActivity, eventObject.getDescription(), eventObject.getImage());
             }
         });
 
         imgFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
-                mEventListingDB.open();
-                if (eventObject.isFavourite().equalsIgnoreCase("true")) {
-                    eventObject.setFavourite("false");
-                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
-                    mFavouriteMarked.add(new Favourite("false", eventObject.getEventId()));
-                } else {
-                    eventObject.setFavourite("true");
-                    mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
-                    mFavouriteMarked.add(new Favourite("true", eventObject.getEventId()));
+                if (!eventObject.isInfoOpen()) {
+                    ArrayList<Favourite> mFavouriteMarked = new ArrayList<>();
+                    mEventListingDB.open();
+                    if (eventObject.isFavourite().equalsIgnoreCase("true")) {
+                        eventObject.setFavourite("false");
+                        mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "false");
+                        mFavouriteMarked.add(new Favourite("false", eventObject.getEventId()));
+                    } else {
+                        eventObject.setFavourite("true");
+                        mEventListingDB.UpdateFavouriteData(eventObject.getEventId(), "true");
+                        mFavouriteMarked.add(new Favourite("true", eventObject.getEventId()));
+                    }
+                    mEventListingDB.close();
+                    notifyDataSetChanged();
+                    if (sessionManager.isUserLoggedIn()) {
+                        UpdateFavouriteForLoggedInUser(mFavouriteMarked);
+                    }
                 }
-                mEventListingDB.close();
-                notifyDataSetChanged();
-                if (sessionManager.isUserLoggedIn()) {
-                    UpdateFavouriteForLoggedInUser(mFavouriteMarked);
-                }
-
             }
         });
 
         btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", eventObject.getBuyNowLink());
-                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+                if (!eventObject.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", eventObject.getBuyNowLink());
+                    in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
+                    mActivity.startActivity(in);
+                }
             }
         });
 
         linearParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, EventDetailsActivity.class);
-                in.putExtra("EventId", eventObject.getEventId());
-                in.putExtra("EventInternalName", eventObject.getInternalName());
-                in.putExtra("IsFavourite", eventObject.isFavourite());
-                mActivity.startActivity(in);
+                if (!eventObject.isInfoOpen()) {
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", eventObject.getEventId());
+                    in.putExtra("EventInternalName", eventObject.getInternalName());
+                    in.putExtra("IsFavourite", eventObject.isFavourite());
+                    mActivity.startActivity(in);
 
-                if (!mFrom.equalsIgnoreCase("HomePage")) {
-                    mActivity.finish();
+                    if (!mFrom.equalsIgnoreCase("HomePage")) {
+                        mActivity.finish();
+                    }
                 }
             }
         });
@@ -250,13 +278,13 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         public void onTaskFinished(Response response, String mRequestKey) {
             FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-            try {
+            /*try {
                 if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
 
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         @Override

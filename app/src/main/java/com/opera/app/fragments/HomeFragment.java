@@ -13,8 +13,6 @@ import android.widget.EditText;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.activities.SearchEventActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
@@ -23,7 +21,6 @@ import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
-import com.opera.app.listener.MarkFavouriteInterface;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -125,6 +122,7 @@ public class HomeFragment extends BaseFragment {
         /*mCoverFlow.setAdapter(mAdapter);*/
         mViewpagerWhatsOnShows.setClipToPadding(false);
         mViewpagerWhatsOnShows.setPageMargin(20);
+        mViewpagerWhatsOnShows.setPadding(40, 0, 40, 0);
         //What's on events
         mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents, "HomePage");
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
@@ -132,13 +130,13 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position == 0) {
+                /*if (position == 0) {
                     mViewpagerWhatsOnShows.setPadding(0, 0, 70, 0);
                 } else if (mWhatsEvents.size() - 1 == position) {
                     mViewpagerWhatsOnShows.setPadding(70, 0, 0, 0);
                 } else {
                     mViewpagerWhatsOnShows.setPadding(70, 0, 70, 0);
-                }
+                }*/
             }
 
             @Override
@@ -158,7 +156,7 @@ public class HomeFragment extends BaseFragment {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
 
-                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                if (mFavouriteAndSettingsResponseMain != null && mFavouriteAndSettingsResponseMain.getStatus() != null && mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
                     //Adding Favourites data into the arraylist (If it is true)
                     arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
                     UpdateFavouriteData();
@@ -240,7 +238,8 @@ public class HomeFragment extends BaseFragment {
         for (int i = 0; i < mEventAllData.size(); i++) {
 
             if (mEventAllData.get(i).getWhatsOn().equalsIgnoreCase("true")) {
-                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite()));
+                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(),
+                        mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite(), mEventAllData.get(i).getEventUrl(), mEventAllData.get(i).getGenreList()));
             }
         }
 
@@ -255,9 +254,9 @@ public class HomeFragment extends BaseFragment {
         mEventAllData = new ArrayList<>();
         mEventAllData = mEventListingDB.fetchAllEvents();
         for (int i = 0; i < mEventAllData.size(); i++) {
-//            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
-            mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
-//            }
+            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
+                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
+            }
         }
         if (mHighlightedEvents.size() > 0) {
             mAdapter.notifyDataSetChanged();
@@ -274,6 +273,7 @@ public class HomeFragment extends BaseFragment {
                 Intent in = new Intent(mActivity, SearchEventActivity.class);
                 in.putExtra("SearchedData", mEdtSearch.getText().toString().trim());
                 startActivity(in);
+
                 break;
         }
     }
@@ -282,5 +282,6 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         GetWhatsOnEvents();
+        mEdtSearch.setText("");
     }
 }

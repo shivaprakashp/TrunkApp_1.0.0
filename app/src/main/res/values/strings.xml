@@ -223,6 +223,13 @@
 
     <!--Dining-->
     <string name="find_out_more">Find Out More</string>
+    <string name="mr">Mr.</string>
+    <string name="ms">Ms.</string>
+    <string name="mrs">Mrs.</string>
+    <string name="special_requests">Special Requests/Occasions</string>
+    <string name="select_title">Select title*</string>
+    <string name="call">Call</string>
+    <string name="email_btn">Email</string>
     <string name="reserve_a_table">Reserve a Table</string>
     <string name="reserve_a_table2">Reserve a table</string>
     <string name="sean_connolly_dubai_opera">Sean Connolly at Dubai Opera</string>
@@ -248,7 +255,7 @@
     <string name="internet_error_msg">Please check your internet connection!</string>
 
     <!--server-->
-    <string name="errorServerError">Server Error! Please try again later</string>
+    <string name="errorServerError">Server Error! Please try again later.</string>
 
     <!--Guest msg-->
     <string name="guest_title">ALERT !!</string>
@@ -268,6 +275,7 @@
     <string name="errorEmailId">Your Email Address cannot be blank</string>
     <string name="errorEmailInvalid">Your Email Address is not valid</string>
     <string name="errorPasswordEmpty">Your Password cannot be blank</string>
+    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
     <string name="errorMismatchPassword">Your Password has not been confirmed, please retype it correctly.</string>
     <string name="errorNationality">Your Nationality name may not be blank</string>
     <string name="errorDob">Your date of birth may not be blank</string>
@@ -296,16 +304,6 @@
     <string name="errorMessage">Message may not be blank</string>
     <string name="errorLengthMessage">Message should not be more than 70 characters</string>
     <string name="errorEnquiryType">Enquiry Type may not be blank</string>
-
-    <!--Error handling (UNChanged one's)-->
-    <string name="errorRePassword">Re-enter Password cannot be left blank</string>
-    <string name="errorAddress">Address cannot be left blank</string>
-    <string name="errorEmail">Email Address cannot be left blank</string>
-    <string name="errorEmailAddress">Incorrect Email Address</string>
-    <string name="errorFieldsMandatory">All fields are mandatory</string>
-    <string name="errorLengthFirstName">Length of First Name should be between 1 to 30 characters</string>
-    <string name="errorLengthLastName">Length of Last Name should be between 1 to 30 characters</string>
-    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
 
     <!--error and success dialog msg-->
     <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
@@ -907,18 +905,10 @@
     <string name="errorSelectTime">Select time to proceed</string>
     <string name="sample_string_7">Sample string 7</string>
 
-    <string name="mr">Mr.</string>
-    <string name="ms">Ms.</string>
-    <string name="mrs">Mrs.</string>
-    <string name="special_requests">Special Requests/Occasions</string>
-    <string name="select_title">Select title*</string>
-    <string name="call">Call</string>
-    <string name="email_btn">Email</string>
-
     <!--Events Fragment-->
     <string name="tab_all_events">ALL</string>
     <string name="tab_today_events">TODAY</string>
-    <string name="tab_favourites_events">FAVOURITE</string>
+    <string name="tab_favourites_events">FAVOURITES</string>
     <string name="tab_genres_events">GENRES</string>
     <string name="buy_tickets">BUY TICKETS</string>
     <string name="video">VIDEO</string>
@@ -951,7 +941,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="error_youtube">Error playing youtube video</string>
     <string name="imgFavourite">ImgFavourite</string>
     <string name="imgShare">ImgShare</string>
 
@@ -973,5 +962,6 @@
 
     <!--about push notification -->
     <string name="google_app_id">102673554145</string>
-    <string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>
+    <string name="infobip_application_code">031cce47db1313d8488d8d31023fe6ca-25d928cf-6eda-4a15-88ce-cc163e90667a</string>
+    <string name="share_using">Select App to Share Text and Image</string>
 </resources>
