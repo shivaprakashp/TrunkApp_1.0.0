@@ -122,6 +122,7 @@
     <string name="permissionGranted">السماح مقبول </string>
     <string name="cancel">الغاء </string>
     <string name="save">احفظ التغيرات </string>
+    <string name="profile_choose_photo">اختر الصورة</string>
 
     <!--Change Password Popup -->
     <string name="curr_password">كلمة السر الحالية </string>
@@ -155,6 +156,15 @@
     <string name="venue_booking">حجز الموقع</string>
     <string name="careers">وظائف</string>
     <string name="social_media">وسائل الاعلام الاجتماعية</string>
+    <string name="country_code">الرقم الدولي</string>
+    <string name="country_code_with_asterisk">الشفرة*</string>
+
+    <!--Dining-->
+    <string name="find_out_more">اكتشف المزيد</string>
+    <string name="special_requests">طلبات خاصة / مناسبات</string>
+    <string name="select_title">اختر العنوان</string>
+    <string name="call">مكالمة</string>
+    <string name="email_btn">البريد الإلكتروني</string>
     <string name="reserve_a_table">حجز طاولة</string>
     <string name="sean_connolly_dubai_opera">\Sean Connolly في أوبرا دبي</string>
     <string name="preffereed_date">تاريخ الحجز المفضل *</string>
@@ -166,8 +176,7 @@
     <string name="submit">خضع</string>
     <string name="select_meal_priod">يرجى تحديد فترة الوجبة *</string>
     <string name="select_time">يرجى تحديد الوقت *</string>
-
-    <!--Restaurants-->
+    <string name="rest_search">أدخل الكلمة الأساسية للبحث عن مطعم</string>
     <string name="reserve_a_table3">احفظ الجدول</string>
     <string name="restaurants">مطاعم</string>
     <string name="other_restaurants">مطاعم أخرى</string>
@@ -175,25 +184,77 @@
     <string name="dubai_opera">في دبي أوبرا</string>
     <string name="read_more">اقرأ أكثر</string>
     <string name="read_less">أقرأ أقل</string>
-    <string name="update">Update</string>
-    <string name="successSettingsUpdation">تهانينا ، لقد قمت بتحديث إعداداتك بنجاح.</string>
-
-    <!--Error handling-->
-    <string name="success_header">نجاح</string>
-    <string name="ok">حسنا</string>
-    <string name="special_requests">طلبات خاصة / مناسبات</string>
-    <string name="select_title">اختر العنوان</string>
+    <string name="update">تحديث</string>
     <string name="mr">السيد</string>
     <string name="ms">الآنسة</string>
     <string name="mrs">السيدة</string>
 
+    <!--NETWORK CONNECTIVITY MSG-->
+    <string name="internet_error_msg">الرجاء التحقق من اتصال الانترنت الخاص بك!</string>
 
-    <!--Home fragment-->
-    <string name="enter_keywords">أدخل الكلمات الرئيسية للبحث عن أنواع الأحداث وما إلى ذلك.</string>
-    <string name="search">بحث</string>
-    <string name="whats_on">ماذا يجري</string>
-    <string name="buy_tickets">اشتري تذاكر</string>
-    <string name="error_youtube">خطأ في تشغيل youtube video</string>
+    <!--server-->
+    <string name="errorServerError">خطأ في الخادم! الرجاء معاودة المحاولة في وقت لاحق.</string>
+
+    <!--Guest msg-->
+    <string name="guest_title">محزر !!</string>
+    <string name="guest_msg"> يجب عليك تسجيل الدخول لاستخدام هذه الميزات.</string>
+
+    <!--Error handling (Changed one's)-->
+    <!--login-->
+    <string name="editError">خطأ</string>
+    <string name="errorLoginError">يرجى إدخال تفاصيل تسجيل الدخول الخاصة بك.</string>
+    <string name="errorUserEmail">عنوان بريد إلكتروني غير صحيح أو كلمة مرور.</string>
+    <string name="errorPassword">عنوان بريد إلكتروني غير صحيح أو كلمة مرور.</string>
+    <string name="errorUserName">يرجى إدخال تفاصيل تسجيل الدخول الخاصة بك</string>
+
+    <!--registration-->
+    <string name="errorFirstName">قد لا يكون اسمك الأول فارغًا</string>
+    <string name="errorLastName">اسمك الأخير قد لا يكون فارغاً</string>
+    <string name="errorEmailId">لا يمكن أن يكون عنوان بريدك الإلكتروني فارغًا</string>
+    <string name="errorEmailInvalid">عنوان بريدك الإلكتروني غير صالح</string>
+    <string name="errorPasswordEmpty">لا يمكن أن تكون كلمة المرور فارغة</string>
+    <string name="errorSamePasswordAsUsername">يجب ألا تكون كلمة المرور مماثلة لعنوان البريد الإلكتروني</string>
+    <string name="errorMismatchPassword">لم يتم تأكيد كلمة المرور الخاصة بك ، يرجى إعادة كتابتها بشكل صحيح.</string>
+    <string name="errorNationality">اسمك الجنسي قد لا يكون فارغًا</string>
+    <string name="errorDob">قد لا يكون تاريخ ميلادك فارغًا</string>
+    <string name="errorCountryCode">رمز البلد الخاص بك قد لا يكون فارغًا</string>
+    <string name="errorMobile">يجب ملء رقم هاتفك المحمول</string>
+    <string name="errorLengthMobile">يجب أن يكون طول رقم هاتفك المحمول بين 9 إلى 10 أرقام</string>
+    <string name="errorCity">اسم مدينتك قد لا يكون فارغًا</string>
+    <string name="errorState">قد لا يكون اسم الإمارة أو الولاية فارغًا</string>
+    <string name="errorCountry">اسم البلد الخاص بك قد لا يكون فارغاً</string>
+    <string name="errorLengthPassword">يجب أن يتراوح طول كلمة المرور من 3 إلى 16 حرفًا</string>
+    <string name="errorLengthCity">يجب أن تكون المدينة بين 2 إلى 26 حرفًا</string>
+    <string name="errorTerms">يجب عليك قبول الشروط للمتابعة للتسجيل</string>
+    <string name="errorSelectTitle">قد لا يكون العنوان الخاص بك فارغًا</string>
+
+    <!--change password-->
+    <string name="errorCurrentPassword">لا يمكن أن تكون كلمة المرور الحالية فارغة</string>
+    <string name="errorNewPassword">كلمة المرور الجديدة لا يمكن أن تكون فارغة</string>
+    <string name="errorConfirmNewPassword">لم يتم تأكيد كلمة المرور الخاصة بك ، يرجى إعادة كتابتها بشكل صحيح.</string>
+    <string name="errorPasswordMatch">لم يتم تأكيد كلمة المرور الخاصة بك ، يرجى إعادة كتابتها بشكل صحيح</string>
+    <string name="errorLengthNewPassword">يجب أن تكون كلمة المرور الجديدة بين 3 إلى 16 حرفًا</string>
+    <string name="errorPreviousAndNewPassword">لا يمكن أن تكون كلمة المرور الحالية وكلمة المرور الجديدة متطابقتين</string>
+
+    <!--contact us-->
+    <string name="errorFullName">اسمك الكامل قد لا يكون فارغاً</string>
+    <string name="errorLengthFullName">يجب أن يتراوح طول الاسم الكامل بين 1 إلى 30 حرفًا</string>
+    <string name="errorMessage">قد لا تكون الرسالة فارغة</string>
+    <string name="errorLengthMessage">يجب ألا تكون الرسالة أكثر من 70 حرفًا</string>
+    <string name="errorEnquiryType">نوع الاستفسار قد لا يكون فارغاً</string>
+
+    <!--error and success dialog msg-->
+    <string name="success_header">نجاح</string>
+    <string name="ok">حسنا</string>
+    <string name="successMsg">عزيزي العميل ، تهانينا! لقد أكملت الآن بنجاح عملية التسجيل. استخدم عنوان البريد الإلكتروني وكلمة المرور لتسجيل الدخول إلى دبي أوبرا.</string>
+    <string name="errorDialogue">حسنا</string>
+    <string name="errorTitle">خطأ</string>
+    <string name="successSettingsUpdation">تهانينا ، لقد قمت بتحديث إعداداتك بنجاح.</string>
+    <string name="contactUsSuccessMsg">لقد تلقينا استفسارك. \n وسنعود إليك في أقرب وقت ممكن.</string>
+    <string name="contactUs_header">شكرا!!</string>
+    <string name="changedPasswordSuccessMsg">تم تغيير الرقم السري بنجاح.</string>
+    <string name="changedPassword_header">نجاح</string>
+    <string name="ForgotPsswordSuccessMsg">تم إرسال رابط لإعادة تعيين كلمة المرور الخاصة بك إلى بريدك الإلكتروني.</string>
 
     <array name="states">
         <item>دبي</item>
@@ -744,8 +805,46 @@
 
     </array>
 
+    <!--Events Fragment-->
+    <string name="tab_all_events">الكل</string>
+    <string name="tab_today_events">اليوم</string>
+    <string name="tab_favourites_events">المفضلة</string>
+    <string name="tab_genres_events">الفئات</string>
+    <string name="buy_tickets">اشتري تذاكر</string>
+    <string name="video">فيديو</string>
+    <string name="you_also_like">قد يعجبك ايضا...</string>
+    <string name="no_today_data">لا توجد فعاليات لهذا اليوم!</string>
+    <string name="no_favo_data">لا توجد بيانات مفضلة!</string>
+    <string name="no_data">لايوجد بيانات!</string>
+    <string name="view_details">عرض التفاصيل</string>
+
+    <!--Home fragment-->
+    <string name="enter_keywords">أدخل الكلمات الرئيسية للبحث عن أنواع الأحداث وما إلى ذلك.</string>
+    <string name="search">بحث</string>
+    <string name="whats_on">ماذا يجري</string>
+    <string name="share_using">حدد التطبيق لمشاركة النص والصورة</string>
+    <string name="error_youtube">خطأ في تشغيل youtube video</string>
+
+    <!--Wallet activity -->
+    <string name="walletTitle">محفظة نقود</string>
+    <string name="walletEvents">أحداث</string>
+    <string name="walletRestaurant">المطاعم</string>
+    <string name="walletGiftCards">بطاقات الهدايا</string>
+    <string name="walletToday">اليوم</string>
+    <string name="walletUpcoming">القادمة</string>
+    <string name="walletComplete">منجز</string>
+    <string name="dateOfReserve">تاريخ الحجز:</string>
+    <string name="preferredTime">الوقت المفضل:</string>
+    <string name="bookReference">رقم مرجع الحجز:</string>
+    <string name="bookDate">تاريخ الحجز:</string>
+    <string name="giftVoucherDate">تاريخ الانتهاء:</string>
+
+    <!--Notification -->
+    <string name="from">من عند</string>
+    <string name="aed">درهم إماراتي</string>
+
     <!--Dubai Opera Tour activity -->
-    <string name="bookNow">BOOK NOW</string>
+    <string name="bookNow">احجز الآن</string>
     <string name="detail">تقدّم جولاتنا  لمحة عن الحياة داخل إحدى أحدث وأرقى المعالم الثقافية في دبي. كن جزءاً من مغامرة استكشاف مكاننا الذي يجمع بين التراث والتاريخ  وعش لحظات آسرة من السحر الفني.</string>
     <string name="experience">نبذة عن الجولة:</string>
     <string name="experience_details">استمع لقصة دبي أوبرا وتعرف أكثر على التصميم المميز\nاستمتع بزيارة جناح الضيافة الخاص بكبار الشخصيات (المجلس)\nاستكشف مسرح دبي أوبرا المتعدد الاستخدامات</string>
@@ -755,5 +854,7 @@
     <string name="pubic_tour_detail">تجري الجولات العامة في معظم الأيام  – يرجى مراجعة الجدول الزمني من خلال زيارة الموقع الإلكتروني يمكن شراء التذاكر عبر الإنترنت ومن خلال مكتب شباك بيع التذاكر إما مسبقاً أو في يوم الجولة ( حسب توافر التذاكر)</string>
     <string name="school_private_tour">الجولات الخاصة وجولات المدارس</string>
     <string name="school_private_tour_detail">للحجز وللاستفسارات حول الأسعار، يرجى التواصل معنا معنا عبر البريد الالكتروني tours@dubaiopera.com</string>
+
+
 
 </resources>

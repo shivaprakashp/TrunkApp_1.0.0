@@ -40,7 +40,7 @@
                 android:id="@+id/img_plan_visit"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_calendar_white"
+                android:src="@drawable/ic_plan_your_visit"
                 android:padding="10dp"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>

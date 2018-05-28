@@ -8,7 +8,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -290,7 +289,6 @@ public class MainActivity extends BaseActivity implements
             }else{
                 openActivity(mActivity, WalletActivity.class);
             }
-
         }
     };
 
@@ -300,7 +298,6 @@ public class MainActivity extends BaseActivity implements
             if (manager.isUserLoggedIn()) {
                 openActivity(mActivity, MyProfileActivity.class);
             } else {
-                //Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
                 GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg) );
                 dialog.show();
             }

@@ -26,6 +26,7 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.listadapters.GenresDisplayAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -120,6 +121,15 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.linearShare)
     RelativeLayout linearShare;
+
+    @BindView(R.id.img_plan_visit)
+    ImageView mImgPlanVisit;
+
+    @BindView(R.id.img_wallet)
+    ImageView mImgWallet;
+
+    @BindView(R.id.img_profile)
+    ImageView mImgProfile;
 
 
     @Override
@@ -293,7 +303,7 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -331,6 +341,23 @@ public class EventDetailsActivity extends BaseActivity {
             case R.id.linearShare:
                 OperaUtils.ShareEventDetails(mActivity, mEventURL);
                 break;
+
+            case R.id.img_plan_visit:
+                openActivity(mActivity, CalendarActivity.class);
+                break;
+            case R.id.img_wallet:
+                openActivity(mActivity, WalletActivity.class);
+                break;
+
+            case R.id.img_profile: {
+                if (manager.isUserLoggedIn()) {
+                    openActivity(mActivity, MyProfileActivity.class);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
+                    dialog.show();
+                }
+            }
+            break;
         }
     }
 

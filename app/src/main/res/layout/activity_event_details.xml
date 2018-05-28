@@ -294,6 +294,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_plan_visit"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -306,6 +307,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_wallet"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -318,6 +320,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/img_profile"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
@@ -326,6 +329,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
 </RelativeLayout>
