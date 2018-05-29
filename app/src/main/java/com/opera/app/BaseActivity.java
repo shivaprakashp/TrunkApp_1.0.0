@@ -34,14 +34,13 @@ public class BaseActivity extends AppCompatActivity {
     public CustomToast customToast;
     private int prefMode = 0;
 
-    private MobileMessaging mobileMessaging;
-
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         bindViews();
 
-        mobileMessaging = MobileMessaging.getInstance(this);
+        new MobileMessaging.Builder(getApplication())
+                .build();
     }
 
     protected void bindViews() {

@@ -64,7 +64,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         public Button btnBuyTickets;
         public ProgressBar progressImageLoader;
         public LinearLayout linearHolder, linearParent;
-        public TextView txtEventInfo, txtEventDate;
+        public TextView txtEventInfo, txtEventGenre, txtEventDate;
 
         public MyViewHolder(View view) {
             super(view);
@@ -75,6 +75,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
             linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
             txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
+            txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
             txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
             progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
             linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
@@ -137,8 +138,26 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }
 
-        holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
-        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
+        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getName()));
+
+        String mAllGenres = "";
+        for (int i = 0; i < mEventPojo.getGenreList().size(); i++) {
+            if (mAllGenres.equalsIgnoreCase("")) {
+                mAllGenres = mEventPojo.getGenreList().get(i).getGenere();
+            } else {
+                mAllGenres = mAllGenres + "," + mEventPojo.getGenreList().get(i).getGenere();
+            }
+
+        }
+        if (mAllGenres.equalsIgnoreCase("")) {
+            holder.txtEventGenre.setVisibility(View.GONE);
+        } else {
+            holder.txtEventGenre.setText(mAllGenres);
+            holder.txtEventGenre.setVisibility(View.VISIBLE);
+        }
+
+
         Picasso.with(mActivity).load(mEventPojo.getImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override

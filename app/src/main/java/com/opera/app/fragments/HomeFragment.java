@@ -238,7 +238,8 @@ public class HomeFragment extends BaseFragment {
         for (int i = 0; i < mEventAllData.size(); i++) {
 
             if (mEventAllData.get(i).getWhatsOn().equalsIgnoreCase("true")) {
-                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(), mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite(), mEventAllData.get(i).getEventUrl()));
+                mWhatsEvents.add(new Events(mEventAllData.get(i).getEventId(), mEventAllData.get(i).getName(), mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getFrom(), mEventAllData.get(i).getTo(),
+                        mEventAllData.get(i).getMobileDescription(), mEventAllData.get(i).isFavourite(), mEventAllData.get(i).getEventUrl(), mEventAllData.get(i).getGenreList()));
             }
         }
 
@@ -253,9 +254,9 @@ public class HomeFragment extends BaseFragment {
         mEventAllData = new ArrayList<>();
         mEventAllData = mEventListingDB.fetchAllEvents();
         for (int i = 0; i < mEventAllData.size(); i++) {
-//            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
-            mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
-//            }
+            if (mEventAllData.get(i).getHighlighted().equalsIgnoreCase("true")) {
+                mHighlightedEvents.add(new Events(mEventAllData.get(i).getImage(), mEventAllData.get(i).getInternalName(), mEventAllData.get(i).getEventId(), mEventAllData.get(i).isFavourite()));
+            }
         }
         if (mHighlightedEvents.size() > 0) {
             mAdapter.notifyDataSetChanged();

@@ -165,10 +165,11 @@ public class EventDetailsActivity extends BaseActivity {
 
         mViewpagerFavGenres.setClipToPadding(false);
         mViewpagerFavGenres.setPageMargin(20);
+        mViewpagerFavGenres.setPadding(40, 0, 40, 0);
+
         //What's on events
         adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres, "");
         mViewpagerFavGenres.setAdapter(adapterFavGenres);
-
         mViewpagerFavGenres.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -176,13 +177,13 @@ public class EventDetailsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0) {
+              /*  if (position == 0) {
                     mViewpagerFavGenres.setPadding(0, 0, 70, 0);
                 } else if (mEventsWithSameGenres.size() - 1 == position) {
                     mViewpagerFavGenres.setPadding(70, 0, 0, 0);
                 } else {
                     mViewpagerFavGenres.setPadding(70, 0, 70, 0);
-                }
+                }*/
             }
 
             @Override

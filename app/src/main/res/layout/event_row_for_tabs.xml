@@ -87,8 +87,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:text="test" />
+                android:maxLines="1"
+                android:text="" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtEventGenre"
+                style="@style/label_light_gray_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtEventDate"
@@ -97,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="test" />
+                android:text="" />
 
         </LinearLayout>
 

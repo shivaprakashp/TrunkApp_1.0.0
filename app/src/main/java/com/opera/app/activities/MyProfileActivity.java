@@ -29,11 +29,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CircleImageView;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -107,7 +109,7 @@ public class MyProfileActivity extends BaseActivity {
     TextViewWithFont profileInfo;
 
     private SessionManager manager;
-     //injecting retrofit
+    //injecting retrofit
     @Inject
     Retrofit retrofit;
 
@@ -174,13 +176,13 @@ public class MyProfileActivity extends BaseActivity {
         updateSessionData();
     }
 
-    private void updateSessionData(){
+    private void updateSessionData() {
         manager = new SessionManager(mActivity);
-        if (manager.getUserLoginData()!= null) {
+        if (manager.getUserLoginData() != null) {
             tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
                     + manager.getUserLoginData().getData().getProfile().getLastName());
 
-            if(manager.getUserLoginData().getData().getProfile().getJoinDate() != null && !manager.getUserLoginData().getData().getProfile().getJoinDate().isEmpty()) {
+            if (manager.getUserLoginData().getData().getProfile().getJoinDate() != null && !manager.getUserLoginData().getData().getProfile().getJoinDate().isEmpty()) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(
                         "dd/MM/yyyy");
                 Date myDate = null;
@@ -193,8 +195,7 @@ public class MyProfileActivity extends BaseActivity {
                 SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
                 String finalDate = timeFormat.format(myDate);
                 profileInfo.setText(getString(R.string.profile_info) + " " + finalDate);
-            }
-            else {
+            } else {
                 profileInfo.setText("");
             }
         }
@@ -223,6 +224,12 @@ public class MyProfileActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 
+       /* img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageSelection();
+            }
+        });*/
 
     }
 
@@ -266,7 +273,7 @@ public class MyProfileActivity extends BaseActivity {
         }
     }
 
-    public void imageSelection(){
+    public void imageSelection() {
         dialog = new BottomSheetDialog(mActivity);
         View view = getLayoutInflater().inflate(R.layout.dialog_image_selection, null);
         dialog.setContentView(view);
@@ -302,7 +309,7 @@ public class MyProfileActivity extends BaseActivity {
         }
     };
 
-    public void changePassword(){
+    public void changePassword() {
         dialog = new BottomSheetDialog(mActivity);
         View view = getLayoutInflater().inflate(R.layout.popup_changepassword, null);
         dialog.setContentView(view);
@@ -316,15 +323,15 @@ public class MyProfileActivity extends BaseActivity {
         mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
 
         mEdtCurrentPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mEdtCurrentPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtCurrentPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         mEdtCurrentPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         mEdtNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mEdtNewPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtNewPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         mEdtNewPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         mEdtConfNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mEdtConfNewPassword.setFilters(new InputFilter[] {OperaUtils.filterSpace, new InputFilter.LengthFilter(16) });
+        mEdtConfNewPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         mEdtConfNewPassword.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         dialog.show();
@@ -354,7 +361,7 @@ public class MyProfileActivity extends BaseActivity {
         } else if (mEdtNewPassword.getText().toString().length() < 3 || mEdtNewPassword.getText().toString().length() > 16) {
             customToast.showErrorToast(getString(R.string.errorLengthNewPassword));
             return false;
-        }  else if (TextUtils.isEmpty(mEdtConfNewPassword.getText().toString())) {
+        } else if (TextUtils.isEmpty(mEdtConfNewPassword.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorConfirmNewPassword));
             return false;
         } else if (mEdtConfNewPassword.getText().toString().length() < 3 || mEdtConfNewPassword.getText().toString().length() > 16) {
@@ -439,9 +446,9 @@ public class MyProfileActivity extends BaseActivity {
     }
 
     public void getProfilePicture() {
-        sp=getSharedPreferences("profilePicture",MODE_PRIVATE);
+        sp = getSharedPreferences("profilePicture", MODE_PRIVATE);
 
-        if(!sp.getString("dp","").equals("")){
+        if (!sp.getString("dp", "").equals("")) {
             byte[] decodedString = Base64.decode(sp.getString("dp", ""), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             img_profile.setImageBitmap(decodedByte);
