@@ -16,12 +16,15 @@ public class WalletDetails {
     @SerializedName("Events")
     @Expose
     private List<Event> events = null;
-    @SerializedName("Restaurants")
+    /*@SerializedName("Restaurants")
     @Expose
-    private List<Restaurant> restaurants = null;
+    private List<Restaurant> restaurants = null;*/
     @SerializedName("GiftCard")
     @Expose
     private List<GiftCard> giftCard = null;
+    @SerializedName("data")
+    @Expose
+    private List<Restaurant> restaurants = null;
 
     public String getStatus() {
         return status;

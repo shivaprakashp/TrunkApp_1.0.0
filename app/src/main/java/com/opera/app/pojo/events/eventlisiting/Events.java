@@ -122,7 +122,7 @@ public class Events {
 
     public Events(String EventId,String Name, String image, String internalName, String startDate,
                   String endDate, String MobileDescription,String IsFavourite,String EventUrl,
-    ArrayList<GenreList> Genre) {
+    ArrayList<GenreList> Genre,String BuyNowLink) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -133,6 +133,7 @@ public class Events {
         this.IsFavourite=IsFavourite;
         this.EventUrl=EventUrl;
         this.Genre=Genre;
+        this.BuyNowLink=BuyNowLink;
     }
 
     public String getFeedbackUrl() {

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:font="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <com.opera.app.customwidget.TicketView
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:orientation="horizontal"
-            app:scallopRadius="10dp"
-            app:scallopPositionPercent="75"
-            app:showBorder="true"
-            app:borderWidth="1dp"
             app:borderColor="@color/colorBlack"
-            app:showDivider="true"
+            app:borderWidth="1dp"
+            app:cornerType="rounded"
             app:dividerPadding="0dp"
             app:dividerType="dash"
-            app:cornerType="rounded"
-            app:ticketElevation="1dp"/>
+            app:orientation="horizontal"
+            app:scallopPositionPercent="75"
+            app:scallopRadius="10dp"
+            app:showBorder="true"
+            app:showDivider="true"
+            app:ticketElevation="1dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/ticketView"
@@ -37,139 +37,177 @@
 
 
         <LinearLayout
+            android:id="@+id/linearOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
             app:layout_constraintEnd_toEndOf="@+id/ticketView"
             app:layout_constraintStart_toStartOf="@+id/ticketView">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/ticketView"
+                app:layout_constraintEnd_toEndOf="@+id/ticketView"
+                app:layout_constraintStart_toStartOf="@+id/ticketView">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtWalletRestTitle"
+                    style="@style/label_black_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sean Connolly"
+                    font:name="Montserrat-Regular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_black_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dateOfReserve"
+                        font:name="Montserrat-Regular"
+                        font:type="bold" />
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtDateReserve"
+                        style="@style/label_black_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        font:name="Montserrat-Regular"
+                        tools:text=" 12 May 2018" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_black_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mealPeriod"
+                        font:name="Montserrat-Regular"
+                        font:type="bold" />
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtDinner"
+                        style="@style/label_black_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        font:name="Montserrat-Regular"
+                        tools:text=" Dinner" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_black_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/preferredTime"
+                        font:name="Montserrat-Regular"
+                        font:type="bold" />
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtPrefTime"
+                        style="@style/label_black_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        font:name="Montserrat-Regular"
+                        tools:text=" 08:25 PM" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_black_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bookReference"
+                        font:name="Montserrat-Regular"
+                        font:type="bold" />
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtReferNo"
+                        style="@style/label_black_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        font:name="Montserrat-Regular"
+                        tools:text=" GHF65NR5" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_black_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bookDate"
+                        font:name="Montserrat-Regular"
+                        font:type="bold" />
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtBookDate"
+                        style="@style/label_black_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        font:name="Montserrat-Regular"
+                        tools:text=" 12 May 2018" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearOne"
+            app:layout_constraintEnd_toEndOf="@+id/ticketView"
+            app:layout_constraintStart_toStartOf="@+id/ticketView">
+
+            <ImageView
+                android:id="@+id/imgRestBarCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <com.opera.app.customwidget.TextViewWithFont
-                android:id="@+id/txtWalletRestTitle"
+                android:id="@+id/txtBarCode"
+                style="@style/label_black_very_low"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sean Connolly"
-                style="@style/label_black_large"
-                font:name="Montserrat-Regular"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dateOfReserve"
-                    style="@style/label_black_medium"
-                    font:type="bold"
-                    font:name="Montserrat-Regular"/>
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtDateReserve"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text=" 12 May 2018"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mealPeriod"
-                    style="@style/label_black_medium"
-                    font:type="bold"
-                    font:name="Montserrat-Regular"/>
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtDinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text=" Dinner"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/preferredTime"
-                    style="@style/label_black_medium"
-                    font:type="bold"
-                    font:name="Montserrat-Regular"/>
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtPrefTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text=" 08:25 PM"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bookReference"
-                    style="@style/label_black_medium"
-                    font:type="bold"
-                    font:name="Montserrat-Regular"/>
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtReferNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text=" GHF65NR5"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bookDate"
-                    style="@style/label_black_medium"
-                    font:type="bold"
-                    font:name="Montserrat-Regular"/>
-
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtBookDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text=" 12 May 2018"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
-
-            </LinearLayout>
+                android:gravity="center"
+                android:padding="2dp"
+                tools:text="123456789" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

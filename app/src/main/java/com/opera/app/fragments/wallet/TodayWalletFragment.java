@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.opera.app.R;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.enums.WalletEnums;
 import com.opera.app.fragments.wallet.helper.TodayWalletView;
 import com.opera.app.preferences.wallet.WalletPreference;
@@ -21,6 +23,8 @@ import com.opera.app.utils.OperaManager;
 public class TodayWalletFragment extends Fragment {
 
     private TodayWalletView walletView;
+    private TextViewWithFont txtWalletEventTitle;
+    private LinearLayout linearParent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,23 +33,33 @@ public class TodayWalletFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today_wallet, container, false);
 
         walletView = (TodayWalletView) view.findViewById(R.id.helperWalletEvent);
+        linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
+        txtWalletEventTitle = (TextViewWithFont) view.findViewById(R.id.txtWalletEventTitle);
 
+        int mTotalData = 0;
         WalletPreference preference = new WalletPreference(getActivity());
-        if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
-            walletView.setEvents(preference.getWalletData().getEvents());
-        }else if(WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
-            walletView.setRest(preference.getWalletData().getRestaurants());
-        }else if(WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())){
-            walletView.setGift(preference.getWalletData().getGiftCard());
+        if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
+            mTotalData = walletView.setEvents(preference.getWalletData().getEvents(), "Today");
+        } else if (WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
+            mTotalData = walletView.setRest(preference.getWalletData().getRestaurants(), "Today");
+        } else if (WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
+            mTotalData = walletView.setGift(preference.getWalletData().getGiftCard(), "Today");
         }
 
+        if (mTotalData > 0) {
+            linearParent.setVisibility(View.VISIBLE);
+            txtWalletEventTitle.setVisibility(View.GONE);
+        } else {
+            linearParent.setVisibility(View.GONE);
+            txtWalletEventTitle.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-           Log.i("enums", bundle.getString("enum"));
+            Log.i("enums", bundle.getString("enum"));
 
         }
     }

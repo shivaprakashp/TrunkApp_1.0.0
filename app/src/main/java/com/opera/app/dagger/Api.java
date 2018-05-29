@@ -77,7 +77,7 @@ public interface Api {
                                       @Body ContactUs contactUs);
 
     @POST("restaurants/extended/BookTable/")
-    Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
+    Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                 @Body BookTableRequest tableResponse);
 
     @POST("restaurants/extended/GetRestaurant/")
@@ -89,8 +89,8 @@ public interface Api {
     @POST("events/extended/GetEventById/")
     Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
 
-    @GET("http://www.mocky.io/v2/5af5605f5500005f347a55a6")
-    Call<WalletDetails> getWalletDetails();
+    @POST("restaurants/extended/GetWalletDetails/")
+    Call<WalletDetails> getWalletDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
     Call<NotificationDetails> getNotificationDetails();

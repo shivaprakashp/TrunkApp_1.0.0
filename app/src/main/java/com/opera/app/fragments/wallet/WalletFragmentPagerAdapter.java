@@ -19,10 +19,13 @@ public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0: return new TodayWalletFragment();
-            case 1: return new TodayWalletFragment();
-            case 2: return new TodayWalletFragment();
+        switch (position) {
+            case 0:
+                return new TodayWalletFragment();
+            case 1:
+                return new UpcomingWalletFragment();
+            case 2:
+                return new CompletedWalletFragment();
         }
 
         return null;

@@ -254,10 +254,6 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
         mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList(), EventId);
 
-        if (mEventsWithSameGenres.size() > 1) {
-            mViewpagerFavGenres.setPadding(0, 0, 70, 0);
-        }
-
         mGenresListing.addAll(mEventListingData.get(0).getGenreList());
 
         mEventBuyURL = mEventListingData.get(0).getBuyNowLink();

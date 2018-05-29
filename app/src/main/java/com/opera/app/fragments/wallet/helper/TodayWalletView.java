@@ -20,7 +20,11 @@ import com.opera.app.pojo.wallet.Event;
 import com.opera.app.pojo.wallet.GiftCard;
 import com.opera.app.pojo.wallet.Restaurant;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class TodayWalletView extends LinearLayout {
 
@@ -45,8 +49,9 @@ public class TodayWalletView extends LinearLayout {
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     }
 
-    public void setEvents(List<Event> eventList){
+    public int setEvents(List<Event> eventList, String mFrom) {
 
+        int mAvailableData=0;
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
@@ -62,94 +67,161 @@ public class TodayWalletView extends LinearLayout {
         ImageView barCode;
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
-        for ( int i = 0 ; i < eventList.size() ; i++ ){
-            Event event = eventList.get(i);
+        if (eventList != null) {
+            for (int i = 0; i < eventList.size(); i++) {
+                Event event = eventList.get(i);
 
-            rowView = (ViewGroup) inflater
-                    .inflate(R.layout.helper_wallet_event, null, false);
+                rowView = (ViewGroup) inflater
+                        .inflate(R.layout.helper_wallet_event, null, false);
 
-            txtEventTitle = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventTitle);
-            txtWalletEventGenre = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventGenre);
-            txtWalletEventDate = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDate);
-            txtWalletEventDoor = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDoor);
-            txtWalletEventSection = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSection);
-            txtWalletEventRow = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventRow);
-            txtWalletEventSeat = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSeat);
-            txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
-            barCode = (ImageView) rowView.findViewById(R.id.imgEventBarCode);
+                txtEventTitle = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventTitle);
+                txtWalletEventGenre = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventGenre);
+                txtWalletEventDate = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDate);
+                txtWalletEventDoor = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDoor);
+                txtWalletEventSection = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSection);
+                txtWalletEventRow = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventRow);
+                txtWalletEventSeat = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSeat);
+                txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
+                barCode = (ImageView) rowView.findViewById(R.id.imgEventBarCode);
 
-            txtEventTitle.setText(event.getEventName());
-            txtWalletEventGenre.setText(event.getEventGenre());
-            txtWalletEventDate.setText(event.getShowDate()+" "+event.getShowTime());
-            txtWalletEventDoor.setText(event.getDoorNo());
-            txtWalletEventSection.setText(event.getSection());
-            txtWalletEventRow.setText(event.getSeatRow());
-            txtWalletEventSeat.setText(event.getSeatNo());
+                txtEventTitle.setText(event.getEventName());
+                txtWalletEventGenre.setText(event.getEventGenre());
+                txtWalletEventDate.setText(event.getShowDate() + " " + event.getShowTime());
+                txtWalletEventDoor.setText(event.getDoorNo());
+                txtWalletEventSection.setText(event.getSection());
+                txtWalletEventRow.setText(event.getSeatRow());
+                txtWalletEventSeat.setText(event.getSeatNo());
 
-            try {
+                try {
 
-                BitMatrix bitMatrix = multiFormatWriter.encode(event.getReserveId(), BarcodeFormat.CODABAR,
-                        400,80);
-                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                barCode.setImageBitmap(bitmap);
+                    BitMatrix bitMatrix = multiFormatWriter.encode(event.getReserveId(), BarcodeFormat.CODABAR,
+                            400, 80);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    barCode.setImageBitmap(bitmap);
 
-                txtBarCode.setText(event.getReserveId());
-            }catch (Exception e){e.printStackTrace();}
-            this.addView(rowView);
+                    txtBarCode.setText(event.getReserveId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                this.addView(rowView);
+            }
         }
+
+        return mAvailableData;
     }
 
-    public void setRest(List<Restaurant> restaurantList){
+    public int setRest(List<Restaurant> restaurantList, String mFrom) {
 
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
 
-        TextViewWithFont dateReservation, mealPeriod, preferTime, referNo, bookDate;
-
-        for ( int i = 0 ; i < restaurantList.size() ; i++ ){
-
-            Restaurant restaurant = restaurantList.get(i);
-            rowView = (ViewGroup) inflater
-                    .inflate(R.layout.helper_wallet_rest, null, false);
-
-            dateReservation = (TextViewWithFont) rowView.findViewById(R.id.txtDateReserve);
-            mealPeriod = (TextViewWithFont) rowView.findViewById(R.id.txtDinner);
-            preferTime = (TextViewWithFont) rowView.findViewById(R.id.txtPrefTime);
-            referNo = (TextViewWithFont) rowView.findViewById(R.id.txtReferNo);
-            bookDate = (TextViewWithFont) rowView.findViewById(R.id.txtBookDate);
-
-            dateReservation.setText(" "+restaurant.getReserveDate());
-            mealPeriod.setText(" "+restaurant.getMealPeriod());
-            preferTime.setText(" "+restaurant.getPrefferTime());
-            referNo.setText(" "+restaurant.getReferenceNo());
-            bookDate.setText(" "+restaurant.getPreferDate());
-
-            this.addView(rowView);
+        int mAvailableData=0;
+        Date mCurrentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfToDisplay = new SimpleDateFormat("dd MMM yyyy");
+        String strDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        try {
+            mCurrentDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        TextViewWithFont dateReservation, mealPeriod, preferTime, referNo, bookDate, txtWalletRestTitle, txtBarCode;
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        ImageView barCode;
+
+        if (restaurantList != null) {
+            for (int i = 0; i < restaurantList.size(); i++) {
+
+                Restaurant restaurant = restaurantList.get(i);
+
+                rowView = (ViewGroup) inflater
+                        .inflate(R.layout.helper_wallet_rest, null, false);
+
+                barCode = (ImageView) rowView.findViewById(R.id.imgRestBarCode);
+                txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
+                txtWalletRestTitle = (TextViewWithFont) rowView.findViewById(R.id.txtWalletRestTitle);
+                dateReservation = (TextViewWithFont) rowView.findViewById(R.id.txtDateReserve);
+                mealPeriod = (TextViewWithFont) rowView.findViewById(R.id.txtDinner);
+                preferTime = (TextViewWithFont) rowView.findViewById(R.id.txtPrefTime);
+                referNo = (TextViewWithFont) rowView.findViewById(R.id.txtReferNo);
+                bookDate = (TextViewWithFont) rowView.findViewById(R.id.txtBookDate);
+
+                Date dateOgFormat = null,dateOgFormatReservation = null;
+                String formattedTime = "",formattedTimeReservationDate = "";
+                try {
+                    dateOgFormat = sdf.parse(restaurant.getBookingDate());
+                    formattedTime = sdfToDisplay.format(dateOgFormat);
+
+                    dateOgFormatReservation = sdf.parse(restaurant.getReservationDate());
+                    formattedTimeReservationDate = sdfToDisplay.format(dateOgFormatReservation);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                txtWalletRestTitle.setText(restaurant.getRestaurantName());
+                dateReservation.setText(" " + formattedTimeReservationDate);
+                mealPeriod.setText(" " + restaurant.getMealPeriodId());
+                preferTime.setText(" " + restaurant.getPreferredTime());
+                referNo.setText(" " + restaurant.getBookingReferenceNumber());
+                bookDate.setText(" " + formattedTime);
+
+                try {
+
+                    txtBarCode.setText(restaurant.getFullReservationID());
+                    BitMatrix bitMatrix = multiFormatWriter.encode(restaurant.getFullReservationID(), BarcodeFormat.CODABAR,
+                            400, 80);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    barCode.setImageBitmap(bitmap);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (mFrom.equalsIgnoreCase("Completed") && mCurrentDate.after(dateOgFormat)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Today") && mCurrentDate.equals(dateOgFormat)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Upcoming") && mCurrentDate.before(dateOgFormat)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                }
+
+            }
+        }
+
+        return mAvailableData;
     }
 
-    public void setGift(List<GiftCard> cardList){
+    public int  setGift(List<GiftCard> cardList, String mFrom) {
 
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
+        int mAvailableData=0;
 
         TextViewWithFont txtVoucherAmount;
 
-        for (int i = 0 ; i < cardList.size() ; i++ ){
+        if (cardList != null) {
+            for (int i = 0; i < cardList.size(); i++) {
 
-            GiftCard giftCard = cardList.get(i);
+                GiftCard giftCard = cardList.get(i);
 
-            rowView = (ViewGroup) inflater
-                    .inflate(R.layout.helper_wallet_gift, null, false);
+                rowView = (ViewGroup) inflater
+                        .inflate(R.layout.helper_wallet_gift, null, false);
 
-            txtVoucherAmount = (TextViewWithFont) rowView.findViewById(R.id.txtVoucherAmount);
+                txtVoucherAmount = (TextViewWithFont) rowView.findViewById(R.id.txtVoucherAmount);
 
-            txtVoucherAmount.setText(giftCard.getVoucherAmount());
+                txtVoucherAmount.setText(giftCard.getVoucherAmount());
 
-            this.addView(rowView);
+                this.addView(rowView);
+            }
         }
+        return mAvailableData;
     }
 }
