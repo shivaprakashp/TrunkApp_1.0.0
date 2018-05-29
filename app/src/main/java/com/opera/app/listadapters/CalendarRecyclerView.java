@@ -39,7 +39,8 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
             btnCalendarDetail = (ButtonWithFont) itemView.findViewById(R.id.btnCalendarDetail);
         }
     }
-    public CalendarRecyclerView(List<Events> arrayList){
+
+    public CalendarRecyclerView(List<Events> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -64,9 +65,10 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, EventDetailsActivity.class);
-                intent.putExtra("", events.getEventId());
-                intent.putExtra("", events.getInternalName());
-                intent.putExtra("", events.getEventId());
+                intent.putExtra("EventId", events.getEventId());
+                intent.putExtra("EventInternalName", events.getInternalName());
+                intent.putExtra("IsFavourite", events.isFavourite());
+                context.startActivity(intent);
 
             }
         });
