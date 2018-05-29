@@ -20,7 +20,7 @@ public class FindOutMoreDialogue extends Dialog {
 
     private Intent intent;
     private Activity mActivity;
-    private String number;
+    private String number, emailId;
 
     @BindView(R.id.btnCall)
     ButtonWithFont btnCall;
@@ -31,14 +31,15 @@ public class FindOutMoreDialogue extends Dialog {
     @BindView(R.id.imgClose)
     ImageView imgClose;
 
-    public FindOutMoreDialogue(@NonNull Activity mActivity, String number) {
+    public FindOutMoreDialogue(@NonNull Activity mActivity, String number, String emailId) {
         super(mActivity);
         this.mActivity = mActivity;
         this.number = number;
+        this.emailId = emailId;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.popup_find_out_more);
@@ -67,6 +68,21 @@ public class FindOutMoreDialogue extends Dialog {
     private View.OnClickListener buttonEmail = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            String[] TO = {emailId};
+            String[] CC = {""};
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+            //emailIntent.putExtra(Intent.EXTRA_CC, CC);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Queries");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Please send more details about the restaurant.");
+            try {
+                mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+            }
             dismiss();
         }
     };

@@ -51,13 +51,14 @@ public class RestaurantsData implements Serializable{
     @Expose
     String phoneNumber;
 
+    @SerializedName("Email")
+    @Expose
+    String Email;
+
     public RestaurantsData(){
     }
 
-    public RestaurantsData(String restId, String restName, String restImage,
-                           String restPlace, String restLocation, String restBookUrl,
-                           String restStatus, String restDetails, String openHour,
-                           String phoneNumber){
+    public RestaurantsData(String restId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber, String email) {
         this.restId = restId;
         this.restName = restName;
         this.restImage = restImage;
@@ -68,6 +69,15 @@ public class RestaurantsData implements Serializable{
         this.restDetails = restDetails;
         this.openHour = openHour;
         this.phoneNumber = phoneNumber;
+        Email = email;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 
     public String getRestId() {

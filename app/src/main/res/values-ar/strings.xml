@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Pre Login Activity -->
+    <string name="loading">Loading...</string>
+    <string name="forgot_password_hint">يرجى إدخال عنوان البريد الإلكتروني المسجل الخاص بك لإعادة تعيين كلمة المرور الخاصة بك</string>
+    <string name="select">تحديد</string>
     <string name="create_an_account">سجل الان</string>
     <string name="already_have_an_account">هل لديك حساب؟ تسجيل الدخول</string>
     <string name="continue_as_guest"><u>تواصل كضيف</u></string>
@@ -854,7 +859,8 @@
     <string name="pubic_tour_detail">تجري الجولات العامة في معظم الأيام  – يرجى مراجعة الجدول الزمني من خلال زيارة الموقع الإلكتروني يمكن شراء التذاكر عبر الإنترنت ومن خلال مكتب شباك بيع التذاكر إما مسبقاً أو في يوم الجولة ( حسب توافر التذاكر)</string>
     <string name="school_private_tour">الجولات الخاصة وجولات المدارس</string>
     <string name="school_private_tour_detail">للحجز وللاستفسارات حول الأسعار، يرجى التواصل معنا معنا عبر البريد الالكتروني tours@dubaiopera.com</string>
-
+    <string name="close">أغلق</string>
+    <string name="select_item">اختر البند</string>
 
 
 </resources>

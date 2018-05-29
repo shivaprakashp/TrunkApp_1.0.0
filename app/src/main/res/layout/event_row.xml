@@ -31,13 +31,15 @@
                 android:layout_height="@dimen/button_height_small"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.3"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/buy_tickets"
                 font:name="Montserrat-Light" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0dp"
+                android:gravity="end|center"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7">
 
@@ -45,9 +47,8 @@
                     android:id="@+id/imgFavourite"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/ic_favourite"
                     android:transitionName="@string/imgFavourite" />
 
@@ -55,9 +56,8 @@
                     android:id="@+id/imgShare"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/imgFavourite"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/ic_share"
                     android:transitionName="@string/imgShare" />
 
@@ -65,12 +65,11 @@
                     android:id="@+id/imgInfo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/imgShare"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/ic_info" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

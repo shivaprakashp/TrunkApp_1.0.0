@@ -115,7 +115,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         switch (v.getId()) {
             case R.id.mBtnReserveATable:
 
-                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListingData.getPhoneNumber());
+                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListingData.getPhoneNumber(), mRestaurantListingData.getEmail());
                 dialogue.show();
 
                 /*if (Connections.isConnectionAlive(mActivity)) {

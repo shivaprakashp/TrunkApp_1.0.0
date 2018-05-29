@@ -14,9 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.activities.OtherRestaurantsActivity;
-import com.opera.app.activities.CommonWebViewActivity;
-import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.RestaurantCompleteDetails;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
@@ -76,7 +73,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                                     mRestaurantList.get(i).getRestStatus(),
                                     mRestaurantList.get(i).getRestDetails(),
                                     mRestaurantList.get(i).getOpenHour(),
-                                    mRestaurantList.get(i).getPhoneNumber()));
+                                    mRestaurantList.get(i).getPhoneNumber(),
+                                    mRestaurantList.get(i).getEmail()));
                         }
                     }
                     // set the Filtered result to return
@@ -155,7 +153,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             @Override
             public void onClick(View v) {
 
-                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber());
+                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber(), mRestaurantListing.getEmail());
                 dialogue.show();
 
                 /*if (Connections.isConnectionAlive(mActivity)) {

@@ -75,7 +75,7 @@ public class DatabaseHelper{
                 contentValue.put(DatabaseHelper.REASTAURANT_IMAGE_URL, mRestaurantListing.get(i).getRestImage());
                 contentValue.put(DatabaseHelper.REASTAURANT_BOOKING_URL, mRestaurantListing.get(i).getRestBookUrl());
                 contentValue.put(DatabaseHelper.REASTAURANT_PHONE_NUMBER, mRestaurantListing.get(i).getPhoneNumber());
-                contentValue.put(DatabaseHelper.REASTAURANT_EMAIL, mRestaurantListing.get(i).getPhoneNumber());
+                contentValue.put(DatabaseHelper.REASTAURANT_EMAIL, mRestaurantListing.get(i).getEmail());
 
                 if(!mRestaurantListing.get(i).getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)){
                     long row = database.insert(DatabaseHelper.TABLE_OTHER_RESTAURANTS, null, contentValue);
@@ -101,6 +101,7 @@ public class DatabaseHelper{
                     mRestaurantData.setRestImage(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_IMAGE_URL)));
                     mRestaurantData.setRestBookUrl(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_BOOKING_URL)));
                     mRestaurantData.setPhoneNumber(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PHONE_NUMBER)));
+                    mRestaurantData.setEmail(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_EMAIL)));
                     dataArrayList.add(mRestaurantData);
                 } while (cursor.moveToNext());
             }
