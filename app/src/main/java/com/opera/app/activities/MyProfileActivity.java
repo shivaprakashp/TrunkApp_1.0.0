@@ -24,6 +24,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
@@ -166,8 +167,13 @@ public class MyProfileActivity extends BaseActivity {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_my_profile);
 
+        img_profile.bringToFront();
         initView();
         getProfilePicture();
+    }
+
+    public void imageClick(View view){
+        imageSelection();
     }
 
     @Override
@@ -224,12 +230,6 @@ public class MyProfileActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 
-       /* img_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageSelection();
-            }
-        });*/
 
     }
 
@@ -263,15 +263,6 @@ public class MyProfileActivity extends BaseActivity {
             onBackPressed();
         }
     };
-
-    @OnClick({R.id.img_profile})
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.img_profile:
-                imageSelection();
-                break;
-        }
-    }
 
     public void imageSelection() {
         dialog = new BottomSheetDialog(mActivity);

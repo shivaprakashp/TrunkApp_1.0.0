@@ -55,18 +55,20 @@
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/tv_profile_name"
                     style="@style/label_black_medium"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="70dp"
+                    android:gravity="center"
                     android:text="@string/profile_name"
                     font:name="Montserrat-Light" />
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/tv_profile_info"
                     style="@style/label_black"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_below="@+id/tv_profile_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
@@ -81,7 +83,7 @@
                 android:layout_below="@+id/header_cover_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-80dp"
-                android:clickable="true"
+                android:onClick="imageClick"
                 android:elevation="5dp"
                 android:src="@drawable/ic_user_blank" />
         </RelativeLayout>

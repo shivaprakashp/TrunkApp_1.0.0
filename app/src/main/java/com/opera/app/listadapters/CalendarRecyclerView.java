@@ -10,10 +10,11 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.pojo.events.eventlisiting.Events;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
 
-    private ArrayList<Events> arrayList;
+    private List<Events> arrayList;
 
     public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,7 +27,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
             txtCalendarEventName = (TextViewWithFont) itemView.findViewById(R.id.txtCalendarEventName);
         }
     }
-    public CalendarRecyclerView(ArrayList<Events> arrayList){
+    public CalendarRecyclerView(List<Events> arrayList){
         this.arrayList = arrayList;
     }
 
