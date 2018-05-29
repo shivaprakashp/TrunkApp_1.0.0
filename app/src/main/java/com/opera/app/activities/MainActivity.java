@@ -287,7 +287,12 @@ public class MainActivity extends BaseActivity implements
             if(mTabSelected.equalsIgnoreCase("Event")){
                 openActivity(mActivity, SearchEventActivity.class);
             }else{
-                openActivity(mActivity, WalletActivity.class);
+                if (manager.isUserLoggedIn()) {
+                    openActivity(mActivity, WalletActivity.class);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
+                    dialog.show();
+                }
             }
         }
     };

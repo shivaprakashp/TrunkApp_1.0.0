@@ -346,9 +346,15 @@ public class EventDetailsActivity extends BaseActivity {
             case R.id.img_plan_visit:
                 openActivity(mActivity, CalendarActivity.class);
                 break;
-            case R.id.img_wallet:
-                openActivity(mActivity, WalletActivity.class);
-                break;
+            case R.id.img_wallet: {
+                if (manager.isUserLoggedIn()) {
+                    openActivity(mActivity, WalletActivity.class);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
+                    dialog.show();
+                }
+            }
+            break;
 
             case R.id.img_profile: {
                 if (manager.isUserLoggedIn()) {
