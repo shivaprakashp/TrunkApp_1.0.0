@@ -68,6 +68,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
                 intent.putExtra("EventId", events.getEventId());
                 intent.putExtra("EventInternalName", events.getInternalName());
                 intent.putExtra("IsFavourite", events.isFavourite());
+                context.startActivity(intent);
 
             }
         });
