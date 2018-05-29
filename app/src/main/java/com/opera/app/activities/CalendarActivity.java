@@ -164,21 +164,26 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         for ( int i = 0 ; i < mEventListingData.size() ; i++ ){
             for (int k = 0 ; k < mEventListingData.get(i).getEventTime().size() ; k++ ){
                 if (currentDay.equalsIgnoreCase(mEventListingData.get(i).getEventTime().get(k).getFromTime().split("T")[0])){
-                    eventsList.add(eventsList.get(i));
+                    eventsList.add(mEventListingData.get(i));
                 }
             }
         }
 
-       if (eventsList!=null && eventsList.size()!=0){
-           adapter = new CalendarRecyclerView(eventsList);
-       }else {
-           adapter = new CalendarRecyclerView(mEventListingData);
-       }
-
+        adapter = new CalendarRecyclerView(CalendarActivity.this,eventsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerCalendar.setLayoutManager(mLayoutManager);
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
         recyclerCalendar.setAdapter(adapter);
+
+       if (eventsList!=null && eventsList.size()!=0){
+           adapter.notifyDataSetChanged();
+       }else {
+           adapter.notifyDataSetChanged();
+       //    adapter = new CalendarRecyclerView(mEventListingData);
+       }
+
+
+
     }
 
     private void scrollBarToDate(){
@@ -263,8 +268,17 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 v.setBackgroundDrawable(drawable);
                 ((TextView) v).setTextColor(Color.BLACK);
                 int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
-                Toast.makeText(getApplicationContext(),"Date Selected "+selectedDate,Toast.LENGTH_SHORT).show();
-                initCalendar();
+
+                String appendCalendar;
+                if (String.valueOf(currentMonth).length()==1){
+                    appendCalendar = String.valueOf(currentYear)+"0"+String.valueOf(currentMonth+1)+
+                            String.valueOf(selectedDate);
+                }else {
+                    appendCalendar = String.valueOf(currentYear)+String.valueOf(currentMonth+1)+
+                            String.valueOf(selectedDate);
+                }
+                initRecycle(appendCalendar);
+                //initCalendar();
             }
         }
 
@@ -286,7 +300,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
             LinearLayout textBackLay = new LinearLayout(context);
             LinearLayout.LayoutParams textBackLayParam = new LinearLayout.LayoutParams(tileWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
-            textBackLayParam.setMargins(margin,0,margin,0);
+            textBackLayParam.setMargins(margin,10,margin,0);
             textBackLay.setLayoutParams(textBackLayParam);
             textBackLay.setGravity(Gravity.CENTER);
             textBackLay.setOrientation(LinearLayout.VERTICAL);

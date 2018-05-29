@@ -44,12 +44,12 @@
                 android:layout_weight="0.7">
 
                 <ImageView
-                    android:id="@+id/imgFavourite"
+                    android:id="@+id/imgInfo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_favourite" />
+                    android:src="@drawable/ic_info" />
 
                 <ImageView
                     android:id="@+id/imgShare"
@@ -60,12 +60,12 @@
                     android:src="@drawable/ic_share" />
 
                 <ImageView
-                    android:id="@+id/imgInfo"
+                    android:id="@+id/imgFavourite"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_info" />
+                    android:src="@drawable/ic_favourite" />
 
             </LinearLayout>
 
