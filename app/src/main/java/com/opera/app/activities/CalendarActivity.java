@@ -169,7 +169,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }
         }
 
-        adapter = new CalendarRecyclerView(eventsList);
+        adapter = new CalendarRecyclerView(CalendarActivity.this,eventsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerCalendar.setLayoutManager(mLayoutManager);
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
