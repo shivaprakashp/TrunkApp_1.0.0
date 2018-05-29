@@ -167,7 +167,7 @@ public class MyProfileActivity extends BaseActivity {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_my_profile);
 
-        img_profile.bringToFront();
+//        img_profile.bringToFront();
         initView();
         getProfilePicture();
     }
