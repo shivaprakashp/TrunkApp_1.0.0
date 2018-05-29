@@ -169,9 +169,8 @@ public class TodayWalletView extends LinearLayout {
                 bookDate.setText(" " + formattedTime);
 
                 try {
-
                     txtBarCode.setText(restaurant.getFullReservationID());
-                    BitMatrix bitMatrix = multiFormatWriter.encode(restaurant.getFullReservationID(), BarcodeFormat.CODABAR,
+                    BitMatrix bitMatrix = multiFormatWriter.encode(restaurant.getFullReservationID(), BarcodeFormat.CODE_128,
                             400, 80);
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
