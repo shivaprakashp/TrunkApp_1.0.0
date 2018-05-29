@@ -62,7 +62,7 @@
         <com.opera.app.customwidget.ArcView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.55"
+            android:layout_weight="0.5"
             android:background="@drawable/bg_linear_shape"
             android:elevation="4dp"
             android:orientation="vertical"
@@ -122,7 +122,7 @@
                         android:padding="10dp">
 
                         <com.opera.app.customwidget.ButtonWithFont
-                            android:id="@+id/mBtnReserveATable"
+                            android:id="@+id/btnOtherRestaurants"
                             style="@style/label_white_small"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/button_height"
@@ -165,11 +165,11 @@
             android:layout_weight="0.15"
             android:background="@color/colorBlack"
             android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:visibility="visible"
+            android:orientation="vertical">
 
             <com.opera.app.customwidget.ButtonWithFont
-                android:id="@+id/btnOtherRestaurants"
+                android:id="@+id/mBtnReserveATable"
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                 android:background="@drawable/btn_ripple_effect"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="@string/other_restaurants"
+                android:text="@string/find_out_more"
                 android:textAllCaps="false"
                 font:name="Montserrat-Light" />
 
