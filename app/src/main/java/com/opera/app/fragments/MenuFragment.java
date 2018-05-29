@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
-import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.MyProfileActivity;
-import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.activities.WalletActivity;
@@ -187,7 +185,6 @@ public class MenuFragment extends BaseFragment {
                     intent = new Intent(getActivity(), MyProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    //Toast.makeText(mActivity, getActivity().getString(R.string.guest_msg), Toast.LENGTH_SHORT).show();
                     GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
                     dialog.show();
                 }
@@ -205,12 +202,17 @@ public class MenuFragment extends BaseFragment {
         menu_wallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), WalletActivity.class);
-                getActivity().startActivity(intent);
+                if (manager.isUserLoggedIn()) {
+                    intent = new Intent(getActivity(), WalletActivity.class);
+                    getActivity().startActivity(intent);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
+                    dialog.show();
+                }
             }
         });
 
-        menu_notification.setOnClickListener(new View.OnClickListener() {
+        /*menu_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getActivity(), NotificationActivity.class);
@@ -232,7 +234,7 @@ public class MenuFragment extends BaseFragment {
                 intent = new Intent(getActivity(), DubaiOperaTourActivity.class);
                 getActivity().startActivity(intent);
             }
-        });
+        });*/
     }
 
     @OnClick(R.id.txtCreateAccount)
