@@ -8,24 +8,33 @@ public class Restaurant {
     @SerializedName("restId")
     @Expose
     private String restId;
-    @SerializedName("restName")
+    @SerializedName("RestaurantName")
     @Expose
-    private String restName;
-    @SerializedName("reserveDate")
+    private String RestaurantName;
+    @SerializedName("ReservationDate")
     @Expose
-    private String reserveDate;
-    @SerializedName("mealPeriod")
+    private String ReservationDate;
+    @SerializedName("MealPeriodId")
     @Expose
-    private String mealPeriod;
-    @SerializedName("preferDate")
+    private String MealPeriodId;
+    @SerializedName("BookingDate")
     @Expose
-    private String preferDate;
-    @SerializedName("prefferTime")
+    private String BookingDate;
+    @SerializedName("PreferredTime")
     @Expose
-    private String prefferTime;
-    @SerializedName("referenceNo")
+    private String PreferredTime;
+    @SerializedName("BookingReferenceNumber")
     @Expose
-    private String referenceNo;
+    private String BookingReferenceNumber;
+    @SerializedName("SessionId")
+    @Expose
+    private String SessionId;
+    @SerializedName("FullReservationID")
+    @Expose
+    private String FullReservationID;
+    @SerializedName("PersonID")
+    @Expose
+    private String PersonID;
 
     public String getRestId() {
         return restId;
@@ -35,52 +44,75 @@ public class Restaurant {
         this.restId = restId;
     }
 
-    public String getRestName() {
-        return restName;
+    public String getRestaurantName() {
+        return RestaurantName;
     }
 
-    public void setRestName(String restName) {
-        this.restName = restName;
+    public void setRestaurantName(String restaurantName) {
+        RestaurantName = restaurantName;
     }
 
-    public String getReserveDate() {
-        return reserveDate;
+    public String getReservationDate() {
+        return ReservationDate;
     }
 
-    public void setReserveDate(String reserveDate) {
-        this.reserveDate = reserveDate;
+    public void setReservationDate(String reservationDate) {
+        ReservationDate = reservationDate;
     }
 
-    public String getMealPeriod() {
-        return mealPeriod;
+    public String getMealPeriodId() {
+        return MealPeriodId;
     }
 
-    public void setMealPeriod(String mealPeriod) {
-        this.mealPeriod = mealPeriod;
+    public void setMealPeriodId(String mealPeriodId) {
+        MealPeriodId = mealPeriodId;
     }
 
-    public String getPreferDate() {
-        return preferDate;
+    public String getBookingDate() {
+        return BookingDate;
     }
 
-    public void setPreferDate(String preferDate) {
-        this.preferDate = preferDate;
+    public void setBookingDate(String bookingDate) {
+        BookingDate = bookingDate;
     }
 
-    public String getPrefferTime() {
-        return prefferTime;
+    public String getPreferredTime() {
+        return PreferredTime;
     }
 
-    public void setPrefferTime(String prefferTime) {
-        this.prefferTime = prefferTime;
+    public void setPreferredTime(String preferredTime) {
+        PreferredTime = preferredTime;
     }
 
-    public String getReferenceNo() {
-        return referenceNo;
+    public String getBookingReferenceNumber() {
+        return BookingReferenceNumber;
     }
 
-    public void setReferenceNo(String referenceNo) {
-        this.referenceNo = referenceNo;
+    public void setBookingReferenceNumber(String bookingReferenceNumber) {
+        BookingReferenceNumber = bookingReferenceNumber;
     }
 
+    public String getSessionId() {
+        return SessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        SessionId = sessionId;
+    }
+
+    public String getFullReservationID() {
+        return FullReservationID;
+    }
+
+    public void setFullReservationID(String fullReservationID) {
+        FullReservationID = fullReservationID;
+    }
+
+    public String getPersonID() {
+        return PersonID;
+    }
+
+    public void setPersonID(String personID) {
+        PersonID = personID;
+    }
 }

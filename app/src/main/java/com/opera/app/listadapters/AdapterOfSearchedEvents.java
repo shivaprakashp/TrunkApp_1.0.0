@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.squareup.picasso.Callback;
@@ -70,6 +71,16 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
                 in.putExtra("EventId", mEventPojo.getEventId());
                 in.putExtra("EventInternalName", mEventPojo.getInternalName());
                 in.putExtra("IsFavourite", mEventPojo.isFavourite());
+                mActivity.startActivity(in);
+            }
+        });
+
+        holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mEventPojo.getBuyNowLink());
+                in.putExtra("Header", mEventPojo.getInternalName());
                 mActivity.startActivity(in);
             }
         });

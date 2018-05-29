@@ -1,14 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context="com.opera.app.fragments.wallet.UpcomingWalletFragment">
+    android:fillViewport="true"
+    tools:context="com.opera.app.fragments.wallet.TodayWalletFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.opera.app.fragments.wallet.helper.TodayWalletView
+                android:id="@+id/helperWalletEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.opera.app.fragments.wallet.helper.TodayWalletView>
+
+        </LinearLayout>
+
+        <com.opera.app.customwidget.TextViewWithFont
+            android:id="@+id/txtWalletEventTitle"
+            style="@style/label_black_vlarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            font:name="Montserrat-Bold"
+            font:type="bold"
+            tools:text="No data available" />
+    </RelativeLayout>
+
+</ScrollView>

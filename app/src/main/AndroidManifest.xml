@@ -100,10 +100,9 @@
         <activity
             android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activities.OpenYoutubeVideo" />
         <activity
-            android:name=".activities.OpenYoutubeVideo"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activities.RestaurantCompleteDetails"
+            android:name=".activities.RestaurantCompleteDetails"
             android:screenOrientation="portrait"></activity>
 
     </application>

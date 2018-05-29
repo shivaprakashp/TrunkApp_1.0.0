@@ -74,12 +74,12 @@ public class WalletActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            if (response.body()!=null){
+            if (response.body() != null) {
                 WalletPreference preference = new WalletPreference(mActivity);
                 preference.deleteWalletData();
                 preference.setWalletData((WalletDetails) response.body());
                 initButtons(WalletEnums.EVENTS);
-            }else if (response.errorBody() != null) {
+            } else if (response.errorBody() != null) {
                 try {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
@@ -92,7 +92,7 @@ public class WalletActivity extends BaseActivity {
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
-
+            Log.e("error", "");
         }
     };
 
@@ -109,13 +109,13 @@ public class WalletActivity extends BaseActivity {
 
     }
 
-    private void injectView(){
+    private void injectView() {
         ((MainApplication) getApplication()).getNetComponent().inject(WalletActivity.this);
         api = retrofit.create(Api.class);
 
     }
 
-    private void initView(){
+    private void initView() {
         mActivity = WalletActivity.this;
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -130,8 +130,8 @@ public class WalletActivity extends BaseActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void initButtons(WalletEnums enums){
-        switch (enums){
+    private void initButtons(WalletEnums enums) {
+        switch (enums) {
             case EVENTS:
                 btnEvent.setBackgroundColor(getResources().getColor(R.color.colorLightBurgendy));
                 btnRest.setBackgroundColor(getResources().getColor(R.color.colorDarkBurgendy));
@@ -156,7 +156,7 @@ public class WalletActivity extends BaseActivity {
         }
     }
 
-    private void initFragment(WalletEnums enums){
+    private void initFragment(WalletEnums enums) {
         OperaManager.createInstance().setWalletData(enums);
         WalletFragmentPagerAdapter adapter = new WalletFragmentPagerAdapter(mActivity,
                 getSupportFragmentManager());
@@ -169,7 +169,7 @@ public class WalletActivity extends BaseActivity {
         return enumData;
     }*/
 
-    private void getHistory(){
+    private void getHistory() {
         MainController controller = new MainController(WalletActivity.this);
         controller.getWalletDetails(taskComplete, api);
 
@@ -183,8 +183,8 @@ public class WalletActivity extends BaseActivity {
     };
 
     @OnClick({R.id.btnWalletEvent, R.id.btnWalletRest, R.id.btnWalletGift})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btnWalletEvent:
                 initButtons(WalletEnums.EVENTS);
                 break;
