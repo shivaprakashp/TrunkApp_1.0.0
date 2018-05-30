@@ -272,6 +272,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventImage = mEventListingData.get(0).getImage();
         mEventYoutubeVideo = mEventListingData.get(0).getVideo();
         mEventURL = mEventListingData.get(0).getSharedContentText();
+        EventInternalName= mEventListingData.get(0).getInternalName();
 
         if (mEventYoutubeVideo.equalsIgnoreCase("")) {
             mLinearPlay.setVisibility(View.GONE);
