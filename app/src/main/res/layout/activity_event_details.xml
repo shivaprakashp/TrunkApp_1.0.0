@@ -48,15 +48,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <View
+                    <!--<View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/colorTransparentBurgendy" />
+                        android:background="@color/colorTransparentBurgendy" />-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="10dp"
@@ -150,10 +151,10 @@
 
                     </LinearLayout>
 
-                    <View
+                    <!--<View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorTransparentBurgendy" />
+                        android:background="@color/colorTransparentBurgendy" />-->
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerGenres"
@@ -168,12 +169,12 @@
                         android:layout_height="120dp"
                         android:layout_margin="10dp">
 
-                    <TextView
-                        android:id="@+id/expandableTextViewInfo"
-                        style="@style/label_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="" />
+                        <TextView
+                            android:id="@+id/expandableTextViewInfo"
+                            style="@style/label_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="" />
                     </android.support.v4.widget.NestedScrollView>
                     <!--<LinearLayout
                         android:id="@+id/linearReadMore"
@@ -239,8 +240,8 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerFavGenres"
                     android:layout_width="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_height="200dp"  />
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -264,8 +265,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_back_arrrow"
-                android:rotationY="@integer/locale_mirror_flip" />
+                android:rotationY="@integer/locale_mirror_flip"
+                android:src="@drawable/ic_back_arrrow" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtHeaderEventName"

@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -203,6 +206,14 @@ public class EventDetailsActivity extends BaseActivity {
             imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
         }
 
+        try {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(mActivity, R.color.black));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void GetSpecificEventDetails() {
@@ -260,7 +271,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventDescription = mEventListingData.get(0).getDescription();
         mEventImage = mEventListingData.get(0).getImage();
         mEventYoutubeVideo = mEventListingData.get(0).getVideo();
-        mEventURL = mEventListingData.get(0).getEventUrl();
+        mEventURL = mEventListingData.get(0).getSharedContentText();
 
         if (mEventYoutubeVideo.equalsIgnoreCase("")) {
             mLinearPlay.setVisibility(View.GONE);

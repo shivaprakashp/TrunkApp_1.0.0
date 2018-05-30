@@ -175,7 +175,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             @Override
             public void onClick(View v) {
                 if (!mEventPojo.isInfoOpen()) {
-                    OperaUtils.ShareEventDetails(mActivity, mEventPojo.getEventUrl());
+                    OperaUtils.ShareEventDetails(mActivity, mEventPojo.getSharedContentText());
                 }
             }
         });

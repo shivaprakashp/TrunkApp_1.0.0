@@ -176,7 +176,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 if (!eventObject.isInfoOpen()) {
-                    OperaUtils.ShareEventDetails(mActivity, eventObject.getEventUrl());
+                    OperaUtils.ShareEventDetails(mActivity, eventObject.getSharedContentText());
                 }
             }
         });
