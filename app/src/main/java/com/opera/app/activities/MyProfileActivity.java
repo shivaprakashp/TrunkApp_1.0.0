@@ -438,6 +438,7 @@ public class MyProfileActivity extends BaseActivity {
         if (!sp.getString("dp", "").equals("")) {
             byte[] decodedString = Base64.decode(sp.getString("dp", ""), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
             img_profile.setImageBitmap(decodedByte);
         }
     }
