@@ -307,7 +307,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_plan_your_visit" />
+                    android:src="@drawable/ic_calendar_white" />
             </RelativeLayout>
 
             <RelativeLayout
