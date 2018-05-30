@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_linear_shape"
+            android:background="@drawable/black_gradient_diff_shade"
             android:orientation="horizontal">
 
             <LinearLayout
