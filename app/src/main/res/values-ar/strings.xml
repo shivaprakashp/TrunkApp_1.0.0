@@ -203,6 +203,7 @@
     <!--Guest msg-->
     <string name="guest_title">محزر !!</string>
     <string name="guest_msg"> يجب عليك تسجيل الدخول لاستخدام هذه الميزات.</string>
+    <string name="menu_welcome_guest">مرحبا بالضيف!</string>
 
     <!--Error handling (Changed one's)-->
     <!--login-->

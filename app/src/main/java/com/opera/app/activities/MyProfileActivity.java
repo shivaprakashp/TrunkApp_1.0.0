@@ -24,19 +24,16 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
-import com.opera.app.customwidget.CircleImageView;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -64,7 +61,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -100,7 +96,7 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.inc_set_toolbar)
     LinearLayout mLinearLayout;
 
-    @BindView(R.id.img_profile)
+    @BindView(R.id.img_profile_chooser)
     ImageView img_profile;
 
     @BindView(R.id.tv_profile_name)
