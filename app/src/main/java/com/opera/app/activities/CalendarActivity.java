@@ -220,7 +220,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
-
+                adapter.notifyDataSetChanged();
             }else {
 
                 currentMonth++;
@@ -229,10 +229,9 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
-
+                adapter.notifyDataSetChanged();
             }
 
-            initCalendar();
         }else if (v == lastMonthIv){
 
             if (currentMonth == 0) {
@@ -245,7 +244,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
-
+                adapter.notifyDataSetChanged();
             }else {
 
                 currentMonth--;
@@ -254,9 +253,9 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
-
+                adapter.notifyDataSetChanged();
             }
-            initCalendar();
+
         }else{
             GradientDrawable drawable = new GradientDrawable();
             drawable.setShape(GradientDrawable.OVAL);
@@ -278,7 +277,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                             String.valueOf(selectedDate);
                 }
                 initRecycle(appendCalendar);
-                //initCalendar();
+
             }
         }
 

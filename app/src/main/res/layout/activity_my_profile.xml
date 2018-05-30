@@ -76,7 +76,7 @@
                     tools:text="@string/profile_info" />
             </RelativeLayout>
 
-            <com.opera.app.customwidget.CircleImageView
+            <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
