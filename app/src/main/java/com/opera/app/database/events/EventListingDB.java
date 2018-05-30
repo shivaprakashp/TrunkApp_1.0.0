@@ -52,6 +52,8 @@ public class EventListingDB {
     private static final String EVENT_IS_FAVOURITE = "EVENT_IS_FAVOURITE";
     private static final String EVENT_FEEDBACK_URL = "EVENT_FEEDBACK_URL";
     private static final String EVENT_EVENT_URL = "EVENT_EVENT_URL";
+    private static final String EVENT_SHARED_CONTENT = "EVENT_SHARED_CONTENT";
+    private static final String EVENT_SHARED_CONTENT_TEXT = "EVENT_SHARED_CONTENT_TEXT";
 
     /*//Part of Genre JSON Object
     private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
@@ -84,6 +86,8 @@ public class EventListingDB {
                     + EVENT_IS_FAVOURITE + " TEXT,"
                     + EVENT_FEEDBACK_URL + " TEXT,"
                     + EVENT_EVENT_URL + " TEXT,"
+                    + EVENT_SHARED_CONTENT + " TEXT,"
+                    + EVENT_SHARED_CONTENT_TEXT + " TEXT,"
                     + EVENT_GENRE + " TEXT,"
                     + EVENT_TIMES + " TEXT);";
 
@@ -158,6 +162,8 @@ public class EventListingDB {
                 }
                 contentValue.put(EVENT_FEEDBACK_URL, mEventListingData.get(i).getFeedbackUrl());
                 contentValue.put(EVENT_EVENT_URL, mEventListingData.get(i).getEventUrl());
+                contentValue.put(EVENT_SHARED_CONTENT, mEventListingData.get(i).getSharedContent());
+                contentValue.put(EVENT_SHARED_CONTENT_TEXT, mEventListingData.get(i).getSharedContentText());
 
 
                 String mEventGenres = gson.toJson(mEventListingData.get(i).getGenreList());
@@ -210,6 +216,8 @@ public class EventListingDB {
                     mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
                     mEvents.setFeedbackUrl(cursor.getString(cursor.getColumnIndex(EVENT_FEEDBACK_URL)));
                     mEvents.setEventUrl(cursor.getString(cursor.getColumnIndex(EVENT_EVENT_URL)));
+                    mEvents.setSharedContent(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT)));
+                    mEvents.setSharedContentText(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT_TEXT)));
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();
@@ -332,6 +340,8 @@ public class EventListingDB {
                     mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
                     mEvents.setFeedbackUrl(cursor.getString(cursor.getColumnIndex(EVENT_FEEDBACK_URL)));
                     mEvents.setEventUrl(cursor.getString(cursor.getColumnIndex(EVENT_EVENT_URL)));
+                    mEvents.setSharedContent(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT)));
+                    mEvents.setSharedContentText(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT_TEXT)));
 
                     /*mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
                     mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));

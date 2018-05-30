@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeImageTop"
                 android:layout_marginTop="-50dp"
-                android:background="@drawable/black_gradient"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -48,15 +47,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <View
+                    <!--<View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/colorTransparentBurgendy" />
+                        android:background="@color/colorTransparentBurgendy" />-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/black_gradient_diff_shade"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="10dp"
@@ -150,70 +151,78 @@
 
                     </LinearLayout>
 
-                    <View
+                    <!--<View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorTransparentBurgendy" />
+                        android:background="@color/colorTransparentBurgendy" />-->
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerGenres"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end"
-                        android:layout_margin="5dp"
-                        android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
-
-                    <android.support.v4.widget.NestedScrollView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_margin="10dp">
-
-                    <TextView
-                        android:id="@+id/expandableTextViewInfo"
-                        style="@style/label_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="" />
-                    </android.support.v4.widget.NestedScrollView>
-                    <!--<LinearLayout
-                        android:id="@+id/linearReadMore"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:background="@drawable/black_gradient"
+                        android:orientation="vertical">
 
-                        <com.opera.app.customwidget.TextViewWithFont
-                            android:id="@+id/txtShowmore"
-                            style="@style/label_white_small"
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerGenres"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+                        <android.support.v4.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/expandableTextViewInfo"
+                                style="@style/label_white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="" />
+                        </android.support.v4.widget.NestedScrollView>
+                        <!--<LinearLayout
+                            android:id="@+id/linearReadMore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/read_more"
-                            android:textAllCaps="false" />
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
-                        <ImageView
-                            android:id="@+id/ivShowmore"
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:src="@drawable/ic_down_arrow" />
-                    </LinearLayout>-->
+                            <com.opera.app.customwidget.TextViewWithFont
+                                android:id="@+id/txtShowmore"
+                                style="@style/label_white_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/read_more"
+                                android:textAllCaps="false" />
 
-                    <com.opera.app.customwidget.ButtonWithFont
-                        android:id="@+id/btnBuyTickets"
-                        style="@style/label_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/button_height"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/btn_ripple_effect"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="@string/buy_tickets"
-                        android:textAllCaps="false"
-                        font:name="Montserrat-Light" />
+                            <ImageView
+                                android:id="@+id/ivShowmore"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:src="@drawable/ic_down_arrow" />
+                        </LinearLayout>-->
+
+                        <com.opera.app.customwidget.ButtonWithFont
+                            android:id="@+id/btnBuyTickets"
+                            style="@style/label_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/btn_ripple_effect"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="@string/buy_tickets"
+                            android:textAllCaps="false"
+                            font:name="Montserrat-Light" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -239,8 +248,8 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerFavGenres"
                     android:layout_width="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_height="200dp"  />
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -264,8 +273,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_back_arrrow"
-                android:rotationY="@integer/locale_mirror_flip" />
+                android:rotationY="@integer/locale_mirror_flip"
+                android:src="@drawable/ic_back_arrrow" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtHeaderEventName"

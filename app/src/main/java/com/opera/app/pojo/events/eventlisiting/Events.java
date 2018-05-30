@@ -78,6 +78,14 @@ public class Events {
     @Expose
     private String EventUrl;
 
+    @SerializedName("SharedContent")
+    @Expose
+    private String SharedContent;
+
+    @SerializedName("SharedContentText")
+    @Expose
+    private String SharedContentText;
+
     @SerializedName("FeedbackUrl")
     @Expose
     private String FeedbackUrl;
@@ -122,7 +130,7 @@ public class Events {
 
     public Events(String EventId,String Name, String image, String internalName, String startDate,
                   String endDate, String MobileDescription,String IsFavourite,String EventUrl,
-    ArrayList<GenreList> Genre,String BuyNowLink) {
+    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -134,6 +142,23 @@ public class Events {
         this.EventUrl=EventUrl;
         this.Genre=Genre;
         this.BuyNowLink=BuyNowLink;
+        this.SharedContentText=SharedContentText;
+    }
+
+    public String getSharedContent() {
+        return SharedContent;
+    }
+
+    public void setSharedContent(String sharedContent) {
+        SharedContent = sharedContent;
+    }
+
+    public String getSharedContentText() {
+        return SharedContentText;
+    }
+
+    public void setSharedContentText(String sharedContentText) {
+        SharedContentText = sharedContentText;
     }
 
     public String getFeedbackUrl() {

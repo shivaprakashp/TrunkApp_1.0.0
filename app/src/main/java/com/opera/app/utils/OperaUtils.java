@@ -21,6 +21,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.opera.app.R;
 import com.squareup.picasso.Picasso;
@@ -83,11 +84,15 @@ public class OperaUtils {
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(Intent.createChooser(shareIntent, "Select App to Share Text and Image"));*/
 
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mBody);
-        mContext.startActivity(Intent.createChooser(sharingIntent, mContext.getResources().getString(R.string.share_using)));
+        if (!mBody.trim().equalsIgnoreCase("")) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, mBody);
+            mContext.startActivity(Intent.createChooser(sharingIntent, mContext.getResources().getString(R.string.share_using)));
+        } else {
+            Toast.makeText(mContext, "No data to share", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static void CloseSoftKeyboard(Activity mActivity) {
