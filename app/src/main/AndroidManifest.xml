@@ -107,6 +107,9 @@
             android:name=".activities.DubaiOperaTourActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.GiftCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.OpenYoutubeVideo" />

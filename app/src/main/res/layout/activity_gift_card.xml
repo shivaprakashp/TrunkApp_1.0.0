@@ -52,81 +52,65 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:orientation="vertical">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/venue"
+                        style="@style/label_burgendy_medium"
+                        font:name="Montserrat-Medium"/>
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Dubai Opera, Dubai"
+                        style="@style/label_black_small"
+                        font:name="Montserrat-Light"/>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                        <com.opera.app.customwidget.TextViewWithFont
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/date"
+                            style="@style/label_burgendy_medium"
+                            font:name="Montserrat-Medium"/>
+
+                        <com.opera.app.customwidget.TextViewWithFont
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="valid for 12 months"
+                            android:textAllCaps="true"
+                            style="@style/label_black_small"
+                            font:name="Montserrat-Light"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/detail"
-                    style="@style/label_black_medium"
-                    font:name="Montserrat-Regular"/>
+                    android:layout_margin="15dp"
+                    style="@style/label_black_small"
+                    font:name="Montserrat-Light"/>
 
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/experience"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Medium"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/experience_details"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_black_medium"
-                        font:name="Montserrat-Regular"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/expect"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Medium"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/expect_details"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_black_medium"
-                        font:name="Montserrat-Regular"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/pubic_tour"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Medium"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/pubic_tour_detail"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_black_medium"
-                        font:name="Montserrat-Regular"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/school_private_tour"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_burgendy_medium"
-                        font:name="Montserrat-Medium"/>
-
-                    <com.opera.app.customwidget.TextViewWithFont
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/school_private_tour_detail"
-                        android:layout_marginTop="10dp"
-                        style="@style/label_black_medium"
-                        font:name="Montserrat-Regular"/>
-
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -139,12 +123,12 @@
         android:gravity="center">
 
         <com.opera.app.customwidget.ButtonWithFont
-            android:id="@+id/btnBookNow"
+            android:id="@+id/btnBuyTickets"
             style="@style/label_white"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/btn_ripple_effect"
-            android:text="@string/bookNow"
+            android:text="@string/buy_tickets"
             android:textAllCaps="true"
             android:layout_margin="10dp"
             android:paddingLeft="30dp"
