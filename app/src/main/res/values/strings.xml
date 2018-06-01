@@ -966,4 +966,10 @@
     <string name="share_using">Select App to Share Text and Image</string>
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>
+
+
+    <!--Gift Card activity -->
+    <string name="venue">Venue</string>
+    <string name="date">Date</string>
+
 </resources>

@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
+import com.opera.app.activities.DubaiOperaTourActivity;
+import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.MyProfileActivity;
+import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.activities.WalletActivity;
@@ -212,7 +215,7 @@ public class MenuFragment extends BaseFragment {
             }
         });
 
-        /*menu_notification.setOnClickListener(new View.OnClickListener() {
+        menu_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(getActivity(), NotificationActivity.class);
@@ -234,7 +237,15 @@ public class MenuFragment extends BaseFragment {
                 intent = new Intent(getActivity(), DubaiOperaTourActivity.class);
                 getActivity().startActivity(intent);
             }
-        });*/
+        });
+
+        menu_gift_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), GiftCardActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.txtCreateAccount)
