@@ -4,6 +4,8 @@ public interface AppConstants {
 
     static String SEAN_CONOLLY_RESTAURANT_ID = "40";
     static String SEAN_CONOLLY_R_STATUS = "3";
+    static String EVENT_TYPE_OPERA_TOUR = "DubaiTour";
+    static String EVENT_TYPE_GIFT_CARD = "GiftCard";
     static String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
 
     interface LOGIN {
@@ -74,4 +76,11 @@ public interface AppConstants {
         String MARKFAVOURITEFOREVENT = "MARKFAVOURITEFOREVENT";
     }
 
+    interface GETDUBAIOPERATOUR {
+        String GETDUBAIOPERATOUR = "GETDUBAIOPERATOUR";
+    }
+
+    interface GETGIFTCARD {
+        String GETGIFTCARD = "GETGIFTCARD";
+    }
 }

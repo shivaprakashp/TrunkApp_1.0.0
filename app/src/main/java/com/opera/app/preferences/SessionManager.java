@@ -9,6 +9,7 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.profile.EditProfileResponse;
 
@@ -100,4 +101,27 @@ public class SessionManager {
         return IsUserSettingsCache;
     }
 
+    //stored dubai opera tour data
+    public void storeTourDataOffline(AllEvents eventsResponse) {
+        editor.putString(context.getString(R.string.prefDubaiOperaTourData), gson.toJson(eventsResponse));
+        editor.commit();
+    }
+
+    //get stored dubai opera tour data
+    public AllEvents getTourOfflineData() {
+        String userData = loginPref.getString(context.getString(R.string.prefDubaiOperaTourData), "");
+        return gson.fromJson(userData, AllEvents.class);
+    }
+
+    //stored Gift Card data
+    public void storeGiftCardDataOffline(AllEvents eventsResponse) {
+        editor.putString(context.getString(R.string.prefGiftCardData), gson.toJson(eventsResponse));
+        editor.commit();
+    }
+
+    //get stored Gift Card data
+    public AllEvents getGiftCardOfflineData() {
+        String userData = loginPref.getString(context.getString(R.string.prefGiftCardData), "");
+        return gson.fromJson(userData, AllEvents.class);
+    }
 }

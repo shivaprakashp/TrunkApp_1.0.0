@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_profile_bg"
+                    android:src="@drawable/ic_gift_vaoucher"
                     android:scaleType="centerCrop" />
 
                 <LinearLayout
@@ -71,8 +71,8 @@
                     <com.opera.app.customwidget.TextViewWithFont
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Dubai Opera, Dubai"
-                        style="@style/label_black_small"
+                        android:text="@string/venue_detail"
+                        style="@style/label_black"
                         font:name="Montserrat-Light"/>
 
                 </LinearLayout>
@@ -94,9 +94,8 @@
                         <com.opera.app.customwidget.TextViewWithFont
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="valid for 12 months"
-                            android:textAllCaps="true"
-                            style="@style/label_black_small"
+                            android:text="@string/date_detail"
+                            style="@style/label_black"
                             font:name="Montserrat-Light"/>
 
                     </LinearLayout>
@@ -104,11 +103,11 @@
                 </LinearLayout>
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txt_gift_card_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/detail"
                     android:layout_margin="15dp"
-                    style="@style/label_black_small"
+                    style="@style/label_black"
                     font:name="Montserrat-Light"/>
 
             </LinearLayout>

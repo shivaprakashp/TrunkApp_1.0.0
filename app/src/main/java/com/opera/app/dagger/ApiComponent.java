@@ -1,8 +1,10 @@
 package com.opera.app.dagger;
 
 import com.opera.app.activities.ContactUsActivity;
+import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.EditProfileActivity;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.MyProfileActivity;
@@ -48,4 +50,6 @@ public interface ApiComponent {
     void inject(NotificationActivity notificationActivity);
     void inject(WhatsOnPagerAdapter mWhatsOnPagerAdapter);
     void inject(AdapterEvent mAdapterEvent);
+    void inject(DubaiOperaTourActivity mDubaiOperaTourActivity);
+    void inject(GiftCardActivity mGiftCardActivity);
 }
