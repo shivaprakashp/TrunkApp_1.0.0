@@ -76,7 +76,8 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activities.CommonWebViewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name=".activities.ReserveATableActivity"
             android:screenOrientation="portrait"
@@ -93,7 +94,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.TestAct"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
 
         <service android:name=".services.SettingsService" />
 
