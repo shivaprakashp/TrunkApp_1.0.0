@@ -851,17 +851,9 @@
 
     <!--Dubai Opera Tour activity -->
     <string name="bookNow">احجز الآن</string>
-    <string name="detail">تقدّم جولاتنا  لمحة عن الحياة داخل إحدى أحدث وأرقى المعالم الثقافية في دبي. كن جزءاً من مغامرة استكشاف مكاننا الذي يجمع بين التراث والتاريخ  وعش لحظات آسرة من السحر الفني.</string>
-    <string name="experience">نبذة عن الجولة:</string>
-    <string name="experience_details">استمع لقصة دبي أوبرا وتعرف أكثر على التصميم المميز\nاستمتع بزيارة جناح الضيافة الخاص بكبار الشخصيات (المجلس)\nاستكشف مسرح دبي أوبرا المتعدد الاستخدامات</string>
-    <string name="expect">ما ينتظرك في دبي أوبرا:</string>
-    <string name="expect_details">تقع دبي أوبرا في وسط مدينة دبي على بوليفارد محمد بن راشد.\nتستغرق الجولة حوالي ساعة واحدة وتبدأ من مكتب شباك بيع التذاكر.\nيتم الشرح باللغتين العربية والإنجليزية – من الممكن اختيار لغات أخرى عند الطلب المسبق.</string>
-    <string name="pubic_tour">الجولات العامة</string>
-    <string name="pubic_tour_detail">تجري الجولات العامة في معظم الأيام  – يرجى مراجعة الجدول الزمني من خلال زيارة الموقع الإلكتروني يمكن شراء التذاكر عبر الإنترنت ومن خلال مكتب شباك بيع التذاكر إما مسبقاً أو في يوم الجولة ( حسب توافر التذاكر)</string>
-    <string name="school_private_tour">الجولات الخاصة وجولات المدارس</string>
-    <string name="school_private_tour_detail">للحجز وللاستفسارات حول الأسعار، يرجى التواصل معنا معنا عبر البريد الالكتروني tours@dubaiopera.com</string>
-    <string name="close">أغلق</string>
-    <string name="select_item">اختر البند</string>
-
+    <string name="venue">مكان</string>
+    <string name="date">تاريخ</string>
+    <string name="venue_detail">أوبرا دبي ، دبي</string>
+    <string name="date_detail">صالح لمدة 12 شهرا</string>
 
 </resources>

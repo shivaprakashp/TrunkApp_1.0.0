@@ -30,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class DubaiOperaTourActivity extends BaseActivity {
+public class GiftCardActivity extends BaseActivity {
 
     @Inject
     Retrofit retrofit;
@@ -47,22 +47,21 @@ public class DubaiOperaTourActivity extends BaseActivity {
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
 
-    @BindView(R.id.btnBookNow)
-    Button mBtnBookNow;
+    @BindView(R.id.btnBuyTickets)
+    Button btnBuyTickets;
 
-    @BindView(R.id.txt_tour_details)
-    TextViewWithFont mTxtTourDetails;
-
+    @BindView(R.id.txt_gift_card_details)
+    TextViewWithFont mTxtGiftCardDetails;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mActivity = DubaiOperaTourActivity.this;
+        mActivity = GiftCardActivity.this;
 
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.activity_dubai_opera_tour);
+        setContentView(R.layout.activity_gift_card);
 
         initToolbar();
         initView();
@@ -72,7 +71,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.menu_opera_tour));
+        txtToolbarName.setText(getString(R.string.menu_gift_cards));
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -84,10 +83,10 @@ public class DubaiOperaTourActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.btnBookNow})
+    @OnClick({R.id.btnBuyTickets})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnBookNow:
+            case R.id.btnBuyTickets:
                 if (manager.isUserLoggedIn()) {
 
                 } else {
@@ -97,39 +96,38 @@ public class DubaiOperaTourActivity extends BaseActivity {
                 break;
         }
     }
-
     private void initView() {
         manager = new SessionManager(mActivity);
-        ((MainApplication) getApplication()).getNetComponent().inject(DubaiOperaTourActivity.this);
+        ((MainApplication) getApplication()).getNetComponent().inject(GiftCardActivity.this);
         api = retrofit.create(Api.class);
         if (Connections.isConnectionAlive(mActivity)) {
             GetData();
         }
         else {
-            if (manager.getTourOfflineData() != null && manager.getTourOfflineData().getEvents().get(0).getDescription() != null) {
-                mTxtTourDetails.setText(Html.fromHtml(manager.getTourOfflineData().getEvents().get(0).getDescription()));
+            if (manager.getGiftCardOfflineData() != null && manager.getGiftCardOfflineData().getEvents().get(0).getDescription() != null) {
+                mTxtGiftCardDetails.setText(Html.fromHtml(manager.getGiftCardOfflineData().getEvents().get(0).getDescription()));
             }
         }
     }
 
     private void GetData() {
         MainController controller = new MainController(mActivity);
-        controller.getDubaiOperaTourDetails(taskComplete, api);
+        controller.getGiftCardDetails(taskComplete, api);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
 
-                AllEvents mEventDataPojo = (AllEvents) response.body();
-                try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                        mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
-                        manager.storeTourDataOffline((AllEvents) response.body());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+            AllEvents mEventDataPojo = (AllEvents) response.body();
+            try {
+                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    mTxtGiftCardDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
+                    manager.storeGiftCardDataOffline((AllEvents) response.body());
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

@@ -214,6 +214,7 @@ public class ReserveATableActivity extends BaseActivity {
                     //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
+                    ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
                 }
             }
 

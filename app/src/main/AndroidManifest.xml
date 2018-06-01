@@ -110,6 +110,9 @@
             android:name=".activities.DubaiOperaTourActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.GiftCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.CalendarActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.OpenYoutubeVideo" />
@@ -119,9 +122,16 @@
 
 
         <!-- Existing application entries -->
+        <receiver
+        android:name=".services.NotificationTappedReceiver"
+        android:exported="false">
+        <intent-filter>
+            <action android:name="org.infobip.mobile.messaging.NOTIFICATION_TAPPED"/>
+        </intent-filter>
+    </receiver>
+
 
         <!-- Mobile Messaging components -->
-
         <receiver
             android:name="org.infobip.mobile.messaging.gcm.MobileMessagingGcmReceiver"
             android:exported="true"

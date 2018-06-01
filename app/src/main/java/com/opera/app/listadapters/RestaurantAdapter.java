@@ -17,7 +17,6 @@ import com.opera.app.R;
 import com.opera.app.activities.RestaurantCompleteDetails;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
-import com.opera.app.dialogues.FindOutMoreDialogue;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Callback;
@@ -153,8 +152,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             @Override
             public void onClick(View v) {
 
-                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber(), mRestaurantListing.getEmail());
-                dialogue.show();
+                Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
+                intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
+                mActivity.startActivity(intent);
+
+                /*FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber(), mRestaurantListing.getEmail());
+                dialogue.show();*/
 
                 /*if (Connections.isConnectionAlive(mActivity)) {
                     if (manager.isUserLoggedIn()) {
@@ -181,9 +184,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         holder.mImgRestaurantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
+               /* Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
                 intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
-                mActivity.startActivity(intent);
+                mActivity.startActivity(intent);*/
             }
         });
     }

@@ -9,7 +9,6 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
-import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.PostLogin;
 import com.opera.app.pojo.profile.EditProfile;
@@ -18,7 +17,6 @@ import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
-import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 
 import retrofit2.Call;
@@ -166,4 +164,20 @@ public class MainController {
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }
+
+
+    public void getDubaiOperaTourDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.GetDubaiOperaTour(AppConstants.EVENT_TYPE_OPERA_TOUR);
+        properties.setRequestKey(AppConstants.GETDUBAIOPERATOUR.GETDUBAIOPERATOUR);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void getGiftCardDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.GetGiftCard(AppConstants.EVENT_TYPE_GIFT_CARD);
+        properties.setRequestKey(AppConstants.GETGIFTCARD.GETGIFTCARD);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
 }

@@ -162,11 +162,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.15"
+            android:layout_weight="0.25"
             android:background="@color/colorBlack"
             android:gravity="center"
-            android:visibility="visible"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/mBtnReserveATable"
@@ -179,7 +179,62 @@
                 android:paddingRight="20dp"
                 android:text="@string/find_out_more"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 font:name="Montserrat-Light" />
+
+
+            <LinearLayout
+                android:id="@+id/mLinRestaurantNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:rotationY="@integer/locale_mirror_flip"
+                    android:src="@drawable/ic_telephone" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/mTxtRestaurantNumber"
+                    style="@style/label_gray_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    font:name="Montserrat-Light" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mLinRestaurantEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="5dp"
+                    android:rotationY="@integer/locale_mirror_flip"
+                    android:src="@drawable/ic_mail_icon" />
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/mTxtRestaurantEmail"
+                    style="@style/label_gray_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    font:name="Montserrat-Light" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

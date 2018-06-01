@@ -1,12 +1,16 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -35,6 +39,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
     private Activity mActivity;
     private SessionManager manager;
     private CustomToast customToast;
+    private Intent intent;
 
     @BindView(R.id.expandableTextViewInfo)
     TextView mExpandableTextView;
@@ -62,6 +67,19 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
     @BindView(R.id.txtCommonToolHome)
     View inc_set_toolbar_text;
+
+    @BindView(R.id.mTxtRestaurantNumber)
+    TextView mTxtRestaurantNumber;
+
+    @BindView(R.id.mTxtRestaurantEmail)
+    TextView mTxtRestaurantEmail;
+
+    @BindView(R.id.mLinRestaurantNumber)
+    LinearLayout mLinRestaurantNumber;
+
+    @BindView(R.id.mLinRestaurantEmail)
+    LinearLayout mLinRestaurantEmail;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +110,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
         manager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
 
+        mTxtRestaurantNumber.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getPhoneNumber()+"</u>"));
+        mTxtRestaurantEmail.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getEmail()+"</u>"));
+
         mBtnOtherRestaurants.setVisibility(View.GONE);
         mTxtRestaurantPlace.setText("at " + mRestaurantListingData.getRestPlace());
         mTxtRestaurantName.setText(mRestaurantListingData.getRestName());
@@ -110,7 +131,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.mBtnReserveATable})
+    @OnClick({R.id.mBtnReserveATable, R.id.mLinRestaurantNumber, R.id.mLinRestaurantEmail })
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mBtnReserveATable:
@@ -136,6 +157,33 @@ public class RestaurantCompleteDetails extends BaseActivity {
                     //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
                 }*/
+                break;
+
+            case R.id.mLinRestaurantNumber:
+
+                intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + mRestaurantListingData.getPhoneNumber()));
+                mActivity.startActivity(intent);
+
+                break;
+
+            case R.id.mLinRestaurantEmail:
+
+                String[] TO = {mRestaurantListingData.getEmail()};
+                String[] CC = {""};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                //emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Queries");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Please send more details about the restaurant.");
+                try {
+                    mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                }
+
                 break;
         }
     }

@@ -21,6 +21,8 @@
     <string name="prefName">userLoginPref</string>
     <string name="prefUserData">userLoginData</string>
     <string name="prefWalletData">walletData</string>
+    <string name="prefDubaiOperaTourData">dubaiOperaTourData</string>
+    <string name="prefGiftCardData">giftCardData</string>
 
     <string name="NotificationSwitchValue">notificationSwitchValue</string>
     <string name="PromotionSwitchValue">promotionSwitchValue</string>
@@ -948,17 +950,12 @@
     <string name="from">FROM</string>
     <string name="aed">AED</string>
 
-    <!--Dubai Opera Tour activity -->
+    <!--Dubai Opera Tour / Gift Card activity -->
     <string name="bookNow">BOOK NOW</string>
-    <string name="detail">Embark on an adventure to discover Dubai’s iconic cultural destination, blending visionary architecture with moments of magic.</string>
-    <string name="experience">The Experience:</string>
-    <string name="experience_details">Listen to our stories about Dubai Opera’s unique heritage and breathtaking design.\nView our exclusive VIP hospitality suite.\nAccess our unique multi-format auditorium</string>
-    <string name="expect">What you will expect:</string>
-    <string name="expect_details">Dubai Opera is located in Downtown Dubai on Sheikh Mohammed Bin Rashid Boulevard.\nTours last approximately one hour and depart from the Box Office.\nTours are conducted in English or Arabic. Other languages are available on advance request.</string>
-    <string name="pubic_tour">Public Tours</string>
-    <string name="pubic_tour_detail">Public Tours are available on most days. Please check dubaiopera.com for the schedule. Tickets can be purchased online and at the Box Office, either in advance or on the day of the tour (subject to availability).</string>
-    <string name="school_private_tour">School and Private Tours</string>
-    <string name="school_private_tour_detail">Please contact tours@dubaiopera.com for pricing and additional information.</string>
+    <string name="venue">Venue</string>
+    <string name="date">Date</string>
+    <string name="venue_detail">Dubai Opera, Dubai</string>
+    <string name="date_detail">VALID FOR 12 MONTHS</string>
 
     <!--about push notification -->
     <string name="google_app_id">102673554145</string>
@@ -966,4 +963,5 @@
     <string name="share_using">Select App to Share Text and Image</string>
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>
+
 </resources>

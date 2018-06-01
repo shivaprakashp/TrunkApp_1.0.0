@@ -177,21 +177,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_code_icon" />
+                        android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerCountryCode"
                         style="@style/label_black"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.7"
                         font:name="Montserrat-Regular" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edit_edtMobile"
