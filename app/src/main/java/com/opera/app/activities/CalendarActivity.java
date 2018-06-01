@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -268,13 +269,19 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 ((TextView) v).setTextColor(Color.BLACK);
                 int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
 
+                String date ;
+                if (String.valueOf(selectedDate).length()==1){
+                    date = "0"+String.valueOf(selectedDate);
+                }else {
+                    date = String.valueOf(selectedDate);
+                }
                 String appendCalendar;
                 if (String.valueOf(currentMonth).length()==1){
                     appendCalendar = String.valueOf(currentYear)+"0"+String.valueOf(currentMonth+1)+
-                            String.valueOf(selectedDate);
+                            String.valueOf(date);
                 }else {
                     appendCalendar = String.valueOf(currentYear)+String.valueOf(currentMonth+1)+
-                            String.valueOf(selectedDate);
+                            String.valueOf(date);
                 }
                 initRecycle(appendCalendar);
 

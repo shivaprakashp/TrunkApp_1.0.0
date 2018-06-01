@@ -39,6 +39,10 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         bindViews();
 
+        //initInfoBip();
+    }
+
+    private void initInfoBip(){
         new MobileMessaging.Builder(getApplication())
                 .build();
     }
