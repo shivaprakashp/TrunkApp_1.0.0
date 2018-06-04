@@ -26,16 +26,25 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/txt_testing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Testing"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textsize_vlarge"
+            android:visibility="gone" />
+
         <com.opera.app.customwidget.TextViewWithFont
             android:id="@+id/txtWalletEventTitle"
             style="@style/label_black_vlarge"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
+            android:text="No data available"
             font:name="Montserrat-Bold"
-            font:type="bold"
-            tools:text="No data available" />
+            font:type="bold" />
     </RelativeLayout>
 
 </ScrollView>

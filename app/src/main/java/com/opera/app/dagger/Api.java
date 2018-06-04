@@ -6,7 +6,6 @@ import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
-import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -21,8 +20,6 @@ import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.booktable.ReserveResponse;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
-import com.opera.app.pojo.settings.GetSettingsPojo;
-import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.pojo.wallet.WalletDetails;
 
 import retrofit2.Call;
@@ -98,5 +95,11 @@ public interface Api {
     @POST("accounts/extended/setUserSettings/")
     Call<FavouriteAndSettingsResponseMain> MarkFavouriteForEvent(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                                  @Body FavouriteAndSettings mFavouriteAndSettings);
+
+    @POST("events/extended/GetEvents/")
+    Call<AllEvents> GetDubaiOperaTour(@Query("type") String eventType);
+
+    @POST("events/extended/GetEvents/")
+    Call<AllEvents> GetGiftCard(@Query("type") String eventType);
 
 }
