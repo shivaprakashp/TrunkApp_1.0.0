@@ -154,11 +154,5 @@
         </service>
 
         <receiver android:name="org.infobip.mobile.messaging.notification.NotificationTapReceiver" />
-
-        <!-- /Mobile Messaging components -->
-        <activity android:name=".activities.RestaurantCompleteDetails"
-            android:screenOrientation="portrait"></activity>
-
     </application>
-
 </manifest>
