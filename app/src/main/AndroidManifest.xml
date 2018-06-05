@@ -107,6 +107,9 @@
             android:name=".activities.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.PromotionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.DubaiOperaTourActivity"
             android:screenOrientation="portrait" />
         <activity

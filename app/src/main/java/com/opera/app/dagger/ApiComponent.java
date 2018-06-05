@@ -10,6 +10,7 @@ import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.OtherRestaurantsActivity;
+import com.opera.app.activities.PromotionsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
 import com.opera.app.activities.SettingsActivity;
@@ -48,6 +49,7 @@ public interface ApiComponent {
     void inject(GenresEventsFragment mGenresEventsFragment);
     void inject(WalletActivity walletActivity);
     void inject(NotificationActivity notificationActivity);
+    void inject(PromotionsActivity promotionsActivity);
     void inject(WhatsOnPagerAdapter mWhatsOnPagerAdapter);
     void inject(AdapterEvent mAdapterEvent);
     void inject(DubaiOperaTourActivity mDubaiOperaTourActivity);
