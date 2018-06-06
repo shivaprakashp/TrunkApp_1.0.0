@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.opera.app.database.events.EventDetailsDB;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.database.feedback.FeedbackListingDB;
 import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.database.restaurants.DatabaseHelper;
@@ -31,6 +32,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL(EventGenresDB.CREATE_TABLE_GENRES_LISTING);
         db.execSQL(NotificationDetailsDB.CREATE_TABLE_NOTIFICATION);
         db.execSQL(PromotionDetailsDB.CREATE_TABLE_PROMOTION);
+        db.execSQL(FeedbackListingDB.CREATE_TABLE_FEEDBACK);
     }
 
     @Override
@@ -43,6 +45,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + EventGenresDB.TABLE_GENRES_LISTING);
         db.execSQL("DROP TABLE IF EXISTS " + NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + FeedbackListingDB.TABLE_FEEDBACK_DETAILS);
         onCreate(db);
     }
 

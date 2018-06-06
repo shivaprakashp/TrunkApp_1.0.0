@@ -22,28 +22,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <com.opera.app.customwidget.CircleImageView
                 android:id="@+id/img_profile_chooser"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="5dp"
                 android:layout_below="@+id/header_cover_image"
                 android:layout_centerHorizontal="true"
+                android:layout_marginRight="5dp"
                 android:elevation="5dp"
                 android:onClick="imageClick"
                 android:src="@drawable/ic_user_blank" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:padding="8dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtShowName"
                     style="@style/label_black_large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
                     android:text="Feedback on the show" />
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtShowDesc"
                     style="@style/label_black_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,6 +62,7 @@
                     android:text="Feedback on the show" />
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtShowDateAndTime"
                     style="@style/label_black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
