@@ -17,6 +17,7 @@ import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.NotificationActivity;
+import com.opera.app.activities.PromotionsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.activities.WalletActivity;
@@ -226,7 +227,7 @@ public class MenuFragment extends BaseFragment {
         menu_promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), NotificationActivity.class);
+                intent = new Intent(getActivity(), PromotionsActivity.class);
                 getActivity().startActivity(intent);
             }
         });

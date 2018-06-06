@@ -840,6 +840,7 @@
     <string name="walletUpcoming">القادمة</string>
     <string name="walletComplete">منجز</string>
     <string name="dateOfReserve">تاريخ الحجز:</string>
+    <string name="mealPeriod">فترة الوجبة:</string>
     <string name="preferredTime">الوقت المفضل:</string>
     <string name="bookReference">رقم مرجع الحجز:</string>
     <string name="bookDate">تاريخ الحجز:</string>

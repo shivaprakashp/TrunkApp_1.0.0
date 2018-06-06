@@ -35,7 +35,7 @@ public class MainApplication extends Application {
 
         setFont();
         initDagger();
-        initInfoBip();
+
     }
 
     private void setFont(){
@@ -52,14 +52,6 @@ public class MainApplication extends Application {
                 .apiModule(new ApiModule(UrlUtils.baseUrl))
                 .build();
 
-    }
-
-    private void initInfoBip(){
-        new MobileMessaging.Builder(this).withDisplayNotification(new NotificationSettings.Builder(this)
-                .withMultipleNotifications()
-                .withDefaultIcon(R.mipmap.ic_launcher)
-                .build())
-                .build();
     }
 
     public Typeface getFontLight() {

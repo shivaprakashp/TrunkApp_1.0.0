@@ -8,6 +8,8 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -21,6 +23,8 @@ import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -53,6 +57,11 @@ public class DubaiOperaTourActivity extends BaseActivity {
     @BindView(R.id.txt_tour_details)
     TextViewWithFont mTxtTourDetails;
 
+    @BindView(R.id.tour_cover_image)
+    ImageView mIvTourCoverImage;
+
+    @BindView(R.id.progressImageLoader)
+    ProgressBar mProgressImageLoader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,6 +134,18 @@ public class DubaiOperaTourActivity extends BaseActivity {
                 try {
                     if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                         mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
+                        Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
+                                .into(mIvTourCoverImage, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        mProgressImageLoader.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onError() {
+                                        mProgressImageLoader.setVisibility(View.GONE);
+                                    }
+                                });
                         manager.storeTourDataOffline((AllEvents) response.body());
                     }
                 } catch (Exception e) {

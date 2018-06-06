@@ -925,8 +925,11 @@
     <string name="search">Search</string>
     <string name="whats_on">What\'s on</string>
     <string name="empty"></string>
+    <string name="share_using">Select App to Share Text and Image</string>
+    <string name="error_youtube">Error playing youtube video</string>
 
     <!--Wallet activity -->
+
     <string name="walletTitle">Wallet</string>
     <string name="walletEvents">EVENTS</string>
     <string name="walletRestaurant">RESTAURANTS</string>
@@ -960,7 +963,7 @@
     <!--about push notification -->
     <string name="google_app_id">102673554145</string>
     <string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>
-    <string name="share_using">Select App to Share Text and Image</string>
+
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>
 

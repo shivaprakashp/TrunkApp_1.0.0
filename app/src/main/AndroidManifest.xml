@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -107,6 +108,9 @@
             android:name=".activities.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.PromotionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.DubaiOperaTourActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -157,11 +161,5 @@
         </service>
 
         <receiver android:name="org.infobip.mobile.messaging.notification.NotificationTapReceiver" />
-
-        <!-- /Mobile Messaging components -->
-        <activity android:name=".activities.RestaurantCompleteDetails"
-            android:screenOrientation="portrait"></activity>
-
     </application>
-
 </manifest>

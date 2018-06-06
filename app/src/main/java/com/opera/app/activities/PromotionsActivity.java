@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class NotificationActivity extends BaseActivity {
+public class PromotionsActivity extends BaseActivity {
 
     private Activity mActivity;
     private ArrayList<Notification> mNotification = new ArrayList<>();
@@ -65,20 +65,19 @@ public class NotificationActivity extends BaseActivity {
             if (response.body() != null)
                 try {
                     if (mNotificationPojo.getStatus().equalsIgnoreCase("success")) {
-                        if(mNotificationPojo.getNotificationType().equalsIgnoreCase("notification")) {
+                        /*if(mNotificationPojo.getNotificationType().equalsIgnoreCase("notification")) {
                             txtToolbarName.setText(getString(R.string.menu_notification));
                             dbManagerNotification.open();
                             dbManagerNotification.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
                             dbManagerNotification.insertNotifications(mNotificationPojo.getNotification());
                             fetchDataFromNotificationDB();
                         }
-                        /*else {
-                            txtToolbarName.setText(getString(R.string.menu_promotion));
+                        else {*/
                             dbManagerPromotion.open();
                             dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
                             dbManagerPromotion.insertPromotions(mNotificationPojo.getNotification());
                             fetchDataFromPromotionDB();
-                        }*/
+                        //}
                     }
                 } catch (Exception e) {
                     Log.e("Message", e.getMessage());
@@ -106,7 +105,7 @@ public class NotificationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         // Inflate the layout for this fragment
-        mActivity = NotificationActivity.this;
+        mActivity = PromotionsActivity.this;
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.common_recycler);
@@ -114,12 +113,12 @@ public class NotificationActivity extends BaseActivity {
         injectView();
         initView();
         initToolbar();
-        getNotifications();
+        getPromotions();
 
     }
 
     private void injectView() {
-        ((MainApplication) getApplication()).getNetComponent().inject(NotificationActivity.this);
+        ((MainApplication) getApplication()).getNetComponent().inject(PromotionsActivity.this);
         api = retrofit.create(Api.class);
     }
 
@@ -128,7 +127,7 @@ public class NotificationActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.menu_notification));
+        txtToolbarName.setText(getString(R.string.menu_promotion));
 
         mAdapter = new NotificationAdapter(mActivity, mNotification);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -144,8 +143,8 @@ public class NotificationActivity extends BaseActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void getNotifications() {
-        MainController controller = new MainController(NotificationActivity.this);
+    private void getPromotions() {
+        MainController controller = new MainController(PromotionsActivity.this);
         controller.getNotificationsDetails(taskComplete, api);
     }
 
@@ -155,12 +154,6 @@ public class NotificationActivity extends BaseActivity {
             onBackPressed();
         }
     };
-
-    private void fetchDataFromNotificationDB() {
-        mAdapter.RefreshList(dbManagerNotification.fetchNotificationDetails());
-        dbManagerNotification.close();
-        mAdapter.notifyDataSetChanged();
-    }
 
     private void fetchDataFromPromotionDB() {
         mAdapter.RefreshList(dbManagerPromotion.fetchPromotionDetails());
