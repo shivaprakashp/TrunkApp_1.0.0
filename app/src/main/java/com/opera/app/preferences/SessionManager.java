@@ -12,6 +12,7 @@ import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.profile.EditProfileResponse;
+import com.opera.app.preferences.wallet.WalletPreference;
 
 public class SessionManager {
 
@@ -69,19 +70,22 @@ public class SessionManager {
     }
 
     //clear login session
-    public void logoutUser() {
+    public void logoutUser(Activity mActivity) {
         //Put all table names which should get cleared on logout
-        DeleteAllTables();
+        DeleteAllTables(mActivity);
         //clear all data from shared preference
         editor.clear();
         editor.commit();
         mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
     }
 
-    private void DeleteAllTables() {
+    public void DeleteAllTables(Activity mActivity) {
         mEventListingDB.open();
         mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
         mEventListingDB.close();
+
+        WalletPreference preference = new WalletPreference(mActivity);
+        preference.deleteWalletData();
     }
 
     /*Update Settings*/

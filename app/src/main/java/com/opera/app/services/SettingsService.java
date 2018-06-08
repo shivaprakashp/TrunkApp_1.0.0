@@ -138,7 +138,7 @@ public class SettingsService extends IntentService {
                                 startActivity(intent);
                                 mActivity.finish();
                             } else if (mFrom.equalsIgnoreCase(getResources().getString(R.string.logout))) {
-                                mSessionManager.logoutUser();
+                                mSessionManager.logoutUser(mActivity);
                             }
                         }
                     } else {
