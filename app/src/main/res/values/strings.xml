@@ -283,7 +283,7 @@
     <string name="errorDob">Your date of birth may not be blank</string>
     <string name="errorCountryCode">Your Country Code may not be blank</string>
     <string name="errorMobile">Your Mobile Number must be filled in</string>
-    <string name="errorLengthMobile">Your Mobile Number length should be between 9 to 10 digit</string>
+    <string name="errorLengthMobile">Your Mobile Number length should be 9 or 10 digit</string>
     <string name="errorCity">Your City name may not be blank</string>
     <string name="errorState">Your Emirate or State name may not be blank</string>
     <string name="errorCountry">Your Country Name name may not be blank</string>

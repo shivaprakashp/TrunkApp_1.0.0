@@ -22,8 +22,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     private ArrayList<Notification> mNotificationList;
     private Activity mActivity;
-    private SessionManager manager;
     private CustomToast customToast;
+    private SessionManager manager;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTxtNotifyTitle, mTxtNotifyDesc, mTxtPriceFrom;

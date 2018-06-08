@@ -105,7 +105,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
         toolbar.setVisibility(View.VISIBLE);
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(mRestaurantListingData.getRestName());
+        txtToolbarName.setText(getResources().getString(R.string.dining));
 
         manager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);

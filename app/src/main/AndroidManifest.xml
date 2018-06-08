@@ -96,7 +96,6 @@
         <activity
             android:name=".activities.TestAct"
             android:screenOrientation="portrait" >
-
         </activity>
 
         <service android:name=".services.SettingsService" />

@@ -6,6 +6,7 @@ import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.feedback.FeedbackResponseParent;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -101,5 +102,10 @@ public interface Api {
 
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetGiftCard(@Query("type") String eventType);
+
+    @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
+    Call<FeedbackResponseParent> getFeedbackDetails();
+
+
 
 }

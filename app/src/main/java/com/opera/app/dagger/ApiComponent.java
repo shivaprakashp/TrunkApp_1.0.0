@@ -4,6 +4,7 @@ import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.EditProfileActivity;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.activities.FeedbackActivity;
 import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.LoginActivity;
 import com.opera.app.activities.MainActivity;
@@ -54,4 +55,5 @@ public interface ApiComponent {
     void inject(AdapterEvent mAdapterEvent);
     void inject(DubaiOperaTourActivity mDubaiOperaTourActivity);
     void inject(GiftCardActivity mGiftCardActivity);
+    void inject(FeedbackActivity mFeedbackActivity);
 }

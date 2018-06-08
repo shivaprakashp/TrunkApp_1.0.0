@@ -158,6 +158,13 @@ public class MainController {
         listener.dataLoad(call);
     }
 
+    public void getFeedbackDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.getFeedbackDetails();
+        properties.setRequestKey(AppConstants.GETFEEDBACKDETAILS.GETFEEDBACKDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
     public void updateSettingsAndFavourite(TaskComplete taskComplete, Api api, FavouriteAndSettings mFavouriteAndSettings) {
         Call call = api.MarkFavouriteForEvent(contentType, manager.getUserLoginData().getData().getToken(), mFavouriteAndSettings);
         properties.setRequestKey(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT);
