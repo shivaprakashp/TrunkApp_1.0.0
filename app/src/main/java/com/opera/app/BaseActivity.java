@@ -12,16 +12,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.opera.app.customwidget.CustomToast;
 
-import org.infobip.mobile.messaging.BroadcastParameter;
 import org.infobip.mobile.messaging.Event;
-import org.infobip.mobile.messaging.Message;
 import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
-import org.infobip.mobile.messaging.api.data.MobileApiData;
 import org.infobip.mobile.messaging.geo.MobileGeo;
 import org.infobip.mobile.messaging.storage.MessageStore;
 import org.json.JSONException;
@@ -75,7 +71,7 @@ public class BaseActivity extends AppCompatActivity {
                 .build())
                 .build();
 
-        Log.i("regId", mobileMessaging.getPushRegistrationId());
+        //Log.i("regId", mobileMessaging.getPushRegistrationId());
     }
 
     protected void bindViews() {
