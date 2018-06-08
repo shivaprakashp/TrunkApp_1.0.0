@@ -23,6 +23,7 @@ import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
 import org.infobip.mobile.messaging.api.data.MobileApiData;
 import org.infobip.mobile.messaging.geo.MobileGeo;
+import org.infobip.mobile.messaging.geo.geofencing.Geofencing;
 import org.infobip.mobile.messaging.storage.MessageStore;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,6 +127,8 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         MobileGeo.getInstance(this).activateGeofencing();
+        Geofencing.getInstance(this).startGeoMonitoring();
+
     }
 
     @Override

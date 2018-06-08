@@ -77,6 +77,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private CalendarRecyclerView adapter;
     private List<String> eventDates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
