@@ -18,7 +18,6 @@ import com.opera.app.customwidget.CustomToast;
 import org.infobip.mobile.messaging.Event;
 import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
-import org.infobip.mobile.messaging.geo.MobileGeo;
 import org.infobip.mobile.messaging.storage.MessageStore;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,7 +120,7 @@ public class BaseActivity extends AppCompatActivity {
             return;
         }
 
-        MobileGeo.getInstance(this).activateGeofencing();
+//        MobileGeo.getInstance(this).activateGeofencing();
     }
 
     @Override
