@@ -44,7 +44,6 @@
         <activity
             android:name=".activities.LanguageActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

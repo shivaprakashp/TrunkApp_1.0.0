@@ -75,7 +75,7 @@ public class BaseActivity extends AppCompatActivity {
                 .build())
                 .build();
 
-        Log.i("regId", mobileMessaging.getPushRegistrationId());
+       /* Log.i("regId", mobileMessaging.getPushRegistrationId());*/
     }
 
     protected void bindViews() {

@@ -46,7 +46,7 @@ public class TestAct extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_act);
 
-        activity=TestAct.this;
+        activity = TestAct.this;
 
         btnOpenApple = (Button) findViewById(R.id.btnOpenApple);
         btnEmbedUrl = (Button) findViewById(R.id.btnEmbedUrl);
@@ -56,7 +56,7 @@ public class TestAct extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("apple-music://itunes.apple.com/us/album/haçienda-classiçal/1159323021?ign-refClientId=3zRt4FTz37xz4e8z9mGzY5aaMjsT"));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("apple-music://itunes.apple.com/us/album/views/1108737195"));
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -68,9 +68,9 @@ public class TestAct extends Activity {
         btnEmbedUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(activity,CommonWebViewActivity.class);
-                in.putExtra("URL","https://embed.music.apple.com/us/album/haçienda-classiçal/1159323021");
-                in.putExtra("Header","Home");
+                Intent in = new Intent(activity, CommonWebViewActivity.class);
+                in.putExtra("URL", "https://embed.music.apple.com/us/album/haçienda-classiçal/1159323021");
+                in.putExtra("Header", "Home");
                 startActivity(in);
             }
         });
@@ -78,9 +78,13 @@ public class TestAct extends Activity {
         btnItunesUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(activity,CommonWebViewActivity.class);
-                in.putExtra("URL","https://itunes.apple.com/us/album/ha%C3%A7ienda-classi%C3%A7al/1159323021");
-                in.putExtra("Header","Home");
+                Intent in = new Intent(activity, CommonWebViewActivity.class);
+//                in.putExtra("URL","https://itunes.apple.com/us/album/ha%C3%A7ienda-classi%C3%A7al/1159323021");
+                in.putExtra("URL","https://itunes.apple.com/us/album/hacienda/1164539623");             // Second URL
+//                in.putExtra("URL", "https://itunes.apple.com/us/album/views/1108737195");             // Third URL
+
+
+                in.putExtra("Header", "Home");
                 startActivity(in);
             }
         });
