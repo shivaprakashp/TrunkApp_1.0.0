@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -101,8 +102,8 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.txtTicketPrice)
     TextView mTxtTicketPrice;
 
-    /*@BindView(R.id.txtShowmore)
-    TextView txtShowmore;*/
+    @BindView(R.id.txtYouMightAlsoLike)
+    TextView txtYouMightAlsoLike;
 
     @BindView(R.id.txtHeaderEventName)
     TextView txtHeaderEventName;
@@ -122,6 +123,9 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.linearPlay)
     LinearLayout mLinearPlay;
 
+    @BindView(R.id.linearYouMightLike)
+    LinearLayout linearYouMightLike;
+
     @BindView(R.id.linearShare)
     RelativeLayout linearShare;
 
@@ -133,6 +137,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.img_profile)
     ImageView mImgProfile;
+
+    @BindView(R.id.nestedScrollTxt)
+    NestedScrollView nestedScrollTxt;
 
 
     @Override
@@ -272,7 +279,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventImage = mEventListingData.get(0).getImage();
         mEventYoutubeVideo = mEventListingData.get(0).getVideo();
         mEventURL = mEventListingData.get(0).getSharedContentText();
-        EventInternalName= mEventListingData.get(0).getInternalName();
+        EventInternalName = mEventListingData.get(0).getInternalName();
 
         if (mEventYoutubeVideo.equalsIgnoreCase("")) {
             mLinearPlay.setVisibility(View.GONE);
@@ -306,8 +313,16 @@ public class EventDetailsActivity extends BaseActivity {
 
             }*/
 
-            adapterFavGenres.RefreshList(mEventsWithSameGenres);
-            mAdapter.RefreshList(mGenresListing);
+            if (mEventsWithSameGenres.size() > 0) {
+                adapterFavGenres.RefreshList(mEventsWithSameGenres);
+                mAdapter.RefreshList(mGenresListing);
+                txtYouMightAlsoLike.setVisibility(View.VISIBLE);
+            } else {
+               /* txtYouMightAlsoLike.setVisibility(View.GONE);
+                linearYouMightLike.setBackgroundColor(getResources().getColor(R.color.black));
+                nestedScrollTxt.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));*/
+            }
+
         }
 
         mEventDetailsDB.close();

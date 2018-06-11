@@ -72,6 +72,10 @@ public interface AppConstants {
         String GETNOTIFICATIONDETAILS = "GETNOTIFICATIONDETAILS";
     }
 
+    interface GETPROMOTIONDETAILS {
+        String GETPROMOTIONDETAILS = "GETPROMOTIONDETAILS";
+    }
+
     interface GETFEEDBACKDETAILS {
         String GETFEEDBACKDETAILS = "GETFEEDBACKDETAILS";
     }

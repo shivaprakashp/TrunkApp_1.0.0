@@ -171,6 +171,7 @@
                             android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 
                         <android.support.v4.widget.NestedScrollView
+                            android:id="@+id/nestedScrollTxt"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:layout_margin="10dp">
@@ -179,7 +180,7 @@
                                 android:id="@+id/expandableTextViewInfo"
                                 style="@style/label_white"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:text="" />
                         </android.support.v4.widget.NestedScrollView>
                         <!--<LinearLayout
@@ -237,6 +238,7 @@
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtYouMightAlsoLike"
                     style="@style/label_light_gray_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -38,7 +38,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="0.9"
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
@@ -66,7 +66,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_weight="0.1"
                 android:gravity="center"
                 android:orientation="vertical">
 

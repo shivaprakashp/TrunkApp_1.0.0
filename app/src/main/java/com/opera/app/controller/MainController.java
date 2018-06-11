@@ -158,6 +158,13 @@ public class MainController {
         listener.dataLoad(call);
     }
 
+    public void getPromotionDetails(TaskComplete taskComplete, Api api) {
+        Call call = api.getPromotionDetails();
+        properties.setRequestKey(AppConstants.GETPROMOTIONDETAILS.GETPROMOTIONDETAILS);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
     public void getFeedbackDetails(TaskComplete taskComplete, Api api) {
         Call call = api.getFeedbackDetails();
         properties.setRequestKey(AppConstants.GETFEEDBACKDETAILS.GETFEEDBACKDETAILS);

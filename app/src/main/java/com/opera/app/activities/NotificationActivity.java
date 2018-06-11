@@ -162,11 +162,11 @@ public class NotificationActivity extends BaseActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-    private void fetchDataFromPromotionDB() {
+    /*private void fetchDataFromPromotionDB() {
         mAdapter.RefreshList(dbManagerPromotion.fetchPromotionDetails());
         dbManagerPromotion.close();
         mAdapter.notifyDataSetChanged();
-    }
+    }*/
 
     @Override
     protected void onStop(){
