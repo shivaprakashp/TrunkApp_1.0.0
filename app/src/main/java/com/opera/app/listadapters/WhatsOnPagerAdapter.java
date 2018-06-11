@@ -126,7 +126,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }
 
-        String img = eventObject.getImage()+"?w=150&h=100&iar=1";
+        String img = eventObject.getImage()+"?w=200&h=100&iar=0";
         Picasso.with(mActivity).load(img).fit().centerCrop()
                 .into(imgEvent, new Callback() {
                     @Override

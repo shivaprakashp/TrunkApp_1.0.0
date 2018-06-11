@@ -123,15 +123,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         updateValues(lastDateOfMonth,todayDate,currentMonth);
         scrollBarToDate();
 
-        String appendCalendar;
-        if (String.valueOf(currentMonth).length()==1){
-            appendCalendar = String.valueOf(currentYear)+"0"+String.valueOf(currentMonth+1)+
-                    String.valueOf(todayDate);
-        }else {
-            appendCalendar = String.valueOf(currentYear)+String.valueOf(currentMonth+1)+
-                    String.valueOf(todayDate);
-        }
-        initRecycle(appendCalendar);
+        initRecycle(updateDate(todayDate, currentMonth, currentYear));
     }
 
     private void initToolBar(){
@@ -183,9 +175,6 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
            adapter.notifyDataSetChanged();
        //    adapter = new CalendarRecyclerView(mEventListingData);
        }
-
-
-
     }
 
     private void scrollBarToDate(){
@@ -269,26 +258,30 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 v.setBackgroundDrawable(drawable);
                 ((TextView) v).setTextColor(Color.BLACK);
                 int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
-
-                String date ;
-                if (String.valueOf(selectedDate).length()==1){
-                    date = "0"+String.valueOf(selectedDate);
-                }else {
-                    date = String.valueOf(selectedDate);
-                }
-                String appendCalendar;
-                if (String.valueOf(currentMonth).length()==1){
-                    appendCalendar = String.valueOf(currentYear)+"0"+String.valueOf(currentMonth+1)+
-                            String.valueOf(date);
-                }else {
-                    appendCalendar = String.valueOf(currentYear)+String.valueOf(currentMonth+1)+
-                            String.valueOf(date);
-                }
-                initRecycle(appendCalendar);
-
+                initRecycle(updateDate(selectedDate, currentMonth, currentYear));
             }
         }
 
+    }
+
+    private String updateDate( int date, int month, int year){
+
+        String appendCalendar;
+
+        if (String.valueOf(month).length()==1){
+            appendCalendar = String.valueOf(year)+"0"+String.valueOf(month+1);
+        }else {
+            appendCalendar = String.valueOf(year)+String.valueOf(month+1);
+        }
+
+
+        if (String.valueOf(date).length()==1){
+            appendCalendar = appendCalendar+"0"+String.valueOf(date);
+        }else {
+            appendCalendar = appendCalendar+String.valueOf(date);
+        }
+
+        return appendCalendar;
     }
 
     private void removeOtherSelectedOnClick(){
