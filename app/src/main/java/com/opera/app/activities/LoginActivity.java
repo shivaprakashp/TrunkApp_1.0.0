@@ -50,6 +50,7 @@ public class LoginActivity extends BaseActivity {
 
     private Activity mActivity;
     EditTextWithFont username, password;
+    private SessionManager mSessionManager;
 
     @BindView(R.id.tv_forgotPassword)
     TextView mTextForgotPwd;
@@ -87,7 +88,8 @@ public class LoginActivity extends BaseActivity {
             if (mRequestKey.equals(AppConstants.LOGIN.LOGIN)) {
                 if (response.body() != null) {
                     mEventListingDB.open();
-                    mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
+                    mSessionManager.DeleteAllTables(mActivity);
+//                    mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
                     loginSession((LoginResponse) response.body());
                 } else if (response.errorBody() != null) {
                     try {
@@ -145,7 +147,7 @@ public class LoginActivity extends BaseActivity {
     private void initView() {
         ((MainApplication) getApplication()).getNetComponent().inject(LoginActivity.this);
         api = retrofit.create(Api.class);
-
+        mSessionManager=new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
         mEventListingDB = new EventListingDB(mActivity);
         //edittext
