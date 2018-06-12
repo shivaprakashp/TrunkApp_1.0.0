@@ -14,6 +14,7 @@ import com.opera.app.pojo.notifications.NotificationDetails;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.pojo.profile.PostChangePassword;
+import com.opera.app.pojo.promotions.PromotionsPojo;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.pojo.restaurant.RestaurantListing;
@@ -92,6 +93,9 @@ public interface Api {
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
     Call<NotificationDetails> getNotificationDetails();
+
+    @POST("promotion/extended/GetPromotions")
+    Call<PromotionsPojo> getPromotionDetails();
 
     @POST("accounts/extended/setUserSettings/")
     Call<FavouriteAndSettingsResponseMain> MarkFavouriteForEvent(@Header("Content-Type") String content, @Header("Authorization") String token,

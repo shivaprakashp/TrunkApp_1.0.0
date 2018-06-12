@@ -19,9 +19,12 @@ import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.NotificationAdapter;
+import com.opera.app.listadapters.PromotionsAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.notifications.Notification;
 import com.opera.app.pojo.notifications.NotificationDetails;
+import com.opera.app.pojo.promotions.PromotionDetails;
+import com.opera.app.pojo.promotions.PromotionsPojo;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -36,8 +39,8 @@ import retrofit2.Retrofit;
 public class PromotionsActivity extends BaseActivity {
 
     private Activity mActivity;
-    private ArrayList<Notification> mNotification = new ArrayList<>();
-    private NotificationAdapter mAdapter;
+    private ArrayList<PromotionDetails> mPromotionDetails = new ArrayList<>();
+    private PromotionsAdapter mAdapter;
     private NotificationDetailsDB dbManagerNotification;
     private PromotionDetailsDB dbManagerPromotion;
 
@@ -58,26 +61,34 @@ public class PromotionsActivity extends BaseActivity {
     private Api api;
     TextViewWithFont txtToolbarName;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Inflate the layout for this fragment
+        mActivity = PromotionsActivity.this;
+        //For Language setting
+        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
+        setContentView(R.layout.common_recycler);
+
+        injectView();
+        initView();
+        initToolbar();
+        getPromotions();
+
+    }
+
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            NotificationDetails mNotificationPojo = (NotificationDetails) response.body();
+            PromotionsPojo mPromotionsPojo = (PromotionsPojo) response.body();
             if (response.body() != null)
                 try {
-                    if (mNotificationPojo.getStatus().equalsIgnoreCase("success")) {
-                        /*if(mNotificationPojo.getNotificationType().equalsIgnoreCase("notification")) {
-                            txtToolbarName.setText(getString(R.string.menu_notification));
-                            dbManagerNotification.open();
-                            dbManagerNotification.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
-                            dbManagerNotification.insertNotifications(mNotificationPojo.getNotification());
-                            fetchDataFromNotificationDB();
-                        }
-                        else {*/
+                    if (mPromotionsPojo.getStatus().equalsIgnoreCase("success")) {
                             dbManagerPromotion.open();
                             dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
-                            dbManagerPromotion.insertPromotions(mNotificationPojo.getNotification());
+                            dbManagerPromotion.insertPromotions(mPromotionsPojo.getPromotionsData());
                             fetchDataFromPromotionDB();
-                        //}
                     }
                 } catch (Exception e) {
                     Log.e("Message", e.getMessage());
@@ -96,26 +107,11 @@ public class PromotionsActivity extends BaseActivity {
 
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
-
+            dbManagerPromotion.open();
+            fetchDataFromPromotionDB();
+            dbManagerPromotion.close();
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Inflate the layout for this fragment
-        mActivity = PromotionsActivity.this;
-        //For Language setting
-        LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.common_recycler);
-
-        injectView();
-        initView();
-        initToolbar();
-        getPromotions();
-
-    }
 
     private void injectView() {
         ((MainApplication) getApplication()).getNetComponent().inject(PromotionsActivity.this);
@@ -129,7 +125,7 @@ public class PromotionsActivity extends BaseActivity {
         txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_promotion));
 
-        mAdapter = new NotificationAdapter(mActivity, mNotification);
+        mAdapter = new PromotionsAdapter(mActivity, mPromotionDetails);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerNotificatons.setLayoutManager(mLayoutManager);
         mRecyclerNotificatons.setItemAnimator(new DefaultItemAnimator());
@@ -145,7 +141,7 @@ public class PromotionsActivity extends BaseActivity {
 
     private void getPromotions() {
         MainController controller = new MainController(PromotionsActivity.this);
-        controller.getNotificationsDetails(taskComplete, api);
+        controller.getPromotionDetails(taskComplete, api);
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

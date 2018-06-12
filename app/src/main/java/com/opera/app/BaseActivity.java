@@ -56,12 +56,12 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         bindViews();
 
-        initInfoBip();
+       /* initInfoBip();
         activateGeofencing();
 
         LocalBroadcastManager
                 .getInstance(this)
-                .registerReceiver(messageReceiver, new IntentFilter(Event.MESSAGE_RECEIVED.getKey()));
+                .registerReceiver(messageReceiver, new IntentFilter(Event.MESSAGE_RECEIVED.getKey()));*/
     }
 
     private void initInfoBip(){
