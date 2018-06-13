@@ -168,10 +168,15 @@ public class EventDetailsActivity extends BaseActivity {
         mEventListingDB = new EventListingDB(mActivity);
         manager = new SessionManager(mActivity);
 
-        Intent in = getIntent();
-        EventId = in.getStringExtra("EventId");
-        EventInternalName = in.getStringExtra("EventInternalName");
-        IsFavourite = in.getStringExtra("IsFavourite");
+        try {
+            Intent in = getIntent();
+            EventId = in.getStringExtra("EventId");
+            EventInternalName = in.getStringExtra("EventInternalName");
+            IsFavourite = in.getStringExtra("IsFavourite");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         mViewpagerFavGenres.setClipToPadding(false);
         mViewpagerFavGenres.setPageMargin(20);
@@ -280,13 +285,22 @@ public class EventDetailsActivity extends BaseActivity {
         mEventYoutubeVideo = mEventListingData.get(0).getVideo();
         mEventURL = mEventListingData.get(0).getSharedContentText();
         EventInternalName = mEventListingData.get(0).getInternalName();
+        IsFavourite = mEventListingData.get(0).isFavourite();
+
+        if (manager.isUserLoggedIn()) {
+            if (IsFavourite.equalsIgnoreCase("true")) {
+                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
+            } else {
+                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+            }
+        }
 
         if (mEventYoutubeVideo.equalsIgnoreCase("")) {
             mLinearPlay.setVisibility(View.GONE);
         }
 
         if (mEventListingData.size() > 0) {
-            Picasso.with(mActivity).load(mEventListingData.get(0).getImage()).fit().centerCrop()
+            Picasso.with(mActivity).load(mEventListingData.get(0).getEventDetailImage()).fit()
                     .into(mCover_image, new Callback() {
                         @Override
                         public void onSuccess() {
