@@ -86,6 +86,18 @@ public class Events {
     @Expose
     private String SharedContentText;
 
+    @SerializedName("HighlightedImage")
+    @Expose
+    private String HighlightedImage;
+
+    @SerializedName("EventDetailImage")
+    @Expose
+    private String EventDetailImage;
+
+    @SerializedName("WhatsOnImage")
+    @Expose
+    private String WhatsOnImage;
+
     @SerializedName("FeedbackUrl")
     @Expose
     private String FeedbackUrl;
@@ -121,16 +133,17 @@ public class Events {
     public Events() {
     }
 
-    public Events(String image, String internalName,String EventId,String IsFavourite) {
+    public Events(String image, String internalName,String EventId,String IsFavourite,String HighlightedImage) {
         Image = image;
         InternalName = internalName;
         this.EventId=EventId;
         this.IsFavourite=IsFavourite;
+        this.HighlightedImage=HighlightedImage;
     }
 
     public Events(String EventId,String Name, String image, String internalName, String startDate,
                   String endDate, String MobileDescription,String IsFavourite,String EventUrl,
-    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText) {
+    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText,String WhatsOnImage) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -143,6 +156,31 @@ public class Events {
         this.Genre=Genre;
         this.BuyNowLink=BuyNowLink;
         this.SharedContentText=SharedContentText;
+        this.WhatsOnImage=WhatsOnImage;
+    }
+
+    public String getHighlightedImage() {
+        return HighlightedImage;
+    }
+
+    public void setHighlightedImage(String highlightedImage) {
+        HighlightedImage = highlightedImage;
+    }
+
+    public String getEventDetailImage() {
+        return EventDetailImage;
+    }
+
+    public void setEventDetailImage(String eventDetailImage) {
+        EventDetailImage = eventDetailImage;
+    }
+
+    public String getWhatsOnImage() {
+        return WhatsOnImage;
+    }
+
+    public void setWhatsOnImage(String whatsOnImage) {
+        WhatsOnImage = whatsOnImage;
     }
 
     public String getSharedContent() {

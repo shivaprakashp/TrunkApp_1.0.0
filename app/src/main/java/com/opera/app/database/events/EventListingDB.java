@@ -54,7 +54,9 @@ public class EventListingDB {
     private static final String EVENT_EVENT_URL = "EVENT_EVENT_URL";
     private static final String EVENT_SHARED_CONTENT = "EVENT_SHARED_CONTENT";
     private static final String EVENT_SHARED_CONTENT_TEXT = "EVENT_SHARED_CONTENT_TEXT";
-
+    private static final String EVENT_HIGHLIGHTED_IMAGE = "EVENT_HIGHLIGHTED_IMAGE";
+    private static final String EVENT_DETAILS_IMAGE = "EVENT_DETAILS_IMAGE";
+    private static final String EVENT_WHATS_ON_IMAGE = "EVENT_WHATS_ON_IMAGE";
     /*//Part of Genre JSON Object
     private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
     private static final String EVENT_GENRES_INTERNAL_NAME = "EVENT_GENRES_INTERNAL_NAME";
@@ -88,6 +90,9 @@ public class EventListingDB {
                     + EVENT_EVENT_URL + " TEXT,"
                     + EVENT_SHARED_CONTENT + " TEXT,"
                     + EVENT_SHARED_CONTENT_TEXT + " TEXT,"
+                    + EVENT_HIGHLIGHTED_IMAGE + " TEXT,"
+                    + EVENT_DETAILS_IMAGE + " TEXT,"
+                    + EVENT_WHATS_ON_IMAGE + " TEXT,"
                     + EVENT_GENRE + " TEXT,"
                     + EVENT_TIMES + " TEXT);";
 
@@ -165,6 +170,9 @@ public class EventListingDB {
                 contentValue.put(EVENT_SHARED_CONTENT, mEventListingData.get(i).getSharedContent());
                 contentValue.put(EVENT_SHARED_CONTENT_TEXT, mEventListingData.get(i).getSharedContentText());
 
+                contentValue.put(EVENT_HIGHLIGHTED_IMAGE, mEventListingData.get(i).getHighlightedImage());
+                contentValue.put(EVENT_DETAILS_IMAGE, mEventListingData.get(i).getEventDetailImage());
+                contentValue.put(EVENT_WHATS_ON_IMAGE, mEventListingData.get(i).getWhatsOnImage());
 
                 String mEventGenres = gson.toJson(mEventListingData.get(i).getGenreList());
                 contentValue.put(EVENT_GENRE, mEventGenres);
@@ -218,6 +226,9 @@ public class EventListingDB {
                     mEvents.setEventUrl(cursor.getString(cursor.getColumnIndex(EVENT_EVENT_URL)));
                     mEvents.setSharedContent(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT)));
                     mEvents.setSharedContentText(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT_TEXT)));
+                    mEvents.setHighlightedImage(cursor.getString(cursor.getColumnIndex(EVENT_HIGHLIGHTED_IMAGE)));
+                    mEvents.setEventDetailImage(cursor.getString(cursor.getColumnIndex(EVENT_DETAILS_IMAGE)));
+                    mEvents.setWhatsOnImage(cursor.getString(cursor.getColumnIndex(EVENT_WHATS_ON_IMAGE)));
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();
@@ -342,6 +353,9 @@ public class EventListingDB {
                     mEvents.setEventUrl(cursor.getString(cursor.getColumnIndex(EVENT_EVENT_URL)));
                     mEvents.setSharedContent(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT)));
                     mEvents.setSharedContentText(cursor.getString(cursor.getColumnIndex(EVENT_SHARED_CONTENT_TEXT)));
+                    mEvents.setHighlightedImage(cursor.getString(cursor.getColumnIndex(EVENT_HIGHLIGHTED_IMAGE)));
+                    mEvents.setEventDetailImage(cursor.getString(cursor.getColumnIndex(EVENT_DETAILS_IMAGE)));
+                    mEvents.setWhatsOnImage(cursor.getString(cursor.getColumnIndex(EVENT_WHATS_ON_IMAGE)));
 
                     /*mGenreList.setId(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_ID)));
                     mGenreList.setInternalName(cursor.getString(cursor.getColumnIndex(EVENT_GENRES_INTERNAL_NAME)));

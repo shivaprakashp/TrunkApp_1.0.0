@@ -70,7 +70,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        Picasso.with(mContext).load(mHighlightedEvents.get(position).getImage()).fit().centerCrop()
+        Picasso.with(mContext).load(mHighlightedEvents.get(position).getHighlightedImage()).fit()
                 .into(holder.image, new Callback() {
                     @Override
                     public void onSuccess() {

@@ -158,7 +158,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         }
 
 
-        Picasso.with(mActivity).load(mEventPojo.getImage())
+        Picasso.with(mActivity).load(mEventPojo.getWhatsOnImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {
