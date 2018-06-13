@@ -60,7 +60,7 @@
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tv_forgotPassword"
-                style="@style/label_burgendy_medium"
+                style="@style/label_white_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
