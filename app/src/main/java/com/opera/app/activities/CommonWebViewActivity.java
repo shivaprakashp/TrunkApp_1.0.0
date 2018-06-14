@@ -71,9 +71,6 @@ public class CommonWebViewActivity extends BaseActivity {
         URL = in.getStringExtra("URL");
         Header = in.getStringExtra("Header");
 
-//        Apple URL - https://embed.music.apple.com/us/album/haçienda-classiçal/1159323021
-        //Apple complete URL - https://itunes.apple.com/us/album/ha%C3%A7ienda-classi%C3%A7al/1159323021
-
         mWebView.loadUrl(URL);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setDomStorageEnabled(true);
@@ -87,7 +84,23 @@ public class CommonWebViewActivity extends BaseActivity {
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
+            if (URLUtil.isNetworkUrl(url)) {
+//                view.loadUrl(url);
+                return false;
+            }
+            try {
+                if (url.startsWith("apple-music")) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        OpenAnApp();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
@@ -95,6 +108,36 @@ public class CommonWebViewActivity extends BaseActivity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             mDialog.dismiss();
+        }
+    }
+
+    private boolean appInstalledOrNot(String uri) {
+        PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("test", e.toString());
+        }
+
+        return false;
+    }
+
+    private void OpenAnApp() {
+        final String appPackageName = "com.apple.android.music"; // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
         }
     }
 
