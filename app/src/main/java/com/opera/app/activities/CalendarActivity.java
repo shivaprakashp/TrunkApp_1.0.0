@@ -38,7 +38,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CalendarActivity extends BaseActivity implements View.OnClickListener {
+public class CalendarActivity extends BaseActivity implements View.OnClickListener{
 
     @BindView(R.id.recyclerCalendar)
     RecyclerView recyclerCalendar;
@@ -60,13 +60,13 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.hrsScroll)
     HorizontalScrollView scrollView;
 
-    int currentMonth = 0;
-    int currentYear = 2018;
-    int todayDate = 1;
-    int lastDateOfMonth = 30;
-    int finalCompareTodayDate = 0;
-    int finalCompareTodayMonth = 0;
-    int scrWidth;
+    int currentMonth = 0,
+            currentYear = 2018,
+            todayDate =1,
+            lastDateOfMonth=30,
+            finalCompareTodayDate = 0,
+            finalCompareTodayMonth = 0,
+            scrWidth ;
 
     //*** variable for number of dates in view
     int totalNumberElement = 9,
@@ -92,7 +92,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    private void initView() {
+    private void initView(){
         scrWidth = getResources().getDisplayMetrics().widthPixels;
         nextMonthIv.setOnClickListener(this);
         lastMonthIv.setOnClickListener(this);
@@ -100,7 +100,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         eventDates = new ArrayList<>();
     }
 
-    private void initCalendar() {
+    private void initCalendar(){
         // get current year、month and day
         Calendar calendar = Calendar.getInstance();
         currentYear = calendar.get(Calendar.YEAR);
@@ -110,54 +110,30 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         finalCompareTodayDate = todayDate;
         finalCompareTodayMonth = currentMonth;
 
-        monthTv = (TextView) findViewById(R.id.txtMonthTitle);
-        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth) + " " + currentYear);
+        monthTv = (TextView)findViewById(R.id.txtMonthTitle);
+        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
 
         //*** code for getting maximum day of month ***
-        lastDateOfMonth = Integer.parseInt(getDate(currentMonth, currentYear));
+        lastDateOfMonth  = Integer.parseInt(getDate(currentMonth,currentYear));
 
         // pass the total numbers of element you want to show in date view
         totalNumberElement = 9;
-        calculateValues(scrWidth, totalNumberElement);
+        calculateValues(scrWidth,totalNumberElement);
 
-        updateValues(lastDateOfMonth, todayDate, currentMonth);
+        updateValues(lastDateOfMonth,todayDate,currentMonth);
         scrollBarToDate();
 
-        String appendCalendar;
-        /*String todayLocaldate="";
-        if (String.valueOf(todayDate).length() == 1) {
-            todayDate= "0" + String.valueOf(todayDate);
-        }*/
-
-        if (String.valueOf(currentMonth).length() == 1) {
-            if (String.valueOf(todayDate).length() == 1) {
-                appendCalendar = String.valueOf(currentYear) + "0" + String.valueOf(currentMonth + 1) +
-                        "0" + String.valueOf(todayDate);
-            } else {
-                appendCalendar = String.valueOf(currentYear) + "0" + String.valueOf(currentMonth + 1) +
-                        String.valueOf(todayDate);
-            }
-        } else {
-            if (String.valueOf(todayDate).length() == 1) {
-                appendCalendar = String.valueOf(currentYear) + String.valueOf(currentMonth + 1) +
-                        "0" + String.valueOf(todayDate);
-            } else {
-                appendCalendar = String.valueOf(currentYear) + String.valueOf(currentMonth + 1) +
-                        String.valueOf(todayDate);
-            }
-
-        }
-        initRecycle(appendCalendar);
+        initRecycle(updateDate(todayDate, currentMonth, currentYear));
     }
 
-    private void initToolBar() {
+    private void initToolBar(){
         findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
         TextViewWithFont txtToolbarName = (TextViewWithFont) findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(OperaUtils.getCurrentyearMonthDate());
     }
 
-    private void initDB() {
+    private void initDB(){
         mEventDetailsDB = new EventListingDB(context);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
@@ -168,20 +144,20 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    private void updateEventDates(List<Events> eventsList) {
-        for (int i = 0; i < eventsList.size(); i++) {
+    private void updateEventDates(List<Events> eventsList){
+        for (int i = 0 ; i < eventsList.size() ; i++){
 
-            for (int k = 0; k < eventsList.get(i).getEventTime().size(); k++) {
+            for (int k = 0 ; k < eventsList.get(i).getEventTime().size() ; k++ ){
                 eventDates.add(eventsList.get(i).getEventTime().get(k).getFromTime().split("T")[0]);
             }
         }
     }
 
-    private void initRecycle(String currentDay) {
+    private void initRecycle(String currentDay){
         List<Events> eventsList = new ArrayList<>();
-        for (int i = 0; i < mEventListingData.size(); i++) {
-            for (int k = 0; k < mEventListingData.get(i).getEventTime().size(); k++) {
-                if (currentDay.equalsIgnoreCase(mEventListingData.get(i).getEventTime().get(k).getFromTime().split("T")[0])) {
+        for ( int i = 0 ; i < mEventListingData.size() ; i++ ){
+            for (int k = 0 ; k < mEventListingData.get(i).getEventTime().size() ; k++ ){
+                if (currentDay.equalsIgnoreCase(mEventListingData.get(i).getEventTime().get(k).getFromTime().split("T")[0])){
                     eventsList.add(mEventListingData.get(i));
                 }
             }
@@ -193,21 +169,19 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
         recyclerCalendar.setAdapter(adapter);
 
-        if (eventsList != null && eventsList.size() != 0) {
-            adapter.notifyDataSetChanged();
-        } else {
-            adapter.notifyDataSetChanged();
-            //    adapter = new CalendarRecyclerView(mEventListingData);
-        }
-
-
+       if (eventsList!=null && eventsList.size()!=0){
+           adapter.notifyDataSetChanged();
+       }else {
+           adapter.notifyDataSetChanged();
+       //    adapter = new CalendarRecyclerView(mEventListingData);
+       }
     }
 
-    private void scrollBarToDate() {
+    private void scrollBarToDate(){
         scrollView.post(new Runnable() {
             @Override
             public void run() {
-                int selectedDateX = (tileWidth) * (todayDate - 1);
+                int selectedDateX = (tileWidth)*(todayDate-1);
                 // Scroll to the button.
                 scrollView.scrollTo(selectedDateX, 0);
             }
@@ -217,168 +191,160 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
     private void calculateValues(int screenWidth, int totalEle) {
 
-        tileWidth = screenWidth / totalEle;
-        margin = tileWidth / totalEle;
-        tileWidth = tileWidth - margin * 2;
+        tileWidth = screenWidth/totalEle;
+        margin = tileWidth/totalEle;
+        tileWidth = tileWidth - margin*2;
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v == nextMonthIv) {
+        if (v == nextMonthIv){
 
-            if (currentMonth == 11) {
+            if (currentMonth == 11){
 
                 currentMonth = 0;
-                currentYear = currentYear + 1;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth) + " " + currentYear);
+                currentYear = currentYear+1;
+                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
 
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth, currentYear));
-                updateValues(lastDateOfMonth, finalCompareTodayDate, currentMonth);
+                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
                 adapter.notifyDataSetChanged();
-            } else {
+            }else {
 
                 currentMonth++;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth) + " " + currentYear);
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth, currentYear));
-                updateValues(lastDateOfMonth, finalCompareTodayDate, currentMonth);
+                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
                 adapter.notifyDataSetChanged();
             }
 
-        } else if (v == lastMonthIv) {
+        }else if (v == lastMonthIv){
 
             if (currentMonth == 0) {
 
-                currentYear = currentYear - 1;
+                currentYear = currentYear-1;
                 currentMonth = 11;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth) + " " + currentYear);
+                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
 
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth, currentYear));
-                updateValues(lastDateOfMonth, finalCompareTodayDate, currentMonth);
+                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
 
                 adapter.notifyDataSetChanged();
-            } else {
+            }else {
 
                 currentMonth--;
 
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth) + " " + currentYear);
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth, currentYear));
-                updateValues(lastDateOfMonth, finalCompareTodayDate, currentMonth);
+                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
                 adapter.notifyDataSetChanged();
             }
 
-        } else {
+        }else{
             GradientDrawable drawable = new GradientDrawable();
             drawable.setShape(GradientDrawable.OVAL);
             drawable.setColor(Color.WHITE);
 
-            if (v instanceof TextView) {
+            if (v instanceof TextView){
 
                 removeOtherSelectedOnClick();
                 v.setBackgroundDrawable(drawable);
                 ((TextView) v).setTextColor(Color.BLACK);
                 int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
-
-                String date;
-                if (String.valueOf(selectedDate).length() == 1) {
-                    date = "0" + String.valueOf(selectedDate);
-                } else {
-                    date = String.valueOf(selectedDate);
-                }
-
-                String appendCalendar;
-                if (String.valueOf(currentMonth).length() == 1) {
-                    if (String.valueOf(todayDate).length() == 1) {
-                        appendCalendar = String.valueOf(currentYear) + "0" + String.valueOf(currentMonth + 1) +
-                                "0" + String.valueOf(todayDate);
-                    } else {
-                        appendCalendar = String.valueOf(currentYear) + "0" + String.valueOf(currentMonth + 1) +
-                                String.valueOf(todayDate);
-                    }
-                } else {
-                    if (String.valueOf(todayDate).length() == 1) {
-                        appendCalendar = String.valueOf(currentYear) + String.valueOf(currentMonth + 1) +
-                                "0" + String.valueOf(todayDate);
-                    } else {
-                        appendCalendar = String.valueOf(currentYear) + String.valueOf(currentMonth + 1) +
-                                String.valueOf(todayDate);
-                    }
-
-                }
-                initRecycle(appendCalendar);
-
+                initRecycle(updateDate(selectedDate, currentMonth, currentYear));
             }
         }
 
     }
 
-    private void removeOtherSelectedOnClick() {
+    private String updateDate( int date, int month, int year){
 
-        for (int i = 0; i < dateLinLayout.getChildCount(); i++) {
-            ((LinearLayout) dateLinLayout.getChildAt(i)).getChildAt(0).setBackground(getResources().getDrawable(R.drawable.oval_corner));
-            ((TextView) ((LinearLayout) dateLinLayout.getChildAt(i)).getChildAt(0)).setTextAppearance(context, R.style.label_white_medium);
+        String appendCalendar;
+
+        if (String.valueOf(month).length()==1){
+            appendCalendar = String.valueOf(year)+"0"+String.valueOf(month+1);
+        }else {
+            appendCalendar = String.valueOf(year)+String.valueOf(month+1);
+        }
+
+
+        if (String.valueOf(date).length()==1){
+            appendCalendar = appendCalendar+"0"+String.valueOf(date);
+        }else {
+            appendCalendar = appendCalendar+String.valueOf(date);
+        }
+
+        return appendCalendar;
+    }
+
+    private void removeOtherSelectedOnClick(){
+
+        for (int i=0;i<dateLinLayout.getChildCount();i++){
+            ((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0).setBackground(getResources().getDrawable(R.drawable.oval_corner));
+            ((TextView)((LinearLayout)dateLinLayout.getChildAt(i)).getChildAt(0)).setTextAppearance(context, R.style.label_white_medium);
         }
     }
 
-    private void updateValues(int lastDateOfMonth, int todayDate, int currentMonth) {
+    private void updateValues(int lastDateOfMonth, int todayDate, int currentMonth){
 
         dateLinLayout.removeAllViews();
 
-        for (int i = 1; i <= lastDateOfMonth; i++) {
+        for ( int i=1 ; i<=lastDateOfMonth; i++ ){
 
             LinearLayout textBackLay = new LinearLayout(context);
             LinearLayout.LayoutParams textBackLayParam = new LinearLayout.LayoutParams(tileWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
-            textBackLayParam.setMargins(margin, 10, margin, 0);
+            textBackLayParam.setMargins(margin,10,margin,0);
             textBackLay.setLayoutParams(textBackLayParam);
             textBackLay.setGravity(Gravity.CENTER);
             textBackLay.setOrientation(LinearLayout.VERTICAL);
             dateLinLayout.addView(textBackLay);
 
             TextViewWithFont txtMonthDays = new TextViewWithFont(context);
-            LinearLayout.LayoutParams textViewParam = new LinearLayout.LayoutParams(scrWidth / 12, scrWidth / 12);
+            LinearLayout.LayoutParams textViewParam = new LinearLayout.LayoutParams(scrWidth/12,scrWidth/12);
             txtMonthDays.setLayoutParams(textViewParam);
             txtMonthDays.setGravity(Gravity.CENTER);
-            txtMonthDays.setText("" + i);
+            txtMonthDays.setText(""+i);
             txtMonthDays.setBackground(getResources().getDrawable(R.drawable.oval_corner));
             txtMonthDays.setTextAppearance(context, R.style.label_white_medium);
             textBackLay.addView(txtMonthDays);
-            txtMonthDays.setTag(R.string.TAG_TEXT, i);
+            txtMonthDays.setTag(R.string.TAG_TEXT,i);
             txtMonthDays.setOnClickListener(this);
 
             LinearLayout dotLinLayout = new LinearLayout(context);
-            LinearLayout.LayoutParams dotLinLayoutParam = new LinearLayout.LayoutParams(tileWidth / 10, tileWidth / 10);
-            dotLinLayoutParam.setMargins(0, 15, 0, 5);
+            LinearLayout.LayoutParams dotLinLayoutParam = new LinearLayout.LayoutParams(tileWidth/10,tileWidth/10);
+            dotLinLayoutParam.setMargins(0,15,0,5);
             dotLinLayout.setLayoutParams(dotLinLayoutParam);
             dotLinLayout.setGravity(Gravity.CENTER);
             dotLinLayout.setOrientation(LinearLayout.VERTICAL);
 
             String appendData;
-            if (String.valueOf(currentMonth).length() == 1) {
-                appendData = currentYear + "0" + String.valueOf(currentMonth + 1);
-            } else {
-                appendData = currentYear + String.valueOf(currentMonth + 1);
+            if (String.valueOf(currentMonth).length()==1){
+                appendData = currentYear + "0" + String.valueOf(currentMonth+1);
+            }else{
+                appendData = currentYear + String.valueOf(currentMonth+1);
             }
-            if (String.valueOf(i).length() == 1) {
+            if (String.valueOf(i).length()==1){
                 appendData = appendData + "0" + String.valueOf(i);
-            } else {
+            }else{
                 appendData = appendData + String.valueOf(i);
             }
             Log.i("appendData", appendData);
 
-            if (eventDates.contains(appendData)) {
+            if (eventDates.contains(appendData)){
                 dotLinLayout.setBackgroundColor(Color.WHITE);
-            } else {
+            }else{
                 dotLinLayout.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
             }
             textBackLay.addView(dotLinLayout);
 
-            if (finalCompareTodayDate == todayDate && finalCompareTodayMonth == currentMonth && i == todayDate) {
+            if (finalCompareTodayDate== todayDate && finalCompareTodayMonth == currentMonth && i == todayDate){
                 txtMonthDays.setBackground(getResources().getDrawable(R.drawable.oval_full_white_corner));
                 txtMonthDays.setTextAppearance(context, R.style.label_burgendy_medium);
 

@@ -34,6 +34,8 @@ import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import org.infobip.mobile.messaging.UserData;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -41,6 +43,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.opera.app.MainApplication.getMobileMessaging;
 
 /**
  * Created by 1000632 on 3/22/2018.
@@ -283,6 +287,12 @@ public class LoginActivity extends BaseActivity {
             if (sessionManager.isUserLoggedIn()) {
                 openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }
+
+            //store user details
+            UserData userData = new UserData();
+            userData.setFirstName(loginResponse.getData().getProfile().getFirstName());
+
+            getMobileMessaging().getInstance(LoginActivity.this).syncUserData(userData);
 
         } catch (Exception e) {
             e.printStackTrace();

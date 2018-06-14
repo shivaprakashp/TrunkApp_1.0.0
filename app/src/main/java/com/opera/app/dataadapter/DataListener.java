@@ -51,7 +51,6 @@ public class DataListener {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
 }
