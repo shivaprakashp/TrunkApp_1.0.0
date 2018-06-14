@@ -51,7 +51,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
 
-        Picasso.with(mActivity).load(mEventPojo.getImage())
+        Picasso.with(mActivity).load(mEventPojo.getHighlightedImage()).fit()
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {

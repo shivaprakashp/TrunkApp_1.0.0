@@ -80,7 +80,8 @@ public class EventsFragment extends BaseFragment{
         adapter.addFragment(new AllEventsFragment(), getResources().getString(R.string.tab_all_events));
         adapter.addFragment(new TodayEventsFragment(), getResources().getString(R.string.tab_today_events));
         adapter.addFragment(new FavouritesEventsFragment(), getResources().getString(R.string.tab_favourites_events));
-        adapter.addFragment(new GenresEventsFragment(), getResources().getString(R.string.tab_genres_events));
+        adapter.addFragment(new AllGenresEventsFragment(), getResources().getString(R.string.tab_genres_events));
+        //adapter.addFragment(new GenresEventsFragment(), getResources().getString(R.string.tab_genres_events));
         viewPager.setAdapter(adapter);
     }
 
