@@ -153,7 +153,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             public void onClick(View v) {
 
                 Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
-                intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
+                intent.putExtra("RestaurantId", mRestaurantListing.getRestId());
+//                intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
                 mActivity.startActivity(intent);
 
                 /*FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListing.getPhoneNumber(), mRestaurantListing.getEmail());

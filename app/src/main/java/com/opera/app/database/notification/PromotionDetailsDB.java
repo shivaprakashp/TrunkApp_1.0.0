@@ -27,8 +27,9 @@ public class PromotionDetailsDB {
     private static final String PROMOTION_PRICE = "PROMOTION_PRICE";
     private static final String PROMOTION_VALID_FROM = "PROMOTION_VALID_FROM";
     private static final String PROMOTION_VALID_TO = "PROMOTION_VALID_TO";
+    private static final String PROMOTION_TYPE = "PROMOTION_TYPE";
+    private static final String PROMOTION_PROMOTION_ITEM_ID = "PROMOTION_PROMOTION_ITEM_ID";
     private static final String PROMOTION_DESCRIPTION_HTML = "PROMOTION_DESCRIPTION_HTML";
-
 
     //creating table
     public static final String CREATE_TABLE_PROMOTION =
@@ -39,6 +40,8 @@ public class PromotionDetailsDB {
                     + PROMOTION_PRICE + " TEXT,"
                     + PROMOTION_VALID_FROM + " TEXT,"
                     + PROMOTION_VALID_TO + " TEXT,"
+                    + PROMOTION_TYPE + " TEXT,"
+                    + PROMOTION_PROMOTION_ITEM_ID + " TEXT,"
                     + PROMOTION_DESCRIPTION_HTML + " TEXT);";
 
 
@@ -75,6 +78,8 @@ public class PromotionDetailsDB {
                 contentValue.put(PROMOTION_VALID_FROM, mPromotions.get(i).getValidFrom());
                 contentValue.put(PROMOTION_VALID_TO, mPromotions.get(i).getValidTo());
                 contentValue.put(PROMOTION_DESCRIPTION_HTML, mPromotions.get(i).getDescriptionHtml());
+                contentValue.put(PROMOTION_TYPE, mPromotions.get(i).getPromotionType());
+                contentValue.put(PROMOTION_PROMOTION_ITEM_ID, mPromotions.get(i).getPromotionItemId());
 
                 long row = database.insert(TABLE_PROMOTION_DETAILS, null, contentValue);
             }
@@ -101,6 +106,9 @@ public class PromotionDetailsDB {
                     mPromotionData.setValidFrom(cursor.getString(cursor.getColumnIndex(PROMOTION_VALID_FROM)));
                     mPromotionData.setValidTo(cursor.getString(cursor.getColumnIndex(PROMOTION_VALID_TO)));
                     mPromotionData.setDescriptionHtml(cursor.getString(cursor.getColumnIndex(PROMOTION_DESCRIPTION_HTML)));
+
+                    mPromotionData.setPromotionType(cursor.getString(cursor.getColumnIndex(PROMOTION_TYPE)));
+                    mPromotionData.setPromotionItemId(cursor.getString(cursor.getColumnIndex(PROMOTION_PROMOTION_ITEM_ID)));
 
                     dataArrayList.add(mPromotionData);
                 } while (cursor.moveToNext());

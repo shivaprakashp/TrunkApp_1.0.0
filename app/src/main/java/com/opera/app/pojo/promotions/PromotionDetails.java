@@ -41,6 +41,30 @@ public class PromotionDetails {
     @Expose
     private String DescriptionHtml;
 
+    @SerializedName("PromotionType")
+    @Expose
+    private String PromotionType;
+
+    @SerializedName("PromotionItemId")
+    @Expose
+    private String PromotionItemId;
+
+    public String getPromotionType() {
+        return PromotionType;
+    }
+
+    public void setPromotionType(String promotionType) {
+        PromotionType = promotionType;
+    }
+
+    public String getPromotionItemId() {
+        return PromotionItemId;
+    }
+
+    public void setPromotionItemId(String promotionItemId) {
+        PromotionItemId = promotionItemId;
+    }
+
     public String getId() {
         return Id;
     }

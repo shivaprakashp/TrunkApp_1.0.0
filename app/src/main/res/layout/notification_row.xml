@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/burgandy_corner"
+    android:layout_height="250dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="10dp"
-    android:layout_height="250dp">
+    android:background="@drawable/burgandy_corner">
 
     <RelativeLayout
+        android:id="@+id/relativeParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -38,7 +39,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9"
+                android:layout_weight="0.85"
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
@@ -66,7 +67,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.1"
+                android:layout_weight="0.15"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -93,7 +94,7 @@
                     android:text="75"
                     font:name="Montserrat-Bold" />
 
-            </LinearLayout>
+            ko</LinearLayout>
 
         </LinearLayout>
 
