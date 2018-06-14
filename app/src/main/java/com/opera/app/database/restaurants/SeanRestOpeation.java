@@ -24,6 +24,7 @@ public class SeanRestOpeation {
     private static final String REST_DETAILS = "restDetails";
     private static final String REST_OPEN_HOURS = "openHour";
     private static final String REST_PHONE_NUMBER = "phoneNumber";
+    private static final String REST_EMAIL = "email";
     //creating table
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " INTEGER," +
@@ -36,6 +37,7 @@ public class SeanRestOpeation {
                     REST_DETAILS + " TEXT," +
                     REST_OPEN_HOURS + " TEXT," +
                     REST_PHONE_NUMBER + " TEXT," +
+                    REST_EMAIL + " TEXT," +
                     "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
 
 
@@ -73,6 +75,7 @@ public class SeanRestOpeation {
             values.put(REST_DETAILS, data.getRestDetails());
             values.put(REST_OPEN_HOURS, data.getOpenHour());
             values.put(REST_PHONE_NUMBER, data.getPhoneNumber());
+            values.put(REST_EMAIL, data.getEmail());
 
             database.insert(TABLE_NAME, null, values);
         } catch (SQLException e) {
@@ -83,10 +86,11 @@ public class SeanRestOpeation {
     }
 
     //returns the stored data
-    public RestaurantsData getSeanConnolly() {
+    public RestaurantsData getSeanConnolly(String mRestaurantId) {
         RestaurantsData data = new RestaurantsData();
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+//            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restId = '" + mRestaurantId + "'", null);
 
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -100,6 +104,7 @@ public class SeanRestOpeation {
                 data.setRestDetails(cursor.getString(7));
                 data.setOpenHour(cursor.getString(8));
                 data.setPhoneNumber(cursor.getString(9));
+                data.setEmail(cursor.getString(10));
 
             }
 
@@ -112,7 +117,8 @@ public class SeanRestOpeation {
         return data;
     }
 
-    public void removeSeanConnolly() {
-        database.delete(TABLE_NAME, null, null);
+    public void removeSeanConnolly(String mRestaurantId) {
+        int row = database.delete(TABLE_NAME, "restId" + " = ?", new String[]{mRestaurantId});
+        Log.e("deletedRow", row + "");
     }
 }

@@ -58,9 +58,6 @@ public class HomeFragment extends BaseFragment {
     @Inject
     Retrofit retrofit;
 
-    /*@BindView(R.id.recyclerList)
-    RecyclerView mRecyclerEvents;*/
-
     @BindView(R.id.viewpagerWhatsOnShows)
     ViewPager mViewpagerWhatsOnShows;
 
@@ -130,13 +127,7 @@ public class HomeFragment extends BaseFragment {
         mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                /*if (position == 0) {
-                    mViewpagerWhatsOnShows.setPadding(0, 0, 70, 0);
-                } else if (mWhatsEvents.size() - 1 == position) {
-                    mViewpagerWhatsOnShows.setPadding(70, 0, 0, 0);
-                } else {
-                    mViewpagerWhatsOnShows.setPadding(70, 0, 70, 0);
-                }*/
+
             }
 
             @Override

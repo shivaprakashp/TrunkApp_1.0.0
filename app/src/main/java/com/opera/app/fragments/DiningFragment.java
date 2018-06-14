@@ -44,10 +44,10 @@ import retrofit2.Retrofit;
 public class DiningFragment extends BaseFragment {
 
     private Activity mActivity;
-    private Api api;
     private SessionManager manager;
     private CustomToast customToast;
 
+    private Api api;
     @Inject
     Retrofit retrofit;
 
@@ -132,7 +132,7 @@ public class DiningFragment extends BaseFragment {
 
     private void GetSeanConollyDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getSpecificRestaurant(taskComplete, api);
+        controller.getSpecificRestaurant(taskComplete, api,AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
     }
 
     @Override
@@ -192,7 +192,7 @@ public class DiningFragment extends BaseFragment {
 
             if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
                 restOpeation.open();
-                restOpeation.removeSeanConnolly();
+                restOpeation.removeSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
                 restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
                 getSeanConnollyData();
             }
@@ -207,9 +207,8 @@ public class DiningFragment extends BaseFragment {
     };
 
     private void getSeanConnollyData() {
-        setRestaurant(restOpeation.getSeanConnolly());
+        setRestaurant(restOpeation.getSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID));
         restOpeation.close();
-
     }
 
     private void setRestaurant(RestaurantsData data) {

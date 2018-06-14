@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,19 +16,31 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
+import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.dagger.Api;
+import com.opera.app.database.restaurants.SeanRestOpeation;
 import com.opera.app.dialogues.FindOutMoreDialogue;
+import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 5/24/2018.
@@ -40,6 +53,11 @@ public class RestaurantCompleteDetails extends BaseActivity {
     private SessionManager manager;
     private CustomToast customToast;
     private Intent intent;
+    private SeanRestOpeation restOpeation;
+
+    private Api api;
+    @Inject
+    Retrofit retrofit;
 
     @BindView(R.id.expandableTextViewInfo)
     TextView mExpandableTextView;
@@ -91,6 +109,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
         initToolbar();
         initView();
+        GetSpecificRestaurantDetails();
     }
 
     private void initToolbar() {
@@ -98,6 +117,10 @@ public class RestaurantCompleteDetails extends BaseActivity {
     }
 
     private void initView() {
+        ((MainApplication) mActivity.getApplication()).getNetComponent().inject(this);
+        api = retrofit.create(Api.class);
+        restOpeation = new SeanRestOpeation(mActivity);
+
         mRestaurantListingData = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -110,11 +133,12 @@ public class RestaurantCompleteDetails extends BaseActivity {
         manager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
 
-        mTxtRestaurantNumber.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getPhoneNumber()+"</u>"));
-        mTxtRestaurantEmail.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getEmail()+"</u>"));
+       /* mTxtRestaurantNumber.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getPhoneNumber()+"</u>"));
+        mTxtRestaurantEmail.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getEmail()+"</u>"));*/
 
         mBtnOtherRestaurants.setVisibility(View.GONE);
-        mTxtRestaurantPlace.setText("at " + mRestaurantListingData.getRestPlace());
+
+        /*mTxtRestaurantPlace.setText("at " + mRestaurantListingData.getRestPlace());
         mTxtRestaurantName.setText(mRestaurantListingData.getRestName());
         mExpandableTextView.setText(mRestaurantListingData.getRestDetails());
         Picasso.with(mActivity).load(mRestaurantListingData.getRestImage()).fit().centerCrop()
@@ -128,10 +152,36 @@ public class RestaurantCompleteDetails extends BaseActivity {
                     public void onError() {
                         mProgressImageLoader.setVisibility(View.GONE);
                     }
-                });
+                });*/
     }
 
-    @OnClick({R.id.mBtnReserveATable, R.id.mLinRestaurantNumber, R.id.mLinRestaurantEmail })
+    private void GetSpecificRestaurantDetails() {
+        MainController controller = new MainController(mActivity);
+        controller.getSpecificRestaurant(taskComplete, api, mRestaurantListingData.getRestId());
+    }
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response, String mRequestKey) {
+            RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
+
+            if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+                restOpeation.open();
+                restOpeation.removeSeanConnolly(mRestaurantListingData.getRestId());
+                restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
+                getSeanConnollyData();
+            }
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
+            Log.e("Error", call.toString());
+            restOpeation.open();
+            getSeanConnollyData();
+        }
+    };
+
+    @OnClick({R.id.mBtnReserveATable, R.id.mLinRestaurantNumber, R.id.mLinRestaurantEmail})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mBtnReserveATable:
@@ -185,6 +235,45 @@ public class RestaurantCompleteDetails extends BaseActivity {
                 }
 
                 break;
+        }
+    }
+
+    private void getSeanConnollyData() {
+        setRestaurant(restOpeation.getSeanConnolly(mRestaurantListingData.getRestId()));
+        restOpeation.close();
+    }
+
+    private void setRestaurant(RestaurantsData data) {
+        //mLinearReadMore.setVisibility(View.VISIBLE);
+        try {
+            if(data.getPhoneNumber()!=null){
+                mTxtRestaurantNumber.setText(Html.fromHtml("<u>" + data.getPhoneNumber() + "</u>"));
+            }
+
+            if(data.getEmail()!=null){
+                mTxtRestaurantEmail.setText(Html.fromHtml("<u>" + data.getEmail() + "</u>"));
+            }
+
+            if (data.getRestPlace() != null) {
+                mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+            }
+
+            mTxtRestaurantName.setText(data.getRestName());
+            mExpandableTextView.setText(data.getRestDetails());
+            Picasso.with(mActivity).load(data.getRestImage()).fit().centerCrop()
+                    .into(mRestaurantImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mProgressImageLoader.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mProgressImageLoader.setVisibility(View.GONE);
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

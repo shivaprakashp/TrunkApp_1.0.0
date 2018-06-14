@@ -14,6 +14,7 @@ import com.opera.app.activities.OtherRestaurantsActivity;
 import com.opera.app.activities.PromotionsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.ReserveATableActivity;
+import com.opera.app.activities.RestaurantCompleteDetails;
 import com.opera.app.activities.SettingsActivity;
 import com.opera.app.activities.WalletActivity;
 import com.opera.app.fragments.DiningFragment;
@@ -56,4 +57,5 @@ public interface ApiComponent {
     void inject(DubaiOperaTourActivity mDubaiOperaTourActivity);
     void inject(GiftCardActivity mGiftCardActivity);
     void inject(FeedbackActivity mFeedbackActivity);
+    void inject(RestaurantCompleteDetails mRestaurantCompleteDetails);
 }

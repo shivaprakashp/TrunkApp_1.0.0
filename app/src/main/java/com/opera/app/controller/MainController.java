@@ -123,8 +123,8 @@ public class MainController {
         listener.dataLoad(call);
     }
 
-    public void getSpecificRestaurant(TaskComplete taskComplete, Api api) {
-        Call call = api.GetSpecificRestaurant(contentType, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);          // need to add auth token
+    public void getSpecificRestaurant(TaskComplete taskComplete, Api api,String mRestaurantId) {
+        Call call = api.GetSpecificRestaurant(contentType, mRestaurantId);          // need to add auth token
         properties.setRequestKey(AppConstants.GETSPECIFICRESTAURANT.GETSPECIFICRESTAURANT);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
