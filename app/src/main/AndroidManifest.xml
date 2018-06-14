@@ -52,6 +52,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.TestAct"
+            android:screenOrientation="portrait" >
+        </activity>
+
+
         <activity
             android:name=".activities.PreLoginActivity"
             android:screenOrientation="portrait" />
@@ -95,10 +102,6 @@
         <activity
             android:name=".activities.EventDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.TestAct"
-            android:screenOrientation="portrait" >
-        </activity>
 
         <service android:name=".services.SettingsService" />
 
@@ -124,8 +127,9 @@
         <activity
             android:name=".activities.RestaurantCompleteDetails"
             android:screenOrientation="portrait"></activity>
-
-
+        <activity
+            android:name=".activities.GenresEventsActivity"
+            android:screenOrientation="portrait"></activity>
         <!-- Existing application entries -->
         <receiver
         android:name=".services.NotificationTappedReceiver"

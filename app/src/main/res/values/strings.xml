@@ -967,4 +967,6 @@
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>
 
+    <string name="find_shows">Find Shows</string>
+    <string name="location">Location Map</string>
 </resources>

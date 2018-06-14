@@ -66,7 +66,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,7 +144,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -170,7 +170,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorLightBurgendy" />
+                    android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:id="@+id/linearLogout"
