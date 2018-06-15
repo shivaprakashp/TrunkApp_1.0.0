@@ -27,6 +27,9 @@ import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
+import org.infobip.mobile.messaging.CustomUserDataValue;
+import org.infobip.mobile.messaging.UserData;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -34,6 +37,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.opera.app.MainApplication.getMobileMessaging;
 
 /**
  * Created by 58001 on 23-03-2018.
@@ -92,6 +97,7 @@ public class SettingsActivity extends BaseActivity {
     @BindView(R.id.linearLogout)
     LinearLayout mLinearLogout;
 
+    private UserData userData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,6 +128,8 @@ public class SettingsActivity extends BaseActivity {
         TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
+        //infobip user data update
+        userData = new UserData();
         if (mSessionManager.isUserLoggedIn()) {
             if (mSessionManager.GetUserSettings()) {
                 SetAlreadyUpdatedSettings();
@@ -129,16 +137,27 @@ public class SettingsActivity extends BaseActivity {
                 GetUpdatedUserSettings();
             }
         } else {
-
             //Guest user
             mLinearLogout.setVisibility(View.GONE);
 
             sp=getSharedPreferences("guest_switchs",MODE_PRIVATE);
-            if(sp.getString("notificationSwitch","true").equals("true")) mNotificationSwitch.setChecked(true);
-            else mNotificationSwitch.setChecked(false);
+            if(sp.getString("notificationSwitch","true").equals("true")){
+                mNotificationSwitch.setChecked(true);
+                userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+            }
+            else{
+                mNotificationSwitch.setChecked(false);
+                userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
+            }
 
-            if(sp.getString("promotionSwitch","true").equals("true")) mPromotionSwitch.setChecked(true);
-            else mPromotionSwitch.setChecked(false);
+            if(sp.getString("promotionSwitch","true").equals("true")){
+                mPromotionSwitch.setChecked(true);
+                userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
+            }
+            else{
+                mPromotionSwitch.setChecked(false);
+                userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("false"));
+            }
 
             mFeedbackSwitch.setClickable(false);
             mFeedbackSwitch.setChecked(false);
@@ -149,6 +168,7 @@ public class SettingsActivity extends BaseActivity {
 
             SetLanguageForPage();
 
+            getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
         }
     }
 
@@ -231,12 +251,18 @@ public class SettingsActivity extends BaseActivity {
                 if (!mSessionManager.isUserLoggedIn()) {
                     mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
                     sp.edit().putString("notificationSwitch", mNotifSwitch).commit();
+                    userData.setCustomUserDataElement("notificationSwitch",
+                            new CustomUserDataValue(mNotifSwitch));
+                    getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
                 }
                 break;
             case R.id.promotionSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
                     mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
                     sp.edit().putString("promotionSwitch", mPromoSwitch).commit();
+                    userData.setCustomUserDataElement("promotionSwitch",
+                            new CustomUserDataValue(mPromoSwitch));
+                    getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
                 }
                 break;
         }
@@ -296,16 +322,22 @@ public class SettingsActivity extends BaseActivity {
     };
 
     private void SetAlreadyUpdatedSettings() {
-        if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "true").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "true").
+                equalsIgnoreCase("true")) {
             mNotificationSwitch.setChecked(true);
+            userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
         } else {
             mNotificationSwitch.setChecked(false);
+            userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
         }
 
-        if (mSharedPreferences.getString(getString(R.string.PromotionSwitchValue), "true").equalsIgnoreCase("true")) {
+        if (mSharedPreferences.getString(getString(R.string.PromotionSwitchValue), "true").
+                equalsIgnoreCase("true")) {
             mPromotionSwitch.setChecked(true);
+            userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
         } else {
             mPromotionSwitch.setChecked(false);
+            userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("false"));
         }
 
         if (mSharedPreferences.getString(getString(R.string.FeedbackNotiSwitchValue), "true").equalsIgnoreCase("true")) {
@@ -326,6 +358,7 @@ public class SettingsActivity extends BaseActivity {
             mReminderSwitch.setChecked(false);
         }
         SetLanguageForPage();
+        getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
     }
 
     private void SetLanguageForPage() {
@@ -342,5 +375,4 @@ public class SettingsActivity extends BaseActivity {
             mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
         }
     }
-
 }

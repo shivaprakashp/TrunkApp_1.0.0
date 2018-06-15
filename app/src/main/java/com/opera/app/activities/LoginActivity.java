@@ -276,7 +276,8 @@ public class LoginActivity extends BaseActivity {
     private void sendPost(String emailId, String pwd) {
 
         MainController controller = new MainController(LoginActivity.this);
-        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd));
+        controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd,
+                getMobileMessaging().getPushRegistrationId()));
     }
 
     //maintain login session
@@ -291,6 +292,8 @@ public class LoginActivity extends BaseActivity {
             //store user details
             UserData userData = new UserData();
             userData.setFirstName(loginResponse.getData().getProfile().getFirstName());
+            userData.setLastName(loginResponse.getData().getProfile().getLastName());
+            userData.setEmail(loginResponse.getData().getProfile().getEmail());
 
             getMobileMessaging().getInstance(LoginActivity.this).syncUserData(userData);
 
