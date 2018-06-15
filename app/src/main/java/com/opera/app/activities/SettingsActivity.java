@@ -140,21 +140,19 @@ public class SettingsActivity extends BaseActivity {
             //Guest user
             mLinearLogout.setVisibility(View.GONE);
 
-            sp=getSharedPreferences("guest_switchs",MODE_PRIVATE);
-            if(sp.getString("notificationSwitch","true").equals("true")){
+            sp = getSharedPreferences("guest_switchs", MODE_PRIVATE);
+            if (sp.getString("notificationSwitch", "true").equals("true")) {
                 mNotificationSwitch.setChecked(true);
                 userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
-            }
-            else{
+            } else {
                 mNotificationSwitch.setChecked(false);
                 userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
             }
 
-            if(sp.getString("promotionSwitch","true").equals("true")){
+            if (sp.getString("promotionSwitch", "true").equals("true")) {
                 mPromotionSwitch.setChecked(true);
                 userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
-            }
-            else{
+            } else {
                 mPromotionSwitch.setChecked(false);
                 userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("false"));
             }
@@ -200,14 +198,14 @@ public class SettingsActivity extends BaseActivity {
             mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
             mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
 
-            mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom);
+            mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom,userData);
         } else {
             //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
             customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
         }
     }
 
-    @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout, R.id.linearLogout, R.id.notificationSwitch,  R.id.promotionSwitch})
+    @OnClick({R.id.englishSwitch, R.id.arabicSwitch, R.id.tvLogout, R.id.linearLogout, R.id.notificationSwitch, R.id.promotionSwitch})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.englishSwitch: {
