@@ -49,6 +49,7 @@ public class EventDetailsDB {
     private static final String EVENT_HIGHLIGHTED_IMAGE = "EVENT_HIGHLIGHTED_IMAGE";
     private static final String EVENT_DETAILS_IMAGE = "EVENT_DETAILS_IMAGE";
     private static final String EVENT_WHATS_ON_IMAGE = "EVENT_WHATS_ON_IMAGE";
+    private static final String EVENT_APPLE_MUSIC_URL = "EVENT_APPLE_MUSIC_URL";
 
    /* //Part of Genre JSON Object
     private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
@@ -86,6 +87,7 @@ public class EventDetailsDB {
                     + EVENT_HIGHLIGHTED_IMAGE + " TEXT,"
                     + EVENT_DETAILS_IMAGE + " TEXT,"
                     + EVENT_WHATS_ON_IMAGE + " TEXT,"
+                    + EVENT_APPLE_MUSIC_URL + " TEXT,"
                     + EVENT_GENRE + " TEXT,"
                     + EVENT_TIMES + " TEXT);";
 
@@ -140,6 +142,7 @@ public class EventDetailsDB {
             contentValue.put(EVENT_HIGHLIGHTED_IMAGE, mEventDetailsData.get(0).getHighlightedImage());
             contentValue.put(EVENT_DETAILS_IMAGE, mEventDetailsData.get(0).getEventDetailImage());
             contentValue.put(EVENT_WHATS_ON_IMAGE, mEventDetailsData.get(0).getWhatsOnImage());
+            contentValue.put(EVENT_APPLE_MUSIC_URL, mEventDetailsData.get(0).getAppleUrl());
 
             String mEventGenres = gson.toJson(mEventDetailsData.get(0).getGenreList());
             contentValue.put(EVENT_GENRE, mEventGenres);
@@ -191,6 +194,8 @@ public class EventDetailsDB {
                     mEvents.setHighlightedImage(cursor.getString(cursor.getColumnIndex(EVENT_HIGHLIGHTED_IMAGE)));
                     mEvents.setEventDetailImage(cursor.getString(cursor.getColumnIndex(EVENT_DETAILS_IMAGE)));
                     mEvents.setWhatsOnImage(cursor.getString(cursor.getColumnIndex(EVENT_WHATS_ON_IMAGE)));
+                    mEvents.setAppleUrl(cursor.getString(cursor.getColumnIndex(EVENT_APPLE_MUSIC_URL)));
+
 
                     Type type2 = new TypeToken<ArrayList<GenreList>>() {
                     }.getType();

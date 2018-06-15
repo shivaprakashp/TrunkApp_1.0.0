@@ -137,7 +137,8 @@ public class CommonWebViewActivity extends BaseActivity {
         if (mWebView.canGoBack()) {
             mWebView.goBack();
         } else {
-            super.onBackPressed();
+            mWebView.destroy();
+            finish();
         }
     }
 

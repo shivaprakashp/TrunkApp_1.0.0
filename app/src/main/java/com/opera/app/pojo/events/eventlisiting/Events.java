@@ -106,6 +106,10 @@ public class Events {
     @Expose
     private String EndTime;
 
+    @SerializedName("AppleUrl")
+    @Expose
+    private String AppleUrl;
+
     @SerializedName("Genre")
     @Expose
     private ArrayList<GenreList> Genre;
@@ -157,6 +161,14 @@ public class Events {
         this.BuyNowLink=BuyNowLink;
         this.SharedContentText=SharedContentText;
         this.WhatsOnImage=WhatsOnImage;
+    }
+
+    public String getAppleUrl() {
+        return AppleUrl;
+    }
+
+    public void setAppleUrl(String appleUrl) {
+        AppleUrl = appleUrl;
     }
 
     public String getHighlightedImage() {

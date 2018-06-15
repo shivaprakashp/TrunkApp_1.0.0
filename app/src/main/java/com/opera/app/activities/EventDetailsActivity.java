@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -69,7 +70,8 @@ public class EventDetailsActivity extends BaseActivity {
             mEventDescription = "",
             mEventImage = "",
             mEventYoutubeVideo = "",
-            mEventURL = "";
+            mEventURL = "",
+            mAppleMusicURL = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
@@ -128,6 +130,9 @@ public class EventDetailsActivity extends BaseActivity {
 
     @BindView(R.id.linearShare)
     RelativeLayout linearShare;
+
+    @BindView(R.id.relativeOpenAppleMusic)
+    RelativeLayout relativeOpenAppleMusic;
 
     @BindView(R.id.img_plan_visit)
     ImageView mImgPlanVisit;
@@ -286,6 +291,7 @@ public class EventDetailsActivity extends BaseActivity {
         mEventURL = mEventListingData.get(0).getSharedContentText();
         EventInternalName = mEventListingData.get(0).getInternalName();
         IsFavourite = mEventListingData.get(0).isFavourite();
+        mAppleMusicURL = mEventListingData.get(0).getAppleUrl();
 
         if (manager.isUserLoggedIn()) {
             if (IsFavourite.equalsIgnoreCase("true")) {
@@ -297,6 +303,10 @@ public class EventDetailsActivity extends BaseActivity {
 
         if (mEventYoutubeVideo.equalsIgnoreCase("")) {
             mLinearPlay.setVisibility(View.GONE);
+        }
+
+        if (mAppleMusicURL.equalsIgnoreCase("")) {
+            relativeOpenAppleMusic.setVisibility(View.GONE);
         }
 
         if (mEventListingData.size() > 0) {
@@ -332,9 +342,19 @@ public class EventDetailsActivity extends BaseActivity {
                 mAdapter.RefreshList(mGenresListing);
                 txtYouMightAlsoLike.setVisibility(View.VISIBLE);
             } else {
-               /* txtYouMightAlsoLike.setVisibility(View.GONE);
+                txtYouMightAlsoLike.setVisibility(View.GONE);
                 linearYouMightLike.setBackgroundColor(getResources().getColor(R.color.black));
-                nestedScrollTxt.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));*/
+                linearYouMightLike.setVisibility(View.GONE);
+                recyclerGenres.setVisibility(View.GONE);
+
+                ViewGroup.LayoutParams lp = nestedScrollTxt.getLayoutParams();
+                lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                nestedScrollTxt.requestLayout();
+                /*nestedScrollTxt.setLayoutParams
+                        (new ViewGroup.MarginLayoutParams
+                                (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
+//                nestedScrollTxt.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));
             }
 
         }
@@ -345,7 +365,7 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -406,6 +426,13 @@ public class EventDetailsActivity extends BaseActivity {
                 }
             }
             break;
+
+            case R.id.relativeOpenAppleMusic:
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mAppleMusicURL);
+                in.putExtra("Header", "Apple music");
+                startActivity(in);
+                break;
         }
     }
 

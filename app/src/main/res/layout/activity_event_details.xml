@@ -93,21 +93,30 @@
 
                         </LinearLayout>
 
+                        <RelativeLayout
+                            android:id="@+id/relativeOpenAppleMusic"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.08">
+
+                            <ImageView
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_listern" />
+                        </RelativeLayout>
+
                         <LinearLayout
                             android:id="@+id/linearPlay"
                             android:layout_width="0dp"
-                            android:layout_height="35dp"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="0.08"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:gravity="center">
 
                             <ImageView
                                 android:layout_width="15dp"
                                 android:layout_height="20dp"
                                 android:layout_centerInParent="true"
-                                android:layout_marginRight="10dp"
                                 android:src="@drawable/ic_play_button" />
 
                             <!--  <com.opera.app.customwidget.TextViewWithFont
@@ -229,30 +238,38 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearYouMightLike"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/linearMiddleSection"
-                android:background="@color/colorBurgendy"
-                android:orientation="vertical">
+                android:background="@color/black">
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtYouMightAlsoLike"
-                    style="@style/label_light_gray_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:singleLine="true"
-                    android:text="@string/you_also_like"
-                    font:name="Montserrat-Light" />
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpagerFavGenres"
+                <LinearLayout
+                    android:id="@+id/linearYouMightLike"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginBottom="10dp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorBurgendy"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <com.opera.app.customwidget.TextViewWithFont
+                        android:id="@+id/txtYouMightAlsoLike"
+                        style="@style/label_light_gray_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:singleLine="true"
+                        android:text="@string/you_also_like"
+                        font:name="Montserrat-Light" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpagerFavGenres"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
