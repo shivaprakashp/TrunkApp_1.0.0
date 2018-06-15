@@ -11,7 +11,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -26,6 +30,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomScrollView;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventDetailsDB;
@@ -69,7 +74,8 @@ public class EventDetailsActivity extends BaseActivity {
             mEventDescription = "",
             mEventImage = "",
             mEventYoutubeVideo = "",
-            mEventURL = "";
+            mEventURL = "",
+            mAppleMusicURL = "";
     private Activity mActivity;
     private Api api;
     private EventDetailsDB mEventDetailsDB;
@@ -86,6 +92,10 @@ public class EventDetailsActivity extends BaseActivity {
 
     @Inject
     Retrofit retrofit;
+
+
+    @BindView(R.id.btnBuyTickets2)
+    TextView btnBuyTickets2;
 
     @BindView(R.id.expandableTextViewInfo)
     TextView mExpandableTextView;
@@ -126,8 +136,14 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.linearYouMightLike)
     LinearLayout linearYouMightLike;
 
+    @BindView(R.id.linearBottomNestedInside)
+    LinearLayout linearBottomNestedInside;
+
     @BindView(R.id.linearShare)
     RelativeLayout linearShare;
+
+    @BindView(R.id.relativeOpenAppleMusic)
+    RelativeLayout relativeOpenAppleMusic;
 
     @BindView(R.id.img_plan_visit)
     ImageView mImgPlanVisit;
@@ -141,6 +157,8 @@ public class EventDetailsActivity extends BaseActivity {
     @BindView(R.id.nestedScrollTxt)
     NestedScrollView nestedScrollTxt;
 
+    @BindView(R.id.nestedParent)
+    ScrollView nestedParent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -274,48 +292,57 @@ public class EventDetailsActivity extends BaseActivity {
         mEventsWithSameGenres = new ArrayList<>();
         mGenresListing = new ArrayList<>();
 
-        mEventListingData = mEventDetailsDB.fetchSpecificEventDetails();
-        mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList(), EventId);
-
-        mGenresListing.addAll(mEventListingData.get(0).getGenreList());
-
-        mEventBuyURL = mEventListingData.get(0).getBuyNowLink();
-        mEventDescription = mEventListingData.get(0).getDescription();
-        mEventImage = mEventListingData.get(0).getImage();
-        mEventYoutubeVideo = mEventListingData.get(0).getVideo();
-        mEventURL = mEventListingData.get(0).getSharedContentText();
-        EventInternalName = mEventListingData.get(0).getInternalName();
-        IsFavourite = mEventListingData.get(0).isFavourite();
-
-        if (manager.isUserLoggedIn()) {
-            if (IsFavourite.equalsIgnoreCase("true")) {
-                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
-            } else {
-                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
-            }
-        }
-
-        if (mEventYoutubeVideo.equalsIgnoreCase("")) {
-            mLinearPlay.setVisibility(View.GONE);
-        }
+        mEventListingData = mEventDetailsDB.fetchSpecificEventDetails(EventId);
 
         if (mEventListingData.size() > 0) {
-            Picasso.with(mActivity).load(mEventListingData.get(0).getEventDetailImage()).fit()
-                    .into(mCover_image, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressImageLoader.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onError() {
-                            progressImageLoader.setVisibility(View.GONE);
-                        }
-                    });
 
 
-            txtHeaderEventName.setText(mEventListingData.get(0).getName());
-            mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
+            mEventsWithSameGenres = mEventListingDB.fetchEventsOfSpecificGenres(mEventListingData.get(0).getGenreList(), EventId);
+
+            mGenresListing.addAll(mEventListingData.get(0).getGenreList());
+
+            mEventBuyURL = mEventListingData.get(0).getBuyNowLink();
+            mEventDescription = mEventListingData.get(0).getDescription();
+            mEventImage = mEventListingData.get(0).getImage();
+            mEventYoutubeVideo = mEventListingData.get(0).getVideo();
+            mEventURL = mEventListingData.get(0).getSharedContentText();
+            EventInternalName = mEventListingData.get(0).getInternalName();
+            IsFavourite = mEventListingData.get(0).isFavourite();
+            mAppleMusicURL = mEventListingData.get(0).getAppleUrl();
+
+            if (manager.isUserLoggedIn()) {
+                if (IsFavourite.equalsIgnoreCase("true")) {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
+                } else {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+                }
+            }
+
+            if (mEventYoutubeVideo.equalsIgnoreCase("")) {
+                mLinearPlay.setVisibility(View.GONE);
+            }
+
+            if (mAppleMusicURL.equalsIgnoreCase("")) {
+                relativeOpenAppleMusic.setVisibility(View.GONE);
+            }
+
+            if (mEventListingData.size() > 0) {
+                Picasso.with(mActivity).load(mEventListingData.get(0).getEventDetailImage()).fit()
+                        .into(mCover_image, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressImageLoader.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onError() {
+                                progressImageLoader.setVisibility(View.GONE);
+                            }
+                        });
+
+
+                txtHeaderEventName.setText(mEventListingData.get(0).getName());
+                mTxtTicketPrice.setText(mEventListingData.get(0).getPriceFrom());
 
            /* if (manager.isUserLoggedIn()) {
                 if (mEventListingData.get(0).isFavourite().equalsIgnoreCase("true")) {
@@ -327,25 +354,59 @@ public class EventDetailsActivity extends BaseActivity {
 
             }*/
 
-            if (mEventsWithSameGenres.size() > 0) {
-                adapterFavGenres.RefreshList(mEventsWithSameGenres);
-                mAdapter.RefreshList(mGenresListing);
-                txtYouMightAlsoLike.setVisibility(View.VISIBLE);
-            } else {
-               /* txtYouMightAlsoLike.setVisibility(View.GONE);
-                linearYouMightLike.setBackgroundColor(getResources().getColor(R.color.black));
-                nestedScrollTxt.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));*/
+                if (mEventsWithSameGenres.size() > 0) {
+                    adapterFavGenres.RefreshList(mEventsWithSameGenres);
+                    mAdapter.RefreshList(mGenresListing);
+                    txtYouMightAlsoLike.setVisibility(View.VISIBLE);
+                    btnBuyTickets2.setVisibility(View.GONE);
+                    mBtnBuyTickets.setVisibility(View.VISIBLE);
+                } else {
+                    txtYouMightAlsoLike.setVisibility(View.GONE);
+                    linearYouMightLike.setBackgroundColor(getResources().getColor(R.color.black));
+                    linearYouMightLike.setVisibility(View.GONE);
+                    recyclerGenres.setVisibility(View.GONE);
+
+                    linearBottomNestedInside.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams lp = nestedScrollTxt.getLayoutParams();
+                    lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                    lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    nestedScrollTxt.requestLayout();
+
+                    /*nestedParent.setScrollingEnabled(false);
+                    Log.e("IsScrollable", nestedParent.isScrollable() + "");*/
+
+
+                /*RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                relativeParams.setMargins(0, 0, 0, 50);
+                nestedScrollTxt.setLayoutParams(relativeParams);*/
+
+                /*ViewGroup.LayoutParams linearParams = new ViewGroup.LayoutParams(
+                        new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
+//                linearParams.setMargins(0, 80, 0, 0);
+                nestedScrollTxt.setLayoutParams(linearParams);
+                nestedScrollTxt.requestLayout();*/
+
+                    mBtnBuyTickets.setVisibility(View.GONE);
+                    btnBuyTickets2.setVisibility(View.VISIBLE);
+
+                /*nestedScrollTxt.setLayoutParams
+                        (new ViewGroup.MarginLayoutParams
+                                (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
+//                nestedScrollTxt.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT));
+                }
+
             }
 
+            mEventDetailsDB.close();
+            mEventListingDB.close();
+            mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getMobileDescription()));
         }
-
-        mEventDetailsDB.close();
-        mEventListingDB.close();
-        mExpandableTextView.setText(Html.fromHtml(mEventListingData.get(0).getMobileDescription()));
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -406,6 +467,13 @@ public class EventDetailsActivity extends BaseActivity {
                 }
             }
             break;
+
+            case R.id.relativeOpenAppleMusic:
+                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mAppleMusicURL);
+                in.putExtra("Header", "Apple music");
+                startActivity(in);
+                break;
         }
     }
 

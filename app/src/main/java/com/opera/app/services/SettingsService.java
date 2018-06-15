@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
@@ -21,6 +22,7 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
+import org.infobip.mobile.messaging.UserData;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,6 +51,8 @@ public class SettingsService extends IntentService {
     public static Activity mActivity;
     static SessionManager mSessionManager;
     private static ProgressDialog mProgressDialog;
+    private UserData userData;
+    private MainApplication mApplication;
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -59,8 +63,10 @@ public class SettingsService extends IntentService {
         super("SettingsService");
     }
 
-    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From) {
+    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From, UserData userData) {
         mActivity = activity;
+        mApplication = ((MainApplication) mActivity.getApplicationContext());
+
         Intent i = new Intent(mActivity, SettingsService.class);
         i.putExtra("NotificationSwitch", mNotifSwitch);
         i.putExtra("PromotionSwitch", mPromoSwitch);
@@ -72,6 +78,7 @@ public class SettingsService extends IntentService {
         mSessionManager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
         this.mFrom = From;
+        this.userData = userData;
 
         if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {
             try {
@@ -106,7 +113,7 @@ public class SettingsService extends IntentService {
 
     private void sendUpdatedSettings() {
 
-        Settings mSettings=new Settings(mBookedShowSwitch,mPromoSwitch,SelecteLanguage,mNewsletterSwitch,mNotifSwitch, mFeedbackNotifSwitch);
+        Settings mSettings = new Settings(mBookedShowSwitch, mPromoSwitch, SelecteLanguage, mNewsletterSwitch, mNotifSwitch, mFeedbackNotifSwitch);
         Call call = api.UpdateSettings(contentType, mSessionManager.getUserLoginData().getData().getToken(), new FavouriteAndSettings(mSettings));
         dataLoad(call);
     }
@@ -125,6 +132,8 @@ public class SettingsService extends IntentService {
                     if (response.body() != null) {
                         RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
                         if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
+//                            mApplication.getMobileMessaging().getInstance(mActivity).syncUserData(userData);
+
                             SessionManager sessionManager = new SessionManager(mActivity);
                             sessionManager.UpdateUserSettings(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch);
                             if (mFrom.equalsIgnoreCase(getResources().getString(R.string.OnLanguageChange))) {
