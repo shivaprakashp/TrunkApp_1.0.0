@@ -132,7 +132,7 @@ public class SettingsService extends IntentService {
                     if (response.body() != null) {
                         RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
                         if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
-                            mApplication.getMobileMessaging().getInstance(mActivity).syncUserData(userData);
+//                            mApplication.getMobileMessaging().getInstance(mActivity).syncUserData(userData);
 
                             SessionManager sessionManager = new SessionManager(mActivity);
                             sessionManager.UpdateUserSettings(mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch);

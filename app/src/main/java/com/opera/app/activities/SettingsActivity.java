@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -111,6 +112,43 @@ public class SettingsActivity extends BaseActivity {
 
         initToolbar();
         initView();
+        SwitchEvents();
+    }
+
+    private void SwitchEvents() {
+        mNotificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+                }else{
+                    userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
+                }
+
+                mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
+
+                userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue(mPromoSwitch));
+
+                getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+            }
+        });
+
+        mPromotionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
+                }else{
+                    userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("false"));
+                }
+
+                mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
+
+                userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue(mNotifSwitch));
+
+                getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+            }
+        });
     }
 
     private void initToolbar() {
@@ -166,7 +204,7 @@ public class SettingsActivity extends BaseActivity {
 
             SetLanguageForPage();
 
-            getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+//            getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
         }
     }
 
