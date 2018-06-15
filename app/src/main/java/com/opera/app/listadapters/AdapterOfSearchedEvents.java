@@ -2,8 +2,13 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +25,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * Created by 1000632 on 5/3/2018.
@@ -51,7 +57,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         holder.txtEventDate.setText(mEventPojo.getFrom() + " to " + mEventPojo.getTo());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
 
-        Picasso.with(mActivity).load(mEventPojo.getHighlightedImage()).fit()
+        Picasso.with(mActivity).load(mEventPojo.getHighlightedImage())
                 .into(holder.imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {

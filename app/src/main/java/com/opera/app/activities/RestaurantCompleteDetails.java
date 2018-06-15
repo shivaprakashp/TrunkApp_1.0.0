@@ -48,12 +48,13 @@ import retrofit2.Retrofit;
 
 public class RestaurantCompleteDetails extends BaseActivity {
 
-    private RestaurantsData mRestaurantListingData;
+//    private RestaurantsData mRestaurantListingData;
     private Activity mActivity;
     private SessionManager manager;
     private CustomToast customToast;
     private Intent intent;
     private SeanRestOpeation restOpeation;
+    private String RestaurantId="",mRestaurantEmail="",mRestaurantPhone="";
 
     private Api api;
     @Inject
@@ -121,7 +122,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
         api = retrofit.create(Api.class);
         restOpeation = new SeanRestOpeation(mActivity);
 
-        mRestaurantListingData = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+//        mRestaurantListingData = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
+        Intent in=getIntent();
+        RestaurantId=in.getStringExtra("RestaurantId");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -157,7 +160,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
     private void GetSpecificRestaurantDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getSpecificRestaurant(taskComplete, api, mRestaurantListingData.getRestId());
+        controller.getSpecificRestaurant(taskComplete, api, RestaurantId);
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -165,9 +168,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
-            if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+            if (mRestaurantPojo!=null && mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
                 restOpeation.open();
-                restOpeation.removeSeanConnolly(mRestaurantListingData.getRestId());
+                restOpeation.removeSeanConnolly(RestaurantId);
                 restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
                 getSeanConnollyData();
             }
@@ -186,7 +189,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         switch (v.getId()) {
             case R.id.mBtnReserveATable:
 
-                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantListingData.getPhoneNumber(), mRestaurantListingData.getEmail());
+                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantPhone,mRestaurantEmail);
                 dialogue.show();
 
                 /*if (Connections.isConnectionAlive(mActivity)) {
@@ -212,14 +215,14 @@ public class RestaurantCompleteDetails extends BaseActivity {
             case R.id.mLinRestaurantNumber:
 
                 intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + mRestaurantListingData.getPhoneNumber()));
+                intent.setData(Uri.parse("tel:" + mRestaurantPhone));
                 mActivity.startActivity(intent);
 
                 break;
 
             case R.id.mLinRestaurantEmail:
 
-                String[] TO = {mRestaurantListingData.getEmail()};
+                String[] TO = {mRestaurantEmail};
                 String[] CC = {""};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
@@ -239,7 +242,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
     }
 
     private void getSeanConnollyData() {
-        setRestaurant(restOpeation.getSeanConnolly(mRestaurantListingData.getRestId()));
+        setRestaurant(restOpeation.getSeanConnolly(RestaurantId));
         restOpeation.close();
     }
 
@@ -257,6 +260,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
             if (data.getRestPlace() != null) {
                 mTxtRestaurantPlace.setText("at " + data.getRestPlace());
             }
+
+            mRestaurantEmail=data.getEmail();
+            mRestaurantPhone=data.getPhoneNumber();
 
             mTxtRestaurantName.setText(data.getRestName());
             mExpandableTextView.setText(data.getRestDetails());
