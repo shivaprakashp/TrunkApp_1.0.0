@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v4.widget.NestedScrollView
+    <ScrollView
+        android:id="@+id/nestedParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="true"
@@ -165,33 +166,52 @@
                         android:layout_height="1dp"
                         android:background="@color/colorTransparentBurgendy" />-->
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/black_gradient"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingBottom="15dp">
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recyclerGenres"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
                             android:layout_gravity="end"
                             android:layout_margin="5dp"
+                            android:layout_marginRight="10dp"
                             android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 
-                        <android.support.v4.widget.NestedScrollView
-                            android:id="@+id/nestedScrollTxt"
+                        <LinearLayout
+                            android:id="@+id/linearNested"
                             android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:layout_margin="10dp">
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/recyclerGenres"
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/expandableTextViewInfo"
-                                style="@style/label_white"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="" />
-                        </android.support.v4.widget.NestedScrollView>
+                            <android.support.v4.widget.NestedScrollView
+                                android:id="@+id/nestedScrollTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:layout_margin="10dp">
+
+                                <TextView
+                                    android:id="@+id/expandableTextViewInfo"
+                                    style="@style/label_white"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="" />
+                            </android.support.v4.widget.NestedScrollView>
+
+                            <LinearLayout
+                                android:id="@+id/linearBottomNestedInside"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:orientation="vertical"
+                                android:visibility="gone"></LinearLayout>
+
+                        </LinearLayout>
                         <!--<LinearLayout
                             android:id="@+id/linearReadMore"
                             android:layout_width="wrap_content"
@@ -223,8 +243,8 @@
                             style="@style/label_white"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/button_height"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_margin="10dp"
+                            android:layout_below="@+id/linearNested"
+                            android:layout_centerHorizontal="true"
                             android:background="@drawable/btn_ripple_effect"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
@@ -232,7 +252,7 @@
                             android:textAllCaps="false"
                             font:name="Montserrat-Light" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -270,9 +290,10 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
         </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -358,4 +379,24 @@
         </LinearLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/btnBuyTickets2"
+            style="@style/label_white"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_ripple_effect"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/buy_tickets"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            font:name="Montserrat-Light" />
+    </RelativeLayout>
 </RelativeLayout>
