@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.RestaurantCompleteDetails;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
@@ -73,7 +72,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                                     mRestaurantList.get(i).getRestDetails(),
                                     mRestaurantList.get(i).getOpenHour(),
                                     mRestaurantList.get(i).getPhoneNumber(),
-                                    mRestaurantList.get(i).getEmail()));
+                                    mRestaurantList.get(i).getEmail(),
+                                    mRestaurantList.get(i).getRestLatitude(),
+                                    mRestaurantList.get(i).getRestLongitude()));
                         }
                     }
                     // set the Filtered result to return

@@ -55,10 +55,18 @@ public class RestaurantsData implements Serializable{
     @Expose
     String Email;
 
+    @SerializedName("restLatitude")
+    @Expose
+    String restLatitude;
+
+    @SerializedName("restLongitude")
+    @Expose
+    String restLongitude;
+
     public RestaurantsData(){
     }
 
-    public RestaurantsData(String restId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber, String email) {
+    public RestaurantsData(String restId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber, String email, String restLatitude, String restLongitude) {
         this.restId = restId;
         this.restName = restName;
         this.restImage = restImage;
@@ -69,16 +77,11 @@ public class RestaurantsData implements Serializable{
         this.restDetails = restDetails;
         this.openHour = openHour;
         this.phoneNumber = phoneNumber;
-        Email = email;
+        this.Email = email;
+        this.restLatitude = restLatitude;
+        this.restLongitude = restLongitude;
     }
 
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
 
     public String getRestId() {
         return restId;
@@ -158,5 +161,29 @@ public class RestaurantsData implements Serializable{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getRestLatitude() {
+        return restLatitude;
+    }
+
+    public void setRestLatitude(String restLatitude) {
+        this.restLatitude = restLatitude;
+    }
+
+    public String getRestLongitude() {
+        return restLongitude;
+    }
+
+    public void setRestLongitude(String restLongitude) {
+        this.restLongitude = restLongitude;
     }
 }
