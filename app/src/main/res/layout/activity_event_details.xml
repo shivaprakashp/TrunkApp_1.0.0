@@ -94,19 +94,6 @@
 
                         </LinearLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/relativeOpenAppleMusic"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.08">
-
-                            <ImageView
-                                android:layout_width="23dp"
-                                android:layout_height="23dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_listern" />
-                        </RelativeLayout>
-
                         <LinearLayout
                             android:id="@+id/linearPlay"
                             android:layout_width="0dp"
@@ -131,6 +118,21 @@
                                   font:name="Montserrat-Light" />-->
 
                         </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/relativeOpenAppleMusic"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.08">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="20dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_music" />
+                        </RelativeLayout>
+
+
 
                         <RelativeLayout
                             android:id="@+id/linearShare"
@@ -309,8 +311,8 @@
 
             <ImageView
                 android:id="@+id/imgBack"
-                android:layout_width="25dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:rotationY="@integer/locale_mirror_flip"

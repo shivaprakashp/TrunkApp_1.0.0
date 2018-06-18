@@ -5,48 +5,123 @@ import com.google.gson.annotations.SerializedName;
 
 public class Notification {
 
-    @SerializedName("notifyTitle")
+    @SerializedName("Id")
     @Expose
-    private String notifyTitle;
-    @SerializedName("notifyImage")
+    private String Id;
+
+    @SerializedName("Title")
     @Expose
-    private String notifyImage;
-    @SerializedName("notifyDescribe")
+    private String Title;
+
+    @SerializedName("Image")
     @Expose
-    private String notifyDescribe;
-    @SerializedName("priceFrom")
+    private String Image;
+
+    @SerializedName("Description")
     @Expose
-    private String priceFrom;
+    private String Description;
 
-    public String getNotifyTitle() {
-        return notifyTitle;
+    @SerializedName("Price")
+    @Expose
+    private String Price;
+
+    @SerializedName("ValidFrom")
+    @Expose
+    private String ValidFrom;
+
+    @SerializedName("ValidTo")
+    @Expose
+    private String ValidTo;
+
+    @SerializedName("DescriptionHtml")
+    @Expose
+    private String DescriptionHtml;
+
+    @SerializedName("PromotionType")
+    @Expose
+    private String PromotionType;
+
+    @SerializedName("PromotionItemId")
+    @Expose
+    private String PromotionItemId;
+
+    public String getId() {
+        return Id;
     }
 
-    public void setNotifyTitle(String notifyTitle) {
-        this.notifyTitle = notifyTitle;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public String getNotifyImage() {
-        return notifyImage;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setNotifyImage(String notifyImage) {
-        this.notifyImage = notifyImage;
+    public void setTitle(String title) {
+        Title = title;
     }
 
-    public String getNotifyDescribe() {
-        return notifyDescribe;
+    public String getImage() {
+        return Image;
     }
 
-    public void setNotifyDescribe(String notifyDescribe) {
-        this.notifyDescribe = notifyDescribe;
+    public void setImage(String image) {
+        Image = image;
     }
 
-    public String getPriceFrom() {
-        return priceFrom;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setPriceFrom(String priceFrom) {
-        this.priceFrom = priceFrom;
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+    public String getValidFrom() {
+        return ValidFrom;
+    }
+
+    public void setValidFrom(String validFrom) {
+        ValidFrom = validFrom;
+    }
+
+    public String getValidTo() {
+        return ValidTo;
+    }
+
+    public void setValidTo(String validTo) {
+        ValidTo = validTo;
+    }
+
+    public String getDescriptionHtml() {
+        return DescriptionHtml;
+    }
+
+    public void setDescriptionHtml(String descriptionHtml) {
+        DescriptionHtml = descriptionHtml;
+    }
+
+    public String getPromotionType() {
+        return PromotionType;
+    }
+
+    public void setPromotionType(String promotionType) {
+        PromotionType = promotionType;
+    }
+
+    public String getPromotionItemId() {
+        return PromotionItemId;
+    }
+
+    public void setPromotionItemId(String promotionItemId) {
+        PromotionItemId = promotionItemId;
     }
 }

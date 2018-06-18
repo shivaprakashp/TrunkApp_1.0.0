@@ -189,7 +189,6 @@ public class EventDetailsActivity extends BaseActivity {
         try {
             Intent in = getIntent();
             EventId = in.getStringExtra("EventId");
-            EventInternalName = in.getStringExtra("EventInternalName");
             IsFavourite = in.getStringExtra("IsFavourite");
         } catch (Exception e) {
             e.printStackTrace();
@@ -471,7 +470,7 @@ public class EventDetailsActivity extends BaseActivity {
             case R.id.relativeOpenAppleMusic:
                 Intent in = new Intent(mActivity, CommonWebViewActivity.class);
                 in.putExtra("URL", mAppleMusicURL);
-                in.putExtra("Header", "Apple music");
+                in.putExtra("Header", "Apple Music");
                 startActivity(in);
                 break;
         }

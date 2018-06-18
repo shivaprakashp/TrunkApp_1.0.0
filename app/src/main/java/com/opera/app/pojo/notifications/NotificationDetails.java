@@ -10,12 +10,11 @@ public class NotificationDetails {
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("notificationType")
-    @Expose
-    private String notificationType;
+
     @SerializedName("message")
     @Expose
     private String message;
+
     @SerializedName("notification")
     @Expose
     private ArrayList<Notification> notification;
@@ -26,14 +25,6 @@ public class NotificationDetails {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getNotificationType() {
-        return notificationType;
-    }
-
-    public void setNotificationType(String notificationType) {
-        this.notificationType = notificationType;
     }
 
     public String getMessage() {
