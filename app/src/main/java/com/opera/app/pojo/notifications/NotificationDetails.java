@@ -15,7 +15,7 @@ public class NotificationDetails {
     @Expose
     private String message;
 
-    @SerializedName("notification")
+    @SerializedName("promotions")
     @Expose
     private ArrayList<Notification> notification;
 

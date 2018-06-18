@@ -219,16 +219,27 @@ public class MenuFragment extends BaseFragment {
         menu_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), NotificationActivity.class);
-                getActivity().startActivity(intent);
+                if (manager.isUserLoggedIn()) {
+                    intent = new Intent(getActivity(), NotificationActivity.class);
+                    getActivity().startActivity(intent);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
+                    dialog.show();
+                }
             }
         });
 
         menu_promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(getActivity(), PromotionsActivity.class);
-                getActivity().startActivity(intent);
+                if (manager.isUserLoggedIn()) {
+                    intent = new Intent(getActivity(), PromotionsActivity.class);
+                    getActivity().startActivity(intent);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
+                    dialog.show();
+                }
+
             }
         });
 

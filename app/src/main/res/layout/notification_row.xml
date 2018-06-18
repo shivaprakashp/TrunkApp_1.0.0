@@ -32,9 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -59,6 +57,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:text="@string/profile_name"
                     font:name="Montserrat-Light" />
 
@@ -79,7 +79,7 @@
                     font:name="Montserrat-Light" />
 
                 <com.opera.app.customwidget.TextViewWithFont
-                    style="@style/label_burgendy_medium"
+                    style="@style/label_burgendy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/aed"
@@ -87,7 +87,7 @@
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtPriceFrom"
-                    style="@style/label_burgendy_vvlarge"
+                    style="@style/label_burgendy_vlarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"

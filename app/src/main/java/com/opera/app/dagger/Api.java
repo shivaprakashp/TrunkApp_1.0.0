@@ -91,7 +91,7 @@ public interface Api {
     @POST("restaurants/extended/GetWalletDetails/")
     Call<WalletDetails> getWalletDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
 
-    @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
+    @POST("promotion/extended/GetNotifications")
     Call<NotificationDetails> getNotificationDetails();
 
     @POST("promotion/extended/GetPromotions")

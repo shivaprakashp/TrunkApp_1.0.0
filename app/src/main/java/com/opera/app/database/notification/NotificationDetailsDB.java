@@ -32,7 +32,7 @@ public class NotificationDetailsDB {
 
     //creating table
     public static final String CREATE_TABLE_NOTIFICATION =
-            "CREATE TABLE " + TABLE_NOTIFICATION_DETAILS + "(" + NOTIFICATION_ID + " INTEGER,"
+            "CREATE TABLE " + TABLE_NOTIFICATION_DETAILS + "(" + NOTIFICATION_ID + " TEXT,"
                     + NOTIFICATION_TITLE + " TEXT,"
                     + NOTIFICATION_IMAGE_URL + " TEXT,"
                     + NOTIFICATION_DESCRIBE + " TEXT,"

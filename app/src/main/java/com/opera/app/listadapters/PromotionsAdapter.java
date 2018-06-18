@@ -52,9 +52,10 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
         }
     }
 
-    public PromotionsAdapter(Activity mActivity, ArrayList<PromotionDetails> mPromotionList) {
-        this.mActivity = mActivity;
+    public PromotionsAdapter(Activity Activity, ArrayList<PromotionDetails> mPromotionList) {
+        this.mActivity = Activity;
         this.mPromotionList = mPromotionList;
+        mEventListingDB = new EventListingDB(mActivity);
     }
 
     public void RefreshList(ArrayList<PromotionDetails> mPromotionList) {
