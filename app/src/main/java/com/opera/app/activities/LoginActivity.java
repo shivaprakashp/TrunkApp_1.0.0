@@ -34,6 +34,7 @@ import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
 
 import javax.inject.Inject;
@@ -239,6 +240,8 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    /*validate
+    * email for forgot password*/
     private boolean checkValidationForgotPassword() {
         if (TextUtils.isEmpty(forgotPassword.getText().toString().trim())) {
             customToast.showErrorToast(getString(R.string.errorEmailId));
@@ -294,6 +297,8 @@ public class LoginActivity extends BaseActivity {
             userData.setFirstName(loginResponse.getData().getProfile().getFirstName());
             userData.setLastName(loginResponse.getData().getProfile().getLastName());
             userData.setEmail(loginResponse.getData().getProfile().getEmail());
+            userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+            userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
 
             getMobileMessaging().getInstance(LoginActivity.this).syncUserData(userData);
 

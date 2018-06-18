@@ -28,7 +28,7 @@ public class MainApplication extends Application {
     private Typeface fontLight, fontMedium, fontRegular, fontBold;
 
     private ApiComponent apiComponent;
-
+    //creation of instance for MobileMessaging
     private static MobileMessaging mobileMessaging = null;
 
     @Override
@@ -44,21 +44,22 @@ public class MainApplication extends Application {
     }
 
     private void initInfoBip(){
+        /*create instance along with set custom icon,
+        * and build notification*/
         mobileMessaging = new MobileMessaging.Builder(this)
-                .withMessageStore(SQLiteMessageStore.class)
                 .withDisplayNotification(new NotificationSettings.Builder(this)
                         .withMultipleNotifications()
-                        .withDefaultIcon(R.drawable.ic_state_icon)
+                        .withDefaultIcon(R.drawable.ic_notifications)
                         .build())
                 .build();
     }
 
     //return static instance of Infobip MobileMessaging
     public static MobileMessaging getMobileMessaging() {
-
         return mobileMessaging;
     }
 
+    //set different type of fonts, reuse
     private void setFont(){
         fontLight = Typeface.createFromAsset(getAssets(), OperaUtils.FONT_MONSTERRAT_LIGHT);
         fontMedium = Typeface.createFromAsset(getAssets(), OperaUtils.FONT_MONSTERRAT_MEDIUM);
@@ -68,11 +69,11 @@ public class MainApplication extends Application {
     }
 
     private void initDagger(){
+        //dagger component initilized
         apiComponent = DaggerApiComponent.builder()
                 .appModule(new AppModule(this))
                 .apiModule(new ApiModule(UrlUtils.baseUrl))
                 .build();
-
     }
 
     public Typeface getFontLight() {
