@@ -64,11 +64,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Notification mNotification = mNotificationList.get(position);
-        holder.mTxtNotifyTitle.setText(mNotification.getNotifyTitle());
-        holder.mTxtNotifyDesc.setText(mNotification.getNotifyDescribe());
-        holder.mTxtPriceFrom.setText(mNotification.getPriceFrom());
+        holder.mTxtNotifyTitle.setText(mNotification.getTitle());
+        holder.mTxtNotifyDesc.setText(mNotification.getDescription());
+        holder.mTxtPriceFrom.setText(mNotification.getPrice());
 
-        Picasso.with(mActivity).load(mNotification.getNotifyImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mNotification.getImage()).fit().centerCrop()
                 .into(holder.mImgNotifyImage, new Callback() {
                     @Override
                     public void onSuccess() {
