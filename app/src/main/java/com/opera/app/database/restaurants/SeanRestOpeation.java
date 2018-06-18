@@ -27,7 +27,7 @@ public class SeanRestOpeation {
     private static final String REST_EMAIL = "email";
     //creating table
     public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " INTEGER," +
+            "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " TEXT," +
                     REST_NAME + " TEXT," +
                     REST_IMAGE + " TEXT," +
                     REST_PLACE + " TEXT," +

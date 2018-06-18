@@ -12,7 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.RestaurantCompleteDetails;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.notifications.Notification;
 import com.opera.app.pojo.promotions.PromotionDetails;
 import com.opera.app.preferences.SessionManager;
@@ -29,6 +31,7 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
 
     Activity mActivity;
     ArrayList<PromotionDetails> mPromotionList;
+    private EventListingDB mEventListingDB;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTxtNotifyTitle, mTxtNotifyDesc, mTxtPriceFrom;
@@ -41,7 +44,7 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
             mTxtNotifyTitle = (TextView) view.findViewById(R.id.mTxtNotifyTitle);
             mTxtNotifyDesc = (TextView) view.findViewById(R.id.mTxtNotifyDesc);
             mTxtPriceFrom = (TextView) view.findViewById(R.id.mTxtPriceFrom);
-            relativeParent=(RelativeLayout)view.findViewById(R.id.relativeParent);
+            relativeParent = (RelativeLayout) view.findViewById(R.id.relativeParent);
 
             mImgNotifyImage = (ImageView) view.findViewById(R.id.mImgNotifyImage);
             progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
@@ -89,12 +92,27 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
         holder.relativeParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mPromotionData.getPromotionType().equalsIgnoreCase(mActivity.getResources().getString(R.string.restaurant))){
-                    Intent in=new Intent(mActivity, RestaurantCompleteDetails.class);
-                    in.putExtra("RestaurantId",mPromotionData.getPromotionItemId());
+                if (mPromotionData.getPromotionType().equalsIgnoreCase(mActivity.getResources().getString(R.string.restaurant))) {
+
+                    Intent in = new Intent(mActivity, RestaurantCompleteDetails.class);
+                    in.putExtra("RestaurantId", mPromotionData.getPromotionItemId());
                     mActivity.startActivity(in);
 
-                }else{
+                } else {
+
+                    mEventListingDB.open();
+                    boolean IsFavourite = mEventListingDB.IsFavouriteForSpecificEvent(mPromotionData.getPromotionItemId());
+                    mEventListingDB.close();
+
+                    Intent in = new Intent(mActivity, EventDetailsActivity.class);
+                    in.putExtra("EventId", mPromotionData.getPromotionItemId());
+
+                    if (IsFavourite) {
+                        in.putExtra("IsFavourite", "true");
+                    } else {
+                        in.putExtra("IsFavourite", "false");
+                    }
+                    mActivity.startActivity(in);
 
                 }
             }
