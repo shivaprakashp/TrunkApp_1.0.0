@@ -79,8 +79,8 @@ public interface Api {
     Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
                                                 @Body BookTableRequest tableResponse);
 
-    @POST("restaurants/extended/GetRestaurantById/")
-    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("id") String restaurantId);
+    @POST("restaurants/extended/GetRestaurant/")
+    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
 
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();

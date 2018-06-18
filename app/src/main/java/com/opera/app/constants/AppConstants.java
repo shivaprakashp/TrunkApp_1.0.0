@@ -2,8 +2,8 @@ package com.opera.app.constants;
 
 public interface AppConstants {
 
-//    static String SEAN_CONOLLY_RESTAURANT_ID = "40";
-    static String SEAN_CONOLLY_RESTAURANT_ID = "{05427B33-F675-4045-B99F-97EE841E5EC0}";
+    static String SEAN_CONOLLY_RESTAURANT_ID = "40";
+//    static String SEAN_CONOLLY_RESTAURANT_ID = "{05427B33-F675-4045-B99F-97EE841E5EC0}";
 
     static String SEAN_CONOLLY_R_STATUS = "3";
     static String EVENT_TYPE_OPERA_TOUR = "DubaiTour";
