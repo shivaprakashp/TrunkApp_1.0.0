@@ -18,13 +18,11 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.restaurants.SeanRestOpeation;
-import com.opera.app.dialogues.FindOutMoreDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
@@ -36,7 +34,6 @@ import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -54,7 +51,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
     private CustomToast customToast;
     private Intent intent;
     private SeanRestOpeation restOpeation;
-    private String RestaurantId="",mRestaurantEmail="",mRestaurantPhone="";
+    private String RestaurantId="",mRestaurantEmail="",mRestaurantPhone="", mRestaurantLatitude= "", mRestaurantLongitude= "", mRestaurantName= "";
 
     private Api api;
     @Inject
@@ -98,6 +95,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
     @BindView(R.id.mLinRestaurantEmail)
     LinearLayout mLinRestaurantEmail;
+
+    @BindView(R.id.mTxtRestaurantOpeningHours)
+    TextView mTxtRestaurantOpeningHours;
 
 
     @Override
@@ -184,32 +184,19 @@ public class RestaurantCompleteDetails extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.mBtnReserveATable, R.id.mLinRestaurantNumber, R.id.mLinRestaurantEmail})
+    @OnClick({R.id.mBtnLocationMap, R.id.mLinRestaurantNumber, R.id.mLinRestaurantEmail})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mBtnReserveATable:
+            case R.id.mBtnLocationMap:
 
-                FindOutMoreDialogue dialogue = new FindOutMoreDialogue(mActivity, mRestaurantPhone,mRestaurantEmail);
-                dialogue.show();
+                String uriBegin = "geo:" + mRestaurantLatitude + "," + mRestaurantLongitude;
+                String query = mRestaurantLatitude + "," + mRestaurantLongitude + "(" + mRestaurantName + ")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin + "?q=" + encodedQuery + "&z=16";
+                Uri uri = Uri.parse(uriString);
+                Intent mapIntent = new Intent(android.content.Intent.ACTION_VIEW, uri);
+                startActivity(mapIntent);
 
-                /*if (Connections.isConnectionAlive(mActivity)) {
-                    if (manager.isUserLoggedIn()) {
-                        if (mRestaurantListingData.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
-                            openActivity(mActivity, ReserveATableActivity.class);
-                        } else {
-                            Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                            in.putExtra("URL", mRestaurantListingData.getRestBookUrl());
-                            in.putExtra("Header", mRestaurantListingData.getRestName());
-                            mActivity.startActivity(in);
-                        }
-                    } else {
-                        GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
-                        dialog.show();
-                    }
-                } else {
-                    //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
-                    customToast.showErrorToast(mActivity.getResources().getString(R.string.internet_error_msg));
-                }*/
                 break;
 
             case R.id.mLinRestaurantNumber:
@@ -258,11 +245,17 @@ public class RestaurantCompleteDetails extends BaseActivity {
             }
 
             if (data.getRestPlace() != null) {
-                mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+                mTxtRestaurantPlace.setText("at " + data.getRestLocation());
             }
 
+            if (data.getRestPlace() != null) {
+                mTxtRestaurantOpeningHours.setText(data.getOpenHour());
+            }
+            mRestaurantName=data.getRestName();
             mRestaurantEmail=data.getEmail();
             mRestaurantPhone=data.getPhoneNumber();
+            mRestaurantLatitude=data.getRestLatitude();
+            mRestaurantLongitude=data.getRestLongitude();
 
             mTxtRestaurantName.setText(data.getRestName());
             mExpandableTextView.setText(data.getRestDetails());

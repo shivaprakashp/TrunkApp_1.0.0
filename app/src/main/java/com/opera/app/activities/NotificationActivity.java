@@ -65,20 +65,12 @@ public class NotificationActivity extends BaseActivity {
             if (response.body() != null)
                 try {
                     if (mNotificationPojo.getStatus().equalsIgnoreCase("success")) {
-                        if(mNotificationPojo.getNotificationType().equalsIgnoreCase("notification")) {
-                            txtToolbarName.setText(getString(R.string.menu_notification));
+
                             dbManagerNotification.open();
                             dbManagerNotification.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
                             dbManagerNotification.insertNotifications(mNotificationPojo.getNotification());
                             fetchDataFromNotificationDB();
-                        }
-                        /*else {
-                            txtToolbarName.setText(getString(R.string.menu_promotion));
-                            dbManagerPromotion.open();
-                            dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
-                            dbManagerPromotion.insertPromotions(mNotificationPojo.getNotification());
-                            fetchDataFromPromotionDB();
-                        }*/
+
                     }
                 } catch (Exception e) {
                     Log.e("Message", e.getMessage());

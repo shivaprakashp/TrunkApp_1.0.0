@@ -25,6 +25,9 @@ public class SeanRestOpeation {
     private static final String REST_OPEN_HOURS = "openHour";
     private static final String REST_PHONE_NUMBER = "phoneNumber";
     private static final String REST_EMAIL = "email";
+    private static final String REST_LATITUDE = "latitude";
+    private static final String REST_LONGITUDE = "longitude";
+
     //creating table
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " TEXT," +
@@ -38,6 +41,8 @@ public class SeanRestOpeation {
                     REST_OPEN_HOURS + " TEXT," +
                     REST_PHONE_NUMBER + " TEXT," +
                     REST_EMAIL + " TEXT," +
+                    REST_LATITUDE + " TEXT," +
+                    REST_LONGITUDE + " TEXT," +
                     "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
 
 
@@ -76,7 +81,8 @@ public class SeanRestOpeation {
             values.put(REST_OPEN_HOURS, data.getOpenHour());
             values.put(REST_PHONE_NUMBER, data.getPhoneNumber());
             values.put(REST_EMAIL, data.getEmail());
-
+            values.put(REST_LATITUDE, data.getRestLatitude());
+            values.put(REST_LONGITUDE, data.getRestLongitude());
             database.insert(TABLE_NAME, null, values);
         } catch (SQLException e) {
             Log.e("error1", e.getMessage());
@@ -105,7 +111,8 @@ public class SeanRestOpeation {
                 data.setOpenHour(cursor.getString(8));
                 data.setPhoneNumber(cursor.getString(9));
                 data.setEmail(cursor.getString(10));
-
+                data.setRestLatitude(cursor.getString(11));
+                data.setRestLongitude(cursor.getString(12));
             }
 
         } catch (SQLException e) {
