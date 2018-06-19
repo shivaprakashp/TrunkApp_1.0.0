@@ -67,8 +67,8 @@
     <string name="setting_allow_notification">Allow Notifications</string>
     <string name="setting_allow_promotion">Allow Promotions</string>
     <string name="setting_allow_feedback">Allow Feedback Notification</string>
-    <string name="setting_weekly_newsletters">Weekly newsletter</string>
-    <string name="setting_reminder_booked_show">Reminders for the booked show</string>
+    <string name="setting_weekly_newsletters">Weekly newsletters</string>
+    <string name="setting_reminder_booked_show">Reminders for the booked shows</string>
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
     <string name="save1">Save</string>
@@ -922,7 +922,7 @@
     <string name="view_details">View Details</string>
 
     <!--Home fragment-->
-    <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
+    <string name="enter_keywords">Enter keywords to search for events, genres etc.</string>
     <string name="search">Search</string>
     <string name="search1">SEARCH</string>
     <string name="whats_on">What\'s on</string>

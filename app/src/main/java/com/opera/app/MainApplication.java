@@ -29,7 +29,7 @@ public class MainApplication extends Application {
 
     private ApiComponent apiComponent;
     //creation of instance for MobileMessaging
-    private static MobileMessaging mobileMessaging = null;
+    private MobileMessaging mobileMessaging = null;
 
     @Override
     public void onCreate(){
@@ -47,6 +47,7 @@ public class MainApplication extends Application {
         /*create instance along with set custom icon,
         * and build notification*/
         mobileMessaging = new MobileMessaging.Builder(this)
+                .withMessageStore(SQLiteMessageStore.class)
                 .withDisplayNotification(new NotificationSettings.Builder(this)
                         .withMultipleNotifications()
                         .withDefaultIcon(R.drawable.ic_notifications)
@@ -55,7 +56,10 @@ public class MainApplication extends Application {
     }
 
     //return static instance of Infobip MobileMessaging
-    public static MobileMessaging getMobileMessaging() {
+    public MobileMessaging getMobileMessaging() {
+        if (mobileMessaging==null){
+            initInfoBip();
+        }
         return mobileMessaging;
     }
 
