@@ -50,7 +50,7 @@ public class MainApplication extends Application {
                 .withMessageStore(SQLiteMessageStore.class)
                 .withDisplayNotification(new NotificationSettings.Builder(this)
                         .withMultipleNotifications()
-                        .withDefaultIcon(R.drawable.ic_notifications)
+                        .withDefaultIcon(R.drawable.ic_notification_icon)
                         .build())
                 .build();
     }
