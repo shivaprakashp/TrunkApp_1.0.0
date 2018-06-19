@@ -405,7 +405,7 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.btnBuyTickets2,R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -414,6 +414,13 @@ public class EventDetailsActivity extends BaseActivity {
                 break;
 
             case R.id.btnBuyTickets:
+                in = new Intent(mActivity, CommonWebViewActivity.class);
+                in.putExtra("URL", mEventBuyURL);
+                in.putExtra("Header", EventInternalName);
+                mActivity.startActivity(in);
+                break;
+
+            case R.id.btnBuyTickets2:
                 in = new Intent(mActivity, CommonWebViewActivity.class);
                 in.putExtra("URL", mEventBuyURL);
                 in.putExtra("Header", EventInternalName);

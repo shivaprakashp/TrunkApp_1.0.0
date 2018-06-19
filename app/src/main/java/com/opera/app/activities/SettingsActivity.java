@@ -39,8 +39,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.opera.app.MainApplication.getMobileMessaging;
-
 /**
  * Created by 58001 on 23-03-2018.
  */
@@ -129,7 +127,7 @@ public class SettingsActivity extends BaseActivity {
 
                 userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue(mPromoSwitch));
 
-                getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
             }
         });
 
@@ -146,7 +144,7 @@ public class SettingsActivity extends BaseActivity {
 
                 userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue(mNotifSwitch));
 
-                getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
             }
         });
     }
@@ -289,7 +287,7 @@ public class SettingsActivity extends BaseActivity {
                     sp.edit().putString("notificationSwitch", mNotifSwitch).commit();
                     userData.setCustomUserDataElement("notificationSwitch",
                             new CustomUserDataValue(mNotifSwitch));
-                    getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                    ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
                 }
                 break;
             case R.id.promotionSwitch:
@@ -298,7 +296,7 @@ public class SettingsActivity extends BaseActivity {
                     sp.edit().putString("promotionSwitch", mPromoSwitch).commit();
                     userData.setCustomUserDataElement("promotionSwitch",
                             new CustomUserDataValue(mPromoSwitch));
-                    getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                    ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
                 }
                 break;
         }
@@ -394,7 +392,7 @@ public class SettingsActivity extends BaseActivity {
             mReminderSwitch.setChecked(false);
         }
         SetLanguageForPage();
-        getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+        ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
     }
 
     private void SetLanguageForPage() {

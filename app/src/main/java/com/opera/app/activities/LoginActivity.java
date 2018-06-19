@@ -45,8 +45,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.opera.app.MainApplication.getMobileMessaging;
-
 /**
  * Created by 1000632 on 3/22/2018.
  */
@@ -280,7 +278,7 @@ public class LoginActivity extends BaseActivity {
 
         MainController controller = new MainController(LoginActivity.this);
         controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd,
-                getMobileMessaging().getPushRegistrationId()));
+                ((MainApplication)getApplication()).getMobileMessaging().getPushRegistrationId()));
     }
 
     //maintain login session
@@ -300,7 +298,7 @@ public class LoginActivity extends BaseActivity {
             userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
             userData.setCustomUserDataElement("promotionSwitch", new CustomUserDataValue("true"));
 
-            getMobileMessaging().getInstance(LoginActivity.this).syncUserData(userData);
+            ((MainApplication)getApplication()).getMobileMessaging().getInstance(LoginActivity.this).syncUserData(userData);
 
         } catch (Exception e) {
             e.printStackTrace();

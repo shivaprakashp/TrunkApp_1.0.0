@@ -48,9 +48,9 @@ public class TestAct extends Activity {
 
         activity = TestAct.this;
 
-        btnOpenApple = (Button) findViewById(R.id.btnOpenApple);
+        /*btnOpenApple = (Button) findViewById(R.id.btnOpenApple);
         btnEmbedUrl = (Button) findViewById(R.id.btnEmbedUrl);
-        btnItunesUrl = (Button) findViewById(R.id.btnItunesUrl);
+        btnItunesUrl = (Button) findViewById(R.id.btnItunesUrl);*/
 
         btnOpenApple.setOnClickListener(new View.OnClickListener() {
             @Override
