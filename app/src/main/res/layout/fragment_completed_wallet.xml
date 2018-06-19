@@ -37,14 +37,13 @@
 
         <com.opera.app.customwidget.TextViewWithFont
             android:id="@+id/txtWalletEventTitle"
-            style="@style/label_black_vlarge"
+            style="@style/label_white_vlarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="No data available"
-            font:name="Montserrat-Bold"
-            font:type="bold" />
+            font:name="Montserrat-Light" />
     </RelativeLayout>
 
 </ScrollView>

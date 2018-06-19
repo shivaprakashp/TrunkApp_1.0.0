@@ -165,7 +165,7 @@ public class TodayWalletView extends LinearLayout {
                 dateReservation.setText(" " + formattedTimeReservationDate);
                 mealPeriod.setText(" " + restaurant.getMealPeriodId());
                 preferTime.setText(" " + restaurant.getPreferredTime());
-                referNo.setText(" " + restaurant.getBookingReferenceNumber());
+                referNo.setText(" " + restaurant.getFullReservationID());
                 bookDate.setText(" " + formattedTime);
 
                 try {

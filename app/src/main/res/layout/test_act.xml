@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
+    <!--<Button
         android:id="@+id/btnEmbedUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,5 +24,23 @@
         android:id="@+id/btnOpenApple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open apple music" />
+        android:text="Open apple music" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></RelativeLayout>
+
+    </LinearLayout>
 </LinearLayout>

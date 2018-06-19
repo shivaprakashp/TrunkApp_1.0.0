@@ -924,6 +924,7 @@
     <!--Home fragment-->
     <string name="enter_keywords">Enter keywords to search for events genres etc.</string>
     <string name="search">Search</string>
+    <string name="search1">SEARCH</string>
     <string name="whats_on">What\'s on</string>
     <string name="empty"></string>
     <string name="share_using">Select App to Share Text and Image</string>
