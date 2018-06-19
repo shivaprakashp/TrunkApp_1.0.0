@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_user_icon" />
+                        android:src="@drawable/ic_last_name" />
 
                     <include
                         android:id="@+id/edit_edtLastName"

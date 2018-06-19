@@ -9,7 +9,6 @@ import android.view.Window;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
-import com.opera.app.activities.LoginActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 
@@ -50,12 +49,12 @@ public class ErrorDialogue extends Dialog {
     private View.OnClickListener buttonClose = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (message.contains("Account already available.")) {
+            /*if (message.contains("Account already available.")) {
                 mBaseActivity.openActivity(mActivity, LoginActivity.class);
                 dismiss();
-            } else {
+            } else {*/
                 dismiss();
-            }
+            //}
         }
     };
 }

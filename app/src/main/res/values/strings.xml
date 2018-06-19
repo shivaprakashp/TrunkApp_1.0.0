@@ -68,7 +68,7 @@
     <string name="setting_allow_promotion">Allow Promotions</string>
     <string name="setting_allow_feedback">Allow Feedback Notification</string>
     <string name="setting_weekly_newsletters">Weekly newsletter</string>
-    <string name="setting_reminder_booked_show">Reminders for the booked show</string>
+    <string name="setting_reminder_booked_show">Reminders for the booked shows</string>
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
     <string name="save1">Save</string>

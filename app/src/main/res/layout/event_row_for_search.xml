@@ -21,8 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.25">
+            android:layout_weight="0.1">
 
             <ImageView
                 android:id="@+id/imgEvent"
@@ -35,7 +34,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:orientation="vertical">
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -45,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="" />
+                android:text=""
+                font:name="Montserrat-Light"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtEventDate"
@@ -54,7 +54,15 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="" />
+                android:text=""
+                font:name="Montserrat-Bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                >
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtEventInfo"
@@ -62,11 +70,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:text="" />
+                android:maxLines="3"
+                android:layout_weight="1"
+                android:text=""
+                font:name="Montserrat-Light"/>
+
+                <com.opera.app.customwidget.ButtonWithFont
+                    android:id="@+id/btnBuyTickets"
+                    style="@style/label_white_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/button_height_small"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/btn_ripple_effect"
+                    android:text="@string/buy_tickets"
+                    font:name="Montserrat-Light" />
+
         </LinearLayout>
 
-        <RelativeLayout
+        </LinearLayout>
+
+        <!--<RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25">
@@ -81,7 +105,7 @@
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/buy_tickets"
                 font:name="Montserrat-Light" />
-        </RelativeLayout>
+        </RelativeLayout>-->
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

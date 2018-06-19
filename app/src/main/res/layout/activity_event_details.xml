@@ -19,7 +19,7 @@
             <RelativeLayout
                 android:id="@+id/relativeImageTop"
                 android:layout_width="match_parent"
-                android:layout_height="250dp">
+                android:layout_height="300dp">
 
                 <ImageView
                     android:id="@+id/cover_image"
@@ -102,10 +102,10 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:layout_width="15dp"
+                                android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_play_button" />
+                                android:src="@drawable/ic_video" />
 
                             <!--  <com.opera.app.customwidget.TextViewWithFont
                                   style="@style/label_white_small"
@@ -126,7 +126,7 @@
                             android:layout_weight="0.08">
 
                             <ImageView
-                                android:layout_width="16dp"
+                                android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/ic_music" />

@@ -476,14 +476,14 @@ public class RegisterActivity extends BaseActivity {
     private boolean validateCheck() {
 
         //Removing previous validations
-        edtEmail.setError(null);
+        /*edtEmail.setError(null);
         edtPassword.setError(null);
         edtRePass.setError(null);
         edtFirstName.setError(null);
         edtLastName.setError(null);
         edtMobile.setError(null);
         edtCity.setError(null);
-        edtDob.setError(null);
+        edtDob.setError(null);*/
 
         //validation of input field
         //firstName
