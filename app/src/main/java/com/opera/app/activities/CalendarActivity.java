@@ -140,8 +140,6 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         mEventDetailsDB.close();
 
         updateEventDates(mEventListingData);
-
-
     }
 
     private void updateEventDates(List<Events> eventsList){
