@@ -116,6 +116,7 @@
 
     <!--My Profile-->
     <string name="my_profile">ملفي </string>
+    <string name="profile_info">عضو منذ</string>
     <string name="profile_edit_profile">تعديل الملف الشخصي</string>
     <string name="profile_change_password">تغيير كلمة السر</string>
     <string name="tab_profile">الملف الشخصي</string>
@@ -261,6 +262,10 @@
     <string name="changedPasswordSuccessMsg">تم تغيير الرقم السري بنجاح.</string>
     <string name="changedPassword_header">نجاح</string>
     <string name="ForgotPsswordSuccessMsg">تم إرسال رابط لإعادة تعيين كلمة المرور الخاصة بك إلى بريدك الإلكتروني.</string>
+
+    <string name="login_caps">LOGIN</string>
+    <string name="logout_msg">Are you sure you want to logout?</string>
+    <string name="logout_header">LOGOUT</string>
 
     <array name="states">
         <item>دبي</item>
@@ -827,6 +832,7 @@
     <!--Home fragment-->
     <string name="enter_keywords">أدخل الكلمات الرئيسية للبحث عن أنواع الأحداث وما إلى ذلك.</string>
     <string name="search">بحث</string>
+    <string name="search1">بحث</string>
     <string name="whats_on">ماذا يجري</string>
     <string name="share_using">حدد التطبيق لمشاركة النص والصورة</string>
     <string name="error_youtube">خطأ في تشغيل youtube video</string>
@@ -857,6 +863,10 @@
     <string name="venue_detail">أوبرا دبي ، دبي</string>
     <string name="date_detail">صالح لمدة 12 شهرا</string>
 
+    <string name="close">أغلق</string>
+    <string name="select_item">اختر البند</string>
+
     <string name="find_shows">الأكثر شيوعاً</string>
+    <string name="location">خريطة الموقع</string>
 
 </resources>
