@@ -112,6 +112,7 @@
                         android:layout_height="40dp"
                         android:layout_weight="0.7"
                         android:background="@null"
+                        android:textColorHint="@color/black"
                         android:editable="false"
                         android:hint="@string/total_no_of_guests"
                         font:name="Montserrat-Regular" />
