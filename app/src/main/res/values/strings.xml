@@ -67,7 +67,7 @@
     <string name="setting_allow_notification">Allow Notifications</string>
     <string name="setting_allow_promotion">Allow Promotions</string>
     <string name="setting_allow_feedback">Allow Feedback Notification</string>
-    <string name="setting_weekly_newsletters">Weekly newsletter</string>
+    <string name="setting_weekly_newsletters">Weekly newsletters</string>
     <string name="setting_reminder_booked_show">Reminders for the booked shows</string>
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
@@ -239,7 +239,7 @@
     <string name="telephone_no">Mobile Number</string>
     <string name="email3">Email Address</string>
     <string name="window_table">Window Table</string>
-    <string name="total_no_of_guests">Please select total number of guests*</string>
+    <string name="total_no_of_guests">Number of guests*</string>
     <string name="full_name1">Full Name</string>
     <string name="submit">Submit</string>
     <string name="select_meal_priod">Please select the meal period*</string>
@@ -306,10 +306,10 @@
     <string name="errorLengthFullName">Length of Full Name should be between 1 to 30 characters</string>
     <string name="errorMessage">Message may not be blank</string>
     <string name="errorLengthMessage">Message should not be more than 70 characters</string>
-    <string name="errorEnquiryType">Enquiry Type may not be blank</string>
+    <string name="errorEnquiryType">Enquiry Type cannot be left blank</string>
 
     <!--error and success dialog msg-->
-    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address and Password to login into Dubai Opera.</string>
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address &amp; Password to login into Dubai Opera.</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
     <string name="success_header">SUCCESS</string>
@@ -320,6 +320,10 @@
     <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
     <string name="changedPassword_header">SUCCESS</string>
     <string name="ForgotPsswordSuccessMsg">A link to reset your password has been sent to your email.</string>
+
+    <string name="login_caps">LOGIN</string>
+    <string name="logout_msg">Are you sure you want to logout?</string>
+    <string name="logout_header">LOGOUT</string>
 
     <array name="states">
         <item>Dubai</item>
@@ -969,6 +973,6 @@
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>
 
-    <string name="find_shows">Find Shows</string>
-    <string name="location">Location Map</string>
+    <string name="find_shows">FIND SHOWS</string>
+    <string name="location">LOCATION MAP</string>
 </resources>
