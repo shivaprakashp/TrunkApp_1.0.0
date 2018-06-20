@@ -67,7 +67,7 @@
     <string name="setting_allow_notification">Allow Notifications</string>
     <string name="setting_allow_promotion">Allow Promotions</string>
     <string name="setting_allow_feedback">Allow Feedback Notification</string>
-    <string name="setting_weekly_newsletters">Weekly newsletters</string>
+    <string name="setting_weekly_newsletters">Weekly newsletter</string>
     <string name="setting_reminder_booked_show">Reminders for the booked shows</string>
     <string name="setting_language">Language</string>
     <string name="logout">Logout</string>
@@ -206,7 +206,7 @@
 
     <!--Contact us-->
     <string name="reach_us">Reach Us:</string>
-    <string name="number"><u>+971 044408888</u></string>
+    <string name="number"><u>+971 44408888</u></string>
     <string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
     <string name="send_message">Send message</string>
     <string name="contact_us">Contact Us</string>
