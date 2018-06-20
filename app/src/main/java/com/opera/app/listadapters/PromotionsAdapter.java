@@ -96,7 +96,9 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
                 if (mPromotionData.getPromotionType().equalsIgnoreCase(mActivity.getResources().getString(R.string.restaurant))) {
 
                     Intent in = new Intent(mActivity, RestaurantCompleteDetails.class);
-                    in.putExtra("RestaurantId", mPromotionData.getPromotionItemId());
+                    in.putExtra("RestaurantIdSiteCore", mPromotionData.getPromotionItemId());
+                    in.putExtra("RestaurantId", "");
+                    in.putExtra("from", "");
                     mActivity.startActivity(in);
 
                 } else {

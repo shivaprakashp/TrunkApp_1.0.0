@@ -82,6 +82,9 @@ public interface Api {
     @POST("restaurants/extended/GetRestaurant/")
     Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
 
+    @POST("restaurants/extended/GetRestaurantById/")
+    Call<RestaurantListing> GetSpecificRestaurantWithSiteCoreId(@Header("Content-Type") String content, @Query("id") String restaurantId);
+
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetEventListing();
 

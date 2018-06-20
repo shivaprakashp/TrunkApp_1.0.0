@@ -62,7 +62,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                     for (int i = 0; i < mRestaurantList.size(); i++) {
                         String data = mRestaurantList.get(i).restName;
                         if (data.toLowerCase().startsWith(constraint.toString())) {
-                            FilteredArrList.add(new RestaurantsData(mRestaurantList.get(i).getRestId(),
+                            FilteredArrList.add(new RestaurantsData(mRestaurantList.get(i).getRestId(),mRestaurantList.get(i).getRestItemId(),
                                     mRestaurantList.get(i).getRestName(),
                                     mRestaurantList.get(i).getRestImage(),
                                     mRestaurantList.get(i).getRestPlace(),
@@ -154,7 +154,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             public void onClick(View v) {
 
                 Intent intent = new Intent(mActivity, RestaurantCompleteDetails.class);
+
+                intent.putExtra("RestaurantIdSiteCore", mRestaurantListing.getRestItemId());
                 intent.putExtra("RestaurantId", mRestaurantListing.getRestId());
+                intent.putExtra("from", "");
 //                intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, mRestaurantListing);
                 mActivity.startActivity(intent);
 

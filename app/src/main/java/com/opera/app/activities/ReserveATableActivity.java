@@ -248,7 +248,7 @@ public class ReserveATableActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (arrMealPeriods.size() > 0) {
                     mMealPeriodId = arrMealPeriods.get(position).getMeal_Period_ID();
-                    ChangeTimeSegmentsField(mEdtNoOfGuests.getText().toString().trim());
+                    ChangeTimeSegmentsField(mTxtNumberOfGuests.getText().toString().trim());
                 }
             }
 
@@ -295,7 +295,7 @@ public class ReserveATableActivity extends BaseActivity {
 
         DOB = (ImageView) findViewById(R.id.ivDOB);
         editDOB = (EditText) findViewById(R.id.editDOB);
-        mEdtNoOfGuests.setText(mTxtNumberOfGuests.getText().toString());
+//        mEdtNoOfGuests.setText(mTxtNumberOfGuests.getText().toString());
 
         EditTextWithFont edtWindowTable = (EditTextWithFont) reserve_edtWindowTable.findViewById(R.id.edt);
         edtWindowTable.setHint(getString(R.string.window_table));
@@ -359,7 +359,7 @@ public class ReserveATableActivity extends BaseActivity {
                 if (valuePlus != maxPartySize) {
                     valuePlus++;
                     mTxtNumberOfGuests.setText(valuePlus + "");
-                    mEdtNoOfGuests.setText(valuePlus + "");
+//                    mEdtNoOfGuests.setText(valuePlus + "");
 
                     ChangeTimeSegmentsField(valuePlus + "");
                 }
@@ -371,7 +371,7 @@ public class ReserveATableActivity extends BaseActivity {
                     int valueMinus = Integer.parseInt(mTxtNumberOfGuests.getText().toString());
                     valueMinus--;
                     mTxtNumberOfGuests.setText(valueMinus + "");
-                    mEdtNoOfGuests.setText(valueMinus + "");
+//                    mEdtNoOfGuests.setText(valueMinus + "");
 
                     ChangeTimeSegmentsField(valueMinus + "");
                 }
@@ -474,7 +474,7 @@ public class ReserveATableActivity extends BaseActivity {
                 edtEmail.getText().toString().trim(), mSpinnerSelectTitle.getSelectedItem().toString());
 
         RespakReservation respakReservation = new RespakReservation(dateOFBirth, mSelectedTime,
-                Integer.valueOf(mEdtNoOfGuests.getText().toString()),
+                Integer.valueOf(mTxtNumberOfGuests.getText().toString().trim()),
                 "");
 
         BookTableRequest tableResponse = new BookTableRequest(patron, respakReservation);
@@ -527,7 +527,7 @@ public class ReserveATableActivity extends BaseActivity {
 
                 //Resetting No of guests
                 mTxtNumberOfGuests.setText("1");
-                mEdtNoOfGuests.setText("1");
+//                mEdtNoOfGuests.setText("1");
 
                 mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
                 //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
@@ -538,7 +538,7 @@ public class ReserveATableActivity extends BaseActivity {
 
                 /*mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
                 mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);*/
-                ChangeTimeSegmentsField(mEdtNoOfGuests.getText().toString().trim());
+                ChangeTimeSegmentsField(mTxtNumberOfGuests.getText().toString().trim());
             } else if (mRequestKey.equalsIgnoreCase(AppConstants.BOOKATABLE.BOOKATABLE)) {
                 if (response.body() != null) {
                     ReserveResponse mBookTable =

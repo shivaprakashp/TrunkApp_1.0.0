@@ -41,11 +41,11 @@ public class PromotionDetails {
     @Expose
     private String DescriptionHtml;
 
-    @SerializedName("PromotionType")
+    @SerializedName("ItemType")
     @Expose
     private String PromotionType;
 
-    @SerializedName("PromotionItemId")
+    @SerializedName("ItemId")
     @Expose
     private String PromotionItemId;
 

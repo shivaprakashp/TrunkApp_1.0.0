@@ -14,6 +14,7 @@ import com.opera.app.pojo.restaurant.RestaurantsData;
 public class SeanRestOpeation {
 
     public static final String TABLE_NAME = "OperaRestaurant";
+    private static final String REST_ITEM_ID = "restItemId";
     private static final String REST_ID = "restId";
     private static final String REST_NAME = "restName";
     private static final String REST_IMAGE = "restImage";
@@ -30,7 +31,8 @@ public class SeanRestOpeation {
 
     //creating table
     public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + "(" + REST_ID + " TEXT," +
+            "CREATE TABLE " + TABLE_NAME + "(" + REST_ITEM_ID + " TEXT," +
+                    REST_ID+ " TEXT," +
                     REST_NAME + " TEXT," +
                     REST_IMAGE + " TEXT," +
                     REST_PLACE + " TEXT," +
@@ -70,6 +72,7 @@ public class SeanRestOpeation {
         try {
 
             ContentValues values = new ContentValues();
+            values.put(REST_ITEM_ID, data.getRestItemId());
             values.put(REST_ID, data.getRestId());
             values.put(REST_NAME, data.getRestName());
             values.put(REST_IMAGE, data.getRestImage());
@@ -96,23 +99,58 @@ public class SeanRestOpeation {
         RestaurantsData data = new RestaurantsData();
         try {
 //            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restItemId = '" + mRestaurantId + "'", null);
+
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                data.setRestItemId(cursor.getString(0));
+                data.setRestId(cursor.getString(1));
+                data.setRestName(cursor.getString(2));
+                data.setRestImage(cursor.getString(3));
+                data.setRestPlace(cursor.getString(4));
+                data.setRestLocation(cursor.getString(5));
+                data.setRestBookUrl(cursor.getString(6));
+                data.setRestStatus(cursor.getString(7));
+                data.setRestDetails(cursor.getString(8));
+                data.setOpenHour(cursor.getString(9));
+                data.setPhoneNumber(cursor.getString(10));
+                data.setEmail(cursor.getString(11));
+                data.setRestLatitude(cursor.getString(12));
+                data.setRestLongitude(cursor.getString(13));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e("error2", e.getMessage());
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+    //returns the stored data
+    public RestaurantsData getSeanConnollySiteCoreId(String mRestaurantId) {
+        RestaurantsData data = new RestaurantsData();
+        try {
+//            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
             Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restId = '" + mRestaurantId + "'", null);
 
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
-                data.setRestId(cursor.getString(0));
-                data.setRestName(cursor.getString(1));
-                data.setRestImage(cursor.getString(2));
-                data.setRestPlace(cursor.getString(3));
-                data.setRestLocation(cursor.getString(4));
-                data.setRestBookUrl(cursor.getString(5));
-                data.setRestStatus(cursor.getString(6));
-                data.setRestDetails(cursor.getString(7));
-                data.setOpenHour(cursor.getString(8));
-                data.setPhoneNumber(cursor.getString(9));
-                data.setEmail(cursor.getString(10));
-                data.setRestLatitude(cursor.getString(11));
-                data.setRestLongitude(cursor.getString(12));
+                data.setRestItemId(cursor.getString(0));
+                data.setRestId(cursor.getString(1));
+                data.setRestName(cursor.getString(2));
+                data.setRestImage(cursor.getString(3));
+                data.setRestPlace(cursor.getString(4));
+                data.setRestLocation(cursor.getString(5));
+                data.setRestBookUrl(cursor.getString(6));
+                data.setRestStatus(cursor.getString(7));
+                data.setRestDetails(cursor.getString(8));
+                data.setOpenHour(cursor.getString(9));
+                data.setPhoneNumber(cursor.getString(10));
+                data.setEmail(cursor.getString(11));
+                data.setRestLatitude(cursor.getString(12));
+                data.setRestLongitude(cursor.getString(13));
             }
 
         } catch (SQLException e) {
@@ -125,7 +163,7 @@ public class SeanRestOpeation {
     }
 
     public void removeSeanConnolly(String mRestaurantId) {
-        int row = database.delete(TABLE_NAME, "restId" + " = ?", new String[]{mRestaurantId});
+        int row = database.delete(TABLE_NAME, "restItemId" + " = ?", new String[]{mRestaurantId});
         Log.e("deletedRow", row + "");
     }
 }

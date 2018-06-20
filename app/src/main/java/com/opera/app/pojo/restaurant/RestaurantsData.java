@@ -15,6 +15,10 @@ public class RestaurantsData implements Serializable{
     @Expose
     public String restId;
 
+    @SerializedName("restItemId")
+    @Expose
+    public String restItemId;
+
     @SerializedName("restName")
     @Expose
     public String restName;
@@ -66,8 +70,9 @@ public class RestaurantsData implements Serializable{
     public RestaurantsData(){
     }
 
-    public RestaurantsData(String restId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber, String email, String restLatitude, String restLongitude) {
+    public RestaurantsData(String restId,String restItemId, String restName, String restImage, String restPlace, String restLocation, String restBookUrl, String restStatus, String restDetails, String openHour, String phoneNumber, String email, String restLatitude, String restLongitude) {
         this.restId = restId;
+        this.restItemId = restItemId;
         this.restName = restName;
         this.restImage = restImage;
         this.restPlace = restPlace;
@@ -89,6 +94,14 @@ public class RestaurantsData implements Serializable{
 
     public void setRestId(String restId) {
         this.restId = restId;
+    }
+
+    public String getRestItemId() {
+        return restItemId;
+    }
+
+    public void setRestItemId(String restItemId) {
+        this.restItemId = restItemId;
     }
 
     public String getRestName() {
