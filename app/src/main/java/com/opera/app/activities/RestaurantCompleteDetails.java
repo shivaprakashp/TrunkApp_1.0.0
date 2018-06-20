@@ -51,7 +51,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
     private CustomToast customToast;
     private Intent intent;
     private SeanRestOpeation restOpeation;
-    private String RestaurantId="",mRestaurantEmail="",mRestaurantPhone="", mRestaurantLatitude= "", mRestaurantLongitude= "", mRestaurantName= "";
+    private String from="",RestaurantIdSiteCore="",RestaurantId="",mRestaurantEmail="",mRestaurantPhone="", mRestaurantLatitude= "", mRestaurantLongitude= "", mRestaurantName= "";
 
     private Api api;
     @Inject
@@ -124,7 +124,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
 //        mRestaurantListingData = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
         Intent in=getIntent();
+        RestaurantIdSiteCore=in.getStringExtra("RestaurantIdSiteCore");
         RestaurantId=in.getStringExtra("RestaurantId");
+        from=in.getStringExtra("from");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -160,7 +162,12 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
     private void GetSpecificRestaurantDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getSpecificRestaurant(taskComplete, api, RestaurantId);
+
+//        if(from!=null && !from.equalsIgnoreCase("Restaurant")){
+            controller.getSpecificRestaurantBySiteCoreId(taskComplete, api, RestaurantIdSiteCore);
+        /*}else{
+            controller.getSpecificRestaurant(taskComplete, api, RestaurantId);
+        }*/
     }
 
     private TaskComplete taskComplete = new TaskComplete() {
@@ -229,7 +236,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
     }
 
     private void getSeanConnollyData() {
-        setRestaurant(restOpeation.getSeanConnolly(RestaurantId));
+        setRestaurant(restOpeation.getSeanConnolly(RestaurantIdSiteCore));
         restOpeation.close();
     }
 

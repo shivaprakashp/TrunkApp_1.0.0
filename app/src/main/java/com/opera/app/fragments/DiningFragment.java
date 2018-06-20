@@ -132,7 +132,7 @@ public class DiningFragment extends BaseFragment {
 
     private void GetSeanConollyDetails() {
         MainController controller = new MainController(mActivity);
-        controller.getSpecificRestaurant(taskComplete, api,AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
+        controller.getSpecificRestaurant(taskComplete, api, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class DiningFragment extends BaseFragment {
     }
 
     //@OnClick({R.id.linearReadMore, R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
-    @OnClick({ R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
+    @OnClick({R.id.btnOtherRestaurants, R.id.mBtnReserveATable})
     public void onClick(View v) {
         switch (v.getId()) {
 
@@ -191,7 +191,7 @@ public class DiningFragment extends BaseFragment {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
             if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
-                if(mRestaurantPojo.getData().size()>0){
+                if (mRestaurantPojo.getData().size() > 0) {
                     restOpeation.open();
                     restOpeation.removeSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
                     restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
@@ -209,7 +209,8 @@ public class DiningFragment extends BaseFragment {
     };
 
     private void getSeanConnollyData() {
-        setRestaurant(restOpeation.getSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID));
+        RestaurantsData data = restOpeation.getSeanConnollySiteCoreId(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
+        setRestaurant(restOpeation.getSeanConnolly(data.getRestItemId()));
         restOpeation.close();
     }
 
@@ -218,7 +219,11 @@ public class DiningFragment extends BaseFragment {
         try {
             this.data = data;
             mTxtRestaurantName.setText(data.getRestName());
-            mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+
+            if (data.getRestPlace() != null) {
+                mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+            }
+
             mExpandableTextView.setText(data.getRestDetails());
 
             Picasso.with(mActivity).load(data.getRestImage()).fit().centerCrop()

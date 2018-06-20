@@ -24,6 +24,7 @@ public class DatabaseHelper{
     // Table Name
     public static final String TABLE_OTHER_RESTAURANTS = "TABLE_OTHER_RESTAURANTS";
     private static final String REASTAURANT_ID = "_id";
+    private static final String REASTAURANT_ITEM_ID = "REASTAURANT_ITEM_ID";
     private static final String REASTAURANT_NAME = "REASTAURANT_NAME";
     private static final String REASTAURANT_PLACE = "REASTAURANT_PLACE";
     private static final String REASTAURANT_DETAILS = "REASTAURANT_DETAILS";
@@ -35,6 +36,7 @@ public class DatabaseHelper{
     //creating table
     public static final String CREATE_TABLE_REASTAURANT =
             "CREATE TABLE " + TABLE_OTHER_RESTAURANTS + "(" + REASTAURANT_ID + " INTEGER,"
+                    + REASTAURANT_ITEM_ID + " TEXT,"
                     + REASTAURANT_NAME + " TEXT,"
                     + REASTAURANT_PLACE + " TEXT,"
                     + REASTAURANT_DETAILS + " TEXT,"
@@ -69,6 +71,7 @@ public class DatabaseHelper{
         try {
             for (int i = 0; i < mRestaurantListing.size(); i++) {
                 contentValue.put(DatabaseHelper.REASTAURANT_ID, mRestaurantListing.get(i).getRestId());
+                contentValue.put(DatabaseHelper.REASTAURANT_ITEM_ID, mRestaurantListing.get(i).getRestItemId());
                 contentValue.put(DatabaseHelper.REASTAURANT_NAME, mRestaurantListing.get(i).getRestName());
                 contentValue.put(DatabaseHelper.REASTAURANT_PLACE, mRestaurantListing.get(i).getRestPlace());
                 contentValue.put(DatabaseHelper.REASTAURANT_DETAILS, mRestaurantListing.get(i).getRestDetails());
@@ -95,6 +98,7 @@ public class DatabaseHelper{
                     RestaurantsData mRestaurantData = new RestaurantsData();
 
                     mRestaurantData.setRestId(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_ID)));
+                    mRestaurantData.setRestItemId(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_ITEM_ID)));
                     mRestaurantData.setRestName(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_NAME)));
                     mRestaurantData.setRestPlace(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_PLACE)));
                     mRestaurantData.setRestDetails(cursor.getString(cursor.getColumnIndex(DatabaseHelper.REASTAURANT_DETAILS)));

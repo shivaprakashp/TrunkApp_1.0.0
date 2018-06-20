@@ -96,7 +96,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 if (mNotification.getPromotionType().equalsIgnoreCase(mActivity.getResources().getString(R.string.restaurant))) {
 
                     Intent in = new Intent(mActivity, RestaurantCompleteDetails.class);
-                    in.putExtra("RestaurantId", mNotification.getPromotionItemId());
+
+                    in.putExtra("RestaurantIdSiteCore", mNotification.getPromotionItemId());
+                    in.putExtra("RestaurantId", "");
+                    in.putExtra("from", "");
                     mActivity.startActivity(in);
 
                 } else {
