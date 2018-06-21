@@ -167,6 +167,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
         mEdtMobileNumber = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+//        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         mEdtMobileNumber.setHint(getString(R.string.mobile));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -184,7 +185,7 @@ public class ContactUsActivity extends BaseActivity {
         //---------------Country Code----------------
         spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
-                mActivity, R.layout.custom_spinner,
+                mActivity, R.layout.custom_spinner_number_drop_down,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);

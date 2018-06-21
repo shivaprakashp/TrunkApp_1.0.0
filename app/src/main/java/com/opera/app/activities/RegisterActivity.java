@@ -259,7 +259,7 @@ public class RegisterActivity extends BaseActivity {
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
-                mActivity, R.layout.custom_spinner,
+                mActivity, R.layout.custom_spinner_number_drop_down,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
