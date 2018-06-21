@@ -19,6 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Home"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:gravity="center"
         style="@style/label_white_small"
         font:name="Montserrat-Light"/>

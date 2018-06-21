@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
+import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.LoginResponse;
@@ -76,7 +77,7 @@ public class SessionManager {
         //clear all data from shared preference
         editor.clear();
         editor.commit();
-        mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, LoginActivity.class);
+        mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, PreLoginActivity.class);
     }
 
     public void DeleteAllTables(Activity mActivity) {

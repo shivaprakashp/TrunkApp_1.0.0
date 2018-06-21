@@ -10,14 +10,14 @@ import android.support.annotation.Nullable;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.SettingsActivity;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.GuestDialog;
+import com.opera.app.dialogues.LogoutDialog;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.registration.RegistrationResponse;
-import com.opera.app.pojo.settings.SetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
@@ -147,7 +147,9 @@ public class SettingsService extends IntentService {
                                 startActivity(intent);
                                 mActivity.finish();
                             } else if (mFrom.equalsIgnoreCase(getResources().getString(R.string.logout))) {
-                                mSessionManager.logoutUser(mActivity);
+                                //mSessionManager.logoutUser(mActivity);
+                                LogoutDialog dialog = new LogoutDialog(mActivity, mActivity.getString(R.string.logout_header), mActivity.getString(R.string.logout_msg),mActivity.getString(R.string.ok));
+                                dialog.show();
                             }
                         }
                     } else {

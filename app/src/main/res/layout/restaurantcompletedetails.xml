@@ -103,7 +103,7 @@
 
                         <com.opera.app.customwidget.TextViewWithFont
                             android:id="@+id/mTxtRestaurantPlace"
-                            style="@style/label_gray_large"
+                            style="@style/label_gray_medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
@@ -151,7 +151,7 @@
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/mTxtRestaurantOpeningHours"
-                        style="@style/label_gray_large"
+                        style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -177,7 +177,7 @@
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/mTxtRestaurantNumber"
-                        style="@style/label_gray_large"
+                        style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -203,7 +203,7 @@
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/mTxtRestaurantEmail"
-                        style="@style/label_gray_large"
+                        style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -215,7 +215,7 @@
                 </LinearLayout>
 
 
-                <ScrollView
+                <android.support.v4.widget.NestedScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:fillViewport="true"
@@ -232,7 +232,7 @@
                         android:scrollbars="vertical"
                         android:text="" />
 
-                </ScrollView>
+                </android.support.v4.widget.NestedScrollView>
 
             </LinearLayout>
 

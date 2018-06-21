@@ -80,7 +80,7 @@ public class EventGenresDB {
         }
     }
 
-    public ArrayList<GenreList> fetchAllEvents() {
+    public ArrayList<GenreList> fetchGenresEvents() {
 
         ArrayList<GenreList> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();

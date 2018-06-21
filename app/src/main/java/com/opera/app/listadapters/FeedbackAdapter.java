@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.pojo.feedback.FeedbackResponse;
-import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -67,7 +65,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
         holder.txtShowDesc.setText(mFeedbackCurrentItem.getmShowDescription());
         holder.txtShowDateAndTime.setText(mFeedbackCurrentItem.getmDateAndTime());
 
-        Picasso.with(mActivity).load(mFeedbackCurrentItem.getmShowImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(mFeedbackCurrentItem.getmShowImage()).fit()
                 .into(holder.img_profile_chooser, new Callback() {
                     @Override
                     public void onSuccess() {
