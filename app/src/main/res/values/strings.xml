@@ -262,7 +262,7 @@
 
     <!--Guest msg-->
     <string name="guest_title">ALERT !!</string>
-    <string name="guest_msg">You should be logged in to use this features.</string>
+    <string name="guest_msg">You should be logged in to use this feature.</string>
 
     <!--Error handling (Changed one's)-->
     <!--login-->

@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.database.events.EventListingDB;
+import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.listadapters.AdapterGenres;
 import com.opera.app.listener.EventInterfaceTab;
-import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ import butterknife.ButterKnife;
 public class AllGenresEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
-    private EventListingDB mEventDetailsDB;
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
+    private EventGenresDB mEventGenresDetailsDB;
+    private ArrayList<GenreList> mEventGenresListingData = new ArrayList<>();
     private AdapterGenres mAdapterGenres;
 
     @BindView(R.id.recyclerList)
@@ -55,18 +55,17 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-
     }
 
     private void fetchAllGenres() {
 
-        mEventDetailsDB = new EventListingDB(mActivity);
-        mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
-        mEventDetailsDB.close();
+        mEventGenresDetailsDB = new EventGenresDB(mActivity);
+        mEventGenresDetailsDB.open();
+        mEventGenresListingData = mEventGenresDetailsDB.fetchGenresEvents();
+        mEventGenresDetailsDB.close();
 
-        mAdapterGenres = new AdapterGenres(mActivity, mEventListingData.get(0).getGenreList());
-        if (mEventListingData.get(0).getGenreList().size() > 0) {
+        mAdapterGenres = new AdapterGenres(mActivity, mEventGenresListingData);
+        if (mEventGenresListingData.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

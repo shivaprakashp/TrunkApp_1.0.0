@@ -24,27 +24,19 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
-import com.opera.app.activities.LoginActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.events.EventDetailsDB;
-import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
-import com.opera.app.listener.MarkFavouriteInterface;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
-import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -127,7 +119,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         }
 
 //        String img = eventObject.getImage()+"?w=150&h=100&iar=1";
-        Picasso.with(mActivity).load(eventObject.getWhatsOnImage()).fit().centerCrop()
+        Picasso.with(mActivity).load(eventObject.getWhatsOnImage()).fit()
                 .into(imgEvent, new Callback() {
                     @Override
                     public void onSuccess() {
