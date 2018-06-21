@@ -101,6 +101,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layoutDirection="ltr"
                             android:layout_marginLeft="20dp"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
