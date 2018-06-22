@@ -378,7 +378,6 @@ public class RegisterActivity extends BaseActivity {
                 spannableString.setSpan(clickSpannString(false),
                         25, spannableString.length(), 0);
 
-
             } else {
                 spannableString.setSpan(clickSpannString(true),
                         16, 20, 0);
@@ -395,6 +394,7 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
+    /*This span is used for the click of terms and privacy policy*/
     private ClickableSpan clickSpannString(final boolean flag) {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
