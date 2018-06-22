@@ -84,7 +84,6 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/btn_ripple_effect"
                         android:text="@string/search1"
-                        android:textAllCaps="false"
                         font:name="Montserrat-Light" />
                 </LinearLayout>
             </LinearLayout>
