@@ -136,7 +136,7 @@
     <string name="conf_new_password">تأكيد كلمة السر الجديدة </string>
 
     <!--Edit Profile-->
-    <string name="edit_email">عنوان البريد الإلكتروني</string>
+    <string name="edit_email">*عنوان البريد الإلكتروني</string>
     <string name="edit_firstname">الاسم الاول</string>
     <string name="edit_lastname">الكنية</string>
     <string name="edit_nationality">جنسية</string>

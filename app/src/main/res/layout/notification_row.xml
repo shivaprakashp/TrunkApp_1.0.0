@@ -2,48 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:background="@drawable/burgandy_corner">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
-    <RelativeLayout
-        android:id="@+id/relativeParent"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/burgandy_corner">
 
-        <ImageView
-            android:id="@+id/mImgNotifyImage"
+        <RelativeLayout
+            android:id="@+id/relativeParent"
             android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:scaleType="fitXY" />
+            android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressImageLoader"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerInParent="true"
-            android:visibility="visible" />
+            <ImageView
+                android:id="@+id/mImgNotifyImage"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:scaleType="fitXY" />
+
+            <ProgressBar
+                android:id="@+id/progressImageLoader"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.85"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtNotifyTitle"
                     style="@style/label_black_large"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:singleLine="true"
@@ -53,8 +59,8 @@
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtNotifyDesc"
                     style="@style/label_black_small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:maxLines="3"
                     android:ellipsize="end"
                     android:text="@string/profile_name"
@@ -63,39 +69,39 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.15"
-                android:gravity="center"
                 android:orientation="vertical">
 
                 <com.opera.app.customwidget.TextViewWithFont
                     style="@style/label_burgendy_low"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/from"
-                    font:name="Montserrat-Light" />
+                    font:name="Montserrat-Light"
+                    android:gravity="center|bottom"/>
 
                 <com.opera.app.customwidget.TextViewWithFont
                     style="@style/label_burgendy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/aed"
-                    font:name="Montserrat-Medium" />
+                    android:gravity="center|bottom"
+                    font:name="Montserrat-Medium"
+                    font:type="bold"/>
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtPriceFrom"
                     style="@style/label_burgendy_vlarge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:text="75"
-                    font:name="Montserrat-Bold" />
+                    tools:text="75"
+                    android:gravity="center|top"
+                    font:name="Montserrat-Bold"
+                    font:type="bold"/>
 
-            ko</LinearLayout>
-
+            </LinearLayout>
         </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

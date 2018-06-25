@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.utils.LanguageManager;
 
@@ -54,24 +55,34 @@ public class EventsFragment extends BaseFragment{
         ButterKnife.bind(this, view);
 
         setupViewPager(mViewPager);
-        mTabHost.setupWithViewPager(mViewPager);
-        adapter = new Adapter(getChildFragmentManager());
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(final int position, final float v, final int i2) {
-            }
 
-            @Override
-            public void onPageSelected(final int position) {
-                EventInterfaceTab fragment = (EventInterfaceTab) adapter.instantiateItem(mViewPager, position);
-                if (fragment != null) {
-                    fragment.onLikeProcessComplete();
-                }
-            }
-            @Override
-            public void onPageScrollStateChanged(final int position) {
-            }
-        });
+        mTabHost.setupWithViewPager(mViewPager);
+        createTabIcons();
+
+
+    }
+
+    private void createTabIcons(){
+        TextViewWithFont tabAll = (TextViewWithFont) LayoutInflater.from(getContext()).
+                inflate(R.layout.custom_event_tabs, null);
+        tabAll.setText(getResources().getString(R.string.tab_all_events));
+        mTabHost.getTabAt(0).setCustomView(tabAll);
+
+        TextViewWithFont tabToday = (TextViewWithFont) LayoutInflater.from(getContext()).
+                inflate(R.layout.custom_event_tabs, null);
+        tabToday.setText(getResources().getString(R.string.tab_today_events));
+        mTabHost.getTabAt(1).setCustomView(tabToday);
+
+        TextViewWithFont tabFavour = (TextViewWithFont) LayoutInflater.from(getContext()).
+                inflate(R.layout.custom_event_tabs, null);
+        tabFavour.setText( getResources().getString(R.string.tab_favourites_events));
+        mTabHost.getTabAt(2).setCustomView(tabFavour);
+
+        TextViewWithFont tabGenre = (TextViewWithFont) LayoutInflater.from(getContext()).
+                inflate(R.layout.custom_event_tabs, null);
+        tabGenre.setText(getResources().getString(R.string.tab_genres_events));
+        mTabHost.getTabAt(3).setCustomView(tabGenre);
+
     }
 
     // Add Fragments to Tabs
