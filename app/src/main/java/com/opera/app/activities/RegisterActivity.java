@@ -176,6 +176,7 @@ public class RegisterActivity extends BaseActivity {
         initSpinners();
     }
 
+    //initialize the views
     private void initView() {
         mActivity = RegisterActivity.this;
 
@@ -238,7 +239,6 @@ public class RegisterActivity extends BaseActivity {
                 DialogFragment dialogFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
                         edtDob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
 
                     }
@@ -252,7 +252,6 @@ public class RegisterActivity extends BaseActivity {
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtMobile.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
-        //spinnerCountryCode = (CustomSpinner) reg_edtMobile.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
@@ -260,6 +259,7 @@ public class RegisterActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
+
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -434,6 +434,7 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
+    /*method is used to register the user*/
     private void registerUser() {
         MainController controller = new MainController(mActivity);
         if (validateCheck()) {
@@ -473,32 +474,18 @@ public class RegisterActivity extends BaseActivity {
     private boolean validateCheck() {
 
         //Removing previous validations
-        /*edtEmail.setError(null);
-        edtPassword.setError(null);
-        edtRePass.setError(null);
-        edtFirstName.setError(null);
-        edtLastName.setError(null);
-        edtMobile.setError(null);
-        edtCity.setError(null);
-        edtDob.setError(null);*/
 
         //validation of input field
         //firstName
         if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorFirstName));
             return false;
-        }/* else if (edtFirstName.getText().toString().length() < 1 || edtFirstName.getText().toString().length() > 30) {
-            customToast.showErrorToast(getString(R.string.errorLengthFirstName));
-            return false;
-        }*/
+        }
         //lastName
         else if (TextUtils.isEmpty(edtLastName.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorLastName));
             return false;
-        } /*else if (edtLastName.getText().toString().length() < 1 || edtLastName.getText().toString().length() > 30) {
-            customToast.showErrorToast(getString(R.string.errorLengthLastName));
-            return false;
-        }*/
+        }
         //email
         else if (TextUtils.isEmpty(edtEmail.getText().toString())) {
             customToast.showErrorToast(getString(R.string.errorEmailId));
@@ -579,5 +566,4 @@ public class RegisterActivity extends BaseActivity {
         }
         return true;
     }
-
 }

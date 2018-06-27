@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.opera.app.R;
 
 /**
- * Created by chetan on 18-12-2017.
+ * Created by 1000779 on 18-12-2017.
  */
+
+//custom toast is used to show message on the error part
 public class CustomToast {
     private Context context;
     private int backColor;
