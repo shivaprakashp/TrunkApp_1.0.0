@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--RegistrationActivity-->
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address &amp; Password to login into Dubai Opera.</string>
+    <string name="success_header">SUCCESS</string>
+    <string name="ok">OK</string>
+    <string name="reg_terms_policy">I agree to the terms and privacy policy</string>
+    <string name="terms"><u>terms</u> </string>
+    <string name="and">and </string>
+    <string name="privacy"><u>privacy policy</u> </string>
+    <string name="check_subscribe">Subscribe to Dubai opera newsletter</string>
+    <string name="create_account">Create Account</string>
+
+
+</resources>

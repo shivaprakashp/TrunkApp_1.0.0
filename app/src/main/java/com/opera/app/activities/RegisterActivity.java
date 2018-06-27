@@ -116,9 +116,6 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.ckbNewsLetters)
     CheckBox ckbNewsLetters;
 
-    /*@BindView(R.id.reg_edtMobile)
-    View reg_edtMobile;*/
-
     @BindView(R.id.edtMobile)
     EditText edtMobile;
 
@@ -144,14 +141,14 @@ public class RegisterActivity extends BaseActivity {
         public void onTaskFinished(Response response, String mRequestKey) {
             if (response.body() != null) {
 
-                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg),
+                        getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
                 dialogue.show();
             } else if (response.errorBody() != null) {
                 try {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                     dialogue.show();
                 } catch (Exception e) {
-                    //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(e.getMessage());
                 }
             }

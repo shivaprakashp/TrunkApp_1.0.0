@@ -1,44 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--Pre Login Activity -->
-    <string name="loading">Loading...</string>
-    <string name="forgot_password_hint">يرجى إدخال عنوان البريد الإلكتروني المسجل الخاص بك لإعادة تعيين كلمة المرور الخاصة بك</string>
-    <string name="select">تحديد</string>
-    <string name="create_an_account">سجل الان</string>
-    <string name="already_have_an_account">هل لديك حساب؟ تسجيل الدخول</string>
-    <string name="continue_as_guest"><u>تواصل كضيف</u></string>
-    <string name="forgot_password">نسيت كلمة المرور</string>
-    <string name="login">تسجيل الدخول</string>
-    <string name="dont_have_an_account">لا تملك حساب؟ سجل الان</string>
-    <string name="send">إرسال</string>
-    <string name="username">اسم المستخدم</string>
-    <string name="password">كلمه السر</string>
-    <string name="create_account">إصنع حساب</string>
 
     <!--Registration activity -->
-    <string name="reg_terms_policy">أوافق على الشروط وسياسة الخصوصية</string>
-    <string name="check">أنا أوافق على </string>
-    <string name="terms"><u>شروط</u> </string>
-    <string name="and">و </string>
-    <string name="privacy"><u>سياسة الخصوصية</u> </string>
-    <string name="check_subscribe">اشترك في النشرة الإخبارية لدبي أوبرا</string>
-    <string name="email">البريد الإلكتروني*</string>
-    <string name="pass">كلمه السر*</string>
-    <string name="re_pass">الرجاء إعادة إدخال كلمة المرور*</string>
-    <string name="firstname">الاسم الاول*</string>
-    <string name="lastname">اسم العائلة*</string>
-    <string name="nationality">الجنسية *</string>
-    <string name="dob">تاريخ الميلاد*</string>
-    <string name="mobile">رقم الهاتف المتحرك*</string>
-    <string name="city">المدينة*</string>
-    <string name="state">الامارة أو الولاية *</string>
-    <string name="country">البلد*</string>
-    <string name="home">الصفحة الرئيسية</string>
-    <string name="events">أحداث</string>
-    <string name="dining">الطعام</string>
-    <string name="listen">استمع</string>
-    <string name="privacyNpolicy">سياسة الخصوصية</string>
 
     <array name="tab_name">
         <item>الصفحة الرئيسية</item>
@@ -251,9 +215,8 @@
     <string name="errorEnquiryType">نوع الاستفسار قد لا يكون فارغاً</string>
 
     <!--error and success dialog msg-->
-    <string name="success_header">نجاح</string>
-    <string name="ok">حسنا</string>
-    <string name="successMsg">عزيزي العميل ، تهانينا! لقد أكملت الآن بنجاح عملية التسجيل. استخدم عنوان البريد الإلكتروني وكلمة المرور لتسجيل الدخول إلى دبي أوبرا.</string>
+
+    <!--<string name="successMsg">عزيزي العميل ، تهانينا! لقد أكملت الآن بنجاح عملية التسجيل. استخدم عنوان البريد الإلكتروني وكلمة المرور لتسجيل الدخول إلى دبي أوبرا.</string>-->
     <string name="errorDialogue">حسنا</string>
     <string name="errorTitle">خطأ</string>
     <string name="successSettingsUpdation">تهانينا ، لقد قمت بتحديث إعداداتك بنجاح.</string>
