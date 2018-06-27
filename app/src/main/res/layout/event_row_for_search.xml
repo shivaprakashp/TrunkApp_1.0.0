@@ -57,7 +57,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text=""
-                font:name="Montserrat-Bold"/>
+                font:name="Montserrat-Bold"
+                font:type="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
