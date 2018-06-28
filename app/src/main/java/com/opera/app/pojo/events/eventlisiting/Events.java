@@ -147,7 +147,7 @@ public class Events {
 
     public Events(String EventId,String Name, String image, String internalName, String startDate,
                   String endDate, String MobileDescription,String IsFavourite,String EventUrl,
-    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText,String WhatsOnImage) {
+    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText,String WhatsOnImage,String HighlightedImage) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -161,6 +161,7 @@ public class Events {
         this.BuyNowLink=BuyNowLink;
         this.SharedContentText=SharedContentText;
         this.WhatsOnImage=WhatsOnImage;
+        this.HighlightedImage=HighlightedImage;
     }
 
     public String getAppleUrl() {
