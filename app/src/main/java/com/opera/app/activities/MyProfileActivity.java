@@ -126,7 +126,7 @@ public class MyProfileActivity extends BaseActivity {
             if (response.body() != null) {
                 RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
                 if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
-                    SuccessDialogue dialog = new SuccessDialogue(mActivity, getResources().getString(R.string.changedPasswordSuccessMsg), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
+                    SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostChangePassword.getMessage(), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
                     dialog.show();
                     /*SessionManager sessionManager = new SessionManager(mActivity);
                     sessionManager.clearLoginSession();*/
