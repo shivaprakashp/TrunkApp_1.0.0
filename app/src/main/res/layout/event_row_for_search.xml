@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
+            android:layout_margin="5dp"
             android:layout_weight="0.1">
 
             <ImageView
@@ -36,6 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
+            android:layout_margin="5dp"
             android:orientation="vertical">
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -56,7 +57,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text=""
-                font:name="Montserrat-Bold"/>
+                font:name="Montserrat-Bold"
+                font:type="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

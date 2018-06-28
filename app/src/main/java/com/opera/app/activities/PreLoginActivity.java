@@ -27,6 +27,7 @@ import butterknife.OnClick;
 
 public class PreLoginActivity extends BaseActivity {
 
+    //instance of activity created
     private Activity mActivity;
 
     @BindView(R.id.btnCreateAccount)
@@ -48,13 +49,9 @@ public class PreLoginActivity extends BaseActivity {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_prelogin);
 
-        validateUserLogin();
     }
 
-    private void validateUserLogin() {
-
-    }
-
+    //used bindView method of onClick, it allocate memory at the run time
     @OnClick({R.id.btnCreateAccount, R.id.btnLogin, R.id.textView_continue_as_guest})
     public void onClick(View v) {
         switch (v.getId()) {
