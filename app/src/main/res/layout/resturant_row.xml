@@ -27,22 +27,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/black_gradient_diff_shade"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:orientation="vertical">
+                android:paddingRight="10dp">
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/mTxtRestaurantName"
                     style="@style/textsize_vvlarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/profile_name"
@@ -53,7 +53,6 @@
                     style="@style/label_gray_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/profile_name"

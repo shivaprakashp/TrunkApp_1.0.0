@@ -34,8 +34,6 @@
             android:id="@+id/imgVNavRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:rotationY="@integer/locale_mirror_flip"
             android:src="@drawable/ic_right"/>
 
