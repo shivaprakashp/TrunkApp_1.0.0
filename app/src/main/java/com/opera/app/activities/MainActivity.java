@@ -34,6 +34,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity implements
         FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
+    //bottom tabs
     private int[] tabSelected = {
             R.drawable.ic_home,
             R.drawable.ic_events,
@@ -108,12 +109,12 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-
+    //set up action bar
     private void initToolbar() {
         setSupportActionBar(toolbar);
-
-
     }
+
+    //initialize the tabs
     private void initTabs() {
         if (bottomTabLayout != null) {
             for (int i = 0; i < TABS.length; i++) {

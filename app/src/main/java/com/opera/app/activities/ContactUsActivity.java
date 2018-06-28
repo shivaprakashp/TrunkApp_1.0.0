@@ -104,10 +104,6 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
-    /*@BindView(R.id.edtMobile)
-    EditText mEdtMobileNumber;
-
-    @BindView(R.id.spinnerCountryCode)*/
     @BindView(R.id.edit_edtMobile)
     View edit_edtMobile;
 
@@ -345,14 +341,7 @@ public class ContactUsActivity extends BaseActivity {
             customToast.showErrorToast(getResources().getString(R.string.errorEnquiryType));
             return false;
         }
-        //message
-        /*else if (TextUtils.isEmpty(edtMessage.getText().toString())) {
-            customToast.showErrorToast(getString(R.string.errorMessage));
-            return false;
-        } else if (edtMessage.getText().toString().length() > 70) {
-            customToast.showErrorToast(getString(R.string.errorLengthMessage));
-            return false;
-        }*/
+
         return true;
     }
 
