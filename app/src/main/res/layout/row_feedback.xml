@@ -30,8 +30,6 @@
                 android:id="@+id/img_profile_chooser"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/header_cover_image"
-                android:layout_centerHorizontal="true"
                 android:layout_marginRight="5dp"
                 android:elevation="5dp"
                 android:onClick="imageClick"

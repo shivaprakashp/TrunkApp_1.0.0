@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:baselineAligned="false"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -73,18 +73,16 @@
                             style="@style/textsize_vvlarge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            tools:text=""
-                            font:name="Montserrat-Light" />
+                            font:name="Montserrat-Light"
+                            tools:text="" />
 
                         <com.opera.app.customwidget.TextViewWithFont
                             android:id="@+id/mTxtRestaurantPlace"
                             style="@style/label_gray_large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
                             android:text=""
@@ -116,19 +114,18 @@
 
                 <ScrollView
                     android:layout_width="fill_parent"
-                    android:scrollbars="vertical"
+                    android:layout_height="match_parent"
                     android:fillViewport="true"
-                    android:layout_height="match_parent">
+                    android:scrollbars="vertical">
 
                     <TextView
                         android:id="@+id/expandableTextViewInfo"
                         style="@style/label_white_small"
                         android:layout_width="fill_parent"
-                        android:maxLines="10"
-                        android:scrollbars="vertical"
-                        android:layout_weight="1.0"
                         android:layout_height="fill_parent"
                         android:layout_margin="10dp"
+                        android:maxLines="10"
+                        android:scrollbars="vertical"
                         android:text="" />
 
                 </ScrollView>
@@ -192,10 +189,10 @@
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_ripple_effect"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:text="@string/other_restaurants"
                 android:textAllCaps="false"
                 font:name="Montserrat-Light" />

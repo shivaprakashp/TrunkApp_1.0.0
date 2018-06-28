@@ -1,82 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:font="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <com.opera.app.customwidget.TicketView
             android:layout_width="match_parent"
             android:layout_height="230dp"
-            app:orientation="horizontal"
-            app:scallopRadius="10dp"
-            app:scallopPositionPercent="73"
-            app:showBorder="true"
-            app:borderWidth="1dp"
+            android:foregroundGravity="bottom"
             app:borderColor="@color/colorBlack"
-            app:showDivider="true"
+            app:borderWidth="1dp"
+            app:cornerType="rounded"
             app:dividerPadding="0dp"
             app:dividerType="dash"
-            android:foregroundGravity="bottom"
-            app:cornerType="rounded"
-            app:ticketElevation="1dp"/>
+            app:orientation="horizontal"
+            app:scallopPositionPercent="73"
+            app:scallopRadius="10dp"
+            app:showBorder="true"
+            app:showDivider="true"
+            app:ticketElevation="1dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/ticketView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2"/>
+            app:layout_constraintGuide_percent="0.2" />
 
 
         <LinearLayout
             android:id="@+id/linearOne"
             android:layout_width="match_parent"
             android:layout_height="230dp"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
             app:layout_constraintEnd_toEndOf="@+id/ticketView"
             app:layout_constraintStart_toStartOf="@+id/ticketView">
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtWalletEventTitle"
+                style="@style/label_black_vlarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="EVITA"
-                style="@style/label_black_vlarge"
+                font:name="Montserrat-Bold"
                 font:type="bold"
-                font:name="Montserrat-Bold"/>
+                tools:text="EVITA" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtWalletEventGenre"
+                style="@style/label_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="MUSICAL and THEATRE"
-                style="@style/label_gray"
-                font:name="Montserrat-Regular"/>
+                font:name="Montserrat-Regular"
+                tools:text="MUSICAL and THEATRE" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtWalletEventDate"
+                style="@style/label_gray_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="22 JAN 2018 7:30 PM"
-                style="@style/label_gray_large"
                 android:layout_marginTop="15dp"
-                font:name="Montserrat-Regular"/>
+                font:name="Montserrat-Regular"
+                tools:text="22 JAN 2018 7:30 PM" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -86,19 +87,19 @@
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="DOOR:"
-                        style="@style/label_gray"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventDoor"
+                        style="@style/label_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="09"
-                        style="@style/label_black"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular"
+                        tools:text="09" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,25 +109,26 @@
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SECTION:"
-                        style="@style/label_gray"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventSection"
+                        style="@style/label_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Grand S"
-                        style="@style/label_black"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular"
+                        tools:text="Grand S" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -136,19 +138,19 @@
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ROW:"
-                        style="@style/label_gray"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventRow"
+                        style="@style/label_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="09"
-                        style="@style/label_black"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular"
+                        tools:text="09" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,32 +160,32 @@
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
+                        style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SEAT:"
-                        style="@style/label_gray"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventSeat"
+                        style="@style/label_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="09"
-                        style="@style/label_black"
-                        font:name="Montserrat-Regular"/>
+                        font:name="Montserrat-Regular"
+                        tools:text="09" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            app:layout_constraintBottom_toBottomOf="@+id/linearOne"
-            app:layout_constraintEnd_toEndOf="@+id/ticketView"
-            app:layout_constraintStart_toStartOf="@+id/ticketView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
             android:layout_marginTop="2dp"
-            android:orientation="vertical">
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearOne"
+            app:layout_constraintEnd_toEndOf="@+id/ticketView"
+            app:layout_constraintStart_toStartOf="@+id/ticketView">
 
             <ImageView
                 android:id="@+id/imgEventBarCode"
@@ -191,13 +193,13 @@
                 android:layout_height="match_parent" />
 
             <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtBarCode"
+                style="@style/label_black_very_low"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="123456789"
-                style="@style/label_black_very_low"
                 android:gravity="center"
                 android:padding="2dp"
-                android:id="@+id/txtBarCode"/>
+                tools:text="123456789" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>
