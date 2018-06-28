@@ -200,7 +200,6 @@ public class LoginActivity extends BaseActivity {
                     forgotPassword.setText("");
                 }
             } else {
-                //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                 customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             }
         }
@@ -228,7 +227,6 @@ public class LoginActivity extends BaseActivity {
                             username.getText().toString(),
                             password.getText().toString());
                 } else {
-                    //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
                     customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
                 }
                 break;
@@ -275,7 +273,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void sendPost(String emailId, String pwd) {
-
         MainController controller = new MainController(LoginActivity.this);
         controller.loginPost(taskComplete, api, new PostLogin(emailId, pwd,
                 ((MainApplication)getApplication()).getMobileMessaging().getPushRegistrationId()));
@@ -290,6 +287,7 @@ public class LoginActivity extends BaseActivity {
                 openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             }
 
+            //infobip integration part with user details
             //store user details
             UserData userData = new UserData();
             userData.setFirstName(loginResponse.getData().getProfile().getFirstName());
@@ -305,6 +303,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    //call forgot password
     private void sendForgotPassword(String mEmail) {
         MainController controller = new MainController(mActivity);
         controller.forgotPassword(taskComplete, api, new ForgotPasswordPojo(mEmail));

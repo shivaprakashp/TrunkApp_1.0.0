@@ -184,11 +184,9 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 scrollView.scrollTo(selectedDateX, 0);
             }
         });
-
     }
 
     private void calculateValues(int screenWidth, int totalEle) {
-
         tileWidth = screenWidth/totalEle;
         margin = tileWidth/totalEle;
         tileWidth = tileWidth - margin*2;
@@ -222,44 +220,57 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }
 
         }else if (v == lastMonthIv){
+            if (currentYear >= Calendar.getInstance().get(Calendar.YEAR)){
+                if (currentMonth >= (Calendar.getInstance().get(Calendar.MONTH)) + 1){
+                    if (currentMonth == 0) {
 
-            if (currentMonth == 0) {
+                        currentYear = currentYear-1;
+                        currentMonth = 11;
+                        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
 
-                currentYear = currentYear-1;
-                currentMonth = 11;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                        lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                        updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
+                        scrollView.fullScroll(View.FOCUS_LEFT);
 
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
-                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
-                scrollView.fullScroll(View.FOCUS_LEFT);
+                        adapter.notifyDataSetChanged();
+                    }else {
 
-                adapter.notifyDataSetChanged();
-            }else {
-
-                currentMonth--;
-
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
-                lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
-                updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
-                scrollView.fullScroll(View.FOCUS_LEFT);
-                adapter.notifyDataSetChanged();
+                        currentMonth--;
+                        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                        lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
+                        updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
+                        scrollView.fullScroll(View.FOCUS_LEFT);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
             }
 
         }else{
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setShape(GradientDrawable.OVAL);
-            drawable.setColor(Color.WHITE);
-
             if (v instanceof TextView){
-
-                removeOtherSelectedOnClick();
-                v.setBackgroundDrawable(drawable);
-                ((TextView) v).setTextColor(Color.BLACK);
-                int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
-                initRecycle(updateDate(selectedDate, currentMonth, currentYear));
+                if (currentYear > Calendar.getInstance().get(Calendar.YEAR)){
+                    updateSelectedDate(v);
+                }else
+                if (currentMonth > Calendar.getInstance().get(Calendar.MONTH)){
+                    updateSelectedDate(v);
+                }else
+                if (Integer.valueOf(((TextView) v).getText().toString()) >= Calendar.getInstance().get(Calendar.DATE)){
+                    updateSelectedDate(v);
+                }
             }
         }
+    }
 
+    private void updateSelectedDate(View v){
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.OVAL);
+        drawable.setColor(Color.WHITE);
+
+        removeOtherSelectedOnClick();
+        v.setBackgroundDrawable(drawable);
+        ((TextView) v).setTextColor(Color.BLACK);
+        int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
+        initRecycle(updateDate(selectedDate, currentMonth, currentYear));
     }
 
     private String updateDate( int date, int month, int year){
