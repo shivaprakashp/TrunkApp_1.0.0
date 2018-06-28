@@ -915,7 +915,7 @@
     <!--Events Fragment-->
     <string name="tab_all_events">ALL</string>
     <string name="tab_today_events">TODAY</string>
-    <string name="tab_favourites_events">FAVOURITES</string>
+    <string name="tab_favourites_events">FAVOURITE</string>
     <string name="tab_genres_events">GENRES</string>
     <string name="buy_tickets">BUY TICKETS</string>
     <string name="video">VIDEO</string>

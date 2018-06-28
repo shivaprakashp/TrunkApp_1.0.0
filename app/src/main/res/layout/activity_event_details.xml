@@ -58,6 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/black_gradient_diff_shade"
+                        android:baselineAligned="false"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingLeft="10dp"
@@ -74,7 +75,6 @@
                                 style="@style/label_light_gray_low"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:ellipsize="end"
                                 android:singleLine="true"
                                 android:text="Tickets From"
@@ -85,7 +85,6 @@
                                 style="@style/label_white_large"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:ellipsize="end"
                                 android:singleLine="true"
                                 android:text=""
@@ -104,7 +103,6 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:layout_centerInParent="true"
                                 android:src="@drawable/ic_video" />
 
                             <!--  <com.opera.app.customwidget.TextViewWithFont
@@ -131,7 +129,6 @@
                                 android:layout_centerInParent="true"
                                 android:src="@drawable/ic_music" />
                         </RelativeLayout>
-
 
 
                         <RelativeLayout
@@ -301,6 +298,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/transparent_gradient"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -336,6 +334,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.35"
+            android:baselineAligned="false"
             android:gravity="center"
             android:orientation="horizontal">
 

@@ -81,7 +81,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:baselineAligned="false"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -95,7 +95,6 @@
                             style="@style/textsize_vvlarge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:singleLine="true"
                             font:name="Montserrat-Light"
@@ -106,7 +105,6 @@
                             style="@style/label_gray_medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
                             android:ellipsize="end"
                             android:text=""
                             font:name="Montserrat-Light" />
@@ -154,7 +152,6 @@
                         style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         font:name="Montserrat-Light" />
 
@@ -180,7 +177,6 @@
                         style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         android:singleLine="true"
                         font:name="Montserrat-Light" />
@@ -206,7 +202,6 @@
                         style="@style/label_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         android:singleLine="false"
                         android:maxLines="2"

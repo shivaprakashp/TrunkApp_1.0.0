@@ -44,6 +44,8 @@ import retrofit2.Retrofit;
 public class HomeFragment extends BaseFragment {
 
     private Activity mActivity;
+
+    //Adapter of Highlighted events
     private CoverFlowAdapter mAdapter;
     private EventListingDB mEventListingDB;
     private EventGenresDB mEventGenresDB;
