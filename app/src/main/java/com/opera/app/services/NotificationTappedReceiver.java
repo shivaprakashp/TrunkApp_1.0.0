@@ -3,12 +3,13 @@ package com.opera.app.services;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
+import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.PromotionsActivity;
+import com.opera.app.activities.RestaurantCompleteDetails;
+import com.opera.app.database.events.EventListingDB;
 
 import org.infobip.mobile.messaging.Message;
 
@@ -29,7 +30,27 @@ public class NotificationTappedReceiver extends BroadcastReceiver {
                 //pass intent based on type of notification
                intent  = new Intent(context, PromotionsActivity.class);
             }else{
-                intent = new Intent(context, NotificationActivity.class);
+                if(message.getCustomPayload().opt("dataType").toString().equalsIgnoreCase("Restaurant")){
+                    intent = new Intent(context, RestaurantCompleteDetails.class);
+                    intent.putExtra("RestaurantIdSiteCore",message.getCustomPayload().opt("dataKey").toString());
+                }else if(message.getCustomPayload().opt("dataType").toString().equalsIgnoreCase("Event")){
+
+                    EventListingDB mEventListingDB = new EventListingDB(context);
+                    mEventListingDB.open();
+
+                    intent = new Intent(context, EventDetailsActivity.class);
+                    intent.putExtra("EventId",message.getCustomPayload().opt("dataKey").toString());
+                    if (mEventListingDB.IsFavouriteForSpecificEvent(message.getCustomPayload().opt("dataKey").toString())) {
+                        intent.putExtra("IsFavourite", "true");
+                    } else {
+                        intent.putExtra("IsFavourite", "false");
+                    }
+                    mEventListingDB.close();
+                }
+                else{
+                    intent = new Intent(context, NotificationActivity.class);
+                }
+
             }
         }else{
             intent = new Intent(context, MainActivity.class);
