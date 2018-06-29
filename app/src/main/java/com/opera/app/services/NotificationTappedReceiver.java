@@ -4,12 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.MainActivity;
 import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.PromotionsActivity;
-import com.opera.app.activities.RestaurantCompleteDetails;
-import com.opera.app.database.events.EventListingDB;
 
 import org.infobip.mobile.messaging.Message;
 
@@ -24,12 +21,15 @@ public class NotificationTappedReceiver extends BroadcastReceiver {
         //check custom payload has null value
         if (message.getCustomPayload() != null) {
             /*look out the notification type,
-            * whether notification type is of promotion or geo notification*/
+             * whether notification type is of promotion or geo notification*/
             if (message.getCustomPayload().opt("notifyType").toString().
                     equalsIgnoreCase("promotion")) {
                 //pass intent based on type of notification
                 intent = new Intent(context, PromotionsActivity.class);
             } else {
+                intent = new Intent(context, NotificationActivity.class);
+            }
+            /*else {
                 if (message.getCustomPayload().opt("dataType").toString().equalsIgnoreCase("Restaurant")) {
                     intent = new Intent(context, RestaurantCompleteDetails.class);
                     intent.putExtra("RestaurantIdSiteCore", message.getCustomPayload().opt("dataKey").toString());
@@ -50,12 +50,12 @@ public class NotificationTappedReceiver extends BroadcastReceiver {
                     intent = new Intent(context, NotificationActivity.class);
                 }
 
+            }*/
+            } else{
+                intent = new Intent(context, MainActivity.class);
             }
-        } else {
-            intent = new Intent(context, MainActivity.class);
-        }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
     }
-}
