@@ -244,8 +244,20 @@ public class EditProfileActivity extends BaseActivity {
         if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
             SharedPreferences sharedPreferences = PreferenceManager
                     .getDefaultSharedPreferences(mActivity);
-            String name = sharedPreferences.getString("countryCode", "default value");
-            spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+            //String name = sharedPreferences.getString("countryCode", "default value");
+            countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
+                    manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+            //String number  = name.replaceAll("[^0-9]", "");
+            int mPosition=0;
+
+            for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
+                if(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).contains(countryCode)){
+                    mPosition=j;
+                    break;
+                }
+            }
+
+            spinnerCountryCode.setSelection(mPosition);
         }
 
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
