@@ -2,9 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -242,21 +240,16 @@ public class EditProfileActivity extends BaseActivity {
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(mActivity);
-            //String name = sharedPreferences.getString("countryCode", "default value");
+
             countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
                     manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
-            //String number  = name.replaceAll("[^0-9]", "");
             int mPosition=0;
-
             for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
                 if(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).contains(countryCode)){
                     mPosition=j;
                     break;
                 }
             }
-
             spinnerCountryCode.setSelection(mPosition);
         }
 
@@ -268,13 +261,7 @@ public class EditProfileActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
 
-                        SharedPreferences sharedPreferences = PreferenceManager
-                                .getDefaultSharedPreferences(mActivity);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
-                        editor.apply();
-                        //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
-                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
+                       countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
 
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);

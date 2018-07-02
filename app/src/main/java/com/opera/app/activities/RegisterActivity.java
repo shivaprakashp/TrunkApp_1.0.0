@@ -2,10 +2,8 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.InputFilter;
@@ -268,12 +266,6 @@ public class RegisterActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
 
-                        SharedPreferences sharedPreferences = PreferenceManager
-                                .getDefaultSharedPreferences(mActivity);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
-                        editor.apply();
-                        //sp.edit().putString("countryCode", spinnerCountryCode.getSelectedItem().toString()).commit();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                                 spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);

@@ -2,9 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -198,10 +196,17 @@ public class ReserveATableActivity extends BaseActivity {
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if (mSessionManager.getUserLoginData() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-                SharedPreferences sharedPreferences = PreferenceManager
-                        .getDefaultSharedPreferences(mActivity);
-                String name = sharedPreferences.getString("countryCode", "default value");
-                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+
+                countryCode = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
+                        mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+                int mPosition=0;
+                for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
+                    if(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).contains(countryCode)){
+                        mPosition=j;
+                        break;
+                    }
+                }
+                spinnerCountryCode.setSelection(mPosition);
             }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -211,7 +216,7 @@ public class ReserveATableActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
