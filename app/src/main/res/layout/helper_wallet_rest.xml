@@ -63,7 +63,7 @@
                     style="@style/label_black_large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sean Connolly"
+                    tools:text="Sean Connolly"
                     font:name="Montserrat-Regular" />
 
                 <LinearLayout

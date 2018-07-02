@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:id="@+id/nestedParent"
@@ -77,7 +78,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:singleLine="true"
-                                android:text="Tickets From"
+                                android:text="@string/eventDetailTicket"
                                 font:name="Montserrat-Light" />
 
                             <com.opera.app.customwidget.TextViewWithFont
@@ -87,7 +88,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:singleLine="true"
-                                android:text=""
+                                tools:text=""
                                 android:textStyle="bold"
                                 font:name="Montserrat-Light" />
 

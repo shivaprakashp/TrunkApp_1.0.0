@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="?android:attr/actionBarSize"
         android:layout_marginTop="4dp"
         app:tabIndicatorColor="@android:color/white"
         app:tabMode="fixed"

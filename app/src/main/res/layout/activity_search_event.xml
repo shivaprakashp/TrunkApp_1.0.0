@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -53,7 +54,7 @@
                     android:layout_marginBottom="5dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="You searched for classical,found 4 results" />
+                    tools:text="You searched for classical,found 4 results" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

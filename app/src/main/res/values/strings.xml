@@ -30,7 +30,6 @@
     <string name="NewsLetterSwitchValue">newsLetterSwitchValue</string>
     <string name="BookedShowSwitchValue">bookedShowSwitchValue</string>
 
-
     <!--Language Activity -->
     <string name="english">English</string>
     <string name="arabic">عربى</string>
@@ -253,6 +252,8 @@
     <string name="other_restaurants">OTHER RESTAURANTS</string>
     <string name="dubai_opera">at Dubai Opera</string>
     <string name="rest_search">Enter keyword to search for Restaurant</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 
     <!--NETWORK CONNECTIVITY MSG-->
     <string name="internet_error_msg">Please check your internet connection!</string>
@@ -949,7 +950,11 @@
     <string name="bookReference">Booking Reference No:</string>
     <string name="bookDate">Booking Date:</string>
     <string name="giftVoucherDate">Expiry Date:</string>
-
+    <string name="walletDoor">DOOR:</string>
+    <string name="walletRow">ROW:</string>
+    <string name="walletSection">SECTION:</string>
+    <string name="walletSeat">SEAT:</string>
+    <string name="walletDataNotAvail">No data available</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imgFavourite">ImgFavourite</string>
@@ -975,4 +980,11 @@
 
     <string name="find_shows">FIND SHOWS</string>
     <string name="location">LOCATION MAP</string>
+
+    <!--Apple Music-->
+    <string name="appleMusicOpen">Open apple music</string>
+    <string name="appleBuyTicket">Buy tickets</string>
+
+    <!--Event Details-->
+    <string name="eventDetailTicket">Tickets From</string>
 </resources>

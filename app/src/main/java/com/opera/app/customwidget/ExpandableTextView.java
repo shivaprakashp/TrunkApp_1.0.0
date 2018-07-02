@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @author Cliff Ophalvens (Blogc.at)
  */
-public class ExpandableTextView extends TextView
+public class ExpandableTextView extends android.support.v7.widget.AppCompatTextView
 {
     private final List<OnExpandListener> onExpandListeners;
     private TimeInterpolator expandInterpolator;

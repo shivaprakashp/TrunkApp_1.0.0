@@ -2,6 +2,7 @@
 
 <com.opera.app.customwidget.TextViewWithFont xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:font="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/txtGenreName"
     style="@style/label_light_gray_low"
     android:layout_width="wrap_content"
@@ -14,5 +15,5 @@
     android:paddingRight="10dp"
     android:paddingTop="2dp"
     android:singleLine="true"
-    android:text="Opera"
+    tools:text="Opera"
     font:name="Montserrat-Light" />

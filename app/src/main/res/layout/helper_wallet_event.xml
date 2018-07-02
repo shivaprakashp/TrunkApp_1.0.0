@@ -90,7 +90,7 @@
                         style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DOOR:"
+                        android:text="@string/walletDoor"
                         font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -112,7 +112,7 @@
                         style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SECTION:"
+                        android:text="@string/walletSection"
                         font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -141,7 +141,7 @@
                         style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ROW:"
+                        android:text="@string/walletRow"
                         font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -163,7 +163,7 @@
                         style="@style/label_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SEAT:"
+                        android:text="@string/walletSeat"
                         font:name="Montserrat-Regular" />
 
                     <com.opera.app.customwidget.TextViewWithFont

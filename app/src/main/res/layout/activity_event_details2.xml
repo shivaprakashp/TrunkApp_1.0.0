@@ -77,7 +77,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:singleLine="true"
-                                android:text="Tickets From"
+                                android:text="@string/eventDetailTicket"
                                 font:name="Montserrat-Light" />
 
                             <com.opera.app.customwidget.TextViewWithFont

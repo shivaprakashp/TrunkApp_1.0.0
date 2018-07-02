@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content" />
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:paddingLeft="10dp"
+                android:padding="10dp"
                 android:textColor="#ffffff"
                 android:textStyle="normal"
                 android:paddingBottom="10dp"
