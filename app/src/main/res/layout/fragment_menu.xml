@@ -207,6 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:padding="5dp">
 
@@ -215,6 +216,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:rotationY="@integer/locale_mirror_flip"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/ic_feedback"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -225,7 +227,6 @@
                         android:text="@string/menu_feedback"
                         android:lines="2"
                         font:name="Montserrat-Light"
-                        android:layout_marginTop="5dp"
                         style="@style/label_white_small"/>
 
 
