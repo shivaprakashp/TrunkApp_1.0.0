@@ -16,7 +16,6 @@ import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.MyProfileActivity;
-import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.PromotionsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
@@ -216,7 +215,7 @@ public class MenuFragment extends BaseFragment {
             }
         });
 
-        menu_notification.setOnClickListener(new View.OnClickListener() {
+        /*menu_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (manager.isUserLoggedIn()) {
@@ -227,7 +226,7 @@ public class MenuFragment extends BaseFragment {
                     dialog.show();
                 }
             }
-        });
+        });*/
 
         menu_promotion.setOnClickListener(new View.OnClickListener() {
             @Override

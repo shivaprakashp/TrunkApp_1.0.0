@@ -245,7 +245,10 @@ public class EditProfileActivity extends BaseActivity {
                     manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
             int mPosition=0;
             for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
-                if(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).contains(countryCode)){
+
+                String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
+                        Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                if(number.equals(countryCode)){
                     mPosition=j;
                     break;
                 }
