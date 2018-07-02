@@ -13,7 +13,9 @@
         android:hint="@string/username"
         android:padding="5dp"
         style="@style/label_black"
-        font:name="Montserrat-Regular">
+        font:name="Montserrat-Regular"
+        android:textDirection="locale"
+        android:textAlignment="viewStart">
 
         <requestFocus/>
     </com.opera.app.customwidget.EditTextWithFont>
