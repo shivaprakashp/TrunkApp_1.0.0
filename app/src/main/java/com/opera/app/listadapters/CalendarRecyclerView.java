@@ -57,7 +57,8 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
         final Events events = arrayList.get(position);
 
         String[] startTime = events.getStartTime().split(" ");
-        holder.txtCalendarTime.setText(startTime[0] + "\n" + startTime[1]);
+        holder.txtCalendarTime.setText(events.getEventTime().get(0).getFromTime().split("T")[1].substring(0,2)
+                +":"+events.getEventTime().get(0).getFromTime().split("T")[1].substring(2,4)+ "\n" + startTime[1]);
         holder.txtCalendarEventName.setText(events.getName());
 
         holder.btnCalendarDetail.setOnClickListener(new View.OnClickListener() {
