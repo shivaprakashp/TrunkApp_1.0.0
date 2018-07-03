@@ -22,7 +22,6 @@ import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
-import com.opera.app.pojo.settings.GetSettingsPojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
@@ -161,7 +160,7 @@ public class SettingsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_settings));
 
         //infobip user data update

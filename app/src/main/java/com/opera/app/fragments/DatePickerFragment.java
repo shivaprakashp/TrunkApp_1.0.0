@@ -19,7 +19,7 @@ public class DatePickerFragment extends DialogFragment {
     }
 
     public DatePickerFragment(OnDateSetListener callback) {
-        mDateSetListener = (OnDateSetListener) callback;
+        mDateSetListener = callback;
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {

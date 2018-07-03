@@ -102,11 +102,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
         public MyViewHolder(View view) {
             super(view);
-            mTxtRestaurantName = (TextView) view.findViewById(R.id.mTxtRestaurantName);
-            mTxtRestaurantPlace = (TextView) view.findViewById(R.id.mTxtRestaurantPlace);
-            mImgRestaurantImage = (ImageView) view.findViewById(R.id.mImgRestaurantImage);
-            mBtnReserveATable = (Button) view.findViewById(R.id.mBtnReserveATable);
-            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
+            mTxtRestaurantName = view.findViewById(R.id.mTxtRestaurantName);
+            mTxtRestaurantPlace = view.findViewById(R.id.mTxtRestaurantPlace);
+            mImgRestaurantImage = view.findViewById(R.id.mImgRestaurantImage);
+            mBtnReserveATable = view.findViewById(R.id.mBtnReserveATable);
+            progressImageLoader = view.findViewById(R.id.progressImageLoader);
 
             manager = new SessionManager(mActivity);
             customToast = new CustomToast(mActivity);

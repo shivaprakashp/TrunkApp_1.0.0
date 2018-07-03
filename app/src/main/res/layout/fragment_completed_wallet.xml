@@ -30,7 +30,7 @@
             android:id="@+id/txt_testing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Testing"
+            tools:text="Testing"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/textsize_vlarge"
             android:visibility="gone" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="No data available"
+            android:text="@string/walletDataNotAvail"
             font:name="Montserrat-Light" />
     </RelativeLayout>
 

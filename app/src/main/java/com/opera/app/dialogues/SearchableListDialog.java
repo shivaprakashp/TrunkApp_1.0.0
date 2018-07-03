@@ -142,7 +142,7 @@ public class SearchableListDialog extends DialogFragment implements
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context
                 .SEARCH_SERVICE);
 
-        _searchView = (SearchView) rootView.findViewById(R.id.search);
+        _searchView = rootView.findViewById(R.id.search);
         _searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName
                 ()));
         _searchView.setIconifiedByDefault(false);
@@ -156,7 +156,7 @@ public class SearchableListDialog extends DialogFragment implements
 
         List items = (List) getArguments().getSerializable(ITEMS);
 
-        _listViewItems = (ListView) rootView.findViewById(R.id.listItems);
+        _listViewItems = rootView.findViewById(R.id.listItems);
 
         //create the adapter by passing your ArrayList data
         listAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,

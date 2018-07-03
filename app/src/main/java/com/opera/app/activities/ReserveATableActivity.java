@@ -2,9 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -188,7 +186,7 @@ public class ReserveATableActivity extends BaseActivity {
         ArrayAdapter<String> adapterSelectTitle = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrSelectTitle);
         mSpinnerSelectTitle.setAdapter(adapterSelectTitle);
 
-        spinnerCountryCode = (CustomSpinner) reserve_edtFulNo.findViewById(R.id.spinnerCountryCode);
+        spinnerCountryCode = reserve_edtFulNo.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
@@ -198,10 +196,19 @@ public class ReserveATableActivity extends BaseActivity {
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if (mSessionManager.getUserLoginData() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-                SharedPreferences sharedPreferences = PreferenceManager
-                        .getDefaultSharedPreferences(mActivity);
-                String name = sharedPreferences.getString("countryCode", "default value");
-                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+
+                countryCode = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
+                        mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+                int mPosition=0;
+                for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
+                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
+                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                    if(number.equals(countryCode)){
+                        mPosition=j;
+                        break;
+                    }
+                }
+                spinnerCountryCode.setSelection(mPosition);
             }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -211,7 +218,7 @@ public class ReserveATableActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                    //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
+
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
@@ -293,14 +300,14 @@ public class ReserveATableActivity extends BaseActivity {
 
     private void initView() {
 
-        DOB = (ImageView) findViewById(R.id.ivDOB);
-        editDOB = (EditText) findViewById(R.id.editDOB);
+        DOB = findViewById(R.id.ivDOB);
+        editDOB = findViewById(R.id.editDOB);
 //        mEdtNoOfGuests.setText(mTxtNumberOfGuests.getText().toString());
 
-        EditTextWithFont edtWindowTable = (EditTextWithFont) reserve_edtWindowTable.findViewById(R.id.edt);
+        EditTextWithFont edtWindowTable = reserve_edtWindowTable.findViewById(R.id.edt);
         edtWindowTable.setHint(getString(R.string.window_table));
 
-        edtFulName = (EditTextWithFont) reserve_edtFulName.findViewById(R.id.edt);
+        edtFulName = reserve_edtFulName.findViewById(R.id.edt);
         edtFulName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFulName.setMaxLines(1);
         edtFulName.setHint(getString(R.string.full_name));
@@ -309,12 +316,12 @@ public class ReserveATableActivity extends BaseActivity {
         }
         edtFulName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
 
-        edtEmail = (EditTextWithFont) reserve_edtEmail.findViewById(R.id.edt);
+        edtEmail = reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         edtEmail.setMaxLines(1);
         edtEmail.setHint(getString(R.string.email));
 
-        edtFulNo = (EditTextWithFont) reserve_edtFulNo.findViewById(R.id.edtMobile);
+        edtFulNo = reserve_edtFulNo.findViewById(R.id.edtMobile);
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
         edtFulNo.setHint(getString(R.string.mobile));
@@ -337,7 +344,7 @@ public class ReserveATableActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.reserve_a_table));
 
     }

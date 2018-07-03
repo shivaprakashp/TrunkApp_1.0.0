@@ -2,9 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -133,7 +131,7 @@ public class EditProfileActivity extends BaseActivity {
     private void initToolbar() {
         setSupportActionBar(toolbar);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.my_profile));
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -148,7 +146,7 @@ public class EditProfileActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         //edittext
-        edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
+        edtEmail = edit_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.edit_email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtEmail.setTextColor(getResources().getColor(R.color.dark_gray));
@@ -157,7 +155,7 @@ public class EditProfileActivity extends BaseActivity {
             edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         }
 
-        edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
+        edtFirstName = edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
@@ -166,7 +164,7 @@ public class EditProfileActivity extends BaseActivity {
         }
         edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
+        edtLastName = edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
@@ -174,7 +172,7 @@ public class EditProfileActivity extends BaseActivity {
         }
         edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
+        edtDob = edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -183,7 +181,7 @@ public class EditProfileActivity extends BaseActivity {
             edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
         }
 
-        edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
+        edtCity = edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
         edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });
@@ -242,21 +240,19 @@ public class EditProfileActivity extends BaseActivity {
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-            SharedPreferences sharedPreferences = PreferenceManager
-                    .getDefaultSharedPreferences(mActivity);
-            //String name = sharedPreferences.getString("countryCode", "default value");
+
             countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
                     manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
-            //String number  = name.replaceAll("[^0-9]", "");
             int mPosition=0;
-
             for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
-                if(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).contains(countryCode)){
+
+                String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
+                        Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                if(number.equals(countryCode)){
                     mPosition=j;
                     break;
                 }
             }
-
             spinnerCountryCode.setSelection(mPosition);
         }
 
@@ -268,13 +264,7 @@ public class EditProfileActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
 
-                        SharedPreferences sharedPreferences = PreferenceManager
-                                .getDefaultSharedPreferences(mActivity);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
-                        editor.apply();
-                        //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
-                    countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
+                       countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
 
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);

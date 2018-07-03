@@ -19,11 +19,7 @@ public class Connections {
             {
 
                 NetworkInfo ni = connectivity.getActiveNetworkInfo();
-                if (ni == null){
-                    // There are no active networks.
-                    return false;
-                } else
-                    return true;
+                return ni != null;
             }
         }
         catch(Exception e)

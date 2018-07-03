@@ -12,7 +12,9 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        font:name="Montserrat-Regular"/>
+        font:name="Montserrat-Regular"
+        android:textDirection="locale"
+        android:textAlignment="viewStart"/>
 
     <com.opera.app.customwidget.EditTextWithFont
         android:id="@+id/edtMobile"
@@ -23,7 +25,9 @@
         android:padding="5dp"
         android:layout_weight="1"
         style="@style/label_black"
-        font:name="Montserrat-Regular">
+        font:name="Montserrat-Regular"
+        android:textDirection="locale"
+        android:textAlignment="viewStart">
 
         <requestFocus/>
     </com.opera.app.customwidget.EditTextWithFont>

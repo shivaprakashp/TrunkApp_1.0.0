@@ -43,7 +43,7 @@ public class OpenYoutubeVideo extends YouTubeBaseActivity implements
         YoutubeVideo=in.getStringExtra("YoutubeVideo");
         YoutubeVideo= getYouTubeId(YoutubeVideo);
 
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView = findViewById(R.id.youtube_view);
         youTubeView.initialize(AppConstants.YOUTUBE_DEVELOPER_KEY, (YouTubePlayer.OnInitializedListener) mActivity);
     }
 

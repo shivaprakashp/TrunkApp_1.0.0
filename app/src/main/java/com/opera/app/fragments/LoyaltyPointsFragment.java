@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.opera.app.R;
 import com.opera.app.utils.LanguageManager;
-import com.opera.app.utils.OperaUtils;
 
 /**
  * Created by 58001 on 27-03-2018.

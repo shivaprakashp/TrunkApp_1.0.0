@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -19,21 +20,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="Open Itunes Url"
+        tools:text="Open Itunes Url"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/btnOpenApple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open apple music"
+        android:text="@string/appleMusicOpen"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/btnBuyTickers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy tickets" />
+        android:layout_centerInParent="true"
+        android:text="@string/appleBuyTicket" />
 
     <TextView
         android:id="@+id/txtJsonData"

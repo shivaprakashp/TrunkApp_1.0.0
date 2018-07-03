@@ -32,10 +32,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            txtShowName = (TextView) view.findViewById(R.id.txtShowName);
-            txtShowDesc = (TextView) view.findViewById(R.id.txtShowDesc);
-            txtShowDateAndTime = (TextView) view.findViewById(R.id.txtShowDateAndTime);
-            img_profile_chooser=(ImageView)view.findViewById(R.id.img_profile_chooser);
+            txtShowName = view.findViewById(R.id.txtShowName);
+            txtShowDesc = view.findViewById(R.id.txtShowDesc);
+            txtShowDateAndTime = view.findViewById(R.id.txtShowDateAndTime);
+            img_profile_chooser= view.findViewById(R.id.img_profile_chooser);
 
             customToast = new CustomToast(mActivity);
         }

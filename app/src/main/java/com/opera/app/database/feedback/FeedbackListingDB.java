@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.opera.app.database.OperaDBHandler;
 import com.opera.app.pojo.feedback.FeedbackResponse;
-import com.opera.app.pojo.notifications.Notification;
 
 import java.util.ArrayList;
 

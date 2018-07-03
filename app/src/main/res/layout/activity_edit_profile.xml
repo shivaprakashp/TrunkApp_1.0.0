@@ -186,7 +186,9 @@
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="0.7"
-                        font:name="Montserrat-Regular" />
+                        font:name="Montserrat-Regular"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edit_edtMobile"
@@ -197,7 +199,9 @@
                         android:background="@null"
                         android:hint="@string/edit_mobile"
                         android:padding="5dp"
-                        font:name="Montserrat-Regular">
+                        font:name="Montserrat-Regular"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart">
 
                         <requestFocus />
                     </com.opera.app.customwidget.EditTextWithFont>
@@ -308,7 +312,9 @@
                         android:maxLength="70"
                         android:padding="5dp"
                         android:singleLine="false"
-                        font:name="Montserrat-Regular" />
+                        font:name="Montserrat-Regular"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
 

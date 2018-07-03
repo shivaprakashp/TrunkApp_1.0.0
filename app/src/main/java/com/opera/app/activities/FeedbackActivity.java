@@ -7,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.opera.app.BaseActivity;
@@ -17,15 +16,11 @@ import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.feedback.FeedbackListingDB;
-import com.opera.app.database.notification.NotificationDetailsDB;
-import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.FeedbackAdapter;
-import com.opera.app.listadapters.NotificationAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.feedback.FeedbackResponse;
 import com.opera.app.pojo.feedback.FeedbackResponseParent;
-import com.opera.app.pojo.notifications.NotificationDetails;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -89,7 +84,7 @@ public class FeedbackActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_notification));
 
         mAdapter = new FeedbackAdapter(mActivity, arrFeedbackListing);
@@ -125,7 +120,6 @@ public class FeedbackActivity extends BaseActivity {
                 try {
 
                 } catch (Exception e) {
-                    Log.e("Message", e.getMessage());
                     e.printStackTrace();
                 }
             else if (response.errorBody() != null) {

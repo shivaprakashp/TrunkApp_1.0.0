@@ -60,10 +60,10 @@ public class CoverFlowAdapter extends BaseAdapter {
             rowView = inflater.inflate(R.layout.item_coverflow, null);
 
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.text = (TextView) rowView.findViewById(R.id.label);
-            viewHolder.image = (ImageView) rowView
+            viewHolder.text = rowView.findViewById(R.id.label);
+            viewHolder.image = rowView
                     .findViewById(R.id.image);
-            viewHolder.frameParent = (FrameLayout) rowView.findViewById(R.id.frameParent);
+            viewHolder.frameParent = rowView.findViewById(R.id.frameParent);
 
             rowView.setTag(viewHolder);
         }

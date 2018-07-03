@@ -18,11 +18,8 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.listadapters.NotificationAdapter;
 import com.opera.app.listadapters.PromotionsAdapter;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.notifications.Notification;
-import com.opera.app.pojo.notifications.NotificationDetails;
 import com.opera.app.pojo.promotions.PromotionDetails;
 import com.opera.app.pojo.promotions.PromotionsPojo;
 import com.opera.app.utils.LanguageManager;
@@ -122,7 +119,7 @@ public class PromotionsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_promotion));
 
         mAdapter = new PromotionsAdapter(mActivity, mPromotionDetails);

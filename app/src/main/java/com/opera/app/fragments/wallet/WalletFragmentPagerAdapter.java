@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.opera.app.R;
-import com.opera.app.enums.WalletEnums;
 
 public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
 

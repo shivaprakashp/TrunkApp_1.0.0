@@ -6,5 +6,5 @@ package com.opera.app.listener;
 
 public interface MarkFavouriteInterface {
 
-    public void onMarkFavouriteForEvent();
+    void onMarkFavouriteForEvent();
 }

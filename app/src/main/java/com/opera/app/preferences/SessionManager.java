@@ -82,7 +82,7 @@ public class SessionManager {
 
     public void DeleteAllTables(Activity mActivity) {
         mEventListingDB.open();
-        mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
+        mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
         mEventListingDB.close();
 
         WalletPreference preference = new WalletPreference(mActivity);

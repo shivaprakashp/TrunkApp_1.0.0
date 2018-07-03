@@ -56,7 +56,7 @@ public class AllEventsFragment extends BaseFragment implements EventInterfaceTab
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-        listenerAllEvents=(AllEventsFragment)this;
+        listenerAllEvents= this;
 
     }
 

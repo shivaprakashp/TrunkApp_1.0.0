@@ -154,14 +154,14 @@ public class LoginActivity extends BaseActivity {
         customToast = new CustomToast(mActivity);
         mEventListingDB = new EventListingDB(mActivity);
         //edittext
-        username = (EditTextWithFont) login_username.findViewById(R.id.edt);
+        username = login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.email2));
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         username.setSingleLine(true);
         username.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
         username.requestFocus();
 
-        password = (EditTextWithFont) login_password.findViewById(R.id.edt);
+        password = login_password.findViewById(R.id.edt);
         password.setHint(getString(R.string.password));
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
@@ -174,7 +174,7 @@ public class LoginActivity extends BaseActivity {
         View view = getLayoutInflater().inflate(R.layout.popup_forgotpassword, null);
         dialog.setContentView(view);
 
-        forgotPassword = (EditTextWithFont) view.findViewById(R.id.edtForgotEmail);
+        forgotPassword = view.findViewById(R.id.edtForgotEmail);
 
         forgotPassword.requestFocus();
         forgotPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});

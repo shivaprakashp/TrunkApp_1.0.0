@@ -13,7 +13,6 @@ import com.opera.app.activities.MainActivity;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.dialogues.GuestDialog;
 import com.opera.app.dialogues.LogoutDialog;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.Settings;
@@ -77,7 +76,7 @@ public class SettingsService extends IntentService {
         mActivity.startService(i);
         mSessionManager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
-        this.mFrom = From;
+        mFrom = From;
         this.userData = userData;
 
         if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {

@@ -2,10 +2,8 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.InputFilter;
@@ -186,27 +184,27 @@ public class RegisterActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         //edittext
-        edtFirstName = (EditTextWithFont) reg_edtFirstName.findViewById(R.id.edt);
+        edtFirstName = reg_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
         edtFirstName.requestFocus();
 
-        edtLastName = (EditTextWithFont) reg_edtLastName.findViewById(R.id.edt);
+        edtLastName = reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtLastName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
 
-        edtEmail = (EditTextWithFont) reg_edtEmail.findViewById(R.id.edt);
+        edtEmail = reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         edtEmail.setMaxLines(1);
         edtEmail.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
 
-        edtPassword = (EditTextWithFont) reg_edtPassword.findViewById(R.id.edt);
+        edtPassword = reg_edtPassword.findViewById(R.id.edt);
         edtPassword.setHint(getString(R.string.pass));
         //edtPassword.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         edtPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -214,20 +212,20 @@ public class RegisterActivity extends BaseActivity {
         edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        edtRePass = (EditTextWithFont) reg_edtRePass.findViewById(R.id.edt);
+        edtRePass = reg_edtRePass.findViewById(R.id.edt);
         edtRePass.setHint(getString(R.string.re_pass));
         edtRePass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtRePass.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});
         edtRePass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         edtRePass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        edtDob = (EditTextWithFont) reg_edtDob.findViewById(R.id.edt);
+        edtDob = reg_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.dob));
         edtDob.setFocusable(false);
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtDob.performClick();
 
-        edtCity = (EditTextWithFont) reg_edtCity.findViewById(R.id.edt);
+        edtCity = reg_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.city));
         edtCity.setInputType(InputType.TYPE_CLASS_TEXT);
         edtCity.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -268,12 +266,6 @@ public class RegisterActivity extends BaseActivity {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
 
-                        SharedPreferences sharedPreferences = PreferenceManager
-                                .getDefaultSharedPreferences(mActivity);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("countryCode", spinnerCountryCode.getSelectedItem().toString());
-                        editor.apply();
-                        //sp.edit().putString("countryCode", spinnerCountryCode.getSelectedItem().toString()).commit();
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                                 spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                     ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);

@@ -105,13 +105,12 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
 
         public MyViewHolder(View view) {
             super(view);
-            imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
-            btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
-            txtEventName = (TextView) view.findViewById(R.id.txtEventName);
-            txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
-            txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
-            linearSearchParent=(LinearLayout)view.findViewById(R.id.linearSearchParent);
-            ;
+            imgEvent = view.findViewById(R.id.imgEvent);
+            btnBuyTickets = view.findViewById(R.id.btnBuyTickets);
+            txtEventName = view.findViewById(R.id.txtEventName);
+            txtEventInfo = view.findViewById(R.id.txtEventInfo);
+            txtEventDate = view.findViewById(R.id.txtEventDate);
+            linearSearchParent= view.findViewById(R.id.linearSearchParent);
         }
     }
 }

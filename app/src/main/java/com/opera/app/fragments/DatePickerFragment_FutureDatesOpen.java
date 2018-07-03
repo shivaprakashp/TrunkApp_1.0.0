@@ -22,7 +22,7 @@ public class DatePickerFragment_FutureDatesOpen extends DialogFragment {
     }
 
     public DatePickerFragment_FutureDatesOpen(DatePickerDialog.OnDateSetListener callback) {
-        mDateSetListener = (DatePickerDialog.OnDateSetListener) callback;
+        mDateSetListener = callback;
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {

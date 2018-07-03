@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OperaTrunks.iml" filepath="$PROJECT_DIR$/OperaTrunks.iml" />
+      <module fileurl="file://D:\MyWorkspace\DubaiOpera_21-Mar-2018\androidapprepository\OperaTrunks.iml" filepath="D:\MyWorkspace\DubaiOpera_21-Mar-2018\androidapprepository\OperaTrunks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidapprepository.iml" filepath="$PROJECT_DIR$/androidapprepository.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

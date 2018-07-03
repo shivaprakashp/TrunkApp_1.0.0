@@ -16,7 +16,6 @@ import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.MyProfileActivity;
-import com.opera.app.activities.NotificationActivity;
 import com.opera.app.activities.PromotionsActivity;
 import com.opera.app.activities.RegisterActivity;
 import com.opera.app.activities.SettingsActivity;
@@ -121,34 +120,34 @@ public class MenuFragment extends BaseFragment {
     private void initMenu() {
 
         //first row
-        ImageView imgProfile = (ImageView) menu_profile.findViewById(R.id.menu_icon);
-        TextViewWithFont txtProfile = (TextViewWithFont) menu_profile.findViewById(R.id.menu_icon_text);
+        ImageView imgProfile = menu_profile.findViewById(R.id.menu_icon);
+        TextViewWithFont txtProfile = menu_profile.findViewById(R.id.menu_icon_text);
         imgProfile.setImageDrawable(getActivity().getDrawable(R.drawable.ic_profile));
         txtProfile.setText(getActivity().getString(R.string.menu_profile));
 
-        ImageView imgOpera = (ImageView) menu_opera_tour.findViewById(R.id.menu_icon);
-        TextViewWithFont txtOpera = (TextViewWithFont) menu_opera_tour.findViewById(R.id.menu_icon_text);
+        ImageView imgOpera = menu_opera_tour.findViewById(R.id.menu_icon);
+        TextViewWithFont txtOpera = menu_opera_tour.findViewById(R.id.menu_icon_text);
         imgOpera.setImageDrawable(getActivity().getDrawable(R.drawable.ic_dubai_opera_tour));
         txtOpera.setText(getActivity().getString(R.string.menu_opera_tour));
 
-        ImageView imgWallet = (ImageView) menu_wallet.findViewById(R.id.menu_icon);
-        TextViewWithFont txtWallet = (TextViewWithFont) menu_wallet.findViewById(R.id.menu_icon_text);
+        ImageView imgWallet = menu_wallet.findViewById(R.id.menu_icon);
+        TextViewWithFont txtWallet = menu_wallet.findViewById(R.id.menu_icon_text);
         imgWallet.setImageDrawable(getActivity().getDrawable(R.drawable.ic_wallet));
         txtWallet.setText(getActivity().getString(R.string.menu_wallet));
 
         //second row
-        ImageView imgNotify = (ImageView) menu_notification.findViewById(R.id.menu_icon);
-        TextViewWithFont txtNotify = (TextViewWithFont) menu_notification.findViewById(R.id.menu_icon_text);
+        ImageView imgNotify = menu_notification.findViewById(R.id.menu_icon);
+        TextViewWithFont txtNotify = menu_notification.findViewById(R.id.menu_icon_text);
         imgNotify.setImageDrawable(getActivity().getDrawable(R.drawable.ic_notifications));
         txtNotify.setText(getActivity().getString(R.string.menu_notification));
 
-        ImageView imgPromotion = (ImageView) menu_promotion.findViewById(R.id.menu_icon);
-        TextViewWithFont txtPromotion = (TextViewWithFont) menu_promotion.findViewById(R.id.menu_icon_text);
+        ImageView imgPromotion = menu_promotion.findViewById(R.id.menu_icon);
+        TextViewWithFont txtPromotion = menu_promotion.findViewById(R.id.menu_icon_text);
         imgPromotion.setImageDrawable(getActivity().getDrawable(R.drawable.ic_promotions));
         txtPromotion.setText(getActivity().getString(R.string.menu_promotion));
 
-        ImageView imgGift = (ImageView) menu_gift_card.findViewById(R.id.menu_icon);
-        TextViewWithFont txtGift = (TextViewWithFont) menu_gift_card.findViewById(R.id.menu_icon_text);
+        ImageView imgGift = menu_gift_card.findViewById(R.id.menu_icon);
+        TextViewWithFont txtGift = menu_gift_card.findViewById(R.id.menu_icon_text);
         imgGift.setImageDrawable(getActivity().getDrawable(R.drawable.ic_gift_cards));
         txtGift.setText(getActivity().getString(R.string.menu_gift_cards));
 
@@ -158,19 +157,19 @@ public class MenuFragment extends BaseFragment {
         imgFeedback.setImageDrawable(getActivity().getDrawable(R.drawable.ic_feedback));
         txtfeedback.setText(getActivity().getString(R.string.menu_feedback));*/
 
-        ImageView imgContact = (ImageView) menu_contact.findViewById(R.id.menu_icon);
-        TextViewWithFont txtContact = (TextViewWithFont) menu_contact.findViewById(R.id.menu_icon_text);
+        ImageView imgContact = menu_contact.findViewById(R.id.menu_icon);
+        TextViewWithFont txtContact = menu_contact.findViewById(R.id.menu_icon_text);
         imgContact.setImageDrawable(getActivity().getDrawable(R.drawable.ic_contact_us));
         txtContact.setText(getActivity().getString(R.string.menu_contact_us));
 
-        ImageView imgSetting = (ImageView) menu_setting.findViewById(R.id.menu_icon);
-        TextViewWithFont txtSetting = (TextViewWithFont) menu_setting.findViewById(R.id.menu_icon_text);
+        ImageView imgSetting = menu_setting.findViewById(R.id.menu_icon);
+        TextViewWithFont txtSetting = menu_setting.findViewById(R.id.menu_icon_text);
         imgSetting.setImageDrawable(getActivity().getDrawable(R.drawable.ic_settings));
         txtSetting.setText(getActivity().getString(R.string.menu_settings));
 
         //fourth row
-        ImageView imgSaveCard = (ImageView) menu_save_card.findViewById(R.id.menu_icon);
-        TextViewWithFont txtSaveCard = (TextViewWithFont) menu_save_card.findViewById(R.id.menu_icon_text);
+        ImageView imgSaveCard = menu_save_card.findViewById(R.id.menu_icon);
+        TextViewWithFont txtSaveCard = menu_save_card.findViewById(R.id.menu_icon_text);
         imgSaveCard.setImageDrawable(getActivity().getDrawable(R.drawable.ic_saved_cards));
         txtSaveCard.setText(getActivity().getString(R.string.menu_save_cards));
 
@@ -216,7 +215,7 @@ public class MenuFragment extends BaseFragment {
             }
         });
 
-        menu_notification.setOnClickListener(new View.OnClickListener() {
+        /*menu_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (manager.isUserLoggedIn()) {
@@ -227,7 +226,7 @@ public class MenuFragment extends BaseFragment {
                     dialog.show();
                 }
             }
-        });
+        });*/
 
         menu_promotion.setOnClickListener(new View.OnClickListener() {
             @Override

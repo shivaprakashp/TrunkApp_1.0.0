@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
-import com.opera.app.activities.LanguageActivity;
-
 import java.util.Locale;
 
 /**

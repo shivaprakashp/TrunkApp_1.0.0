@@ -15,9 +15,7 @@ import com.opera.app.R;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.activities.RestaurantCompleteDetails;
 import com.opera.app.database.events.EventListingDB;
-import com.opera.app.pojo.notifications.Notification;
 import com.opera.app.pojo.promotions.PromotionDetails;
-import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -41,13 +39,13 @@ public class PromotionsAdapter extends RecyclerView.Adapter<PromotionsAdapter.My
 
         public MyViewHolder(View view) {
             super(view);
-            mTxtNotifyTitle = (TextView) view.findViewById(R.id.mTxtNotifyTitle);
-            mTxtNotifyDesc = (TextView) view.findViewById(R.id.mTxtNotifyDesc);
-            mTxtPriceFrom = (TextView) view.findViewById(R.id.mTxtPriceFrom);
-            relativeParent = (RelativeLayout) view.findViewById(R.id.relativeParent);
+            mTxtNotifyTitle = view.findViewById(R.id.mTxtNotifyTitle);
+            mTxtNotifyDesc = view.findViewById(R.id.mTxtNotifyDesc);
+            mTxtPriceFrom = view.findViewById(R.id.mTxtPriceFrom);
+            relativeParent = view.findViewById(R.id.relativeParent);
 
-            mImgNotifyImage = (ImageView) view.findViewById(R.id.mImgNotifyImage);
-            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
+            mImgNotifyImage = view.findViewById(R.id.mImgNotifyImage);
+            progressImageLoader = view.findViewById(R.id.progressImageLoader);
 
         }
     }

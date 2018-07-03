@@ -2,7 +2,6 @@ package com.opera.app.pojo.feedback;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.opera.app.pojo.notifications.Notification;
 
 import java.util.ArrayList;
 

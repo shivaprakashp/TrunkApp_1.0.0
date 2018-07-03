@@ -9,9 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.opera.app.database.OperaDBHandler;
-import com.opera.app.pojo.notifications.Notification;
 import com.opera.app.pojo.promotions.PromotionDetails;
-import com.opera.app.pojo.promotions.PromotionsPojo;
 
 import java.util.ArrayList;
 

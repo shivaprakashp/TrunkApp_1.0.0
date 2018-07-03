@@ -2,10 +2,8 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
@@ -141,10 +139,10 @@ public class ContactUsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
 
-        mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
+        mEdtFullName = edtFullName.findViewById(R.id.edt);
         mEdtFullName.setHint(getString(R.string.full_name));
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
         mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -153,7 +151,7 @@ public class ContactUsActivity extends BaseActivity {
         }
         mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
+        mEdtEmail = edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email));
         mEdtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         mEdtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -162,7 +160,7 @@ public class ContactUsActivity extends BaseActivity {
         }
         mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
-        mEdtMobileNumber = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+        mEdtMobileNumber = edit_edtMobile.findViewById(R.id.edtMobile);
 //        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         mEdtMobileNumber.setHint(getString(R.string.mobile));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -179,7 +177,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         //---------------Country Code----------------
-        spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
+        spinnerCountryCode = edit_edtMobile.findViewById(R.id.spinnerCountryCode);
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
                 mActivity, R.layout.custom_spinner_number_drop_down,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
@@ -187,10 +185,19 @@ public class ContactUsActivity extends BaseActivity {
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if (manager.getUserLoginData() != null){
             if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
-                SharedPreferences sharedPreferences = PreferenceManager
-                        .getDefaultSharedPreferences(mActivity);
-                String name = sharedPreferences.getString("countryCode", "default value");
-                spinnerCountryCode.setSelection(CountryCodeAdapter.getPosition(name));
+
+                countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
+                        manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+                int mPosition=0;
+                for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
+                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
+                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                    if(number.equals(countryCode)){
+                        mPosition=j;
+                        break;
+                    }
+                }
+                spinnerCountryCode.setSelection(mPosition);
             }
         }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -200,7 +207,6 @@ public class ContactUsActivity extends BaseActivity {
                         getResources().getString(R.string.country_code_with_asterisk))){
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
-                        //countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1, spinnerCountryCode.getSelectedItem().toString().indexOf(")"));
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
 
