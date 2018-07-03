@@ -2,41 +2,23 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.ClientCertRequest;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import android.webkit.HttpAuthHandler;
-import android.webkit.RenderProcessGoneDetail;
 import android.webkit.SslErrorHandler;
-import android.webkit.URLUtil;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.opera.app.R;
-
-import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Created by 1000632 on 4/20/2018.
@@ -56,11 +38,11 @@ public class TestAct extends Activity {
 
         activity = TestAct.this;
         mDialog=new ProgressDialog(TestAct.this);
-        btnOpenApple = (Button) findViewById(R.id.btnOpenApple);
-        btnEmbedUrl = (Button) findViewById(R.id.btnEmbedUrl);
-        btnItunesUrl = (Button) findViewById(R.id.btnItunesUrl);
-        btnBuyTickers = (Button) findViewById(R.id.btnBuyTickers);
-        webBuyTickets=(WebView)findViewById(R.id.webBuyTickets);
+        btnOpenApple = findViewById(R.id.btnOpenApple);
+        btnEmbedUrl = findViewById(R.id.btnEmbedUrl);
+        btnItunesUrl = findViewById(R.id.btnItunesUrl);
+        btnBuyTickers = findViewById(R.id.btnBuyTickers);
+        webBuyTickets= findViewById(R.id.webBuyTickets);
 
         btnBuyTickers.setOnClickListener(new View.OnClickListener() {
             @Override

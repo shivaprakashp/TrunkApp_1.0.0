@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="test" />
+                tools:text="test" />
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtEventGenre"

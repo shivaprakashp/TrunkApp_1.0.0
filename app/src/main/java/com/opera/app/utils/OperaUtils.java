@@ -2,21 +2,15 @@ package com.opera.app.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -24,17 +18,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.opera.app.R;
-import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -166,13 +155,9 @@ public class OperaUtils {
 
     public static boolean CheckMarshmallowOrNot() {
         boolean IsMarshmallow;
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            // Marshmallow+
-            IsMarshmallow = true;
-        } else {
-            //below Marshmallow
-            IsMarshmallow = false;
-        }
+        // Marshmallow+
+//below Marshmallow
+        IsMarshmallow = Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1;
         return IsMarshmallow;
     }
 

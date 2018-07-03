@@ -62,7 +62,7 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-        listenerToday=(TodayEventsFragment)this;
+        listenerToday= this;
 
         mEventDetailsDB = new EventListingDB(mActivity);
     }

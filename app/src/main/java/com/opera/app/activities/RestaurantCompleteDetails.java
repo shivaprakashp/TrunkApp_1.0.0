@@ -132,7 +132,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
         toolbar.setVisibility(View.VISIBLE);
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getResources().getString(R.string.dining));
 
         manager = new SessionManager(mActivity);
@@ -229,6 +229,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
                 try {
                     mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
                 } catch (android.content.ActivityNotFoundException ex) {
+                    ex.printStackTrace();
                 }
 
                 break;

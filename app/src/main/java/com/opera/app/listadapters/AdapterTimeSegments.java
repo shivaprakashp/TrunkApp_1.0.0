@@ -69,7 +69,7 @@ public class AdapterTimeSegments extends BaseAdapter {
         TextView txtSpnnierName;
 
         public ViewHolder(View view) {
-            txtSpnnierName = (TextView) view.findViewById(R.id.txtSpnnierName);
+            txtSpnnierName = view.findViewById(R.id.txtSpnnierName);
         }
     }
 

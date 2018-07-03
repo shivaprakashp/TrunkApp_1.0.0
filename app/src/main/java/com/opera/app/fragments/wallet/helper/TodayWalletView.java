@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -71,18 +70,18 @@ public class TodayWalletView extends LinearLayout {
             for (int i = 0; i < eventList.size(); i++) {
                 Event event = eventList.get(i);
 
-                rowView = (ViewGroup) inflater
+                rowView = inflater
                         .inflate(R.layout.helper_wallet_event, null, false);
 
-                txtEventTitle = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventTitle);
-                txtWalletEventGenre = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventGenre);
-                txtWalletEventDate = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDate);
-                txtWalletEventDoor = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventDoor);
-                txtWalletEventSection = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSection);
-                txtWalletEventRow = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventRow);
-                txtWalletEventSeat = (TextViewWithFont) rowView.findViewById(R.id.txtWalletEventSeat);
-                txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
-                barCode = (ImageView) rowView.findViewById(R.id.imgEventBarCode);
+                txtEventTitle = rowView.findViewById(R.id.txtWalletEventTitle);
+                txtWalletEventGenre = rowView.findViewById(R.id.txtWalletEventGenre);
+                txtWalletEventDate = rowView.findViewById(R.id.txtWalletEventDate);
+                txtWalletEventDoor = rowView.findViewById(R.id.txtWalletEventDoor);
+                txtWalletEventSection = rowView.findViewById(R.id.txtWalletEventSection);
+                txtWalletEventRow = rowView.findViewById(R.id.txtWalletEventRow);
+                txtWalletEventSeat = rowView.findViewById(R.id.txtWalletEventSeat);
+                txtBarCode = rowView.findViewById(R.id.txtBarCode);
+                barCode = rowView.findViewById(R.id.imgEventBarCode);
 
                 txtEventTitle.setText(event.getEventName());
                 txtWalletEventGenre.setText(event.getEventGenre());
@@ -137,17 +136,17 @@ public class TodayWalletView extends LinearLayout {
 
                 Restaurant restaurant = restaurantList.get(i);
 
-                rowView = (ViewGroup) inflater
+                rowView = inflater
                         .inflate(R.layout.helper_wallet_rest, null, false);
 
-                barCode = (ImageView) rowView.findViewById(R.id.imgRestBarCode);
-                txtBarCode = (TextViewWithFont) rowView.findViewById(R.id.txtBarCode);
-                txtWalletRestTitle = (TextViewWithFont) rowView.findViewById(R.id.txtWalletRestTitle);
-                dateReservation = (TextViewWithFont) rowView.findViewById(R.id.txtDateReserve);
-                mealPeriod = (TextViewWithFont) rowView.findViewById(R.id.txtDinner);
-                preferTime = (TextViewWithFont) rowView.findViewById(R.id.txtPrefTime);
-                referNo = (TextViewWithFont) rowView.findViewById(R.id.txtReferNo);
-                bookDate = (TextViewWithFont) rowView.findViewById(R.id.txtBookDate);
+                barCode = rowView.findViewById(R.id.imgRestBarCode);
+                txtBarCode = rowView.findViewById(R.id.txtBarCode);
+                txtWalletRestTitle = rowView.findViewById(R.id.txtWalletRestTitle);
+                dateReservation = rowView.findViewById(R.id.txtDateReserve);
+                mealPeriod = rowView.findViewById(R.id.txtDinner);
+                preferTime = rowView.findViewById(R.id.txtPrefTime);
+                referNo = rowView.findViewById(R.id.txtReferNo);
+                bookDate = rowView.findViewById(R.id.txtBookDate);
 
                 Date dateOgFormat = null,dateOgFormatReservation = null;
                 String formattedTime = "",formattedTimeReservationDate = "";
@@ -211,10 +210,10 @@ public class TodayWalletView extends LinearLayout {
 
                 GiftCard giftCard = cardList.get(i);
 
-                rowView = (ViewGroup) inflater
+                rowView = inflater
                         .inflate(R.layout.helper_wallet_gift, null, false);
 
-                txtVoucherAmount = (TextViewWithFont) rowView.findViewById(R.id.txtVoucherAmount);
+                txtVoucherAmount = rowView.findViewById(R.id.txtVoucherAmount);
 
                 txtVoucherAmount.setText(giftCard.getVoucherAmount());
 

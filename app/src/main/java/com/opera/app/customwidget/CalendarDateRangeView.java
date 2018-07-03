@@ -2,8 +2,6 @@ package com.opera.app.customwidget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -66,11 +64,11 @@ public class CalendarDateRangeView extends LinearLayout {
         LinearLayout mainView = (LinearLayout) layoutInflater.inflate(R.layout.layout_calendar_month, this, true);
 
         scrWidth = getResources().getDisplayMetrics().widthPixels;
-        dateLinLayout = (LinearLayout) mainView.findViewById(R.id.linLayDates);
-        scrollView = (HorizontalScrollView) mainView.findViewById(R.id.hrsScroll);
-        txtMonthTitle = (TextViewWithFont) mainView.findViewById(R.id.txtMonthTitle);
-        imgVNavLeft = (ImageView) mainView.findViewById(R.id.imgVNavLeft);
-        imgVNavRight = (ImageView) mainView.findViewById(R.id.imgVNavRight);
+        dateLinLayout = mainView.findViewById(R.id.linLayDates);
+        scrollView = mainView.findViewById(R.id.hrsScroll);
+        txtMonthTitle = mainView.findViewById(R.id.txtMonthTitle);
+        imgVNavLeft = mainView.findViewById(R.id.imgVNavLeft);
+        imgVNavRight = mainView.findViewById(R.id.imgVNavRight);
 
         setListeners();
 

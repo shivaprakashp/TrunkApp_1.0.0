@@ -139,8 +139,8 @@ public class MainActivity extends BaseActivity implements
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_item_bottom, null);
         try {
 
-            ImageView icon = (ImageView) view.findViewById(R.id.tab_icon);
-            TextViewWithFont text = (TextViewWithFont) view.findViewById(R.id.tab_text);
+            ImageView icon = view.findViewById(R.id.tab_icon);
+            TextViewWithFont text = view.findViewById(R.id.tab_text);
 
             //icon.setImageDrawable(getDrawable(tabSelected[position]));
             icon.setImageDrawable(OperaUtils.setDrawableImage(MainActivity.this, tabSelected[position],

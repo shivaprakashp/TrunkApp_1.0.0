@@ -215,7 +215,7 @@ public class MyProfileActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.my_profile));
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -305,9 +305,9 @@ public class MyProfileActivity extends BaseActivity {
         view.findViewById(R.id.btnCancel).setOnClickListener(dismissDialog);
         view.findViewById(R.id.btnSave).setOnClickListener(saveChangePassword);
 
-        mEdtCurrentPassword = (EditTextWithFont) view.findViewById(R.id.edtCurrentPassword);
-        mEdtNewPassword = (EditTextWithFont) view.findViewById(R.id.edtNewPassword);
-        mEdtConfNewPassword = (EditTextWithFont) view.findViewById(R.id.edtConfNewPassword);
+        mEdtCurrentPassword = view.findViewById(R.id.edtCurrentPassword);
+        mEdtNewPassword = view.findViewById(R.id.edtNewPassword);
+        mEdtConfNewPassword = view.findViewById(R.id.edtConfNewPassword);
 
         mEdtCurrentPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         mEdtCurrentPassword.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(16)});

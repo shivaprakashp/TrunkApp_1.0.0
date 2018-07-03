@@ -81,7 +81,8 @@ public class FindOutMoreDialogue extends Dialog {
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Please send more details about the restaurant.");
             try {
                 mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            } catch (android.content.ActivityNotFoundException ex) {
+            } catch (android.content.ActivityNotFoundException e) {
+                e.printStackTrace();
             }
             dismiss();
         }

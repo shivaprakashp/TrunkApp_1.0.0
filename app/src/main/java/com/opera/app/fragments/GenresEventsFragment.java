@@ -70,7 +70,7 @@ public class GenresEventsFragment extends BaseFragment implements EventInterface
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-        listenerGenres=(GenresEventsFragment)this;
+        listenerGenres= this;
     }
 
     private void initSpinnervalues() {

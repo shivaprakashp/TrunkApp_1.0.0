@@ -58,7 +58,7 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
 
     private void InitView(View view) {
         ButterKnife.bind(this, view);
-        listenerFavourite=(FavouritesEventsFragment)this;
+        listenerFavourite= this;
         mEventDetailsDB = new EventListingDB(mActivity);
 
     }

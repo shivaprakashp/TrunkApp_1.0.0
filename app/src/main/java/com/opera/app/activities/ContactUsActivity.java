@@ -139,10 +139,10 @@ public class ContactUsActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.contact_us));
 
-        mEdtFullName = (EditTextWithFont) edtFullName.findViewById(R.id.edt);
+        mEdtFullName = edtFullName.findViewById(R.id.edt);
         mEdtFullName.setHint(getString(R.string.full_name));
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
         mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -151,7 +151,7 @@ public class ContactUsActivity extends BaseActivity {
         }
         mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        mEdtEmail = (EditTextWithFont) edtEmail.findViewById(R.id.edt);
+        mEdtEmail = edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email));
         mEdtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         mEdtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -160,7 +160,7 @@ public class ContactUsActivity extends BaseActivity {
         }
         mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
 
-        mEdtMobileNumber = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+        mEdtMobileNumber = edit_edtMobile.findViewById(R.id.edtMobile);
 //        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         mEdtMobileNumber.setHint(getString(R.string.mobile));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -177,7 +177,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         //---------------Country Code----------------
-        spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
+        spinnerCountryCode = edit_edtMobile.findViewById(R.id.spinnerCountryCode);
         ArrayAdapter<String> CountryCodeAdapter = new ArrayAdapter<>(
                 mActivity, R.layout.custom_spinner_number_drop_down,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));

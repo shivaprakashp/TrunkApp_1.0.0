@@ -1,14 +1,11 @@
 package com.opera.app.preferences.wallet;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
-import com.opera.app.activities.LoginActivity;
-import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.wallet.WalletDetails;
 
 public class WalletPreference {

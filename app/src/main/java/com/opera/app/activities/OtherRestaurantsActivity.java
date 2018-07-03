@@ -134,7 +134,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         btnSearch.findViewById(R.id.btnSearch).setOnClickListener(searchList);
         edtSearch.setHint(R.string.rest_search);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.restaurants));
 
         mAdapter = new RestaurantAdapter(mActivity, mRestaurantListing);

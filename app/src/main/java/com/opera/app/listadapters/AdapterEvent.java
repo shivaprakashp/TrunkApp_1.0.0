@@ -68,17 +68,17 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
 
         public MyViewHolder(View view) {
             super(view);
-            imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
-            btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
-            imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
-            imgShare = (ImageView) view.findViewById(R.id.imgShare);
-            imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
-            linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
-            txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
-            txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
-            txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
-            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
-            linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
+            imgEvent = view.findViewById(R.id.imgEvent);
+            btnBuyTickets = view.findViewById(R.id.btnBuyTickets);
+            imgFavourite = view.findViewById(R.id.imgFavourite);
+            imgShare = view.findViewById(R.id.imgShare);
+            imgInfo = view.findViewById(R.id.imgInfo);
+            linearHolder = view.findViewById(R.id.linearHolder);
+            txtEventInfo = view.findViewById(R.id.txtEventInfo);
+            txtEventGenre = view.findViewById(R.id.txtEventGenre);
+            txtEventDate = view.findViewById(R.id.txtEventDate);
+            progressImageLoader = view.findViewById(R.id.progressImageLoader);
+            linearParent = view.findViewById(R.id.linearParent);
         }
     }
 

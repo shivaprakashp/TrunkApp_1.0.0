@@ -2,13 +2,10 @@ package com.opera.app.customwidget;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opera.app.R;
@@ -42,12 +39,12 @@ public class CustomToast {
         if (context != null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             View toastRoot = inflater.inflate(R.layout.custom_toast, null);
-            LinearLayout linearLayout = (LinearLayout)toastRoot.findViewById(R.id.whole_layout);
+            LinearLayout linearLayout = toastRoot.findViewById(R.id.whole_layout);
             linearLayout.setBackgroundColor(backColor);
-            TextViewWithFont toastText = (TextViewWithFont) toastRoot.findViewById(R.id.toast_Tv);
+            TextViewWithFont toastText = toastRoot.findViewById(R.id.toast_Tv);
             toastText.setText(text);
             toastText.setTextColor(textColor);
-            TextViewWithFont toastTitle = (TextViewWithFont) toastRoot.findViewById(R.id.toast_successTv);
+            TextViewWithFont toastTitle = toastRoot.findViewById(R.id.toast_successTv);
             toastTitle.setText(R.string.editError);
             toastTitle.setTextColor(textColor);
             Toast toast = new Toast(context);

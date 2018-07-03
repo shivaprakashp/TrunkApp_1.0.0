@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.opera.app.R;
-import com.opera.app.customwidget.CustomToast;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
 

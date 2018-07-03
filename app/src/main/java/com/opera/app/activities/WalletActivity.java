@@ -3,7 +3,6 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,11 +17,6 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.enums.WalletEnums;
-import com.opera.app.fragments.AllEventsFragment;
-import com.opera.app.fragments.EventsFragment;
-import com.opera.app.fragments.FavouritesEventsFragment;
-import com.opera.app.fragments.GenresEventsFragment;
-import com.opera.app.fragments.TodayEventsFragment;
 import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.wallet.WalletDetails;
@@ -121,7 +115,7 @@ public class WalletActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.walletTitle));
 
     }

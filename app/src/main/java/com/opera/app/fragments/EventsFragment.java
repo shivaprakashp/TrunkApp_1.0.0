@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.listener.EventInterfaceTab;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;

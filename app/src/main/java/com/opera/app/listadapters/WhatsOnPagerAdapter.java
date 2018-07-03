@@ -80,18 +80,18 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(mActivity);
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.event_row, collection, false);
 
-        TextView txtEventInfo = (TextView) view.findViewById(R.id.txtEventInfo);
-        TextView txtEventGenre = (TextView) view.findViewById(R.id.txtEventGenre);
-        TextView txtEventDate = (TextView) view.findViewById(R.id.txtEventDate);
-        final ProgressBar progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
-        ImageView imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
-        ImageView imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
-        final ImageView imgFavourite = (ImageView) view.findViewById(R.id.imgFavourite);
-        ImageView imgShare = (ImageView) view.findViewById(R.id.imgShare);
-        LinearLayout linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
+        TextView txtEventInfo = view.findViewById(R.id.txtEventInfo);
+        TextView txtEventGenre = view.findViewById(R.id.txtEventGenre);
+        TextView txtEventDate = view.findViewById(R.id.txtEventDate);
+        final ProgressBar progressImageLoader = view.findViewById(R.id.progressImageLoader);
+        ImageView imgEvent = view.findViewById(R.id.imgEvent);
+        ImageView imgInfo = view.findViewById(R.id.imgInfo);
+        final ImageView imgFavourite = view.findViewById(R.id.imgFavourite);
+        ImageView imgShare = view.findViewById(R.id.imgShare);
+        LinearLayout linearParent = view.findViewById(R.id.linearParent);
 
-        final LinearLayout linearHolder = (LinearLayout) view.findViewById(R.id.linearHolder);
-        Button btnBuyTickets = (Button) view.findViewById(R.id.btnBuyTickets);
+        final LinearLayout linearHolder = view.findViewById(R.id.linearHolder);
+        Button btnBuyTickets = view.findViewById(R.id.btnBuyTickets);
 
         txtEventInfo.setText(Html.fromHtml(eventObject.getName()));
         txtEventDate.setText(OperaUtils.getDateInMonthFormat(eventObject.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(eventObject.getTo()));

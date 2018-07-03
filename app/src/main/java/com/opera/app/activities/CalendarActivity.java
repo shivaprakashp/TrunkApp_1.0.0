@@ -1,7 +1,6 @@
 package com.opera.app.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -16,24 +15,17 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.CalendarRecyclerView;
-import com.opera.app.pojo.events.eventlisiting.EventTime;
 import com.opera.app.pojo.events.eventlisiting.Events;
-import com.opera.app.pojo.wallet.Event;
 import com.opera.app.utils.CurrentDateCalender;
 import com.opera.app.utils.OperaUtils;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -110,7 +102,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         finalCompareTodayDate = todayDate;
         finalCompareTodayMonth = currentMonth;
 
-        monthTv = (TextView)findViewById(R.id.txtMonthTitle);
+        monthTv = findViewById(R.id.txtMonthTitle);
         monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
 
         //*** code for getting maximum day of month ***
@@ -129,7 +121,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private void initToolBar(){
         findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-        TextViewWithFont txtToolbarName = (TextViewWithFont) findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(OperaUtils.getCurrentyearMonthDate());
     }
 

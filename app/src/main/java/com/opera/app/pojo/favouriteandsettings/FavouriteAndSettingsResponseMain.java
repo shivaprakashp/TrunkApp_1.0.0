@@ -2,7 +2,6 @@ package com.opera.app.pojo.favouriteandsettings;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.opera.app.pojo.login.LoginResponseData;
 
 /**
  * Created by 1000632 on 5/23/2018.

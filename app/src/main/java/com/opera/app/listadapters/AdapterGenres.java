@@ -34,11 +34,11 @@ public class AdapterGenres extends RecyclerView.Adapter<AdapterGenres.MyViewHold
 
         public MyViewHolder(View view) {
             super(view);
-            imgEvent = (ImageView) view.findViewById(R.id.imgEvent);
-            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
-            linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
-            txtGenresName = (TextView) view.findViewById(R.id.txtGenresName);
-            mBtnFindShows = (Button) view.findViewById(R.id.mBtnFindShows);
+            imgEvent = view.findViewById(R.id.imgEvent);
+            progressImageLoader = view.findViewById(R.id.progressImageLoader);
+            linearParent = view.findViewById(R.id.linearParent);
+            txtGenresName = view.findViewById(R.id.txtGenresName);
+            mBtnFindShows = view.findViewById(R.id.mBtnFindShows);
         }
     }
 

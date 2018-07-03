@@ -7,16 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.opera.app.R;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.pojo.events.eventdetails.EventDetails;
 import com.opera.app.pojo.events.eventlisiting.Events;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
@@ -34,9 +31,9 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
             super(itemView);
 
             context = itemView.getContext();
-            txtCalendarTime = (TextViewWithFont) itemView.findViewById(R.id.txtCalendarTime);
-            txtCalendarEventName = (TextViewWithFont) itemView.findViewById(R.id.txtCalendarEventName);
-            btnCalendarDetail = (ButtonWithFont) itemView.findViewById(R.id.btnCalendarDetail);
+            txtCalendarTime = itemView.findViewById(R.id.txtCalendarTime);
+            txtCalendarEventName = itemView.findViewById(R.id.txtCalendarEventName);
+            btnCalendarDetail = itemView.findViewById(R.id.btnCalendarDetail);
         }
     }
 

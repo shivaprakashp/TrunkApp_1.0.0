@@ -12,7 +12,6 @@ import android.util.AttributeSet;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.utils.OperaUtils;
 
 public class ButtonWithFont extends android.support.v7.widget.AppCompatButton {
 

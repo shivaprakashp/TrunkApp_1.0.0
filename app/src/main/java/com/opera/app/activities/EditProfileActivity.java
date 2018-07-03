@@ -131,7 +131,7 @@ public class EditProfileActivity extends BaseActivity {
     private void initToolbar() {
         setSupportActionBar(toolbar);
 
-        TextViewWithFont txtToolbarName = (TextViewWithFont) inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.my_profile));
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
@@ -146,7 +146,7 @@ public class EditProfileActivity extends BaseActivity {
         api = retrofit.create(Api.class);
 
         //edittext
-        edtEmail = (EditTextWithFont) edit_edtEmail.findViewById(R.id.edt);
+        edtEmail = edit_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.edit_email));
         edtEmail.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtEmail.setTextColor(getResources().getColor(R.color.dark_gray));
@@ -155,7 +155,7 @@ public class EditProfileActivity extends BaseActivity {
             edtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         }
 
-        edtFirstName = (EditTextWithFont) edit_edtFirstName.findViewById(R.id.edt);
+        edtFirstName = edit_edtFirstName.findViewById(R.id.edt);
         edtFirstName.setHint(getString(R.string.edit_firstname));
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtFirstName.requestFocus();
@@ -164,7 +164,7 @@ public class EditProfileActivity extends BaseActivity {
         }
         edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        edtLastName = (EditTextWithFont) edit_edtLastName.findViewById(R.id.edt);
+        edtLastName = edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
@@ -172,7 +172,7 @@ public class EditProfileActivity extends BaseActivity {
         }
         edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
 
-        edtDob = (EditTextWithFont) edit_edtDob.findViewById(R.id.edt);
+        edtDob = edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
         edtDob.setFocusable(false);
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -181,7 +181,7 @@ public class EditProfileActivity extends BaseActivity {
             edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
         }
 
-        edtCity = (EditTextWithFont) edit_edtCity.findViewById(R.id.edt);
+        edtCity = edit_edtCity.findViewById(R.id.edt);
         edtCity.setHint(getString(R.string.edit_city));
         edtCity.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtCity.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(26) });

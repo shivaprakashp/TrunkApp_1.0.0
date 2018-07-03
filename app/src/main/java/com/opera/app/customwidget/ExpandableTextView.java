@@ -11,8 +11,6 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
-
-import com.opera.app.BuildConfig;
 import com.opera.app.R;
 
 import java.util.ArrayList;

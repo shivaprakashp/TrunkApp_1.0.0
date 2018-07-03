@@ -12,16 +12,11 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.opera.app.database.OperaDBHandler;
-import com.opera.app.pojo.events.eventlisiting.EventDates;
-import com.opera.app.pojo.events.eventlisiting.EventGenres;
 import com.opera.app.pojo.events.eventlisiting.EventTime;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.preferences.SessionManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -245,6 +240,7 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return dataArrayEvents;
@@ -262,15 +258,12 @@ public class EventListingDB {
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setFavourite(cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)));
 
-                    if (cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)).equalsIgnoreCase("true")) {
-                        IsFavourite = true;
-                    } else {
-                        IsFavourite = false;
-                    }
+                    IsFavourite = cursor.getString(cursor.getColumnIndex(EVENT_IS_FAVOURITE)).equalsIgnoreCase("true");
 
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return IsFavourite;
@@ -293,6 +286,7 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return dataArrayEvents;
@@ -394,6 +388,7 @@ public class EventListingDB {
                 } while (cursor.moveToNext());
             }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return dataArrayEvents;

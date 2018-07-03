@@ -1,11 +1,8 @@
 package com.opera.app;
 
 import android.app.Application;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
 
 import com.opera.app.dagger.ApiComponent;
 import com.opera.app.dagger.ApiModule;

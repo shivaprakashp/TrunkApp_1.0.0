@@ -39,13 +39,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         public MyViewHolder(View view) {
             super(view);
-            mTxtNotifyTitle = (TextView) view.findViewById(R.id.mTxtNotifyTitle);
-            mTxtNotifyDesc = (TextView) view.findViewById(R.id.mTxtNotifyDesc);
-            mTxtPriceFrom = (TextView) view.findViewById(R.id.mTxtPriceFrom);
-            relativeParent = (RelativeLayout) view.findViewById(R.id.relativeParent);
+            mTxtNotifyTitle = view.findViewById(R.id.mTxtNotifyTitle);
+            mTxtNotifyDesc = view.findViewById(R.id.mTxtNotifyDesc);
+            mTxtPriceFrom = view.findViewById(R.id.mTxtPriceFrom);
+            relativeParent = view.findViewById(R.id.relativeParent);
 
-            mImgNotifyImage = (ImageView) view.findViewById(R.id.mImgNotifyImage);
-            progressImageLoader = (ProgressBar) view.findViewById(R.id.progressImageLoader);
+            mImgNotifyImage = view.findViewById(R.id.mImgNotifyImage);
+            progressImageLoader = view.findViewById(R.id.progressImageLoader);
 
             manager = new SessionManager(mActivity);
             customToast = new CustomToast(mActivity);

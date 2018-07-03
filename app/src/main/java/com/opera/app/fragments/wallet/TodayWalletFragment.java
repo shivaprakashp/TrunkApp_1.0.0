@@ -32,9 +32,9 @@ public class TodayWalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today_wallet, container, false);
 
-        walletView = (TodayWalletView) view.findViewById(R.id.helperWalletEvent);
-        linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
-        txtWalletEventTitle = (TextViewWithFont) view.findViewById(R.id.txtWalletEventTitle);
+        walletView = view.findViewById(R.id.helperWalletEvent);
+        linearParent = view.findViewById(R.id.linearParent);
+        txtWalletEventTitle = view.findViewById(R.id.txtWalletEventTitle);
 
         int mTotalData = 0;
         WalletPreference preference = new WalletPreference(getActivity());

@@ -2,18 +2,13 @@ package com.opera.app.listadapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -62,8 +57,7 @@ public class GenresDisplayAdapter extends RecyclerView.Adapter<GenresDisplayAdap
 
         public MyViewHolder(View view) {
             super(view);
-            txtGenreName = (TextView) view.findViewById(R.id.txtGenreName);
-            ;
+            txtGenreName = view.findViewById(R.id.txtGenreName);
         }
     }
 }

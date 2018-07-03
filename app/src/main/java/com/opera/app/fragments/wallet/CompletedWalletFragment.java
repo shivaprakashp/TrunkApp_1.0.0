@@ -1,7 +1,5 @@
 package com.opera.app.fragments.wallet;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -36,10 +34,10 @@ public class CompletedWalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_completed_wallet, container, false);
 
-        linearParent = (LinearLayout) view.findViewById(R.id.linearParent);
-        txtWalletEventTitle = (TextViewWithFont) view.findViewById(R.id.txtWalletEventTitle);
-        txt_testing = (TextView) view.findViewById(R.id.txt_testing);
-        walletView = (TodayWalletView) view.findViewById(R.id.helperWalletEvent);
+        linearParent = view.findViewById(R.id.linearParent);
+        txtWalletEventTitle = view.findViewById(R.id.txtWalletEventTitle);
+        txt_testing = view.findViewById(R.id.txt_testing);
+        walletView = view.findViewById(R.id.helperWalletEvent);
 
         int mTotalData = 0;
         WalletPreference preference = new WalletPreference(getActivity());
