@@ -187,8 +187,7 @@
                         android:layout_height="40dp"
                         android:layout_weight="0.7"
                         font:name="Montserrat-Regular"
-                        android:textDirection="locale"
-                        android:textAlignment="viewStart"/>
+                        />
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edit_edtMobile"

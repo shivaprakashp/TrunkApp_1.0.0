@@ -149,7 +149,7 @@ public class ContactUsActivity extends BaseActivity {
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
             mEdtFullName.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " " + manager.getUserLoginData().getData().getProfile().getLastName());
         }
-        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30) });
 
         mEdtEmail = edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email));

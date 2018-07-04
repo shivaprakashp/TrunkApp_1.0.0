@@ -310,7 +310,7 @@
     <string name="errorEnquiryType">Enquiry Type cannot be left blank</string>
 
     <!--error and success dialog msg-->
-    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your Email Address &amp; Password to login into Dubai Opera.</string>
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your email address &amp; password to login into Dubai Opera.</string>
     <string name="errorDialogue">OK</string>
     <string name="errorTitle">ERROR</string>
     <string name="success_header">SUCCESS</string>
