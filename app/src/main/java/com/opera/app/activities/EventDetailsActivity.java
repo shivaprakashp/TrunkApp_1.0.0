@@ -411,14 +411,14 @@ public class EventDetailsActivity extends BaseActivity {
                 break;
 
             case R.id.btnBuyTickets:
-                in = new Intent(mActivity, CommonWebViewActivity.class);
+                in = new Intent(mActivity, BuyTicketWebView.class);
                 in.putExtra("URL", mEventBuyURL);
                 in.putExtra("Header", EventInternalName);
                 mActivity.startActivity(in);
                 break;
 
             case R.id.btnBuyTickets2:
-                in = new Intent(mActivity, CommonWebViewActivity.class);
+                in = new Intent(mActivity, BuyTicketWebView.class);
                 in.putExtra("URL", mEventBuyURL);
                 in.putExtra("Header", EventInternalName);
                 mActivity.startActivity(in);

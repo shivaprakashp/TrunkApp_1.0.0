@@ -59,6 +59,11 @@
             android:screenOrientation="portrait" >
         </activity>
 
+        <activity
+            android:name=".activities.BuyTicketWebView"
+            android:screenOrientation="portrait" >
+        </activity>
+
 
         <activity
             android:name=".activities.PreLoginActivity"

@@ -53,9 +53,10 @@ public class TestAct extends Activity {
                 webBuyTickets.setVisibility(View.VISIBLE);
 
                 CookieManager cookieManager = CookieManager.getInstance();
-                cookieManager.setCookie("https://dubaioperaw-mobile-uat.etixdubai.com/", "X-Auth-Token=6LfpK%2fuCFNVVVH5FDBzs03mcFvUiAUABbo6J6fxTWCwqe5KVLn0HHDL3clMDBO3ayg5woEOTr4%2fJuDtVmhYOTg%3d%3d");
+                cookieManager.setCookie("https://dubaioperaw-mobile-uat.etixdubai.com/", "X-Auth-Token=%2bDXYcLwZY2cPbM0fBWjWcwBpd7y15%2bHDOsIEBvsNAePO21inVm2kOo8PDZdoOAMbgxbRp1orOMFk97v1QEsBKA%3d%3d");
                 webBuyTickets.loadUrl("https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC");
                 webBuyTickets.getSettings().setJavaScriptEnabled(true);
+                webBuyTickets.getSettings().setUserAgentString("user-agent-string");
                 webBuyTickets.getSettings().setDomStorageEnabled(true);
                 webBuyTickets.setWebViewClient(new MyWebViewClient());
                 cookieManager.setAcceptThirdPartyCookies(webBuyTickets, true);

@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() throws Exception {
+    public void useAppContext() {
         // Context of the app under include_menu_items.
         Context appContext = InstrumentationRegistry.getTargetContext();
 

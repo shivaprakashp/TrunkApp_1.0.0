@@ -37,9 +37,15 @@
         android:layout_centerInParent="true"
         android:text="@string/appleBuyTicket" />
 
+    <TextView
+        android:id="@+id/txtJsonData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnBuyTickers" />
+
     <WebView
         android:id="@+id/webBuyTickets"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent"
+        android:visibility="gone"></WebView>
 </RelativeLayout>
