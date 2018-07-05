@@ -14,6 +14,8 @@ import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.pojo.events.eventlisiting.Events;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
@@ -54,8 +56,15 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
         final Events events = arrayList.get(position);
 
         String[] startTime = events.getStartTime().split(" ");
-        holder.txtCalendarTime.setText(events.getEventTime().get(0).getFromTime().split("T")[1].substring(0,2)
-                +":"+events.getEventTime().get(0).getFromTime().split("T")[1].substring(2,4)+ "\n" + startTime[1]);
+        String eventTime = events.getEventTime().get(0).getFromTime().split("T")[1].substring(0,2)
+                +":"+events.getEventTime().get(0).getFromTime().split("T")[1].substring(2,4);
+
+        try {
+            holder.txtCalendarTime.setText(new SimpleDateFormat("KK:MM").format(
+                    new SimpleDateFormat("HH:mm").parse(eventTime))+ "\n" + startTime[1]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.txtCalendarEventName.setText(events.getName());
 
         holder.btnCalendarDetail.setOnClickListener(new View.OnClickListener() {

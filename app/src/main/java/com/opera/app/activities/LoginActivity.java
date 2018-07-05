@@ -92,27 +92,23 @@ public class LoginActivity extends BaseActivity {
                 if (response.body() != null) {
                     mEventListingDB.open();
                     mSessionManager.DeleteAllTables(mActivity);
-//                    mEventListingDB.deleteCompleteTable(mEventListingDB.TABLE_EVENT_LISTING);
                     loginSession((LoginResponse) response.body());
                 } else if (response.errorBody() != null) {
                     try {
                         dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
                         dialogue.show();
                     } catch (Exception e) {
-                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
                         customToast.showErrorToast(e.getMessage());
                     }
                 }
             } else if (mRequestKey.equals(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD)) {
                 if (response.body() != null) {
-                    RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
-                    if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
-                        /*SessionManager sessionManager = new SessionManager(mActivity);
-                        sessionManager.clearLoginSession();*/
-                        SuccessDialogue dialog = new SuccessDialogue(mActivity, getResources().getString(R.string.ForgotPsswordSuccessMsg), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "forgot_password");
+                    RegistrationResponse mPostResp = (RegistrationResponse) response.body();
+                    if (mPostResp.getStatus().equalsIgnoreCase("success")) {
+                        SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostResp.getMessage() , getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "forgot_password");
                         dialog.show();
                     } else {
-                        dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
+                        dialogue = new ErrorDialogue(mActivity, mPostResp.getMessage());
                         dialogue.show();
                     }
 
