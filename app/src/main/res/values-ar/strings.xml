@@ -868,5 +868,6 @@
 
     <string name="find_shows">الأكثر شيوعاً</string>
     <string name="location">خريطة الموقع</string>
+    <string name="no_buy_link_available">Data not available</string>
 
 </resources>

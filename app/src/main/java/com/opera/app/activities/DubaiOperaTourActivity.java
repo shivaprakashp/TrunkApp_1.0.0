@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.controller.MainController;
+import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.GuestDialog;
@@ -41,6 +43,8 @@ public class DubaiOperaTourActivity extends BaseActivity {
     private Api api;
     private Activity mActivity;
     private SessionManager manager;
+    private AllEvents mEventDataPojo;
+    private CustomToast customToast;
 
     @BindView(R.id.toolbar_edit_profile)
     Toolbar toolbar;
@@ -86,6 +90,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
     }
+
     private View.OnClickListener backPress = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -98,6 +103,18 @@ public class DubaiOperaTourActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.btnBookNow:
                 if (manager.isUserLoggedIn()) {
+                    if (Connections.isConnectionAlive(mActivity)) {
+                        if (manager.getGiftCardOfflineData().getEvents() != null && manager.getGiftCardOfflineData().getEvents().size() > 0) {
+                            Intent in = new Intent(mActivity, BuyTicketWebView.class);
+                            in.putExtra("URL", manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink());
+                            in.putExtra("Header", getResources().getString(R.string.menu_opera_tour));
+                            startActivity(in);
+                        } else {
+                            customToast.showErrorToast(getResources().getString(R.string.no_buy_link_available));
+                        }
+                    } else {
+                        customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                    }
 
                 } else {
                     GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
@@ -113,8 +130,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
         api = retrofit.create(Api.class);
         if (Connections.isConnectionAlive(mActivity)) {
             GetData();
-        }
-        else {
+        } else {
             if (manager.getTourOfflineData() != null && manager.getTourOfflineData().getEvents().get(0).getDescription() != null) {
                 mTxtTourDetails.setText(Html.fromHtml(manager.getTourOfflineData().getEvents().get(0).getDescription()));
             }
@@ -130,27 +146,27 @@ public class DubaiOperaTourActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
 
-                AllEvents mEventDataPojo = (AllEvents) response.body();
-                try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                        mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
-                        Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
-                                .into(mIvTourCoverImage, new Callback() {
-                                    @Override
-                                    public void onSuccess() {
-                                        mProgressImageLoader.setVisibility(View.GONE);
-                                    }
+            mEventDataPojo = (AllEvents) response.body();
+            try {
+                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
+                    Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
+                            .into(mIvTourCoverImage, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    mProgressImageLoader.setVisibility(View.GONE);
+                                }
 
-                                    @Override
-                                    public void onError() {
-                                        mProgressImageLoader.setVisibility(View.GONE);
-                                    }
-                                });
-                        manager.storeTourDataOffline((AllEvents) response.body());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                                @Override
+                                public void onError() {
+                                    mProgressImageLoader.setVisibility(View.GONE);
+                                }
+                            });
+                    manager.storeTourDataOffline((AllEvents) response.body());
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

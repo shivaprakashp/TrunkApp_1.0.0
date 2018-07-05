@@ -19,6 +19,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
+import com.opera.app.fragments.ListenFragment;
 
 /**
  * Created by 1000632 on 4/20/2018.
@@ -26,10 +28,10 @@ import com.opera.app.R;
 
 public class TestAct extends Activity {
 
-    private Button btnOpenApple, btnEmbedUrl, btnItunesUrl,btnBuyTickers;
+    private Button btnPlaylistUrl,btnCuratorPageUrl;
     private Activity activity;
     private WebView webBuyTickets;
-    private ProgressDialog mDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,84 +39,28 @@ public class TestAct extends Activity {
         setContentView(R.layout.test_act);
 
         activity = TestAct.this;
-        mDialog=new ProgressDialog(TestAct.this);
-        btnOpenApple = findViewById(R.id.btnOpenApple);
-        btnEmbedUrl = findViewById(R.id.btnEmbedUrl);
-        btnItunesUrl = findViewById(R.id.btnItunesUrl);
-        btnBuyTickers = findViewById(R.id.btnBuyTickers);
+        mProgressDialog=new ProgressDialog(TestAct.this);
+        btnPlaylistUrl = findViewById(R.id.btnPlaylistUrl);
+        btnCuratorPageUrl = findViewById(R.id.btnCuratorPageUrl);
+        /*btnItunesUrl = findViewById(R.id.btnItunesUrl);
+        btnBuyTickers = findViewById(R.id.btnBuyTickers);*/
         webBuyTickets= findViewById(R.id.webBuyTickets);
 
-        btnBuyTickers.setOnClickListener(new View.OnClickListener() {
+        btnPlaylistUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDialog.show();
-                mDialog.setMessage("Please wait...");
-                btnBuyTickers.setVisibility(View.GONE);
-                webBuyTickets.setVisibility(View.VISIBLE);
-
-                CookieManager cookieManager = CookieManager.getInstance();
-                cookieManager.setCookie("https://dubaioperaw-mobile-uat.etixdubai.com/", "X-Auth-Token=%2bDXYcLwZY2cPbM0fBWjWcwBpd7y15%2bHDOsIEBvsNAePO21inVm2kOo8PDZdoOAMbgxbRp1orOMFk97v1QEsBKA%3d%3d");
-                webBuyTickets.loadUrl("https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC");
-                webBuyTickets.getSettings().setJavaScriptEnabled(true);
-                webBuyTickets.getSettings().setUserAgentString("user-agent-string");
-                webBuyTickets.getSettings().setDomStorageEnabled(true);
-                webBuyTickets.setWebViewClient(new MyWebViewClient());
-                cookieManager.setAcceptThirdPartyCookies(webBuyTickets, true);
-                webBuyTickets.requestFocus();
-
-                /*webBuyTickets.getSettings().setJavaScriptEnabled(true);
-                webBuyTickets.getSettings().setSaveFormData(false);
-
-                CookieSyncManager.createInstance(TestAct.this);
-                CookieSyncManager.getInstance().startSync();
-                CookieManager cookieManager = CookieManager.getInstance();
-                cookieManager.setAcceptCookie(true);
-                CookieManager.getInstance().setAcceptThirdPartyCookies(webBuyTickets, true);
-
-                *//*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-                String token2= mPreferences.getString("auth_token","");*//*
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("x-auth-token", "G7%2blsuNjQxg1ZUrsh1yofoBwyZ84djnIKPRTpJzkjcRhBY%2bZUlySwpYeWa%2fGVKjF4sda8aPjlKXCQUs%2bYl2oaQ%3d%3d");
-
-                webBuyTickets.getSettings().setAppCacheEnabled(true);
-                webBuyTickets.setWebViewClient(new WebViewClient() {
-                    public boolean shouldOverrideUrlLoading(WebView view,String url) {
-                        view.loadUrl(url);
-                        return true;
-                    }
-                });
-                webBuyTickets.loadUrl("https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC", map);*/
-
-
-
-                /*String myURL = "https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC";
-
-                android.webkit.CookieManager cookieManager = android.webkit.CookieManager.getInstance();
-                cookieManager.setCookie("https://dubaioperaw-mobile-uat.etixdubai.com/", "X-Auth-Token=G7%2blsuNjQxg1ZUrsh1yofoBwyZ84djnIKPRTpJzkjcRhBY%2bZUlySwpYeWa%2fGVKjF4sda8aPjlKXCQUs%2bYl2oaQ%3d%3d");
-                cookieManager.setAcceptCookie(true);
-                cookieManager.acceptCookie();
-                cookieManager.setAcceptFileSchemeCookies(true);
-                cookieManager.getInstance().setAcceptCookie(true);
-                cookieManager.getCookie(myURL);
-                webBuyTickets.loadUrl(myURL);*/
+                LoadWebView("https://tools.applemusic.com/embed/v1/playlist/pl.f4d106fed2bd41149aaacabb233eb5eb?country=ae");
             }
         });
 
-        btnOpenApple.setOnClickListener(new View.OnClickListener() {
+        btnCuratorPageUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("apple-music://itunes.apple.com/us/album/views/1108737195"));
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    OpenAnApp();
-                }
+                LoadWebView("https://geo.itunes.apple.com/us/curator/the-metropolitan-opera-house/1110087349?mt=1&app=music");
             }
         });
 
-        btnEmbedUrl.setOnClickListener(new View.OnClickListener() {
+       /* btnEmbedUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(activity, CommonWebViewActivity.class);
@@ -122,9 +68,9 @@ public class TestAct extends Activity {
                 in.putExtra("Header", "Home");
                 startActivity(in);
             }
-        });
+        });*/
 
-        btnItunesUrl.setOnClickListener(new View.OnClickListener() {
+       /* btnItunesUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(activity, CommonWebViewActivity.class);
@@ -136,7 +82,7 @@ public class TestAct extends Activity {
                 in.putExtra("Header", "Home");
                 startActivity(in);
             }
-        });
+        });*/
     }
 
     private void OpenAnApp() {
@@ -158,13 +104,15 @@ public class TestAct extends Activity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            mDialog.dismiss();
+            mProgressDialog.dismiss();
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             Log.e("PageStarted",url.toString());
+            mProgressDialog.setMessage(getResources().getString(R.string.loading));
+            mProgressDialog.show();
         }
 
         @Override
@@ -178,5 +126,15 @@ public class TestAct extends Activity {
             super.onReceivedSslError(view, handler, error);
 
         }
+    }
+
+    private void LoadWebView(String mUrl) {
+
+        webBuyTickets.setVisibility(View.VISIBLE);
+
+        webBuyTickets.getSettings().setJavaScriptEnabled(true);
+        webBuyTickets.setWebViewClient(new MyWebViewClient());
+        webBuyTickets.loadUrl(mUrl);
+        webBuyTickets.requestFocus();
     }
 }

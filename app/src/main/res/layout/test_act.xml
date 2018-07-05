@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnEmbedUrl"
+        android:id="@+id/btnPlaylistUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Open Embed URL"
-        android:visibility="gone" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Playlist URL"
+        android:visibility="visible" />
 
     <Button
-        android:id="@+id/btnItunesUrl"
+        android:id="@+id/btnCuratorPageUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        tools:text="Open Itunes Url"
-        android:visibility="gone" />
+        android:layout_marginBottom="5dp"
+        android:visibility="visible"
+        android:text="Curator page " />
 
     <Button
         android:id="@+id/btnOpenApple"
@@ -35,17 +36,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/appleBuyTicket" />
+        android:text="@string/appleBuyTicket"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txtJsonData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_below="@+id/btnBuyTickers" />
 
     <WebView
         android:id="@+id/webBuyTickets"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"></WebView>
-</RelativeLayout>
+        android:visibility="visible"></WebView>
+</LinearLayout>
