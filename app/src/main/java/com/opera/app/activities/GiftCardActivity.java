@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +42,7 @@ public class GiftCardActivity extends BaseActivity {
     private Api api;
     private Activity mActivity;
     private SessionManager manager;
+    private AllEvents mEventDataPojo;
 
     @BindView(R.id.toolbar_edit_profile)
     Toolbar toolbar;
@@ -87,6 +89,7 @@ public class GiftCardActivity extends BaseActivity {
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
     }
+
     private View.OnClickListener backPress = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -99,7 +102,18 @@ public class GiftCardActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.btnBuyTickets:
                 if (manager.isUserLoggedIn()) {
-
+                    if (Connections.isConnectionAlive(mActivity)) {
+                        if (manager.getGiftCardOfflineData().getEvents() != null && manager.getGiftCardOfflineData().getEvents().size() > 0) {
+                            Intent in = new Intent(mActivity, BuyTicketWebView.class);
+                            in.putExtra("URL", manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink());
+                            in.putExtra("Header", getResources().getString(R.string.menu_opera_tour));
+                            startActivity(in);
+                        } else {
+                            customToast.showErrorToast(getResources().getString(R.string.no_buy_link_available));
+                        }
+                    } else {
+                        customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                    }
                 } else {
                     GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
                     dialog.show();
@@ -107,14 +121,14 @@ public class GiftCardActivity extends BaseActivity {
                 break;
         }
     }
+
     private void initView() {
         manager = new SessionManager(mActivity);
         ((MainApplication) getApplication()).getNetComponent().inject(GiftCardActivity.this);
         api = retrofit.create(Api.class);
         if (Connections.isConnectionAlive(mActivity)) {
             GetData();
-        }
-        else {
+        } else {
             if (manager.getGiftCardOfflineData() != null && manager.getGiftCardOfflineData().getEvents().get(0).getDescription() != null) {
                 mTxtGiftCardDetails.setText(Html.fromHtml(manager.getGiftCardOfflineData().getEvents().get(0).getDescription()));
             }
@@ -130,7 +144,7 @@ public class GiftCardActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
 
-            AllEvents mEventDataPojo = (AllEvents) response.body();
+            mEventDataPojo = (AllEvents) response.body();
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mTxtGiftCardDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));

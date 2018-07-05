@@ -15,6 +15,7 @@ import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -76,16 +77,19 @@ public class BuyTicketWebView extends BaseActivity {
         myWebView.setVisibility(View.VISIBLE);
 
         myWebView.getSettings().setUserAgentString(AppConstants.DTCM_USER_AGENT_STRING);
-        myWebView.getSettings().setUseWideViewPort(true);
-        myWebView.getSettings().setLoadWithOverviewMode(true);
 
         CookieSyncManager.createInstance(myWebView.getContext());
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + AppConstants.USER_SESSION_TOKEN);    // USER_SESSION_TOKEN will replace with actual token of user
 
         myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setUseWideViewPort(true);
+        myWebView.getSettings().setLoadWithOverviewMode(true);
+        myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+
         myWebView.setWebViewClient(new MyWebViewClient());
-        myWebView.loadUrl(AppConstants.DTCM_SHOW_URL);
+        myWebView.loadUrl(URL);
         cookieManager.setAcceptThirdPartyCookies(myWebView, true);
         myWebView.requestFocus();
     }
@@ -125,8 +129,12 @@ public class BuyTicketWebView extends BaseActivity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             Log.e("Page started", url);
-            mProgressDialog.show();
-            mProgressDialog.setMessage("Please wait...");
+            try {
+                mProgressDialog.show();
+                mProgressDialog.setMessage("Please wait...");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -168,7 +176,7 @@ public class BuyTicketWebView extends BaseActivity {
                             "Seating information : \n"+"Section : "+response.getTickets().get(0).getSeatingInformation().getSection()+"\n"+"Row :"
                             +response.getTickets().get(0).getSeatingInformation().getRow()+"\n"+"Seats :"
                             +response.getTickets().get(0).getSeatingInformation().getSeats()+
-                            "", getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
+                            "", getResources().getString(R.string.success_header), getResources().getString(R.string.ok),"BookEvent");
                     dialogue.show();
                 }
             }

@@ -6,14 +6,10 @@
     android:orientation="vertical"
     android:gravity="center">
 
-
-
-    <TextView
+    <WebView
+        android:id="@+id/webAppleMusicListen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/listen_fragment"
-        android:textSize="25sp"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="match_parent"
+        android:visibility="visible"></WebView>
 
 </LinearLayout>
