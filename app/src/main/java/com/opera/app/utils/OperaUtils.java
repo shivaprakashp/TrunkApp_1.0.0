@@ -31,7 +31,7 @@ import java.util.Date;
 
 public class OperaUtils {
 
-    private static String blockCharacterSet = "~#^|$%&*!1234567890@({)}:;?/.,'][-<>`~+=_";
+    private static String blockCharacterSet = "~#^|$%&*!1234567890@({)}:;?/,][-<>`~+=_";
 
     private static OperaUtils mOperaUtils = null;
 

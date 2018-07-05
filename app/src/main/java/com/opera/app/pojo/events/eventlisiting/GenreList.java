@@ -29,16 +29,17 @@ public class GenreList {
     @Expose
     private String Image;
 
-    boolean IsInfoOpen = false;
+    public GenreList() {
 
-    public boolean isInfoOpen() {
-        return IsInfoOpen;
     }
 
-    public void setInfoOpen(boolean infoOpen) {
-        IsInfoOpen = infoOpen;
+    public GenreList(String internalName, String id, String genere, String description, String image) {
+        InternalName = internalName;
+        Id = id;
+        Genere = genere;
+        Description = description;
+        Image = image;
     }
-
 
     public String getInternalName() {
         return InternalName;

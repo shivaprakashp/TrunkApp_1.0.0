@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.database.events.EventGenresDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.listadapters.AdapterGenres;
 import com.opera.app.listener.EventInterfaceTab;
+import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
 
@@ -28,6 +30,9 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
     private EventGenresDB mEventGenresDetailsDB;
     private ArrayList<GenreList> mEventGenresListingData = new ArrayList<>();
     private AdapterGenres mAdapterGenres;
+
+    private ArrayList<Events> mEventListingData = new ArrayList<>();
+    private EventListingDB mEventDetailsDB;
 
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerEvents;
@@ -58,13 +63,34 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
     }
 
     private void fetchAllGenres() {
+        ArrayList<GenreList> mFilteredNames = new ArrayList<>();
 
         mEventGenresDetailsDB = new EventGenresDB(mActivity);
         mEventGenresDetailsDB.open();
         mEventGenresListingData = mEventGenresDetailsDB.fetchGenresEvents();
         mEventGenresDetailsDB.close();
 
-        mAdapterGenres = new AdapterGenres(mActivity, mEventGenresListingData);
+        mEventDetailsDB = new EventListingDB(mActivity);
+        mEventDetailsDB.open();
+        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        mEventDetailsDB.close();
+
+        for (int k = 0; k < mEventGenresListingData.size(); k++) {
+            boolean flag = false;
+            for (int i = 0; i < mEventListingData.size(); i++) {
+                for (int j = 0; j < mEventListingData.get(i).getGenreList().size(); j++) {
+                    if (mEventGenresListingData.get(k).getGenere().toLowerCase().contains(mEventListingData.get(i).getGenreList().get(j).getGenere().toLowerCase())) {
+                        mFilteredNames.add(new GenreList(mEventGenresListingData.get(k).getInternalName(), mEventGenresListingData.get(k).getId(), mEventGenresListingData.get(k).getGenere(), mEventGenresListingData.get(k).getDescription(), mEventGenresListingData.get(k).getImage()));
+                        flag = true;
+                    }
+                }
+                if(flag){
+                    break;
+                }
+            }
+        }
+
+        mAdapterGenres = new AdapterGenres(mActivity, mFilteredNames);
         if (mEventGenresListingData.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
@@ -72,8 +98,7 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
             mRecyclerEvents.setLayoutManager(mLayoutManager);
             mRecyclerEvents.setItemAnimator(new DefaultItemAnimator());
             mRecyclerEvents.setAdapter(mAdapterGenres);
-        }
-        else{
+        } else {
             mRecyclerEvents.setVisibility(View.GONE);
             mtvMsg.setVisibility(View.VISIBLE);
             mtvMsg.setText(getResources().getString(R.string.no_data));

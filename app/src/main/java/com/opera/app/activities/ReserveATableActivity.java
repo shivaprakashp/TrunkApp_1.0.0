@@ -314,7 +314,7 @@ public class ReserveATableActivity extends BaseActivity {
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null && mSessionManager.getUserLoginData().getData().getProfile().getLastName() != null) {
             edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName() + " " + mSessionManager.getUserLoginData().getData().getProfile().getLastName());
         }
-        edtFulName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
+        edtFulName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
 
         edtEmail = reserve_edtEmail.findViewById(R.id.edt);
         edtEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);

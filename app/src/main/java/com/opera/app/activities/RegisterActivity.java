@@ -188,14 +188,14 @@ public class RegisterActivity extends BaseActivity {
         edtFirstName.setHint(getString(R.string.firstname));
         edtFirstName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtFirstName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtFirstName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
+        edtFirstName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
         edtFirstName.requestFocus();
 
         edtLastName = reg_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.lastname));
         edtLastName.setInputType(InputType.TYPE_CLASS_TEXT);
         edtLastName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
-        edtLastName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30)});
+        edtLastName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
 
         edtEmail = reg_edtEmail.findViewById(R.id.edt);
         edtEmail.setHint(getString(R.string.email));

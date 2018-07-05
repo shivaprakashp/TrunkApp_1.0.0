@@ -162,7 +162,7 @@ public class EditProfileActivity extends BaseActivity {
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null) {
             edtFirstName.setText(manager.getUserLoginData().getData().getProfile().getFirstName());
         }
-        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtFirstName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30) });
 
         edtLastName = edit_edtLastName.findViewById(R.id.edt);
         edtLastName.setHint(getString(R.string.edit_lastname));
@@ -170,7 +170,7 @@ public class EditProfileActivity extends BaseActivity {
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
             edtLastName.setText(manager.getUserLoginData().getData().getProfile().getLastName());
         }
-        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, OperaUtils.filter, new InputFilter.LengthFilter(30) });
+        edtLastName.setFilters(new InputFilter[] {OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30) });
 
         edtDob = edit_edtDob.findViewById(R.id.edt);
         edtDob.setHint(getString(R.string.edit_dob));
@@ -194,7 +194,7 @@ public class EditProfileActivity extends BaseActivity {
         edtAddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         edtAddress.setSingleLine(false);
         edtAddress.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        edtAddress.setFilters(new InputFilter[] { OperaUtils.filter, new InputFilter.LengthFilter(70) });
+        edtAddress.setFilters(new InputFilter[] { new InputFilter.LengthFilter(70) });
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getAddress() != null) {
             edtAddress.setText(manager.getUserLoginData().getData().getProfile().getAddress());
         }*/
