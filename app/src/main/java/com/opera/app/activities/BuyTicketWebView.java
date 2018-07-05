@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -86,13 +88,20 @@ public class BuyTicketWebView extends BaseActivity {
         myWebView.getSettings().setUseWideViewPort(true);
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        /*myWebView.getSettings().setAllowFileAccess(true);
+        myWebView.getSettings().setDomStorageEnabled(true);
+        myWebView.getSettings().setAllowContentAccess(true);
+        myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);*/
 
         myWebView.setWebViewClient(new MyWebViewClient());
         myWebView.loadUrl(URL);
+        myWebView.addJavascriptInterface(this, "Android");
         cookieManager.setAcceptThirdPartyCookies(myWebView, true);
         myWebView.requestFocus();
+
+
     }
+
 
     private void initToolbar() {
         setSupportActionBar(toolbar);
@@ -122,7 +131,8 @@ public class BuyTicketWebView extends BaseActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
-            return true;
+//            view.loadDataWithBaseURL(null,url, "text/html", "UTF-8",null);
+            return false;
         }
 
         @Override
