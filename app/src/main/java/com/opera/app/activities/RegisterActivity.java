@@ -41,6 +41,7 @@ import com.opera.app.dialogues.TermsDialogue;
 import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
+import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -138,8 +139,8 @@ public class RegisterActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             if (response.body() != null) {
-
-                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.successMsg),
+                RegistrationResponse mPostResponse = (RegistrationResponse) response.body();
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, mPostResponse.getMessage(),
                         getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "Register");
                 dialogue.show();
             } else if (response.errorBody() != null) {

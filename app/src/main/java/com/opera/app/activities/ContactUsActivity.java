@@ -34,6 +34,7 @@ import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.contactUs.ContactUs;
+import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
@@ -355,8 +356,8 @@ public class ContactUsActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             if (response.body() != null) {
-
-                SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.contactUsSuccessMsg), getResources().getString(R.string.contactUs_header), getResources().getString(R.string.ok), "ContactUs");
+                ContactUsResponse mPostResponse = (ContactUsResponse) response.body();
+                SuccessDialogue dialogue = new SuccessDialogue(mActivity, mPostResponse.getMessage(), getResources().getString(R.string.contactUs_header), getResources().getString(R.string.ok), "ContactUs");
                 dialogue.show();
             } else if (response.errorBody() != null) {
                 try {
