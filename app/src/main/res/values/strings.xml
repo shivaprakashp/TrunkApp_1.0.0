@@ -987,4 +987,5 @@
 
     <!--Event Details-->
     <string name="eventDetailTicket">Tickets From</string>
+    <string name="no_buy_link_available">Data not available</string>
 </resources>

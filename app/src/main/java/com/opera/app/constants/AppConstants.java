@@ -10,11 +10,12 @@ public interface AppConstants {
     String EVENT_TYPE_GIFT_CARD = "GiftCard";
     String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
 
+    //DTCM Keys
     static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
-//    static String USER_SESSION_TOKEN = "n2f12rdyrlKP7S5JC365nUF%2f32Txp8QYQkrCctM7IQS4bcVfOrDZxfXyzG1jLzGqVWwKk1UY%2ffKtuneNszAWYg%3d%3d";
     static String USER_SESSION_TOKEN = "bbWBDZJFJwgJf0Gy8IiJvLiOIkJ1bJezXKcYJVAwsggi1Briy8QrPaC%2bSGWzSM3k2%2bIqLYtRMp5gxiMPURKL0A%3d%3d";
-    static String DTCM_SHOW_URL = "https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC";
+//    static String DTCM_SHOW_URL = "https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC";
     static String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+    static String APPLE_MUSIC_URL = "https://itunes.apple.com/us/curator/the-metropolitan-opera-house/1110087349?mt=1&app=music";
 
     interface LOGIN {
         String LOGIN = "LOGIN";
