@@ -45,8 +45,8 @@
 
             <ProgressBar
                 android:id="@+id/progressImageLoader"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/app_width_small"
+                android:layout_height="@dimen/app_width_small"
                 android:layout_centerInParent="true"
                 android:visibility="visible" />
 
@@ -83,17 +83,17 @@
         android:gravity="center"
         android:layout_weight="0.2"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/app_margin_ten">
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnBookNow"
             style="@style/label_white"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:background="@drawable/btn_ripple_effect"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            android:paddingLeft="@dimen/app_margin_thirty"
+            android:paddingRight="@dimen/app_margin_thirty"
             android:text="@string/bookNow"
             android:textAllCaps="true"
             font:name="Montserrat-Regular" />

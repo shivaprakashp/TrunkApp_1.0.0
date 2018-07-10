@@ -10,4 +10,4 @@
     android:maxLines="1"
     font:name="Montserrat-Medium"
     android:textAllCaps="true"
-    android:padding="5dp"/>
+    android:padding="@dimen/app_margin_five"/>

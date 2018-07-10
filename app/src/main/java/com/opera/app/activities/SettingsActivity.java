@@ -306,7 +306,7 @@ public class SettingsActivity extends BaseActivity {
                 LanguageManager.createInstance().mSelectedLanguage,
                 mSelectedLanguage);
 
-        openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
+        openActivityWithClearPreviousActivities(mActivity, PreLoginActivity.class);
 
     }
 

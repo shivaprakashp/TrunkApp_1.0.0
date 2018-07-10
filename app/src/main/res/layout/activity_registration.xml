@@ -17,7 +17,7 @@
             android:layout_width="110dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/app_margin_twenty"
             android:scaleType="fitXY"
             android:src="@drawable/ic_dubai_opera_logo" />
 
@@ -25,7 +25,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/app_margin_ten">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,11 +36,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/app_margin_twenty"
+                    android:layout_marginRight="@dimen/app_margin_twenty"
                     android:background="@drawable/transparent_white"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="@dimen/app_margin_ten">
 
                     <include
                         android:id="@+id/reg_edtFirstName"
@@ -93,7 +93,7 @@
                         android:id="@+id/spinnerNationality"
                         style="@style/label_black"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular"
                         app:hintText="@string/nationality"/>
 
@@ -122,7 +122,7 @@
                             android:id="@+id/spinnerCountryCode"
                             style="@style/label_black"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="@dimen/app_height_large"
                             android:layout_weight="1"
                             font:name="Montserrat-Regular"
                             app:hintText="@string/country_code_with_asterisk"/>
@@ -130,10 +130,10 @@
                         <com.opera.app.customwidget.EditTextWithFont
                             android:id="@+id/edtMobile"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="@dimen/app_height_large"
                             android:background="@null"
                             android:hint="@string/username"
-                            android:padding="5dp"
+                            android:padding="@dimen/app_margin_five"
                             android:layout_weight="1"
                             style="@style/label_black"
                             font:name="Montserrat-Regular">
@@ -159,7 +159,7 @@
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerState"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular"
                         app:hintText="@string/state"/>
 
@@ -171,7 +171,7 @@
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerCountry"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular"
                         app:hintText="@string/country"/>
 
@@ -183,10 +183,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/app_margin_twenty"
+        android:layout_marginRight="@dimen/app_margin_twenty"
+        android:layout_marginTop="@dimen/app_margin_ten"
+        android:layout_marginBottom="@dimen/app_margin_ten"
         android:orientation="vertical">
 
         <LinearLayout
@@ -205,8 +205,8 @@
                 style="@style/label_white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/app_margin_ten"
+                android:layout_marginRight="@dimen/app_margin_ten"
                 android:text="@string/reg_terms_policy"
                 font:name="Montserrat-Light"        />
         </LinearLayout>
@@ -214,7 +214,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/app_margin_ten"
             android:orientation="horizontal">
 
             <CheckBox
@@ -227,8 +227,8 @@
                 style="@style/label_white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/app_margin_ten"
+                android:layout_marginRight="@dimen/app_margin_ten"
                 android:text="@string/check_subscribe"
                 font:name="Montserrat-Light" />
 
@@ -237,7 +237,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/app_margin_ten"
             android:orientation="vertical">
 
             <com.opera.app.customwidget.ButtonWithFont
@@ -255,7 +255,7 @@
                 style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/app_margin_twenty"
                 android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/already_have_an_account"
                 android:textAllCaps="false"
@@ -265,7 +265,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/app_margin_ten">
 
             <include layout="@layout/include_guest" />
         </LinearLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/app_margin_ten"
     android:elevation="5dp"
     card_view:cardCornerRadius="4dp">
 
@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="@dimen/app_margin_five">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/app_margin_five"
             android:layout_weight="0.1">
 
             <ImageView
@@ -36,7 +36,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/app_margin_five"
             android:layout_weight="0.3"
             android:orientation="vertical">
 
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/button_height_small"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
+                    android:layout_margin="@dimen/app_margin_five"
                     android:background="@drawable/btn_ripple_effect"
                     android:text="@string/buy_tickets"
                     font:name="Montserrat-Light" />

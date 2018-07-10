@@ -12,19 +12,19 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
+        android:paddingBottom="@dimen/app_margin_five"
+        android:paddingTop="@dimen/app_margin_five"
         android:id="@+id/whole_layout"
         android:background="@color/colorBurgendy"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="30dp"
+            android:layout_width="@dimen/app_width_small"
             android:src="@drawable/ic_close"
             android:id="@+id/toast_Iv"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="30dp" />
+            android:layout_marginLeft="@dimen/app_margin_ten"
+            android:layout_marginRight="@dimen/app_margin_ten"
+            android:layout_height="@dimen/app_width_small" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:textColor="#ffffff"
                 font:name="Montserrat-Bold"
                 font:type="bold"
@@ -42,10 +42,10 @@
                 android:layout_height="wrap_content" />
 
             <com.opera.app.customwidget.TextViewWithFont
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:textColor="#ffffff"
                 android:textStyle="normal"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/app_margin_ten"
                 style="@style/label_white"
                 font:name="Montserrat-Regular"
                 android:id="@+id/toast_Tv"

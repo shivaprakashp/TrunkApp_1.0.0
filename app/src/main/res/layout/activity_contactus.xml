@@ -35,27 +35,27 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/app_margin_five"
             android:background="@drawable/grey_corner">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/app_margin_twenty"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="@dimen/app_margin_twenty"
+                    android:layout_marginTop="@dimen/app_margin_ten"
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_burgendy_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="@dimen/app_margin_five"
                         android:text="@string/reach_us"
                         android:textStyle="bold"
                         font:name="Montserrat-Light" />
@@ -64,7 +64,7 @@
                         android:id="@+id/imgNumber"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="@dimen/app_margin_five"
                         android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_telephone" />
 
@@ -84,7 +84,7 @@
                     style="@style/label_black_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="@dimen/app_margin_ten"
                     android:text="@string/contact_us_info"
                     font:name="Montserrat-Light" />
 
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="@dimen/app_margin_five"/>
 
                 <include
                     android:id="@+id/edit_edtMobile"
@@ -109,7 +109,7 @@
                         android:id="@+id/spinnerCountryCode"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="1"
                         font:name="Montserrat-Regular"
                         app:hintText="@string/country_code_with_asterisk"/>
@@ -117,10 +117,10 @@
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edtMobile"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:background="@null"
                         android:hint="@string/username"
-                        android:padding="5dp"
+                        android:padding="@dimen/app_margin_five"
                         android:layout_weight="1"
                         style="@style/label_black"
                         font:name="Montserrat-Regular">
@@ -133,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="@dimen/app_margin_five"/>
 
                 <include
                     android:id="@+id/edtEmail"
@@ -143,19 +143,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="@dimen/app_margin_five"/>
 
                 <Spinner
                     android:id="@+id/spinnerEnquiryType"
                     style="@style/label_black"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="@dimen/app_height_large" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/dark_gray"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="@dimen/app_margin_five"/>
 
                 <com.opera.app.customwidget.EditTextWithFont
                     android:id="@+id/edtMessage"
@@ -167,7 +167,7 @@
                     android:hint="@string/message"
                     android:imeOptions="actionDone"
                     android:maxLength="150"
-                    android:padding="5dp"
+                    android:padding="@dimen/app_margin_five"
                     android:singleLine="false"
                     font:name="Montserrat-Regular" />
 
@@ -180,9 +180,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="15dp"
-        android:paddingBottom="20dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingBottom="@dimen/app_margin_twenty"
+        android:paddingLeft="@dimen/app_margin_five"
+        android:paddingRight="@dimen/app_margin_five"
         android:gravity="center">
 
         <com.opera.app.customwidget.ButtonWithFont
@@ -191,16 +191,16 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/app_margin_twenty"
             android:background="@drawable/btn_ripple_effect"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/app_margin_ten"
+            android:paddingRight="@dimen/app_margin_ten"
             android:text="@string/send_message"
             font:name="Montserrat-Light" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/app_height_large"
             android:background="@drawable/rectangle_single_line_bg"
             android:orientation="horizontal">
 
@@ -214,7 +214,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/app_margin_five"
                     android:src="@drawable/ic_twitter" />
 
             </LinearLayout>
@@ -234,7 +234,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/app_margin_five"
                     android:src="@drawable/ic_instagram" />
 
             </LinearLayout>
@@ -254,7 +254,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/app_margin_five"
                     android:src="@drawable/ic_facebook" />
 
             </LinearLayout>

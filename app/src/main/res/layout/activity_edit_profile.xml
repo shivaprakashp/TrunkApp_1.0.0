@@ -35,7 +35,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/app_margin_five"
             android:background="@drawable/grey_corner">
 
             <LinearLayout
@@ -47,12 +47,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_user_icon" />
 
                     <include
@@ -64,18 +64,18 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_last_name" />
 
                     <include
@@ -87,19 +87,19 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/app_height_large"
                     android:gravity="bottom"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="26dp"
-                        android:padding="5dp"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_mail_icon" />
 
                     <include
@@ -111,25 +111,25 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_nationality_icon" />
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerNationality"
                         style="@style/label_black"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular" />
 
                 </LinearLayout>
@@ -137,19 +137,19 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_dob_icon" />
 
                     <include
@@ -161,7 +161,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <!--<include
@@ -172,19 +172,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerCountryCode"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.7"
                         font:name="Montserrat-Regular"
                         />
@@ -193,11 +193,11 @@
                         android:id="@+id/edit_edtMobile"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/edit_mobile"
-                        android:padding="5dp"
+                        android:padding="@dimen/app_margin_five"
                         font:name="Montserrat-Regular"
                         android:textDirection="locale"
                         android:textAlignment="viewStart">
@@ -210,18 +210,18 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_city_icon" />
 
                     <include
@@ -233,25 +233,25 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_state_icon" />
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerState"
                         style="@style/label_black"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular" />
 
                 </LinearLayout>
@@ -259,25 +259,25 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_country_icon" />
 
                     <com.opera.app.customwidget.CustomSpinner
                         android:id="@+id/spinnerCountry"
                         style="@style/label_black"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         font:name="Montserrat-Regular" />
 
                 </LinearLayout>
@@ -285,18 +285,18 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:padding="5dp"
+                        android:layout_height="@dimen/app_width_medium"
+                        android:padding="@dimen/app_margin_five"
                         android:src="@drawable/ic_address_icon" />
 
                     <com.opera.app.customwidget.EditTextWithFont
@@ -309,7 +309,7 @@
                         android:hint="@string/edit_address"
                         android:imeOptions="actionDone"
                         android:maxLength="70"
-                        android:padding="5dp"
+                        android:padding="@dimen/app_margin_five"
                         android:singleLine="false"
                         font:name="Montserrat-Regular"
                         android:textDirection="locale"
@@ -324,8 +324,8 @@
     <!--<View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/app_margin_twenty"
+        android:layout_marginRight="@dimen/app_margin_twenty"
         android:background="@color/dark_gray" />-->
 
     <LinearLayout
@@ -333,14 +333,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/app_margin_ten">
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnCancel"
             style="@style/label_white"
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:layout_weight="1"
             android:background="@drawable/btn_ripple_effect_gray"
             android:text="@string/cancel"
@@ -352,7 +352,7 @@
             style="@style/label_white"
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:layout_weight="1"
             android:background="@drawable/btn_ripple_effect"
             android:text="@string/save"

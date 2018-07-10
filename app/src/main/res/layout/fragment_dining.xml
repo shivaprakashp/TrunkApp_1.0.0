@@ -18,8 +18,8 @@
 
         <ProgressBar
             android:id="@+id/progressImageLoader"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/app_width_small"
+            android:layout_height="@dimen/app_width_small"
             android:layout_centerInParent="true"
             android:visibility="visible" />
     </RelativeLayout>
@@ -52,9 +52,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="20dp">
+                android:paddingLeft="@dimen/app_margin_ten"
+                android:paddingRight="@dimen/app_margin_ten"
+                android:paddingTop="@dimen/app_margin_twenty">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="@dimen/app_margin_ten">
 
                         <com.opera.app.customwidget.ButtonWithFont
                             android:id="@+id/mBtnReserveATable"
@@ -103,8 +103,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/button_height"
                             android:background="@drawable/btn_ripple_effect"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
+                            android:paddingLeft="@dimen/app_margin_ten"
+                            android:paddingRight="@dimen/app_margin_ten"
                             android:text="@string/reserve_a_table"
                             font:name="Montserrat-Light" />
 
@@ -123,7 +123,7 @@
                         style="@style/label_white_small"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_margin="10dp"
+                        android:layout_margin="@dimen/app_margin_ten"
                         android:maxLines="10"
                         android:scrollbars="vertical"
                         android:text="" />
@@ -149,7 +149,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/app_margin_ten"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:visibility="gone">
@@ -159,7 +159,7 @@
                             style="@style/label_white_small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="@dimen/app_margin_ten"
                             android:text="@string/read_more"
                             android:textAllCaps="false" />
 
@@ -189,10 +189,10 @@
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_height"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/app_margin_twenty"
                 android:background="@drawable/btn_ripple_effect"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="@dimen/app_margin_twenty"
+                android:paddingRight="@dimen/app_margin_twenty"
                 android:text="@string/other_restaurants"
                 android:textAllCaps="false"
                 font:name="Montserrat-Light" />

@@ -28,10 +28,10 @@
     <LinearLayout
         android:id="@+id/linearSearch"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/app_height_vlarge"
         android:orientation="vertical"
         android:background="@color/colorDarkBurgendy"
-        android:padding="10dp"
+        android:padding="@dimen/app_margin_ten"
         android:gravity="center"
         android:visibility="gone">
 

@@ -28,19 +28,19 @@
 
             <ImageView
                 android:id="@+id/imgCalendar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/app_width_large"
+                android:layout_height="@dimen/app_height_large"
                 android:src="@drawable/ic_calendar_white"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/imgSearch"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/app_width_large"
+                android:layout_height="@dimen/app_height_large"
                 android:src="@drawable/ic_search"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
 

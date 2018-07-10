@@ -31,7 +31,7 @@
         style="@style/textsize_vvlarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/app_margin_twenty"
         android:text="@string/reserve_a_table2"
         android:textColor="@color/colorWhite"
         android:visibility="gone"
@@ -41,9 +41,9 @@
         style="@style/label_gray_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/app_margin_twenty"
+        android:layout_marginRight="@dimen/app_margin_twenty"
+        android:layout_marginTop="@dimen/app_margin_twenty"
         android:text="@string/sean_connolly_dubai_opera"
         android:textColor="@color/colorWhite"
         font:name="Montserrat-Light" />
@@ -61,23 +61,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/app_margin_twenty"
                 android:background="@drawable/transparent_white"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/app_margin_ten">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/app_height_large"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/editDOB"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.9"
                         android:background="@null"
                         android:editable="false"
@@ -96,22 +96,22 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_height="@dimen/app_height_large"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="@dimen/app_margin_five">
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edtNoOfGuests"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.7"
                         android:background="@null"
                         android:textColorHint="@color/black"
@@ -126,8 +126,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:paddingLeft="@dimen/app_margin_five"
+                        android:paddingRight="@dimen/app_margin_five"
                         android:text="@string/minus"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -150,8 +150,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:paddingLeft="@dimen/app_margin_five"
+                        android:paddingRight="@dimen/app_margin_five"
                         android:text="@string/plus"
                         android:textSize="18sp"
                         font:name="Montserrat-Regular" />
@@ -161,20 +161,20 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <Spinner
                     android:id="@+id/spinnerMealPeriod"
                     style="@style/label_black"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/app_height_large"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray"
                     android:visibility="gone" />
 
@@ -182,24 +182,24 @@
                     android:id="@+id/spinnerSelectTime"
                     style="@style/label_black"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="@dimen/app_height_large" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <Spinner
                     android:id="@+id/spinnerSelectTitle"
                     style="@style/label_black"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="@dimen/app_height_large" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <include
@@ -209,7 +209,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <include
@@ -219,7 +219,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
                 <include
@@ -229,7 +229,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="@dimen/app_margin_ten"
                     android:background="@color/dark_gray" />
 
                 <include
@@ -247,14 +247,14 @@
                     android:hint="@string/special_requests"
                     android:imeOptions="actionDone"
                     android:maxLength="150"
-                    android:padding="5dp"
+                    android:padding="@dimen/app_margin_five"
                     android:singleLine="false"
                     font:name="Montserrat-Regular" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
             </LinearLayout>
@@ -266,7 +266,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="@dimen/app_margin_twenty">
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnSubmit"
@@ -275,8 +275,8 @@
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/btn_ripple_effect"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            android:paddingLeft="@dimen/app_margin_thirty"
+            android:paddingRight="@dimen/app_margin_thirty"
             android:text="@string/submit"
             font:name="Montserrat-Light" />
     </LinearLayout>

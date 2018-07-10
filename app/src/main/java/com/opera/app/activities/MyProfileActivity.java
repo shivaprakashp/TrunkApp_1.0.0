@@ -40,7 +40,6 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.SuccessDialogue;
-import com.opera.app.fragments.LoyaltyPointsFragment;
 import com.opera.app.fragments.ProfileFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.PostChangePassword;
@@ -222,7 +221,7 @@ public class MyProfileActivity extends BaseActivity {
 
         // Add Fragments to adapter one by one
         adapter.addFragment(new ProfileFragment(), getResources().getString(R.string.tab_profile));
-        adapter.addFragment(new LoyaltyPointsFragment(), getResources().getString(R.string.tab_loyalty));
+        //adapter.addFragment(new LoyaltyPointsFragment(), getResources().getString(R.string.tab_loyalty));
         mViewPager.setAdapter(adapter);
         mTabHost.setupWithViewPager(mViewPager);
 

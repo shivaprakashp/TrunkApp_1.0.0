@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -98,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -176,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="@dimen/app_margin_twenty">
 
                     <com.opera.app.customwidget.TextViewWithFont
                         style="@style/label_black_medium"
@@ -199,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/button_bg"
                             android:gravity="center"
-                            android:padding="5dp"
+                            android:padding="@dimen/app_margin_five"
                             android:text="@string/english"
                             font:name="Montserrat-Light" />
 
@@ -210,7 +210,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/dark_gray"
                             android:gravity="center"
-                            android:padding="5dp"
+                            android:padding="@dimen/app_margin_five"
                             android:text="@string/arabic_in_english"
                             font:name="Montserrat-Light" />
 
@@ -227,13 +227,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="@dimen/app_margin_ten">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
+                        android:layout_margin="@dimen/app_margin_ten"
                         android:src="@drawable/ic_logout" />
 
                     <com.opera.app.customwidget.TextViewWithFont

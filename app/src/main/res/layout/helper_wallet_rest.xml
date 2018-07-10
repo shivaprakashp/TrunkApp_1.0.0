@@ -10,7 +10,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/app_margin_ten"
         android:orientation="vertical">
 
         <com.opera.app.customwidget.TicketView
@@ -40,9 +40,9 @@
             android:id="@+id/linearOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/app_margin_ten"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/app_margin_ten"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
             app:layout_constraintEnd_toEndOf="@+id/ticketView"
             app:layout_constraintStart_toStartOf="@+id/ticketView">
@@ -50,10 +50,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/app_margin_ten"
+                android:layout_marginTop="@dimen/app_margin_ten"
                 android:orientation="vertical"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 app:layout_constraintBottom_toTopOf="@+id/ticketView"
                 app:layout_constraintEnd_toEndOf="@+id/ticketView"
                 app:layout_constraintStart_toStartOf="@+id/ticketView">
@@ -69,7 +69,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/app_margin_five"
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -188,7 +188,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/app_margin_two"
             android:gravity="bottom"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearOne"
@@ -206,7 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="2dp"
+                android:padding="@dimen/app_margin_two"
                 tools:text="123456789" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

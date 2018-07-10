@@ -29,8 +29,8 @@
 
                 <ProgressBar
                     android:id="@+id/progressImageLoader"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/app_width_small"
+                    android:layout_height="@dimen/app_width_small"
                     android:layout_centerInParent="true"
                     android:visibility="visible" />
             </RelativeLayout>
@@ -51,7 +51,7 @@
                     <!--<View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/app_margin_ten"
                         android:background="@color/colorTransparentBurgendy" />-->
 
                     <LinearLayout
@@ -61,8 +61,8 @@
                         android:gravity="center"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        android:paddingLeft="@dimen/app_margin_ten"
+                        android:paddingRight="@dimen/app_margin_ten"
                         android:paddingTop="15dp">
 
                         <LinearLayout
@@ -175,11 +175,11 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recyclerGenres"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="@dimen/app_width_small"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="end"
-                            android:layout_margin="5dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_margin="@dimen/app_margin_five"
+                            android:layout_marginRight="@dimen/app_margin_ten"
                             android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 
                         <LinearLayout
@@ -193,7 +193,7 @@
                                 android:id="@+id/nestedScrollTxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="120dp"
-                                android:layout_margin="10dp">
+                                android:layout_margin="@dimen/app_margin_ten">
 
                                 <TextView
                                     android:id="@+id/expandableTextViewInfo"
@@ -206,7 +206,7 @@
                             <LinearLayout
                                 android:id="@+id/linearBottomNestedInside"
                                 android:layout_width="match_parent"
-                                android:layout_height="60dp"
+                                android:layout_height="@dimen/app_height_vlarge"
                                 android:orientation="vertical"
                                 android:visibility="gone"></LinearLayout>
 
@@ -216,7 +216,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/app_margin_ten"
                             android:gravity="center"
                             android:orientation="horizontal"
                             android:visibility="gone">
@@ -226,7 +226,7 @@
                                 style="@style/label_white_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginRight="@dimen/app_margin_ten"
                                 android:text="@string/read_more"
                                 android:textAllCaps="false" />
 
@@ -245,8 +245,8 @@
                             android:layout_below="@+id/linearNested"
                             android:layout_centerHorizontal="true"
                             android:background="@drawable/btn_ripple_effect"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
+                            android:paddingLeft="@dimen/app_margin_twenty"
+                            android:paddingRight="@dimen/app_margin_twenty"
                             android:text="@string/buy_tickets"
                             android:textAllCaps="false"
                             font:name="Montserrat-Light" />
@@ -276,7 +276,7 @@
                         style="@style/label_light_gray_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="@dimen/app_margin_ten"
                         android:singleLine="true"
                         android:text="@string/you_also_like"
                         font:name="Montserrat-Light" />
@@ -285,7 +285,7 @@
                         android:id="@+id/viewpagerFavGenres"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_marginBottom="@dimen/app_margin_ten" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -311,8 +311,8 @@
                 android:id="@+id/imgBack"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/app_margin_ten"
+                android:layout_marginRight="@dimen/app_margin_ten"
                 android:rotationY="@integer/locale_mirror_flip"
                 android:src="@drawable/ic_back_arrrow" />
 
@@ -321,7 +321,7 @@
                 style="@style/label_light_gray_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -383,7 +383,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
+        android:paddingBottom="@dimen/app_margin_twenty"
         android:visibility="gone">
 
         <com.opera.app.customwidget.ButtonWithFont
@@ -394,8 +394,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/btn_ripple_effect"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/app_margin_twenty"
+            android:paddingRight="@dimen/app_margin_twenty"
             android:text="@string/buy_tickets"
             android:textAllCaps="false"
             android:visibility="gone"

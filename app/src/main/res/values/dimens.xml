@@ -19,5 +19,26 @@
     <dimen name="cover_width">120dp</dimen>
     <dimen name="cover_height">150dp</dimen>
 
+    <dimen name="app_height_vlarge">60dp</dimen>
+    <dimen name="app_height_large">40dp</dimen>
+    <dimen name="app_height_medium">35dp</dimen>
+    <dimen name="app_height_small">30dp</dimen>
+    <dimen name="app_height_ex_v_small">2dp</dimen>
+
+    <dimen name="app_width_large">40dp</dimen>
+    <dimen name="app_width_medium">35dp</dimen>
+    <dimen name="app_width_small">30dp</dimen>
+    <dimen name="app_width_ex_v_small">2dp</dimen>
+
+    <!-- Margin -->
+    <dimen name="app_margin_two">2dp</dimen>
+    <dimen name="app_margin_five">5dp</dimen>
+    <dimen name="app_margin_ten">10dp</dimen>
+    <dimen name="app_margin_twenty">20dp</dimen>
+    <dimen name="app_margin_twenty_five">25dp</dimen>
+    <dimen name="app_margin_thirty">30dp</dimen>
+    <dimen name="app_margin_fourty">40dp</dimen>
+    <dimen name="app_margin_fifty">50dp</dimen>
+    <dimen name="app_margin_sixty">60dp</dimen>
 
 </resources>

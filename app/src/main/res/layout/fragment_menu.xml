@@ -16,7 +16,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -58,10 +58,10 @@
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/app_margin_five"
                 android:background="@drawable/transparent_btn_ripple"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:text="@string/menu_account"
                 font:name="Montserrat-Regular"
                 android:id="@+id/txtCreateAccount"/>
@@ -95,7 +95,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -113,7 +113,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -133,7 +133,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="@dimen/app_height_ex_v_small"
             android:background="@color/colorLightBurgendy" />
 
         <LinearLayout
@@ -147,7 +147,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="0dp">
+                android:padding="0dp"
+                android:visibility="gone">
 
                 <include
                     android:id="@+id/menu_notification"
@@ -155,7 +156,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -173,7 +174,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -189,17 +190,11 @@
                     android:id="@+id/menu_gift_card"
                     layout="@layout/include_menu_items" />
             </LinearLayout>
-        </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="@dimen/app_width_ex_v_small"
+            android:layout_height="match_parent"
             android:background="@color/colorLightBurgendy" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/menu_feedback"
@@ -207,16 +202,62 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/app_margin_ten"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="@dimen/app_margin_five">
+
+                <ImageView
+                    android:id="@+id/menu_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/app_height_large"
+                    android:rotationY="@integer/locale_mirror_flip"
+                    android:layout_marginTop="@dimen/app_margin_five"
+                    android:src="@drawable/ic_feedback"/>
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/menu_icon_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/menu_feedback"
+                    android:lines="2"
+                    font:name="Montserrat-Light"
+                    style="@style/label_white_small"/>
+
+
+                <!--<include
+                    android:id="@+id/menu_feedback"
+                    layout="@layout/include_menu_items" />-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_height_ex_v_small"
+            android:background="@color/colorLightBurgendy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--<LinearLayout
+                android:id="@+id/menu_feedback"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/app_margin_ten"
+                android:orientation="vertical"
+                android:padding="@dimen/app_margin_five">
 
                     <ImageView
                         android:id="@+id/menu_icon"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:rotationY="@integer/locale_mirror_flip"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/app_margin_five"
                         android:src="@drawable/ic_feedback"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -230,13 +271,13 @@
                         style="@style/label_white_small"/>
 
 
-                <!--<include
+                &lt;!&ndash;<include
                     android:id="@+id/menu_feedback"
-                    layout="@layout/include_menu_items" />-->
-            </LinearLayout>
+                    layout="@layout/include_menu_items" />&ndash;&gt;
+            </LinearLayout>-->
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -254,7 +295,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
@@ -271,12 +312,28 @@
                     layout="@layout/include_menu_items" />
             </LinearLayout>
 
+            <View
+                android:layout_width="@dimen/app_width_ex_v_small"
+                android:layout_height="match_parent"
+                android:background="@color/colorLightBurgendy" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="@dimen/app_height_ex_v_small"
             android:background="@color/colorLightBurgendy" />
 
         <LinearLayout
@@ -299,7 +356,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="2dp"
+                android:layout_width="@dimen/app_width_ex_v_small"
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 

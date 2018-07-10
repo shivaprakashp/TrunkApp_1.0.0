@@ -30,7 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -39,7 +39,7 @@
                 style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
                 android:background="@drawable/transparent_btn_ripple"
                 android:text="@string/create_an_account"
                 android:textAllCaps="false"
@@ -50,7 +50,7 @@
                 style="@style/label_white_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/already_have_an_account"
                 android:textAllCaps="false"
@@ -61,8 +61,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:paddingTop="10dp">
+        android:layout_margin="@dimen/app_margin_twenty"
+        android:paddingTop="@dimen/app_margin_ten">
 
         <include
             layout="@layout/include_guest"/>

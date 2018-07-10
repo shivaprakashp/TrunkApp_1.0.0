@@ -20,13 +20,13 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/app_margin_five"
                 android:background="@drawable/grey_corner">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/app_margin_ten"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -34,7 +34,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:visibility="gone"
-                        android:padding="20dp">
+                        android:padding="@dimen/app_margin_twenty">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="@dimen/app_margin_twenty"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="20dp">
+                        android:padding="@dimen/app_margin_twenty">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="@dimen/app_margin_twenty"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="20dp">
+                        android:padding="@dimen/app_margin_twenty">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layoutDirection="ltr"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="@dimen/app_margin_twenty"
                             android:gravity="left|center"
                             font:name="Montserrat-Regular" />
 
@@ -117,16 +117,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnEditProfile"
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
+                android:paddingLeft="@dimen/app_margin_ten"
+                android:paddingRight="@dimen/app_margin_ten"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/profile_edit_profile"
                 android:textAllCaps="true"
@@ -137,9 +137,9 @@
                 style="@style/label_white"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_height"
-                android:layout_margin="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
+                android:paddingLeft="@dimen/app_margin_ten"
+                android:paddingRight="@dimen/app_margin_ten"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/profile_change_password"
                 android:textAllCaps="true"

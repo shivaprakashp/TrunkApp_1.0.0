@@ -38,7 +38,7 @@
             android:background="@color/colorDarkBurgendy"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     style="@style/label_light_gray_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/app_margin_five"
                     android:ellipsize="end"
                     android:maxLines="2"
                     tools:text="You searched for classical,found 4 results" />
@@ -66,13 +66,13 @@
                         android:id="@+id/edtSearchedData"
                         style="@style/label_black"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.7"
                         android:imeOptions="actionDone"
                         android:background="@null"
                         android:ellipsize="end"
                         android:hint="@string/enter_keywords"
-                        android:padding="5dp"
+                        android:padding="@dimen/app_margin_five"
                         android:singleLine="true"
                         font:name="Montserrat-Regular">
 

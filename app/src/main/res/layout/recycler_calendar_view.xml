@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtCalendarTime"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtCalendarEventName"
@@ -54,16 +54,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/app_margin_five"
                 android:orientation="horizontal">
 
                 <com.opera.app.customwidget.ButtonWithFont
                     android:id="@+id/btnCalendarDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/app_margin_five"
                     android:background="@drawable/burgandy_corner"
-                    android:padding="5dp"
+                    android:padding="@dimen/app_margin_five"
                     android:text="@string/view_details"
                     style="@style/label_burgendy"
                     font:name="Montserrat-Light" />
@@ -72,9 +72,9 @@
                     style="@style/label_white"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/app_margin_five"
                     android:background="@drawable/btn_ripple_effect"
-                    android:padding="5dp"
+                    android:padding="@dimen/app_margin_five"
                     android:text="@string/buy_tickets"
                     font:name="Montserrat-Light" />
             </LinearLayout>

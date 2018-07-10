@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="2dp">
+        android:layout_margin="@dimen/app_margin_two">
 
         <include
             layout="@layout/layout_calendar_month"/>
@@ -41,7 +41,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="2dp"
+        android:layout_margin="@dimen/app_margin_two"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 

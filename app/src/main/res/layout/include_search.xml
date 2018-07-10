@@ -10,7 +10,7 @@
         android:layout_height="@dimen/button_height_small"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
-        android:padding="2dp">
+        android:padding="@dimen/app_margin_two">
 
         <com.opera.app.customwidget.EditTextWithFont
             android:id="@+id/edtSearch"

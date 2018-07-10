@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="@dimen/app_margin_ten">
 
             <com.opera.app.customwidget.CircleImageView
                 android:id="@+id/img_profile_chooser"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="@dimen/app_margin_five"
                 android:elevation="5dp"
                 android:onClick="imageClick"
                 android:src="@drawable/ic_user_blank" />
