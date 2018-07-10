@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:orientation="horizontal"
-            app:scallopRadius="10dp"
+            app:scallopRadius="@dimen/app_margin_ten"
             app:scallopPositionPercent="75"
             app:showBorder="true"
             app:borderWidth="1dp"

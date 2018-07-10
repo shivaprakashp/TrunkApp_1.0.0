@@ -24,7 +24,7 @@
             app:dividerType="dash"
             app:orientation="horizontal"
             app:scallopPositionPercent="73"
-            app:scallopRadius="10dp"
+            app:scallopRadius="@dimen/app_margin_ten"
             app:showBorder="true"
             app:showDivider="true"
             app:ticketElevation="1dp" />
@@ -81,7 +81,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/app_width_zero"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal">
@@ -103,7 +103,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/app_width_zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
@@ -132,7 +132,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/app_width_zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
@@ -154,7 +154,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/app_width_zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">

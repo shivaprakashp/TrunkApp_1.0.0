@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/app_height_zero"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
@@ -82,12 +82,11 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_profile"
@@ -100,12 +99,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_opera_tour"
@@ -118,12 +116,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_wallet"
@@ -142,12 +139,12 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="0dp"
+
                 android:visibility="gone">
 
                 <include
@@ -161,12 +158,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_promotion"
@@ -179,12 +175,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_gift_card"
@@ -198,7 +193,7 @@
 
             <LinearLayout
                 android:id="@+id/menu_feedback"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -244,7 +239,7 @@
 
             <!--<LinearLayout
                 android:id="@+id/menu_feedback"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -282,12 +277,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_contact"
@@ -300,12 +294,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_setting"
@@ -318,12 +311,11 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
 
             </LinearLayout>
@@ -343,12 +335,11 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp">
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/menu_save_card"
@@ -361,21 +352,19 @@
                 android:background="@color/colorLightBurgendy" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp"></LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="0dp"></LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
 

@@ -15,7 +15,7 @@
         <com.opera.app.customwidget.EditTextWithFont
             android:id="@+id/edtSearch"
             style="@style/label_black"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"

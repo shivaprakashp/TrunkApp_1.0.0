@@ -23,7 +23,7 @@
             app:dividerType="dash"
             app:orientation="horizontal"
             app:scallopPositionPercent="75"
-            app:scallopRadius="10dp"
+            app:scallopRadius="@dimen/app_margin_ten"
             app:showBorder="true"
             app:showDivider="true"
             app:ticketElevation="1dp" />

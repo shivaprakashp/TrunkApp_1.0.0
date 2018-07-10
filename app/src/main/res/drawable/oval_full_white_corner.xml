@@ -6,7 +6,7 @@
         android:endColor="@color/colorWhite"
         android:angle="360" />
 
-    <corners android:radius="10dp" />
+    <corners android:radius="@dimen/app_margin_ten" />
 
     <stroke android:width="0.5px"
         android:color="@color/colorWhite" />

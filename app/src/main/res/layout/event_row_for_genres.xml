@@ -29,7 +29,7 @@
                 android:id="@+id/txtGenresName"
                 style="@style/label_white_vlarge"
                 font:name="Montserrat-Regular"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_weight="0.6"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -41,7 +41,7 @@
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/mBtnFindShows"
                 style="@style/label_white_small"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_weight="0.3"
                 android:layout_height="@dimen/button_height_small"
                 android:background="@drawable/btn_ripple_effect"

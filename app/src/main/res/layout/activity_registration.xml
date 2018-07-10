@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/app_height_zero"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -48,7 +48,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <include
@@ -57,7 +57,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
 
@@ -67,7 +67,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <include
@@ -76,7 +76,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <include
@@ -85,7 +85,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
 
@@ -99,7 +99,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <include
@@ -108,7 +108,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <!--<include
@@ -121,7 +121,7 @@
                         <com.opera.app.customwidget.CustomSpinner
                             android:id="@+id/spinnerCountryCode"
                             style="@style/label_black"
-                            android:layout_width="0dp"
+                            android:layout_width="@dimen/app_width_zero"
                             android:layout_height="@dimen/app_height_large"
                             android:layout_weight="1"
                             font:name="Montserrat-Regular"
@@ -129,7 +129,7 @@
 
                         <com.opera.app.customwidget.EditTextWithFont
                             android:id="@+id/edtMobile"
-                            android:layout_width="0dp"
+                            android:layout_width="@dimen/app_width_zero"
                             android:layout_height="@dimen/app_height_large"
                             android:background="@null"
                             android:hint="@string/username"
@@ -144,7 +144,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <include
@@ -153,7 +153,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <com.opera.app.customwidget.CustomSpinner
@@ -165,7 +165,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/app_height_ex_vv_small"
                         android:background="@color/dark_gray" />
 
                     <com.opera.app.customwidget.CustomSpinner

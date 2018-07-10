@@ -50,7 +50,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/app_height_zero"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -76,7 +76,7 @@
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/editDOB"
                         style="@style/label_black"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/app_width_zero"
                         android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.9"
                         android:background="@null"
@@ -86,7 +86,7 @@
 
                     <ImageView
                         android:id="@+id/ivDOB"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/app_width_zero"
                         android:layout_height="25dp"
                         android:layout_weight="0.1"
                         android:src="@drawable/ic_calendar" />
@@ -95,7 +95,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -110,7 +110,7 @@
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edtNoOfGuests"
                         style="@style/label_black"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/app_width_zero"
                         android:layout_height="@dimen/app_height_large"
                         android:layout_weight="0.7"
                         android:background="@null"
@@ -136,7 +136,7 @@
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtNumberOfGuests"
                         style="@style/label_black_medium"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/app_width_zero"
                         android:layout_height="match_parent"
                         android:layout_weight="0.1"
                         android:gravity="center"
@@ -160,7 +160,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -173,7 +173,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray"
                     android:visibility="gone" />
@@ -186,7 +186,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -198,7 +198,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -208,7 +208,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -218,7 +218,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
@@ -228,7 +228,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_ten"
                     android:background="@color/dark_gray" />
 
@@ -253,7 +253,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/app_height_ex_vv_small"
                     android:layout_marginBottom="@dimen/app_margin_five"
                     android:background="@color/dark_gray" />
 
