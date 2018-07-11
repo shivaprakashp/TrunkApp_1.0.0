@@ -26,6 +26,7 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
@@ -110,6 +111,7 @@ public class SettingsActivity extends BaseActivity {
         initToolbar();
         initView();
         SwitchEvents();
+
     }
 
     private void SwitchEvents() {

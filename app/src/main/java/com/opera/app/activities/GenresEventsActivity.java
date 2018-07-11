@@ -20,6 +20,7 @@ import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.events.eventlisiting.GenreList;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,9 @@ public class GenresEventsActivity extends BaseActivity {
             Intent in = getIntent();
             SelectedGenre = in.getStringExtra("SelectedGenre");
             ApplyGenreSearch(SelectedGenre);
+
+            //Calling Google analytics
+            OperaUtils.SendGoogleAnalyticsEvent("Genre - "+SelectedGenre);
         } catch (Exception e) {
             e.printStackTrace();
         }

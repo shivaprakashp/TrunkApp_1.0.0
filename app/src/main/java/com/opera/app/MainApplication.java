@@ -38,6 +38,7 @@ public class MainApplication extends Application {
         super.onCreate();
 
         context = getApplicationContext();
+        mInstance = this;
 
         setFont();
         initDagger();
@@ -125,8 +126,6 @@ public class MainApplication extends Application {
 
         // Set screen name.
         t.setScreenName(screenName);
-        t.setClientId("2");
-        t.setAppName("Analytics testing");
 
         // Send a screen view.
         t.send(new HitBuilders.ScreenViewBuilder().build());

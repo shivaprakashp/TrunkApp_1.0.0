@@ -349,6 +349,8 @@ public class EventDetailsActivity extends BaseActivity {
             } else {
 
             }*/
+                //Calling Google analytics
+                OperaUtils.SendGoogleAnalyticsEvent("Event - " + mEventListingData.get(0).getName());
 
                 if (mEventsWithSameGenres.size() > 0) {
                     adapterFavGenres.RefreshList(mEventsWithSameGenres);
@@ -402,7 +404,7 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.btnBuyTickets2,R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
+    @OnClick({R.id.imgBack, R.id.btnBuyTickets, R.id.btnBuyTickets2, R.id.imgFavourite, R.id.linearPlay, R.id.linearShare, R.id.img_plan_visit, R.id.img_wallet, R.id.img_profile, R.id.relativeOpenAppleMusic})
     public void onClick(View v) {
         switch (v.getId()) {
 

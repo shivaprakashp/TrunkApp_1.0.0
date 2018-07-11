@@ -162,6 +162,9 @@ public class ReserveATableActivity extends BaseActivity {
         Onclicks();
         initSpinnervalues();
         initData();
+
+        //Calling Google analytics
+        OperaUtils.SendGoogleAnalyticsEvent(getResources().getString(R.string.analytics_sean_reserve_table));
     }
 
     private void initSessionData() {

@@ -28,6 +28,7 @@ import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -45,13 +46,13 @@ import retrofit2.Retrofit;
 
 public class RestaurantCompleteDetails extends BaseActivity {
 
-//    private RestaurantsData mRestaurantListingData;
+    //    private RestaurantsData mRestaurantListingData;
     private Activity mActivity;
     private SessionManager manager;
     private CustomToast customToast;
     private Intent intent;
     private SeanRestOpeation restOpeation;
-    private String from="",RestaurantIdSiteCore="",RestaurantId="",mRestaurantEmail="",mRestaurantPhone="", mRestaurantLatitude= "", mRestaurantLongitude= "", mRestaurantName= "";
+    private String from = "", RestaurantIdSiteCore = "", RestaurantId = "", mRestaurantEmail = "", mRestaurantPhone = "", mRestaurantLatitude = "", mRestaurantLongitude = "", mRestaurantName = "";
 
     private Api api;
     @Inject
@@ -111,6 +112,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         initToolbar();
         initView();
         GetSpecificRestaurantDetails();
+
     }
 
     private void initToolbar() {
@@ -123,10 +125,10 @@ public class RestaurantCompleteDetails extends BaseActivity {
         restOpeation = new SeanRestOpeation(mActivity);
 
 //        mRestaurantListingData = (RestaurantsData) getIntent().getSerializableExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING);
-        Intent in=getIntent();
-        RestaurantIdSiteCore=in.getStringExtra("RestaurantIdSiteCore");
-        RestaurantId=in.getStringExtra("RestaurantId");
-        from=in.getStringExtra("from");
+        Intent in = getIntent();
+        RestaurantIdSiteCore = in.getStringExtra("RestaurantIdSiteCore");
+        RestaurantId = in.getStringExtra("RestaurantId");
+        from = in.getStringExtra("from");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -164,7 +166,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         MainController controller = new MainController(mActivity);
 
 //        if(from!=null && !from.equalsIgnoreCase("Restaurant")){
-            controller.getSpecificRestaurantBySiteCoreId(taskComplete, api, RestaurantIdSiteCore);
+        controller.getSpecificRestaurantBySiteCoreId(taskComplete, api, RestaurantIdSiteCore);
         /*}else{
             controller.getSpecificRestaurant(taskComplete, api, RestaurantId);
         }*/
@@ -175,7 +177,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
-            if (mRestaurantPojo!=null && mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+            if (mRestaurantPojo != null && mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
                 restOpeation.open();
                 restOpeation.removeSeanConnolly(RestaurantId);
                 restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
@@ -244,11 +246,11 @@ public class RestaurantCompleteDetails extends BaseActivity {
     private void setRestaurant(RestaurantsData data) {
         //mLinearReadMore.setVisibility(View.VISIBLE);
         try {
-            if(data.getPhoneNumber()!=null){
+            if (data.getPhoneNumber() != null) {
                 mTxtRestaurantNumber.setText(Html.fromHtml("<u>" + data.getPhoneNumber() + "</u>"));
             }
 
-            if(data.getEmail()!=null){
+            if (data.getEmail() != null) {
                 mTxtRestaurantEmail.setText(Html.fromHtml("<u>" + data.getEmail() + "</u>"));
             }
 
@@ -259,11 +261,11 @@ public class RestaurantCompleteDetails extends BaseActivity {
             if (data.getRestPlace() != null) {
                 mTxtRestaurantOpeningHours.setText(data.getOpenHour());
             }
-            mRestaurantName=data.getRestName();
-            mRestaurantEmail=data.getEmail();
-            mRestaurantPhone=data.getPhoneNumber();
-            mRestaurantLatitude=data.getRestLatitude();
-            mRestaurantLongitude=data.getRestLongitude();
+            mRestaurantName = data.getRestName();
+            mRestaurantEmail = data.getEmail();
+            mRestaurantPhone = data.getPhoneNumber();
+            mRestaurantLatitude = data.getRestLatitude();
+            mRestaurantLongitude = data.getRestLongitude();
 
             mTxtRestaurantName.setText(data.getRestName());
             mExpandableTextView.setText(data.getRestDetails());
@@ -279,6 +281,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
                             mProgressImageLoader.setVisibility(View.GONE);
                         }
                     });
+
+            //Calling Google analytics
+            OperaUtils.SendGoogleAnalyticsEvent("Dining - Other Restaurants - " + mRestaurantName);
         } catch (Exception e) {
             e.printStackTrace();
         }
