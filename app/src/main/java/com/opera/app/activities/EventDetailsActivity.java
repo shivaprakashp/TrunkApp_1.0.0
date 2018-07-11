@@ -445,7 +445,7 @@ public class EventDetailsActivity extends BaseActivity {
                 break;
 
             case R.id.linearShare:
-                OperaUtils.ShareEventDetails(mActivity, mEventURL);
+                OperaUtils.shareEventDetails(mActivity, mEventURL);
                 break;
 
             case R.id.img_plan_visit:

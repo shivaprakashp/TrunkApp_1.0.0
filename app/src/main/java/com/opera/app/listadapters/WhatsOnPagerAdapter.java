@@ -23,7 +23,6 @@ import android.widget.TextView;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.BuyTicketWebView;
-import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
@@ -169,7 +168,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 if (!eventObject.isInfoOpen()) {
-                    OperaUtils.ShareEventDetails(mActivity, eventObject.getSharedContentText());
+                    OperaUtils.shareEventDetails(mActivity, eventObject.getSharedContentText());
                 }
             }
         });

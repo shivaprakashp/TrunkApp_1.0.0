@@ -176,11 +176,11 @@
                             android:id="@+id/recyclerGenres"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/app_width_small"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_gravity="end"
                             android:layout_margin="@dimen/app_margin_five"
-                            android:layout_marginRight="@dimen/app_margin_ten"
-                            android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                            android:layout_marginEnd="@dimen/app_margin_ten"
+                            android:orientation="horizontal"/>
 
                         <LinearLayout
                             android:id="@+id/linearNested"
@@ -208,7 +208,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/app_height_vlarge"
                                 android:orientation="vertical"
-                                android:visibility="gone"></LinearLayout>
+                                android:visibility="gone"/>
 
                         </LinearLayout>
                         <!--<LinearLayout

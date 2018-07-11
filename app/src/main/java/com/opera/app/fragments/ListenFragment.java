@@ -7,12 +7,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.URLUtil;
 import android.webkit.WebResourceError;
@@ -20,12 +17,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.gson.Gson;
 import com.opera.app.R;
-import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.constants.AppConstants;
-import com.opera.app.dialogues.SuccessDialogue;
-import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.utils.LanguageManager;
 
 public class ListenFragment extends BaseFragment {
@@ -49,7 +42,7 @@ public class ListenFragment extends BaseFragment {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_listen, container, false);
 
-        mProgressDialog=new ProgressDialog(mActivity);
+        mProgressDialog = new ProgressDialog(mActivity);
         myWebView = (WebView) view.findViewById(R.id.webAppleMusicListen);
         LoadWebView();
 

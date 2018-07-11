@@ -177,6 +177,6 @@ public class SearchEventActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        OperaUtils.CloseSoftKeyboard(mActivity);
+        OperaUtils.closeSoftKeyboard(mActivity);
     }
 }

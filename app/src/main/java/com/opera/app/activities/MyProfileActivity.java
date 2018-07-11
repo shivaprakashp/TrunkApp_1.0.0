@@ -275,7 +275,7 @@ public class MyProfileActivity extends BaseActivity {
     private View.OnClickListener linearGallery = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+            OperaUtils.createInstance().selectGalleryImage(mActivity, PICK_IMAGE);
         }
     };
 
@@ -283,14 +283,14 @@ public class MyProfileActivity extends BaseActivity {
     private View.OnClickListener linearCamera = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+            if (OperaUtils.createInstance().checkMarshmallowOrNot()) {
                 if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
                 } else {
-                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                    OperaUtils.createInstance().selectCameraImage(mActivity, CAMERA_REQUEST);
                 }
             } else {
-                OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                OperaUtils.createInstance().selectCameraImage(mActivity, CAMERA_REQUEST);
             }
         }
     };
