@@ -988,4 +988,10 @@
     <!--Event Details-->
     <string name="eventDetailTicket">Tickets From</string>
     <string name="no_buy_link_available">Data not available</string>
+
+    <!--Google analytics events-->
+    <string name="analytics_search_event">Events Search</string>
+    <string name="analytics_sean_reserve_table">Dining - Sean Connolly - Reserve Table</string>
+    <string name="dubai_opera_tour">Dubai Opera Tour</string>
+    <string name="listen1">Listen</string>
 </resources>

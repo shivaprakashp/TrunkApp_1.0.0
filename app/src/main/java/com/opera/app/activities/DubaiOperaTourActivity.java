@@ -25,6 +25,7 @@ import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -79,6 +80,9 @@ public class DubaiOperaTourActivity extends BaseActivity {
 
         initToolbar();
         initView();
+
+        //Calling Google analytics
+        OperaUtils.SendGoogleAnalyticsEvent(getResources().getString(R.string.dubai_opera_tour));
     }
 
     private void initToolbar() {

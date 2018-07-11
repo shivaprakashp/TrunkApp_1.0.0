@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.squareup.picasso.Target;
 
@@ -266,5 +267,9 @@ public class OperaUtils {
     public static int dpToPx(float dp, Resources resources) {
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
         return (int) px;
+    }
+
+    public static void SendGoogleAnalyticsEvent(String mEventName){
+        MainApplication.getInstance().trackScreenView(mEventName);
     }
 }

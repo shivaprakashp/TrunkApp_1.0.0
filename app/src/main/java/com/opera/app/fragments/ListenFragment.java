@@ -20,6 +20,7 @@ import android.webkit.WebViewClient;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 public class ListenFragment extends BaseFragment {
 
@@ -46,6 +47,8 @@ public class ListenFragment extends BaseFragment {
         myWebView = (WebView) view.findViewById(R.id.webAppleMusicListen);
         LoadWebView();
 
+        //Calling Google analytics
+        OperaUtils.SendGoogleAnalyticsEvent(getResources().getString(R.string.listen1));
         return view;
     }
 
