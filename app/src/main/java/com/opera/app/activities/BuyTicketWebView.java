@@ -73,6 +73,13 @@ public class BuyTicketWebView extends BaseActivity {
 
 //        Log.e("Decrypt ", decodeURIComponent("\"%3a\"%2bDXYcLwZY2cPbM0fBWjWcwBpd7y15%2bHDOsIEBvsNAePO21inVm2kOo8PDZdoOAMbgxbRp1orOMFk97v1QEsBKA%3d%3d\"%7d"));
 
+
+
+
+
+
+
+
     }
 
     private void LoadWebView() {
@@ -95,7 +102,6 @@ public class BuyTicketWebView extends BaseActivity {
 
         myWebView.setWebViewClient(new MyWebViewClient());
         myWebView.loadUrl(URL);
-        myWebView.addJavascriptInterface(this, "Android");
         cookieManager.setAcceptThirdPartyCookies(myWebView, true);
         myWebView.requestFocus();
 

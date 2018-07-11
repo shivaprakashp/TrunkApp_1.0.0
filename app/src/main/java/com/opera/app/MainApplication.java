@@ -4,10 +4,14 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.opera.app.dagger.ApiComponent;
 import com.opera.app.dagger.ApiModule;
 import com.opera.app.dagger.AppModule;
 import com.opera.app.dagger.DaggerApiComponent;
+import com.opera.app.googleanalytics.AnalyticsTrackers;
 import com.opera.app.utils.OperaUtils;
 
 import org.infobip.mobile.messaging.MobileMessaging;
@@ -27,6 +31,7 @@ public class MainApplication extends Application {
     private ApiComponent apiComponent;
     //creation of instance for MobileMessaging
     private MobileMessaging mobileMessaging = null;
+    private static MainApplication mInstance;
 
     @Override
     public void onCreate(){
@@ -38,6 +43,17 @@ public class MainApplication extends Application {
         initDagger();
         initInfoBip();
 
+        AnalyticsTrackers.initialize(this);
+        AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
+    }
+
+    public static synchronized MainApplication getInstance() {
+        return mInstance;
+    }
+
+    public synchronized Tracker getGoogleAnalyticsTracker() {
+        AnalyticsTrackers analyticsTrackers = AnalyticsTrackers.getInstance();
+        return analyticsTrackers.get(AnalyticsTrackers.Target.APP);
     }
 
     private void initInfoBip(){
@@ -95,5 +111,40 @@ public class MainApplication extends Application {
 
     public ApiComponent getNetComponent() {
         return apiComponent;
+    }
+
+
+
+    /***
+     * Tracking screen view
+     *
+     * @param screenName screen name to be displayed on GA dashboard
+     */
+    public void trackScreenView(String screenName) {
+        Tracker t = getGoogleAnalyticsTracker();
+
+        // Set screen name.
+        t.setScreenName(screenName);
+        t.setClientId("2");
+        t.setAppName("Analytics testing");
+
+        // Send a screen view.
+        t.send(new HitBuilders.ScreenViewBuilder().build());
+
+        GoogleAnalytics.getInstance(this).dispatchLocalHits();
+    }
+
+    /***
+     * Tracking event
+     *
+     * @param category event category
+     * @param action   action of the event
+     * @param label    label
+     */
+    public void trackEvent(String category, String action, String label) {
+        Tracker t = getGoogleAnalyticsTracker();
+
+        // Build and send an Event.
+        t.send(new HitBuilders.EventBuilder().setCategory(category).setAction(action).setLabel(label).build());
     }
 }
