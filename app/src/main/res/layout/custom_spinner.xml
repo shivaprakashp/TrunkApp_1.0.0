@@ -8,4 +8,4 @@
     android:layout_height="wrap_content"
     android:maxLines="1"
     font:name="Montserrat-Regular"
-    android:padding="5dp"/>
+    android:padding="@dimen/app_margin_five"/>

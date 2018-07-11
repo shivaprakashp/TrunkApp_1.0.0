@@ -3,7 +3,7 @@
     xmlns:font="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="@dimen/app_margin_five"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,14 +15,14 @@
 
         <com.opera.app.customwidget.TextViewWithFont
             style="@style/label_white_large"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
-            android:padding="10dp"
+            android:padding="@dimen/app_margin_ten"
             android:text="@string/profile_choose_photo" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:background="@color/colorBurgendy"
@@ -31,8 +31,8 @@
 
             <ImageView
                 android:id="@+id/imgClose"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/app_width_vsmall"
+                android:layout_height="@dimen/app_height_vsmall"
                 android:src="@drawable/ic_close" />
         </LinearLayout>
     </LinearLayout>
@@ -43,22 +43,22 @@
         android:baselineAligned="false"
         android:background="@drawable/grey_corner"
         android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:layout_margin="@dimen/app_margin_five">
 
     <LinearLayout
         android:id="@+id/linearGallery"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/app_width_zero"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginTop="@dimen/app_margin_thirty"
+        android:layout_marginBottom="@dimen/app_margin_thirty">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:src="@drawable/ic_gallery_icon" />
 
         <com.opera.app.customwidget.TextViewWithFont
@@ -73,18 +73,18 @@
 
     <LinearLayout
         android:id="@+id/linearCamera"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/app_width_zero"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginTop="@dimen/app_margin_thirty"
+        android:layout_marginBottom="@dimen/app_margin_thirty">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/app_margin_ten"
             android:src="@drawable/ic_camera_icon" />
 
         <com.opera.app.customwidget.TextViewWithFont

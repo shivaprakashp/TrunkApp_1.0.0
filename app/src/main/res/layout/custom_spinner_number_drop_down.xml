@@ -9,4 +9,4 @@
     android:maxLines="1"
     android:layoutDirection="ltr"
     font:name="Montserrat-Regular"
-    android:padding="5dp"/>
+    android:padding="@dimen/app_margin_five"/>

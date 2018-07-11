@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/app_height_zero"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -40,7 +40,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/app_height_zero"
             android:layout_weight="1"
             android:background="@color/colorBurgendy"
             android:fillViewport="true"
@@ -55,15 +55,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_margin="@dimen/app_margin_ten"
+                    android:layout_marginBottom="@dimen/app_margin_ten"
                     android:background="@color/colorWhite"
                     android:orientation="horizontal">
 
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edtSearch"
                         style="@style/label_black_small"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/app_width_zero"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -71,7 +71,7 @@
                         android:ellipsize="end"
                         android:hint="@string/enter_keywords"
                         android:imeOptions="actionDone"
-                        android:padding="10dp"
+                        android:padding="@dimen/app_margin_ten"
                         android:singleLine="true"
                         font:name="Montserrat-Regular">
 
@@ -90,7 +90,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/app_height_zero"
                 android:layout_weight="1"
                 android:background="@color/colorBurgendy"
                 android:orientation="vertical">
@@ -100,9 +100,9 @@
                     style="@style/label_light_gray_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="@dimen/app_margin_ten"
+                    android:layout_marginLeft="@dimen/app_margin_ten"
+                    android:layout_marginRight="@dimen/app_margin_ten"
                     android:text="@string/whats_on"
                     font:name="Montserrat-Light" />
 
@@ -110,7 +110,7 @@
                     android:id="@+id/viewpagerWhatsOnShows"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginBottom="@dimen/app_margin_ten" />
 
                 <!--<android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerList"

@@ -22,7 +22,7 @@
             android:gravity="center"
             style="@style/label_white_large"
             font:name="Montserrat-Regular"
-            android:padding="10dp"/>
+            android:padding="@dimen/app_margin_ten"/>
 
     </LinearLayout>
 
@@ -35,7 +35,7 @@
             android:id="@+id/txtErrorMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/app_margin_twenty"
             style="@style/label_black_medium"
             font:name="Montserrat-Regular"/>
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/errorDialogue"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/app_margin_twenty"
             android:layout_gravity="center"
             android:background="@color/colorBurgendy"
             style="@style/label_white"

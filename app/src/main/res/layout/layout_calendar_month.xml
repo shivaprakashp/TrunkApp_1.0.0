@@ -22,7 +22,7 @@
 
         <com.opera.app.customwidget.TextViewWithFont
             android:id="@+id/txtMonthTitle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_weight="1"
             android:layout_height="match_parent"
             tools:text="MAY"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/app_margin_five"
                 android:gravity="center_vertical"
                 android:id="@+id/linLayDates">
             </LinearLayout>

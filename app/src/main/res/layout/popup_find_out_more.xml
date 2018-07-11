@@ -25,15 +25,15 @@
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tv_forgotPassword"
                 style="@style/label_white_large"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:text="@string/find_out_more" />
 
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:background="@color/colorBurgendy"
@@ -42,8 +42,8 @@
 
                 <ImageView
                     android:id="@+id/imgClose"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/app_width_vsmall"
+                    android:layout_height="@dimen/app_height_vsmall"
                     android:src="@drawable/ic_close" />
             </LinearLayout>
         </LinearLayout>
@@ -51,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="@dimen/app_margin_thirty"
             android:orientation="vertical">
 
             <com.opera.app.customwidget.ButtonWithFont
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/button_height"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/app_margin_twenty"
                 android:background="@drawable/btn_ripple_effect"
                 android:foreground="?attr/selectableItemBackground"
                 android:text="@string/email_btn" />

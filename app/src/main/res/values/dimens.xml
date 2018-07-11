@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Text -->
     <dimen name="textsize_very_low">9dp</dimen>
     <dimen name="textsize_low">10dp</dimen>
     <dimen name="textsize_small">12dp</dimen>
@@ -13,11 +14,44 @@
     <dimen name="textsize_vvlarge">24dp</dimen>
     <dimen name="textsize_ex_v_large">30dp</dimen>
 
+    <!-- Height -->
+    <dimen name="app_height_vlarge">60dp</dimen>
+    <dimen name="app_height_large">40dp</dimen>
+    <dimen name="app_height_medium">35dp</dimen>
+    <dimen name="app_height_small">30dp</dimen>
+    <dimen name="app_height_vsmall">20dp</dimen>
+    <dimen name="app_height_vvsmall">10dp</dimen>
+    <dimen name="app_height_ex_v_small">2dp</dimen>
+    <dimen name="app_height_ex_vv_small">1dp</dimen>
+    <dimen name="app_height_zero">0dp</dimen>
+
     <dimen name="button_height">40dp</dimen>
     <dimen name="button_height_medium">35dp</dimen>
     <dimen name="button_height_small">30dp</dimen>
-    <dimen name="cover_width">120dp</dimen>
     <dimen name="cover_height">150dp</dimen>
 
+    <!-- Width -->
+    <dimen name="app_width_large">40dp</dimen>
+    <dimen name="app_width_medium">35dp</dimen>
+    <dimen name="app_width_small">30dp</dimen>
+    <dimen name="app_width_vsmall">20dp</dimen>
+    <dimen name="app_width_vvsmall">10dp</dimen>
+    <dimen name="app_width_ex_v_small">2dp</dimen>
+    <dimen name="app_width_ex_vv_small">1dp</dimen>
+    <dimen name="app_width_zero">0dp</dimen>
+
+    <dimen name="cover_width">120dp</dimen>
+
+    <!-- Margin -->
+    <dimen name="app_margin_one">1dp</dimen>
+    <dimen name="app_margin_two">2dp</dimen>
+    <dimen name="app_margin_five">5dp</dimen>
+    <dimen name="app_margin_ten">10dp</dimen>
+    <dimen name="app_margin_twenty">20dp</dimen>
+    <dimen name="app_margin_twenty_five">25dp</dimen>
+    <dimen name="app_margin_thirty">30dp</dimen>
+    <dimen name="app_margin_fourty">40dp</dimen>
+    <dimen name="app_margin_fifty">50dp</dimen>
+    <dimen name="app_margin_sixty">60dp</dimen>
 
 </resources>

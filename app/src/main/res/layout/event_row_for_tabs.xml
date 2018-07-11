@@ -22,49 +22,49 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/black_gradient_diff_shade"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/app_margin_five">
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnBuyTickets"
                 style="@style/label_white_small"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="@dimen/button_height_small"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/app_margin_ten"
+                android:layout_marginRight="@dimen/app_margin_ten"
                 android:layout_weight="0.3"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/buy_tickets"
                 font:name="Montserrat-Light" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_height="match_parent"
                 android:gravity="end|center"
                 android:layout_weight="0.7">
 
                 <ImageView
                     android:id="@+id/imgInfo"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_width="@dimen/app_width_vsmall"
+                    android:layout_height="@dimen/app_height_vsmall"
+                    android:layout_marginRight="@dimen/app_margin_ten"
+                    android:layout_marginLeft="@dimen/app_margin_ten"
                     android:src="@drawable/ic_info" />
 
                 <ImageView
                     android:id="@+id/imgShare"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_width="@dimen/app_width_vsmall"
+                    android:layout_height="@dimen/app_height_vsmall"
+                    android:layout_marginRight="@dimen/app_margin_five"
+                    android:layout_marginLeft="@dimen/app_margin_five"
                     android:src="@drawable/ic_share" />
 
                 <ImageView
                     android:id="@+id/imgFavourite"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_width="@dimen/app_width_vsmall"
+                    android:layout_height="@dimen/app_height_vsmall"
+                    android:layout_marginRight="@dimen/app_margin_ten"
+                    android:layout_marginLeft="@dimen/app_margin_ten"
                     android:src="@drawable/ic_favourite" />
 
             </LinearLayout>
@@ -77,7 +77,7 @@
             android:layout_height="200dp"
             android:background="@color/colorTransparentBurgendy"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/app_margin_ten"
             android:visibility="gone">
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -111,8 +111,8 @@
 
         <ProgressBar
             android:id="@+id/progressImageLoader"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/app_width_small"
+            android:layout_height="@dimen/app_width_small"
             android:layout_centerInParent="true"
             android:visibility="visible" />
 

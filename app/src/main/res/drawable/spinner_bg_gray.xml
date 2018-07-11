@@ -8,7 +8,7 @@
 
                     <corners android:radius="1dp" />
 
-                    <padding android:right="10dp" />
+                    <padding android:right="@dimen/app_margin_ten" />
                     <stroke android:width="0.8dp" android:color="@color/dark_gray" />
                 </shape>
             </item>

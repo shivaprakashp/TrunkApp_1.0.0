@@ -11,8 +11,8 @@
         android:id="@+id/btnPlaylistUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/app_margin_five"
+        android:layout_marginTop="@dimen/app_margin_five"
         android:text="Playlist URL"
         android:visibility="visible" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/btnCuratorPageUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/app_margin_five"
         android:visibility="visible"
         android:text="Curator page " />
 

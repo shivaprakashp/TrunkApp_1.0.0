@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/termsNconditions"
         style="@style/label_white_medium"
-        android:padding="10dp"
+        android:padding="@dimen/app_margin_ten"
         android:textColor="@color/colorWhite"
         android:background="@color/button_bg"
         font:name="Montserrat-Light"/>
@@ -18,11 +18,11 @@
     <ListView
         android:id="@+id/terms_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/app_height_zero"
         android:layout_weight="1"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/app_margin_ten"
         style="@style/label_white_small"
         android:entries="@array/terms_conditions">
     </ListView>

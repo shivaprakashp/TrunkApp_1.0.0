@@ -13,7 +13,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/app_height_ex_vv_small"
         android:background="@color/colorWhite" />
 
     <LinearLayout
@@ -25,10 +25,10 @@
         <Spinner
             android:id="@+id/spinnerSelectGenre"
             style="@style/label_white"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingLeft="@dimen/app_margin_ten"
             android:backgroundTint="@color/colorWhite"
             android:popupBackground="@color/black" />
 
@@ -36,7 +36,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/app_height_ex_vv_small"
         android:background="@color/colorWhite" />
 
     </LinearLayout>

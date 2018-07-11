@@ -19,7 +19,7 @@
             style="@style/label_white_large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/app_margin_ten"
             android:gravity="center"
             font:name="Montserrat-Regular" />
 
@@ -29,14 +29,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/app_margin_ten">
 
         <com.opera.app.customwidget.TextViewWithFont
             android:id="@+id/txtMessage"
             style="@style/label_black_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/app_margin_twenty"
             font:name="Montserrat-Regular" />
 
         <LinearLayout
@@ -47,7 +47,7 @@
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnLogin"
                 style="@style/label_white"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -58,7 +58,7 @@
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/btnCancel"
                 style="@style/label_white"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/app_margin_ten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -41,7 +41,7 @@
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnWalletEvent"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
@@ -56,7 +56,7 @@
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnWalletRest"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
@@ -71,7 +71,7 @@
 
         <com.opera.app.customwidget.ButtonWithFont
             android:id="@+id/btnWalletGift"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"

@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="@dimen/app_margin_ten">
 
         <com.opera.app.customwidget.TicketView
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:orientation="horizontal"
-            app:scallopRadius="10dp"
+            app:scallopRadius="@dimen/app_margin_ten"
             app:scallopPositionPercent="75"
             app:showBorder="true"
             app:borderWidth="1dp"
@@ -40,9 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:padding="@dimen/app_margin_ten"
+            android:layout_marginLeft="@dimen/app_margin_ten"
+            android:layout_marginTop="@dimen/app_margin_ten"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
             app:layout_constraintEnd_toEndOf="@+id/ticketView"
             app:layout_constraintStart_toStartOf="@+id/ticketView">
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="@dimen/app_margin_ten">
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:layout_width="wrap_content"

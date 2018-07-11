@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_back_arrrow"
             android:rotationY="@integer/locale_mirror_flip"
-            android:padding="10dp"
+            android:padding="@dimen/app_margin_ten"
             android:visibility="gone"/>
 
         <com.opera.app.customwidget.TextViewWithFont
@@ -38,37 +38,37 @@
 
             <ImageView
                 android:id="@+id/img_plan_visit"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/app_width_large"
+                android:layout_height="@dimen/app_height_large"
                 android:src="@drawable/ic_calendar_white"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/img_wallet"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/app_width_large"
+                android:layout_height="@dimen/app_height_large"
                 android:src="@drawable/ic_wallet"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/img_profile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/app_width_large"
+                android:layout_height="@dimen/app_height_large"
                 android:src="@drawable/ic_profile"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/imgSearch"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/app_width_medium"
+                android:layout_height="@dimen/app_width_medium"
                 android:src="@drawable/ic_search"
-                android:padding="10dp"
+                android:padding="@dimen/app_margin_ten"
                 android:layout_gravity="right|center"
                 android:visibility="gone"/>
         </LinearLayout>

@@ -23,32 +23,32 @@
             android:background="@drawable/black_gradient_diff_shade"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="5dp">
+            android:padding="@dimen/app_margin_five">
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtGenresName"
                 style="@style/label_white_vlarge"
                 font:name="Montserrat-Regular"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_weight="0.6"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="@dimen/app_margin_five"
+                android:layout_marginRight="@dimen/app_margin_five"
                 android:textAllCaps="true" />
 
             <com.opera.app.customwidget.ButtonWithFont
                 android:id="@+id/mBtnFindShows"
                 style="@style/label_white_small"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_width_zero"
                 android:layout_weight="0.3"
                 android:layout_height="@dimen/button_height_small"
                 android:background="@drawable/btn_ripple_effect"
                 android:text="@string/find_shows"
                 android:textAllCaps="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="@dimen/app_margin_five"
+                android:layout_marginRight="@dimen/app_margin_five"
                 font:name="Montserrat-Light"/>
 
             <!--<com.opera.app.customwidget.TextViewWithFont
@@ -65,8 +65,8 @@
 
         <ProgressBar
             android:id="@+id/progressImageLoader"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/app_width_small"
+            android:layout_height="@dimen/app_width_small"
             android:layout_centerInParent="true"
             android:visibility="visible" />
 
