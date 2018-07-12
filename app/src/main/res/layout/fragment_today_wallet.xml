@@ -21,7 +21,7 @@
             <com.opera.app.fragments.wallet.helper.TodayWalletView
                 android:id="@+id/helperWalletEvent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.opera.app.fragments.wallet.helper.TodayWalletView>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

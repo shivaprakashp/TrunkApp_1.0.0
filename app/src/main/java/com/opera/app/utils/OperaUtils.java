@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.squareup.picasso.Target;
 
@@ -65,7 +66,7 @@ public class OperaUtils {
         return mOperaUtils;
     }
 
-    public static void ShareEventDetails(Context mContext, String mBody) {
+    public static void shareEventDetails(Context mContext, String mBody) {
         /*Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, mBody);
@@ -84,7 +85,7 @@ public class OperaUtils {
         }
     }
 
-    public static void CloseSoftKeyboard(Activity mActivity) {
+    public static void closeSoftKeyboard(Activity mActivity) {
         View view = mActivity.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -141,19 +142,19 @@ public class OperaUtils {
         return drawable;
     }
 
-    public static void SelectGalleryImage(Activity mActivity, int PICK_IMAGE) {
+    public static void selectGalleryImage(Activity mActivity, int PICK_IMAGE) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivity.startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
 
-    public static void SelectCameraImage(Activity mActivity, int CAMERA_REQUEST) {
+    public static void selectCameraImage(Activity mActivity, int CAMERA_REQUEST) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         mActivity.startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
-    public static boolean CheckMarshmallowOrNot() {
+    public static boolean checkMarshmallowOrNot() {
         boolean IsMarshmallow;
         // Marshmallow+
 //below Marshmallow
@@ -266,5 +267,9 @@ public class OperaUtils {
     public static int dpToPx(float dp, Resources resources) {
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
         return (int) px;
+    }
+
+    public static void SendGoogleAnalyticsEvent(String mEventName){
+        MainApplication.getInstance().trackScreenView(mEventName);
     }
 }

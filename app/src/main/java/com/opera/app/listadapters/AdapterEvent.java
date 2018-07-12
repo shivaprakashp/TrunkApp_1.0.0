@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.BuyTicketWebView;
-import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
@@ -176,7 +175,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             @Override
             public void onClick(View v) {
                 if (!mEventPojo.isInfoOpen()) {
-                    OperaUtils.ShareEventDetails(mActivity, mEventPojo.getSharedContentText());
+                    OperaUtils.shareEventDetails(mActivity, mEventPojo.getSharedContentText());
                 }
             }
         });

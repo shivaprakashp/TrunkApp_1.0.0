@@ -61,7 +61,6 @@
                 android:layout_height="@dimen/button_height"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/btn_ripple_effect"
-                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/call" />
 
             <com.opera.app.customwidget.ButtonWithFont
@@ -72,7 +71,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/app_margin_twenty"
                 android:background="@drawable/btn_ripple_effect"
-                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/email_btn" />
         </LinearLayout>
 

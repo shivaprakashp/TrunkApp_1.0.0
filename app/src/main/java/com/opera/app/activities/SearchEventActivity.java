@@ -73,6 +73,8 @@ public class SearchEventActivity extends BaseActivity {
 
         initToolbar();
         initView();
+
+        OperaUtils.SendGoogleAnalyticsEvent(getResources().getString(R.string.analytics_search_event));
     }
 
 
@@ -177,6 +179,6 @@ public class SearchEventActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        OperaUtils.CloseSoftKeyboard(mActivity);
+        OperaUtils.closeSoftKeyboard(mActivity);
     }
 }

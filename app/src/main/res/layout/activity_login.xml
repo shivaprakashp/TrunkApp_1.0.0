@@ -63,9 +63,9 @@
                 android:layout_height="wrap_content">
 
                 <View
-                    android:layout_width="@dimen/app_width_zero"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"></View>
+                    android:layout_weight="1"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/tv_forgotPassword"
