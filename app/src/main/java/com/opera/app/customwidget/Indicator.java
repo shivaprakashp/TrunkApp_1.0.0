@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 4/24/2018.
- */
-
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;

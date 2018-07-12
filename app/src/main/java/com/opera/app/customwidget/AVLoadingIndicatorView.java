@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 4/24/2018.
- */
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -179,9 +175,7 @@ public class AVLoadingIndicatorView extends View {
             setIndicator(indicator);
         } catch (ClassNotFoundException e) {
             Log.e(TAG,"Didn't find your class , check the name again !");
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

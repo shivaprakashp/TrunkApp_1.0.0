@@ -38,7 +38,6 @@ public class SearchEventActivity extends BaseActivity {
     private String SearchedData = "";
     private AdapterOfSearchedEvents adapterSearchedEvents;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private EventListingDB mEventDetailsDB;
     private Activity mActivity;
 
     @BindView(R.id.edtSearchedData)
@@ -86,7 +85,7 @@ public class SearchEventActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-        mEventDetailsDB = new EventListingDB(mActivity);
+        EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();

@@ -241,13 +241,13 @@ public class EditProfileActivity extends BaseActivity {
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
         if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
-            countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
-                    manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+            countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf("(") + 1,
+                    manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf(")")).replaceAll("\\s","");
             int mPosition=0;
             for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
 
-                String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
-                        Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf("(") + 1,
+                        Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf(")")).replaceAll("\\s","");
                 if(number.equals(countryCode)){
                     mPosition=j;
                     break;

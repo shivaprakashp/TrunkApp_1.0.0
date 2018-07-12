@@ -21,7 +21,6 @@ import java.util.Locale;
 
 public class CalendarDateRangeView extends LinearLayout {
 
-    private Context mContext;
     private Calendar currentCalendarMonth;
     private ImageView imgVNavLeft, imgVNavRight;
     private Locale locale;
@@ -57,7 +56,7 @@ public class CalendarDateRangeView extends LinearLayout {
     }
 
     private void initView(Context context, AttributeSet attributeSet) {
-        mContext = context;
+        Context mContext = context;
         locale = context.getResources().getConfiguration().locale;
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);

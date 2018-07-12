@@ -25,8 +25,6 @@ import com.opera.app.R;
 
 public class TestAct extends Activity {
 
-    private Button btnPlaylistUrl, btnCuratorPageUrl;
-    private Activity activity;
     private WebView webBuyTickets;
     private ProgressDialog mProgressDialog;
 
@@ -35,10 +33,9 @@ public class TestAct extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_act);
 
-        activity = TestAct.this;
         mProgressDialog = new ProgressDialog(TestAct.this);
-        btnPlaylistUrl = findViewById(R.id.btnPlaylistUrl);
-        btnCuratorPageUrl = findViewById(R.id.btnCuratorPageUrl);
+        Button btnPlaylistUrl = findViewById(R.id.btnPlaylistUrl);
+        Button btnCuratorPageUrl = findViewById(R.id.btnCuratorPageUrl);
         /*btnItunesUrl = findViewById(R.id.btnItunesUrl);
         btnBuyTickers = findViewById(R.id.btnBuyTickers);*/
         webBuyTickets = findViewById(R.id.webBuyTickets);

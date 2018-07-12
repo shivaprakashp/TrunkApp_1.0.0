@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 4/20/2018.
- */
-
 import android.graphics.Bitmap;
 import android.graphics.Path;
 import android.support.annotation.NonNull;

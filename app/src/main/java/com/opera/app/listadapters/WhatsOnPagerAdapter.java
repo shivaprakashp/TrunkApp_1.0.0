@@ -1,9 +1,5 @@
 package com.opera.app.listadapters;
 
-/**
- * Created by 1000632 on 5/11/2018.
- */
-
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;

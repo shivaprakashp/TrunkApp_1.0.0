@@ -23,8 +23,6 @@ import butterknife.ButterKnife;
 
 public class EventsFragment extends BaseFragment{
 
-    private Activity mActivity;
-
     @BindView(R.id.tabhost)
     TabLayout mTabHost;
 
@@ -41,7 +39,7 @@ public class EventsFragment extends BaseFragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        mActivity = getActivity();
+        Activity mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_events, container, false);

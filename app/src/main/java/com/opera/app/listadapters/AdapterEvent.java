@@ -278,22 +278,22 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
+            if (mFavouriteAndSettingsResponseMain != null) {
+                try {
+                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                        if (mFavouriteAndSettingsResponseMain.getData().getFavourite().size() > 0) {
+                            mEventListingDB.open();
+                            mEventListingDB.UpdateFavouriteData(mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getFavouriteId(), mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getIsFavourite());
+                            mEventListingDB.close();
 
-            try {
-                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
-                    if (mFavouriteAndSettingsResponseMain.getData().getFavourite().size() > 0) {
-                        mEventListingDB.open();
-                        mEventListingDB.UpdateFavouriteData(mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getFavouriteId(), mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getIsFavourite());
-                        mEventListingDB.close();
-
-                        listener.onLikeProcessComplete();
+                            listener.onLikeProcessComplete();
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
-
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");

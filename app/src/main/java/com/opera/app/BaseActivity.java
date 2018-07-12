@@ -28,7 +28,6 @@ public class BaseActivity extends AppCompatActivity {
 
     public SharedPreferences mSharedPreferences;
     public CustomToast customToast;
-    private int prefMode = 0;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
@@ -42,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void bindViews() {
         ButterKnife.bind(this);
+        int prefMode = 0;
         mSharedPreferences=getSharedPreferences(getResources().getString(R.string.prefName), prefMode);
         customToast = new CustomToast(BaseActivity.this);
     }
@@ -62,11 +62,11 @@ public class BaseActivity extends AppCompatActivity {
     public String jsonResponse(Response response) {
 
         try {
-            JSONObject jObjError = new JSONObject(response.errorBody().string());
-            return jObjError.getString("message");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            if(response.errorBody() != null) {
+                JSONObject jObjError = new JSONObject(response.errorBody().string());
+                return jObjError.getString("message");
+            }
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
         return null;

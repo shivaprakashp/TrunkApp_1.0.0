@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 3/29/2018.
- */
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;

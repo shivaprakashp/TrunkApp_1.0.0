@@ -30,11 +30,8 @@ public class GenresEventsActivity extends BaseActivity {
 
     private Activity mActivity;
     private String SelectedGenre = "";
-    private EventListingDB mEventDetailsDB;
     private EventGenresDB mEventGenreDB;
     private ArrayList<GenreList> mGenreListingData = new ArrayList<>();
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private AdapterEvent mAdapterEvent;
 
     @BindView(R.id.toolbar_genres)
     Toolbar toolbar;
@@ -97,19 +94,19 @@ public class GenresEventsActivity extends BaseActivity {
     private void ApplyGenreSearch(String mSearchedTxt) {
         ArrayList<Events> mFilteredNames = new ArrayList<>();
 
-        mEventDetailsDB = new EventListingDB(mActivity);
+        EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        ArrayList<Events> mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
         for (int i = 0; i < mEventListingData.size(); i++) {
             for (int j = 0; j < mEventListingData.get(i).getGenreList().size(); j++) {
                 if (mEventListingData.get(i).getGenreList().get(j).getGenere().toLowerCase().contains(mSearchedTxt.toLowerCase())) {
-                    mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
+                    mFilteredNames.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
                 }
             }
         }
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredNames);
+        AdapterEvent mAdapterEvent = new AdapterEvent(mActivity, mFilteredNames);
         if (mFilteredNames.size() > 0) {
             mRecyclerGenre.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);

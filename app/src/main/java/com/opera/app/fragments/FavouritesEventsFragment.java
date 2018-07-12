@@ -26,8 +26,6 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
 
     private Activity mActivity;
     private EventListingDB mEventDetailsDB;
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private AdapterEvent mAdapterEvent;
     ArrayList<Events> mFilteredEvents = null;
     private EventInterfaceTab listenerFavourite;
 
@@ -65,16 +63,16 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
 
     private void FetchFavouriteEvents() {
         mEventDetailsDB.open();
-        mEventListingData=new ArrayList<>();
+        ArrayList<Events> mEventListingData = new ArrayList<>();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
         mFilteredEvents = new ArrayList<>();
         for (int i = 0; i < mEventListingData.size(); i++) {
             if (mEventListingData.get(i).isFavourite().equalsIgnoreCase("true")) {
-                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
+                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
             }
         }
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents,listenerFavourite);
+        AdapterEvent mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerFavourite);
         if (mFilteredEvents.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);

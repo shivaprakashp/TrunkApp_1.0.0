@@ -24,7 +24,6 @@ import com.opera.app.utils.OperaUtils;
 
 public class ListenFragment extends BaseFragment {
 
-    private Activity mActivity;
     private ProgressDialog mProgressDialog;
     private WebView myWebView;
 
@@ -38,7 +37,7 @@ public class ListenFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        mActivity = getActivity();
+        Activity mActivity = getActivity();
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_listen, container, false);

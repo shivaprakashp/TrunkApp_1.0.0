@@ -27,6 +27,8 @@ import java.util.Locale;
 
 public class TodayWalletView extends LinearLayout {
 
+    View rowView;
+
     public TodayWalletView(Context context) {
         super(context);
         init(null, 0);
@@ -53,7 +55,6 @@ public class TodayWalletView extends LinearLayout {
         int mAvailableData=0;
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView;
 
         TextViewWithFont txtEventTitle,
                 txtWalletEventGenre,
@@ -70,9 +71,9 @@ public class TodayWalletView extends LinearLayout {
             for (int i = 0; i < eventList.size(); i++) {
                 Event event = eventList.get(i);
 
-                rowView = inflater
-                        .inflate(R.layout.helper_wallet_event, null, false);
-
+                if (inflater != null) {
+                    rowView = inflater.inflate(R.layout.helper_wallet_event, null, false);
+                }
                 txtEventTitle = rowView.findViewById(R.id.txtWalletEventTitle);
                 txtWalletEventGenre = rowView.findViewById(R.id.txtWalletEventGenre);
                 txtWalletEventDate = rowView.findViewById(R.id.txtWalletEventDate);
@@ -148,7 +149,7 @@ public class TodayWalletView extends LinearLayout {
                 referNo = rowView.findViewById(R.id.txtReferNo);
                 bookDate = rowView.findViewById(R.id.txtBookDate);
 
-                Date dateOgFormat = null,dateOgFormatReservation = null;
+                Date dateOgFormat = null,dateOgFormatReservation;
                 String formattedTime = "",formattedTimeReservationDate = "";
                 try {
                     dateOgFormat = sdf.parse(restaurant.getBookingDate());

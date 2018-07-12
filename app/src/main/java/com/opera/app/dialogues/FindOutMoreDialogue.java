@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 
 public class FindOutMoreDialogue extends Dialog {
 
-    private Intent intent;
     private Activity mActivity;
     private String number, emailId;
 
@@ -57,7 +56,7 @@ public class FindOutMoreDialogue extends Dialog {
     private View.OnClickListener buttonCall = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            intent = new Intent(Intent.ACTION_DIAL);
+            Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + number));
             mActivity.startActivity(intent);
             dismiss();

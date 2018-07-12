@@ -41,7 +41,6 @@ import retrofit2.Retrofit;
 public class SettingsService extends IntentService {
 
     private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", SelecteLanguage = "";
-    private String contentType = "application/json";
     static String mFrom = "";
     private Api api;
     private CustomToast customToast;
@@ -50,8 +49,6 @@ public class SettingsService extends IntentService {
     public static Activity mActivity;
     static SessionManager mSessionManager;
     private static ProgressDialog mProgressDialog;
-    private UserData userData;
-    private MainApplication mApplication;
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -64,7 +61,7 @@ public class SettingsService extends IntentService {
 
     public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From, UserData userData) {
         mActivity = activity;
-        mApplication = ((MainApplication) mActivity.getApplicationContext());
+        MainApplication mApplication = ((MainApplication) mActivity.getApplicationContext());
 
         Intent i = new Intent(mActivity, SettingsService.class);
         i.putExtra("NotificationSwitch", mNotifSwitch);
@@ -77,7 +74,7 @@ public class SettingsService extends IntentService {
         mSessionManager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
         mFrom = From;
-        this.userData = userData;
+        UserData userData1 = userData;
 
         if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {
             try {
@@ -113,6 +110,7 @@ public class SettingsService extends IntentService {
     private void sendUpdatedSettings() {
 
         Settings mSettings = new Settings(mBookedShowSwitch, mPromoSwitch, SelecteLanguage, mNewsletterSwitch, mNotifSwitch, mFeedbackNotifSwitch);
+        String contentType = "application/json";
         Call call = api.UpdateSettings(contentType, mSessionManager.getUserLoginData().getData().getToken(), new FavouriteAndSettings(mSettings));
         dataLoad(call);
     }
@@ -188,9 +186,7 @@ public class SettingsService extends IntentService {
         try {
             JSONObject jObjError = new JSONObject(response.errorBody().string());
             return jObjError.getString("message");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
 

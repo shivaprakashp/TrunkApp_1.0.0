@@ -150,17 +150,20 @@ public class OtherRestaurantsActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
-            try {
-                if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")){
-                    dbManager.open();
-                    dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
-                    dbManager.insertOtherRestaurants(mRestaurantPojo.getData());
-                    fetchDataFromDB();
-                }
-            }catch (Exception e){
-                Log.e("Message", e.getMessage());
-                e.printStackTrace();}
+            if (response.body() != null) {
+                try {
 
+                    if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+                        dbManager.open();
+                        dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
+                        dbManager.insertOtherRestaurants(mRestaurantPojo.getData());
+                        fetchDataFromDB();
+                    }
+                } catch (Exception e) {
+                    Log.e("Message", e.getMessage());
+                    e.printStackTrace();
+                }
+            }
         }
 
         @Override

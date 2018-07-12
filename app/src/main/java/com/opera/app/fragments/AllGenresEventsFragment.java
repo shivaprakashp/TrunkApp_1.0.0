@@ -27,12 +27,6 @@ import butterknife.ButterKnife;
 public class AllGenresEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
-    private EventGenresDB mEventGenresDetailsDB;
-    private ArrayList<GenreList> mEventGenresListingData = new ArrayList<>();
-    private AdapterGenres mAdapterGenres;
-
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private EventListingDB mEventDetailsDB;
 
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerEvents;
@@ -65,14 +59,14 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
     private void fetchAllGenres() {
         ArrayList<GenreList> mFilteredNames = new ArrayList<>();
 
-        mEventGenresDetailsDB = new EventGenresDB(mActivity);
+        EventGenresDB mEventGenresDetailsDB = new EventGenresDB(mActivity);
         mEventGenresDetailsDB.open();
-        mEventGenresListingData = mEventGenresDetailsDB.fetchGenresEvents();
+        ArrayList<GenreList> mEventGenresListingData = mEventGenresDetailsDB.fetchGenresEvents();
         mEventGenresDetailsDB.close();
 
-        mEventDetailsDB = new EventListingDB(mActivity);
+        EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        ArrayList<Events> mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
         for (int k = 0; k < mEventGenresListingData.size(); k++) {
@@ -90,7 +84,7 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
             }
         }
 
-        mAdapterGenres = new AdapterGenres(mActivity, mFilteredNames);
+        AdapterGenres mAdapterGenres = new AdapterGenres(mActivity, mFilteredNames);
         if (mEventGenresListingData.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);

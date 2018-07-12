@@ -11,12 +11,12 @@ public interface AppConstants {
     String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
 
     //DTCM Keys
-    static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
-    static String USER_SESSION_TOKEN = "EQSnk49wQ6TTobHAfK08iuwZAEWSrz%2fnrVwTriFYk12yGH%2fQjqIrzd9h%2buMTcQU0g%2fqhfgSv7ZY9LPs5qUin8g%3d%3d";
+    String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
+    String USER_SESSION_TOKEN = "EQSnk49wQ6TTobHAfK08iuwZAEWSrz%2fnrVwTriFYk12yGH%2fQjqIrzd9h%2buMTcQU0g%2fqhfgSv7ZY9LPs5qUin8g%3d%3d";
 //    static String DTCM_SHOW_URL = "https://dubaioperaw-mobile-uat.etixdubai.com/shows/show.aspx?sh=TEST2PC";
-    static String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+    String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
 //    static String DTCM_USER_AGENT_STRING = "Visit Dubai App";
-    static String APPLE_MUSIC_URL = "https://itunes.apple.com/us/curator/the-metropolitan-opera-house/1110087349?mt=1&app=music";
+    String APPLE_MUSIC_URL = "https://itunes.apple.com/us/curator/the-metropolitan-opera-house/1110087349?mt=1&app=music";
 
     interface LOGIN {
         String LOGIN = "LOGIN";

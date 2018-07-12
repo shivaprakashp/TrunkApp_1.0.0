@@ -1,9 +1,5 @@
 package com.opera.app.listadapters;
 
-/**
- * Created by 1000632 on 2/19/2018.
- */
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -57,7 +53,9 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         if (rowView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowView = inflater.inflate(R.layout.item_coverflow, null);
+            if (inflater != null) {
+                rowView = inflater.inflate(R.layout.item_coverflow, null);
+            }
 
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.text = rowView.findViewById(R.id.label);

@@ -200,12 +200,12 @@ public class ReserveATableActivity extends BaseActivity {
         if (mSessionManager.getUserLoginData() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
-                countryCode = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
-                        mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+                countryCode = mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().substring(mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf("(") + 1,
+                        mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf(")")).replaceAll("\\s","");
                 int mPosition=0;
                 for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
-                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
-                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf("(") + 1,
+                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf(")")).replaceAll("\\s","");
                     if(number.equals(countryCode)){
                         mPosition=j;
                         break;
@@ -541,11 +541,12 @@ public class ReserveATableActivity extends BaseActivity {
 
                 mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
                 //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
-                arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
+                if (mRestaurantMasterDetails != null) {
+                    arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
                 if (mRestaurantMasterDetails.getData().getTime_Segment_Responses() != null)
                     arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
                 maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
-
+                }
                 /*mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
                 mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);*/
                 ChangeTimeSegmentsField(mTxtNumberOfGuests.getText().toString().trim());

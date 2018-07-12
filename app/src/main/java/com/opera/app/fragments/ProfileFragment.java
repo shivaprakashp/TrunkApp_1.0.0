@@ -26,8 +26,6 @@ import butterknife.OnClick;
 public class ProfileFragment extends BaseFragment {
 
     private Activity mActivity;
-    private Intent in;
-    private SessionManager manager;
 
     @BindView(R.id.btnEditProfile)
     Button mBtnEditProfile;
@@ -68,7 +66,7 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void updateSessionData() {
-        manager = new SessionManager(mActivity);
+        SessionManager manager = new SessionManager(mActivity);
         if (manager.getUserLoginData() != null ) {
             if (manager.getUserLoginData().getData().getProfile().getAddress() != null && !manager.getUserLoginData().getData().getProfile().getAddress().isEmpty()) {
                 profile_address.setText(manager.getUserLoginData().getData().getProfile().getAddress());
@@ -86,7 +84,7 @@ public class ProfileFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEditProfile:
-                in = new Intent(getActivity(), EditProfileActivity.class);
+                Intent in = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(in);
                 break;
 

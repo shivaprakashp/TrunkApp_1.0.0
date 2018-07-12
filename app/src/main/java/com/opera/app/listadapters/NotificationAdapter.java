@@ -27,8 +27,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     private ArrayList<Notification> mNotificationList;
     private Activity mActivity;
-    private CustomToast customToast;
-    private SessionManager manager;
     private EventListingDB mEventListingDB;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -47,8 +45,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             mImgNotifyImage = view.findViewById(R.id.mImgNotifyImage);
             progressImageLoader = view.findViewById(R.id.progressImageLoader);
 
-            manager = new SessionManager(mActivity);
-            customToast = new CustomToast(mActivity);
+            SessionManager manager = new SessionManager(mActivity);
+            CustomToast customToast = new CustomToast(mActivity);
         }
     }
 

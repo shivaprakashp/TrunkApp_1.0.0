@@ -262,7 +262,7 @@ public class EventDetailsActivity extends BaseActivity {
             } else {
                 GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
                 try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mEventDataPojo != null && mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                         mEventDetailsDB.open();
                         mEventListingDB.open();
                         mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
