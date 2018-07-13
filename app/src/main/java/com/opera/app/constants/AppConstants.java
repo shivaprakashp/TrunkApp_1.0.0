@@ -9,6 +9,8 @@ public interface AppConstants {
     String EVENT_TYPE_OPERA_TOUR = "DubaiTour";
     String EVENT_TYPE_GIFT_CARD = "GiftCard";
     String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
+    String EnglishLanguage = "en";
+    String ArabicLanguage = "ar";
 
     //DTCM Keys
     static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
@@ -100,5 +102,9 @@ public interface AppConstants {
 
     interface GETGIFTCARD {
         String GETGIFTCARD = "GETGIFTCARD";
+    }
+
+    interface SAVEORDER {
+        String SAVEORDER = "SAVEORDER";
     }
 }

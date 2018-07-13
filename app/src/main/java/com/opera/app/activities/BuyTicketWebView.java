@@ -22,20 +22,38 @@ import android.webkit.WebViewClient;
 
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
+import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
+import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.dagger.Api;
+import com.opera.app.database.events.EventGenresDB;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.dialogues.SuccessDialogue;
+import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.events.eventlisiting.AllEvents;
+import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
+import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
+import com.opera.app.pojo.ticketbooking.ViewHistoryResponsePojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by 1000632 on 7/2/2018.
@@ -46,6 +64,9 @@ public class BuyTicketWebView extends BaseActivity {
     private String Header = "", URL = "";
     private Activity mActivity;
     private ProgressDialog mProgressDialog;
+    private Api api;
+    @Inject
+    Retrofit retrofit;
 
     /*Session manager is used to store language preference of user.
     * The selected lanugage used for further communication into the apps.*/
@@ -72,7 +93,7 @@ public class BuyTicketWebView extends BaseActivity {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_buy_ticket);
 
-        clearCache(mActivity,0);
+        clearCache(mActivity, 0);
 
         initToolbar();
         LoadWebView();
@@ -85,6 +106,9 @@ public class BuyTicketWebView extends BaseActivity {
 
     private void LoadWebView() {
         myWebView.setVisibility(View.VISIBLE);
+
+        ((MainApplication) getApplication()).getNetComponent().inject(this);
+        api = retrofit.create(Api.class);
 
         myWebView.getSettings().setUserAgentString(AppConstants.DTCM_USER_AGENT_STRING);
 
@@ -189,14 +213,9 @@ public class BuyTicketWebView extends BaseActivity {
                     Gson gson = new Gson();
                     EventTicketBookingPojo response = gson.fromJson(mJsonData, EventTicketBookingPojo.class);
 
-
-                    SuccessDialogue dialogue = new SuccessDialogue(mActivity, "Your ticket has been booked with an Id " + response.getTickets().get(0).getId()
-                            + " on " + response.getTickets().get(0).getShow().get(0).getWhen() + " at " + response.getTickets().get(0).getShow().get(0).getWhere() + "\n" +
-                            "Seating information : \n" + "Section : " + response.getTickets().get(0).getSeatingInformation().getSection() + "\n" + "Row :"
-                            + response.getTickets().get(0).getSeatingInformation().getRow() + "\n" + "Seats :"
-                            + response.getTickets().get(0).getSeatingInformation().getSeats() +
-                            "", getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
-                    dialogue.show();
+                    if (response.getTickets().size() > 0) {
+                        CallViewOrderAPI(response);
+                    }
                 }
             }
         }
@@ -215,6 +234,12 @@ public class BuyTicketWebView extends BaseActivity {
             Log.e("onReceivedError", error.toString());
 
         }
+    }
+
+    private void CallViewOrderAPI(EventTicketBookingPojo mCompleteData) {
+
+        MainController controller = new MainController(mActivity);
+        controller.SaveOrderAPI(taskComplete, api, mCompleteData);
     }
 
     public String decodeURIComponent(String s) {
@@ -239,9 +264,9 @@ public class BuyTicketWebView extends BaseActivity {
     static int clearCacheFolder(final File dir, final int numDays) {
 
         int deletedFiles = 0;
-        if (dir!= null && dir.isDirectory()) {
+        if (dir != null && dir.isDirectory()) {
             try {
-                for (File child:dir.listFiles()) {
+                for (File child : dir.listFiles()) {
 
                     //first delete subdirectories recursively
                     if (child.isDirectory()) {
@@ -256,8 +281,7 @@ public class BuyTicketWebView extends BaseActivity {
                         }
                     }
                 }
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
 //                Log.e(TAG, String.format("Failed to clean the cache, error %s", e.getMessage()));
             }
         }
@@ -273,4 +297,23 @@ public class BuyTicketWebView extends BaseActivity {
         int numDeletedFiles = clearCacheFolder(context.getCacheDir(), numDays);
 //        Log.i(TAG, String.format("Cache pruning completed, %d files deleted", numDeletedFiles));
     }
+
+    private TaskComplete taskComplete = new TaskComplete() {
+        @Override
+        public void onTaskFinished(Response response, String mRequestKey) {
+            if (mRequestKey.equalsIgnoreCase(AppConstants.SAVEORDER.SAVEORDER)) {
+                ViewHistoryResponsePojo mViewHistoryResponsePojo = (ViewHistoryResponsePojo) response.body();
+
+                if(mViewHistoryResponsePojo.getStatus().equalsIgnoreCase("success")){
+                    SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.ticket_booked_success), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
+                    dialogue.show();
+                }
+            }
+        }
+
+        @Override
+        public void onTaskError(Call call, Throwable t, String mRequestKey) {
+
+        }
+    };
 }

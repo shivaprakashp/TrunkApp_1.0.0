@@ -1,5 +1,6 @@
 package com.opera.app.dagger;
 
+import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
 import com.opera.app.activities.EditProfileActivity;
@@ -58,4 +59,5 @@ public interface ApiComponent {
     void inject(GiftCardActivity mGiftCardActivity);
     void inject(FeedbackActivity mFeedbackActivity);
     void inject(RestaurantCompleteDetails mRestaurantCompleteDetails);
+    void inject(BuyTicketWebView mBuyTicketWebView);
 }

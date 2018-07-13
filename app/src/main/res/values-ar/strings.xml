@@ -869,5 +869,6 @@
     <string name="find_shows">الأكثر شيوعاً</string>
     <string name="location">خريطة الموقع</string>
     <string name="no_buy_link_available">Data not available</string>
+    <string name="ticket_booked_success">تم حجز الحدث بنجاح! انتقل إلى المحفظة لعرض تفاصيل الحدث المحجوز.</string>
 
 </resources>
