@@ -166,7 +166,7 @@ public class RegisterActivity extends BaseActivity {
 
         mActivity = RegisterActivity.this;
 
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_registration);
 

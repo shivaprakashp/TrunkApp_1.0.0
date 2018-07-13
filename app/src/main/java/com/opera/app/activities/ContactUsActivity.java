@@ -114,7 +114,7 @@ public class ContactUsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mActivity = ContactUsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_contactus);
 

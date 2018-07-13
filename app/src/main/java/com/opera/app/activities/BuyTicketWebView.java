@@ -68,7 +68,7 @@ public class BuyTicketWebView extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mActivity = BuyTicketWebView.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_buy_ticket);
 

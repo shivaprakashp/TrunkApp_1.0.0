@@ -103,9 +103,9 @@ public class SettingsActivity extends BaseActivity {
 
         mActivity = SettingsActivity.this;
 
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.setting);
+        setContentView(R.layout.activity_setting);
 
         initToolbar();
         initView();

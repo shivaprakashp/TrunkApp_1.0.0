@@ -163,7 +163,7 @@ public class EventDetailsActivity extends BaseActivity {
 
         // Inflate the layout for this fragment
         mActivity = EventDetailsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_event_details);
 

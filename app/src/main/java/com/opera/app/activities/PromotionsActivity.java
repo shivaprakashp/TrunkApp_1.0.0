@@ -62,7 +62,7 @@ public class PromotionsActivity extends BaseActivity {
 
         // Inflate the layout for this fragment
         mActivity = PromotionsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.common_recycler);
 
