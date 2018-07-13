@@ -65,6 +65,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             tileWidth,
             margin;
 
+    private EventListingDB mEventDetailsDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private CalendarRecyclerView adapter;
     private List<String> eventDates;
@@ -125,7 +126,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initDB(){
-        EventListingDB mEventDetailsDB = new EventListingDB(context);
+        mEventDetailsDB = new EventListingDB(context);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
@@ -152,7 +153,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }
         }
 
-        adapter = new CalendarRecyclerView(eventsList);
+        adapter = new CalendarRecyclerView(eventsList, currentDay);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerCalendar.setLayoutManager(mLayoutManager);
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());
