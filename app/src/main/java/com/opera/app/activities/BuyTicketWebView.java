@@ -2,12 +2,14 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -30,10 +32,13 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
+import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Date;
 
 import butterknife.BindView;
 
@@ -46,6 +51,10 @@ public class BuyTicketWebView extends BaseActivity {
     private String Header = "", URL = "";
     private Activity mActivity;
     private ProgressDialog mProgressDialog;
+
+    /*Session manager is used to store language preference of user.
+    * The selected lanugage used for further communication into the apps.*/
+    private SessionManager manager;
 
     @BindView(R.id.webBuyTickets)
     WebView myWebView;
@@ -68,18 +77,15 @@ public class BuyTicketWebView extends BaseActivity {
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_buy_ticket);
 
+        clearCache(mActivity,0);
+
         initToolbar();
         LoadWebView();
 
 //        Log.e("Decrypt ", decodeURIComponent("\"%3a\"%2bDXYcLwZY2cPbM0fBWjWcwBpd7y15%2bHDOsIEBvsNAePO21inVm2kOo8PDZdoOAMbgxbRp1orOMFk97v1QEsBKA%3d%3d\"%7d"));
 
-
-
-
-
-
-
-
+        //instance of session has created
+        manager = new SessionManager(mActivity);
     }
 
     private void LoadWebView() {
@@ -89,6 +95,7 @@ public class BuyTicketWebView extends BaseActivity {
 
         CookieSyncManager.createInstance(myWebView.getContext());
         CookieManager cookieManager = CookieManager.getInstance();
+//        cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + manager.getUserLoginData().getData().getDtcmXAuthToken());    // USER_SESSION_TOKEN will replace with actual token of user
         cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + AppConstants.USER_SESSION_TOKEN);    // USER_SESSION_TOKEN will replace with actual token of user
 
         myWebView.getSettings().setJavaScriptEnabled(true);
@@ -145,6 +152,7 @@ public class BuyTicketWebView extends BaseActivity {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             Log.e("Page started", url);
+
             try {
                 mProgressDialog.show();
                 mProgressDialog.setMessage("Please wait...");
@@ -179,8 +187,8 @@ public class BuyTicketWebView extends BaseActivity {
                     String[] mActualVdToken = mVdCallTokenString.split("token");
                     dataForDecryption = mActualVdToken[1];
 
-                    mJsonData = decodeURIComponent(dataForDecryption);
-                    mJsonData = "{\"token" + mJsonData;
+                    mJsonData = decodeURIComponent(mVdCallTokenString);
+//                    mJsonData = "{\"token" + mJsonData;
 
 //                    myWebView.setVisibility(View.GONE);
                     Gson gson = new Gson();
@@ -231,5 +239,43 @@ public class BuyTicketWebView extends BaseActivity {
         }
 
         return result;
+    }
+
+    static int clearCacheFolder(final File dir, final int numDays) {
+
+        int deletedFiles = 0;
+        if (dir!= null && dir.isDirectory()) {
+            try {
+                for (File child:dir.listFiles()) {
+
+                    //first delete subdirectories recursively
+                    if (child.isDirectory()) {
+                        deletedFiles += clearCacheFolder(child, numDays);
+                    }
+
+                    //then delete the files and subdirectories in this dir
+                    //only empty directories can be deleted, so subdirs have been done first
+                    if (child.lastModified() < new Date().getTime() - numDays * DateUtils.DAY_IN_MILLIS) {
+                        if (child.delete()) {
+                            deletedFiles++;
+                        }
+                    }
+                }
+            }
+            catch(Exception e) {
+//                Log.e(TAG, String.format("Failed to clean the cache, error %s", e.getMessage()));
+            }
+        }
+        return deletedFiles;
+    }
+
+    /*
+     * Delete the files older than numDays days from the application cache
+     * 0 means all files.
+     */
+    public static void clearCache(final Context context, final int numDays) {
+//        Log.i(TAG, String.format("Starting cache prune, deleting files older than %d days", numDays));
+        int numDeletedFiles = clearCacheFolder(context.getCacheDir(), numDays);
+//        Log.i(TAG, String.format("Cache pruning completed, %d files deleted", numDeletedFiles));
     }
 }

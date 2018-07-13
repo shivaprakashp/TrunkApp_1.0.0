@@ -3,6 +3,7 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,6 +11,9 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -48,6 +52,7 @@ public class LanguageActivity extends BaseActivity{
 
         //call userSession
         userSessionLanguage();
+        Log.e("json data",decodeURIComponent());
     }
 
     private void userSessionLanguage(){
@@ -92,5 +97,21 @@ public class LanguageActivity extends BaseActivity{
                 finish();
                 break;
         }
+    }
+
+    public String decodeURIComponent() {
+      String s="";
+        String result = null;
+
+        try {
+            result = URLDecoder.decode("\"token\"%3a\"tbfu1Q%2bYyxSMAdrfX5i73h3SyXodnpQdEIZaK09JpN1KeiqFt7mmijEWGbdoB%2fNtyEDy1XaqFQ7LO4aak6ufpg%3d%3d\"%2c\"tickets\"%3a%5b%7b\"id\"%3a\"180712%2c709\"%2c\"show\"%3a%5b%7b\"code\"%3a\"ETES0000002PC\"%2c\"who\"%3a\"TEST+2+PAYMENT+CENTER\"%2c\"when\"%3a\"Mon+31+Dec+2018+7%3a00PM\"%2c\"where\"%3a\"Sheikh+Maktoum+Hall+-+Dubai+World+Trade+Centre\"%7d%5d%2c\"seatingInformation\"%3a%7b\"section\"%3a\"SGA\"%2c\"row\"%3a\"GA\"%2c\"seats\"%3a\"248-252\"%7d%7d%5d%7d", "UTF-8");
+        }
+
+        // This exception should never occur.
+        catch (UnsupportedEncodingException e) {
+            result = s;
+        }
+
+        return result;
     }
 }

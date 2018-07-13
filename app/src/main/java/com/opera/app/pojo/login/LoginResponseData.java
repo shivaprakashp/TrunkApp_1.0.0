@@ -14,9 +14,31 @@ public class LoginResponseData {
     @SerializedName("Token")
     @Expose
     private String token;
+    @SerializedName("DtcmXAuthToken")
+    @Expose
+    private String DtcmXAuthToken;
+    @SerializedName("DtcmCustomerId")
+    @Expose
+    private String DtcmCustomerId;
     @SerializedName("Profile")
     @Expose
     private UserProfile profile;
+
+    public String getDtcmXAuthToken() {
+        return DtcmXAuthToken;
+    }
+
+    public void setDtcmXAuthToken(String dtcmXAuthToken) {
+        DtcmXAuthToken = dtcmXAuthToken;
+    }
+
+    public String getDtcmCustomerId() {
+        return DtcmCustomerId;
+    }
+
+    public void setDtcmCustomerId(String dtcmCustomerId) {
+        DtcmCustomerId = dtcmCustomerId;
+    }
 
     public String getDisplayName() {
         return displayName;
