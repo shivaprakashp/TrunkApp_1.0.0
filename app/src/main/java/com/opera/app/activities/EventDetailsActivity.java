@@ -262,7 +262,7 @@ public class EventDetailsActivity extends BaseActivity {
             } else {
                 GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
                 try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mEventDataPojo != null && mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                         mEventDetailsDB.open();
                         mEventListingDB.open();
                         mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);
@@ -447,7 +447,7 @@ public class EventDetailsActivity extends BaseActivity {
                 break;
 
             case R.id.linearShare:
-                OperaUtils.ShareEventDetails(mActivity, mEventURL);
+                OperaUtils.shareEventDetails(mActivity, mEventURL);
                 break;
 
             case R.id.img_plan_visit:

@@ -33,7 +33,7 @@
         <View
             android:layout_width="@dimen/app_width_ex_vv_small"
             android:layout_height="match_parent"
-            android:background="@color/colorBurgendy"></View>
+            android:background="@color/colorBurgendy"/>
 
         <LinearLayout
             android:layout_width="@dimen/app_width_zero"

@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 3/29/2018.
- */
-
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ListView;

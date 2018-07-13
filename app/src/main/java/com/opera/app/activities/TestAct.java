@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -19,8 +18,6 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.opera.app.R;
-import com.opera.app.constants.AppConstants;
-import com.opera.app.fragments.ListenFragment;
 
 /**
  * Created by 1000632 on 4/20/2018.
@@ -28,8 +25,6 @@ import com.opera.app.fragments.ListenFragment;
 
 public class TestAct extends Activity {
 
-    private Button btnPlaylistUrl,btnCuratorPageUrl;
-    private Activity activity;
     private WebView webBuyTickets;
     private ProgressDialog mProgressDialog;
 
@@ -38,13 +33,12 @@ public class TestAct extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_act);
 
-        activity = TestAct.this;
-        mProgressDialog=new ProgressDialog(TestAct.this);
-        btnPlaylistUrl = findViewById(R.id.btnPlaylistUrl);
-        btnCuratorPageUrl = findViewById(R.id.btnCuratorPageUrl);
+        mProgressDialog = new ProgressDialog(TestAct.this);
+        Button btnPlaylistUrl = findViewById(R.id.btnPlaylistUrl);
+        Button btnCuratorPageUrl = findViewById(R.id.btnCuratorPageUrl);
         /*btnItunesUrl = findViewById(R.id.btnItunesUrl);
         btnBuyTickers = findViewById(R.id.btnBuyTickers);*/
-        webBuyTickets= findViewById(R.id.webBuyTickets);
+        webBuyTickets = findViewById(R.id.webBuyTickets);
 
         btnPlaylistUrl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +104,7 @@ public class TestAct extends Activity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.e("PageStarted",url.toString());
+            Log.e("PageStarted", url.toString());
             mProgressDialog.setMessage(getResources().getString(R.string.loading));
             mProgressDialog.show();
         }

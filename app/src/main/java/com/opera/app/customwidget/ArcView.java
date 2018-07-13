@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 4/20/2018.
- */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Path;

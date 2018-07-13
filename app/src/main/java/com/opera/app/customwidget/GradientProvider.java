@@ -1,9 +1,5 @@
 package com.opera.app.customwidget;
 
-/**
- * Created by 1000632 on 4/11/2018.
- */
-
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 

@@ -42,7 +42,6 @@ public class GiftCardActivity extends BaseActivity {
     private Api api;
     private Activity mActivity;
     private SessionManager manager;
-    private AllEvents mEventDataPojo;
 
     @BindView(R.id.toolbar_edit_profile)
     Toolbar toolbar;
@@ -143,27 +142,28 @@ public class GiftCardActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
+            if (response.body() != null) {
+                AllEvents mEventDataPojo = (AllEvents) response.body();
+                try {
+                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                        mTxtGiftCardDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
+                        Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
+                                .into(mIvVoucherCoverImage, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        mProgressImageLoader.setVisibility(View.GONE);
+                                    }
 
-            mEventDataPojo = (AllEvents) response.body();
-            try {
-                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
-                    mTxtGiftCardDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
-                    Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
-                            .into(mIvVoucherCoverImage, new Callback() {
-                                @Override
-                                public void onSuccess() {
-                                    mProgressImageLoader.setVisibility(View.GONE);
-                                }
-
-                                @Override
-                                public void onError() {
-                                    mProgressImageLoader.setVisibility(View.GONE);
-                                }
-                            });
-                    manager.storeGiftCardDataOffline((AllEvents) response.body());
+                                    @Override
+                                    public void onError() {
+                                        mProgressImageLoader.setVisibility(View.GONE);
+                                    }
+                                });
+                        manager.storeGiftCardDataOffline((AllEvents) response.body());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 

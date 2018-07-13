@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyViewHolder> {
 
     private Activity mActivity;
-    private CustomToast customToast;
     private ArrayList<FeedbackResponse> mFeedbackListingArray;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -37,7 +36,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
             txtShowDateAndTime = view.findViewById(R.id.txtShowDateAndTime);
             img_profile_chooser= view.findViewById(R.id.img_profile_chooser);
 
-            customToast = new CustomToast(mActivity);
+            CustomToast customToast = new CustomToast(mActivity);
         }
     }
 

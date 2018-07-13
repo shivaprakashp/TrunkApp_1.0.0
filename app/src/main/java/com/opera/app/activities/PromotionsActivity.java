@@ -15,7 +15,6 @@ import com.opera.app.R;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.PromotionsAdapter;
@@ -38,7 +37,6 @@ public class PromotionsActivity extends BaseActivity {
     private Activity mActivity;
     private ArrayList<PromotionDetails> mPromotionDetails = new ArrayList<>();
     private PromotionsAdapter mAdapter;
-    private NotificationDetailsDB dbManagerNotification;
     private PromotionDetailsDB dbManagerPromotion;
 
     @BindView(R.id.toolbarRecycler)
@@ -79,18 +77,19 @@ public class PromotionsActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             PromotionsPojo mPromotionsPojo = (PromotionsPojo) response.body();
-            if (response.body() != null)
+            if (response.body() != null) {
                 try {
                     if (mPromotionsPojo.getStatus().equalsIgnoreCase("success")) {
-                            dbManagerPromotion.open();
-                            dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
-                            dbManagerPromotion.insertPromotions(mPromotionsPojo.getPromotionsData());
-                            fetchDataFromPromotionDB();
+                        dbManagerPromotion.open();
+                        dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
+                        dbManagerPromotion.insertPromotions(mPromotionsPojo.getPromotionsData());
+                        fetchDataFromPromotionDB();
                     }
                 } catch (Exception e) {
                     Log.e("Message", e.getMessage());
                     e.printStackTrace();
                 }
+            }
             else if (response.errorBody() != null) {
                 try {
                     ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
@@ -128,7 +127,6 @@ public class PromotionsActivity extends BaseActivity {
         mRecyclerNotificatons.setItemAnimator(new DefaultItemAnimator());
         mRecyclerNotificatons.setAdapter(mAdapter);
 
-        dbManagerNotification = new NotificationDetailsDB(mActivity);
         dbManagerPromotion = new PromotionDetailsDB(mActivity);
     }
 

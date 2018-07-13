@@ -52,9 +52,7 @@ public class BaseFragment extends Fragment {
         try {
             JSONObject jObjError = new JSONObject(response.errorBody().string());
             return jObjError.getString("message");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
 

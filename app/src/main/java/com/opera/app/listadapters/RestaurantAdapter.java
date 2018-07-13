@@ -46,12 +46,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
                     mRestaurantList = new ArrayList<RestaurantsData>(mRestaurantList); // saves the original data in mOriginalValues
                 }
 
-                /********
-                 *
-                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
-                 *  else does the Filtering and returns FilteredArrList(Filtered)
-                 *
-                 ********/
                 if (constraint == null || constraint.length() == 0) {
 
                     // set the Original result to return

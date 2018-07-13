@@ -1,7 +1,6 @@
 package com.opera.app;
 
 import android.app.Application;
-import android.content.Context;
 import android.graphics.Typeface;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -24,7 +23,6 @@ import org.infobip.mobile.messaging.storage.SQLiteMessageStore;
 
 public class MainApplication extends Application {
 
-    private static Context context;
     //for font type defined
     private Typeface fontLight, fontMedium, fontRegular, fontBold;
 
@@ -37,7 +35,6 @@ public class MainApplication extends Application {
     public void onCreate(){
         super.onCreate();
 
-        context = getApplicationContext();
         mInstance = this;
 
         setFont();

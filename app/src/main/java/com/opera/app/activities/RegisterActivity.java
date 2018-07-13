@@ -444,13 +444,10 @@ public class RegisterActivity extends BaseActivity {
         registration.setEmail(edtEmail.getText().toString().trim());
         registration.setPassword(edtPassword.getText().toString().trim());
         registration.setConfirmPassword(edtRePass.getText().toString().trim());
-        registration.setFirstName(edtFirstName.getText().toString().trim() != null ?
-                edtFirstName.getText().toString().trim() : "");
-        registration.setLastName(edtLastName.getText().toString().trim() != null ?
-                edtLastName.getText().toString().trim() : "");
+        registration.setFirstName(edtFirstName.getText().toString().trim());
+        registration.setLastName(edtLastName.getText().toString().trim());
         registration.setNationality(spinnerNationality.getSelectedItem().toString());
-        registration.setDateOfBirth(edtDob.getText().toString().trim() != null ?
-                edtDob.getText().toString().trim() : "");
+        registration.setDateOfBirth(edtDob.getText().toString().trim());
         registration.setMobileNumber("+(" + countryCode + ")" + edtMobile.getText().toString().trim());
         registration.setCity(edtCity.getText().toString());
         registration.setCountry(spinnerCountry.getSelectedItem().toString());

@@ -32,8 +32,6 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
 
     private Activity mActivity;
     private EventListingDB mEventDetailsDB;
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private AdapterEvent mAdapterEvent;
     private EventInterfaceTab listenerToday;
     @BindView(R.id.recyclerList)
     RecyclerView mRecyclerEvents;
@@ -69,7 +67,7 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
 
     private void FetchTodayEvents(String ToDay) {
         mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        ArrayList<Events> mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
         ArrayList<Events> mFilteredEvents = new ArrayList<>();
@@ -101,13 +99,13 @@ public class TodayEventsFragment extends BaseFragment implements EventInterfaceT
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-            if (date.before(todate) && date.after(fromdate) || date.equals(todate) || date.equals(fromdate)) {
-                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(),mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
-            }
+            if(date != null)
+                if (date.before(todate) && date.after(fromdate) || date.equals(todate) || date.equals(fromdate)) {
+                    mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
+                }
         }
 
-        mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerToday);
+        AdapterEvent mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerToday);
         if (mFilteredEvents.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);

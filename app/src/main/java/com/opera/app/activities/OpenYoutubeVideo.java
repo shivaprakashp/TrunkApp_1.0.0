@@ -25,9 +25,7 @@ import java.util.regex.Pattern;
 public class OpenYoutubeVideo extends YouTubeBaseActivity implements
         YouTubePlayer.OnInitializedListener{
 
-    private YouTubePlayerView youTubeView;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
-    private Activity mActivity;
     private String YoutubeVideo="";
 
     @Override
@@ -38,12 +36,12 @@ public class OpenYoutubeVideo extends YouTubeBaseActivity implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.open_youtube_video);
 
-        mActivity=OpenYoutubeVideo.this;
+        Activity mActivity = OpenYoutubeVideo.this;
         Intent in=getIntent();
         YoutubeVideo=in.getStringExtra("YoutubeVideo");
         YoutubeVideo= getYouTubeId(YoutubeVideo);
 
-        youTubeView = findViewById(R.id.youtube_view);
+        YouTubePlayerView youTubeView = findViewById(R.id.youtube_view);
         youTubeView.initialize(AppConstants.YOUTUBE_DEVELOPER_KEY, (YouTubePlayer.OnInitializedListener) mActivity);
     }
 

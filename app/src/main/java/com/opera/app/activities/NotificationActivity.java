@@ -16,7 +16,6 @@ import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.notification.NotificationDetailsDB;
-import com.opera.app.database.notification.PromotionDetailsDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listadapters.NotificationAdapter;
 import com.opera.app.listener.TaskComplete;
@@ -39,7 +38,6 @@ public class NotificationActivity extends BaseActivity {
     private ArrayList<Notification> mNotification = new ArrayList<>();
     private NotificationAdapter mAdapter;
     private NotificationDetailsDB dbManagerNotification;
-    private PromotionDetailsDB dbManagerPromotion;
 
     @BindView(R.id.toolbarRecycler)
     Toolbar toolbar;
@@ -129,7 +127,6 @@ public class NotificationActivity extends BaseActivity {
         mRecyclerNotificatons.setAdapter(mAdapter);
 
         dbManagerNotification = new NotificationDetailsDB(mActivity);
-        dbManagerPromotion = new PromotionDetailsDB(mActivity);
     }
 
     private void initToolbar() {
@@ -153,12 +150,6 @@ public class NotificationActivity extends BaseActivity {
         dbManagerNotification.close();
         mAdapter.notifyDataSetChanged();
     }
-
-    /*private void fetchDataFromPromotionDB() {
-        mAdapter.RefreshList(dbManagerPromotion.fetchPromotionDetails());
-        dbManagerPromotion.close();
-        mAdapter.notifyDataSetChanged();
-    }*/
 
     @Override
     protected void onStop(){

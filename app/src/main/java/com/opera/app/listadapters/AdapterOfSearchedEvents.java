@@ -49,7 +49,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         final Events mEventPojo = mEventListingData.get(position);
 
         holder.txtEventName.setText(mEventPojo.getName());
-        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " to " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
 
         Picasso.with(mActivity).load(mEventPojo.getHighlightedImage())

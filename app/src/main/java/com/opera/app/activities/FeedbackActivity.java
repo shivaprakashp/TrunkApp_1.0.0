@@ -39,9 +39,7 @@ import retrofit2.Retrofit;
 public class FeedbackActivity extends BaseActivity {
 
     private Activity mActivity;
-    private FeedbackAdapter mAdapter;
     private ArrayList<FeedbackResponse> arrFeedbackListing=new ArrayList<>();
-    private FeedbackListingDB mFeedbackListing;
 
     @BindView(R.id.toolbarRecycler)
     Toolbar toolbar;
@@ -87,13 +85,13 @@ public class FeedbackActivity extends BaseActivity {
         txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getString(R.string.menu_notification));
 
-        mAdapter = new FeedbackAdapter(mActivity, arrFeedbackListing);
+        FeedbackAdapter mAdapter = new FeedbackAdapter(mActivity, arrFeedbackListing);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerFeedback.setLayoutManager(mLayoutManager);
         mRecyclerFeedback.setItemAnimator(new DefaultItemAnimator());
         mRecyclerFeedback.setAdapter(mAdapter);
 
-        mFeedbackListing = new FeedbackListingDB(mActivity);
+        FeedbackListingDB mFeedbackListing = new FeedbackListingDB(mActivity);
     }
 
     private void initToolbar() {

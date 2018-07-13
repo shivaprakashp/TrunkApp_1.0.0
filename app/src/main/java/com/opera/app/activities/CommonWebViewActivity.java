@@ -36,7 +36,6 @@ public class CommonWebViewActivity extends BaseActivity {
 
     private String URL = "", Header = "";
     private ProgressDialog mDialog;
-    private Activity mActivity;
 
     @BindView(R.id.toolbar_contactUs)
     Toolbar toolbar;
@@ -63,7 +62,7 @@ public class CommonWebViewActivity extends BaseActivity {
     }
 
     private void webView() {
-        mActivity = CommonWebViewActivity.this;
+        Activity mActivity = CommonWebViewActivity.this;
         mDialog = new ProgressDialog(mActivity);
         mDialog.setMessage("Please wait...");
         mDialog.show();

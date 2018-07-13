@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:font="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -61,7 +60,6 @@
                 android:layout_height="@dimen/button_height"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/btn_ripple_effect"
-                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/call" />
 
             <com.opera.app.customwidget.ButtonWithFont
@@ -72,7 +70,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/app_margin_twenty"
                 android:background="@drawable/btn_ripple_effect"
-                android:foreground="?attr/selectableItemBackground"
                 android:text="@string/email_btn" />
         </LinearLayout>
 

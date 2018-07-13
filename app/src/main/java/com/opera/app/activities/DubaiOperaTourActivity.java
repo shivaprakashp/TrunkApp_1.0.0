@@ -44,7 +44,6 @@ public class DubaiOperaTourActivity extends BaseActivity {
     private Api api;
     private Activity mActivity;
     private SessionManager manager;
-    private AllEvents mEventDataPojo;
     private CustomToast customToast;
 
     @BindView(R.id.toolbar_edit_profile)
@@ -150,7 +149,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
 
-            mEventDataPojo = (AllEvents) response.body();
+            AllEvents mEventDataPojo = (AllEvents) response.body();
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
                     mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));

@@ -34,8 +34,10 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:layout_marginLeft="@dimen/app_margin_five"
-                android:layout_marginRight="@dimen/app_margin_five"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"
+                android:layout_marginStart="@dimen/app_margin_five"
+                android:layout_marginEnd="@dimen/app_margin_five"
                 android:textAllCaps="true" />
 
             <com.opera.app.customwidget.ButtonWithFont

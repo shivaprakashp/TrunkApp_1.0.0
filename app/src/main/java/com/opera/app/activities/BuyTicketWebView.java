@@ -11,19 +11,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
@@ -192,15 +187,15 @@ public class BuyTicketWebView extends BaseActivity {
 
 //                    myWebView.setVisibility(View.GONE);
                     Gson gson = new Gson();
-                    EventTicketBookingPojo response = gson.fromJson( mJsonData, EventTicketBookingPojo.class );
+                    EventTicketBookingPojo response = gson.fromJson(mJsonData, EventTicketBookingPojo.class);
 
 
-                    SuccessDialogue dialogue = new SuccessDialogue(mActivity, "Your ticket has been booked with an Id "+response.getTickets().get(0).getId()
-                            +" on "+response.getTickets().get(0).getShow().get(0).getWhen() +" at "+response.getTickets().get(0).getShow().get(0).getWhere()+"\n"+
-                            "Seating information : \n"+"Section : "+response.getTickets().get(0).getSeatingInformation().getSection()+"\n"+"Row :"
-                            +response.getTickets().get(0).getSeatingInformation().getRow()+"\n"+"Seats :"
-                            +response.getTickets().get(0).getSeatingInformation().getSeats()+
-                            "", getResources().getString(R.string.success_header), getResources().getString(R.string.ok),"BookEvent");
+                    SuccessDialogue dialogue = new SuccessDialogue(mActivity, "Your ticket has been booked with an Id " + response.getTickets().get(0).getId()
+                            + " on " + response.getTickets().get(0).getShow().get(0).getWhen() + " at " + response.getTickets().get(0).getShow().get(0).getWhere() + "\n" +
+                            "Seating information : \n" + "Section : " + response.getTickets().get(0).getSeatingInformation().getSection() + "\n" + "Row :"
+                            + response.getTickets().get(0).getSeatingInformation().getRow() + "\n" + "Seats :"
+                            + response.getTickets().get(0).getSeatingInformation().getSeats() +
+                            "", getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
                     dialogue.show();
                 }
             }

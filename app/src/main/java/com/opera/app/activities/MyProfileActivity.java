@@ -104,7 +104,6 @@ public class MyProfileActivity extends BaseActivity {
     @BindView(R.id.tv_profile_info)
     TextViewWithFont profileInfo;
 
-    private SessionManager manager;
     //injecting retrofit
     @Inject
     Retrofit retrofit;
@@ -124,14 +123,16 @@ public class MyProfileActivity extends BaseActivity {
             ErrorDialogue dialogue;
             if (response.body() != null) {
                 RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
-                if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
-                    SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostChangePassword.getMessage(), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
-                    dialog.show();
-                    /*SessionManager sessionManager = new SessionManager(mActivity);
-                    sessionManager.clearLoginSession();*/
-                } else {
-                    dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
-                    dialogue.show();
+                if (mPostChangePassword != null) {
+                    if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
+                        SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostChangePassword.getMessage(), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
+                        dialog.show();
+                        /*SessionManager sessionManager = new SessionManager(mActivity);
+                        sessionManager.clearLoginSession();*/
+                    } else {
+                        dialogue = new ErrorDialogue(mActivity, mPostChangePassword.getMessage());
+                        dialogue.show();
+                    }
                 }
 
             } else if (response.errorBody() != null) {
@@ -178,7 +179,7 @@ public class MyProfileActivity extends BaseActivity {
     }
 
     private void updateSessionData() {
-        manager = new SessionManager(mActivity);
+        SessionManager manager = new SessionManager(mActivity);
         if (manager.getUserLoginData() != null) {
             tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
                     + manager.getUserLoginData().getData().getProfile().getLastName());
@@ -188,7 +189,7 @@ public class MyProfileActivity extends BaseActivity {
                         "dd/MM/yyyy");
                 Date myDate = null;
                 try {
-                    myDate = dateFormat.parse(manager.getUserLoginData().getData().getProfile().getJoinDate().toString());
+                    myDate = dateFormat.parse(manager.getUserLoginData().getData().getProfile().getJoinDate());
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -275,7 +276,7 @@ public class MyProfileActivity extends BaseActivity {
     private View.OnClickListener linearGallery = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            OperaUtils.createInstance().SelectGalleryImage(mActivity, PICK_IMAGE);
+            OperaUtils.createInstance().selectGalleryImage(mActivity, PICK_IMAGE);
         }
     };
 
@@ -283,14 +284,14 @@ public class MyProfileActivity extends BaseActivity {
     private View.OnClickListener linearCamera = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (OperaUtils.createInstance().CheckMarshmallowOrNot()) {
+            if (OperaUtils.createInstance().checkMarshmallowOrNot()) {
                 if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ACCESS_CAMERA_PERMISSION);
                 } else {
-                    OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                    OperaUtils.createInstance().selectCameraImage(mActivity, CAMERA_REQUEST);
                 }
             } else {
-                OperaUtils.createInstance().SelectCameraImage(mActivity, CAMERA_REQUEST);
+                OperaUtils.createInstance().selectCameraImage(mActivity, CAMERA_REQUEST);
             }
         }
     };

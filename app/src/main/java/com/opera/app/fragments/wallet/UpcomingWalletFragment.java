@@ -20,10 +20,6 @@ import com.opera.app.utils.OperaManager;
  */
 public class UpcomingWalletFragment extends Fragment {
 
-    private TodayWalletView walletView;
-    private TextViewWithFont txtWalletEventTitle;
-    private LinearLayout linearParent;
-
     public UpcomingWalletFragment() {
         // Required empty public constructor\
     }
@@ -35,9 +31,9 @@ public class UpcomingWalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upcoming_wallet, container, false);
 
-        walletView = view.findViewById(R.id.helperWalletEvent);
-        linearParent = view.findViewById(R.id.linearParent);
-        txtWalletEventTitle = view.findViewById(R.id.txtWalletEventTitle);
+        TodayWalletView walletView = view.findViewById(R.id.helperWalletEvent);
+        LinearLayout linearParent = view.findViewById(R.id.linearParent);
+        TextViewWithFont txtWalletEventTitle = view.findViewById(R.id.txtWalletEventTitle);
         int mTotalData = 0;
 
         WalletPreference preference = new WalletPreference(getActivity());

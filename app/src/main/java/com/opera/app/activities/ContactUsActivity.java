@@ -60,9 +60,7 @@ public class ContactUsActivity extends BaseActivity {
     Retrofit retrofit;
     private Api api;
     private Activity mActivity;
-    private Intent intent;
     private CustomToast customToast;
-    private SessionManager manager;
 
     @BindView(R.id.toolbar_contactUs)
     Toolbar toolbar;
@@ -130,7 +128,7 @@ public class ContactUsActivity extends BaseActivity {
     }
 
     private void initView() {
-        manager = new SessionManager(mActivity);
+        SessionManager manager = new SessionManager(mActivity);
 
         ((MainApplication) getApplication()).getNetComponent().inject(ContactUsActivity.this);
         api = retrofit.create(Api.class);
@@ -187,12 +185,12 @@ public class ContactUsActivity extends BaseActivity {
         if (manager.getUserLoginData() != null){
             if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
-                countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf("(") + 1,
-                        manager.getUserLoginData().getData().getProfile().getMobileNumber().toString().indexOf(")")).replaceAll("\\s","");
+                countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf("(") + 1,
+                        manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf(")")).replaceAll("\\s","");
                 int mPosition=0;
                 for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
-                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf("(") + 1,
-                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).toString().indexOf(")")).replaceAll("\\s","");
+                    String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf("(") + 1,
+                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf(")")).replaceAll("\\s","");
                     if(number.equals(countryCode)){
                         mPosition=j;
                         break;
@@ -254,7 +252,7 @@ public class ContactUsActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgNumber:
-                intent = new Intent(Intent.ACTION_DIAL);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + mTextNumber.getText().toString().trim()));
                 startActivity(intent);
                 break;

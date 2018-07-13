@@ -45,9 +45,8 @@ public class LanguageManager {
     }
 
     public String GetSharedPreferences(Activity mActivity, String mKey, String mDefauleValue) {
-        String mValue = "";
         SharedPreferences mPrefs = mActivity.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
-        mValue = mPrefs.getString(mKey, mDefauleValue);
+        String mValue = mPrefs.getString(mKey, mDefauleValue);
 
         return mValue;
     }
