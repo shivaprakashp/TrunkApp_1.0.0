@@ -106,7 +106,6 @@ public class WalletActivity extends BaseActivity {
     private void injectView() {
         ((MainApplication) getApplication()).getNetComponent().inject(WalletActivity.this);
         api = retrofit.create(Api.class);
-
     }
 
     private void initView() {

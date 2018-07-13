@@ -22,6 +22,9 @@ import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.booktable.ReserveResponse;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
+import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
+import com.opera.app.pojo.ticketbooking.SuccessResponse;
+import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
 import com.opera.app.pojo.wallet.WalletDetails;
 
 import retrofit2.Call;
@@ -109,6 +112,11 @@ public interface Api {
 
     @POST("events/extended/GetEvents/")
     Call<AllEvents> GetGiftCard(@Query("type") String eventType);
+
+    @POST("accounts/extended/SaveOrder/")
+    Call<SuccessResponse> SaveOrderAPI(@Header("Content-Type") String content, @Header("Accept-Language") String mLanguage,
+                                       @Header("X-Customer") String dtcmCustomerId, @Header("Authorization") String mAuthorization,
+                                       @Body EventTicketBookingPojo mCompleteData);
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
     Call<FeedbackResponseParent> getFeedbackDetails();

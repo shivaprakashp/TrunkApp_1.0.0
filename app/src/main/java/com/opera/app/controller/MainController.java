@@ -17,6 +17,8 @@ import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.restaurant.booktable.BookTableRequest;
 import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPojo;
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
+import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
+import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
 import com.opera.app.preferences.SessionManager;
 
 import retrofit2.Call;
@@ -197,6 +199,13 @@ public class MainController {
     public void getGiftCardDetails(TaskComplete taskComplete, Api api) {
         Call call = api.GetGiftCard(AppConstants.EVENT_TYPE_GIFT_CARD);
         properties.setRequestKey(AppConstants.GETGIFTCARD.GETGIFTCARD);
+        DataListener listener = new DataListener(context, taskComplete, properties);
+        listener.dataLoad(call);
+    }
+
+    public void SaveOrderAPI(TaskComplete taskComplete, Api api,EventTicketBookingPojo mCompleteData) {
+        Call call = api.SaveOrderAPI(contentType,AppConstants.EnglishLanguage,manager.getUserLoginData().getData().getDtcmCustomerId(),manager.getUserLoginData().getData().getToken(),mCompleteData);
+        properties.setRequestKey(AppConstants.SAVEORDER.SAVEORDER);
         DataListener listener = new DataListener(context, taskComplete, properties);
         listener.dataLoad(call);
     }

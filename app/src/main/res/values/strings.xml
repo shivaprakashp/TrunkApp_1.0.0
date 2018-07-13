@@ -994,4 +994,5 @@
     <string name="analytics_sean_reserve_table">Dining - Sean Connolly - Reserve Table</string>
     <string name="dubai_opera_tour">Dubai Opera Tour</string>
     <string name="listen1">Listen</string>
+    <string name="ticket_booked_success">Event booked successfully! Visit Wallet to view the details of the booked Event.</string>
 </resources>

@@ -22,7 +22,9 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
 
     private Context context;
     private List<Events> arrayList;
+    private String currentDay, eventTime;
     private Activity mActivity;
+    String[] startTime;
 
     public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,8 +41,9 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
         }
     }
 
-    public CalendarRecyclerView(List<Events> arrayList) {
+    public CalendarRecyclerView(List<Events> arrayList, String currentDay) {
         this.arrayList = arrayList;
+        this.currentDay = currentDay;
     }
 
     @Override
@@ -55,13 +58,16 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
         final Events events = arrayList.get(position);
 
-        String[] startTime = events.getStartTime().split(" ");
-        String eventTime = events.getEventTime().get(0).getFromTime().split("T")[1].substring(0,2)
-                +":"+events.getEventTime().get(0).getFromTime().split("T")[1].substring(2,4);
+
+        for (int k = 0; k < events.getEventTime().size(); k++) {
+            if (currentDay.equalsIgnoreCase(events.getEventTime().get(k).getFromTime().split("T")[0])) {
+                startTime = events.getStartTime().split(" ");
+                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);
+            }
+        }
 
         try {
-            holder.txtCalendarTime.setText(new SimpleDateFormat("KK:MM").format(
-                    new SimpleDateFormat("HH:mm").parse(eventTime))+ "\n" + startTime[1]);
+            holder.txtCalendarTime.setText(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime)) + "\n" + startTime[1]);
         } catch (ParseException e) {
             e.printStackTrace();
         }
