@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:font="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBurgendy"
+    android:background="@color/black"
     tools:context="com.opera.app.activities.WalletActivity">
 
     <android.support.v7.widget.Toolbar

@@ -24,6 +24,7 @@ import com.opera.app.listadapters.RestaurantAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -73,8 +74,8 @@ public class OtherRestaurantsActivity extends BaseActivity {
     @Inject
     Retrofit retrofit;
 
-    public static OtherRestaurantsActivity getInstance(){
-        return  (OtherRestaurantsActivity)mActivity;
+    public static OtherRestaurantsActivity getInstance() {
+        return (OtherRestaurantsActivity) mActivity;
     }
 
 
@@ -94,8 +95,12 @@ public class OtherRestaurantsActivity extends BaseActivity {
     }
 
     private void GetRestauarantDetails() {
-        MainController controller = new MainController(mActivity);
-        controller.getRestaurantListing(taskComplete, api);
+        if (Connections.isConnectionAlive(mActivity)) {
+            MainController controller = new MainController(mActivity);
+            controller.getRestaurantListing(taskComplete, api);
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
     }
 
     private void initToolbar() {
@@ -179,7 +184,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-    public void diningDetails(RestaurantsData data){
+    public void diningDetails(RestaurantsData data) {
         Intent intent = new Intent(mActivity, MainActivity.class);
         intent.putExtra(AppConstants.GETRESTAURANTLISTING.GETRESTAURANTLISTING, data);
         startActivity(intent);
@@ -187,9 +192,9 @@ public class OtherRestaurantsActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
-        if (mActivity!=null){
+        if (mActivity != null) {
             mActivity = null;
         }
     }

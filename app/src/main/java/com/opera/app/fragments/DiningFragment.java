@@ -131,8 +131,12 @@ public class DiningFragment extends BaseFragment {
     }
 
     private void GetSeanConollyDetails() {
-        MainController controller = new MainController(mActivity);
-        controller.getSpecificRestaurant(taskComplete, api, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
+        if (Connections.isConnectionAlive(mActivity)) {
+            MainController controller = new MainController(mActivity);
+            controller.getSpecificRestaurant(taskComplete, api, AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
     }
 
     @Override
