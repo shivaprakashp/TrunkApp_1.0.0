@@ -58,21 +58,21 @@ public class MainController {
     }
 
     public void registerPost(TaskComplete taskComplete, Api api, Registration registration) {
-        Call call = api.userRegistration(contentType, languageType, registration);
+        Call call = api.userRegistration(contentType,  registration);
         properties.setRequestKey(AppConstants.REGISTER.REGISTER);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);
     }
 
     public void editProfilePost(TaskComplete taskComplete, Api api, EditProfile editProfile) {
-        Call call = api.userEditprofile(contentType, languageType, manager.getUserLoginData().getData().getToken(), editProfile);
+        Call call = api.userEditprofile(contentType, languageType, manager.getUserLoginData().getData().getDtcmCustomerId(), manager.getUserLoginData().getData().getToken(), editProfile);
         properties.setRequestKey(AppConstants.EDITPROFILE.EDITPROFILE);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);
     }
 
     public void changePassword(TaskComplete taskComplete, Api api, PostChangePassword mPostChangePwd) {
-        Call call = api.ChangePassword(contentType, languageType, manager.getUserLoginData().getData().getToken(), mPostChangePwd);
+        Call call = api.ChangePassword(contentType, languageType, manager.getUserLoginData().getData().getDtcmCustomerId(), manager.getUserLoginData().getData().getToken(), mPostChangePwd);
         properties.setRequestKey(AppConstants.CHANGEPASSWORD.CHANGEPASSWORD);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);
@@ -93,7 +93,7 @@ public class MainController {
     }*/
 
     public void getUpdatedSettings(TaskComplete taskComplete, Api api) {
-        Call call = api.GetUpdatedSettings(contentType, languageType, manager.getUserLoginData().getData().getToken());
+        Call call = api.GetUpdatedSettings(contentType, languageType, manager.getUserLoginData().getData().getDtcmCustomerId(), manager.getUserLoginData().getData().getToken());
         properties.setRequestKey(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);
@@ -212,7 +212,7 @@ public class MainController {
     }
 
     public void SaveOrderAPI(TaskComplete taskComplete, Api api,EventTicketBookingPojo mCompleteData) {
-        Call call = api.SaveOrderAPI(contentType, AppConstants.EnglishLanguage, manager.getUserLoginData().getData().getDtcmCustomerId(), 
+        Call call = api.SaveOrderAPI(contentType, AppConstants.EnglishLanguage, manager.getUserLoginData().getData().getDtcmCustomerId(),
                 manager.getUserLoginData().getData().getToken(), mCompleteData);
         properties.setRequestKey(AppConstants.SAVEORDER.SAVEORDER);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);

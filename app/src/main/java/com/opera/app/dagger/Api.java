@@ -46,18 +46,20 @@ public interface Api {
 
     @POST("accounts/extended/Register/")
     Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,
-                                                @Header("Accept-Language") String mLanguage,
+
                                                 @Body Registration registration);
 
     @POST("accounts/extended/editProfile/")
     Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content,
                                               @Header("Accept-Language") String mLanguage,
+                                              @Header("X-Customer") String dtcmCustomerId,
                                               @Header("Authorization") String token,
                                               @Body EditProfile editProfile);
 
     @POST("accounts/extended/ChangePassword/")
     Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content,
                                               @Header("Accept-Language") String mLanguage,
+                                              @Header("X-Customer") String dtcmCustomerId,
                                               @Header("Authorization") String token,
                                               @Body PostChangePassword mPostChangePassword);
 
@@ -75,6 +77,7 @@ public interface Api {
     @POST("accounts/extended/GetUserSettings/")
     Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content,
                                                               @Header("Accept-Language") String mLanguage,
+                                                              @Header("X-Customer") String dtcmCustomerId,
                                                               @Header("Authorization") String token);
 
     @POST("restaurants/extended/GetRestaurantDetails/")
