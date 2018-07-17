@@ -72,6 +72,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mActivity = DubaiOperaTourActivity.this;
+        customToast = new CustomToast(mActivity);
 
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
@@ -136,6 +137,9 @@ public class DubaiOperaTourActivity extends BaseActivity {
         } else {
             if (manager.getTourOfflineData() != null && manager.getTourOfflineData().getEvents().get(0).getDescription() != null) {
                 mTxtTourDetails.setText(Html.fromHtml(manager.getTourOfflineData().getEvents().get(0).getDescription()));
+            }
+            else {
+                customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             }
         }
     }

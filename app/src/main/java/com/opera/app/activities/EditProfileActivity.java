@@ -32,6 +32,7 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -357,7 +358,11 @@ public class EditProfileActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:
-                EditProfileData();
+                if (Connections.isConnectionAlive(mActivity)) {
+                    EditProfileData();
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
 
             case R.id.btnCancel:

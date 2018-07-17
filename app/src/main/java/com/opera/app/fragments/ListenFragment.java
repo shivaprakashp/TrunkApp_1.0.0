@@ -19,6 +19,8 @@ import android.webkit.WebViewClient;
 
 import com.opera.app.R;
 import com.opera.app.constants.AppConstants;
+import com.opera.app.customwidget.CustomToast;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -26,6 +28,7 @@ public class ListenFragment extends BaseFragment {
 
     private ProgressDialog mProgressDialog;
     private WebView myWebView;
+    private CustomToast customToast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,13 +41,18 @@ public class ListenFragment extends BaseFragment {
         // Inflate the layout for this fragment
 
         Activity mActivity = getActivity();
+        customToast = new CustomToast(mActivity);
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_listen, container, false);
 
         mProgressDialog = new ProgressDialog(mActivity);
         myWebView = (WebView) view.findViewById(R.id.webAppleMusicListen);
-        LoadWebView();
+        if (Connections.isConnectionAlive(mActivity)) {
+            LoadWebView();
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
 
         //Calling Google analytics
         OperaUtils.SendGoogleAnalyticsEvent(getResources().getString(R.string.listen1));

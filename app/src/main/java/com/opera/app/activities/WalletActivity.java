@@ -1,9 +1,9 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +21,7 @@ import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.preferences.wallet.WalletPreference;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.OperaManager;
 
 import javax.inject.Inject;
@@ -163,9 +164,12 @@ public class WalletActivity extends BaseActivity {
     }*/
 
     private void getHistory() {
-        MainController controller = new MainController(WalletActivity.this);
-        controller.getWalletDetails(taskComplete, api);
-
+        if (Connections.isConnectionAlive(mActivity)) {
+            MainController controller = new MainController(WalletActivity.this);
+            controller.getWalletDetails(taskComplete, api);
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
