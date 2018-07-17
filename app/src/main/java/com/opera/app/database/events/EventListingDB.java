@@ -52,13 +52,6 @@ public class EventListingDB {
     private static final String EVENT_HIGHLIGHTED_IMAGE = "EVENT_HIGHLIGHTED_IMAGE";
     private static final String EVENT_DETAILS_IMAGE = "EVENT_DETAILS_IMAGE";
     private static final String EVENT_WHATS_ON_IMAGE = "EVENT_WHATS_ON_IMAGE";
-    /*//Part of Genre JSON Object
-    private static final String EVENT_GENRES_ID = "EVENT_GENRES_ID";
-    private static final String EVENT_GENRES_INTERNAL_NAME = "EVENT_GENRES_INTERNAL_NAME";
-    private static final String EVENT_GENRE = "EVENT_GENRE";
-    private static final String EVENT_GENRE_DESCRIPTION = "EVENT_GENRE_DESCRIPTION";
-    private static final String EVENT_GENRES_IMAGE = "EVENT_GENRES_IMAGE";
-    //*/
 
     private static final String EVENT_GENRE = "EVENT_GENRE";
     private static final String EVENT_TIMES = "EVENT_TIMES";
@@ -93,6 +86,7 @@ public class EventListingDB {
 
     private SQLiteDatabase database;
     SQLiteOpenHelper openHelper;
+
 
     public EventListingDB(Context context) {
         openHelper = OperaDBHandler.getInstance(context);
@@ -188,6 +182,7 @@ public class EventListingDB {
         cv.put(EVENT_IS_FAVOURITE, IsFavourite);
         database.update(TABLE_EVENT_LISTING, cv, "_id=" + "=\"" + mEventId + "\"", null);
     }
+
 
     public ArrayList<Events> fetchAllEvents() {
 

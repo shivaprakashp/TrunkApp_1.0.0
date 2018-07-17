@@ -39,7 +39,7 @@ public class MainController {
         contentType = "application/json";
         manager = new SessionManager(mActivity);
         properties = new RequestProperties();
-        
+
         if (LanguageManager.createInstance().
                 GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
                 equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
@@ -93,7 +93,8 @@ public class MainController {
     }*/
 
     public void getUpdatedSettings(TaskComplete taskComplete, Api api) {
-        Call call = api.GetUpdatedSettings(contentType, languageType, manager.getUserLoginData().getData().getDtcmCustomerId(), manager.getUserLoginData().getData().getToken());
+        //Call call = api.GetUpdatedSettings(contentType, manager.getUserLoginData().getData().getToken());
+        Call call = api.GetUpdatedSettings();
         properties.setRequestKey(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);

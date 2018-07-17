@@ -10,6 +10,7 @@ import com.opera.app.database.events.EventListingDB;
 import com.opera.app.database.feedback.FeedbackListingDB;
 import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
+import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.database.restaurants.DatabaseHelper;
 import com.opera.app.database.restaurants.SeanRestOpeation;
 
@@ -33,6 +34,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL(NotificationDetailsDB.CREATE_TABLE_NOTIFICATION);
         db.execSQL(PromotionDetailsDB.CREATE_TABLE_PROMOTION);
         db.execSQL(FeedbackListingDB.CREATE_TABLE_FEEDBACK);
+        db.execSQL(OrderHistoryDB.CREATE_ORDER_HISTORY);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + FeedbackListingDB.TABLE_FEEDBACK_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + OrderHistoryDB.TABLE_ORDER_HISTORY);
         onCreate(db);
     }
 
