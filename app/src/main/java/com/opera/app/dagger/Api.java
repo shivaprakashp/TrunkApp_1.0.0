@@ -64,8 +64,10 @@ public interface Api {
     Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content, @Header("Authorization") String token,
                                               @Body FavouriteAndSettings favouriteAndSettings);
 
-    @POST("accounts/extended/GetUserSettings/")
-    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+    //@POST("accounts/extended/GetUserSettings/")
+    @GET("http://www.mocky.io/v2/5b4dabd331000055005ebcf1")
+    //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
 
     @POST("restaurants/extended/GetRestaurantDetails/")
     Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
