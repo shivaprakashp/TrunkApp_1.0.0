@@ -115,8 +115,8 @@ public class SearchEventActivity extends BaseActivity {
     }
 
     private void ApplyFilter(String s) {
-        if (!s.toString().equalsIgnoreCase("")) {
-            filter(s.toString());
+        if (!s.equalsIgnoreCase("")) {
+            filter(s);
             mTxtSearch.setVisibility(View.VISIBLE);
         } else {
             mTxtSearch.setVisibility(View.GONE);

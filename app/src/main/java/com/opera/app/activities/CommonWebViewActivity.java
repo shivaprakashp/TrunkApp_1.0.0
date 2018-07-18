@@ -113,7 +113,7 @@ public class CommonWebViewActivity extends BaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.e("PageStarted",url.toString());
+            Log.e("PageStarted", url);
         }
 
         @Override

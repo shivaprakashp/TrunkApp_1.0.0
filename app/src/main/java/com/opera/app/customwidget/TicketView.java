@@ -132,47 +132,55 @@ public class TicketView extends View {
         if (mOrientation == Orientation.HORIZONTAL) {
             offset = ((top + bottom) / mScallopPosition) - mScallopRadius;
 
-            if (mCornerType == CornerType.ROUNDED) {
-                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
+            switch (mCornerType) {
+                case CornerType.ROUNDED:
+                    mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, top);
 
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, top);
+                    mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
 
-            } else if (mCornerType == CornerType.SCALLOP) {
-                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
+                    break;
+                case CornerType.SCALLOP:
+                    mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, top);
 
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, top);
+                    mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
 
-            } else {
-                mPath.moveTo(left, top);
-                mPath.lineTo(right, top);
+                    break;
+                default:
+                    mPath.moveTo(left, top);
+                    mPath.lineTo(right, top);
+                    break;
             }
 
             mRect.set(right - mScallopRadius, top + offset, right + mScallopRadius, mScallopHeight + offset + top);
             mPath.arcTo(mRect, 270, -180.0f, false);
 
-            if (mCornerType == CornerType.ROUNDED) {
+            switch (mCornerType) {
+                case CornerType.ROUNDED:
 
-                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
+                    mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, bottom);
 
-                mPath.lineTo(left + mCornerRadius, bottom);
-                mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, bottom);
+                    mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
 
-            } else if (mCornerType == CornerType.SCALLOP) {
+                    break;
+                case CornerType.SCALLOP:
 
-                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
+                    mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, bottom);
 
-                mPath.lineTo(left + mCornerRadius, bottom);
-                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, bottom);
+                    mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
 
-            } else {
-                mPath.lineTo(right, bottom);
-                mPath.lineTo(left, bottom);
+                    break;
+                default:
+                    mPath.lineTo(right, bottom);
+                    mPath.lineTo(left, bottom);
+                    break;
             }
 
             mRect.set(left - mScallopRadius, top + offset, left + mScallopRadius, mScallopHeight + offset + top);
@@ -182,58 +190,70 @@ public class TicketView extends View {
         } else {
             offset = (((right + left) / mScallopPosition) - mScallopRadius);
 
-            if (mCornerType == CornerType.ROUNDED) {
-                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
+            switch (mCornerType) {
+                case CornerType.ROUNDED:
+                    mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, top);
 
-            } else if (mCornerType == CornerType.SCALLOP) {
+                    break;
+                case CornerType.SCALLOP:
 
-                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
+                    mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
+                    mPath.lineTo(left + mCornerRadius, top);
 
-            } else {
-                mPath.moveTo(left, top);
+                    break;
+                default:
+                    mPath.moveTo(left, top);
+                    break;
             }
 
             mRect.set(left + offset, top - mScallopRadius, mScallopHeight + offset + left, top + mScallopRadius);
             mPath.arcTo(mRect, 180.0f, -180.0f, false);
 
-            if (mCornerType == CornerType.ROUNDED) {
+            switch (mCornerType) {
+                case CornerType.ROUNDED:
 
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, top);
+                    mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
 
-                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
+                    mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, bottom);
 
-            } else if (mCornerType == CornerType.SCALLOP) {
+                    break;
+                case CornerType.SCALLOP:
 
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, top);
+                    mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
 
-                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
+                    mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
+                    mPath.lineTo(right - mCornerRadius, bottom);
 
-            } else {
-                mPath.lineTo(right, top);
-                mPath.lineTo(right, bottom);
+                    break;
+                default:
+                    mPath.lineTo(right, top);
+                    mPath.lineTo(right, bottom);
+                    break;
             }
 
             mRect.set(left + offset, bottom - mScallopRadius, mScallopHeight + offset + left, bottom + mScallopRadius);
             mPath.arcTo(mRect, 0.0f, -180.0f, false);
 
-            if (mCornerType == CornerType.ROUNDED) {
+            switch (mCornerType) {
+                case CornerType.ROUNDED:
 
-                mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
-                mPath.lineTo(left, bottom - mCornerRadius);
+                    mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
+                    mPath.lineTo(left, bottom - mCornerRadius);
 
-            } else if (mCornerType == CornerType.SCALLOP) {
+                    break;
+                case CornerType.SCALLOP:
 
-                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
-                mPath.lineTo(left, bottom - mCornerRadius);
+                    mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
+                    mPath.lineTo(left, bottom - mCornerRadius);
 
-            } else {
-                mPath.lineTo(left, bottom);
+                    break;
+                default:
+                    mPath.lineTo(left, bottom);
+                    break;
             }
             mPath.close();
         }

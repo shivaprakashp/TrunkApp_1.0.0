@@ -63,7 +63,7 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
 
     private void FetchFavouriteEvents() {
         mEventDetailsDB.open();
-        ArrayList<Events> mEventListingData = new ArrayList<>();
+        ArrayList<Events> mEventListingData;
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
         mFilteredEvents = new ArrayList<>();

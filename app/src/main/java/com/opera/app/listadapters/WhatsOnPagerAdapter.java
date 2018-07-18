@@ -44,7 +44,7 @@ import retrofit2.Retrofit;
 public class WhatsOnPagerAdapter extends PagerAdapter {
 
     private Activity mActivity;
-    private String mFrom = "";
+    private String mFrom;
     private ArrayList<Events> mWhatsEvents;
     private EventListingDB mEventListingDB;
     Animation slide_in_left;
@@ -92,19 +92,19 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         txtEventInfo.setText(Html.fromHtml(eventObject.getName()));
         txtEventDate.setText(OperaUtils.getDateInMonthFormat(eventObject.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(eventObject.getTo()));
 
-        String mAllGenres = "";
+        StringBuilder mAllGenres = new StringBuilder();
         for (int i = 0; i < eventObject.getGenreList().size(); i++) {
-            if (mAllGenres.equalsIgnoreCase("")) {
-                mAllGenres = eventObject.getGenreList().get(i).getGenere();
+            if (mAllGenres.toString().equalsIgnoreCase("")) {
+                mAllGenres = new StringBuilder(eventObject.getGenreList().get(i).getGenere());
             } else {
-                mAllGenres = mAllGenres + "," + eventObject.getGenreList().get(i).getGenere();
+                mAllGenres.append(",").append(eventObject.getGenreList().get(i).getGenere());
             }
 
         }
-        if (mAllGenres.equalsIgnoreCase("")) {
+        if (mAllGenres.toString().equalsIgnoreCase("")) {
             txtEventGenre.setVisibility(View.GONE);
         } else {
-            txtEventGenre.setText(mAllGenres);
+            txtEventGenre.setText(mAllGenres.toString());
             txtEventGenre.setVisibility(View.VISIBLE);
         }
 
