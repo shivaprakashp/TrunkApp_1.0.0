@@ -39,6 +39,8 @@ import com.opera.app.utils.LanguageManager;
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -190,13 +192,14 @@ public class SettingsActivity extends BaseActivity {
                                 String[] dateYearMonth = dateTime[0].split("-");
 
                                 String endTimeAmPm = history.getStartTime().split(" ")[1];
-                                String endTimeHr = history.getStartTime().split(":")[0];
-                                String endTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
+                                String startTimeHr = history.getStartTime().split(":")[0];
+                                String startTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
                                 calendar.set(Integer.valueOf(dateYearMonth[0]),
                                         Integer.valueOf(dateYearMonth[1]),
                                         Integer.valueOf(dateYearMonth[2]),
-                                        Integer.valueOf(endTimeHr),
-                                        Integer.valueOf(endTimeMM));
+                                        Integer.valueOf(startTimeHr),
+                                        Integer.valueOf(startTimeMM));
+
 
                                 /*calendar.set(2018,
                                         06,
