@@ -29,12 +29,8 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.events.EventGenresDB;
-import com.opera.app.database.events.EventListingDB;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.eventlisiting.AllEvents;
-import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.pojo.ticketbooking.SuccessResponse;
 import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
@@ -48,7 +44,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -318,7 +313,7 @@ public class BuyTicketWebView extends BaseActivity {
             if (mRequestKey.equalsIgnoreCase(AppConstants.SAVEORDER.SAVEORDER)) {
                 SuccessResponse mSuccessResponse = (SuccessResponse) response.body();
 
-                if (mSuccessResponse.getStatus().equalsIgnoreCase("success")) {
+                if (mSuccessResponse.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                     try {
                         myWebView.setVisibility(View.INVISIBLE);
                     } catch (Exception e) {

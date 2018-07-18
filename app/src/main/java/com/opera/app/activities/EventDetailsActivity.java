@@ -203,7 +203,7 @@ public class EventDetailsActivity extends BaseActivity {
         //What's on events
         adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres, "");
         mViewpagerFavGenres.setAdapter(adapterFavGenres);
-        mViewpagerFavGenres.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewpagerFavGenres.addOnPageChangeListener (new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -257,7 +257,7 @@ public class EventDetailsActivity extends BaseActivity {
             if (mRequestKey.equalsIgnoreCase(AppConstants.MARKFAVOURITEFOREVENT.MARKFAVOURITEFOREVENT)) {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
                 /*try {
-                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 
                     }
                 } catch (Exception e) {
@@ -266,7 +266,7 @@ public class EventDetailsActivity extends BaseActivity {
             } else {
                 GetEventDetails mEventDataPojo = (GetEventDetails) response.body();
                 try {
-                    if (mEventDataPojo != null && mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mEventDataPojo != null && mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         mEventDetailsDB.open();
                         mEventListingDB.open();
                         mEventDetailsDB.deleteCompleteTable(EventDetailsDB.TABLE_EVENT_DETAILS);

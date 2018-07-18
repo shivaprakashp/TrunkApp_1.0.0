@@ -188,8 +188,9 @@ public class EventListingDB {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -236,6 +237,10 @@ public class EventListingDB {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayEvents;
@@ -244,8 +249,9 @@ public class EventListingDB {
     //For guest only
     public boolean IsFavouriteForSpecificEvent(String mEventId) {
         boolean IsFavourite = false;
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING + " where _id = '" + mEventId + "'", null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING + " where _id = '" + mEventId + "'", null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -259,6 +265,10 @@ public class EventListingDB {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return IsFavourite;
@@ -268,8 +278,9 @@ public class EventListingDB {
     public ArrayList<Events> fetchEventsWithFavouriteForGuest() {
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -282,6 +293,10 @@ public class EventListingDB {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayEvents;
@@ -314,8 +329,9 @@ public class EventListingDB {
 
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -384,6 +400,10 @@ public class EventListingDB {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayEvents;

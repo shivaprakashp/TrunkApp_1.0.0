@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.opera.app.database.OperaDBHandler;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 
@@ -79,9 +78,9 @@ public class OrderHistoryDB {
     public ArrayList<OrderHistory> orderHistories(){
 
         ArrayList<OrderHistory> orderHistories = new ArrayList<>();
-
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_ORDER_HISTORY, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_ORDER_HISTORY, null);
 
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -100,6 +99,10 @@ public class OrderHistoryDB {
             }
         }catch (Exception e){
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return orderHistories;

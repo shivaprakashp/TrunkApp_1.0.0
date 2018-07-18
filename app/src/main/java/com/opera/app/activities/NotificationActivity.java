@@ -12,6 +12,7 @@ import android.view.View;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -62,7 +63,7 @@ public class NotificationActivity extends BaseActivity {
             NotificationDetails mNotificationPojo = (NotificationDetails) response.body();
             if (response.body() != null)
                 try {
-                    if (mNotificationPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mNotificationPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 
                             dbManagerNotification.open();
                             dbManagerNotification.deleteCompleteTable(NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);

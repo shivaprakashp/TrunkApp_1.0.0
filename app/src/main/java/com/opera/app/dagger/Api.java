@@ -153,7 +153,7 @@ public interface Api {
                                        @Body EventTicketBookingPojo mCompleteData);
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
-    Call<FeedbackResponseParent> getFeedbackDetails();
+    Call<FeedbackResponseParent> getFeedbackDetails(@Header("Accept-Language") String mLanguage);
 
     @GET("http://www.mocky.io/v2/5b4c544d3100006300a7df5a%20")
     Call<List<BookedEventHistory>> getBookedEventDetails(@Header("Content-Type") String content, @Header("Authorization") String token);

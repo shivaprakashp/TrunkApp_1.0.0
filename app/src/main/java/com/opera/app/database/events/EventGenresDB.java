@@ -84,8 +84,9 @@ public class EventGenresDB {
 
         ArrayList<GenreList> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_GENRES_LISTING, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_GENRES_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -102,6 +103,10 @@ public class EventGenresDB {
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if(cursor != null){
+                cursor.close();
+            }
         }
 
         return dataArrayEvents;
@@ -111,8 +116,9 @@ public class EventGenresDB {
 
         ArrayList<GenreList> dataArrayEvents = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_GENRES_LISTING, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_GENRES_LISTING, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -131,8 +137,11 @@ public class EventGenresDB {
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-
         return dataArrayEvents;
     }
 

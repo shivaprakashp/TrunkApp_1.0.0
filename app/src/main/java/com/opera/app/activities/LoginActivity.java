@@ -104,7 +104,7 @@ public class LoginActivity extends BaseActivity {
             } else if (mRequestKey.equals(AppConstants.FORGOTPASSWORD.FORGOTPASSWORD)) {
                 if (response.body() != null) {
                     RegistrationResponse mPostResp = (RegistrationResponse) response.body();
-                    if (mPostResp.getStatus().equalsIgnoreCase("success")) {
+                    if (mPostResp.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostResp.getMessage() , getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "forgot_password");
                         dialog.show();
                     } else {

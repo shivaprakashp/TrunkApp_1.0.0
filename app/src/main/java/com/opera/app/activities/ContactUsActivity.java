@@ -147,7 +147,7 @@ public class ContactUsActivity extends BaseActivity {
         mEdtFullName.setInputType(InputType.TYPE_CLASS_TEXT);
         mEdtFullName.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
-            mEdtFullName.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " " + manager.getUserLoginData().getData().getProfile().getLastName());
+            mEdtFullName.setText(new StringBuilder().append(manager.getUserLoginData().getData().getProfile().getFirstName()).append(" ").append(manager.getUserLoginData().getData().getProfile().getLastName()).toString());
         }
         mEdtFullName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
 
@@ -225,7 +225,7 @@ public class ContactUsActivity extends BaseActivity {
         String[] arrEnquiryOptions = {getResources().getString(R.string.enquiry_type), getResources().getString(R.string.press_enquiry), getResources().getString(R.string.ticketting_enquiry),
                 getResources().getString(R.string.venue_booking), getResources().getString(R.string.careers)};
 
-        ArrayAdapter<String> adapterEnquiry = new ArrayAdapter<String>(mActivity, R.layout.custom_spinner, arrEnquiryOptions);
+        ArrayAdapter<String> adapterEnquiry = new ArrayAdapter<>(mActivity, R.layout.custom_spinner, arrEnquiryOptions);
         spinnerEnquiryType.setAdapter(adapterEnquiry);
         spinnerEnquiryType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -315,13 +315,11 @@ public class ContactUsActivity extends BaseActivity {
 
         ContactUs contactDate = new ContactUs();
 
-        contactDate.setFullName(mEdtFullName.getText().toString() != null ?
-                mEdtFullName.getText().toString() : "");
+        contactDate.setFullName(mEdtFullName.getText().toString());
         contactDate.setPhoneNumber("(" + countryCode + ")" + mEdtMobileNumber.getText().toString().trim());
         contactDate.setEmail(mEdtEmail.getText().toString().trim());
         contactDate.setEnquiryType(spinnerEnquiryType.getSelectedItem().toString());
-        contactDate.setMessage(edtMessage.getText().toString().trim() != null ?
-                edtMessage.getText().toString().trim() : "");
+        contactDate.setMessage(edtMessage.getText().toString().trim());
 
         return contactDate;
 

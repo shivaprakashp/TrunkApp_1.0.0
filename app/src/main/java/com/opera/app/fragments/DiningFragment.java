@@ -194,7 +194,7 @@ public class DiningFragment extends BaseFragment {
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
-            if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+            if (mRestaurantPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                 if (mRestaurantPojo.getData().size() > 0) {
                     restOpeation.open();
                     restOpeation.removeSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);

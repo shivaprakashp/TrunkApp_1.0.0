@@ -12,6 +12,7 @@ import android.view.View;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -80,7 +81,7 @@ public class PromotionsActivity extends BaseActivity {
             PromotionsPojo mPromotionsPojo = (PromotionsPojo) response.body();
             if (response.body() != null) {
                 try {
-                    if (mPromotionsPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mPromotionsPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         dbManagerPromotion.open();
                         dbManagerPromotion.deleteCompleteTable(PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
                         dbManagerPromotion.insertPromotions(mPromotionsPojo.getPromotionsData());

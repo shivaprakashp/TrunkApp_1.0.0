@@ -86,8 +86,9 @@ public class NotificationDetailsDB {
     public ArrayList<Notification> fetchNotificationDetails() {
 
         ArrayList<Notification> dataArrayList = new ArrayList<>();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_NOTIFICATION_DETAILS, null);
+            cursor = database.rawQuery("SELECT * FROM "+TABLE_NOTIFICATION_DETAILS, null);
             if (cursor != null && cursor.getCount()>0) {
                 cursor.moveToFirst();
                 do {
@@ -108,6 +109,10 @@ public class NotificationDetailsDB {
             }
         }catch (SQLException e){
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayList;

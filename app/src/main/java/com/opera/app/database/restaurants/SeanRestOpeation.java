@@ -97,9 +97,9 @@ public class SeanRestOpeation {
     //returns the stored data
     public RestaurantsData getSeanConnolly(String mRestaurantId) {
         RestaurantsData data = new RestaurantsData();
+        Cursor cursor = null;
         try {
-//            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restItemId = '" + mRestaurantId + "'", null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restItemId = '" + mRestaurantId + "'", null);
 
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -123,6 +123,10 @@ public class SeanRestOpeation {
             e.printStackTrace();
             Log.e("error2", e.getMessage());
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return data;
@@ -131,9 +135,9 @@ public class SeanRestOpeation {
     //returns the stored data
     public RestaurantsData getSeanConnollySiteCoreId(String mRestaurantId) {
         RestaurantsData data = new RestaurantsData();
+        Cursor cursor = null;
         try {
-//            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restId = '" + mRestaurantId + "'", null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restId = '" + mRestaurantId + "'", null);
 
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -157,6 +161,10 @@ public class SeanRestOpeation {
             e.printStackTrace();
             Log.e("error2", e.getMessage());
             e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return data;

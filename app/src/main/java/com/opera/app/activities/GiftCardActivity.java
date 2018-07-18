@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
@@ -147,7 +148,7 @@ public class GiftCardActivity extends BaseActivity {
             if (response.body() != null) {
                 AllEvents mEventDataPojo = (AllEvents) response.body();
                 try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         mTxtGiftCardDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
                         Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
                                 .into(mIvVoucherCoverImage, new Callback() {

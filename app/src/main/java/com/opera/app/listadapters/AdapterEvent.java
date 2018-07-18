@@ -20,6 +20,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventListingDB;
@@ -280,7 +281,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
             if (mFavouriteAndSettingsResponseMain != null) {
                 try {
-                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                    if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         if (mFavouriteAndSettingsResponseMain.getData().getFavourite().size() > 0) {
                             mEventListingDB.open();
                             mEventListingDB.UpdateFavouriteData(mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getFavouriteId(), mFavouriteAndSettingsResponseMain.getData().getFavourite().get(0).getIsFavourite());
