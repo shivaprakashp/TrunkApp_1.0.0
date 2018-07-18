@@ -52,7 +52,7 @@ public class NotificationData {
         Notification notification = builder.build();
 
         // O icone diferencia uma notificacao da outra.
-        notificationManager.notify(R.drawable.ic_nationality_icon, notification);
+        notificationManager.notify(1, notification);
 
 
     }

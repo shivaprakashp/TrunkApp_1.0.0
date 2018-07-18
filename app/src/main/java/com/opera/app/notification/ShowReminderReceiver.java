@@ -21,7 +21,6 @@ public class ShowReminderReceiver extends BroadcastReceiver {
                         .build();
                 WorkManager.getInstance().enqueue(logWork);
 
-                Toast.makeText(context, "Alarm....", Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -204,6 +204,7 @@ public class HomeFragment extends BaseFragment {
         }
     };
 
+    /*store order history into db*/
     private void updateOrderHistory(FavouriteAndSettingsResponseMain responseMain){
         if (responseMain != null){
             if (responseMain.getData().getOrderHistory()!=null){
@@ -211,16 +212,21 @@ public class HomeFragment extends BaseFragment {
 
                 OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
                 orderHistoryDB.open();
-                orderHistoryDB.deleteCompleteTable(OrderHistoryDB.TABLE_ORDER_HISTORY);
-                orderHistoryDB.insertOrders(historyList);
-                startFeedBackAlarm(orderHistoryDB);
-                orderHistoryDB.close();
 
-
+                try {
+                    orderHistoryDB.deleteCompleteTable(OrderHistoryDB.TABLE_ORDER_HISTORY);
+                    orderHistoryDB.insertOrders(historyList);
+                    startFeedBackAlarm(orderHistoryDB);
+                }catch (Exception e){
+                    e.printStackTrace();
+                } finally {
+                    orderHistoryDB.close();
+                }
             }
         }
     }
 
+    //based on order history set the alarm
     private void startFeedBackAlarm(OrderHistoryDB orderHistoryDB){
 
         //log alarm
@@ -257,9 +263,9 @@ public class HomeFragment extends BaseFragment {
                     MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
                             mActivity.getApplicationContext(), i, intentLog, 0);
 
-                    MainApplication.alarmManager[i].setRepeating(AlarmManager.RTC_WAKEUP,
+                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP,
                             calendar.getTimeInMillis(),
-                            1000,
+                           /* 1000,*/
                             MainApplication.pendingIntentLog);
 
                 }

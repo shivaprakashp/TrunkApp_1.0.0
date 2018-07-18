@@ -3,8 +3,10 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -22,10 +24,12 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
@@ -116,7 +120,6 @@ public class SettingsActivity extends BaseActivity {
         initToolbar();
         initView();
         SwitchEvents();
-
     }
 
     private void SwitchEvents() {
@@ -158,26 +161,69 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Calendar calendar = Calendar.getInstance();
+                OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
+
+                ComponentName component = new ComponentName(mActivity, ShowReminderReceiver.class);
                 if (isChecked){
+                    try{
+                        //Enable
+                        mActivity.getPackageManager().setComponentEnabledSetting(component,
+                                PackageManager.COMPONENT_ENABLED_STATE_ENABLED , PackageManager.DONT_KILL_APP);
+                        MainApplication.alarmManager[0] = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                    MainApplication.alarmManager[0] = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        //log alarm
+                        Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
+                        intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
 
-                    //log alarm
-                    Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
-                    intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
+                        MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
+                                mActivity, 234, intentLog, 0);
 
-                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                            mActivity, 234, intentLog, 0);
+                        //set dabase data
+                        orderHistoryDB.open();
+                        if (orderHistoryDB.orderHistories() != null ){
+                            for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+                                OrderHistory history = orderHistoryDB.orderHistories().get(i);
+                                calendar.setTimeInMillis(System.currentTimeMillis());
+                                calendar.clear();
+                                String[] dateTime = history.getDateTime().split("T");
+                                String[] dateYearMonth = dateTime[0].split("-");
 
-                    calendar.set(2018,
-                            06,
-                            17,
-                            17,
-                            59);
+                                String endTimeAmPm = history.getStartTime().split(" ")[1];
+                                String endTimeHr = history.getStartTime().split(":")[0];
+                                String endTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
+                                calendar.set(Integer.valueOf(dateYearMonth[0]),
+                                        Integer.valueOf(dateYearMonth[1]),
+                                        Integer.valueOf(dateYearMonth[2]),
+                                        Integer.valueOf(endTimeHr),
+                                        Integer.valueOf(endTimeMM));
 
-                    MainApplication.alarmManager[0].setRepeating(AlarmManager.RTC_WAKEUP,
-                            calendar.getTimeInMillis(), 1000, MainApplication.pendingIntentLog);
+                                /*calendar.set(2018,
+                                        06,
+                                        17,
+                                        17,
+                                        55);*/
 
+                                MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP,
+                                        calendar.getTimeInMillis(), MainApplication.pendingIntentLog);
+
+                            }
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        orderHistoryDB.close();
+
+                    }
+
+                }else{
+                    //remove notification
+
+                    //Disable
+                    mActivity.getPackageManager().
+                            setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_DISABLED ,
+                                    PackageManager.DONT_KILL_APP);
+//Enable
                 }
             }
         });
@@ -308,7 +354,7 @@ public class SettingsActivity extends BaseActivity {
 
             case R.id.linearLogout:
                 StartServiceUpdateSettings(getResources().getString(R.string.logout));
-               /* mSessionManager.logoutUser();*/
+                /* mSessionManager.logoutUser();*/
                 break;
 
             case R.id.tvLogout:
