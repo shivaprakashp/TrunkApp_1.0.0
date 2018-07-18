@@ -173,10 +173,6 @@ public class GiftCardActivity extends BaseActivity {
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            try {
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     };
 }

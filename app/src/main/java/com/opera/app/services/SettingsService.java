@@ -47,8 +47,8 @@ public class SettingsService extends IntentService {
     private CustomToast customToast;
     @Inject
     Retrofit retrofit;
-    public static Activity mActivity;
-    static SessionManager mSessionManager;
+    public Activity mActivity;
+    SessionManager mSessionManager;
     private static ProgressDialog mProgressDialog;
 
     /**
@@ -193,7 +193,7 @@ public class SettingsService extends IntentService {
 
         try {
             JSONObject jObjError = new JSONObject(response.errorBody().string());
-            return jObjError.getString("message");
+            return jObjError.getString(AppConstants.MESSAGE);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }

@@ -141,10 +141,7 @@ public class ReserveATableActivity extends BaseActivity {
     private AdapterMealPeriod mAdapterMealPeriod;
     private ArrayList<Meal_Periods> arrMealPeriods = new ArrayList<>();
 
-    //Time segments
-    private AdapterTimeSegments mAdapterTimeSegments;
     private ArrayList<Time_Segment_Responses> arrTimeSegments = new ArrayList<>();
-    private ArrayList<Time_Segments> arrTimeSegmentsOnly = new ArrayList<>();
     private ArrayList<Time_Segments> arrTimeSegmentsAllFilters = new ArrayList<>();
 
     @Override
@@ -224,7 +221,7 @@ public class ReserveATableActivity extends BaseActivity {
 
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
-                    ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
+                    ((TextView) parent.getChildAt(0)).setText(new StringBuilder().append("+ ").append(countryCode).toString());
                 }
             }
 
@@ -315,7 +312,7 @@ public class ReserveATableActivity extends BaseActivity {
         edtFulName.setMaxLines(1);
         edtFulName.setHint(getString(R.string.full_name));
         if (mSessionManager.getUserLoginData() != null && mSessionManager.getUserLoginData().getData().getProfile().getFirstName() != null && mSessionManager.getUserLoginData().getData().getProfile().getLastName() != null) {
-            edtFulName.setText(mSessionManager.getUserLoginData().getData().getProfile().getFirstName() + " " + mSessionManager.getUserLoginData().getData().getProfile().getLastName());
+            edtFulName.setText(new StringBuilder().append(mSessionManager.getUserLoginData().getData().getProfile().getFirstName()).append(" ").append(mSessionManager.getUserLoginData().getData().getProfile().getLastName()).toString());
         }
         edtFulName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
 
@@ -368,7 +365,7 @@ public class ReserveATableActivity extends BaseActivity {
 
                 if (valuePlus != maxPartySize) {
                     valuePlus++;
-                    mTxtNumberOfGuests.setText(valuePlus + "");
+                    mTxtNumberOfGuests.setText(new StringBuilder().append(valuePlus).append("").toString());
 //                    mEdtNoOfGuests.setText(valuePlus + "");
 
                     ChangeTimeSegmentsField(valuePlus + "");
@@ -380,7 +377,7 @@ public class ReserveATableActivity extends BaseActivity {
                 if (!mTxtNumberOfGuests.getText().toString().equalsIgnoreCase("1")) {
                     int valueMinus = Integer.parseInt(mTxtNumberOfGuests.getText().toString());
                     valueMinus--;
-                    mTxtNumberOfGuests.setText(valueMinus + "");
+                    mTxtNumberOfGuests.setText(new StringBuilder().append(valueMinus).append("").toString());
 //                    mEdtNoOfGuests.setText(valueMinus + "");
 
                     ChangeTimeSegmentsField(valueMinus + "");
@@ -494,7 +491,7 @@ public class ReserveATableActivity extends BaseActivity {
     }
 
     private void ChangeTimeSegmentsField(String mCurrentNofOfGuestesSelected) {
-        arrTimeSegmentsOnly = new ArrayList<>();
+        ArrayList<Time_Segments> arrTimeSegmentsOnly = new ArrayList<>();
         arrTimeSegmentsAllFilters = new ArrayList<>();
         for (int i = 0; i < arrTimeSegments.size(); i++) {
             if (mCurrentNofOfGuestesSelected.equalsIgnoreCase(arrTimeSegments.get(i).getParty_Size())) {
@@ -512,7 +509,7 @@ public class ReserveATableActivity extends BaseActivity {
         }
 
         if (arrTimeSegmentsAllFilters.size() > 0) {
-            mAdapterTimeSegments = new AdapterTimeSegments(mActivity, arrTimeSegmentsAllFilters);
+            AdapterTimeSegments mAdapterTimeSegments = new AdapterTimeSegments(mActivity, arrTimeSegmentsAllFilters);
             mSpinnerSelectTime.setAdapter(mAdapterTimeSegments);
         } else {
             String[] arrSelectTime = {getResources().getString(R.string.select_time)};

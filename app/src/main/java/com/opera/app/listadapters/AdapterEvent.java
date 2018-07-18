@@ -139,7 +139,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }
 
-        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventDate.setText(new StringBuilder().append(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom())).append(" - ").append(OperaUtils.getDateInMonthFormat(mEventPojo.getTo())).toString());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getName()));
 
         StringBuilder mAllGenres = new StringBuilder();
@@ -298,10 +298,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            try {
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     };
 }

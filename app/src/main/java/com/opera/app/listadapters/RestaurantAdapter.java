@@ -15,9 +15,7 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.RestaurantCompleteDetails;
-import com.opera.app.customwidget.CustomToast;
 import com.opera.app.pojo.restaurant.RestaurantsData;
-import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -31,8 +29,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
     private ArrayList<RestaurantsData> mRestaurantList;
     private Activity mActivity;
-    private SessionManager manager;
-    private CustomToast customToast;
 
     @Override
     public Filter getFilter() {
@@ -101,9 +97,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             mImgRestaurantImage = view.findViewById(R.id.mImgRestaurantImage);
             mBtnReserveATable = view.findViewById(R.id.mBtnReserveATable);
             progressImageLoader = view.findViewById(R.id.progressImageLoader);
-
-            manager = new SessionManager(mActivity);
-            customToast = new CustomToast(mActivity);
         }
     }
 
@@ -128,7 +121,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final RestaurantsData mRestaurantListing = mRestaurantList.get(position);
         holder.mTxtRestaurantName.setText(mRestaurantListing.getRestName());
-        holder.mTxtRestaurantPlace.setText("at " + mRestaurantListing.getRestPlace());
+        holder.mTxtRestaurantPlace.setText(new StringBuilder().append("at ").append(mRestaurantListing.getRestPlace()).toString());
 
         Picasso.with(mActivity).load(mRestaurantListing.getRestImage()).fit().centerCrop()
                 .into(holder.mImgRestaurantImage, new Callback() {

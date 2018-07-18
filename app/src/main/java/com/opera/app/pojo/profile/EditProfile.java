@@ -29,7 +29,6 @@ public class EditProfile {
     @SerializedName("country")
     @Expose
     private String country;
-    private String joinDate;
     @SerializedName("Address")
     @Expose
     private String Address;

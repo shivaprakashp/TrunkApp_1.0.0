@@ -15,7 +15,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.GiftCard;
 import com.opera.app.pojo.wallet.Restaurant;
 import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
@@ -117,7 +116,7 @@ public class TodayWalletView extends LinearLayout {
 
                 txtEventTitle.setText(mBookedHistoryEvents.getmTicketEventName());
                 txtWalletEventGenre.setText(mBookedHistoryEvents.getmTicketEventGenre());
-                txtWalletEventDate.setText(mDateFor + " " + mTimeFor);
+                txtWalletEventDate.setText(new StringBuilder().append(mDateFor).append(" ").append(mTimeFor).toString());
 
                 txtWalletEventDoor.setText(mBookedHistoryEvents.getmEventSeatRZSTR());
                 txtWalletEventSection.setText(mBookedHistoryEvents.getmEventSeatSection());
@@ -215,11 +214,11 @@ public class TodayWalletView extends LinearLayout {
                 }
 
                 txtWalletRestTitle.setText(restaurant.getRestaurantName());
-                dateReservation.setText(" " + formattedTimeReservationDate);
-                mealPeriod.setText(" " + restaurant.getMealPeriodId());
-                preferTime.setText(" " + restaurant.getPreferredTime());
-                referNo.setText(" " + restaurant.getBookingReferenceNumber());
-                bookDate.setText(" " + formattedTime);
+                dateReservation.setText(new StringBuilder().append(" ").append(formattedTimeReservationDate).toString());
+                mealPeriod.setText(new StringBuilder().append(" ").append(restaurant.getMealPeriodId()).toString());
+                preferTime.setText(new StringBuilder().append(" ").append(restaurant.getPreferredTime()).toString());
+                referNo.setText(new StringBuilder().append(" ").append(restaurant.getBookingReferenceNumber()).toString());
+                bookDate.setText(new StringBuilder().append(" ").append(formattedTime).toString());
 
                 try {
                     txtBarCode.setText(restaurant.getFullReservationID());

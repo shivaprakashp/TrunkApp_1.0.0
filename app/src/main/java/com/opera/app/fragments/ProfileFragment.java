@@ -71,9 +71,7 @@ public class ProfileFragment extends BaseFragment {
             if (manager.getUserLoginData().getData().getProfile().getAddress() != null && !manager.getUserLoginData().getData().getProfile().getAddress().isEmpty()) {
                 profile_address.setText(manager.getUserLoginData().getData().getProfile().getAddress());
             } else {
-                profile_address.setText(manager.getUserLoginData().getData().getProfile().getCity() + ", "
-                        + manager.getUserLoginData().getData().getProfile().getState() + ", "
-                        + manager.getUserLoginData().getData().getProfile().getCountry());
+                profile_address.setText(new StringBuilder().append(manager.getUserLoginData().getData().getProfile().getCity()).append(", ").append(manager.getUserLoginData().getData().getProfile().getState()).append(", ").append(manager.getUserLoginData().getData().getProfile().getCountry()).toString());
             }
             profile_email.setText(manager.getUserLoginData().getData().getProfile().getEmail());
             profile_mobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());

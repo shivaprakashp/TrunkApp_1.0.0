@@ -3,7 +3,6 @@ package com.opera.app.notification;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
 
 import androidx.work.Worker;

@@ -64,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
         try {
             if(response.errorBody() != null) {
                 JSONObject jObjError = new JSONObject(response.errorBody().string());
-                return jObjError.getString("message");
+                return jObjError.getString(AppConstants.MESSAGE);
             }
         } catch (JSONException | IOException e) {
             e.printStackTrace();

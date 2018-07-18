@@ -69,7 +69,6 @@ public class FindOutMoreDialogue extends Dialog {
         public void onClick(View v) {
 
             String[] TO = {emailId};
-            String[] CC = {""};
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
             emailIntent.setData(Uri.parse("mailto:"));

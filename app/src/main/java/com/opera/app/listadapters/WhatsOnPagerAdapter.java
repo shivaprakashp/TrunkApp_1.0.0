@@ -90,7 +90,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         Button btnBuyTickets = view.findViewById(R.id.btnBuyTickets);
 
         txtEventInfo.setText(Html.fromHtml(eventObject.getName()));
-        txtEventDate.setText(OperaUtils.getDateInMonthFormat(eventObject.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(eventObject.getTo()));
+        txtEventDate.setText(new StringBuilder().append(OperaUtils.getDateInMonthFormat(eventObject.getFrom())).append(" - ").append(OperaUtils.getDateInMonthFormat(eventObject.getTo())).toString());
 
         StringBuilder mAllGenres = new StringBuilder();
         for (int i = 0; i < eventObject.getGenreList().size(); i++) {
@@ -279,10 +279,6 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            try {
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     };
 }

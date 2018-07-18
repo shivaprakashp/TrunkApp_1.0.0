@@ -16,8 +16,7 @@
             android:background="@color/colorBurgendy"
             android:ellipsize="end"
             android:maxLines="1"
-            android:padding="8dp"
-            android:text="Feedback on the show" />
+            android:padding="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,8 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Feedback on the show" />
+                    android:maxLines="1"/>
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/txtShowDesc"
@@ -56,8 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Feedback on the show" />
+                    android:maxLines="2" />
 
                 <com.opera.app.customwidget.TextViewWithFont
                     android:id="@+id/txtShowDateAndTime"
@@ -65,8 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Feedback on the show" />
+                    android:maxLines="2"/>
 
             </LinearLayout>
         </LinearLayout>

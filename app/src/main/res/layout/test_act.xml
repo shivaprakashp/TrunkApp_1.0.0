@@ -33,7 +33,6 @@
         android:id="@+id/btnBuyTickers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="@string/appleBuyTicket"
         android:visibility="gone" />
 
@@ -41,8 +40,7 @@
         android:id="@+id/txtJsonData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_below="@+id/btnBuyTickers" />
+        android:visibility="gone"/>
 
     <WebView
         android:id="@+id/webBuyTickets"

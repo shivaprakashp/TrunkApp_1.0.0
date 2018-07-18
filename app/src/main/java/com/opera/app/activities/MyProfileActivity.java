@@ -182,8 +182,7 @@ public class MyProfileActivity extends BaseActivity {
     private void updateSessionData() {
         SessionManager manager = new SessionManager(mActivity);
         if (manager.getUserLoginData() != null) {
-            tv_profile_name.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " "
-                    + manager.getUserLoginData().getData().getProfile().getLastName());
+            tv_profile_name.setText(new StringBuilder().append(manager.getUserLoginData().getData().getProfile().getFirstName()).append(" ").append(manager.getUserLoginData().getData().getProfile().getLastName()).toString());
 
             if (manager.getUserLoginData().getData().getProfile().getJoinDate() != null && !manager.getUserLoginData().getData().getProfile().getJoinDate().isEmpty()) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -197,7 +196,7 @@ public class MyProfileActivity extends BaseActivity {
                 }
                 SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
                 String finalDate = timeFormat.format(myDate);
-                profileInfo.setText(getString(R.string.profile_info) + " " + finalDate);
+                profileInfo.setText(new StringBuilder().append(getString(R.string.profile_info)).append(" ").append(finalDate).toString());
             } else {
                 profileInfo.setText("");
             }
@@ -419,7 +418,7 @@ public class MyProfileActivity extends BaseActivity {
                 bmProfileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
                 byte[] b = baos.toByteArray();
                 String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-                sp.edit().putString("dp", encodedImage).commit();
+                sp.edit().putString("dp", encodedImage).apply();
 
             } else {
                 bmProfileImage = (Bitmap) data.getExtras().get("data");
@@ -428,7 +427,7 @@ public class MyProfileActivity extends BaseActivity {
                 bmProfileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
                 byte[] b = baos.toByteArray();
                 String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-                sp.edit().putString("dp", encodedImage).commit();
+                sp.edit().putString("dp", encodedImage).apply();
             }
         }
     }
