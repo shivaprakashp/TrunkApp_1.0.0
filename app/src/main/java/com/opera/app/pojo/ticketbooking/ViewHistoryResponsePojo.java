@@ -32,9 +32,9 @@ public class ViewHistoryResponsePojo {
         this.status = status;
     }
 
-    /*@Override
+    @Override
     public String toString()
     {
-        return "ClassPojo [Data = "+Data+", status = "+status+"]";
-    }*/
+        return "ClassPojo [status = "+status+"]";
+    }
 }

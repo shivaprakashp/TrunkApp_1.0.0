@@ -19,6 +19,7 @@
 
     <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
     <permission android:name="${applicationId}.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- Needed for push notifications that contain VIBRATE flag. Optional, but recommended. -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -47,6 +48,7 @@
         <activity
             android:name=".activities.LanguageActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -249,5 +251,10 @@
             </intent-filter>
         </receiver>
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+
+        <!--  Declare  Alarm Broadcast receiver here  -->
+
+        <!--  Declare  Alarm Notification Service here  -->
+
     </application>
 </manifest>

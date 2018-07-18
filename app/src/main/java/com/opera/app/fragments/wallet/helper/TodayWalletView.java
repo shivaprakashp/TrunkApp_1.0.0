@@ -15,12 +15,14 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.pojo.wallet.Event;
+import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.GiftCard;
 import com.opera.app.pojo.wallet.Restaurant;
+import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -50,11 +52,24 @@ public class TodayWalletView extends LinearLayout {
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     }
 
-    public int setEvents(List<Event> eventList, String mFrom) {
+    public int setEvents(ArrayList<CommonBookedHistoryData> mBookedEventHistories, String mFrom) {
 
-        int mAvailableData=0;
+        int mAvailableData = 0;
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        Date mCurrentDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdfTimeReceived = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a");
+//        SimpleDateFormat sdfToDisplay = new SimpleDateFormat("dd MMM yyyy");
+        String strDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        try {
+            mCurrentDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         TextViewWithFont txtEventTitle,
                 txtWalletEventGenre,
@@ -67,9 +82,9 @@ public class TodayWalletView extends LinearLayout {
         ImageView barCode;
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
-        if (eventList != null) {
-            for (int i = 0; i < eventList.size(); i++) {
-                Event event = eventList.get(i);
+        if (mBookedEventHistories != null) {
+            for (int i = 0; i < mBookedEventHistories.size(); i++) {
+                CommonBookedHistoryData mBookedHistoryEvents = mBookedEventHistories.get(i);
 
                 if (inflater != null) {
                     rowView = inflater.inflate(R.layout.helper_wallet_event, null, false);
@@ -84,27 +99,65 @@ public class TodayWalletView extends LinearLayout {
                 txtBarCode = rowView.findViewById(R.id.txtBarCode);
                 barCode = rowView.findViewById(R.id.imgEventBarCode);
 
-                txtEventTitle.setText(event.getEventName());
-                txtWalletEventGenre.setText(event.getEventGenre());
-                txtWalletEventDate.setText(event.getShowDate() + " " + event.getShowTime());
-                txtWalletEventDoor.setText(event.getDoorNo());
-                txtWalletEventSection.setText(event.getSection());
-                txtWalletEventRow.setText(event.getSeatRow());
-                txtWalletEventSeat.setText(event.getSeatNo());
+                String[] mDateTime = mBookedHistoryEvents.getmDateAndTime().split("T");
+                String mDateFor = "", mTimeFor = "";
+                Date mStandardDate = null, mStandardTime;
+                try {
+                    mDateFor = mDateTime[0];
+                    mTimeFor = mDateTime[1];
+
+                    mStandardTime = sdfTimeReceived.parse(mTimeFor);
+                    mTimeFor = sdfTime.format(mStandardTime);
+
+                    mStandardDate = sdf.parse(mDateFor);
+                    mDateFor = sdfDate.format(mStandardDate);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                txtEventTitle.setText(mBookedHistoryEvents.getmTicketEventName());
+                txtWalletEventGenre.setText(mBookedHistoryEvents.getmTicketEventGenre());
+                txtWalletEventDate.setText(mDateFor + " " + mTimeFor);
+
+                txtWalletEventDoor.setText(mBookedHistoryEvents.getmEventSeatRZSTR());
+                txtWalletEventSection.setText(mBookedHistoryEvents.getmEventSeatSection());
+                txtWalletEventRow.setText(mBookedHistoryEvents.getmEventSeatRow());
+                txtWalletEventSeat.setText(mBookedHistoryEvents.getmEventSeatSeats());
+                txtBarCode.setText(mBookedHistoryEvents.getmBarcode());
 
                 try {
 
-                    BitMatrix bitMatrix = multiFormatWriter.encode(event.getReserveId(), BarcodeFormat.CODABAR,
+                    BitMatrix bitMatrix = multiFormatWriter.encode(mBookedHistoryEvents.getmBarcode(), BarcodeFormat.CODABAR,
                             400, 80);
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                     barCode.setImageBitmap(bitmap);
 
-                    txtBarCode.setText(event.getReserveId());
+                    txtBarCode.setText(mBookedHistoryEvents.getmBarcode());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                this.addView(rowView);
+                
+                if (mFrom.equalsIgnoreCase("Completed") && mCurrentDate.after(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Today") && mCurrentDate.equals(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Upcoming") && mCurrentDate.before(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                }
+                /*if (mFrom.equalsIgnoreCase("Completed")) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Today")) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Upcoming")) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                }*/
             }
         }
 
@@ -117,7 +170,7 @@ public class TodayWalletView extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
 
-        int mAvailableData=0;
+        int mAvailableData = 0;
         Date mCurrentDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfToDisplay = new SimpleDateFormat("dd MMM yyyy");
@@ -149,8 +202,8 @@ public class TodayWalletView extends LinearLayout {
                 referNo = rowView.findViewById(R.id.txtReferNo);
                 bookDate = rowView.findViewById(R.id.txtBookDate);
 
-                Date dateOgFormat = null,dateOgFormatReservation;
-                String formattedTime = "",formattedTimeReservationDate = "";
+                Date dateOgFormat = null, dateOgFormatReservation;
+                String formattedTime = "", formattedTimeReservationDate = "";
                 try {
                     dateOgFormat = sdf.parse(restaurant.getBookingDate());
                     formattedTime = sdfToDisplay.format(dateOgFormat);
@@ -197,12 +250,12 @@ public class TodayWalletView extends LinearLayout {
         return mAvailableData;
     }
 
-    public int  setGift(List<GiftCard> cardList, String mFrom) {
+    public int setGift(List<GiftCard> cardList, String mFrom) {
 
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
-        int mAvailableData=0;
+        int mAvailableData = 0;
 
         TextViewWithFont txtVoucherAmount;
 

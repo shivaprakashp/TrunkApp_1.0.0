@@ -11,16 +11,22 @@ import android.widget.LinearLayout;
 
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.database.BookedEventsHistory;
 import com.opera.app.enums.WalletEnums;
 import com.opera.app.fragments.wallet.helper.TodayWalletView;
+import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
 import com.opera.app.preferences.wallet.WalletPreference;
 import com.opera.app.utils.OperaManager;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TodayWalletFragment extends Fragment {
+
+    private BookedEventsHistory dbBookendEventsHistory;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,10 +38,18 @@ public class TodayWalletFragment extends Fragment {
         LinearLayout linearParent = view.findViewById(R.id.linearParent);
         TextViewWithFont txtWalletEventTitle = view.findViewById(R.id.txtWalletEventTitle);
 
+        init();
+
+
         int mTotalData = 0;
         WalletPreference preference = new WalletPreference(getActivity());
         if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
-            mTotalData = walletView.setEvents(preference.getWalletData().getEvents(), "Today");
+
+            dbBookendEventsHistory.open();
+            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory();
+            dbBookendEventsHistory.close();
+
+            mTotalData = walletView.setEvents(mEventHistoryData, "Today");
         } else if (WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
             mTotalData = walletView.setRest(preference.getWalletData().getRestaurants(), "Today");
         } else if (WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
@@ -51,6 +65,10 @@ public class TodayWalletFragment extends Fragment {
         }
 
         return view;
+    }
+
+    private void init() {
+        dbBookendEventsHistory = new BookedEventsHistory(getActivity());
     }
 
     private void readBundle(Bundle bundle) {

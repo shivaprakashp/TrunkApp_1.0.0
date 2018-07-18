@@ -11,17 +11,22 @@ import android.view.View;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.BookedEventsHistory;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.enums.WalletEnums;
 import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.preferences.wallet.WalletPreference;
 import com.opera.app.utils.OperaManager;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -34,6 +39,7 @@ import retrofit2.Retrofit;
 public class WalletActivity extends BaseActivity {
 
     private Activity mActivity;
+    private BookedEventsHistory dbBookendEventsHistory;
 
     @BindView(R.id.toolbar_wallet)
     Toolbar toolbar;
@@ -68,18 +74,42 @@ public class WalletActivity extends BaseActivity {
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
-            if (response.body() != null) {
-                WalletPreference preference = new WalletPreference(mActivity);
-                preference.deleteWalletData();
-                preference.setWalletData((WalletDetails) response.body());
-                initButtons(WalletEnums.EVENTS);
-            } else if (response.errorBody() != null) {
-                try {
-                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
-                    dialogue.show();
-                } catch (Exception e) {
-                    //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
-                    customToast.showErrorToast(e.getMessage());
+
+            if (mRequestKey.equalsIgnoreCase(AppConstants.GETBOOKEDEVENTDETAILS.GETBOOKEDEVENTDETAILS)) {
+
+//                BookedEventHistory mBookedEventHistory = (BookedEventHistory) response.body();
+
+                ArrayList<BookedEventHistory> mBookedEventHistory = (ArrayList<BookedEventHistory>) response.body();
+
+                dbBookendEventsHistory.open();
+                dbBookendEventsHistory.deleteCompleteTable(BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
+
+                for (int i = 0; i < mBookedEventHistory.size(); i++) {
+                    for (int j = 0; j < mBookedEventHistory.get(i).getOrderItems().size(); j++) {
+                        dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.get(i).getOrderItems().get(j).getOrderLineItems(),
+                                mBookedEventHistory.get(i).getOrderEvents().getEventId(),
+                                mBookedEventHistory.get(i).getOrderEvents().getEventName(),
+                                mBookedEventHistory.get(i).getOrderEvents().getEventGenre(),
+                                mBookedEventHistory.get(i).getId(),
+                                mBookedEventHistory.get(i).getDateTime());
+                    }
+                }
+
+
+            } else {
+                if (response.body() != null) {
+                    WalletPreference preference = new WalletPreference(mActivity);
+                    preference.deleteWalletData();
+                    preference.setWalletData((WalletDetails) response.body());
+                    initButtons(WalletEnums.EVENTS);
+                } else if (response.errorBody() != null) {
+                    try {
+                        ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                        dialogue.show();
+                    } catch (Exception e) {
+                        //Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        customToast.showErrorToast(e.getMessage());
+                    }
                 }
             }
         }
@@ -99,28 +129,13 @@ public class WalletActivity extends BaseActivity {
         initView();
         initToolbar();
         getHistory();
-
-
-    }
-
-    private void injectView() {
-        ((MainApplication) getApplication()).getNetComponent().inject(WalletActivity.this);
-        api = retrofit.create(Api.class);
-    }
-
-    private void initView() {
-        mActivity = WalletActivity.this;
-
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
-        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
-
-        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(getString(R.string.walletTitle));
+        GetEventsData();
 
     }
 
-    private void initToolbar() {
-        setSupportActionBar(toolbar);
+    private void GetEventsData() {
+        MainController controller = new MainController(WalletActivity.this);
+        controller.getBookedEventDetails(taskComplete, api);
     }
 
     private void initButtons(WalletEnums enums) {
@@ -165,7 +180,6 @@ public class WalletActivity extends BaseActivity {
     private void getHistory() {
         MainController controller = new MainController(WalletActivity.this);
         controller.getWalletDetails(taskComplete, api);
-
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -190,6 +204,27 @@ public class WalletActivity extends BaseActivity {
                 initButtons(WalletEnums.GIFT);
                 break;
         }
+    }
+
+    private void injectView() {
+        ((MainApplication) getApplication()).getNetComponent().inject(WalletActivity.this);
+        api = retrofit.create(Api.class);
+    }
+
+    private void initView() {
+        mActivity = WalletActivity.this;
+
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
+        inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
+
+        TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
+        txtToolbarName.setText(getString(R.string.walletTitle));
+
+        dbBookendEventsHistory = new BookedEventsHistory(mActivity);
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
     }
 
 }

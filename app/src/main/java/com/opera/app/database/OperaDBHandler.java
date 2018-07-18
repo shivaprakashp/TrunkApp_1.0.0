@@ -33,6 +33,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL(NotificationDetailsDB.CREATE_TABLE_NOTIFICATION);
         db.execSQL(PromotionDetailsDB.CREATE_TABLE_PROMOTION);
         db.execSQL(FeedbackListingDB.CREATE_TABLE_FEEDBACK);
+        db.execSQL(BookedEventsHistory.CREATE_TABLE_BOOKED_EVENTS_HISTORY);
     }
 
     @Override
@@ -46,6 +47,7 @@ public class OperaDBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + NotificationDetailsDB.TABLE_NOTIFICATION_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + PromotionDetailsDB.TABLE_PROMOTION_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + FeedbackListingDB.TABLE_FEEDBACK_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
         onCreate(db);
     }
 

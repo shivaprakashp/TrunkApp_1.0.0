@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class EventTicketBookingPojo
 {
-    @SerializedName("token")
+   /* @SerializedName("token")
     @Expose
-    private String token;
+    private String token;*/
 
     @SerializedName("tickets")
     @Expose
     private ArrayList<Tickets> tickets;
 
-    public String getToken ()
+    /*public String getToken ()
     {
         return token;
     }
@@ -27,7 +27,7 @@ public class EventTicketBookingPojo
     public void setToken (String token)
     {
         this.token = token;
-    }
+    }*/
 
     public ArrayList<Tickets> getTickets ()
     {
@@ -42,7 +42,7 @@ public class EventTicketBookingPojo
     @Override
     public String toString()
     {
-        return "ClassPojo [token = "+token+", tickets = "+tickets+"]";
+        return "ClassPojo [tickets = "+tickets+"]";
     }
 }
 

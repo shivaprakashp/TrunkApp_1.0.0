@@ -24,8 +24,10 @@ import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPoj
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.pojo.ticketbooking.SuccessResponse;
-import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
+import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.WalletDetails;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -120,6 +122,9 @@ public interface Api {
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
     Call<FeedbackResponseParent> getFeedbackDetails();
+
+    @GET("http://www.mocky.io/v2/5b4c544d3100006300a7df5a%20")
+    Call<List<BookedEventHistory>> getBookedEventDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
 
 
 
