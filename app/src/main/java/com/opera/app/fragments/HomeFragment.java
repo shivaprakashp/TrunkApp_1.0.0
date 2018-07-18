@@ -248,19 +248,19 @@ public class HomeFragment extends BaseFragment {
                             Integer.valueOf(dateYearMonth[2]),
                             Integer.valueOf(endTimeHr),
                             Integer.valueOf(endTimeMM));
-
                    /* calendar.set(2018,
-                            07,
+                            06,
                             17,
-                            15,
-                            36);*/
+                            17,
+                            58);*/
                     MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
                     MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
                             mActivity.getApplicationContext(), i, intentLog, 0);
 
                     MainApplication.alarmManager[i].setRepeating(AlarmManager.RTC_WAKEUP,
                             calendar.getTimeInMillis(),
-                            1000, MainApplication.pendingIntentLog);
+                            1000,
+                            MainApplication.pendingIntentLog);
 
                 }
             }

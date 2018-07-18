@@ -1,6 +1,9 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +24,8 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.notification.NotificationData;
+import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
@@ -29,6 +34,8 @@ import com.opera.app.utils.LanguageManager;
 
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -145,6 +152,34 @@ public class SettingsActivity extends BaseActivity {
                 userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue(mNotifSwitch));
 
                 ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+            }
+        });
+
+        mReminderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Calendar calendar = Calendar.getInstance();
+                if (isChecked){
+
+                    MainApplication.alarmManager[0] = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                    //log alarm
+                    Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
+                    intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
+
+                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
+                            mActivity, 234, intentLog, 0);
+
+                    calendar.set(2018,
+                            06,
+                            17,
+                            17,
+                            59);
+
+                    MainApplication.alarmManager[0].setRepeating(AlarmManager.RTC_WAKEUP,
+                            calendar.getTimeInMillis(), 1000, MainApplication.pendingIntentLog);
+
+                }
             }
         });
     }
@@ -297,6 +332,13 @@ public class SettingsActivity extends BaseActivity {
                     userData.setCustomUserDataElement("promotionSwitch",
                             new CustomUserDataValue(mPromoSwitch));
                     ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                }
+                break;
+
+            case R.id.reminderSwitch:
+
+                if (mReminderSwitch.isChecked()){
+
                 }
                 break;
         }
