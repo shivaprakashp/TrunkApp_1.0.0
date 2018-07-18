@@ -89,8 +89,9 @@ public class PromotionDetailsDB {
     public ArrayList<PromotionDetails> fetchPromotionDetails() {
 
         ArrayList<PromotionDetails> dataArrayList = new ArrayList<>();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_PROMOTION_DETAILS, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_PROMOTION_DETAILS, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -113,7 +114,12 @@ public class PromotionDetailsDB {
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
+
 
         return dataArrayList;
     }

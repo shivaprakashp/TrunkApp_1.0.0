@@ -317,7 +317,7 @@ public class SettingsActivity extends BaseActivity {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 if (response.body() != null) {
                     FavouriteAndSettingsResponseMain mSettingsResponse = (FavouriteAndSettingsResponseMain) response.body();
-                    if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
+                    if (mSettingsResponse.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 
                         SessionManager sessionManager = new SessionManager(mActivity);
                         sessionManager.UpdateUserSettings(mSettingsResponse.getData().getSettings().getAllowNotification(), mSettingsResponse.getData().getSettings().getAllowPromotion(),

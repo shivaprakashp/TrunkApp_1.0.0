@@ -162,9 +162,10 @@ public class EventDetailsDB {
 
         ArrayList<Events> dataArrayEventDetails = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
 //            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " where restId = '" + mRestaurantId + "'", null);
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_DETAILS+ " where _id = '" + EventId + "'", null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_DETAILS+ " where _id = '" + EventId + "'", null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -215,8 +216,11 @@ public class EventDetailsDB {
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if(cursor != null){
+                cursor.close();
+            }
         }
-
         return dataArrayEventDetails;
     }
 

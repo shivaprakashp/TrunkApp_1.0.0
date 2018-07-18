@@ -135,7 +135,7 @@ public class HomeFragment extends BaseFragment {
         mWhatsOnPagerAdapter = new WhatsOnPagerAdapter(mActivity, mWhatsEvents, "HomePage");
         mViewpagerWhatsOnShows.setAdapter(mWhatsOnPagerAdapter);
 
-        mViewpagerWhatsOnShows.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewpagerWhatsOnShows.addOnPageChangeListener (new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -157,7 +157,7 @@ public class HomeFragment extends BaseFragment {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-                if (mFavouriteAndSettingsResponseMain != null && mFavouriteAndSettingsResponseMain.getStatus() != null && mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                if (mFavouriteAndSettingsResponseMain != null && mFavouriteAndSettingsResponseMain.getStatus() != null && mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                     //Adding Favourites data into the arraylist (If it is true)
                     arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
                     UpdateFavouriteData();
@@ -167,7 +167,7 @@ public class HomeFragment extends BaseFragment {
             } else {
                 AllEvents mEventDataPojo = (AllEvents) response.body();
                 try {
-                    if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         mEventListingDB.open();
 
                         //Calling this function for guest user to take his favourite events
@@ -243,17 +243,17 @@ public class HomeFragment extends BaseFragment {
                     String endTimeAmPm = history.getEndTime().split(" ")[1];
                     String endTimeHr = history.getEndTime().split(":")[0];
                     String endTimeMM = history.getEndTime().split(":")[1];
-                    calendar.set(Integer.valueOf(dateYearMonth[0]),
+                    /*calendar.set(Integer.valueOf(dateYearMonth[0]),
                             Integer.valueOf(dateYearMonth[1]),
                             Integer.valueOf(dateYearMonth[2]),
                             Integer.valueOf(endTimeHr),
-                            Integer.valueOf(endTimeMM));
+                            Integer.valueOf(endTimeMM));*/
 
-                   /* calendar.set(2018,
-                            07,
-                            17,
-                            15,
-                            36);*/
+                    calendar.set(2018,
+                            06,
+                            18,
+                            12,
+                            30);
                     MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
                     MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
                             mActivity.getApplicationContext(), i, intentLog, 0);

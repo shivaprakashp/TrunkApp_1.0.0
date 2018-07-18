@@ -28,24 +28,16 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
-import com.opera.app.database.events.EventGenresDB;
-import com.opera.app.database.events.EventListingDB;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.events.eventlisiting.AllEvents;
-import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
-import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
 import com.opera.app.pojo.ticketbooking.ViewHistoryResponsePojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -304,7 +296,7 @@ public class BuyTicketWebView extends BaseActivity {
             if (mRequestKey.equalsIgnoreCase(AppConstants.SAVEORDER.SAVEORDER)) {
                 ViewHistoryResponsePojo mViewHistoryResponsePojo = (ViewHistoryResponsePojo) response.body();
 
-                if(mViewHistoryResponsePojo.getStatus().equalsIgnoreCase("success")){
+                if(mViewHistoryResponsePojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)){
                     SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.ticket_booked_success), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
                     dialogue.show();
                 }

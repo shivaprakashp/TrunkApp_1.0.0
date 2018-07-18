@@ -268,7 +268,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
             /*try {
-                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
+                if (mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 
                 }
             } catch (Exception e) {

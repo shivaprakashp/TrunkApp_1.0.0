@@ -12,6 +12,8 @@ public interface AppConstants {
     String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
     String EnglishLanguage = "en";
     String ArabicLanguage = "ar";
+    String STATUS_SUCCESS = "success";
+    String STATUS_ERROR = "error";
 
     //DTCM Keys
     static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";

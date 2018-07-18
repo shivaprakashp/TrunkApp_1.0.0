@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.EditTextWithFont;
@@ -124,7 +125,7 @@ public class MyProfileActivity extends BaseActivity {
             if (response.body() != null) {
                 RegistrationResponse mPostChangePassword = (RegistrationResponse) response.body();
                 if (mPostChangePassword != null) {
-                    if (mPostChangePassword.getStatus().equalsIgnoreCase("success")) {
+                    if (mPostChangePassword.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         SuccessDialogue dialog = new SuccessDialogue(mActivity, mPostChangePassword.getMessage(), getResources().getString(R.string.changedPassword_header), getResources().getString(R.string.ok), "MyProfileChangePassword");
                         dialog.show();
                         /*SessionManager sessionManager = new SessionManager(mActivity);

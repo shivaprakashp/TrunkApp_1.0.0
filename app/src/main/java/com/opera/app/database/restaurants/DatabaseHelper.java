@@ -90,8 +90,9 @@ public class DatabaseHelper{
     public ArrayList<RestaurantsData> fetchOtherRestaurantDetails() {
 
         ArrayList<RestaurantsData> dataArrayList = new ArrayList<>();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_OTHER_RESTAURANTS, null);
+            cursor = database.rawQuery("SELECT * FROM "+TABLE_OTHER_RESTAURANTS, null);
             if (cursor != null && cursor.getCount()>0) {
                 cursor.moveToFirst();
                 do {
@@ -111,6 +112,10 @@ public class DatabaseHelper{
             }
         }catch (SQLException e){
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayList;

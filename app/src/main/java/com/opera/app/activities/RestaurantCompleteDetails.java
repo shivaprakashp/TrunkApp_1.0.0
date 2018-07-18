@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -177,7 +178,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
-            if (mRestaurantPojo != null && mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+            if (mRestaurantPojo != null && mRestaurantPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                 restOpeation.open();
                 restOpeation.removeSeanConnolly(RestaurantId);
                 restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));

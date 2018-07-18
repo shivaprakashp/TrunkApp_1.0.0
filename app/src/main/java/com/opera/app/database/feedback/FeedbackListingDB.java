@@ -77,8 +77,9 @@ public class FeedbackListingDB {
     public ArrayList<FeedbackResponse> fetchFeedbackDetails() {
 
         ArrayList<FeedbackResponse> dataArrayList = new ArrayList<>();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_FEEDBACK_DETAILS, null);
+            cursor = database.rawQuery("SELECT * FROM "+TABLE_FEEDBACK_DETAILS, null);
             if (cursor != null && cursor.getCount()>0) {
                 cursor.moveToFirst();
                 do {
@@ -94,6 +95,10 @@ public class FeedbackListingDB {
             }
         }catch (SQLException e){
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayList;

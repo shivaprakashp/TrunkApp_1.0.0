@@ -158,7 +158,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
             if (response.body() != null) {
                 try {
 
-                    if (mRestaurantPojo.getStatus().equalsIgnoreCase("success")) {
+                    if (mRestaurantPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                         dbManager.open();
                         dbManager.deleteCompleteTable(DatabaseHelper.TABLE_OTHER_RESTAURANTS);
                         dbManager.insertOtherRestaurants(mRestaurantPojo.getData());

@@ -136,7 +136,7 @@ public class SettingsService extends IntentService {
                     }
                     if (response.body() != null) {
                         RegistrationResponse mSettingsResponse = (RegistrationResponse) response.body();
-                        if (mSettingsResponse.getStatus().equalsIgnoreCase("success")) {
+                        if (mSettingsResponse.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 //                            mApplication.getMobileMessaging().getInstance(mActivity).syncUserData(userData);
 
                             SessionManager sessionManager = new SessionManager(mActivity);

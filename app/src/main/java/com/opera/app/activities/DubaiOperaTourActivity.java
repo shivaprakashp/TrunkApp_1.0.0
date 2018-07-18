@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -155,7 +156,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
 
             AllEvents mEventDataPojo = (AllEvents) response.body();
             try {
-                if (mEventDataPojo.getStatus().equalsIgnoreCase("success")) {
+                if (mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
                     mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
                     Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
                             .into(mIvTourCoverImage, new Callback() {
