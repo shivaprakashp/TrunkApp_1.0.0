@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
@@ -79,9 +80,9 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                Intent in = new Intent(mActivity, BuyTicketWebView.class);
                 in.putExtra("URL", mEventPojo.getBuyNowLink());
-                in.putExtra("Header", mEventPojo.getInternalName());
+                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
                 mActivity.startActivity(in);
             }
         });

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
+import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
@@ -23,13 +24,12 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     private Context context;
     private List<Events> arrayList;
     private String currentDay, eventTime;
-    private Activity mActivity;
     String[] startTime;
 
     public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
         public TextViewWithFont txtCalendarEventName, txtCalendarTime;
-        public ButtonWithFont btnCalendarDetail;
+        public ButtonWithFont btnCalendarDetail, btnBuyTickets;
 
         public CalendarViewHolder(View itemView) {
             super(itemView);
@@ -38,6 +38,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
             txtCalendarTime = itemView.findViewById(R.id.txtCalendarTime);
             txtCalendarEventName = itemView.findViewById(R.id.txtCalendarEventName);
             btnCalendarDetail = itemView.findViewById(R.id.btnCalendarDetail);
+            btnBuyTickets = itemView.findViewById(R.id.btnBuyTickets);
         }
     }
 
@@ -57,7 +58,6 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     @Override
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
         final Events events = arrayList.get(position);
-
 
         for (int k = 0; k < events.getEventTime().size(); k++) {
             if (currentDay.equalsIgnoreCase(events.getEventTime().get(k).getFromTime().split("T")[0])) {
@@ -83,6 +83,16 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
                 intent.putExtra("IsFavourite", events.isFavourite());
                 context.startActivity(intent);
 
+            }
+        });
+
+        holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context, BuyTicketWebView.class);
+                in.putExtra("URL", events.getBuyNowLink());
+                in.putExtra("Header", context.getResources().getString(R.string.buy_tickets));
+                context.startActivity(in);
             }
         });
 

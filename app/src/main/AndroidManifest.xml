@@ -22,6 +22,7 @@
 
     <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
     <permission android:name="${applicationId}.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- Needed for push notifications that contain VIBRATE flag. Optional, but recommended. -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -50,6 +51,7 @@
         <activity
             android:name=".activities.LanguageActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -259,6 +261,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
 
+        </receiver>
+
+        <receiver android:name=".notification.ShowReminderReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
         </receiver>
     </application>
 </manifest>

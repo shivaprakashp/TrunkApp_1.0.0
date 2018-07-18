@@ -3,6 +3,7 @@ package com.opera.app.constants;
 public interface AppConstants {
 
     public static final String LOG_FEEDBACK_ALARM = "LOG_FEEDBACK_ALARM";
+    public static final String LOG_ALARM = "log_alarm";
     String SEAN_CONOLLY_RESTAURANT_ID = "40";
     //static String SEAN_CONOLLY_RESTAURANT_ID = "{05427B33-F675-4045-B99F-97EE841E5EC0}";
 
@@ -17,11 +18,10 @@ public interface AppConstants {
 
     //DTCM Keys
     static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
-    static String USER_SESSION_TOKEN = "tbfu1Q%2bYyxSMAdrfX5i73h3SyXodnpQdEIZaK09JpN1KeiqFt7mmijEWGbdoB%2fNtyEDy1XaqFQ7LO4aak6ufpg%3d%3d";
     static String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
-//    static String DTCM_USER_AGENT_STRING = "Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
-
-    static String APPLE_MUSIC_URL = "https://itunes.apple.com/us/curator/the-metropolitan-opera-house/1110087349?mt=1&app=music";
+//      static String DTCM_USER_AGENT_STRING = "Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
+    //    static String DTCM_USER_AGENT_STRING = "iPhone";
+    static String APPLE_MUSIC_URL = "https://www.applemusic.com/dubaiopera";
 
     interface LOGIN {
         String LOGIN = "LOGIN";
@@ -79,7 +79,7 @@ public interface AppConstants {
         String GETEVENTDETAILS = "GETEVENTDETAILS";
     }
 
-    interface GETWALLETDETAIL{
+    interface GETWALLETDETAIL {
         String GETWALLETDETAIL = "GETWALLETDETAIL";
     }
 
@@ -109,5 +109,9 @@ public interface AppConstants {
 
     interface SAVEORDER {
         String SAVEORDER = "SAVEORDER";
+    }
+
+    interface GETBOOKEDEVENTDETAILS {
+        String GETBOOKEDEVENTDETAILS = "GETBOOKEDEVENTDETAILS";
     }
 }

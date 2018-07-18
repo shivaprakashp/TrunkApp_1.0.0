@@ -243,24 +243,24 @@ public class HomeFragment extends BaseFragment {
                     String endTimeAmPm = history.getEndTime().split(" ")[1];
                     String endTimeHr = history.getEndTime().split(":")[0];
                     String endTimeMM = history.getEndTime().split(":")[1];
-                    /*calendar.set(Integer.valueOf(dateYearMonth[0]),
+                    calendar.set(Integer.valueOf(dateYearMonth[0]),
                             Integer.valueOf(dateYearMonth[1]),
                             Integer.valueOf(dateYearMonth[2]),
                             Integer.valueOf(endTimeHr),
-                            Integer.valueOf(endTimeMM));*/
-
-                    calendar.set(2018,
+                            Integer.valueOf(endTimeMM));
+                   /* calendar.set(2018,
                             06,
-                            18,
-                            12,
-                            30);
+                            17,
+                            17,
+                            58);*/
                     MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
                     MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
                             mActivity.getApplicationContext(), i, intentLog, 0);
 
                     MainApplication.alarmManager[i].setRepeating(AlarmManager.RTC_WAKEUP,
                             calendar.getTimeInMillis(),
-                            1000, MainApplication.pendingIntentLog);
+                            1000,
+                            MainApplication.pendingIntentLog);
 
                 }
             }

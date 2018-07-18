@@ -2,6 +2,7 @@ package com.opera.app.pojo.wallet;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 
 import java.util.List;
 
@@ -13,9 +14,12 @@ public class WalletDetails {
     @SerializedName("Message")
     @Expose
     private String message;
-    @SerializedName("Events")
+   /* @SerializedName("Events")
     @Expose
-    private List<Event> events = null;
+    private List<Event> events = null;*/
+    @SerializedName("BookedEventHistory")
+    @Expose
+    private List<BookedEventHistory> mBookedEventHistories = null;
     /*@SerializedName("Restaurants")
     @Expose
     private List<Restaurant> restaurants = null;*/
@@ -42,12 +46,20 @@ public class WalletDetails {
         this.message = message;
     }
 
-    public List<Event> getEvents() {
+    /*public List<Event> getEvents() {
         return events;
     }
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }*/
+
+    public List<BookedEventHistory> getmBookedEventHistories() {
+        return mBookedEventHistories;
+    }
+
+    public void setmBookedEventHistories(List<BookedEventHistory> mBookedEventHistories) {
+        this.mBookedEventHistories = mBookedEventHistories;
     }
 
     public List<Restaurant> getRestaurants() {

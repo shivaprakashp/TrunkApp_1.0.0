@@ -20,6 +20,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.api.client.json.Json;
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -31,9 +32,14 @@ import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
+import com.opera.app.pojo.ticketbooking.SuccessResponse;
+import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
 import com.opera.app.pojo.ticketbooking.ViewHistoryResponsePojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -86,14 +92,14 @@ public class BuyTicketWebView extends BaseActivity {
         setContentView(R.layout.activity_buy_ticket);
 
         clearCache(mActivity, 0);
+        //instance of session has created
+        manager = new SessionManager(mActivity);
 
         initToolbar();
         LoadWebView();
 
 //        Log.e("Decrypt ", decodeURIComponent("\"%3a\"%2bDXYcLwZY2cPbM0fBWjWcwBpd7y15%2bHDOsIEBvsNAePO21inVm2kOo8PDZdoOAMbgxbRp1orOMFk97v1QEsBKA%3d%3d\"%7d"));
 
-        //instance of session has created
-        manager = new SessionManager(mActivity);
     }
 
     private void LoadWebView() {
@@ -106,8 +112,8 @@ public class BuyTicketWebView extends BaseActivity {
 
         CookieSyncManager.createInstance(myWebView.getContext());
         CookieManager cookieManager = CookieManager.getInstance();
-//        cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + manager.getUserLoginData().getData().getDtcmXAuthToken());    // USER_SESSION_TOKEN will replace with actual token of user
-        cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + AppConstants.USER_SESSION_TOKEN);    // USER_SESSION_TOKEN will replace with actual token of user
+        cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + manager.getUserLoginData().getData().getDtcmXAuthToken());    // USER_SESSION_TOKEN will replace with actual token of user
+//        cookieManager.setCookie(AppConstants.DTCM_DOMAIN_NAME, "X-Auth-Token=" + AppConstants.USER_SESSION_TOKEN);    // USER_SESSION_TOKEN will replace with actual token of user
 
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setUseWideViewPort(true);
@@ -122,8 +128,6 @@ public class BuyTicketWebView extends BaseActivity {
         myWebView.loadUrl(URL);
         cookieManager.setAcceptThirdPartyCookies(myWebView, true);
         myWebView.requestFocus();
-
-
     }
 
 
@@ -199,11 +203,18 @@ public class BuyTicketWebView extends BaseActivity {
                     dataForDecryption = mActualVdToken[1];
 
                     mJsonData = decodeURIComponent(mVdCallTokenString);
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj = new JSONObject(mJsonData);
+                        obj.remove("token");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 //                    mJsonData = "{\"token" + mJsonData;
 
 //                    myWebView.setVisibility(View.GONE);
                     Gson gson = new Gson();
-                    EventTicketBookingPojo response = gson.fromJson(mJsonData, EventTicketBookingPojo.class);
+                    EventTicketBookingPojo response = gson.fromJson(obj.toString(), EventTicketBookingPojo.class);
 
                     if (response.getTickets().size() > 0) {
                         CallViewOrderAPI(response);
@@ -285,6 +296,12 @@ public class BuyTicketWebView extends BaseActivity {
      * 0 means all files.
      */
     public static void clearCache(final Context context, final int numDays) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+        cookieManager.removeSessionCookie();
+        cookieManager.removeExpiredCookie();
+
 //        Log.i(TAG, String.format("Starting cache prune, deleting files older than %d days", numDays));
         int numDeletedFiles = clearCacheFolder(context.getCacheDir(), numDays);
 //        Log.i(TAG, String.format("Cache pruning completed, %d files deleted", numDeletedFiles));
@@ -294,9 +311,14 @@ public class BuyTicketWebView extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             if (mRequestKey.equalsIgnoreCase(AppConstants.SAVEORDER.SAVEORDER)) {
-                ViewHistoryResponsePojo mViewHistoryResponsePojo = (ViewHistoryResponsePojo) response.body();
+                SuccessResponse mSuccessResponse = (SuccessResponse) response.body();
 
-                if(mViewHistoryResponsePojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)){
+                if (mSuccessResponse.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
+                    try {
+                        myWebView.setVisibility(View.INVISIBLE);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     SuccessDialogue dialogue = new SuccessDialogue(mActivity, getResources().getString(R.string.ticket_booked_success), getResources().getString(R.string.success_header), getResources().getString(R.string.ok), "BookEvent");
                     dialogue.show();
                 }
