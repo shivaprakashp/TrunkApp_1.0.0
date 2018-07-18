@@ -184,8 +184,8 @@ public class MainController {
     }
 
     public void getFeedbackDetails(TaskComplete taskComplete, Api api) {
+       // Call call = api.getFeedbackDetails(languageType);
         Call call = api.getFeedbackDetails(languageType);
-        //Call call = api.getFeedbackDetails();
         properties.setRequestKey(AppConstants.GETFEEDBACKDETAILS.GETFEEDBACKDETAILS);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);

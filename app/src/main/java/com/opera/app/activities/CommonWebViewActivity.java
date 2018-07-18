@@ -34,7 +34,6 @@ public class CommonWebViewActivity extends BaseActivity {
     @BindView(R.id.webview)
     WebView mWebView;
 
-    private String URL = "", Header = "";
     private ProgressDialog mDialog;
 
     @BindView(R.id.toolbar_contactUs)
@@ -68,8 +67,8 @@ public class CommonWebViewActivity extends BaseActivity {
         mDialog.show();
 
         Intent in = getIntent();
-        URL = in.getStringExtra("URL");
-        Header = in.getStringExtra("Header");
+        String URL = in.getStringExtra("URL");
+        String header = in.getStringExtra("Header");
 
         mWebView.loadUrl(URL);
         mWebView.getSettings().setJavaScriptEnabled(true);
@@ -78,7 +77,7 @@ public class CommonWebViewActivity extends BaseActivity {
         mWebView.requestFocus();
 
         TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
-        txtToolbarName.setText(Header);
+        txtToolbarName.setText(header);
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -113,7 +112,7 @@ public class CommonWebViewActivity extends BaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.e("PageStarted",url.toString());
+            Log.e("PageStarted", url);
         }
 
         @Override

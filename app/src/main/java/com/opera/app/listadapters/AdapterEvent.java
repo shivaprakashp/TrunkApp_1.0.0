@@ -139,22 +139,22 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
         }
 
-        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventDate.setText(new StringBuilder().append(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom())).append(" - ").append(OperaUtils.getDateInMonthFormat(mEventPojo.getTo())).toString());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getName()));
 
-        String mAllGenres = "";
+        StringBuilder mAllGenres = new StringBuilder();
         for (int i = 0; i < mEventPojo.getGenreList().size(); i++) {
-            if (mAllGenres.equalsIgnoreCase("")) {
-                mAllGenres = mEventPojo.getGenreList().get(i).getGenere();
+            if (mAllGenres.toString().equalsIgnoreCase("")) {
+                mAllGenres = new StringBuilder(mEventPojo.getGenreList().get(i).getGenere());
             } else {
-                mAllGenres = mAllGenres + "," + mEventPojo.getGenreList().get(i).getGenere();
+                mAllGenres.append(",").append(mEventPojo.getGenreList().get(i).getGenere());
             }
 
         }
-        if (mAllGenres.equalsIgnoreCase("")) {
+        if (mAllGenres.toString().equalsIgnoreCase("")) {
             holder.txtEventGenre.setVisibility(View.GONE);
         } else {
-            holder.txtEventGenre.setText(mAllGenres);
+            holder.txtEventGenre.setText(mAllGenres.toString());
             holder.txtEventGenre.setVisibility(View.VISIBLE);
         }
 
@@ -236,7 +236,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             public void onClick(View v) {
                 if (!mEventPojo.isInfoOpen()) {
                     mEventListingDB.open();
-                    String IsFavourite = "false";
+                    String IsFavourite;
                     if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
                         IsFavourite = "false";
                         mEventPojo.setFavourite(IsFavourite);
@@ -298,10 +298,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
             Log.e("data", "error");
-            try {
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     };
 }

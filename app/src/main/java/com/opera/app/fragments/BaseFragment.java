@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.opera.app.constants.AppConstants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,7 +53,7 @@ public class BaseFragment extends Fragment {
 
         try {
             JSONObject jObjError = new JSONObject(response.errorBody().string());
-            return jObjError.getString("message");
+            return jObjError.getString(AppConstants.MESSAGE);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }

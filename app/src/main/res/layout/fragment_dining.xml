@@ -122,7 +122,7 @@
                         android:id="@+id/expandableTextViewInfo"
                         style="@style/label_white_small"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:layout_margin="@dimen/app_margin_ten"
                         android:maxLines="10"
                         android:scrollbars="vertical"

@@ -109,8 +109,7 @@ public class MenuFragment extends BaseFragment {
     private void updateSessionData(){
         manager = new SessionManager(mActivity);
         if (manager.isUserLoggedIn()){
-            tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "
-                    +manager.getUserLoginData().getData().getProfile().getFirstName());
+            tv_menu_guest.setText(new StringBuilder().append(getResources().getString(R.string.menu_guest)).append(" ").append(manager.getUserLoginData().getData().getProfile().getFirstName()).toString());
             creatAccount.setVisibility(View.GONE);
         }else{
             tv_menu_guest.setText(R.string.menu_welcome_guest);

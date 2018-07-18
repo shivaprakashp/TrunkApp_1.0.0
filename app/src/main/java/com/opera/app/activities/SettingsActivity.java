@@ -27,7 +27,6 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.notification.NotificationData;
 import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
@@ -368,7 +367,7 @@ public class SettingsActivity extends BaseActivity {
             case R.id.notificationSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
                     mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
-                    sp.edit().putString("notificationSwitch", mNotifSwitch).commit();
+                    sp.edit().putString("notificationSwitch", mNotifSwitch).apply();
                     userData.setCustomUserDataElement("notificationSwitch",
                             new CustomUserDataValue(mNotifSwitch));
                     ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
@@ -377,7 +376,7 @@ public class SettingsActivity extends BaseActivity {
             case R.id.promotionSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
                     mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
-                    sp.edit().putString("promotionSwitch", mPromoSwitch).commit();
+                    sp.edit().putString("promotionSwitch", mPromoSwitch).apply();
                     userData.setCustomUserDataElement("promotionSwitch",
                             new CustomUserDataValue(mPromoSwitch));
                     ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);

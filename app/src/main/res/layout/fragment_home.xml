@@ -61,7 +61,7 @@
                     <com.opera.app.customwidget.EditTextWithFont
                         android:id="@+id/edtSearch"
                         style="@style/label_black_small"
-                        android:layout_width="@dimen/app_width_zero"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -88,7 +88,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/app_height_zero"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@color/colorBurgendy"
                 android:orientation="vertical">

@@ -104,7 +104,7 @@ public class TestAct extends Activity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.e("PageStarted", url.toString());
+            Log.e("PageStarted", url);
             mProgressDialog.setMessage(getResources().getString(R.string.loading));
             mProgressDialog.show();
         }

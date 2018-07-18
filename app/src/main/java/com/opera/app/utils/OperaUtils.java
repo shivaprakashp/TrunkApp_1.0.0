@@ -229,7 +229,7 @@ public class OperaUtils {
 
     //get current date
     public static String getDateInMonthFormat(String mActualDate) {
-        String mDateInNewFormat = "";
+        String mDateInNewFormat;
         SimpleDateFormat sdfTargetDate = new SimpleDateFormat("dd MMM yyyy");
         SimpleDateFormat sdfActualDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 

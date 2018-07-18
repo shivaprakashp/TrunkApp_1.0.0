@@ -28,7 +28,6 @@ public class ListenFragment extends BaseFragment {
 
     private ProgressDialog mProgressDialog;
     private WebView myWebView;
-    private CustomToast customToast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class ListenFragment extends BaseFragment {
         // Inflate the layout for this fragment
 
         Activity mActivity = getActivity();
-        customToast = new CustomToast(mActivity);
+        CustomToast customToast = new CustomToast(mActivity);
         //For Language setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_listen, container, false);

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class CoverFlowAdapter extends BaseAdapter {
 
-    private ArrayList<Events> mHighlightedEvents = new ArrayList<>(0);
+    private ArrayList<Events> mHighlightedEvents;
     private Context mContext;
     private EventListingDB mEventListingDB;
 

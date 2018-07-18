@@ -25,9 +25,6 @@ import butterknife.ButterKnife;
 public class AllEventsFragment extends BaseFragment implements EventInterfaceTab {
 
     private Activity mActivity;
-    private EventListingDB mEventDetailsDB;
-    private ArrayList<Events> mEventListingData = new ArrayList<>();
-    private AdapterEvent mAdapterEvent;
     private EventInterfaceTab listenerAllEvents;
     
     @BindView(R.id.recyclerList)
@@ -62,12 +59,12 @@ public class AllEventsFragment extends BaseFragment implements EventInterfaceTab
 
     private void fetchAllEvents() {
 
-        mEventDetailsDB = new EventListingDB(mActivity);
+        EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
-        mEventListingData = mEventDetailsDB.fetchAllEvents();
+        ArrayList<Events> mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
 
-        mAdapterEvent = new AdapterEvent(mActivity, mEventListingData, listenerAllEvents);
+        AdapterEvent mAdapterEvent = new AdapterEvent(mActivity, mEventListingData, listenerAllEvents);
         if (mEventListingData.size() > 0) {
             mRecyclerEvents.setVisibility(View.VISIBLE);
             mtvMsg.setVisibility(View.GONE);
