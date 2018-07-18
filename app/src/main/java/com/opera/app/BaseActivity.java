@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 
 import org.infobip.mobile.messaging.geo.MobileGeo;
