@@ -383,18 +383,14 @@ public class EditProfileActivity extends BaseActivity {
 
         EditProfile data = new EditProfile();
 
-        data.setFirstName(edtFirstName.getText().toString() != null ?
-                edtFirstName.getText().toString() : "");
-        data.setLastName(edtLastName.getText().toString() != null ?
-                edtLastName.getText().toString() : "");
+        data.setFirstName(edtFirstName.getText().toString());
+        data.setLastName(edtLastName.getText().toString());
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
-        data.setDateOfBirth(edtDob.getText().toString() != null ?
-                edtDob.getText().toString() : "");
+        data.setDateOfBirth(edtDob.getText().toString());
         /*data.setMobileNumber(edtMobile.getText().toString() != null ?
                 edtMobile.getText().toString() : "");*/
         data.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
-        data.setCity(edtCity.getText().toString().trim() != null ?
-                edtCity.getText().toString().trim() : "");
+        data.setCity(edtCity.getText().toString().trim());
         data.setState(spinnerState.getSelectedItem().toString().trim());
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
         data.setAddress(edit_edtAddress.getText().toString() != null ?

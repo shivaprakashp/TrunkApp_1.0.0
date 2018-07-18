@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.opera.app.activities.MainActivity;
+import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
@@ -108,10 +109,17 @@ public class SettingsService extends IntentService {
     }
 
     private void sendUpdatedSettings() {
-
+        String languageType;
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+            languageType = AppConstants.EnglishLanguage;
+        } else {
+            languageType = AppConstants.ArabicLanguage;
+        }
         Settings mSettings = new Settings(mBookedShowSwitch, mPromoSwitch, SelecteLanguage, mNewsletterSwitch, mNotifSwitch, mFeedbackNotifSwitch);
         String contentType = "application/json";
-        Call call = api.UpdateSettings(contentType, mSessionManager.getUserLoginData().getData().getToken(), new FavouriteAndSettings(mSettings));
+        Call call = api.UpdateSettings(contentType, languageType, mSessionManager.getUserLoginData().getData().getToken(), new FavouriteAndSettings(mSettings));
         dataLoad(call);
     }
 
