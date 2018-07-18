@@ -2,6 +2,8 @@ package com.opera.app.constants;
 
 public interface AppConstants {
 
+    public static final String LOG_FEEDBACK_ALARM = "LOG_FEEDBACK_ALARM";
+    public static final String LOG_ALARM = "log_alarm";
     String SEAN_CONOLLY_RESTAURANT_ID = "40";
     //static String SEAN_CONOLLY_RESTAURANT_ID = "{05427B33-F675-4045-B99F-97EE841E5EC0}";
 

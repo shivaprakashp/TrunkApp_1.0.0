@@ -10,6 +10,7 @@ import com.opera.app.database.events.EventListingDB;
 import com.opera.app.database.feedback.FeedbackListingDB;
 import com.opera.app.database.notification.NotificationDetailsDB;
 import com.opera.app.database.notification.PromotionDetailsDB;
+import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.database.restaurants.DatabaseHelper;
 import com.opera.app.database.restaurants.SeanRestOpeation;
 

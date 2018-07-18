@@ -1,6 +1,8 @@
 package com.opera.app.fragments;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -19,17 +21,22 @@ import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.events.EventGenresDB;
 import com.opera.app.database.events.EventListingDB;
+import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.listadapters.CoverFlowAdapter;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.listener.TaskComplete;
+import com.opera.app.notification.FeedBackReceiver;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -40,6 +47,8 @@ import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class HomeFragment extends BaseFragment {
 
@@ -90,9 +99,9 @@ public class HomeFragment extends BaseFragment {
         GetCurrentEvents();
 
         //Taking this data for logged in user only (Settings and Favourites)
-        if (manager.isUserLoggedIn()) {
+        //if (manager.isUserLoggedIn()) {
             GetUserSettings();
-        }
+        //}
 
         return view;
     }
@@ -148,12 +157,12 @@ public class HomeFragment extends BaseFragment {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS)) {
                 FavouriteAndSettingsResponseMain mFavouriteAndSettingsResponseMain = (FavouriteAndSettingsResponseMain) response.body();
 
-
                 if (mFavouriteAndSettingsResponseMain != null && mFavouriteAndSettingsResponseMain.getStatus() != null && mFavouriteAndSettingsResponseMain.getStatus().equalsIgnoreCase("success")) {
                     //Adding Favourites data into the arraylist (If it is true)
                     arrFavouriteDataOfLoggedInUser.addAll(mFavouriteAndSettingsResponseMain.getData().getFavourite());
                     UpdateFavouriteData();
                     GetWhatsOnEvents();
+                    updateOrderHistory(mFavouriteAndSettingsResponseMain);
                 }
             } else {
                 AllEvents mEventDataPojo = (AllEvents) response.body();
@@ -195,6 +204,70 @@ public class HomeFragment extends BaseFragment {
         }
     };
 
+    private void updateOrderHistory(FavouriteAndSettingsResponseMain responseMain){
+        if (responseMain != null){
+            if (responseMain.getData().getOrderHistory()!=null){
+                List<OrderHistory> historyList = responseMain.getData().getOrderHistory();
+
+                OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
+                orderHistoryDB.open();
+                orderHistoryDB.deleteCompleteTable(OrderHistoryDB.TABLE_ORDER_HISTORY);
+                orderHistoryDB.insertOrders(historyList);
+                startFeedBackAlarm(orderHistoryDB);
+                orderHistoryDB.close();
+
+
+            }
+        }
+    }
+
+    private void startFeedBackAlarm(OrderHistoryDB orderHistoryDB){
+
+        //log alarm
+        Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
+        intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
+
+
+        if (orderHistoryDB != null){
+            if (orderHistoryDB.orderHistories() != null ){
+                MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
+
+                Calendar calendar = Calendar.getInstance();
+                for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+                    OrderHistory history = orderHistoryDB.orderHistories().get(i);
+                    calendar.setTimeInMillis(System.currentTimeMillis());
+                    calendar.clear();
+                    String[] dateTime = history.getDateTime().split("T");
+                    String[] dateYearMonth = dateTime[0].split("-");
+
+                    String endTimeAmPm = history.getEndTime().split(" ")[1];
+                    String endTimeHr = history.getEndTime().split(":")[0];
+                    String endTimeMM = history.getEndTime().split(":")[1];
+                    calendar.set(Integer.valueOf(dateYearMonth[0]),
+                            Integer.valueOf(dateYearMonth[1]),
+                            Integer.valueOf(dateYearMonth[2]),
+                            Integer.valueOf(endTimeHr),
+                            Integer.valueOf(endTimeMM));
+                   /* calendar.set(2018,
+                            06,
+                            17,
+                            17,
+                            58);*/
+                    MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
+                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
+                            mActivity.getApplicationContext(), i, intentLog, 0);
+
+                    MainApplication.alarmManager[i].setRepeating(AlarmManager.RTC_WAKEUP,
+                            calendar.getTimeInMillis(),
+                            1000,
+                            MainApplication.pendingIntentLog);
+
+                }
+            }
+        }
+
+    }
+
     private void fetchDataFromDB() {
         Log.e("Event Listing response", "true");
         UpdateFavouriteData();
@@ -208,7 +281,8 @@ public class HomeFragment extends BaseFragment {
         mEventListingDB.open();
         if (arrFavouriteDataOfLoggedInUser.size() > 0) {
             for (int i = 0; i < arrFavouriteDataOfLoggedInUser.size(); i++) {
-                mEventListingDB.UpdateFavouriteData(arrFavouriteDataOfLoggedInUser.get(i).getFavouriteId().toUpperCase(), arrFavouriteDataOfLoggedInUser.get(i).getIsFavourite());
+                mEventListingDB.UpdateFavouriteData(arrFavouriteDataOfLoggedInUser.get(i).getFavouriteId().toUpperCase(),
+                        arrFavouriteDataOfLoggedInUser.get(i).getIsFavourite());
             }
         } else {
 

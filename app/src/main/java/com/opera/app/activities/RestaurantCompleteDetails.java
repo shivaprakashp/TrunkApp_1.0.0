@@ -105,9 +105,9 @@ public class RestaurantCompleteDetails extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = RestaurantCompleteDetails.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
-        setContentView(R.layout.restaurantcompletedetails);
+        setContentView(R.layout.activity_restaurant_details);
 
         initToolbar();
         initView();

@@ -44,7 +44,7 @@ public class AllGenresEventsFragment extends BaseFragment implements EventInterf
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mActivity = getActivity();
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         View view = inflater.inflate(R.layout.fragment_events_tab, container, false);
 

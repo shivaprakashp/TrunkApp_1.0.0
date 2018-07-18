@@ -36,6 +36,7 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.contactUs.ContactUs;
 import com.opera.app.pojo.contactUs.ContactUsResponse;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -114,7 +115,7 @@ public class ContactUsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mActivity = ContactUsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_contactus);
 
@@ -148,7 +149,7 @@ public class ContactUsActivity extends BaseActivity {
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getFirstName() != null && manager.getUserLoginData().getData().getProfile().getLastName() != null) {
             mEdtFullName.setText(manager.getUserLoginData().getData().getProfile().getFirstName() + " " + manager.getUserLoginData().getData().getProfile().getLastName());
         }
-        mEdtFullName.setFilters(new InputFilter[] { OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30) });
+        mEdtFullName.setFilters(new InputFilter[]{OperaUtils.filterSpaceExceptFirst, new InputFilter.LengthFilter(30)});
 
         mEdtEmail = edtEmail.findViewById(R.id.edt);
         mEdtEmail.setHint(getString(R.string.email));
@@ -157,7 +158,7 @@ public class ContactUsActivity extends BaseActivity {
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getEmail() != null) {
             mEdtEmail.setText(manager.getUserLoginData().getData().getProfile().getEmail());
         }
-        mEdtEmail.setFilters(new InputFilter[] { OperaUtils.filterSpace, new InputFilter.LengthFilter(50) });
+        mEdtEmail.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
 
         mEdtMobileNumber = edit_edtMobile.findViewById(R.id.edtMobile);
 //        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
@@ -173,7 +174,7 @@ public class ContactUsActivity extends BaseActivity {
                 mEdtMobileNumber.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
             }
         }
-        mEdtMobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+        mEdtMobileNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
 
         //---------------Country Code----------------
         spinnerCountryCode = edit_edtMobile.findViewById(R.id.spinnerCountryCode);
@@ -182,17 +183,17 @@ public class ContactUsActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-        if (manager.getUserLoginData() != null){
-            if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
+        if (manager.getUserLoginData() != null) {
+            if (manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
                 countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf("(") + 1,
-                        manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf(")")).replaceAll("\\s","");
-                int mPosition=0;
-                for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_code)).size();j++){
+                        manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf(")")).replaceAll("\\s", "");
+                int mPosition = 0;
+                for (int j = 0; j < Arrays.asList(getResources().getStringArray(R.array.country_code)).size(); j++) {
                     String number = Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).substring(Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf("(") + 1,
-                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf(")")).replaceAll("\\s","");
-                    if(number.equals(countryCode)){
-                        mPosition=j;
+                            Arrays.asList(getResources().getStringArray(R.array.country_code)).get(j).indexOf(")")).replaceAll("\\s", "");
+                    if (number.equals(countryCode)) {
+                        mPosition = j;
                         break;
                     }
                 }
@@ -203,15 +204,16 @@ public class ContactUsActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerCountryCode.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country_code_with_asterisk))){
+                        getResources().getString(R.string.country_code_with_asterisk))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
-                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
+                            spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
 
-                    ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
+                    ((TextView) parent.getChildAt(0)).setText("+ " + countryCode);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -229,11 +231,12 @@ public class ContactUsActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!spinnerEnquiryType.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.enquiry_type))){
+                        getResources().getString(R.string.enquiry_type))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -262,25 +265,41 @@ public class ContactUsActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.linearTwitter:
-                intent = new Intent(mActivity, CommonWebViewActivity.class);
-                intent.putExtra("URL", OperaUtils.OPERA_TWITTER_URL);
-                intent.putExtra("Header", getResources().getString(R.string.social_media));
-                startActivity(intent);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    intent = new Intent(mActivity, CommonWebViewActivity.class);
+                    intent.putExtra("URL", OperaUtils.OPERA_TWITTER_URL);
+                    intent.putExtra("Header", getResources().getString(R.string.social_media));
+                    startActivity(intent);
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
             case R.id.linearInstagram:
-                intent = new Intent(mActivity, CommonWebViewActivity.class);
-                intent.putExtra("URL", OperaUtils.OPERA_INSTAGRAM_URL);
-                intent.putExtra("Header", getResources().getString(R.string.social_media));
-                startActivity(intent);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    intent = new Intent(mActivity, CommonWebViewActivity.class);
+                    intent.putExtra("URL", OperaUtils.OPERA_INSTAGRAM_URL);
+                    intent.putExtra("Header", getResources().getString(R.string.social_media));
+                    startActivity(intent);
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
             case R.id.linearFacebook:
-                intent = new Intent(mActivity, CommonWebViewActivity.class);
-                intent.putExtra("URL", OperaUtils.OPERA_FACEBOOK_URL);
-                intent.putExtra("Header", getResources().getString(R.string.social_media));
-                startActivity(intent);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    intent = new Intent(mActivity, CommonWebViewActivity.class);
+                    intent.putExtra("URL", OperaUtils.OPERA_FACEBOOK_URL);
+                    intent.putExtra("Header", getResources().getString(R.string.social_media));
+                    startActivity(intent);
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
             case R.id.btnSendMessage:
-                ContactUsData();
+                if (Connections.isConnectionAlive(mActivity)) {
+                    ContactUsData();
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
         }
     }
@@ -297,8 +316,8 @@ public class ContactUsActivity extends BaseActivity {
         ContactUs contactDate = new ContactUs();
 
         contactDate.setFullName(mEdtFullName.getText().toString() != null ?
-                mEdtFullName.getText().toString(): "");
-        contactDate.setPhoneNumber("("+countryCode +")"+ mEdtMobileNumber.getText().toString().trim());
+                mEdtFullName.getText().toString() : "");
+        contactDate.setPhoneNumber("(" + countryCode + ")" + mEdtMobileNumber.getText().toString().trim());
         contactDate.setEmail(mEdtEmail.getText().toString().trim());
         contactDate.setEnquiryType(spinnerEnquiryType.getSelectedItem().toString());
         contactDate.setMessage(edtMessage.getText().toString().trim() != null ?
@@ -367,6 +386,7 @@ public class ContactUsActivity extends BaseActivity {
                 }
             }
         }
+
         @Override
         public void onTaskError(Call call, Throwable t, String mRequestKey) {
         }

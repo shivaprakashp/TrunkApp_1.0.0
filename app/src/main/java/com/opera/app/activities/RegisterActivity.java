@@ -42,6 +42,7 @@ import com.opera.app.fragments.DatePickerFragment;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.registration.Registration;
 import com.opera.app.pojo.registration.RegistrationResponse;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -166,7 +167,7 @@ public class RegisterActivity extends BaseActivity {
 
         mActivity = RegisterActivity.this;
 
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_registration);
 
@@ -413,7 +414,11 @@ public class RegisterActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCreateAccount:
-                registerUser();
+                if (Connections.isConnectionAlive(mActivity)) {
+                    registerUser();
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
 
             case R.id.btnLogin:

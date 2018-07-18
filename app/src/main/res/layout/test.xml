@@ -1,21 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.opera.app.customwidget.TextViewWithFont
-        android:id="@+id/eventsTab"
-        style="@style/label_white_small"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStart="0dp"
+        android:visibility="visible"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <include
+            android:id="@+id/inc_set_toolbar"
+            layout="@layout/view_home_toolbar" />
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/restaurantImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <ProgressBar
+                android:id="@+id/progressImageLoader"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <com.opera.app.customwidget.ArcView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_linear_shape"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            app:arc_cropDirection="inside"
+            app:arc_height="20dp"
+            app:arc_position="top">
+
+        </com.opera.app.customwidget.ArcView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBlack"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="1dp"
-        tools:text="Favourite">
-    </com.opera.app.customwidget.TextViewWithFont>
+        android:visibility="visible"
+        android:padding="10dp">
 
+        <com.opera.app.customwidget.ButtonWithFont
+            android:id="@+id/mBtnLocationMap"
+            style="@style/label_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_ripple_effect"
+            android:text="@string/location"
+            android:textAllCaps="false"
+            android:padding="10dp"
+            font:name="Montserrat-Light" />
+
+    </LinearLayout>
 
 </LinearLayout>

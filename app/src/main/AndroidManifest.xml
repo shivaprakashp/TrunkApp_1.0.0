@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.opera.app">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- We need permission to listen to boot_completed -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -252,9 +255,18 @@
         </receiver>
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
-        <!--  Declare  Alarm Broadcast receiver here  -->
+        <!-- Will not be called unless the application explicitly enables it -->
+        <receiver android:name=".notification.FeedBackReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
 
-        <!--  Declare  Alarm Notification Service here  -->
+        </receiver>
 
+        <receiver android:name=".notification.ShowReminderReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

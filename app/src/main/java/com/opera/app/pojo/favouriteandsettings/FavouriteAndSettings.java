@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 1000632 on 5/23/2018.
@@ -18,6 +19,10 @@ public class FavouriteAndSettings
     @SerializedName("Settings")
     @Expose
     private Settings Settings;
+
+    @SerializedName("orderHistory")
+    @Expose
+    private List<OrderHistory> orderHistory = null;
 
     public FavouriteAndSettings(ArrayList<Favourite> favourite) {
         Favourite = favourite;
@@ -46,9 +51,18 @@ public class FavouriteAndSettings
         this.Settings = Settings;
     }
 
+    public List<OrderHistory> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void setOrderHistory(List<OrderHistory> orderHistory) {
+        this.orderHistory = orderHistory;
+    }
+
     @Override
     public String toString()
     {
-        return "ClassPojo [Favourite = "+Favourite+", Settings = "+Settings+"]";
+        return "ClassPojo [Favourite = "+Favourite+", Settings = "+Settings+
+                ", orderHistory"+orderHistory+"]";
     }
 }

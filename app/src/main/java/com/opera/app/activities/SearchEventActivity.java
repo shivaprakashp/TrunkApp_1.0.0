@@ -66,7 +66,7 @@ public class SearchEventActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // Inflate the layout for this fragment
         mActivity = SearchEventActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_search_event);
 

@@ -1,6 +1,8 @@
 package com.opera.app;
 
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.graphics.Typeface;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -30,6 +32,10 @@ public class MainApplication extends Application {
     //creation of instance for MobileMessaging
     private MobileMessaging mobileMessaging = null;
     private static MainApplication mInstance;
+
+    public static AlarmManager[] alarmManager;
+    public static PendingIntent pendingIntentLog;
+
 
     @Override
     public void onCreate(){

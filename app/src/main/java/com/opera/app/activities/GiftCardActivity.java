@@ -130,6 +130,8 @@ public class GiftCardActivity extends BaseActivity {
         } else {
             if (manager.getGiftCardOfflineData() != null && manager.getGiftCardOfflineData().getEvents().get(0).getDescription() != null) {
                 mTxtGiftCardDetails.setText(Html.fromHtml(manager.getGiftCardOfflineData().getEvents().get(0).getDescription()));
+            } else {
+                customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             }
         }
     }

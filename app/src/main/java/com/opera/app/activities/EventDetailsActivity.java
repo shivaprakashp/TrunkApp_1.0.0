@@ -43,6 +43,7 @@ import com.opera.app.pojo.favouriteandsettings.Favourite;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
@@ -163,7 +164,7 @@ public class EventDetailsActivity extends BaseActivity {
 
         // Inflate the layout for this fragment
         mActivity = EventDetailsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_event_details);
 
@@ -177,8 +178,12 @@ public class EventDetailsActivity extends BaseActivity {
     }
 
     private void InitView() {
-        ((MainApplication) getApplication()).getNetComponent().inject(this);
-        api = retrofit.create(Api.class);
+        if (Connections.isConnectionAlive(mActivity)) {
+            ((MainApplication) getApplication()).getNetComponent().inject(this);
+            api = retrofit.create(Api.class);
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
         mEventDetailsDB = new EventDetailsDB(mActivity);
         mEventListingDB = new EventListingDB(mActivity);
         manager = new SessionManager(mActivity);
@@ -190,7 +195,6 @@ public class EventDetailsActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         mViewpagerFavGenres.setClipToPadding(false);
         mViewpagerFavGenres.setPageMargin(20);
@@ -474,10 +478,14 @@ public class EventDetailsActivity extends BaseActivity {
             break;
 
             case R.id.relativeOpenAppleMusic:
-                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                in.putExtra("URL", mAppleMusicURL);
-                in.putExtra("Header", "Apple Music");
-                startActivity(in);
+                if (Connections.isConnectionAlive(mActivity)) {
+                    Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                    in.putExtra("URL", mAppleMusicURL);
+                    in.putExtra("Header", "Apple Music");
+                    startActivity(in);
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
         }
     }

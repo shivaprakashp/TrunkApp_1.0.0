@@ -21,6 +21,7 @@ import com.opera.app.listadapters.PromotionsAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.promotions.PromotionDetails;
 import com.opera.app.pojo.promotions.PromotionsPojo;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class PromotionsActivity extends BaseActivity {
 
         // Inflate the layout for this fragment
         mActivity = PromotionsActivity.this;
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.common_recycler);
 
@@ -135,8 +136,12 @@ public class PromotionsActivity extends BaseActivity {
     }
 
     private void getPromotions() {
-        MainController controller = new MainController(PromotionsActivity.this);
-        controller.getPromotionDetails(taskComplete, api);
+        if (Connections.isConnectionAlive(mActivity)) {
+            MainController controller = new MainController(PromotionsActivity.this);
+            controller.getPromotionDetails(taskComplete, api);
+        } else {
+            customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+        }
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {

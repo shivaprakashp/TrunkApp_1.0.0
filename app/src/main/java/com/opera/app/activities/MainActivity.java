@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity implements
 
         mActivity = MainActivity.this;
         manager = new SessionManager(mActivity);
-        //For Language setting
+        //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_main);
 
@@ -206,7 +206,7 @@ public class MainActivity extends BaseActivity implements
                 mTabSelected="Home";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater homeInflater =(LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                //For Language setting
+                //For Language activity_setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View homeView = homeInflater.inflate(R.layout.view_home_toolbar, null);
 
@@ -225,7 +225,7 @@ public class MainActivity extends BaseActivity implements
                 mTabSelected="Event";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater eventInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                //For Language setting
+                //For Language activity_setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View eventView = eventInflater.inflate(R.layout.view_events_toolbar, null);
 
@@ -242,7 +242,7 @@ public class MainActivity extends BaseActivity implements
                 mTabSelected="Dining";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater diningInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                //For Language setting
+                //For Language activity_setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View diningView = diningInflater.inflate(R.layout.view_dining_toolbar, null);
                 toolBarLayout(diningView);
@@ -252,7 +252,7 @@ public class MainActivity extends BaseActivity implements
                 mTabSelected="Listen";
                 toolbar.setVisibility(View.VISIBLE);
                 LayoutInflater listenInflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                //For Language setting
+                //For Language activity_setting
                 LanguageManager.createInstance().CommonLanguageFunction(mActivity);
                 View listenView = listenInflater.inflate(R.layout.view_listen_toolbar, null);
                 toolBarLayout(listenView);

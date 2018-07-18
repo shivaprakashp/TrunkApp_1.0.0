@@ -32,6 +32,7 @@ import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.profile.EditProfile;
 import com.opera.app.pojo.profile.EditProfileResponse;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
@@ -357,7 +358,11 @@ public class EditProfileActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:
-                EditProfileData();
+                if (Connections.isConnectionAlive(mActivity)) {
+                    EditProfileData();
+                } else {
+                    customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+                }
                 break;
 
             case R.id.btnCancel:
@@ -378,18 +383,14 @@ public class EditProfileActivity extends BaseActivity {
 
         EditProfile data = new EditProfile();
 
-        data.setFirstName(edtFirstName.getText().toString() != null ?
-                edtFirstName.getText().toString() : "");
-        data.setLastName(edtLastName.getText().toString() != null ?
-                edtLastName.getText().toString() : "");
+        data.setFirstName(edtFirstName.getText().toString());
+        data.setLastName(edtLastName.getText().toString());
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
-        data.setDateOfBirth(edtDob.getText().toString() != null ?
-                edtDob.getText().toString() : "");
+        data.setDateOfBirth(edtDob.getText().toString());
         /*data.setMobileNumber(edtMobile.getText().toString() != null ?
                 edtMobile.getText().toString() : "");*/
         data.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
-        data.setCity(edtCity.getText().toString().trim() != null ?
-                edtCity.getText().toString().trim() : "");
+        data.setCity(edtCity.getText().toString().trim());
         data.setState(spinnerState.getSelectedItem().toString().trim());
         data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
         data.setAddress(edit_edtAddress.getText().toString() != null ?

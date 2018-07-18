@@ -44,80 +44,112 @@ public interface Api {
 
     @POST("accounts/extended/login/")
     Call<LoginResponse> userLogin(@Header("Content-Type") String content,
+                                  @Header("Accept-Language") String mLanguage,
                                   @Body PostLogin postLogin);
 
     @POST("accounts/extended/Register/")
     Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,
+
                                                 @Body Registration registration);
 
     @POST("accounts/extended/editProfile/")
-    Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content,
+                                              @Header("Accept-Language") String mLanguage,
+                                              @Header("X-Customer") String dtcmCustomerId,
+                                              @Header("Authorization") String token,
                                               @Body EditProfile editProfile);
 
     @POST("accounts/extended/ChangePassword/")
-    Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<RegistrationResponse> ChangePassword(@Header("Content-Type") String content,
+                                              @Header("Accept-Language") String mLanguage,
+                                              @Header("X-Customer") String dtcmCustomerId,
+                                              @Header("Authorization") String token,
                                               @Body PostChangePassword mPostChangePassword);
 
     @POST("accounts/extended/ForgotPassword/")
     Call<RegistrationResponse> ForgotPassword(@Header("Content-Type") String content,
+                                              @Header("Accept-Language") String mLanguage,
                                               @Body ForgotPasswordPojo mForgotPasswordPojo);
 
     @POST("accounts/extended/setUserSettings/")
-    Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<RegistrationResponse> UpdateSettings(@Header("Content-Type") String content,
+                                              @Header("Accept-Language") String mLanguage,
+                                              @Header("Authorization") String token,
                                               @Body FavouriteAndSettings favouriteAndSettings);
 
-    @POST("accounts/extended/GetUserSettings/")
-    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+    //@POST("accounts/extended/GetUserSettings/")
+    @GET("http://www.mocky.io/v2/5b4dabd331000055005ebcf1")
+    //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
+    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
 
     @POST("restaurants/extended/GetRestaurantDetails/")
-    Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content);
+    Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content,
+                                                 @Header("Accept-Language") String mLanguage);
 
     @POST("restaurants/extended/GetMasterDetails/")
-    Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<RestaurantMasterDetails> RestaurantsGetMasterDetails(@Header("Content-Type") String content,
+                                                              @Header("Accept-Language") String mLanguage,
+                                                              @Header("Authorization") String token,
                                                               @Body GetMasterDetailsRequestPojo getMasterDetailsRequestPojo);
 
     @POST("contatcus/extended/SaveContact/")
     Call<ContactUsResponse> contactUs(@Header("Content-Type") String content,
+                                      @Header("Accept-Language") String mLanguage,
                                       @Body ContactUs contactUs);
 
     @POST("restaurants/extended/BookTable/")
-    Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<ReserveResponse> ReserveRestaurantSeat(@Header("Content-Type") String content,
+                                                @Header("Accept-Language") String mLanguage,
+                                                @Header("Authorization") String token,
                                                 @Body BookTableRequest tableResponse);
 
     @POST("restaurants/extended/GetRestaurant/")
-    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content, @Query("restaurantId") String restaurantId);
+    Call<RestaurantListing> GetSpecificRestaurant(@Header("Content-Type") String content,
+                                                  @Header("Accept-Language") String mLanguage,
+                                                  @Query("restaurantId") String restaurantId);
 
     @POST("restaurants/extended/GetRestaurantById/")
-    Call<RestaurantListing> GetSpecificRestaurantWithSiteCoreId(@Header("Content-Type") String content, @Query("id") String restaurantId);
+    Call<RestaurantListing> GetSpecificRestaurantWithSiteCoreId(@Header("Content-Type") String content,
+                                                                @Header("Accept-Language") String mLanguage,
+                                                                @Query("id") String restaurantId);
 
     @POST("events/extended/GetEvents/")
-    Call<AllEvents> GetEventListing();
+    Call<AllEvents> GetEventListing(@Header("Accept-Language") String mLanguage);
 
     @POST("events/extended/GetEventById/")
-    Call<GetEventDetails> GetEventDetails(@Query("itemId") String EventId);
+    Call<GetEventDetails> GetEventDetails(@Header("Accept-Language") String mLanguage,
+                                          @Query("itemId") String EventId);
 
     @POST("restaurants/extended/GetWalletDetails/")
-    Call<WalletDetails> getWalletDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
+    Call<WalletDetails> getWalletDetails(@Header("Content-Type") String content,
+                                         @Header("Accept-Language") String mLanguage,
+                                         @Header("Authorization") String token);
 
     @POST("promotion/extended/GetNotifications")
-    Call<NotificationDetails> getNotificationDetails();
+    Call<NotificationDetails> getNotificationDetails(@Header("Accept-Language") String mLanguage);
 
     @POST("promotion/extended/GetPromotions")
-    Call<PromotionsPojo> getPromotionDetails();
+    Call<PromotionsPojo> getPromotionDetails(@Header("Accept-Language") String mLanguage);
 
     @POST("accounts/extended/setUserSettings/")
-    Call<FavouriteAndSettingsResponseMain> MarkFavouriteForEvent(@Header("Content-Type") String content, @Header("Authorization") String token,
+    Call<FavouriteAndSettingsResponseMain> MarkFavouriteForEvent(@Header("Content-Type") String content,
+                                                                 @Header("Accept-Language") String mLanguage,
+                                                                 @Header("Authorization") String token,
                                                                  @Body FavouriteAndSettings mFavouriteAndSettings);
 
     @POST("events/extended/GetEvents/")
-    Call<AllEvents> GetDubaiOperaTour(@Query("type") String eventType);
+    Call<AllEvents> GetDubaiOperaTour(@Header("Accept-Language") String mLanguage,
+                                      @Query("type") String eventType);
 
     @POST("events/extended/GetEvents/")
-    Call<AllEvents> GetGiftCard(@Query("type") String eventType);
+    Call<AllEvents> GetGiftCard(@Header("Accept-Language") String mLanguage,
+                                @Query("type") String eventType);
 
     @POST("accounts/extended/SaveOrder/")
-    Call<SuccessResponse> SaveOrderAPI(@Header("Content-Type") String content, @Header("Accept-Language") String mLanguage,
-                                       @Header("X-Customer") String dtcmCustomerId, @Header("Authorization") String mAuthorization,
+    Call<SuccessResponse> SaveOrderAPI(@Header("Content-Type") String content,
+                                       @Header("Accept-Language") String mLanguage,
+                                       @Header("X-Customer") String dtcmCustomerId,
+                                       @Header("Authorization") String mAuthorization,
                                        @Body EventTicketBookingPojo mCompleteData);
 
     @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
