@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:visibility="gone"
-        style="@style/label_white_medium" />
+        style="@style/label_white_small" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerList"

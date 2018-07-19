@@ -21,6 +21,7 @@ import com.opera.app.MainApplication;
 import com.opera.app.R;
 import com.squareup.picasso.Target;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -216,6 +217,14 @@ public class OperaUtils {
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(c);
+    }
+
+    //get yesterday date
+    public static String getYesterdayDate() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(cal.getTime());
     }
 
     //get current date
