@@ -78,7 +78,7 @@ public interface Api {
                                               @Body FavouriteAndSettings favouriteAndSettings);
 
     //@POST("accounts/extended/GetUserSettings/")
-    @GET("http://www.mocky.io/v2/5b4dabd331000055005ebcf1")
+    @GET("http://www.mocky.io/v2/5b504f543600003c14dd0d58")
     //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
     Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
 

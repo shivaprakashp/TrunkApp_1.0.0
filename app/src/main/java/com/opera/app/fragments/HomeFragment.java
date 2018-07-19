@@ -99,9 +99,9 @@ public class HomeFragment extends BaseFragment {
         GetCurrentEvents();
 
         //Taking this data for logged in user only (Settings and Favourites)
-        //if (manager.isUserLoggedIn()) {
+        if (manager.isUserLoggedIn()) {
             GetUserSettings();
-        //}
+        }
 
         return view;
     }
@@ -233,7 +233,6 @@ public class HomeFragment extends BaseFragment {
         Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
         intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
 
-
         if (orderHistoryDB != null){
             if (orderHistoryDB.orderHistories() != null ){
                 MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
@@ -249,16 +248,17 @@ public class HomeFragment extends BaseFragment {
                     String endTimeAmPm = history.getEndTime().split(" ")[1];
                     String endTimeHr = history.getEndTime().split(":")[0];
                     String endTimeMM = history.getEndTime().split(":")[1];
-                   /* calendar.set(Integer.valueOf(dateYearMonth[0]),
+
+                    calendar.set(Integer.valueOf(dateYearMonth[0]),
                             Integer.valueOf(dateYearMonth[1]),
                             Integer.valueOf(dateYearMonth[2]),
                             Integer.valueOf(endTimeHr),
-                            Integer.valueOf(endTimeMM));*/
-                    calendar.set(2018,
+                            Integer.valueOf(endTimeMM));
+                  /*  calendar.set(2018,
                             06,
                             17,
                             17,
-                            58);
+                            58);*/
                     MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
                     MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
                             mActivity.getApplicationContext(), i, intentLog, 0);

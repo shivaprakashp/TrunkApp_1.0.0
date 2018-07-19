@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.opera.app.activities.FeedbackActivity;
 import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.SettingsActivity;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 
@@ -23,7 +24,7 @@ public class FeedBackWorker extends Worker {
     public Result doWork() {
         try {
 
-            NotificationData data = new NotificationData(getApplicationContext(), FeedbackActivity.class);
+            NotificationData data = new NotificationData(getApplicationContext(), SettingsActivity.class);
             Calendar calendar = Calendar.getInstance();
             orderHistoryDB = new OrderHistoryDB(getApplicationContext());
             orderHistoryDB.open();
@@ -38,10 +39,12 @@ public class FeedBackWorker extends Worker {
 
                     int year = Calendar.getInstance().get(Calendar.YEAR);
                     int month = Calendar.getInstance().get(Calendar.MONTH);
+
                     int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
                     if (dateYearMonth[0].equalsIgnoreCase(String.valueOf(year)) &&
-                            dateYearMonth[1].equalsIgnoreCase(String.valueOf(month)) &&
+                            dateYearMonth[1].equalsIgnoreCase(String.valueOf(month < 10?
+                                    ("0"+month) : month)) &&
                             dateYearMonth[2].equalsIgnoreCase(String.valueOf(day))){
                                             flag = true;
 
@@ -52,7 +55,6 @@ public class FeedBackWorker extends Worker {
                     }
                 }
             }
-
             return Result.SUCCESS;
         } catch (Throwable throwable) {
             return Result.FAILURE;
