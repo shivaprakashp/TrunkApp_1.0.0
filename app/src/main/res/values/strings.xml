@@ -995,4 +995,9 @@
     <string name="dubai_opera_tour">Dubai Opera Tour</string>
     <string name="listen1">Listen</string>
     <string name="ticket_booked_success">Event booked successfully! Visit Wallet to view the details of the booked Event.</string>
+
+    <string name="feedback_comment">We\'d love your feedback. Click here to rate your experience.</string>
+    <string name="feedback_attended_time">You attended the show on </string>
+    <string name="feedback_header">Feedback on the show</string>
+
 </resources>

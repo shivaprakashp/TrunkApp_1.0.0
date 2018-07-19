@@ -99,6 +99,7 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.linearFacebook)
     LinearLayout mLinearFacebook;
 
+
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
@@ -122,6 +123,7 @@ public class ContactUsActivity extends BaseActivity {
         initToolbar();
         initView();
         initSpinner();
+        //throw new RuntimeException("This is a crash");
     }
 
     private void initToolbar() {

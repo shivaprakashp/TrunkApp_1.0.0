@@ -141,6 +141,10 @@
         <activity
             android:name=".activities.GenresEventsActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- Existing application entries -->
         <receiver
             android:name=".services.NotificationTappedReceiver"
