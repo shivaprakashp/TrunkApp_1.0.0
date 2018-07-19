@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.graphics.Typeface;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -15,6 +16,7 @@ import com.opera.app.dagger.DaggerApiComponent;
 import com.opera.app.googleanalytics.AnalyticsTrackers;
 import com.opera.app.utils.OperaUtils;
 
+import io.fabric.sdk.android.Fabric;
 import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
 import org.infobip.mobile.messaging.storage.SQLiteMessageStore;
@@ -40,6 +42,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         mInstance = this;
 

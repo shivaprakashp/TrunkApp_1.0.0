@@ -64,6 +64,7 @@ public class MainActivity extends BaseActivity implements
 
         mActivity = MainActivity.this;
         manager = new SessionManager(mActivity);
+
         //For Language activity_setting
         LanguageManager.createInstance().CommonLanguageFunction(mActivity);
         setContentView(R.layout.activity_main);

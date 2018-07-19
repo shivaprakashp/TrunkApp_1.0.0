@@ -17,7 +17,7 @@ public class FeedBackReceiver extends BroadcastReceiver {
 
         if (intent.getExtras() != null) {
             if (intent.getExtras().get(AppConstants.LOG_FEEDBACK_ALARM) != null) {
-                OneTimeWorkRequest logWork = new OneTimeWorkRequest.Builder(LoggerWorker.class)
+                OneTimeWorkRequest logWork = new OneTimeWorkRequest.Builder(FeedBackWorker.class)
                         .build();
                 WorkManager.getInstance().enqueue(logWork);
 
