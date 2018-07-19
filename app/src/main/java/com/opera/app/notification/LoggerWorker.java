@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.opera.app.activities.MainActivity;
+import com.opera.app.activities.WalletActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
@@ -24,7 +25,7 @@ public class LoggerWorker extends Worker {
     public Worker.Result doWork() {
         try {
             String eventName ;
-            NotificationData data = new NotificationData(getApplicationContext(), MainActivity.class);
+            NotificationData data = new NotificationData(getApplicationContext(), WalletActivity.class);
             Calendar calendar = Calendar.getInstance();
             orderHistoryDB = new OrderHistoryDB(getApplicationContext());
             orderHistoryDB.open();

@@ -260,14 +260,16 @@
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
         <!-- Will not be called unless the application explicitly enables it -->
-        <receiver android:name=".notification.FeedBackReceiver">
+        <receiver android:name=".notification.FeedBackReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
 
         </receiver>
 
-        <receiver android:name=".notification.ShowReminderReceiver">
+        <receiver android:name=".notification.ShowReminderReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>

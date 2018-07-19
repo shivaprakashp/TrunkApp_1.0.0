@@ -192,11 +192,20 @@ public class SettingsActivity extends BaseActivity {
 
                                 String endTimeAmPm = history.getStartTime().split(" ")[1];
                                 String startTimeHr = history.getStartTime().split(":")[0];
+
+                                String startTime;
+                                if (startTimeHr.equalsIgnoreCase("00") ||
+                                        startTimeHr.equalsIgnoreCase("0")){
+                                    startTime = "12";
+                                }else {
+                                    startTime = String.valueOf(Integer.parseInt(startTimeHr) - 1);
+                                }
+                                Log.i("StartTime",startTime);
                                 String startTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
                                 calendar.set(Integer.valueOf(dateYearMonth[0]),
                                         Integer.valueOf(dateYearMonth[1]),
                                         Integer.valueOf(dateYearMonth[2]),
-                                        Integer.valueOf(startTimeHr),
+                                        Integer.valueOf(startTime),
                                         Integer.valueOf(startTimeMM));
 
 
@@ -205,6 +214,10 @@ public class SettingsActivity extends BaseActivity {
                                         17,
                                         17,
                                         55);*/
+
+                                MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
+                                MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
+                                        mActivity.getApplicationContext(), i, intentLog, 0);
 
                                 MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP,
                                         calendar.getTimeInMillis(), MainApplication.pendingIntentLog);
