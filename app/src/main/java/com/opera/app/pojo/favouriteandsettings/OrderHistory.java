@@ -5,28 +5,28 @@ import com.google.gson.annotations.SerializedName;
 
 public class OrderHistory {
 
-    @SerializedName("dateTime")
+    @SerializedName("DateTime")
     @Expose
     private String dateTime;
-    @SerializedName("orderId")
+    @SerializedName("OrderId")
     @Expose
     private String orderId;
-    @SerializedName("eventId")
+    @SerializedName("EventId")
     @Expose
     private String eventId;
-    @SerializedName("eventName")
+    @SerializedName("Name")
     @Expose
     private String eventName;
     @SerializedName("MobileDescription")
     @Expose
     private String mobileDescription;
-    @SerializedName("feedBackUrl")
+    @SerializedName("FeedbackUrl")
     @Expose
     private String feedBackUrl;
-    @SerializedName("startTime")
+    @SerializedName("StartTime")
     @Expose
     private String startTime;
-    @SerializedName("endTime")
+    @SerializedName("EndTime")
     @Expose
     private String endTime;
 

@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             style="@style/label_white_vlarge"
             android:layout_marginTop="@dimen/app_margin_five"
-            android:text="4450"
             font:name="Montserrat-Light"/>
 
         <com.opera.app.customwidget.TextViewWithFont

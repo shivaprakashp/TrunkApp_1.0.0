@@ -15,7 +15,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.opera.app.R;
 import com.opera.app.customwidget.TextViewWithFont;
-import com.opera.app.pojo.wallet.GiftCard;
 import com.opera.app.pojo.wallet.Restaurant;
 import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
 
@@ -296,7 +295,7 @@ public class TodayWalletView extends LinearLayout {
                 }
 
                 txtAmountOfGiftCard.setText(giftCard.getmPrice());
-                txtDateReserve.setText(mDateFor + " " + mTimeFor);
+                txtDateReserve.setText(new StringBuilder().append(mDateFor).append(" ").append(mTimeFor).toString());
                 txtVoucherId.setText(giftCard.getmBarcode());
 
                 try {

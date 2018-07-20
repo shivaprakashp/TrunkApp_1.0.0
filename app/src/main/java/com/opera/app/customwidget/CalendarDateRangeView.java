@@ -142,7 +142,7 @@ public class CalendarDateRangeView extends LinearLayout {
             LinearLayout.LayoutParams textViewParam = new LinearLayout.LayoutParams(scrWidth/12,scrWidth/12);
             txtMonthDays.setLayoutParams(textViewParam);
             txtMonthDays.setGravity(Gravity.CENTER);
-            txtMonthDays.setText(""+i);
+            txtMonthDays.setText(new StringBuilder().append("").append(i).toString());
             txtMonthDays.setBackground(getResources().getDrawable(R.drawable.oval_corner));
             txtMonthDays.setTextAppearance(getContext(), R.style.label_white_medium);
             textBackLay.addView(txtMonthDays);

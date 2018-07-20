@@ -93,8 +93,8 @@ public class MainController {
     }*/
 
     public void getUpdatedSettings(TaskComplete taskComplete, Api api) {
-        //Call call = api.GetUpdatedSettings(contentType, manager.getUserLoginData().getData().getToken());
-        Call call = api.GetUpdatedSettings();
+        Call call = api.GetUpdatedSettings(contentType, languageType, manager.getUserLoginData().getData().getToken(), manager.getUserLoginData().getData().getDtcmCustomerId());
+        //Call call = api.GetUpdatedSettings();
         properties.setRequestKey(AppConstants.GETUSERSETTINGS.GETUSERSETTINGS);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);

@@ -46,8 +46,11 @@ import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -122,7 +125,7 @@ public class RegisterActivity extends BaseActivity {
     @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
 
-    String countryCode;
+    String countryCode, selectedDate;
 
     EditTextWithFont edtEmail,
             edtPassword,
@@ -239,7 +242,8 @@ public class RegisterActivity extends BaseActivity {
                 DialogFragment dialogFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtDob.setText(new StringBuilder().append(dayOfMonth).append("/").append(month + 1).append("/").append(year).toString());
+                        selectedDate = String.valueOf(dayOfMonth) + "/" + (month + 1) + "/" + year;
+                        edtDob.setText(selectedDate);
 
                     }
                 });
@@ -444,6 +448,17 @@ public class RegisterActivity extends BaseActivity {
 
     private Registration userRegistration() {
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date myDate = null;
+        try {
+            myDate = dateFormat.parse(selectedDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat timeFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String finalDate = timeFormat.format(myDate);
+
         Registration registration = new Registration();
 
         registration.setEmail(edtEmail.getText().toString().trim());
@@ -452,7 +467,7 @@ public class RegisterActivity extends BaseActivity {
         registration.setFirstName(edtFirstName.getText().toString().trim());
         registration.setLastName(edtLastName.getText().toString().trim());
         registration.setNationality(spinnerNationality.getSelectedItem().toString());
-        registration.setDateOfBirth(edtDob.getText().toString().trim());
+        registration.setDateOfBirth(finalDate);
         registration.setMobileNumber("+(" + countryCode + ")" + edtMobile.getText().toString().trim());
         registration.setCity(edtCity.getText().toString());
         registration.setCountry(spinnerCountry.getSelectedItem().toString());

@@ -60,11 +60,6 @@
         </activity>
 
         <activity
-            android:name=".activities.TestAct"
-            android:screenOrientation="portrait" >
-        </activity>
-
-        <activity
             android:name=".activities.BuyTicketWebView"
             android:screenOrientation="portrait" >
         </activity>

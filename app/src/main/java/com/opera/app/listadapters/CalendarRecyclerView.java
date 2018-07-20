@@ -66,7 +66,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
         }
 
         try {
-            holder.txtCalendarTime.setText(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime)) + "\n" + startTime[1]);
+            holder.txtCalendarTime.setText(new StringBuilder().append(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime))).append("\n").append(startTime[1]).toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
