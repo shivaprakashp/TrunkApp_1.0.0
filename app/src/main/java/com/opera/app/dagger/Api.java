@@ -75,10 +75,15 @@ public interface Api {
                                               @Header("Authorization") String token,
                                               @Body FavouriteAndSettings favouriteAndSettings);
 
-    //@POST("accounts/extended/GetUserSettings/")
-    @GET("http://www.mocky.io/v2/5b504f543600003c14dd0d58")
-    //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
-    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
+
+    //@GET("http://www.mocky.io/v2/5b504f543600003c14dd0d58")
+    //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
+
+    @POST("accounts/extended/GetUserSettings/")
+    Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content,
+                                                              @Header("Accept-Language") String mLanguage,
+                                                              @Header("Authorization") String token,
+                                                              @Header("X-Customer") String dtcmCustomerId);
 
     @POST("restaurants/extended/GetRestaurantDetails/")
     Call<RestaurantListing> GetRestaurantListing(@Header("Content-Type") String content,

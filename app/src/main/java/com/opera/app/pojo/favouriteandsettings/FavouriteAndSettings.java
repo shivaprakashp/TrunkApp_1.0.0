@@ -20,7 +20,7 @@ public class FavouriteAndSettings
     @Expose
     private Settings Settings;
 
-    @SerializedName("orderHistory")
+    @SerializedName("OrderHistory")
     @Expose
     private List<OrderHistory> orderHistory = null;
 

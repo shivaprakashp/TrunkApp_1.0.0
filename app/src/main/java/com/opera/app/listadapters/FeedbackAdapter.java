@@ -95,7 +95,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
         SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
         String finalDate = timeFormat.format(myDate);
 
-        holder.txtShowDateAndTime.setText(mActivity.getResources().getString(R.string.feedback_attended_time) + " " + finalDate + " " + eventTime + " " + startTime[1]);
+        holder.txtShowDateAndTime.setText(new StringBuilder().append(mActivity.getResources().getString(R.string.feedback_attended_time)).append(" ").append(finalDate).append(" ").append(eventTime).append(" ").append(startTime[1]).toString());
 
         EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();

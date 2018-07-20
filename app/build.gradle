@@ -89,6 +89,6 @@ dependencies {
     implementation "android.arch.work:work-runtime:1.0.0-alpha04"
 
     compile('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
-        transitive = true;
+        transitive = true
     }
 }

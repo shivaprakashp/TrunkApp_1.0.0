@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/app_margin_ten"
+            android:padding="@dimen/app_margin_ten"
             android:backgroundTint="@color/colorWhite"
             android:popupBackground="@color/black" />
 

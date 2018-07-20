@@ -143,7 +143,7 @@
                     <ImageView
                         android:layout_width="@dimen/app_width_vsmall"
                         android:layout_height="@dimen/app_height_vsmall"
-                        android:layout_marginRight="@dimen/app_margin_five"
+                        android:layout_marginEnd="@dimen/app_margin_five"
                         android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_hour" />
 
@@ -168,7 +168,7 @@
                     <ImageView
                         android:layout_width="@dimen/app_width_vsmall"
                         android:layout_height="@dimen/app_height_vsmall"
-                        android:layout_marginRight="@dimen/app_margin_five"
+                        android:layout_marginEnd="@dimen/app_margin_five"
                         android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_telephone" />
 
@@ -193,7 +193,8 @@
                     <ImageView
                         android:layout_width="@dimen/app_width_vsmall"
                         android:layout_height="@dimen/app_height_vsmall"
-                        android:layout_marginRight="@dimen/app_margin_five"
+
+                        android:layout_marginEnd="@dimen/app_margin_five"
                         android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_mail_icon" />
 
