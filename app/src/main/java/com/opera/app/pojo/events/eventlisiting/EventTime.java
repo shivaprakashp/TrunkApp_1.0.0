@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class EventTime
 {
+    @SerializedName("eventPerfCode")
+    @Expose
+    private String eventPerfCode;
+
     @SerializedName("FromTime")
     @Expose
     private String FromTime;
@@ -16,6 +20,14 @@ public class EventTime
     @SerializedName("ToTime")
     @Expose
     private String ToTime;
+
+    public String getEventPerfCode() {
+        return eventPerfCode;
+    }
+
+    public void setEventPerfCode(String eventPerfCode) {
+        this.eventPerfCode = eventPerfCode;
+    }
 
     public String getFromTime() {
         return FromTime;

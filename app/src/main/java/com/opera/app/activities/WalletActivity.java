@@ -87,7 +87,8 @@ public class WalletActivity extends BaseActivity {
 
                 for (int i = 0; i < mBookedEventHistory.size(); i++) {
                     for (int j = 0; j < mBookedEventHistory.get(i).getOrderItems().size(); j++) {
-                        dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.get(i).getOrderItems().get(j).getOrderLineItems(),
+                        dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.get(i).getOrderItems().get(j).getOrderFrom(),
+                                mBookedEventHistory.get(i).getOrderItems().get(j).getOrderLineItems(),
                                 mBookedEventHistory.get(i).getOrderEvents().getEventId(),
                                 mBookedEventHistory.get(i).getOrderEvents().getEventName(),
                                 mBookedEventHistory.get(i).getOrderEvents().getEventGenre(),

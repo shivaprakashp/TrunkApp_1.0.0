@@ -46,14 +46,18 @@ public class UpcomingWalletFragment extends Fragment {
         WalletPreference preference = new WalletPreference(getActivity());
         if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
             dbBookendEventsHistory.open();
-            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory();
+            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.event));
             dbBookendEventsHistory.close();
 
             mTotalData = walletView.setEvents(mEventHistoryData, "Upcoming");
         } else if (WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
             mTotalData = walletView.setRest(preference.getWalletData().getRestaurants(),"Upcoming");
         } else if (WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
-            mTotalData = walletView.setGift(preference.getWalletData().getGiftCard(),"Upcoming");
+            dbBookendEventsHistory.open();
+            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.gift_card));
+            dbBookendEventsHistory.close();
+
+            mTotalData = walletView.setGift(mEventHistoryData,"Upcoming");
         }
 
         if (mTotalData > 0) {

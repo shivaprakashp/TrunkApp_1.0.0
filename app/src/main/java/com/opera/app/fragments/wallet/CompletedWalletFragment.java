@@ -46,14 +46,18 @@ public class CompletedWalletFragment extends Fragment {
         if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
 
             dbBookendEventsHistory.open();
-            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory();
+            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.event));
             dbBookendEventsHistory.close();
 
             mTotalData = walletView.setEvents(mEventHistoryData, "Completed");
         } else if (WalletEnums.RESTAURANT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
             mTotalData = walletView.setRest(preference.getWalletData().getRestaurants(),"Completed");
         } else if (WalletEnums.GIFT.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
-            mTotalData = walletView.setGift(preference.getWalletData().getGiftCard(),"Completed");
+            dbBookendEventsHistory.open();
+            ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.gift_card));
+            dbBookendEventsHistory.close();
+            
+            mTotalData = walletView.setGift(mEventHistoryData,"Completed");
         }
 
         if (mTotalData > 0) {

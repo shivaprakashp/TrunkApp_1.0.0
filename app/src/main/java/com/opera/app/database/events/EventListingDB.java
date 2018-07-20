@@ -30,6 +30,7 @@ public class EventListingDB {
     public static final String TABLE_EVENT_LISTING = "TABLE_EVENT_LISTING";
     private static final String EVENT_ID = "_id";
     private static final String EVENT_NAME = "EVENT_NAME";
+    private static final String EVENT_PERFORMANCE_CODE_OUTER = "EVENT_PERFORMANCE_CODE_OUTER";
     private static final String EVENT_IMAGE = "EVENT_IMAGE";
     private static final String EVENT_INFO = "EVENT_INFO";
     private static final String EVENT_MOBILE_DESCRIPTION = "EVENT_MOBILE_DESCRIPTION";
@@ -59,6 +60,7 @@ public class EventListingDB {
     public static final String CREATE_TABLE_EVENT_LISTING =
             "CREATE TABLE " + TABLE_EVENT_LISTING + "(" + EVENT_ID + " TEXT,"
                     + EVENT_NAME + " TEXT,"
+                    + EVENT_PERFORMANCE_CODE_OUTER + " TEXT,"
                     + EVENT_IMAGE + " TEXT,"
                     + EVENT_INFO + " TEXT,"
                     + EVENT_MOBILE_DESCRIPTION + " TEXT,"
@@ -116,6 +118,7 @@ public class EventListingDB {
             for (int i = 0; i < mEventListingData.size(); i++) {
                 contentValue.put(EVENT_ID, mEventListingData.get(i).getEventId());
                 contentValue.put(EVENT_NAME, mEventListingData.get(i).getName());
+                contentValue.put(EVENT_PERFORMANCE_CODE_OUTER, mEventListingData.get(i).getEventPerfCode());
                 contentValue.put(EVENT_IMAGE, mEventListingData.get(i).getImage());
                 contentValue.put(EVENT_INFO, mEventListingData.get(i).getDescription());
                 contentValue.put(EVENT_MOBILE_DESCRIPTION, mEventListingData.get(i).getMobileDescription());
@@ -198,6 +201,7 @@ public class EventListingDB {
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
+                    mEvents.setEventPerfCode(cursor.getString(cursor.getColumnIndex(EVENT_PERFORMANCE_CODE_OUTER)));
                     mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
                     mEvents.setMobileDescription(cursor.getString(cursor.getColumnIndex(EVENT_MOBILE_DESCRIPTION)));
@@ -339,6 +343,7 @@ public class EventListingDB {
 
                     mEvents.setEventId(cursor.getString(cursor.getColumnIndex(EVENT_ID)));
                     mEvents.setName(cursor.getString(cursor.getColumnIndex(EVENT_NAME)));
+                    mEvents.setEventPerfCode(cursor.getString(cursor.getColumnIndex(EVENT_PERFORMANCE_CODE_OUTER)));
                     mEvents.setImage(cursor.getString(cursor.getColumnIndex(EVENT_IMAGE)));
                     mEvents.setDescription(cursor.getString(cursor.getColumnIndex(EVENT_INFO)));
                     mEvents.setMobileDescription(cursor.getString(cursor.getColumnIndex(EVENT_MOBILE_DESCRIPTION)));

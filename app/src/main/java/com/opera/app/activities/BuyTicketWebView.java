@@ -168,6 +168,9 @@ public class BuyTicketWebView extends BaseActivity {
             super.onPageStarted(view, url, favicon);
             Log.e("Page started", url);
 
+            /*if(url.equalsIgnoreCase("https://uat.timesofmoney.com/direcpay/secure/PaymentTransactionServlet")){
+                myWebView.getSettings().setUserAgentString(AppConstants.DTCM_USER_AGENT_STRING);
+            }*/
             try {
                 mProgressDialog.show();
                 mProgressDialog.setMessage("Please wait...");
@@ -185,6 +188,10 @@ public class BuyTicketWebView extends BaseActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            /*if(url.equalsIgnoreCase("https://dubaioperaw-mobile-uat.etixdubai.com/shows/deliverytype.aspx")){
+                myWebView.getSettings().setUserAgentString("");
+            }*/
 
             if (url.contains("vd-call")) {
                 String mIsVdCall = "", mVdCallTokenNo = "", mVdCallTokenString = "", dataForDecryption = "", mJsonData = "";

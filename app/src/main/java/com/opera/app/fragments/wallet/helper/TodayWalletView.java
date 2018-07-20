@@ -250,26 +250,67 @@ public class TodayWalletView extends LinearLayout {
         return mAvailableData;
     }
 
-    public int setGift(List<GiftCard> cardList, String mFrom) {
+    public int setGift(ArrayList<CommonBookedHistoryData> mEventHistoryData, String mFrom) {
 
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdfTimeReceived = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a");
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
         int mAvailableData = 0;
 
-        TextViewWithFont txtVoucherAmount;
+        TextViewWithFont txtAmountOfGiftCard,txtDateReserve,txtVoucherId,txtBarCode;
 
-        if (cardList != null) {
-            for (int i = 0; i < cardList.size(); i++) {
+        ImageView barCode;
 
-                GiftCard giftCard = cardList.get(i);
+        if (mEventHistoryData != null) {
+            for (int i = 0; i < mEventHistoryData.size(); i++) {
+
+                CommonBookedHistoryData giftCard = mEventHistoryData.get(i);
 
                 rowView = inflater
                         .inflate(R.layout.helper_wallet_gift, null, false);
 
-                txtVoucherAmount = rowView.findViewById(R.id.txtVoucherAmount);
+                txtAmountOfGiftCard = rowView.findViewById(R.id.txtAmountOfGiftCard);
+                txtDateReserve = rowView.findViewById(R.id.txtDateReserve);
+                txtVoucherId = rowView.findViewById(R.id.txtVoucherId);
+                txtBarCode = rowView.findViewById(R.id.txtBarCode);
+                barCode = rowView.findViewById(R.id.imgEventBarCode);
 
-                txtVoucherAmount.setText(giftCard.getVoucherAmount());
+                String[] mDateTime = giftCard.getmDateAndTime().split("T");
+                String mDateFor = "", mTimeFor = "";
+                Date mStandardDate = null, mStandardTime;
+                try {
+                    mDateFor = mDateTime[0];
+                    mTimeFor = mDateTime[1];
+
+                    mStandardTime = sdfTimeReceived.parse(mTimeFor);
+                    mTimeFor = sdfTime.format(mStandardTime);
+
+                    mStandardDate = sdf.parse(mDateFor);
+                    mDateFor = sdfDate.format(mStandardDate);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                txtAmountOfGiftCard.setText(giftCard.getmPrice());
+                txtDateReserve.setText(mDateFor + " " + mTimeFor);
+                txtVoucherId.setText(giftCard.getmBarcode());
+
+                try {
+                    BitMatrix bitMatrix = multiFormatWriter.encode(giftCard.getmBarcode(), BarcodeFormat.CODABAR,
+                            400, 80);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    barCode.setImageBitmap(bitmap);
+
+                    txtBarCode.setText(giftCard.getmBarcode());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 this.addView(rowView);
             }

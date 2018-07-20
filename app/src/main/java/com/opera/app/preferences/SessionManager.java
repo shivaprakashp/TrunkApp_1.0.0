@@ -20,7 +20,8 @@ public class SessionManager {
     private static SharedPreferences loginPref;
     private static String IS_USER_LOGIN = "IsUserLoggedIn";
     private static String IS_SETTING_DATA_UPDATED = "IsSettingsDataUpdated";
-    private SharedPreferences.Editor editor;
+    //    private SharedPreferences.Editor editor;
+    private SharedPreferences mPrefs;
     Context context;
     int prefMode = 0;
     private Gson gson;
@@ -30,7 +31,7 @@ public class SessionManager {
     public SessionManager(Context context) {
         this.context = context;
         loginPref = context.getSharedPreferences(context.getString(R.string.prefName), prefMode);
-        editor = loginPref.edit();
+//        editor = loginPref.edit();
         mBaseActivity = (BaseActivity) context;
         gson = new Gson();
         mEventListingDB = new EventListingDB(context);
@@ -43,6 +44,8 @@ public class SessionManager {
 
     /*Create login session*/
     public void createLoginSession(LoginResponse loginResponse) {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(context.getString(R.string.prefUserData), gson.toJson(loginResponse));
         editor.commit();
@@ -50,6 +53,8 @@ public class SessionManager {
 
     /*Clear login session*/
     public void clearLoginSession() {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putBoolean(IS_USER_LOGIN, false);
         editor.putString(context.getString(R.string.prefUserData), "");
         editor.commit();
@@ -59,6 +64,8 @@ public class SessionManager {
 
     /*Create edit profile session*/
     public void createEditProfileSession(EditProfileResponse editProfileResponse) {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(context.getString(R.string.prefUserData), gson.toJson(editProfileResponse));
         editor.commit();
@@ -72,6 +79,7 @@ public class SessionManager {
 
     //clear login session
     public void logoutUser(Activity mActivity) {
+        SharedPreferences.Editor editor = loginPref.edit();
         //Put all table names which should get cleared on logout
         DeleteAllTables(mActivity);
         //clear all data from shared preference
@@ -91,6 +99,8 @@ public class SessionManager {
 
     /*Update Settings*/
     public void UpdateUserSettings(String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch) {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putBoolean(IS_SETTING_DATA_UPDATED, true);
         editor.putString(context.getString(R.string.NotificationSwitchValue), mNotifSwitch);
         editor.putString(context.getString(R.string.PromotionSwitchValue), mPromoSwitch);
@@ -108,6 +118,8 @@ public class SessionManager {
 
     //stored dubai opera tour data
     public void storeTourDataOffline(AllEvents eventsResponse) {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putString(context.getString(R.string.prefDubaiOperaTourData), gson.toJson(eventsResponse));
         editor.commit();
     }
@@ -120,6 +132,8 @@ public class SessionManager {
 
     //stored Gift Card data
     public void storeGiftCardDataOffline(AllEvents eventsResponse) {
+        SharedPreferences.Editor editor = loginPref.edit();
+
         editor.putString(context.getString(R.string.prefGiftCardData), gson.toJson(eventsResponse));
         editor.commit();
     }

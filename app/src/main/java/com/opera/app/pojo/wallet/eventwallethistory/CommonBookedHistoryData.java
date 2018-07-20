@@ -6,7 +6,25 @@ package com.opera.app.pojo.wallet.eventwallethistory;
 
 public class CommonBookedHistoryData {
 
-    private String mBarcode, mCommonTransactionId, mDateAndTime, mTicketEventId, mTicketEventName, mTicketEventGenre, mEventSeatPerformanceCode, mEventSeatRow, mEventSeatRZSTR, mEventSeatSeats, mEventSeatSection;
+    private String mBarcode, mCommonTransactionId, mDateAndTime,
+            mTicketEventId, mTicketEventName, mTicketEventGenre, mEventSeatPerformanceCode,
+            mEventSeatRow, mEventSeatRZSTR, mEventSeatSeats, mEventSeatSection,mOrderType,mPrice;
+
+    public String getmPrice() {
+        return mPrice;
+    }
+
+    public void setmPrice(String mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public String getmOrderType() {
+        return mOrderType;
+    }
+
+    public void setmOrderType(String mOrderType) {
+        this.mOrderType = mOrderType;
+    }
 
     public String getmBarcode() {
         return mBarcode;

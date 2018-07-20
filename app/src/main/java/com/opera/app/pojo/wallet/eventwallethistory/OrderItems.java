@@ -15,6 +15,10 @@ public class OrderItems
     @Expose
     private String id;
 
+    @SerializedName("orderFrom")
+    @Expose
+    private String orderFrom;
+
     @SerializedName("inventorySource")
     @Expose
     private InventorySource inventorySource;
@@ -30,6 +34,14 @@ public class OrderItems
     @SerializedName("fees")
     @Expose
     private Fees[] fees;
+
+    public String getOrderFrom() {
+        return orderFrom;
+    }
+
+    public void setOrderFrom(String orderFrom) {
+        this.orderFrom = orderFrom;
+    }
 
     public String getId ()
     {

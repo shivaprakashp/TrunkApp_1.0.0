@@ -959,6 +959,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imgFavourite">ImgFavourite</string>
     <string name="imgShare">ImgShare</string>
+    <string name="event">event</string>
+    <string name="gift_card">gift items</string>
 
     <!--Notification -->
     <string name="from">FROM</string>
@@ -968,6 +970,10 @@
     <string name="bookNow">BOOK NOW</string>
     <string name="venue">Venue</string>
     <string name="date">Date</string>
+    <string name="gift_card1">Gift Card</string>
+    <string name="value">Value : </string>
+    <string name="purchase_date">Purchase date : </string>
+    <string name="voucher_id">Voucher ID : </string>
     <string name="venue_detail">Dubai Opera, Dubai</string>
     <string name="date_detail">VALID FOR 12 MONTHS</string>
 

@@ -14,6 +14,10 @@ public class Events {
     @Expose
     private String Name;
 
+    @SerializedName("eventPerfCode")
+    @Expose
+    private String eventPerfCode;
+
     @SerializedName("Active")
     @Expose
     private String Active;
@@ -162,6 +166,14 @@ public class Events {
         this.SharedContentText=SharedContentText;
         this.WhatsOnImage=WhatsOnImage;
         this.HighlightedImage=HighlightedImage;
+    }
+
+    public String getEventPerfCode() {
+        return eventPerfCode;
+    }
+
+    public void setEventPerfCode(String eventPerfCode) {
+        this.eventPerfCode = eventPerfCode;
     }
 
     public String getAppleUrl() {

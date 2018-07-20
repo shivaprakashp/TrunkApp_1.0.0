@@ -38,6 +38,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:id="@+id/linearOne"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/app_margin_ten"
@@ -51,7 +52,7 @@
                 android:id="@+id/txtWalletGiftTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Sean Connolly"
+                tools:text="@string/gift_card1"
                 style="@style/label_black_large"
                 font:name="Montserrat-Regular"/>
 
@@ -64,7 +65,31 @@
                 <com.opera.app.customwidget.TextViewWithFont
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dateOfReserve"
+                    android:text="@string/value"
+                    style="@style/label_black_medium"
+                    font:type="bold"
+                    font:name="Montserrat-Regular"/>
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtAmountOfGiftCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text=" 12 May 2018"
+                    style="@style/label_black_medium"
+                    font:name="Montserrat-Regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/app_margin_ten">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/purchase_date"
                     style="@style/label_black_medium"
                     font:type="bold"
                     font:name="Montserrat-Regular"/>
@@ -79,10 +104,35 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/app_margin_ten">
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/voucher_id"
+                    style="@style/label_black_medium"
+                    font:type="bold"
+                    font:name="Montserrat-Regular"/>
+
+                <com.opera.app.customwidget.TextViewWithFont
+                    android:id="@+id/txtVoucherId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text=""
+                    style="@style/label_black_medium"
+                    font:name="Montserrat-Regular"/>
+
+            </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:gravity="center">
 
             <com.opera.app.customwidget.TextViewWithFont
@@ -97,6 +147,31 @@
 
         </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin_two"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearOne"
+            app:layout_constraintEnd_toEndOf="@+id/ticketView"
+            app:layout_constraintStart_toStartOf="@+id/ticketView">
+
+            <ImageView
+                android:id="@+id/imgEventBarCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtBarCode"
+                style="@style/label_black_very_low"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/app_margin_two"
+                tools:text="123456789" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>
