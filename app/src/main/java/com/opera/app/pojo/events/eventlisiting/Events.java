@@ -14,7 +14,7 @@ public class Events {
     @Expose
     private String Name;
 
-    @SerializedName("eventPerfCode")
+    @SerializedName("PerformanceCode")
     @Expose
     private String eventPerfCode;
 

@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class EventTime
 {
-    @SerializedName("eventPerfCode")
+    @SerializedName("PerformanceCode")
     @Expose
     private String eventPerfCode;
 
