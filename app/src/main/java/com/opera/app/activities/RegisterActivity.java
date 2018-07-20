@@ -239,7 +239,7 @@ public class RegisterActivity extends BaseActivity {
                 DialogFragment dialogFragment = new DatePickerFragment(new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtDob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        edtDob.setText(new StringBuilder().append(dayOfMonth).append("/").append(month + 1).append("/").append(year).toString());
 
                     }
                 });
@@ -270,7 +270,7 @@ public class RegisterActivity extends BaseActivity {
 
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                                 spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
-                    ((TextView) parent.getChildAt(0)).setText("+ "+countryCode);
+                    ((TextView) parent.getChildAt(0)).setText(new StringBuilder().append("+ ").append(countryCode).toString());
                 }
             }
 

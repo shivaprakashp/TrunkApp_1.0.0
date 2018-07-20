@@ -27,7 +27,6 @@ import com.opera.app.database.restaurants.SeanRestOpeation;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.restaurant.RestaurantListing;
 import com.opera.app.pojo.restaurant.RestaurantsData;
-import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
@@ -49,11 +48,14 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
     //    private RestaurantsData mRestaurantListingData;
     private Activity mActivity;
-    private SessionManager manager;
-    private CustomToast customToast;
-    private Intent intent;
     private SeanRestOpeation restOpeation;
-    private String from = "", RestaurantIdSiteCore = "", RestaurantId = "", mRestaurantEmail = "", mRestaurantPhone = "", mRestaurantLatitude = "", mRestaurantLongitude = "", mRestaurantName = "";
+    private String RestaurantIdSiteCore = "";
+    private String RestaurantId = "";
+    private String mRestaurantEmail = "";
+    private String mRestaurantPhone = "";
+    private String mRestaurantLatitude = "";
+    private String mRestaurantLongitude = "";
+    private String mRestaurantName = "";
 
     private Api api;
     @Inject
@@ -129,7 +131,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
         Intent in = getIntent();
         RestaurantIdSiteCore = in.getStringExtra("RestaurantIdSiteCore");
         RestaurantId = in.getStringExtra("RestaurantId");
-        from = in.getStringExtra("from");
+        String from = in.getStringExtra("from");
 
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setVisibility(View.VISIBLE);
         inc_set_toolbar.findViewById(R.id.imgCommonToolBack).setOnClickListener(backPress);
@@ -138,7 +140,6 @@ public class RestaurantCompleteDetails extends BaseActivity {
         TextViewWithFont txtToolbarName = inc_set_toolbar_text.findViewById(R.id.txtCommonToolHome);
         txtToolbarName.setText(getResources().getString(R.string.dining));
 
-        manager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
 
        /* mTxtRestaurantNumber.setText(Html.fromHtml("<u>"+ mRestaurantListingData.getPhoneNumber()+"</u>"));
@@ -211,7 +212,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
 
             case R.id.mLinRestaurantNumber:
 
-                intent = new Intent(Intent.ACTION_DIAL);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + mRestaurantPhone));
                 mActivity.startActivity(intent);
 
@@ -220,7 +221,6 @@ public class RestaurantCompleteDetails extends BaseActivity {
             case R.id.mLinRestaurantEmail:
 
                 String[] TO = {mRestaurantEmail};
-                String[] CC = {""};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
                 emailIntent.setData(Uri.parse("mailto:"));
@@ -256,7 +256,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
             }
 
             if (data.getRestPlace() != null) {
-                mTxtRestaurantPlace.setText("at " + data.getRestLocation());
+                mTxtRestaurantPlace.setText(new StringBuilder().append("at ").append(data.getRestLocation()).toString());
             }
 
             if (data.getRestPlace() != null) {

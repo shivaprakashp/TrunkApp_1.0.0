@@ -778,12 +778,16 @@ public class SlidingUpPanelLayout extends ViewGroup {
             }
 
             int childWidthSpec;
-            if (lp.width == LayoutParams.WRAP_CONTENT) {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
-            } else if (lp.width == LayoutParams.MATCH_PARENT) {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-            } else {
-                childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
+            switch (lp.width) {
+                case LayoutParams.WRAP_CONTENT:
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
+                    break;
+                case LayoutParams.MATCH_PARENT:
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+                    break;
+                default:
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
+                    break;
             }
 
             int childHeightSpec;
@@ -965,78 +969,82 @@ public class SlidingUpPanelLayout extends ViewGroup {
         final float x = ev.getX();
         final float y = ev.getY();
 
-        if (action == MotionEvent.ACTION_DOWN) {
-            mIsScrollableViewHandlingTouch = false;
-            mPrevMotionX = x;
-            mPrevMotionY = y;
-        } else if (action == MotionEvent.ACTION_MOVE) {
-            float dx = x - mPrevMotionX;
-            float dy = y - mPrevMotionY;
-            mPrevMotionX = x;
-            mPrevMotionY = y;
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                mIsScrollableViewHandlingTouch = false;
+                mPrevMotionX = x;
+                mPrevMotionY = y;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float dx = x - mPrevMotionX;
+                float dy = y - mPrevMotionY;
+                mPrevMotionX = x;
+                mPrevMotionY = y;
 
-            if (Math.abs(dx) > Math.abs(dy)) {
-                // Scrolling horizontally, so ignore
-                return super.dispatchTouchEvent(ev);
-            }
-
-            // If the scroll view isn't under the touch, pass the
-            // event along to the dragView.
-            if (!isViewUnder(mScrollableView, (int) mInitialMotionX, (int) mInitialMotionY)) {
-                return super.dispatchTouchEvent(ev);
-            }
-
-            // Which direction (up or down) is the drag moving?
-            if (dy * (mIsSlidingUp ? 1 : -1) > 0) { // Collapsing
-                // Is the child less than fully scrolled?
-                // Then let the child handle it.
-                if (mScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSlidingUp) > 0) {
-                    mIsScrollableViewHandlingTouch = true;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    // Scrolling horizontally, so ignore
                     return super.dispatchTouchEvent(ev);
                 }
 
-                // Was the child handling the touch previously?
-                // Then we need to rejigger things so that the
-                // drag panel gets a proper down event.
-                if (mIsScrollableViewHandlingTouch) {
-                    // Send an 'UP' event to the child.
-                    MotionEvent up = MotionEvent.obtain(ev);
-                    up.setAction(MotionEvent.ACTION_CANCEL);
-                    super.dispatchTouchEvent(up);
-                    up.recycle();
-
-                    // Send a 'DOWN' event to the panel. (We'll cheat
-                    // and hijack this one)
-                    ev.setAction(MotionEvent.ACTION_DOWN);
+                // If the scroll view isn't under the touch, pass the
+                // event along to the dragView.
+                if (!isViewUnder(mScrollableView, (int) mInitialMotionX, (int) mInitialMotionY)) {
+                    return super.dispatchTouchEvent(ev);
                 }
 
-                mIsScrollableViewHandlingTouch = false;
-                return this.onTouchEvent(ev);
-            } else if (dy * (mIsSlidingUp ? 1 : -1) < 0) { // Expanding
-                // Is the panel less than fully expanded?
-                // Then we'll handle the drag here.
-                if (mSlideOffset < 1.0f) {
+                // Which direction (up or down) is the drag moving?
+                if (dy * (mIsSlidingUp ? 1 : -1) > 0) { // Collapsing
+                    // Is the child less than fully scrolled?
+                    // Then let the child handle it.
+                    if (mScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSlidingUp) > 0) {
+                        mIsScrollableViewHandlingTouch = true;
+                        return super.dispatchTouchEvent(ev);
+                    }
+
+                    // Was the child handling the touch previously?
+                    // Then we need to rejigger things so that the
+                    // drag panel gets a proper down event.
+                    if (mIsScrollableViewHandlingTouch) {
+                        // Send an 'UP' event to the child.
+                        MotionEvent up = MotionEvent.obtain(ev);
+                        up.setAction(MotionEvent.ACTION_CANCEL);
+                        super.dispatchTouchEvent(up);
+                        up.recycle();
+
+                        // Send a 'DOWN' event to the panel. (We'll cheat
+                        // and hijack this one)
+                        ev.setAction(MotionEvent.ACTION_DOWN);
+                    }
+
                     mIsScrollableViewHandlingTouch = false;
                     return this.onTouchEvent(ev);
-                }
+                } else if (dy * (mIsSlidingUp ? 1 : -1) < 0) { // Expanding
+                    // Is the panel less than fully expanded?
+                    // Then we'll handle the drag here.
+                    if (mSlideOffset < 1.0f) {
+                        mIsScrollableViewHandlingTouch = false;
+                        return this.onTouchEvent(ev);
+                    }
 
-                // Was the panel handling the touch previously?
-                // Then we need to rejigger things so that the
-                // child gets a proper down event.
-                if (!mIsScrollableViewHandlingTouch && mDragHelper.isDragging()) {
-                    mDragHelper.cancel();
-                    ev.setAction(MotionEvent.ACTION_DOWN);
-                }
+                    // Was the panel handling the touch previously?
+                    // Then we need to rejigger things so that the
+                    // child gets a proper down event.
+                    if (!mIsScrollableViewHandlingTouch && mDragHelper.isDragging()) {
+                        mDragHelper.cancel();
+                        ev.setAction(MotionEvent.ACTION_DOWN);
+                    }
 
-                mIsScrollableViewHandlingTouch = true;
-                return super.dispatchTouchEvent(ev);
-            }
-        } else if (action == MotionEvent.ACTION_UP) {
-            // If the scrollable view was handling the touch and we receive an up
-            // we want to clear any previous dragging state so we don't intercept a touch stream accidentally
-            if (mIsScrollableViewHandlingTouch) {
-                mDragHelper.setDragState(ViewDragHelper.STATE_IDLE);
-            }
+                    mIsScrollableViewHandlingTouch = true;
+                    return super.dispatchTouchEvent(ev);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                // If the scrollable view was handling the touch and we receive an up
+                // we want to clear any previous dragging state so we don't intercept a touch stream accidentally
+                if (mIsScrollableViewHandlingTouch) {
+                    mDragHelper.setDragState(ViewDragHelper.STATE_IDLE);
+                }
+                break;
         }
 
         // In all other cases, just let the default behavior take over.

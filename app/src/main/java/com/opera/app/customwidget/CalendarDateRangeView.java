@@ -121,7 +121,7 @@ public class CalendarDateRangeView extends LinearLayout {
 
         String dateText = new DateFormatSymbols(locale).getMonths()[currentCalendarMonth.get(Calendar.MONTH)];
         dateText = dateText.substring(0, 1).toUpperCase() + dateText.subSequence(1, dateText.length());
-        txtMonthTitle.setText(dateText + " " + currentCalendarMonth.get(Calendar.YEAR));
+        txtMonthTitle.setText(new StringBuilder().append(dateText).append(" ").append(currentCalendarMonth.get(Calendar.YEAR)).toString());
 
         month.add(Calendar.DATE, -startDay + 1);
 

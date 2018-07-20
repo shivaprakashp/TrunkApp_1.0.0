@@ -38,9 +38,21 @@
             layout="@layout/include_search"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_data"
+        style="@style/label_black_small" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
 
 </LinearLayout>

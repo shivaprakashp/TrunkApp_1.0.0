@@ -3,8 +3,10 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +24,12 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
+import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.notification.NotificationData;
 import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
+import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
@@ -35,6 +38,7 @@ import com.opera.app.utils.LanguageManager;
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -117,7 +121,6 @@ public class SettingsActivity extends BaseActivity {
         initToolbar();
         initView();
         SwitchEvents();
-
     }
 
     private void SwitchEvents() {
@@ -158,27 +161,86 @@ public class SettingsActivity extends BaseActivity {
         mReminderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Calendar calendar = Calendar.getInstance();
+
+                OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
+
+                ComponentName component = new ComponentName(mActivity, ShowReminderReceiver.class);
                 if (isChecked){
+                    try{
+                        //Enable
+                        mActivity.getPackageManager().setComponentEnabledSetting(component,
+                                PackageManager.COMPONENT_ENABLED_STATE_ENABLED , PackageManager.DONT_KILL_APP);
 
-                    MainApplication.alarmManager[0] = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        //set dabase data
+                        orderHistoryDB.open();
+                        if (orderHistoryDB.orderHistories() != null ){
+                            MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
+                            MainApplication.arrayList = new ArrayList<>();
 
-                    //log alarm
-                    Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
-                    intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
+                            for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+                                //log alarm
+                                Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
+                                intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
 
-                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                            mActivity, 234, intentLog, 0);
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                        mActivity, i, intentLog, 0);
 
-                    calendar.set(2018,
-                            06,
-                            17,
-                            17,
-                            59);
+                                MainApplication.alarmManager[i] = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                    MainApplication.alarmManager[0].setRepeating(AlarmManager.RTC_WAKEUP,
-                            calendar.getTimeInMillis(), 1000, MainApplication.pendingIntentLog);
+                                OrderHistory history = orderHistoryDB.orderHistories().get(i);
 
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTimeInMillis(System.currentTimeMillis());
+                                calendar.clear();
+                                String[] dateTime = history.getDateTime().split("T");
+                                String[] dateYearMonth = dateTime[0].split("-");
+
+                                String endTimeAmPm = history.getStartTime().split(" ")[1];
+                                String startTimeHr = history.getStartTime().split(":")[0];
+
+                                String startTime;
+                                if (startTimeHr.equalsIgnoreCase("00") ||
+                                        startTimeHr.equalsIgnoreCase("0")){
+                                    startTime = "12";
+                                }else {
+                                    startTime = String.valueOf(Integer.parseInt(startTimeHr) - 1);
+                                }
+
+                                String startTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
+
+                                calendar.set(Integer.valueOf(dateYearMonth[0]),
+                                        Integer.valueOf(dateYearMonth[1]),
+                                        Integer.valueOf(dateYearMonth[2]),
+                                        Integer.valueOf(startTime),
+                                        Integer.valueOf(startTimeMM));
+
+                                /*calendar.set(2018,
+                                        06,
+                                        17,
+                                        17,
+                                        55);*/
+
+                                MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                        pendingIntent);
+
+                                MainApplication.arrayList.add(pendingIntent);
+                            }
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        orderHistoryDB.close();
+
+                    }
+
+                }else{
+                    //remove notification
+
+                    //Disable
+                    mActivity.getPackageManager().
+                            setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_DISABLED ,
+                                    PackageManager.DONT_KILL_APP);
+//Enable
                 }
             }
         });
@@ -309,7 +371,7 @@ public class SettingsActivity extends BaseActivity {
 
             case R.id.linearLogout:
                 StartServiceUpdateSettings(getResources().getString(R.string.logout));
-               /* mSessionManager.logoutUser();*/
+                /* mSessionManager.logoutUser();*/
                 break;
 
             case R.id.tvLogout:
@@ -319,7 +381,7 @@ public class SettingsActivity extends BaseActivity {
             case R.id.notificationSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
                     mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
-                    sp.edit().putString("notificationSwitch", mNotifSwitch).commit();
+                    sp.edit().putString("notificationSwitch", mNotifSwitch).apply();
                     userData.setCustomUserDataElement("notificationSwitch",
                             new CustomUserDataValue(mNotifSwitch));
                     ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
@@ -328,7 +390,7 @@ public class SettingsActivity extends BaseActivity {
             case R.id.promotionSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
                     mPromoSwitch = mPromotionSwitch.isChecked() ? "true" : "false";
-                    sp.edit().putString("promotionSwitch", mPromoSwitch).commit();
+                    sp.edit().putString("promotionSwitch", mPromoSwitch).apply();
                     userData.setCustomUserDataElement("promotionSwitch",
                             new CustomUserDataValue(mPromoSwitch));
                     ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);

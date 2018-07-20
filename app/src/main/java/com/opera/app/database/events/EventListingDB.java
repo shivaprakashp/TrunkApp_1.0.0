@@ -113,7 +113,6 @@ public class EventListingDB {
         ContentValues contentValue = new ContentValues();
         SessionManager manager = new SessionManager(mActivity);
         Gson gson = new Gson();
-        String mEventStartDate = "", mEventEndDate = "";
         try {
             for (int i = 0; i < mEventListingData.size(); i++) {
                 contentValue.put(EVENT_ID, mEventListingData.get(i).getEventId());
@@ -281,7 +280,6 @@ public class EventListingDB {
     //For guest only
     public ArrayList<Events> fetchEventsWithFavouriteForGuest() {
         ArrayList<Events> dataArrayEvents = new ArrayList<>();
-        Gson gson = new Gson();
         Cursor cursor = null;
         try {
             cursor = database.rawQuery("SELECT * FROM " + TABLE_EVENT_LISTING, null);

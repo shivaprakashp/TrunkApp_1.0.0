@@ -40,7 +40,7 @@ public class LanguageManager {
         SharedPreferences mPrefs = mActivity.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString(mKey, mValue);
-        mEditor.commit();
+        mEditor.apply();
 
     }
 

@@ -141,6 +141,10 @@
         <activity
             android:name=".activities.GenresEventsActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- Existing application entries -->
         <receiver
             android:name=".services.NotificationTappedReceiver"
@@ -256,17 +260,22 @@
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
         <!-- Will not be called unless the application explicitly enables it -->
-        <receiver android:name=".notification.FeedBackReceiver">
+        <receiver android:name=".notification.FeedBackReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
 
         </receiver>
 
-        <receiver android:name=".notification.ShowReminderReceiver">
+        <receiver android:name=".notification.ShowReminderReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="303258a47b083728b2b4f3ba8f5c718d97aef3a8" />
     </application>
 </manifest>

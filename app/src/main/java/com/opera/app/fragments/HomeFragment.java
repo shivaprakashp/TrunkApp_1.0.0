@@ -99,9 +99,9 @@ public class HomeFragment extends BaseFragment {
         GetCurrentEvents();
 
         //Taking this data for logged in user only (Settings and Favourites)
-        //if (manager.isUserLoggedIn()) {
+        if (manager.isUserLoggedIn()) {
             GetUserSettings();
-        //}
+        }
 
         return view;
     }
@@ -204,6 +204,7 @@ public class HomeFragment extends BaseFragment {
         }
     };
 
+    /*store order history into db*/
     private void updateOrderHistory(FavouriteAndSettingsResponseMain responseMain){
         if (responseMain != null){
             if (responseMain.getData().getOrderHistory()!=null){
@@ -211,30 +212,44 @@ public class HomeFragment extends BaseFragment {
 
                 OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
                 orderHistoryDB.open();
-                orderHistoryDB.deleteCompleteTable(OrderHistoryDB.TABLE_ORDER_HISTORY);
-                orderHistoryDB.insertOrders(historyList);
-                startFeedBackAlarm(orderHistoryDB);
-                orderHistoryDB.close();
 
-
+                try {
+                    orderHistoryDB.deleteCompleteTable(OrderHistoryDB.TABLE_ORDER_HISTORY);
+                    orderHistoryDB.insertOrders(historyList);
+                    startFeedBackAlarm(orderHistoryDB);
+                }catch (Exception e){
+                    e.printStackTrace();
+                } finally {
+                    orderHistoryDB.close();
+                }
             }
         }
     }
 
+    //based on order history set the alarm
     private void startFeedBackAlarm(OrderHistoryDB orderHistoryDB){
-
-        //log alarm
-        Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
-        intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
 
 
         if (orderHistoryDB != null){
             if (orderHistoryDB.orderHistories() != null ){
-                MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
 
-                Calendar calendar = Calendar.getInstance();
+                MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
+                MainApplication.arrayList = new ArrayList<>();
+
                 for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+
+                    //log alarm
+                    Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
+                    intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
+
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                            mActivity, i, intentLog, 0);
+
+                    MainApplication.alarmManager[i] = (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
+
                     OrderHistory history = orderHistoryDB.orderHistories().get(i);
+
+                    Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(System.currentTimeMillis());
                     calendar.clear();
                     String[] dateTime = history.getDateTime().split("T");
@@ -243,29 +258,24 @@ public class HomeFragment extends BaseFragment {
                     String endTimeAmPm = history.getEndTime().split(" ")[1];
                     String endTimeHr = history.getEndTime().split(":")[0];
                     String endTimeMM = history.getEndTime().split(":")[1];
-                    /*calendar.set(Integer.valueOf(dateYearMonth[0]),
+
+                    calendar.set(Integer.valueOf(dateYearMonth[0]),
                             Integer.valueOf(dateYearMonth[1]),
                             Integer.valueOf(dateYearMonth[2]),
                             Integer.valueOf(endTimeHr),
-                            Integer.valueOf(endTimeMM));*/
-                    calendar.set(2018,
+                            Integer.valueOf(endTimeMM));
+                  /*  calendar.set(2018,
                             06,
                             17,
                             17,
-                            58);
-                    MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
-                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                            mActivity.getApplicationContext(), i, intentLog, 0);
+                            58);*/
+                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            pendingIntent);
 
-                    MainApplication.alarmManager[i].setRepeating(AlarmManager.RTC_WAKEUP,
-                            calendar.getTimeInMillis(),
-                            1000,
-                            MainApplication.pendingIntentLog);
-
+                    MainApplication.arrayList.add(pendingIntent);
                 }
             }
         }
-
     }
 
     private void fetchDataFromDB() {

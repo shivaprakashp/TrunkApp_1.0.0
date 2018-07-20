@@ -225,7 +225,7 @@ public class DiningFragment extends BaseFragment {
             mTxtRestaurantName.setText(data.getRestName());
 
             if (data.getRestPlace() != null) {
-                mTxtRestaurantPlace.setText("at " + data.getRestPlace());
+                mTxtRestaurantPlace.setText(new StringBuilder().append("at ").append(data.getRestPlace()).toString());
             }
 
             mExpandableTextView.setText(data.getRestDetails());

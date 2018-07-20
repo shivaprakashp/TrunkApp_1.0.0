@@ -871,4 +871,8 @@
     <string name="no_buy_link_available">Data not available</string>
     <string name="ticket_booked_success">تم حجز الحدث بنجاح! انتقل إلى المحفظة لعرض تفاصيل الحدث المحجوز.</string>
 
+    <string name="feedback_comment">نحن نحب ملاحظاتك. انقر هنا لتقييم تجربتك.</string>
+    <string name="feedback_attended_time">حضرت العرض على</string>
+    <string name="feedback_header">ردود الفعل على المعرض</string>
+
 </resources>

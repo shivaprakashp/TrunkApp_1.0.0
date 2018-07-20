@@ -20,7 +20,6 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.api.client.json.Json;
 import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -33,8 +32,6 @@ import com.opera.app.dialogues.SuccessDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.pojo.ticketbooking.SuccessResponse;
-import com.opera.app.pojo.ticketbooking.ViewHistoryRequestPojo;
-import com.opera.app.pojo.ticketbooking.ViewHistoryResponsePojo;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
 
@@ -59,7 +56,7 @@ import retrofit2.Retrofit;
 
 public class BuyTicketWebView extends BaseActivity {
 
-    private String Header = "", URL = "";
+    private String URL = "";
     private Activity mActivity;
     private ProgressDialog mProgressDialog;
     private Api api;
@@ -141,8 +138,8 @@ public class BuyTicketWebView extends BaseActivity {
 
         Intent in = getIntent();
         URL = in.getStringExtra("URL");
-        Header = in.getStringExtra("Header");
-        txtToolbarName.setText(Header);
+        String header = in.getStringExtra("Header");
+        txtToolbarName.setText(header);
 
         mProgressDialog = new ProgressDialog(BuyTicketWebView.this);
     }

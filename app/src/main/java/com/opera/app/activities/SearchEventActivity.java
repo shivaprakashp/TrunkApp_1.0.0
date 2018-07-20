@@ -115,8 +115,8 @@ public class SearchEventActivity extends BaseActivity {
     }
 
     private void ApplyFilter(String s) {
-        if (!s.toString().equalsIgnoreCase("")) {
-            filter(s.toString());
+        if (!s.equalsIgnoreCase("")) {
+            filter(s);
             mTxtSearch.setVisibility(View.VISIBLE);
         } else {
             mTxtSearch.setVisibility(View.GONE);
@@ -145,7 +145,7 @@ public class SearchEventActivity extends BaseActivity {
             }
         }
 
-        mTxtSearch.setText("You searched for " + mSearchedTxt + " ,found " + mFilteredNames.size() + " results");
+        mTxtSearch.setText(new StringBuilder().append("You searched for ").append(mSearchedTxt).append(" ,found ").append(mFilteredNames.size()).append(" results").toString());
         adapterSearchedEvents.filterList(mFilteredNames);
     }
 

@@ -2,7 +2,6 @@ package com.opera.app.fragments.controller;
 
 import android.support.annotation.AnimRes;
 import android.support.annotation.StyleRes;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.util.Pair;
 import android.view.View;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class FragNavTransactionOptions {
     List<Pair<View, String>> sharedElements;
     @FragNavController.Transit
-    int transition = FragmentTransaction.TRANSIT_NONE;
+    int transition;
     @AnimRes
     int enterAnimation = 0;
     @AnimRes

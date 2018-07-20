@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.opera.app.R;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
+import com.opera.app.activities.FeedbackActivity;
 import com.opera.app.activities.GiftCardActivity;
 import com.opera.app.activities.MyProfileActivity;
 import com.opera.app.activities.PromotionsActivity;
@@ -106,15 +107,14 @@ public class MenuFragment extends BaseFragment {
     }
 
 
-    private void updateSessionData(){
+    private void updateSessionData() {
         manager = new SessionManager(mActivity);
-        if (manager.isUserLoggedIn()){
-            tv_menu_guest.setText(getResources().getString(R.string.menu_guest)+" "
-                    +manager.getUserLoginData().getData().getProfile().getFirstName());
+        if (manager.isUserLoggedIn()) {
+            tv_menu_guest.setText(new StringBuilder().append(getResources().getString(R.string.menu_guest)).append(" ").append(manager.getUserLoginData().getData().getProfile().getFirstName()).toString());
             creatAccount.setVisibility(View.GONE);
-        }else{
+        } else {
             tv_menu_guest.setText(R.string.menu_welcome_guest);
-       }
+        }
     }
 
     private void initMenu() {
@@ -152,10 +152,10 @@ public class MenuFragment extends BaseFragment {
         txtGift.setText(getActivity().getString(R.string.menu_gift_cards));
 
         //third row
-        /*ImageView imgFeedback = (ImageView) menu_feedback.findViewById(R.id.menu_icon);
+        ImageView imgFeedback = (ImageView) menu_feedback.findViewById(R.id.menu_icon);
         TextViewWithFont txtfeedback = (TextViewWithFont) menu_feedback.findViewById(R.id.menu_icon_text);
         imgFeedback.setImageDrawable(getActivity().getDrawable(R.drawable.ic_feedback));
-        txtfeedback.setText(getActivity().getString(R.string.menu_feedback));*/
+        txtfeedback.setText(getActivity().getString(R.string.menu_feedback));
 
         ImageView imgContact = menu_contact.findViewById(R.id.menu_icon);
         TextViewWithFont txtContact = menu_contact.findViewById(R.id.menu_icon_text);
@@ -188,7 +188,7 @@ public class MenuFragment extends BaseFragment {
                     intent = new Intent(getActivity(), MyProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg));
                     dialog.show();
                 }
             }
@@ -235,7 +235,7 @@ public class MenuFragment extends BaseFragment {
                     intent = new Intent(getActivity(), PromotionsActivity.class);
                     getActivity().startActivity(intent);
                 } else {
-                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg) );
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg));
                     dialog.show();
                 }
 
@@ -257,10 +257,23 @@ public class MenuFragment extends BaseFragment {
                 getActivity().startActivity(intent);
             }
         });
+
+        menu_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (manager.isUserLoggedIn()) {
+                    intent = new Intent(getActivity(), FeedbackActivity.class);
+                    getActivity().startActivity(intent);
+                } else {
+                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg));
+                    dialog.show();
+                }
+            }
+        });
     }
 
     @OnClick(R.id.txtCreateAccount)
-    public void createAccount(){
+    public void createAccount() {
         intent = new Intent(getActivity(), RegisterActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

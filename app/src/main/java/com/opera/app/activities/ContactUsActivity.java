@@ -99,6 +99,7 @@ public class ContactUsActivity extends BaseActivity {
     @BindView(R.id.linearFacebook)
     LinearLayout mLinearFacebook;
 
+
     @BindView(R.id.btnSendMessage)
     Button mBtnSend;
 
@@ -122,6 +123,7 @@ public class ContactUsActivity extends BaseActivity {
         initToolbar();
         initView();
         initSpinner();
+        //throw new RuntimeException("This is a crash");
     }
 
     private void initToolbar() {
@@ -210,7 +212,7 @@ public class ContactUsActivity extends BaseActivity {
                     countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                             spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s", "");
 
-                    ((TextView) parent.getChildAt(0)).setText("+ " + countryCode);
+                    ((TextView) parent.getChildAt(0)).setText(new StringBuilder().append("+ ").append(countryCode).toString());
                 }
             }
 

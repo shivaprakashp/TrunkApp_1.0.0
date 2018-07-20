@@ -2,8 +2,8 @@ package com.opera.app.constants;
 
 public interface AppConstants {
 
-    public static final String LOG_FEEDBACK_ALARM = "LOG_FEEDBACK_ALARM";
-    public static final String LOG_ALARM = "log_alarm";
+    String LOG_FEEDBACK_ALARM = "LOG_FEEDBACK_ALARM";
+    String LOG_ALARM = "log_alarm";
     String SEAN_CONOLLY_RESTAURANT_ID = "40";
     //static String SEAN_CONOLLY_RESTAURANT_ID = "{05427B33-F675-4045-B99F-97EE841E5EC0}";
 
@@ -14,17 +14,17 @@ public interface AppConstants {
     String EnglishLanguage = "en";
     String ArabicLanguage = "ar";
     String STATUS_SUCCESS = "success";
-    String STATUS_ERROR = "error";
+    String MESSAGE = "message";
 
     //DTCM Keys
-    static String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
+    String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
     //    static String DTCM_USER_AGENT_STRING = "iPhone 6";
-    static String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+    String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
     //static String DTCM_USER_AGENT_STRING = "Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
     //    static String DTCM_USER_AGENT_STRING = "iPhone";
 //          static String DTCM_USER_AGENT_STRING = "Visit Dubai App";
 
-    static String APPLE_MUSIC_URL = "https://www.applemusic.com/dubaiopera";
+    String APPLE_MUSIC_URL = "https://www.applemusic.com/dubaiopera";
 
     interface LOGIN {
         String LOGIN = "LOGIN";

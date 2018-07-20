@@ -30,6 +30,20 @@ public class OrderHistory {
     @Expose
     private String endTime;
 
+    public OrderHistory() {
+    }
+
+    public OrderHistory(String dateTime, String orderId, String eventId, String eventName, String mobileDescription, String feedBackUrl, String startTime, String endTime) {
+        this.dateTime = dateTime;
+        this.orderId = orderId;
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.mobileDescription = mobileDescription;
+        this.feedBackUrl = feedBackUrl;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public String getDateTime() {
         return dateTime;
     }

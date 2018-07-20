@@ -3,7 +3,6 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,9 +10,6 @@ import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.LanguageManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -113,7 +109,7 @@ public class LanguageActivity extends BaseActivity {
 
     public String decodeURIComponent() {
         String s = "";
-        String result = null;
+        String result;
 
         try {
             result = URLDecoder.decode("%7b%22token%22%3a%22pR0bE0eKs%2bsmpSGWQNOAtDjMoi4BzhsUALpRdGsl1vFV%2b3uEjCrj%2be92krcx8TzS2MmMpnNSnVxOr%2fgJLhXcHQ%3d%3d%22%2c%22tickets%22%3a%5b%7b%22id%22%3a%22180717%2c1046%22%2c%22show%22%3a%5b%7b%22code%22%3a%22ETES0000002PC%22%2c%22who%22%3a%22TEST+2+PAYMENT+CENTER%22%2c%22when%22%3a%22Mon+31+Dec+2018+7%3a00PM%22%2c%22where%22%3a%22Sheikh+Maktoum+Hall+-+Dubai+World+Trade+Centre%22%7d%5d%2c%22seatingInformation%22%3a%7b%22section%22%3a%22SGA%22%2c%22row%22%3a%22GA%22%2c%22seats%22%3a%22356%22%7d%7d%5d%7d", "UTF-8");

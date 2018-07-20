@@ -33,8 +33,8 @@ public class LogoutDialog extends Dialog {
     @BindView(R.id.btnCancel)
     ButtonWithFont btnCancel;
 
-    BaseActivity mBaseActivity;
-    static SessionManager mSessionManager;
+    private BaseActivity mBaseActivity;
+    private SessionManager mSessionManager;
 
     public LogoutDialog(@NonNull Activity mActivity, String title, String message, String btnTxt) {
         super(mActivity);

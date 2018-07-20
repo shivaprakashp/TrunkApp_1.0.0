@@ -1,74 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/app_margin_ten"
+    android:background="@drawable/burgandy_corner"
+    android:orientation="vertical">
+
+    <com.opera.app.customwidget.TextViewWithFont
+        style="@style/label_light_gray_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBurgendy"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="@dimen/app_margin_five"
+        android:text="@string/feedback_header" />
 
     <LinearLayout
+        android:id="@+id/linearFeedbackParent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.opera.app.customwidget.TextViewWithFont
-            android:id="@+id/txtEventInfo"
-            style="@style/label_light_gray_vlarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBurgendy"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:padding="8dp"
-            android:text="Feedback on the show" />
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="@dimen/app_margin_five">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/app_width_zero"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/app_margin_ten">
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/app_margin_five"
+            android:layout_weight="0.1">
 
-            <com.opera.app.customwidget.CircleImageView
-                android:id="@+id/img_profile_chooser"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginRight="@dimen/app_margin_five"
-                android:elevation="5dp"
-                android:onClick="imageClick"
-                android:src="@drawable/ic_user_blank" />
+            <ImageView
+                android:id="@+id/img_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:scaleType="fitXY" />
 
-            <LinearLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/app_width_zero"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_margin_five"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtShowName"
+                style="@style/label_black_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:ellipsize="end"
+                android:maxLines="1" />
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtShowName"
-                    style="@style/label_black_large"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Feedback on the show" />
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtShowDesc"
+                style="@style/label_black_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin_five"
+                android:ellipsize="end"
+                android:maxLines="2" />
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtShowDesc"
-                    style="@style/label_black_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Feedback on the show" />
+            <com.opera.app.customwidget.TextViewWithFont
+                android:id="@+id/txtShowDateAndTime"
+                style="@style/label_black_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin_five"
+                android:ellipsize="end"
+                android:maxLines="2" />
 
-                <com.opera.app.customwidget.TextViewWithFont
-                    android:id="@+id/txtShowDateAndTime"
-                    style="@style/label_black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Feedback on the show" />
-
-            </LinearLayout>
         </LinearLayout>
+
+        <!--<RelativeLayout
+            android:layout_width="@dimen/app_width_zero"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <com.opera.app.customwidget.ButtonWithFont
+                android:id="@+id/btnBuyTickets"
+                style="@style/label_white_small"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height_small"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/btn_ripple_effect"
+                android:text="@string/buy_tickets"
+                font:name="Montserrat-Light" />
+        </RelativeLayout>-->
+
     </LinearLayout>
 </LinearLayout>

@@ -23,10 +23,10 @@
         <Spinner
             android:id="@+id/spinnerSelectGenre"
             style="@style/label_white"
-            android:layout_width="@dimen/app_width_zero"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/app_margin_ten"
+            android:paddingStart="@dimen/app_margin_ten"
             android:backgroundTint="@color/colorWhite"
             android:popupBackground="@color/black" />
 

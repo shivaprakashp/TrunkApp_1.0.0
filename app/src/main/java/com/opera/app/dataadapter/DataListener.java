@@ -19,7 +19,7 @@ public class DataListener {
 
     private ProgressDialog dialog;
     private Context context;
-    protected TaskComplete taskComplete = null;
+    protected TaskComplete taskComplete;
     private RequestProperties properties;
 
     public DataListener(Context context, TaskComplete taskComplete, RequestProperties properties) {

@@ -9,8 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.opera.app.pojo.events.eventlisiting.GenreList;
-import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
 import com.opera.app.pojo.wallet.eventwallethistory.OrderLineItems;
 
@@ -105,8 +103,9 @@ public class BookedEventsHistory {
 
         ArrayList<CommonBookedHistoryData> dataArrayBookedEventsHistory = new ArrayList<>();
         Gson gson = new Gson();
+        Cursor cursor = null;
         try {
-            Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_BOOKED_EVENTS_HISTORY, null);
+             cursor = database.rawQuery("SELECT * FROM " + TABLE_BOOKED_EVENTS_HISTORY, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {
@@ -133,6 +132,10 @@ public class BookedEventsHistory {
             }
         } catch (SQLException e) {
             Log.e("ErrorMessage", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return dataArrayBookedEventsHistory;

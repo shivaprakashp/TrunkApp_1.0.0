@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.opera.app.R;
 import com.opera.app.activities.BuyTicketWebView;
-import com.opera.app.activities.CommonWebViewActivity;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.OperaUtils;
@@ -50,7 +49,7 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         final Events mEventPojo = mEventListingData.get(position);
 
         holder.txtEventName.setText(mEventPojo.getName());
-        holder.txtEventDate.setText(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom()) + " - " + OperaUtils.getDateInMonthFormat(mEventPojo.getTo()));
+        holder.txtEventDate.setText(new StringBuilder().append(OperaUtils.getDateInMonthFormat(mEventPojo.getFrom())).append(" - ").append(OperaUtils.getDateInMonthFormat(mEventPojo.getTo())).toString());
         holder.txtEventInfo.setText(Html.fromHtml(mEventPojo.getMobileDescription()));
 
         Picasso.with(mActivity).load(mEventPojo.getHighlightedImage())

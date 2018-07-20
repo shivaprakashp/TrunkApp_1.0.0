@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.graphics.Typeface;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -18,6 +19,10 @@ import com.opera.app.utils.OperaUtils;
 import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
 import org.infobip.mobile.messaging.storage.SQLiteMessageStore;
+
+import java.util.ArrayList;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by 1000779 on 2/2/2018.
@@ -36,10 +41,12 @@ public class MainApplication extends Application {
     public static AlarmManager[] alarmManager;
     public static PendingIntent pendingIntentLog;
 
+    public static ArrayList<PendingIntent> arrayList;
 
     @Override
     public void onCreate(){
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         mInstance = this;
 

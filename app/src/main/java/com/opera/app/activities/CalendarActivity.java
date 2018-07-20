@@ -65,7 +65,6 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             tileWidth,
             margin;
 
-    private EventListingDB mEventDetailsDB;
     private ArrayList<Events> mEventListingData = new ArrayList<>();
     private CalendarRecyclerView adapter;
     private List<String> eventDates;
@@ -103,7 +102,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         finalCompareTodayMonth = currentMonth;
 
         monthTv = findViewById(R.id.txtMonthTitle);
-        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+        monthTv.setText(new StringBuilder().append(CurrentDateCalender.currentMonth(currentMonth)).append(" ").append(currentYear).toString());
 
         //*** code for getting maximum day of month ***
         lastDateOfMonth  = Integer.parseInt(getDate(currentMonth,currentYear));
@@ -126,7 +125,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initDB(){
-        mEventDetailsDB = new EventListingDB(context);
+        EventListingDB mEventDetailsDB = new EventListingDB(context);
         mEventDetailsDB.open();
         mEventListingData = mEventDetailsDB.fetchAllEvents();
         mEventDetailsDB.close();
@@ -193,7 +192,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
                 currentMonth = 0;
                 currentYear = currentYear+1;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                monthTv.setText(new StringBuilder().append(CurrentDateCalender.currentMonth(currentMonth)).append(" ").append(currentYear).toString());
 
                 lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
@@ -203,7 +202,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
             }else {
 
                 currentMonth++;
-                monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                monthTv.setText(new StringBuilder().append(CurrentDateCalender.currentMonth(currentMonth)).append(" ").append(currentYear).toString());
                 lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                 updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                 scrollView.fullScroll(View.FOCUS_LEFT);
@@ -218,7 +217,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
                         currentYear = currentYear-1;
                         currentMonth = 11;
-                        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                        monthTv.setText(new StringBuilder().append(CurrentDateCalender.currentMonth(currentMonth)).append(" ").append(currentYear).toString());
 
                         lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                         updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
@@ -228,7 +227,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                     }else {
 
                         currentMonth--;
-                        monthTv.setText(CurrentDateCalender.currentMonth(currentMonth)+" "+currentYear);
+                        monthTv.setText(new StringBuilder().append(CurrentDateCalender.currentMonth(currentMonth)).append(" ").append(currentYear).toString());
                         lastDateOfMonth = Integer.parseInt(getDate(currentMonth,currentYear));
                         updateValues(lastDateOfMonth,finalCompareTodayDate,currentMonth);
                         scrollView.fullScroll(View.FOCUS_LEFT);
@@ -259,7 +258,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         drawable.setColor(Color.WHITE);
 
         removeOtherSelectedOnClick();
-        v.setBackgroundDrawable(drawable);
+        v.setBackground(drawable);
         ((TextView) v).setTextColor(Color.BLACK);
         int selectedDate = (int) v.getTag(R.string.TAG_TEXT);
         initRecycle(updateDate(selectedDate, currentMonth, currentYear));

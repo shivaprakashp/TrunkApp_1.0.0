@@ -6,7 +6,6 @@ import com.opera.app.pojo.events.eventdetails.GetEventDetails;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
-import com.opera.app.pojo.feedback.FeedbackResponseParent;
 import com.opera.app.pojo.login.ForgotPasswordPojo;
 import com.opera.app.pojo.login.LoginResponse;
 import com.opera.app.pojo.login.PostLogin;
@@ -24,8 +23,8 @@ import com.opera.app.pojo.restaurant.getmasterdetails.GetMasterDetailsRequestPoj
 import com.opera.app.pojo.restaurant.getmasterdetails.RestaurantMasterDetails;
 import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.pojo.ticketbooking.SuccessResponse;
-import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.WalletDetails;
+import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 
 import java.util.List;
 
@@ -78,7 +77,7 @@ public interface Api {
                                               @Body FavouriteAndSettings favouriteAndSettings);
 
     //@POST("accounts/extended/GetUserSettings/")
-    @GET("http://www.mocky.io/v2/5b4dabd331000055005ebcf1")
+    @GET("http://www.mocky.io/v2/5b504f543600003c14dd0d58")
     //Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings(@Header("Content-Type") String content, @Header("Authorization") String token);
     Call<FavouriteAndSettingsResponseMain> GetUpdatedSettings();
 
@@ -152,12 +151,7 @@ public interface Api {
                                        @Header("Authorization") String mAuthorization,
                                        @Body EventTicketBookingPojo mCompleteData);
 
-    @GET("http://www.mocky.io/v2/5b0269dc3000007400cee0ff")
-    Call<FeedbackResponseParent> getFeedbackDetails(@Header("Accept-Language") String mLanguage);
-
     @GET("http://www.mocky.io/v2/5b4c544d3100006300a7df5a%20")
     Call<List<BookedEventHistory>> getBookedEventDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
-
-
 
 }
