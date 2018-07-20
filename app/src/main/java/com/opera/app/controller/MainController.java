@@ -214,7 +214,7 @@ public class MainController {
     }
 
     public void getBookedEventDetails(TaskComplete taskComplete, Api api){
-        Call call = api.getBookedEventDetails(contentType, manager.getUserLoginData().getData().getToken());
+        Call call = api.getBookedEventDetails(contentType, languageType,manager.getUserLoginData().getData().getDtcmCustomerId());
         properties.setRequestKey(AppConstants.GETBOOKEDEVENTDETAILS.GETBOOKEDEVENTDETAILS);
         DataListener listener = new DataListener(mActivity, taskComplete, properties);
         listener.dataLoad(call);

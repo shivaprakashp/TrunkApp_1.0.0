@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class BookedEventHistory
 {
-    @SerializedName("id")
+    @SerializedName("Id")
     @Expose
     private String id;
 
-    @SerializedName("dateTime")
+    @SerializedName("DateTime")
     @Expose
     private String dateTime;
 
@@ -23,11 +23,11 @@ public class BookedEventHistory
     @Expose
     private Payments[] payments;
 
-    @SerializedName("orderEvents")
+    @SerializedName("OrderEvent")
     @Expose
     private OrderEvents orderEvents;
 
-    @SerializedName("orderItems")
+    @SerializedName("OrderItems")
     @Expose
     private ArrayList<OrderItems> orderItems;
 

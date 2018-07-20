@@ -25,6 +25,7 @@ import com.opera.app.pojo.ticketbooking.EventTicketBookingPojo;
 import com.opera.app.pojo.ticketbooking.SuccessResponse;
 import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
+import com.opera.app.pojo.wallet.eventwallethistory.ParentDataForBookedEventHistory;
 
 import java.util.List;
 
@@ -47,9 +48,7 @@ public interface Api {
                                   @Body PostLogin postLogin);
 
     @POST("accounts/extended/Register/")
-    Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,
-
-                                                @Body Registration registration);
+    Call<RegistrationResponse> userRegistration(@Header("Content-Type") String content,@Body Registration registration);
 
     @POST("accounts/extended/editProfile/")
     Call<EditProfileResponse> userEditprofile(@Header("Content-Type") String content,
@@ -151,7 +150,8 @@ public interface Api {
                                        @Header("Authorization") String mAuthorization,
                                        @Body EventTicketBookingPojo mCompleteData);
 
-    @GET("http://www.mocky.io/v2/5b4c544d3100006300a7df5a%20")
-    Call<List<BookedEventHistory>> getBookedEventDetails(@Header("Content-Type") String content, @Header("Authorization") String token);
+    @POST("accounts/extended/ViewOrdersHistory")
+    Call<ParentDataForBookedEventHistory> getBookedEventDetails(@Header("Content-Type") String content, @Header("Accept-Language") String mLanguage
+            , @Header("X-Customer") String mDtcmId);
 
 }

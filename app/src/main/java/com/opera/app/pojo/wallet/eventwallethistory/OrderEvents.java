@@ -3,6 +3,8 @@ package com.opera.app.pojo.wallet.eventwallethistory;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by 1000632 on 7/16/2018.
  */
@@ -10,15 +12,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class OrderEvents
 {
-    @SerializedName("eventId")
+    @SerializedName("EventId")
     @Expose
     private String eventId;
 
-    @SerializedName("eventGenre")
+    @SerializedName("EventGenre")
     @Expose
-    private String eventGenre;
+    private ArrayList<EventGenre> arrEventGenre;
 
-    @SerializedName("eventName")
+    @SerializedName("EventName")
     @Expose
     private String eventName;
 
@@ -32,14 +34,13 @@ public class OrderEvents
         this.eventId = eventId;
     }
 
-    public String getEventGenre ()
-    {
-        return eventGenre;
+
+    public ArrayList<EventGenre> getArrEventGenre() {
+        return arrEventGenre;
     }
 
-    public void setEventGenre (String eventGenre)
-    {
-        this.eventGenre = eventGenre;
+    public void setArrEventGenre(ArrayList<EventGenre> arrEventGenre) {
+        this.arrEventGenre = arrEventGenre;
     }
 
     public String getEventName ()
@@ -55,6 +56,6 @@ public class OrderEvents
     @Override
     public String toString()
     {
-        return "ClassPojo [eventId = "+eventId+", eventGenre = "+eventGenre+", eventName = "+eventName+"]";
+        return "ClassPojo [eventId = "+eventId+", eventGenre = "+arrEventGenre+", eventName = "+eventName+"]";
     }
 }

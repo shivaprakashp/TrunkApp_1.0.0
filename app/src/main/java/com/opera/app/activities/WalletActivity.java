@@ -23,6 +23,7 @@ import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.WalletDetails;
+import com.opera.app.pojo.wallet.eventwallethistory.ParentDataForBookedEventHistory;
 import com.opera.app.preferences.wallet.WalletPreference;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.OperaManager;
@@ -78,26 +79,37 @@ public class WalletActivity extends BaseActivity {
 
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETBOOKEDEVENTDETAILS.GETBOOKEDEVENTDETAILS)) {
 
-//                BookedEventHistory mBookedEventHistory = (BookedEventHistory) response.body();
+                ParentDataForBookedEventHistory mBookedEventHistory = (ParentDataForBookedEventHistory) response.body();
 
-                ArrayList<BookedEventHistory> mBookedEventHistory = (ArrayList<BookedEventHistory>) response.body();
+                if(mBookedEventHistory!=null && mBookedEventHistory.getStatus().equalsIgnoreCase("success")){
+                    dbBookendEventsHistory.open();
+                    dbBookendEventsHistory.deleteCompleteTable(BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
 
-                dbBookendEventsHistory.open();
-                dbBookendEventsHistory.deleteCompleteTable(BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
+                    for (int i = 0; i < mBookedEventHistory.getData().size(); i++) {
+                        for (int j = 0; j < mBookedEventHistory.getData().get(i).getOrderItems().size(); j++) {
 
-                for (int i = 0; i < mBookedEventHistory.size(); i++) {
-                    for (int j = 0; j < mBookedEventHistory.get(i).getOrderItems().size(); j++) {
-                        dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.get(i).getOrderItems().get(j).getOrderFrom(),
-                                mBookedEventHistory.get(i).getOrderItems().get(j).getOrderLineItems(),
-                                mBookedEventHistory.get(i).getOrderEvents().getEventId(),
-                                mBookedEventHistory.get(i).getOrderEvents().getEventName(),
-                                mBookedEventHistory.get(i).getOrderEvents().getEventGenre(),
-                                mBookedEventHistory.get(i).getId(),
-                                mBookedEventHistory.get(i).getDateTime());
+                            String mGenresName = "";
+                            for (int k = 0; k < mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().size(); k++) {
+                                if (mGenresName.equalsIgnoreCase("")) {
+                                    mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                } else {
+                                    mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                }
+                            }
+
+                            dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
+                                    mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
+                                    mBookedEventHistory.getData().get(i).getOrderEvents().getEventId(),
+                                    mBookedEventHistory.getData().get(i).getOrderEvents().getEventName(),
+                                    mGenresName,
+                                    mBookedEventHistory.getData().get(i).getId(),
+                                    mBookedEventHistory.getData().get(i).getDateTime());
+                        }
                     }
+                }else{
+                    ErrorDialogue dialogue = new ErrorDialogue(mActivity, jsonResponse(response));
+                    dialogue.show();
                 }
-
-
             } else {
                 if (response.body() != null) {
                     WalletPreference preference = new WalletPreference(mActivity);

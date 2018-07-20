@@ -3,6 +3,7 @@ package com.opera.app.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -52,8 +53,8 @@ public class LanguageActivity extends BaseActivity {
         //call userSession
         userSessionLanguage();
 
-       /* Log.e("json data",decodeURIComponent());
-        try {
+        Log.e("json data",decodeURIComponent());
+       /* try {
             JSONObject obj = new JSONObject("{\"token\":\"JYeRAscs89Yzv7N1rpso4nHpg+ps3lxFDIivRwkWs8h5YDStomrSn2T0lZzlkwbpK4GqUfe7biPc4s9u5F/OrA==\",\"tickets\":[{\"id\":\"180717,200\",\"show\":[{\"code\":\"EOPG0000016GF\",\"who\":\"Dubai Opera Gift Voucher\",\"when\":\"VALID FOR 12 MONTHS\",\"where\":\"Dubai Opera\"}],\"seatingInformation\":{\"section\":\"S250\",\"row\":\"GA\",\"seats\":\"230\"}}]}");
 
             obj.remove("token");
@@ -112,7 +113,7 @@ public class LanguageActivity extends BaseActivity {
         String result;
 
         try {
-            result = URLDecoder.decode("%7b%22token%22%3a%22pR0bE0eKs%2bsmpSGWQNOAtDjMoi4BzhsUALpRdGsl1vFV%2b3uEjCrj%2be92krcx8TzS2MmMpnNSnVxOr%2fgJLhXcHQ%3d%3d%22%2c%22tickets%22%3a%5b%7b%22id%22%3a%22180717%2c1046%22%2c%22show%22%3a%5b%7b%22code%22%3a%22ETES0000002PC%22%2c%22who%22%3a%22TEST+2+PAYMENT+CENTER%22%2c%22when%22%3a%22Mon+31+Dec+2018+7%3a00PM%22%2c%22where%22%3a%22Sheikh+Maktoum+Hall+-+Dubai+World+Trade+Centre%22%7d%5d%2c%22seatingInformation%22%3a%7b%22section%22%3a%22SGA%22%2c%22row%22%3a%22GA%22%2c%22seats%22%3a%22356%22%7d%7d%5d%7d", "UTF-8");
+            result = URLDecoder.decode("%7b%22token%22%3a%22PfD1GdRtDyYwmNTOGoWftoWfjnQ9CbO2Xc2p%2bpXY75vfL8dPz21kUktXhOCoSR0eMop5NtOKF5IjSlrSErS2dg%3d%3d%22%2c%22tickets%22%3a%5b%7b%22id%22%3a%22180720%2c1844%22%2c%22show%22%3a%5b%7b%22code%22%3a%22ETES0000002PC%22%2c%22who%22%3a%22TEST+2+PAYMENT+CENTER%22%2c%22when%22%3a%22Mon+31+Dec+2018+7%3a00PM%22%2c%22where%22%3a%22Sheikh+Maktoum+Hall+-+Dubai+World+Trade+Centre%22%7d%5d%2c%22seatingInformation%22%3a%7b%22section%22%3a%22SGA%22%2c%22row%22%3a%22GA%22%2c%22seats%22%3a%22387%22%7d%7d%5d%7d", "UTF-8");
         }
 
         // This exception should never occur.

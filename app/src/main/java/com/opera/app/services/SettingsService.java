@@ -47,8 +47,8 @@ public class SettingsService extends IntentService {
     private CustomToast customToast;
     @Inject
     Retrofit retrofit;
-    public Activity mActivity;
-    SessionManager mSessionManager;
+    public static Activity mActivity;
+    static SessionManager mSessionManager;
     private static ProgressDialog mProgressDialog;
 
     /**
