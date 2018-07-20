@@ -2,9 +2,8 @@ package com.opera.app.notification;
 
 import android.support.annotation.NonNull;
 
+import com.opera.app.R;
 import com.opera.app.activities.FeedbackActivity;
-import com.opera.app.activities.MainActivity;
-import com.opera.app.activities.SettingsActivity;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 
@@ -24,7 +23,7 @@ public class FeedBackWorker extends Worker {
     public Result doWork() {
         try {
 
-            NotificationData data = new NotificationData(getApplicationContext(), SettingsActivity.class);
+            NotificationData data = new NotificationData(getApplicationContext(), FeedbackActivity.class);
             Calendar calendar = Calendar.getInstance();
             orderHistoryDB = new OrderHistoryDB(getApplicationContext());
             orderHistoryDB.open();
@@ -46,10 +45,10 @@ public class FeedBackWorker extends Worker {
                             dateYearMonth[1].equalsIgnoreCase(String.valueOf(month < 10?
                                     ("0"+month) : month)) &&
                             dateYearMonth[2].equalsIgnoreCase(String.valueOf(day))){
-                                            flag = true;
+                        flag = true;
 
-                        data.notifyData("Dubai Opera",
-                                "We would love your Feedback. Click here to rate your experience.");
+                        data.notifyData(getApplicationContext().getString(R.string.app_name),
+                                getApplicationContext().getString(R.string.feedBack));
                     }else {
                         flag = false;
                     }

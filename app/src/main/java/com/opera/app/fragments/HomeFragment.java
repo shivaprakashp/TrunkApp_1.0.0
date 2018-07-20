@@ -229,17 +229,27 @@ public class HomeFragment extends BaseFragment {
     //based on order history set the alarm
     private void startFeedBackAlarm(OrderHistoryDB orderHistoryDB){
 
-        //log alarm
-        Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
-        intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
 
         if (orderHistoryDB != null){
             if (orderHistoryDB.orderHistories() != null ){
-                MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
 
-                Calendar calendar = Calendar.getInstance();
+                MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
+                MainApplication.arrayList = new ArrayList<>();
+
                 for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+
+                    //log alarm
+                    Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
+                    intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
+
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                            mActivity, i, intentLog, 0);
+
+                    MainApplication.alarmManager[i] = (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
+
                     OrderHistory history = orderHistoryDB.orderHistories().get(i);
+
+                    Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(System.currentTimeMillis());
                     calendar.clear();
                     String[] dateTime = history.getDateTime().split("T");
@@ -259,19 +269,13 @@ public class HomeFragment extends BaseFragment {
                             17,
                             17,
                             58);*/
-                    MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
-                    MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                            mActivity.getApplicationContext(), i, intentLog, 0);
+                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            pendingIntent);
 
-                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP,
-                            calendar.getTimeInMillis(),
-                           /* 1000,*/
-                            MainApplication.pendingIntentLog);
-
+                    MainApplication.arrayList.add(pendingIntent);
                 }
             }
         }
-
     }
 
     private void fetchDataFromDB() {

@@ -1,11 +1,9 @@
 package com.opera.app.notification;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.opera.app.activities.MainActivity;
+import com.opera.app.R;
 import com.opera.app.activities.WalletActivity;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 
@@ -45,12 +43,13 @@ public class LoggerWorker extends Worker {
                     if (dateYearMonth[0].equalsIgnoreCase(String.valueOf(year)) &&
                             dateYearMonth[1].equalsIgnoreCase(String.valueOf(month)) &&
                             dateYearMonth[2].equalsIgnoreCase(String.valueOf(day))){
-                                            flag = true;
+                        flag = true;
 
-                                            eventName = history.getEventName();
+                        eventName = history.getEventName();
 
-                        data.notifyData("Dubai Opera",
-                                eventName+" start at "+dateTime[1]+". Enjoy the show!");
+                        data.notifyData(getApplicationContext().getString(R.string.app_name),
+                                eventName+getApplicationContext().getString(R.string.remindStart)+dateTime[1]+
+                                        getApplicationContext().getString(R.string.remindShow));
                     }else {
                         flag = false;
                     }

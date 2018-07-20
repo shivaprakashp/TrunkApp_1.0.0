@@ -38,8 +38,7 @@ import com.opera.app.utils.LanguageManager;
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -162,7 +161,7 @@ public class SettingsActivity extends BaseActivity {
         mReminderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Calendar calendar = Calendar.getInstance();
+
                 OrderHistoryDB orderHistoryDB = new OrderHistoryDB(mActivity);
 
                 ComponentName component = new ComponentName(mActivity, ShowReminderReceiver.class);
@@ -171,20 +170,26 @@ public class SettingsActivity extends BaseActivity {
                         //Enable
                         mActivity.getPackageManager().setComponentEnabledSetting(component,
                                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED , PackageManager.DONT_KILL_APP);
-                        MainApplication.alarmManager[0] = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-                        //log alarm
-                        Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
-                        intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
-
-                        MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                                mActivity, 234, intentLog, 0);
 
                         //set dabase data
                         orderHistoryDB.open();
                         if (orderHistoryDB.orderHistories() != null ){
+                            MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
+                            MainApplication.arrayList = new ArrayList<>();
+
                             for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
+                                //log alarm
+                                Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
+                                intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
+
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                        mActivity, i, intentLog, 0);
+
+                                MainApplication.alarmManager[i] = (AlarmManager) getSystemService(ALARM_SERVICE);
+
                                 OrderHistory history = orderHistoryDB.orderHistories().get(i);
+
+                                Calendar calendar = Calendar.getInstance();
                                 calendar.setTimeInMillis(System.currentTimeMillis());
                                 calendar.clear();
                                 String[] dateTime = history.getDateTime().split("T");
@@ -200,14 +205,14 @@ public class SettingsActivity extends BaseActivity {
                                 }else {
                                     startTime = String.valueOf(Integer.parseInt(startTimeHr) - 1);
                                 }
-                                Log.i("StartTime",startTime);
+
                                 String startTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
+
                                 calendar.set(Integer.valueOf(dateYearMonth[0]),
                                         Integer.valueOf(dateYearMonth[1]),
                                         Integer.valueOf(dateYearMonth[2]),
                                         Integer.valueOf(startTime),
                                         Integer.valueOf(startTimeMM));
-
 
                                 /*calendar.set(2018,
                                         06,
@@ -215,16 +220,12 @@ public class SettingsActivity extends BaseActivity {
                                         17,
                                         55);*/
 
-                                MainApplication.alarmManager[i] =  (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
-                                MainApplication.pendingIntentLog = PendingIntent.getBroadcast(
-                                        mActivity.getApplicationContext(), i, intentLog, 0);
+                                MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                        pendingIntent);
 
-                                MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP,
-                                        calendar.getTimeInMillis(), MainApplication.pendingIntentLog);
-
+                                MainApplication.arrayList.add(pendingIntent);
                             }
                         }
-
                     }catch (Exception e){
                         e.printStackTrace();
                     }finally {

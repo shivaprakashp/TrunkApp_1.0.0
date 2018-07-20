@@ -16,10 +16,13 @@ import com.opera.app.dagger.DaggerApiComponent;
 import com.opera.app.googleanalytics.AnalyticsTrackers;
 import com.opera.app.utils.OperaUtils;
 
-import io.fabric.sdk.android.Fabric;
 import org.infobip.mobile.messaging.MobileMessaging;
 import org.infobip.mobile.messaging.NotificationSettings;
 import org.infobip.mobile.messaging.storage.SQLiteMessageStore;
+
+import java.util.ArrayList;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by 1000779 on 2/2/2018.
@@ -38,6 +41,7 @@ public class MainApplication extends Application {
     public static AlarmManager[] alarmManager;
     public static PendingIntent pendingIntentLog;
 
+    public static ArrayList<PendingIntent> arrayList;
 
     @Override
     public void onCreate(){
