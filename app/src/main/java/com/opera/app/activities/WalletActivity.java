@@ -82,28 +82,31 @@ public class WalletActivity extends BaseActivity {
                 ParentDataForBookedEventHistory mBookedEventHistory = (ParentDataForBookedEventHistory) response.body();
 
                 if(mBookedEventHistory!=null && mBookedEventHistory.getStatus().equalsIgnoreCase("success")){
-                    dbBookendEventsHistory.open();
-                    dbBookendEventsHistory.deleteCompleteTable(BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
 
-                    for (int i = 0; i < mBookedEventHistory.getData().size(); i++) {
-                        for (int j = 0; j < mBookedEventHistory.getData().get(i).getOrderItems().size(); j++) {
+                    if(mBookedEventHistory.getData()!=null){
+                        dbBookendEventsHistory.open();
+                        dbBookendEventsHistory.deleteCompleteTable(BookedEventsHistory.TABLE_BOOKED_EVENTS_HISTORY);
 
-                            String mGenresName = "";
-                            for (int k = 0; k < mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().size(); k++) {
-                                if (mGenresName.equalsIgnoreCase("")) {
-                                    mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
-                                } else {
-                                    mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                        for (int i = 0; i < mBookedEventHistory.getData().size(); i++) {
+                            for (int j = 0; j < mBookedEventHistory.getData().get(i).getOrderItems().size(); j++) {
+
+                                String mGenresName = "";
+                                for (int k = 0; k < mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().size(); k++) {
+                                    if (mGenresName.equalsIgnoreCase("")) {
+                                        mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                    } else {
+                                        mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                    }
                                 }
-                            }
 
-                            dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
-                                    mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
-                                    mBookedEventHistory.getData().get(i).getOrderEvents().getEventId(),
-                                    mBookedEventHistory.getData().get(i).getOrderEvents().getEventName(),
-                                    mGenresName,
-                                    mBookedEventHistory.getData().get(i).getId(),
-                                    mBookedEventHistory.getData().get(i).getDateTime());
+                                dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
+                                        mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
+                                        mBookedEventHistory.getData().get(i).getOrderEvents().getEventId(),
+                                        mBookedEventHistory.getData().get(i).getOrderEvents().getEventName(),
+                                        mGenresName,
+                                        mBookedEventHistory.getData().get(i).getId(),
+                                        mBookedEventHistory.getData().get(i).getDateTime());
+                            }
                         }
                     }
                 }else{
