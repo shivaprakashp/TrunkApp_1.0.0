@@ -226,7 +226,8 @@
                         android:layout_weight="1.0"
                         android:maxLines="10"
                         android:scrollbars="vertical"
-                        android:text="" />
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </android.support.v4.widget.NestedScrollView>
 

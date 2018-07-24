@@ -55,7 +55,9 @@
                 android:layout_height="wrap_content"
                 font:name="Montserrat-Bold"
                 font:type="bold"
-                tools:text="EVITA" />
+                tools:text="EVITA"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtWalletEventGenre"
@@ -63,7 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 font:name="Montserrat-Regular"
-                tools:text="MUSICAL and THEATRE" />
+                tools:text="MUSICAL and THEATRE"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"/>
 
             <com.opera.app.customwidget.TextViewWithFont
                 android:id="@+id/txtWalletEventDate"
@@ -72,7 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 font:name="Montserrat-Regular"
-                tools:text="22 JAN 2018 7:30 PM" />
+                tools:text="22 JAN 2018 7:30 PM"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,7 +120,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/walletSection"
-                        font:name="Montserrat-Regular" />
+                        font:name="Montserrat-Regular"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventSection"
@@ -122,7 +130,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text="Grand S" />
+                        tools:text="Grand S"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -165,7 +175,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/walletRow"
-                        font:name="Montserrat-Regular" />
+                        font:name="Montserrat-Regular"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtWalletEventRow"
@@ -173,7 +185,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text="09" />
+                        tools:text="09"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
