@@ -869,7 +869,7 @@
     <string name="find_shows">الأكثر شيوعاً</string>
     <string name="location">خريطة الموقع</string>
     <string name="no_buy_link_available">Data not available</string>
-    <string name="ticket_booked_success">تم حجز الحدث بنجاح! انتقل إلى المحفظة لعرض تفاصيل الحدث المحجوز.</string>
+    <string name="ticket_booked_success">تم حجز تذكرة بنجاح! انتقل إلى المحفظة لعرض تفاصيل حجز التذاكر.</string>
 
     <string name="feedback_comment">نحن نحب ملاحظاتك. انقر هنا لتقييم تجربتك.</string>
     <string name="feedback_attended_time">حضرت العرض على</string>

@@ -105,7 +105,8 @@ public class BookedEventsHistory {
         Gson gson = new Gson();
         Cursor cursor = null;
         try {
-             cursor = database.rawQuery("SELECT * FROM " + TABLE_BOOKED_EVENTS_HISTORY, null);
+            cursor = database.rawQuery("SELECT * FROM " + TABLE_BOOKED_EVENTS_HISTORY + " where BOOKED_EVENT_ORDER_TYPE = '" + mQueriedData + "'", null);
+//             cursor = database.rawQuery("SELECT * FROM " + TABLE_BOOKED_EVENTS_HISTORY, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 do {

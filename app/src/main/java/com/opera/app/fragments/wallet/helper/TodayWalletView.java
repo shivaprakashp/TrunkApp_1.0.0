@@ -251,6 +251,7 @@ public class TodayWalletView extends LinearLayout {
     public int setGift(ArrayList<CommonBookedHistoryData> mEventHistoryData, String mFrom) {
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        Date mCurrentDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd MMM yyyy");
         SimpleDateFormat sdfTimeReceived = new SimpleDateFormat("HH:mm:ss");
@@ -259,6 +260,7 @@ public class TodayWalletView extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView;
         int mAvailableData = 0;
+
 
         TextViewWithFont txtAmountOfGiftCard,txtDateReserve,txtVoucherId,txtBarCode;
 
@@ -310,7 +312,16 @@ public class TodayWalletView extends LinearLayout {
                     e.printStackTrace();
                 }
 
-                this.addView(rowView);
+                if (mFrom.equalsIgnoreCase("Completed") && mCurrentDate.after(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Today") && mCurrentDate.equals(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                } else if (mFrom.equalsIgnoreCase("Upcoming") && mCurrentDate.before(mStandardDate)) {
+                    mAvailableData++;
+                    this.addView(rowView);
+                }
             }
         }
         return mAvailableData;

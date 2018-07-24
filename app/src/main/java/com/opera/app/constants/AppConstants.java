@@ -19,7 +19,9 @@ public interface AppConstants {
     //DTCM Keys
     String DTCM_DOMAIN_NAME = "https://dubaioperaw-mobile-uat.etixdubai.com/";
     //    static String DTCM_USER_AGENT_STRING = "iPhone 6";
-    String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+//    String DTCM_USER_AGENT_STRING = "^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+    String DTCM_USER_AGENT_STRING = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36 ^.*(iPhone(?!.*Safari))|(Kinder.+Android).*$";
+
     //static String DTCM_USER_AGENT_STRING = "Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
     //    static String DTCM_USER_AGENT_STRING = "iPhone";
 //          static String DTCM_USER_AGENT_STRING = "Visit Dubai App";

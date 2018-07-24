@@ -90,22 +90,36 @@ public class WalletActivity extends BaseActivity {
                         for (int i = 0; i < mBookedEventHistory.getData().size(); i++) {
                             for (int j = 0; j < mBookedEventHistory.getData().get(i).getOrderItems().size(); j++) {
 
+
                                 String mGenresName = "";
-                                for (int k = 0; k < mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().size(); k++) {
-                                    if (mGenresName.equalsIgnoreCase("")) {
-                                        mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
-                                    } else {
-                                        mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                if(mBookedEventHistory.getData().get(i).getOrderEvents()!=null){
+                                    for (int k = 0; k < mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().size(); k++) {
+                                        if (mGenresName.equalsIgnoreCase("")) {
+                                            mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                        } else {
+                                            mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                        }
                                     }
                                 }
 
-                                dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
-                                        mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
-                                        mBookedEventHistory.getData().get(i).getOrderEvents().getEventId(),
-                                        mBookedEventHistory.getData().get(i).getOrderEvents().getEventName(),
-                                        mGenresName,
-                                        mBookedEventHistory.getData().get(i).getId(),
-                                        mBookedEventHistory.getData().get(i).getDateTime());
+                                if(mBookedEventHistory.getData().get(i).getOrderEvents()!=null){
+                                    dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
+                                            mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
+                                            mBookedEventHistory.getData().get(i).getOrderEvents().getEventId(),
+                                            mBookedEventHistory.getData().get(i).getOrderEvents().getEventName(),
+                                            mGenresName,
+                                            mBookedEventHistory.getData().get(i).getId(),
+                                            mBookedEventHistory.getData().get(i).getDateTime());
+                                }else{
+                                    dbBookendEventsHistory.insertBookedEventsHistory(mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderFrom(),
+                                            mBookedEventHistory.getData().get(i).getOrderItems().get(j).getOrderLineItems(),
+                                            "",
+                                            "",
+                                            mGenresName,
+                                            mBookedEventHistory.getData().get(i).getId(),
+                                            mBookedEventHistory.getData().get(i).getDateTime());
+                                }
+
                             }
                         }
                     }

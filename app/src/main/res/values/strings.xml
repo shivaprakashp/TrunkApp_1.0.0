@@ -959,8 +959,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imgFavourite">ImgFavourite</string>
     <string name="imgShare">ImgShare</string>
-    <string name="event">event</string>
-    <string name="gift_card">gift items</string>
+    <string name="event">Events</string>
+    <string name="gift_card">GiftCard</string>
 
     <!--Dubai Opera Tour / Gift Card activity -->
     <string name="bookNow">BOOK NOW</string>
@@ -996,7 +996,7 @@
 <string name="analytics_sean_reserve_table">Dining - Sean Connolly - Reserve Table</string>
 <string name="dubai_opera_tour">Dubai Opera Tour</string>
 <string name="listen1">Listen</string>
-<string name="ticket_booked_success">Event booked successfully! Visit Wallet to view the details of the booked Event.</string>
+<string name="ticket_booked_success">Ticket booked successfully! Visit Wallet to view the details of the booked Ticket.</string>
 
 <string name="feedback_comment">We\'d love your feedback. Click here to rate your experience.</string>
 <string name="feedback_attended_time">You attended the show on </string>
