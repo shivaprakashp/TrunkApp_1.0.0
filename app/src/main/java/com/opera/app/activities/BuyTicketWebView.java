@@ -214,7 +214,6 @@ public class BuyTicketWebView extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Log.e("Complete data",obj.toString());
 //                    mJsonData = "{\"token" + mJsonData;
 
 //                    myWebView.setVisibility(View.GONE);

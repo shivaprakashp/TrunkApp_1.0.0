@@ -14,6 +14,9 @@ import com.opera.app.utils.LanguageManager;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,15 +56,6 @@ public class LanguageActivity extends BaseActivity {
         //call userSession
         userSessionLanguage();
 
-        Log.e("json data",decodeURIComponent());
-       /* try {
-            JSONObject obj = new JSONObject("{\"token\":\"JYeRAscs89Yzv7N1rpso4nHpg+ps3lxFDIivRwkWs8h5YDStomrSn2T0lZzlkwbpK4GqUfe7biPc4s9u5F/OrA==\",\"tickets\":[{\"id\":\"180717,200\",\"show\":[{\"code\":\"EOPG0000016GF\",\"who\":\"Dubai Opera Gift Voucher\",\"when\":\"VALID FOR 12 MONTHS\",\"where\":\"Dubai Opera\"}],\"seatingInformation\":{\"section\":\"S250\",\"row\":\"GA\",\"seats\":\"230\"}}]}");
-
-            obj.remove("token");
-            Log.e("json", obj.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
     }
 
     private void userSessionLanguage() {

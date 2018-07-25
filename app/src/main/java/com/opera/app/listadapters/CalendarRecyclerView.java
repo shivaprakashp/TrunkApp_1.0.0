@@ -3,6 +3,7 @@ package com.opera.app.listadapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.opera.app.pojo.events.eventlisiting.Events;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
@@ -23,7 +25,8 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     private Context context;
     private List<Events> arrayList;
     private String currentDay, eventTime;
-    String[] startTime;
+    SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
+    SimpleDateFormat f3 = new SimpleDateFormat("hh:mm a");
 
     public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
@@ -58,18 +61,31 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
         final Events events = arrayList.get(position);
 
+        String startTime = "";
+
         for (int k = 0; k < events.getEventTime().size(); k++) {
             if (currentDay.equalsIgnoreCase(events.getEventTime().get(k).getFromTime().split("T")[0])) {
-                startTime = events.getStartTime().split(" ");
-                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);
+                /*startTime = events.getStartTime().split(" ");
+                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);*/
+                try {
+                    Date mDate = f.parse(events.getEventTime().get(k).getFromTime());
+                    /*String mDateStr=f2.format(mDate);
+                    Log.e("Converted only date", mDateStr);*/
+                    startTime = f3.format(mDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         try {
-            holder.txtCalendarTime.setText(new StringBuilder().append(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime))).append("\n").append(startTime[1]).toString());
-        } catch (ParseException e) {
+            holder.txtCalendarTime.setText(startTime);
+            /*holder.txtCalendarTime.setText(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime)) + "\n" + startTime[1]);*/
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         holder.txtCalendarEventName.setText(events.getName());
 
         holder.btnCalendarDetail.setOnClickListener(new View.OnClickListener() {
