@@ -40,8 +40,7 @@
             android:id="@+id/linearOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/app_margin_ten"
-            android:layout_marginEnd="@dimen/app_margin_ten"
+
             android:orientation="vertical"
             android:padding="@dimen/app_margin_ten"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
@@ -51,8 +50,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/app_margin_five"
-                android:layout_marginEnd="@dimen/app_margin_five"
                 android:layout_marginTop="@dimen/app_margin_ten"
                 android:orientation="vertical"
                 android:padding="@dimen/app_margin_ten"
@@ -66,7 +63,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Sean Connolly"
-                    font:name="Montserrat-Regular" />
+                    font:name="Montserrat-Regular"
+                    android:textDirection="locale"
+                    android:textAlignment="viewStart"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,15 +79,19 @@
                         android:layout_height="wrap_content"
                         android:text="@string/dateOfReserve"
                         font:name="Montserrat-Regular"
-                        font:type="bold" />
+                        font:type="bold"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtDateReserve"
                         style="@style/label_black_medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text=" 12 May 2018" />
+                        tools:text=" 12 May 2018"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
 
@@ -104,15 +107,19 @@
                         android:layout_height="wrap_content"
                         android:text="@string/mealPeriod"
                         font:name="Montserrat-Regular"
-                        font:type="bold" />
+                        font:type="bold"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtDinner"
                         style="@style/label_black_medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text=" Dinner" />
+                        tools:text=" Dinner"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
 
@@ -127,15 +134,19 @@
                         android:layout_height="wrap_content"
                         android:text="@string/preferredTime"
                         font:name="Montserrat-Regular"
-                        font:type="bold" />
+                        font:type="bold"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtPrefTime"
                         style="@style/label_black_medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text=" 08:25 PM" />
+                        tools:text=" 08:25 PM"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
 
@@ -150,15 +161,19 @@
                         android:layout_height="wrap_content"
                         android:text="@string/bookReference"
                         font:name="Montserrat-Regular"
-                        font:type="bold" />
+                        font:type="bold"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtReferNo"
                         style="@style/label_black_medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text=" GHF65NR5" />
+                        tools:text=" GHF65NR5"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
 
@@ -173,15 +188,19 @@
                         android:layout_height="wrap_content"
                         android:text="@string/bookDate"
                         font:name="Montserrat-Regular"
-                        font:type="bold" />
+                        font:type="bold"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtBookDate"
                         style="@style/label_black_medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
-                        tools:text=" 12 May 2018" />
+                        tools:text=" 12 May 2018"
+                        android:textDirection="locale"
+                        android:textAlignment="viewStart"/>
 
                 </LinearLayout>
             </LinearLayout>

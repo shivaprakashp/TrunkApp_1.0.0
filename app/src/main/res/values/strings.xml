@@ -1,941 +1,1101 @@
 <resources>
-<string name="app_name">Dubai Opera</string>
-<string name="loading">Loading...</string>
+    <string name="app_name">Dubai Opera</string>
+    <string name="loading">Loading...</string>
 
-<string name="forgot_password">Forgot Password?</string>
-<string name="forgot_password_hint">Please enter your registered email address to reset your password</string>
-<string name="username">Username</string>
-<string name="password">Password</string>
-<string name="login">Login</string>
-<string name="dont_have_an_account">Don\'t have an Account? Create one</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_hint">Please enter your registered email address to reset your password</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="dont_have_an_account">Don\'t have an Account? Create one</string>
 
-<array name="tab_name">
-    <item>Home</item>
-    <item>Events</item>
-    <item>Dining</item>
-    <item>Listen</item>
-    <item>Menu</item>
-</array>
+    <array name="tab_name">
+        <item>Home</item>
+        <item>Events</item>
+        <item>Dining</item>
+        <item>Listen</item>
+        <item>Menu</item>
+    </array>
 
-<!--Sessoin Manager-->
-<string name="prefName">userLoginPref</string>
-<string name="prefUserData">userLoginData</string>
-<string name="prefWalletData">walletData</string>
-<string name="prefDubaiOperaTourData">dubaiOperaTourData</string>
-<string name="prefGiftCardData">giftCardData</string>
+    <!--Sessoin Manager-->
+    <string name="prefName">userLoginPref</string>
+    <string name="prefUserData">userLoginData</string>
+    <string name="prefWalletData">walletData</string>
+    <string name="prefDubaiOperaTourData">dubaiOperaTourData</string>
+    <string name="prefGiftCardData">giftCardData</string>
 
-<string name="NotificationSwitchValue">notificationSwitchValue</string>
-<string name="PromotionSwitchValue">promotionSwitchValue</string>
-<string name="FeedbackNotiSwitchValue">feedbackNotiSwitchValue</string>
-<string name="NewsLetterSwitchValue">newsLetterSwitchValue</string>
-<string name="BookedShowSwitchValue">bookedShowSwitchValue</string>
+    <string name="NotificationSwitchValue">notificationSwitchValue</string>
+    <string name="PromotionSwitchValue">promotionSwitchValue</string>
+    <string name="FeedbackNotiSwitchValue">feedbackNotiSwitchValue</string>
+    <string name="NewsLetterSwitchValue">newsLetterSwitchValue</string>
+    <string name="BookedShowSwitchValue">bookedShowSwitchValue</string>
 
-<!--Language Activity -->
-<string name="english">English</string>
-<string name="arabic">عربى</string>
+    <!--Language Activity -->
+    <string name="english">English</string>
+    <string name="arabic">عربى</string>
 
-<!--Pre Login Activity -->
-<string name="already_have_an_account">Already have an Account? Login</string>
-<string name="continue_as_guest"><u>Continue as Guest</u></string>
-<string name="create_an_account">Create an Account</string>
+    <!--Pre Login Activity -->
+    <string name="already_have_an_account">Already have an Account? Login</string>
+    <string name="continue_as_guest"><u>Continue as Guest</u></string>
+    <string name="create_an_account">Create an Account</string>
 
-<string name="select">Select</string>
-<string name="send">Send</string>
-<string name="email">Email Address*</string>
-<string name="pass">Password*</string>
-<string name="re_pass">Re-enter Password*</string>
-<string name="firstname">First Name*</string>
-<string name="lastname">Last Name*</string>
-<string name="nationality">Nationality*</string>
-<string name="dob">Date of Birth*</string>
-<string name="mobile">Mobile Number*</string>
-<string name="city">City*</string>
-<string name="state">Emirate or State*</string>
-<string name="country">Country*</string>
+    <string name="select">Select</string>
+    <string name="send">Send</string>
+    <string name="email">Email Address*</string>
+    <string name="pass">Password*</string>
+    <string name="re_pass">Re-enter Password*</string>
+    <string name="firstname">First Name*</string>
+    <string name="lastname">Last Name*</string>
+    <string name="nationality">Nationality*</string>
+    <string name="dob">Date of Birth*</string>
+    <string name="mobile">Mobile Number*</string>
+    <string name="city">City*</string>
+    <string name="state">Emirate or State*</string>
+    <string name="country">Country*</string>
 
-<!--Registration activity -->
-<string name="reg_terms_policy">I agree to the terms and privacy policy</string>
-<string name="terms"><u>terms</u> </string>
-<string name="and">and </string>
-<string name="privacy"><u>privacy policy</u> </string>
-<string name="check_subscribe">Subscribe to Dubai opera newsletter</string>
-<string name="create_account">Create Account</string>
+    <!--Registration activity -->
+    <string name="reg_terms_policy">I agree to the terms and privacy policy</string>
+    <string name="terms"><u>terms</u> </string>
+    <string name="and">and </string>
+    <string name="privacy"><u>privacy policy</u> </string>
+    <string name="check_subscribe">Subscribe to Dubai opera newsletter</string>
+    <string name="create_account">Create Account</string>
 
-<!--Setting activity-->
-<string name="setting_alert_show">Alert on the show timings</string>
-<string name="setting_allow_notification">Allow Notifications</string>
-<string name="setting_allow_promotion">Allow Promotions</string>
-<string name="setting_allow_feedback">Allow Feedback Notification</string>
-<string name="setting_weekly_newsletters">Weekly newsletters</string>
-<string name="setting_reminder_booked_show">Reminders for the booked shows</string>
-<string name="setting_language">Language</string>
-<string name="logout">Logout</string>
-<string name="save1">Save</string>
-<string name="arabic_in_english">عربى</string>
+    <!--Setting activity-->
+    <string name="setting_alert_show">Alert on the show timings</string>
+    <string name="setting_allow_notification">Allow Notifications</string>
+    <string name="setting_allow_promotion">Allow Promotions</string>
+    <string name="setting_allow_feedback">Allow Feedback Notification</string>
+    <string name="setting_weekly_newsletters">Weekly newsletters</string>
+    <string name="setting_reminder_booked_show">Reminders for the booked shows</string>
+    <string name="setting_language">Language</string>
+    <string name="logout">Logout</string>
+    <string name="save1">Save</string>
+    <string name="arabic_in_english">عربى</string>
 
-<!--Menu Fragment -->
-<string name="menu_profile">Profile</string>
-<string name="menu_opera_tour">Dubai Opera Tour</string>
-<string name="menu_wallet">Wallet</string>
-<string name="menu_notification">Notifications</string>
-<string name="menu_promotion">Promotions</string>
-<string name="menu_gift_cards">Gift Cards</string>
-<string name="menu_feedback">Feedback</string>
-<string name="menu_contact_us">Contact Us</string>
-<string name="menu_settings">Settings</string>
-<string name="menu_save_cards">Saved Cards</string>
+    <!--Menu Fragment -->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_opera_tour">Dubai Opera Tour</string>
+    <string name="menu_wallet">Wallet</string>
+    <string name="menu_notification">Notifications</string>
+    <string name="menu_promotion">Promotions</string>
+    <string name="menu_gift_cards">Gift Cards</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_contact_us">Contact Us</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_save_cards">Saved Cards</string>
 
-<string name="menu_guest">Welcome </string>
-<string name="menu_account">CREATE ACCOUNT</string>
-<string name="menu_welcome_guest">Welcome Guest!</string>
+    <string name="menu_guest">Welcome </string>
+    <string name="menu_account">CREATE ACCOUNT</string>
+    <string name="menu_welcome_guest">Welcome Guest!</string>
 
-<string name="termsNconditions">Ticketing Terms and Conditions</string>
-<array name="terms_conditions">
-    <item>1. Refunds and exchanges are not permitted. Dubai Opera at its sole discretion may
-        offer a refund or exchange if an event is cancelled or rescheduled.
-    </item>
-    <item>2. Dubai Opera reserves the right to add, withdraw, reschedule or substitute artists
-        and/or vary advertised programmes, prices, seating arrangements and audience capacity
-        without prior notice.
-    </item>
-    <item>3. Entry may be subject to age restrictions specified on dubaiopera.com</item>
-    <item>4. Removing any part of, altering or defacing the ticket will invalidate it.</item>
-    <item>5. This ticket is only valid for the date, time and event shown.</item>
-    <item>6. The ticket holder agrees to submit to any search for any prohibited items
-        including, but not limited to, recording devices and controlled or dangerous substances.
-    </item>
-    <item>7. Latecomers will only be admitted at a suitable break and may be seated in alternate
-        locations to avoid disruption.
-    </item>
-    <item>8. Any use of mobile phones, cameras and other electronic devices inside the
-        auditorium is strictly prohibited.
-    </item>
-    <item>9. The ticket holder voluntarily assumes all risk and danger incidental to the event
-        whether occurring prior to, during or subsequent to the actual event, including any
-        death, personal injury, loss, damage or liability.
-    </item>
-    <item>10. Food and beverages purchased outside Dubai Opera are not permitted. No food and
-        beverages may enter the auditorium.
-    </item>
-    <item>11. Ticket(s) that are duplicated, resold or used for advertising, promotion or other
-        commercial purposes will be subject to immediate cancellation.
-    </item>
-    <item>12. Lost, stolen or damaged tickets may be re-issued to the original purchaser if
-        their authenticity can be verified (subject to a replacement fee).
-    </item>
-    <item>13. Dubai Opera reserves the right without refund or compensation to refuse
-        admission/evict any person(s) whose conduct is disorderly/inappropriate or who poses a
-        threat to security or to the enjoyment of the event by others.
-    </item>
-</array>
+    <string name="termsNconditions">Ticketing Terms and Conditions</string>
+    <array name="terms_conditions">
+        <item>1. Refunds and exchanges are not permitted. Dubai Opera at its sole discretion may
+            offer a refund or exchange if an event is cancelled or rescheduled.
+        </item>
+        <item>2. Dubai Opera reserves the right to add, withdraw, reschedule or substitute artists
+            and/or vary advertised programmes, prices, seating arrangements and audience capacity
+            without prior notice.
+        </item>
+        <item>3. Entry may be subject to age restrictions specified on dubaiopera.com</item>
+        <item>4. Removing any part of, altering or defacing the ticket will invalidate it.</item>
+        <item>5. This ticket is only valid for the date, time and event shown.</item>
+        <item>6. The ticket holder agrees to submit to any search for any prohibited items
+            including, but not limited to, recording devices and controlled or dangerous substances.
+        </item>
+        <item>7. Latecomers will only be admitted at a suitable break and may be seated in alternate
+            locations to avoid disruption.
+        </item>
+        <item>8. Any use of mobile phones, cameras and other electronic devices inside the
+            auditorium is strictly prohibited.
+        </item>
+        <item>9. The ticket holder voluntarily assumes all risk and danger incidental to the event
+            whether occurring prior to, during or subsequent to the actual event, including any
+            death, personal injury, loss, damage or liability.
+        </item>
+        <item>10. Food and beverages purchased outside Dubai Opera are not permitted. No food and
+            beverages may enter the auditorium.
+        </item>
+        <item>11. Ticket(s) that are duplicated, resold or used for advertising, promotion or other
+            commercial purposes will be subject to immediate cancellation.
+        </item>
+        <item>12. Lost, stolen or damaged tickets may be re-issued to the original purchaser if
+            their authenticity can be verified (subject to a replacement fee).
+        </item>
+        <item>13. Dubai Opera reserves the right without refund or compensation to refuse
+            admission/evict any person(s) whose conduct is disorderly/inappropriate or who poses a
+            threat to security or to the enjoyment of the event by others.
+        </item>
+    </array>
 
-<string name="privacyNpolicy">Privacy Policy</string>
-<string name="home">Home</string>
-<string name="events">Events</string>
-<string name="dining">Dining</string>
-<string name="listen">Listen</string>
-<string name="home_fragment">Home fragment</string>
-<string name="events_fragment">Events Fragment</string>
-<string name="dining_fragment">Dining Fragment</string>
-<string name="listen_fragment">Listen Fragment</string>
+    <string name="privacyNpolicy">Privacy Policy</string>
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="dining">Dining</string>
+    <string name="listen">Listen</string>
+    <string name="home_fragment">Home fragment</string>
+    <string name="events_fragment">Events Fragment</string>
+    <string name="dining_fragment">Dining Fragment</string>
+    <string name="listen_fragment">Listen Fragment</string>
 
-<array name="privacy_policy">
-    <item>This policy describes the types of information we may collect from you or that you may
-        provide when you visit the website www.dubaiopera.com(our “Website”) and our practices
-        for collecting, using, maintaining, protecting and disclosing that information.
-    </item>
-    <item>This policy applies to information we collect:</item>
-    <!--<item>1. On this Website.</item>-->
-    <item>1. In e-mail, text and other electronic messages between you and this Website.</item>
-    <item>2. Through mobile and desktop applications you may download from this Website, which
-        provide dedicated non-browser-based interaction between you and this Website.
-    </item>
-    <item>3. When you interact with our advertising and applications on third-party websites and
-        services, if those applications or advertising include links to this policy.
-    </item>
-    <item>It does not apply to information collected by:</item>
-    <item>1. Us offline or through any other means, including any other website operated by any
-        third party; or
-    </item>
-    <item>2. Any third party, including through any application or content (including
-        advertising) that may link to the Website.
-    </item>
-    <item>Please read this policy carefully to understand our policies and practices regarding
-        your information and how we will treat it. If you do not agree with our policies and
-        practices, your choice is not to use our Website. By accessing or using this Website,
-        you agree to this privacy policy. This policy may change from time to time. Your
-        continued use of this Website after we make changes is deemed to be acceptance of those
-        changes, so please check the policy periodically for updates.
-    </item>
-</array>
+    <array name="privacy_policy">
+        <item>This policy describes the types of information we may collect from you or that you may
+            provide when you visit the website www.dubaiopera.com(our “Website”) and our practices
+            for collecting, using, maintaining, protecting and disclosing that information.
+        </item>
+        <item>This policy applies to information we collect:</item>
+        <!--<item>1. On this Website.</item>-->
+        <item>1. In e-mail, text and other electronic messages between you and this Website.</item>
+        <item>2. Through mobile and desktop applications you may download from this Website, which
+            provide dedicated non-browser-based interaction between you and this Website.
+        </item>
+        <item>3. When you interact with our advertising and applications on third-party websites and
+            services, if those applications or advertising include links to this policy.
+        </item>
+        <item>It does not apply to information collected by:</item>
+        <item>1. Us offline or through any other means, including any other website operated by any
+            third party; or
+        </item>
+        <item>2. Any third party, including through any application or content (including
+            advertising) that may link to the Website.
+        </item>
+        <item>Please read this policy carefully to understand our policies and practices regarding
+            your information and how we will treat it. If you do not agree with our policies and
+            practices, your choice is not to use our Website. By accessing or using this Website,
+            you agree to this privacy policy. This policy may change from time to time. Your
+            continued use of this Website after we make changes is deemed to be acceptance of those
+            changes, so please check the policy periodically for updates.
+        </item>
+    </array>
 
-<!--My Profile-->
-<string name="my_profile">My Profile</string>
-<string name="profile_name">Simon Pinto</string>
-<string name="profile_info">Member since</string>
-<string name="profile_edit_profile">Edit Profile</string>
-<string name="profile_change_password">Change Password</string>
-<string name="tab_profile">PROFILE</string>
-<string name="tab_loyalty">LOYALTY POINTS</string>
-<string name="loyalty_points">Loyalty Points</string>
-<string name="gallery">Choose from Gallery</string>
-<string name="camera">Use Camera</string>
-<string name="permissionDenied">Permission denied</string>
-<string name="permissionGranted">Permission Granted</string>
-<string name="cancel">Cancel</string>
-<string name="save">Save Changes</string>
-<string name="profile_choose_photo">Choose Photo</string>
+    <!--My Profile-->
+    <string name="my_profile">My Profile</string>
+    <string name="profile_name">Simon Pinto</string>
+    <string name="profile_info">Member since</string>
+    <string name="profile_edit_profile">Edit Profile</string>
+    <string name="profile_change_password">Change Password</string>
+    <string name="tab_profile">PROFILE</string>
+    <string name="tab_loyalty">LOYALTY POINTS</string>
+    <string name="loyalty_points">Loyalty Points</string>
+    <string name="gallery">Choose from Gallery</string>
+    <string name="camera">Use Camera</string>
+    <string name="permissionDenied">Permission denied</string>
+    <string name="permissionGranted">Permission Granted</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save Changes</string>
+    <string name="profile_choose_photo">Choose Photo</string>
 
-<!--Change Password Popup -->
-<string name="curr_password">Current Password</string>
-<string name="new_password">New Password</string>
-<string name="conf_new_password">Confirm New Password</string>
+    <!--Change Password Popup -->
+    <string name="curr_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="conf_new_password">Confirm New Password</string>
 
-<!--Edit Profile-->
-<string name="edit_email">Email Address*</string>
-<string name="edit_firstname">First Name</string>
-<string name="edit_lastname">Last Name</string>
-<string name="edit_nationality">Nationality</string>
-<string name="edit_dob">Date of Birth</string>
-<string name="edit_mobile">Mobile Number</string>
-<string name="edit_city">City</string>
-<string name="edit_state">Emirate or State</string>
-<string name="edit_country">Country</string>
-<string name="edit_address">Address</string>
+    <!--Edit Profile-->
+    <string name="edit_email">Email Address*</string>
+    <string name="edit_firstname">First Name</string>
+    <string name="edit_lastname">Last Name</string>
+    <string name="edit_nationality">Nationality</string>
+    <string name="edit_dob">Date of Birth</string>
+    <string name="edit_mobile">Mobile Number</string>
+    <string name="edit_city">City</string>
+    <string name="edit_state">Emirate or State</string>
+    <string name="edit_country">Country</string>
+    <string name="edit_address">Address</string>
 
-<!--Contact us-->
-<string name="reach_us">Reach Us:</string>
-<string name="number"><u>+971 44408888</u></string>
-<string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
-<string name="send_message">Send message</string>
-<string name="contact_us">Contact Us</string>
-<string name="full_name">Full Name*</string>
-<string name="phone_number">Mobile Number</string>
-<string name="email2">Email Address</string>
-<string name="message">Message</string>
-<string name="enquiry_type">Enquiry Type*</string>
-<string name="press_enquiry">Press Enquiry</string>
-<string name="ticketting_enquiry">Ticketing Enquiry</string>
-<string name="venue_booking">Venue Booking</string>
-<string name="careers">Careers</string>
-<string name="social_media">Social Media</string>
-<string name="country_code">Country Code</string>
-<string name="country_code_with_asterisk">Code*</string>
+    <!--Contact us-->
+    <string name="reach_us">Reach Us:</string>
+    <string name="number"><u>+971 44408888</u></string>
+    <string name="contact_us_info">Have questions? Fill the below form and we will get back to you as soon as possible.</string>
+    <string name="send_message">Send message</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="full_name">Full Name*</string>
+    <string name="phone_number">Mobile Number</string>
+    <string name="email2">Email Address</string>
+    <string name="message">Message</string>
+    <string name="enquiry_type">Enquiry Type*</string>
+    <string name="press_enquiry">Press Enquiry</string>
+    <string name="ticketting_enquiry">Ticketing Enquiry</string>
+    <string name="venue_booking">Venue Booking</string>
+    <string name="careers">Careers</string>
+    <string name="social_media">Social Media</string>
+    <string name="country_code">Country Code</string>
+    <string name="country_code_with_asterisk">Code*</string>
 
-<!--Dining-->
-<string name="find_out_more">Find Out More</string>
-<string name="mr">Mr.</string>
-<string name="ms">Ms.</string>
-<string name="mrs">Mrs.</string>
-<string name="special_requests">Special Requests/Occasions</string>
-<string name="select_title">Select title*</string>
-<string name="call">Call</string>
-<string name="email_btn">Email</string>
-<string name="reserve_a_table">Reserve a Table</string>
-<string name="reserve_a_table2">Reserve a table</string>
-<string name="sean_connolly_dubai_opera">Sean Connolly at Dubai Opera</string>
-<string name="preffereed_date">Preffered date of reservation*</string>
-<string name="telephone_no">Mobile Number</string>
-<string name="email3">Email Address</string>
-<string name="window_table">Window Table</string>
-<string name="total_no_of_guests">Number of guests*</string>
-<string name="full_name1">Full Name</string>
-<string name="submit">Submit</string>
-<string name="select_meal_priod">Please select the meal period*</string>
-<string name="select_time">Please select time*</string>
-<string name="reserve_a_table3">RESERVE TABLE</string>
-<string name="restaurants">Restaurants</string>
-<string name="restaurant">Restaurant</string>
-<string name="sean_connolly">Sean Connolly</string>
-<string name="read_more">READ MORE</string>
-<string name="read_less">READ LESS</string>
-<string name="other_restaurants">OTHER RESTAURANTS</string>
-<string name="dubai_opera">at Dubai Opera</string>
-<string name="rest_search">Enter keyword to search for Restaurant</string>
-<string name="plus">+</string>
-<string name="minus">-</string>
+    <!--Dining-->
+    <string name="find_out_more">Find Out More</string>
+    <string name="mr">Mr.</string>
+    <string name="ms">Ms.</string>
+    <string name="mrs">Mrs.</string>
+    <string name="special_requests">Special Requests/Occasions</string>
+    <string name="select_title">Select title*</string>
+    <string name="call">Call</string>
+    <string name="email_btn">Email</string>
+    <string name="reserve_a_table">Reserve a Table</string>
+    <string name="reserve_a_table2">Reserve a table</string>
+    <string name="sean_connolly_dubai_opera">Sean Connolly at Dubai Opera</string>
+    <string name="preffereed_date">Preffered date of reservation*</string>
+    <string name="telephone_no">Mobile Number</string>
+    <string name="email3">Email Address</string>
+    <string name="window_table">Window Table</string>
+    <string name="total_no_of_guests">Number of guests*</string>
+    <string name="full_name1">Full Name</string>
+    <string name="submit">Submit</string>
+    <string name="select_meal_priod">Please select the meal period*</string>
+    <string name="select_time">Please select time*</string>
+    <string name="reserve_a_table3">RESERVE TABLE</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="sean_connolly">Sean Connolly</string>
+    <string name="read_more">READ MORE</string>
+    <string name="read_less">READ LESS</string>
+    <string name="other_restaurants">OTHER RESTAURANTS</string>
+    <string name="dubai_opera">at Dubai Opera</string>
+    <string name="rest_search">Enter keyword to search for Restaurant</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 
-<!--NETWORK CONNECTIVITY MSG-->
-<string name="internet_error_msg">Please check your internet connection!</string>
+    <!--NETWORK CONNECTIVITY MSG-->
+    <string name="internet_error_msg">Please check your internet connection!</string>
 
-<!--server-->
-<string name="errorServerError">Server Error! Please try again later.</string>
+    <!--server-->
+    <string name="errorServerError">Server Error! Please try again later.</string>
 
-<!--Guest msg-->
-<string name="guest_title">ALERT !!</string>
-<string name="guest_msg">You should be logged in to use this feature.</string>
+    <!--Guest msg-->
+    <string name="guest_title">ALERT !!</string>
+    <string name="guest_msg">You should be logged in to use this feature.</string>
 
-<!--Error handling (Changed one's)-->
-<!--login-->
-<string name="editError">Error</string>
-<string name="errorLoginError">Please enter your login details.</string>
-<string name="errorUserEmail">Incorrect Email Address or Password.</string>
-<string name="errorPassword">Incorrect Email Address or Password.</string>
-<string name="errorUserName">Please enter your login details</string>
+    <!--Error handling (Changed one's)-->
+    <!--login-->
+    <string name="editError">Error</string>
+    <string name="errorLoginError">Please enter your login details.</string>
+    <string name="errorUserEmail">Incorrect Email Address or Password.</string>
+    <string name="errorPassword">Incorrect Email Address or Password.</string>
+    <string name="errorUserName">Please enter your login details</string>
 
-<!--registration-->
-<string name="errorFirstName">Your First Name may not be blank</string>
-<string name="errorLastName">Your Last Name may not be blank</string>
-<string name="errorEmailId">Your Email Address cannot be blank</string>
-<string name="errorEmailInvalid">Your Email Address is not valid</string>
-<string name="errorPasswordEmpty">Your Password cannot be blank</string>
-<string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
-<string name="errorMismatchPassword">Your Password has not been confirmed, please retype it correctly.</string>
-<string name="errorNationality">Your Nationality name may not be blank</string>
-<string name="errorDob">Your date of birth may not be blank</string>
-<string name="errorCountryCode">Your Country Code may not be blank</string>
-<string name="errorMobile">Your Mobile Number must be filled in</string>
-<string name="errorLengthMobile">Your Mobile Number length should be 9 or 10 digit</string>
-<string name="errorCity">Your City name may not be blank</string>
-<string name="errorState">Your Emirate or State name may not be blank</string>
-<string name="errorCountry">Your Country Name name may not be blank</string>
-<string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
-<string name="errorLengthCity">City should be between 2 to 26 character long</string>
-<string name="errorTerms">You need to accept the terms to proceed for registration</string>
-<string name="errorSelectTitle">Your Title may not be blank</string>
+    <!--registration-->
+    <string name="errorFirstName">Your First Name may not be blank</string>
+    <string name="errorLastName">Your Last Name may not be blank</string>
+    <string name="errorEmailId">Your Email Address cannot be blank</string>
+    <string name="errorEmailInvalid">Your Email Address is not valid</string>
+    <string name="errorPasswordEmpty">Your Password cannot be blank</string>
+    <string name="errorSamePasswordAsUsername">Password should not be same as Email Address</string>
+    <string name="errorMismatchPassword">Your Password has not been confirmed, please retype it correctly.</string>
+    <string name="errorNationality">Your Nationality name may not be blank</string>
+    <string name="errorDob">Your date of birth may not be blank</string>
+    <string name="errorCountryCode">Your Country Code may not be blank</string>
+    <string name="errorMobile">Your Mobile Number must be filled in</string>
+    <string name="errorLengthMobile">Your Mobile Number length should be 9 or 10 digit</string>
+    <string name="errorCity">Your City name may not be blank</string>
+    <string name="errorState">Your Emirate or State name may not be blank</string>
+    <string name="errorCountry">Your Country Name name may not be blank</string>
+    <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
+    <string name="errorLengthCity">City should be between 2 to 26 character long</string>
+    <string name="errorTerms">You need to accept the terms to proceed for registration</string>
+    <string name="errorSelectTitle">Your Title may not be blank</string>
 
-<!--change password-->
-<string name="errorCurrentPassword">Your Current Password cannot be blank</string>
-<string name="errorNewPassword">Your New Password Cannot be blank</string>
-<string name="errorConfirmNewPassword">Your Password has not been confirmed, please retype it correctly.</string>
-<string name="errorPasswordMatch">Your Password has not been confirmed, please retype it correctly</string>
-<string name="errorLengthNewPassword">New Password should be between 3 to 16 character long</string>
-<string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
+    <!--change password-->
+    <string name="errorCurrentPassword">Your Current Password cannot be blank</string>
+    <string name="errorNewPassword">Your New Password Cannot be blank</string>
+    <string name="errorConfirmNewPassword">Your Password has not been confirmed, please retype it correctly.</string>
+    <string name="errorPasswordMatch">Your Password has not been confirmed, please retype it correctly</string>
+    <string name="errorLengthNewPassword">New Password should be between 3 to 16 character long</string>
+    <string name="errorPreviousAndNewPassword">Current Password and New Password cannot be same</string>
 
-<!--contact us-->
-<string name="errorFullName">Your Full Name may not be blank</string>
-<string name="errorLengthFullName">Length of Full Name should be between 1 to 30 characters</string>
-<string name="errorMessage">Message may not be blank</string>
-<string name="errorLengthMessage">Message should not be more than 70 characters</string>
-<string name="errorEnquiryType">Enquiry Type cannot be left blank</string>
+    <!--contact us-->
+    <string name="errorFullName">Your Full Name may not be blank</string>
+    <string name="errorLengthFullName">Length of Full Name should be between 1 to 30 characters</string>
+    <string name="errorMessage">Message may not be blank</string>
+    <string name="errorLengthMessage">Message should not be more than 70 characters</string>
+    <string name="errorEnquiryType">Enquiry Type cannot be left blank</string>
 
-<!--error and success dialog msg-->
-<string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your email address &amp; password to login into Dubai Opera.</string>
-<string name="errorDialogue">OK</string>
-<string name="errorTitle">ERROR</string>
-<string name="success_header">SUCCESS</string>
-<string name="ok">OK</string>
-<string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
-<string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible.</string>
-<string name="contactUs_header">Thank You!!</string>
-<string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
-<string name="changedPassword_header">SUCCESS</string>
-<string name="ForgotPsswordSuccessMsg">A link to reset your password has been sent to your email.</string>
+    <!--error and success dialog msg-->
+    <string name="successMsg">Dear Customer, Congratulations! You have now successfully completed the registration process. Use your email address &amp; password to login into Dubai Opera.</string>
+    <string name="errorDialogue">OK</string>
+    <string name="errorTitle">ERROR</string>
+    <string name="success_header">SUCCESS</string>
+    <string name="ok">OK</string>
+    <string name="successSettingsUpdation">Congratulations, You have successfully updated your settings.</string>
+    <string name="contactUsSuccessMsg">We have received your enquiry. \nWe will get back to you as soon as possible.</string>
+    <string name="contactUs_header">Thank You!!</string>
+    <string name="changedPasswordSuccessMsg">Password Changed Successfully.</string>
+    <string name="changedPassword_header">SUCCESS</string>
+    <string name="ForgotPsswordSuccessMsg">A link to reset your password has been sent to your email.</string>
 
-<string name="login_caps">LOGIN</string>
-<string name="logout_msg">Are you sure you want to logout?</string>
-<string name="logout_header">LOGOUT</string>
+    <string name="login_caps">LOGIN</string>
+    <string name="logout_msg">Are you sure you want to logout?</string>
+    <string name="logout_header">LOGOUT</string>
 
-<array name="states">
-    <item>Dubai</item>
-    <item>Abu Dhabi</item>
-    <item>Ajman</item>
-    <item>Fujairah</item>
-    <item>Ras Al Khaimah</item>
-    <item>Sharjah</item>
-    <item>Umm Al Quwain</item>
-</array>
+    <array name="states">
+        <item>Dubai</item>
+        <item>Abu Dhabi</item>
+        <item>Ajman</item>
+        <item>Fujairah</item>
+        <item>Ras Al Khaimah</item>
+        <item>Sharjah</item>
+        <item>Umm Al Quwain</item>
+    </array>
 
-<array name="nationality">
-    <item>United Arab Emirates</item>
-    <item>Afghanistan</item>
-    <item>Albania</item>
-    <item>Algeria</item>
-    <item>American Samoa</item>
-    <item>Andorra</item>
-    <item>Angola</item>
-    <item>Anguilla</item>
-    <item>Argentina</item>
-    <item>Armenia</item>
-    <item>Australia</item>
-    <item>Austria</item>
-    <item>Azerbaijan</item>
-    <item>Bahamas</item>
-    <item>Bahrain</item>
-    <item>Bangladesh</item>
-    <item>Barbados</item>
-    <item>Belarus</item>
-    <item>Belgium</item>
-    <item>Belize</item>
-    <item>Benin</item>
-    <item>Bosnia and Herzegovina</item>
-    <item>Botswana</item>
-    <item>Bolivia, Plurinational State of</item>
-    <item>Brazil</item>
-    <item>Brunei</item>
-    <item>Bulgaria</item>
-    <item>Burundi</item>
-    <item>Cambodia</item>
-    <item>Cameroon</item>
-    <item>Canada</item>
-    <item>Central African Republic</item>
-    <item>Chad</item>
-    <item>Chile</item>
-    <item>China</item>
-    <item>Colombia</item>
-    <item>Comoros</item>
-    <item>Congo</item>
-    <item>Costa Rica</item>
-    <item>Croatia</item>
-    <item>Cuba</item>
-    <item>Cyprus</item>
-    <item>Czech Republic</item>
-    <item>Denmark</item>
-    <item>Djibouti</item>
-    <item>Dominican Republic</item>
-    <item>Ecuador</item>
-    <item>Egypt</item>
-    <item>Estonia</item>
-    <item>Ethiopia</item>
-    <item>Finland</item>
-    <item>France</item>
-    <item>Georgia</item>
-    <item>Ghana</item>
-    <item>Greece</item>
-    <item>Germany</item>
-    <item>Guam</item>
-    <item>Guinea</item>
-    <item>Hong Kong</item>
-    <item>Hungary</item>
-    <item>Iran, Islamic Republic of</item>
-    <item>Iraq</item>
-    <item>Iceland</item>
-    <item>India</item>
-    <item>Indonesia</item>
-    <item>Ireland</item>
-    <item>Italy</item>
-    <item>vory Coast</item>
-    <item>Jamaica</item>
-    <item>Japan</item>
-    <item>Jordan</item>
-    <item>Kazakhstan</item>
-    <item>Kenya</item>
-    <item>Korea</item>
-    <item>Kuwait</item>
-    <item>Kyrgyzstan</item>
-    <item>Latvia</item>
-    <item>Lebanon</item>
-    <item>Liberia</item>
-    <item>Libya</item>
-    <item>Liechtenstein</item>
-    <item>Lithuania</item>
-    <item>Luxembourg</item>
-    <item>Macau</item>
-    <item>Macedonia</item>
-    <item>Madagascar</item>
-    <item>Malawi</item>
-    <item>Malaysia</item>
-    <item>Maldives</item>
-    <item>Mali</item>
-    <item>Malta</item>
-    <item>Mauritania</item>
-    <item>Mauritius</item>
-    <item>Mexico</item>
-    <item>Micronesia</item>
-    <item>Moldova, Republic of</item>
-    <item>Monaco</item>
-    <item>Mongolia</item>
-    <item>Montenegro</item>
-    <item>Morocco</item>
-    <item>Nepal</item>
-    <item>Netherlands</item>
-    <item>New Caledonia</item>
-    <item>New Zealand</item>
-    <item>Niger</item>
-    <item>Nigeria</item>
-    <item>Norway</item>
-    <item>Oman</item>
-    <item>Pakistan</item>
-    <item>Palestine, State of</item>
-    <item>Panama</item>
-    <item>Papua New Guinea</item>
-    <item>Paraguay</item>
-    <item>Peru</item>
-    <item>Philippines</item>
-    <item>Poland</item>
-    <item>Portugal</item>
-    <item>Puerto Rico</item>
-    <item>Qatar</item>
-    <item>Romania</item>
-    <item>Russian Federation</item>
-    <item>Saudi Arabia</item>
-    <item>Senegal</item>
-    <item>Serbia</item>
-    <item>Seychelles</item>
-    <item>Singapore</item>
-    <item>Slovakia</item>
-    <item>Slovenia</item>
-    <item>Somalia</item>
-    <item>South Africa</item>
-    <item>South Korea</item>
-    <item>South Sudan</item>
-    <item>Spain</item>
-    <item>Sri Lanka</item>
-    <item>Sudan</item>
-    <item>Swaziland</item>
-    <item>Sweden</item>
-    <item>Switzerland</item>
-    <item>Syrian Arab Republic</item>
-    <item>Taiwan</item>
-    <item>Tajikistan</item>
-    <item>Tanzania</item>
-    <item>Thailand</item>
-    <item>Togo</item>
-    <item>Tunisia</item>
-    <item>Turkey</item>
-    <item>Turkmenistan</item>
-    <item>Uganda</item>
-    <item>Ukraine</item>
-    <item>United Kingdom</item>
-    <item>United States of America</item>
-    <item>Uruguay</item>
-    <item>Uzbekistan</item>
-    <item>Venezuela, Bolivarian Republic of</item>
-    <item>Viet Nam</item>
-    <item>Yemen</item>
-    <item>Zambia</item>
-    <item>Zimbabwe</item>
-</array>
+    <array name="nationality">
+        <item>United Arab Emirates</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Botswana</item>
+        <item>Bolivia, Plurinational State of</item>
+        <item>Brazil</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burundi</item>
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominican Republic</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Georgia</item>
+        <item>Ghana</item>
+        <item>Greece</item>
+        <item>Germany</item>
+        <item>Guam</item>
+        <item>Guinea</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iran, Islamic Republic of</item>
+        <item>Iraq</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>vory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Korea</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macau</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova, Republic of</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Morocco</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palestine, State of</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Romania</item>
+        <item>Russian Federation</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Korea</item>
+        <item>South Sudan</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syrian Arab Republic</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Kingdom</item>
+        <item>United States of America</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Venezuela, Bolivarian Republic of</item>
+        <item>Viet Nam</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+    </array>
 
-<array name="country">
-    <item>United Arab Emirates</item>
-    <item>Afghanistan</item>
-    <item>Albania</item>
-    <item>Algeria</item>
-    <item>American Samoa</item>
-    <item>Andorra</item>
-    <item>Angola</item>
-    <item>Anguilla</item>
-    <item>Argentina</item>
-    <item>Armenia</item>
-    <item>Australia</item>
-    <item>Austria</item>
-    <item>Azerbaijan</item>
-    <item>Bahamas</item>
-    <item>Bahrain</item>
-    <item>Bangladesh</item>
-    <item>Barbados</item>
-    <item>Belarus</item>
-    <item>Belgium</item>
-    <item>Belize</item>
-    <item>Benin</item>
-    <item>Bosnia and Herzegovina</item>
-    <item>Botswana</item>
-    <item>Bolivia, Plurinational State of</item>
-    <item>Brazil</item>
-    <item>Brunei</item>
-    <item>Bulgaria</item>
-    <item>Burundi</item>
-    <item>ambodia</item>
-    <item>Cameroon</item>
-    <item>Canada</item>
-    <item>Central African Republic</item>
-    <item>Chad</item>
-    <item>Chile</item>
-    <item>China</item>
-    <item>Colombia</item>
-    <item>Comoros</item>
-    <item>Congo</item>
-    <item>Costa Rica</item>
-    <item>Croatia</item>
-    <item>Cuba</item>
-    <item>Cyprus</item>
-    <item>Czech Republic</item>
-    <item>Denmark</item>
-    <item>Djibouti</item>
-    <item>Dominican Republic</item>
-    <item>Ecuador</item>
-    <item>Egypt</item>
-    <item>Estonia</item>
-    <item>Ethiopia</item>
-    <item>Finland</item>
-    <item>France</item>
-    <item>Georgia</item>
-    <item>Ghana</item>
-    <item>Greece</item>
-    <item>Germany</item>
-    <item>Guam</item>
-    <item>Guinea</item>
-    <item>Hong Kong</item>
-    <item>Hungary</item>
-    <item>Iran, Islamic Republic of</item>
-    <item>Iraq</item>
-    <item>Iceland</item>
-    <item>India</item>
-    <item>Indonesia</item>
-    <item>Ireland</item>
-    <item>Italy</item>
-    <item>Ivory Coast</item>
-    <item>Jamaica</item>
-    <item>Japan</item>
-    <item>Jordan</item>
-    <item>Kazakhstan</item>
-    <item>Kenya</item>
-    <item>Korea</item>
-    <item>Kuwait</item>
-    <item>Kyrgyzstan</item>
-    <item>Latvia</item>
-    <item>Lebanon</item>
-    <item>Liberia</item>
-    <item>Libya</item>
-    <item>Liechtenstein</item>
-    <item>Lithuania</item>
-    <item>Luxembourg</item>
-    <item>Macau</item>
-    <item>Macedonia</item>
-    <item>Madagascar</item>
-    <item>Malawi</item>
-    <item>Malaysia</item>
-    <item>Maldives</item>
-    <item>Mali</item>
-    <item>Malta</item>
-    <item>Mauritania</item>
-    <item>Mauritius</item>
-    <item>Mexico</item>
-    <item>Micronesia</item>
-    <item>Moldova, Republic of</item>
-    <item>Monaco</item>
-    <item>Mongolia</item>
-    <item>Montenegro</item>
-    <item>Morocco</item>
-    <item>Nepal</item>
-    <item>Netherlands</item>
-    <item>New Caledonia</item>
-    <item>New Zealand</item>
-    <item>Niger</item>
-    <item>Nigeria</item>
-    <item>Norway</item>
-    <item>Oman</item>
-    <item>Pakistan</item>
-    <item>Palestine, State of</item>
-    <item>Panama</item>
-    <item>Papua New Guinea</item>
-    <item>Paraguay</item>
-    <item>Peru</item>
-    <item>Philippines</item>
-    <item>Poland</item>
-    <item>Portugal</item>
-    <item>Puerto Rico</item>
-    <item>Qatar</item>
-    <item>Romania</item>
-    <item>Russian Federation</item>
-    <item>Saudi Arabia</item>
-    <item>Senegal</item>
-    <item>Serbia</item>
-    <item>Seychelles</item>
-    <item>Singapore</item>
-    <item>Slovakia</item>
-    <item>Slovenia</item>
-    <item>Somalia</item>
-    <item>South Africa</item>
-    <item>South Korea</item>
-    <item>South Sudan</item>
-    <item>Spain</item>
-    <item>Sri Lanka</item>
-    <item>Sudan</item>
-    <item>Swaziland</item>
-    <item>Sweden</item>
-    <item>Switzerland</item>
-    <item>Syrian Arab Republic</item>
-    <item>Taiwan</item>
-    <item>Tajikistan</item>
-    <item>Tanzania</item>
-    <item>Thailand</item>
-    <item>Togo</item>
-    <item>Tunisia</item>
-    <item>Turkey</item>
-    <item>Turkmenistan</item>
-    <item>Uganda</item>
-    <item>Ukraine</item>
-    <item>UK</item>
-    <item>USA</item>
-    <item>Uruguay</item>
-    <item>Uzbekistan</item>
-    <item>Venezuela, Bolivarian Republic of</item>
-    <item>Viet Nam</item>
-    <item>Yemen</item>
-    <item>Zambia</item>
-    <item>Zimbabwe</item>
-    <item>other...</item>
-</array>
+    <array name="country">
+        <item>United Arab Emirates</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bosnia</item>
+        <item>Botswana</item>
+        <item>Bolivia</item>
+        <item>Brazil</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burundi</item>
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Congo</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominican Republic</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Georgia</item>
+        <item>Ghana</item>
+        <item>Greece</item>
+        <item>Germany</item>
+        <item>Guam</item>
+        <item>Guinea</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Ireland</item>
+        <item>Italy</item>
+        <item>Ivory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Korea</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macau</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Morocco</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palestine</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Romania</item>
+        <item>Russian Federation</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Sudan</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syrian Arab Republic</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>UK</item>
+        <item>USA</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Venezuela</item>
+        <item>Vietnam</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+        <item>Others...</item>
+    </array>
 
-<array name="country_code">
-    <item>UAE ( 971 )</item>
-    <item>Afghanistan ( 93 )</item>
-    <item>Albania ( 355 )</item>
-    <item>Algeria ( 213 )</item>
-    <item>American Samoa ( 684 )</item>
-    <item>Andorra ( 376 )</item>
-    <item>Angola ( 244 )</item>
-    <item>Anguilla ( 809 )</item>
-    <item>Antigua ( 268 )</item>
-    <item>Argentina ( 54 )</item>
-    <item>Armenia ( 374 )</item>
-    <item>Aruba ( 297 )</item>
-    <item>Ascension Island ( 247 )</item>
-    <item>Australia ( 61 )</item>
-    <item>Australian External Territories ( 672 )</item>
-    <item>Austria ( 43 )</item>
-    <item>Azerbaijan ( 994 )</item>
-    <item>Bahamas ( 242 )</item>
-    <item>Bahrain ( 973 )</item>
-    <item>Bangladesh ( 880 )</item>
-    <item>Barbados ( 246 )</item>
-    <item>Belarus ( 375 )</item>
-    <item>Belgium ( 32 )</item>
-    <item>Belize ( 501 )</item>
-    <item>Benin ( 229 )</item>
-    <item>Bhutan ( 975 )</item>
-    <item>Bolivia ( 591 )</item>
-    <item>Bosnia and Hercegovina ( 387 )</item>
-    <item>Botswana ( 267 )</item>
-    <item>Brazil ( 55 )</item>
-    <item>British Virgin Islands ( 284 )</item>
-    <item>Brunei Darussalm ( 673 )</item>
-    <item>Bulgaria ( 359 )</item>
-    <item>Burkina Faso ( 226 )</item>
-    <item>Burundi ( 257 )</item>
-    <item>Cambodia ( 855 )</item>
-    <item>Cameroon ( 237 )</item>
-    <item>Canada ( 1 )</item>
-    <item>CapeVerde Islands ( 238 )</item>
-    <item>Cayman Islands ( 345 )</item>
-    <item>Central African Republic ( 236 )</item>
-    <item>Chad ( 235 )</item>
-    <item>Chile ( 56 )</item>
-    <item>China ( 86 )</item>
-    <item>China-Taiwan ( 886 )</item>
-    <item>Colombia ( 57 )</item>
-    <item>Comoros and Mayotte ( 269 ) </item>
-    <item>Cook Islands ( 682 )</item>
-    <item>Costa Rica ( 506 )</item>
-    <item>Croatia ( 385 )</item>
-    <item>Cuba ( 53 )</item>
-    <item>Cyprus ( 357 )</item>
-    <item>Czech Republic ( 420 )</item>
-    <item>Denmark ( 45 )</item>
-    <item>Djibouti ( 253 )</item>
-    <item>Dominca ( 767 )</item>
-    <item>Ecuador ( 593 )</item>
-    <item>Egypt ( 20 )</item>
-    <item>El Salvador ( 503 )</item>
-    <item>Equatorial Guinea ( 240 )</item>
-    <item>Eritrea ( 291 )</item>
-    <item>Estonia ( 372 )</item>
-    <item>Ethiopia ( 251 )</item>
-    <item>Falkland Islands ( 500 )</item>
-    <item>Faroe Islands ( 298 )</item>
-    <item>Fiji ( 679 )</item>
-    <item>Finland ( 358 )</item>
-    <item>France ( 33 )</item>
-    <item>France ( 508 )</item>
-    <item>French Antilles ( 596 )</item>
-    <item>French Guiana ( 594 )</item>
-    <item>Gabon ( 241 )</item>
-    <item>Gambia ( 220 )</item>
-    <item>Georgia ( 995 )</item>
-    <item>Germany ( 49 )</item>
-    <item>Ghana ( 233 )</item>
-    <item>Gibraltar ( 350 )</item>
-    <item>Greece ( 30 )</item>
-    <item>Greenland ( 299 )</item>
-    <item>Grenada / Carricou ( 473 )</item>
-    <item>Guam ( 671 )</item>
-    <item>Guatemala ( 502 )</item>
-    <item>Guinea ( 224 )</item>
-    <item>Guinea-Bissau ( 245 )</item>
-    <item>Guyana ( 592 )</item>
-    <item>Haiti ( 509 )</item>
-    <item>Honduras ( 504 )</item>
-    <item>Hong Kong ( 852 )</item>
-    <item>Hungary ( 36 )</item>
-    <item>Iceland ( 354 )</item>
-    <item>India ( 91 )</item>
-    <item>Indonesia ( 62 )</item>
-    <item>Iran ( 98 )</item>
-    <item>Iraq ( 964 )</item>
-    <item>Ireland ( 353 )</item>
-    <item>Israel ( 972 )</item>
-    <item>Italy ( 39 )</item>
-    <item>Ivory Coast ( 225 )</item>
-    <item>Jamaica ( 876 )</item>
-    <item>Japan ( 81 )</item>
-    <item>Jordan ( 962 )</item>
-    <item>Kazakhstan ( 7 )</item>
-    <item>Kenya ( 254 )</item>
-    <item>Kiribati Republic ( 686 )</item>
-    <item>Kuwait ( 965 )</item>
-    <item>Kyrgyz Republic ( 996 )</item>
-    <item>Laos ( 856 )</item>
-    <item>Latvia ( 371 )</item>
-    <item>Lebanon ( 961 )</item>
-    <item>Lesotho ( 266 )</item>
-    <item>Liberia ( 231 )</item>
-    <item>Libya ( 218 )</item>
-    <item>Liechtenstein ( 423 )</item>
-    <item>Lithuania ( 370 )</item>
-    <item>Luxembourg ( 352 )</item>
-    <item>Macao ( 853 )</item>
-    <item>Macedonia ( 389 )</item>
-    <item>Madagascar ( 261 )</item>
-    <item>Malawi ( 265 )</item>
-    <item>Malaysia ( 60 )</item>
-    <item>Maldives ( 960 )</item>
-    <item>Mali ( 223 )</item>
-    <item>Malta ( 356 )</item>
-    <item>Marshall Islands ( 692 )</item>
-    <item>Mauritania ( 222 )</item>
-    <item>Mauritius ( 230 )</item>
-    <item>Mexico ( 52 )</item>
-    <item>Micronesia ( 691 )</item>
-    <item>Moldova ( 373 )</item>
-    <item>Mongolia ( 976 )</item>
-    <item>Morocco ( 212 )</item>
-    <item>Mozambique ( 258 )</item>
-    <item>Myanmar ( 95 )</item>
-    <item>Namibia ( 264 )</item>
-    <item>Nauru ( 674 )</item>
-    <item>Nepal ( 977 )</item>
-    <item>Netherlands ( 31 )</item>
-    <item>Netherlands Antilles ( 599 )</item>
-    <item>Nevis ( 869 )</item>
-    <item>New Caledonia ( 687 )</item>
-    <item>New Zealand ( 64 )</item>
-    <item>Nicaragua ( 505 )</item>
-    <item>Niger ( 227 )</item>
-    <item>Nigeria ( 234 )</item>
-    <item>Niue ( 683 )</item>
-    <item>North Korea ( 850 )</item>
-    <item>North Yemen ( 967 )</item>
-    <item>Norway ( 47 )</item>
-    <item>Oman ( 968 )</item>
-    <item>Pakistan ( 92 )</item>
-    <item>Palau ( 680 )</item>
-    <item>Panama ( 507 )</item>
-    <item>Papua New Guinea ( 675 )</item>
-    <item>Paraguay ( 595 )</item>
-    <item>Peru ( 51 )</item>
-    <item>Philippines ( 63 )</item>
-    <item>Poland ( 48 )</item>
-    <item>Portugal ( 351 )</item>
-    <item>Puerto Rico ( 1 787 )</item>
-    <item>Qatar ( 974 )</item>
-    <item>Reunion ( 262 )</item>
-    <item>Romania ( 40 )</item>
-    <item>Rwanda ( 250 )</item>
-    <item>Saipan ( 1 670 )</item>
-    <item>Saipan ( 670 )</item>
-    <item>San Marino ( 378 )</item>
-    <item>Sao Tome and Principe ( 239 )</item>
-    <item>Saudi Arabia ( 966 )</item>
-    <item>Senegal ( 221 )</item>
-    <item>Serbia and Montenegro ( 381 )</item>
-    <item>Seychelles ( 248 )</item>
-    <item>Sierra Leone ( 232 )</item>
-    <item>Singapore ( 65 )</item>
-    <item>Slovakia ( 421 )</item>
-    <item>Slovenia ( 386 )</item>
-    <item>Solomon Islands ( 677 )</item>
-    <item>Somalia ( 252 )</item>
-    <item>South Africa ( 27 )</item>
-    <item>South Korea ( 82 )</item>
-    <item>Spain ( 34 )</item>
-    <item>Sri Lanka ( 94 )</item>
-    <item>St. Helena ( 290 )</item>
-    <item>Sudan ( 249 )</item>
-    <item>Suriname ( 597 )</item>
-    <item>Sweden ( 46 )</item>
-    <item>Switzerland ( 41 )</item>
-    <item>Syria ( 963 )</item>
-    <item>Tahiti ( 689 )</item>
-    <item>Tanzania ( 255 )</item>
-    <item>Thailand ( 66 )</item>
-    <item>Togo ( 228 )</item>
-    <item>Tokelau ( 690 )</item>
-    <item>Tonga ( 676 )</item>
-    <item>Trinidad and Tobago ( 1 868 )</item>
-    <item>Tunisia ( 216 )</item>
-    <item>Turkey ( 90 )</item>
-    <item>Turkmenistan ( 993 )</item>
-    <item>Tuvalu ( 688 )</item>
-    <item>Uganda ( 256 )</item>
-    <item>Ukraine ( 380 )</item>
-    <item>United Arab Emirates ( 971 )</item>
-    <item>United Kingdom ( 44 )</item>
-    <item>Uruguay ( 598 )</item>
-    <item>Vanuatu ( 678 )</item>
-    <item>Venezuela ( 58 )</item>
-    <item>Viet Nam ( 84 )</item>
-    <item>Virgin Islands ( 1 340 )</item>
-    <item>Wallis and Futuna ( 681 )</item>
-    <item>Western Samoa ( 685 )</item>
-    <item>Zaire ( 243 )</item>
-    <item>Zambia ( 260 )</item>
-    <item>Zimbabwe ( 263 )</item>
+    <array name="country_value">
+        <item>AE</item>
+        <item>AF</item>
+        <item>AL</item>
+        <item>DZ</item>
+        <item>AS</item>
+        <item>AD</item>
+        <item>AO</item>
+        <item>AI</item>
+        <item>AR</item>
+        <item>AM</item>
+        <item>AU</item>
+        <item>AT</item>
+        <item>AZ</item>
+        <item>BS</item>
+        <item>BH</item>
+        <item>BD</item>
+        <item>BB</item>
+        <item>BY</item>
+        <item>BE</item>
+        <item>BZ</item>
+        <item>BJ</item>
+        <item>BA</item>
+        <item>BW</item>
+        <item>BO</item>
+        <item>BR</item>
+        <item>BN</item>
+        <item>BG</item>
+        <item>BI</item>
+        <item>KH</item>
+        <item>CM</item>
+        <item>CA</item>
+        <item>CF</item>
+        <item>TD</item>
+        <item>CL</item>
+        <item>CN</item>
+        <item>CO</item>
+        <item>KM</item>
+        <item>CG</item>
+        <item>CR</item>
+        <item>HR</item>
+        <item>CU</item>
+        <item>CY</item>
+        <item>CZ</item>
+        <item>DK</item>
+        <item>DJ</item>
+        <item>DO</item>
+        <item>EC</item>
+        <item>EG</item>
+        <item>EE</item>
+        <item>ET</item>
+        <item>FI</item>
+        <item>FR</item>
+        <item>GE</item>
+        <item>GH</item>
+        <item>GR</item>
+        <item>DE</item>
+        <item>GU</item>
+        <item>GN</item>
+        <item>HK</item>
+        <item>HU</item>
+        <item>IR</item>
+        <item>IQ</item>
+        <item>IS</item>
+        <item>IN</item>
+        <item>ID</item>
+        <item>IE</item>
+        <item>IT</item>
+        <item>CI</item>
+        <item>JM</item>
+        <item>JP</item>
+        <item>JO</item>
+        <item>KZ</item>
+        <item>KE</item>
+        <item>KR</item>
+        <item>KW</item>
+        <item>KG</item>
+        <item>LV</item>
+        <item>LB</item>
+        <item>LR</item>
+        <item>LY</item>
+        <item>LI</item>
+        <item>LT</item>
+        <item>LU</item>
+        <item>MO</item>
+        <item>MK</item>
+        <item>MG</item>
+        <item>MW</item>
+        <item>MY</item>
+        <item>MV</item>
+        <item>ML</item>
+        <item>MT</item>
+        <item>MR</item>
+        <item>MU</item>
+        <item>MX</item>
+        <item>FM</item>
+        <item>MD</item>
+        <item>MC</item>
+        <item>MN</item>
+        <item>ME</item>
+        <item>MA</item>
+        <item>NP</item>
+        <item>NL</item>
+        <item>NC</item>
+        <item>NZ</item>
+        <item>NE</item>
+        <item>NG</item>
+        <item>NO</item>
+        <item>OM</item>
+        <item>PK</item>
+        <item>PS</item>
+        <item>PA</item>
+        <item>PG</item>
+        <item>PY</item>
+        <item>PE</item>
+        <item>PH</item>
+        <item>PL</item>
+        <item>PT</item>
+        <item>PR</item>
+        <item>QA</item>
+        <item>RO</item>
+        <item>RU</item>
+        <item>SA</item>
+        <item>SN</item>
+        <item>RS</item>
+        <item>SC</item>
+        <item>SG</item>
+        <item>SK</item>
+        <item>SI</item>
+        <item>SO</item>
+        <item>ZA</item>
+        <item>SS</item>
+        <item>ES</item>
+        <item>LK</item>
+        <item>SD</item>
+        <item>SZ</item>
+        <item>SE</item>
+        <item>CH</item>
+        <item>SY</item>
+        <item>TW</item>
+        <item>TJ</item>
+        <item>TZ</item>
+        <item>TH</item>
+        <item>TG</item>
+        <item>TN</item>
+        <item>TR</item>
+        <item>TM</item>
+        <item>UG</item>
+        <item>UA</item>
+        <item>GB</item>
+        <item>US</item>
+        <item>UY</item>
+        <item>UZ</item>
+        <item>VE</item>
+        <item>VN</item>
+        <item>YE</item>
+        <item>ZM</item>
+        <item>ZW</item>
+        <item>Other</item>
+    </array>
 
-</array>
+    <array name="country_code">
+        <item>UAE ( 971 )</item>
+        <item>Afghanistan ( 93 )</item>
+        <item>Albania ( 355 )</item>
+        <item>Algeria ( 213 )</item>
+        <item>American Samoa ( 684 )</item>
+        <item>Andorra ( 376 )</item>
+        <item>Angola ( 244 )</item>
+        <item>Anguilla ( 809 )</item>
+        <item>Antigua ( 268 )</item>
+        <item>Argentina ( 54 )</item>
+        <item>Armenia ( 374 )</item>
+        <item>Aruba ( 297 )</item>
+        <item>Ascension Island ( 247 )</item>
+        <item>Australia ( 61 )</item>
+        <item>Australian External Territories ( 672 )</item>
+        <item>Austria ( 43 )</item>
+        <item>Azerbaijan ( 994 )</item>
+        <item>Bahamas ( 242 )</item>
+        <item>Bahrain ( 973 )</item>
+        <item>Bangladesh ( 880 )</item>
+        <item>Barbados ( 246 )</item>
+        <item>Belarus ( 375 )</item>
+        <item>Belgium ( 32 )</item>
+        <item>Belize ( 501 )</item>
+        <item>Benin ( 229 )</item>
+        <item>Bhutan ( 975 )</item>
+        <item>Bolivia ( 591 )</item>
+        <item>Bosnia and Hercegovina ( 387 )</item>
+        <item>Botswana ( 267 )</item>
+        <item>Brazil ( 55 )</item>
+        <item>British Virgin Islands ( 284 )</item>
+        <item>Brunei Darussalm ( 673 )</item>
+        <item>Bulgaria ( 359 )</item>
+        <item>Burkina Faso ( 226 )</item>
+        <item>Burundi ( 257 )</item>
+        <item>Cambodia ( 855 )</item>
+        <item>Cameroon ( 237 )</item>
+        <item>Canada ( 1 )</item>
+        <item>CapeVerde Islands ( 238 )</item>
+        <item>Cayman Islands ( 345 )</item>
+        <item>Central African Republic ( 236 )</item>
+        <item>Chad ( 235 )</item>
+        <item>Chile ( 56 )</item>
+        <item>China ( 86 )</item>
+        <item>China-Taiwan ( 886 )</item>
+        <item>Colombia ( 57 )</item>
+        <item>Comoros and Mayotte ( 269 )</item>
+        <item>Cook Islands ( 682 )</item>
+        <item>Costa Rica ( 506 )</item>
+        <item>Croatia ( 385 )</item>
+        <item>Cuba ( 53 )</item>
+        <item>Cyprus ( 357 )</item>
+        <item>Czech Republic ( 420 )</item>
+        <item>Denmark ( 45 )</item>
+        <item>Djibouti ( 253 )</item>
+        <item>Dominca ( 767 )</item>
+        <item>Ecuador ( 593 )</item>
+        <item>Egypt ( 20 )</item>
+        <item>El Salvador ( 503 )</item>
+        <item>Equatorial Guinea ( 240 )</item>
+        <item>Eritrea ( 291 )</item>
+        <item>Estonia ( 372 )</item>
+        <item>Ethiopia ( 251 )</item>
+        <item>Falkland Islands ( 500 )</item>
+        <item>Faroe Islands ( 298 )</item>
+        <item>Fiji ( 679 )</item>
+        <item>Finland ( 358 )</item>
+        <item>France ( 33 )</item>
+        <item>France ( 508 )</item>
+        <item>French Antilles ( 596 )</item>
+        <item>French Guiana ( 594 )</item>
+        <item>Gabon ( 241 )</item>
+        <item>Gambia ( 220 )</item>
+        <item>Georgia ( 995 )</item>
+        <item>Germany ( 49 )</item>
+        <item>Ghana ( 233 )</item>
+        <item>Gibraltar ( 350 )</item>
+        <item>Greece ( 30 )</item>
+        <item>Greenland ( 299 )</item>
+        <item>Grenada / Carricou ( 473 )</item>
+        <item>Guam ( 671 )</item>
+        <item>Guatemala ( 502 )</item>
+        <item>Guinea ( 224 )</item>
+        <item>Guinea-Bissau ( 245 )</item>
+        <item>Guyana ( 592 )</item>
+        <item>Haiti ( 509 )</item>
+        <item>Honduras ( 504 )</item>
+        <item>Hong Kong ( 852 )</item>
+        <item>Hungary ( 36 )</item>
+        <item>Iceland ( 354 )</item>
+        <item>India ( 91 )</item>
+        <item>Indonesia ( 62 )</item>
+        <item>Iran ( 98 )</item>
+        <item>Iraq ( 964 )</item>
+        <item>Ireland ( 353 )</item>
+        <item>Israel ( 972 )</item>
+        <item>Italy ( 39 )</item>
+        <item>Ivory Coast ( 225 )</item>
+        <item>Jamaica ( 876 )</item>
+        <item>Japan ( 81 )</item>
+        <item>Jordan ( 962 )</item>
+        <item>Kazakhstan ( 7 )</item>
+        <item>Kenya ( 254 )</item>
+        <item>Kiribati Republic ( 686 )</item>
+        <item>Kuwait ( 965 )</item>
+        <item>Kyrgyz Republic ( 996 )</item>
+        <item>Laos ( 856 )</item>
+        <item>Latvia ( 371 )</item>
+        <item>Lebanon ( 961 )</item>
+        <item>Lesotho ( 266 )</item>
+        <item>Liberia ( 231 )</item>
+        <item>Libya ( 218 )</item>
+        <item>Liechtenstein ( 423 )</item>
+        <item>Lithuania ( 370 )</item>
+        <item>Luxembourg ( 352 )</item>
+        <item>Macao ( 853 )</item>
+        <item>Macedonia ( 389 )</item>
+        <item>Madagascar ( 261 )</item>
+        <item>Malawi ( 265 )</item>
+        <item>Malaysia ( 60 )</item>
+        <item>Maldives ( 960 )</item>
+        <item>Mali ( 223 )</item>
+        <item>Malta ( 356 )</item>
+        <item>Marshall Islands ( 692 )</item>
+        <item>Mauritania ( 222 )</item>
+        <item>Mauritius ( 230 )</item>
+        <item>Mexico ( 52 )</item>
+        <item>Micronesia ( 691 )</item>
+        <item>Moldova ( 373 )</item>
+        <item>Mongolia ( 976 )</item>
+        <item>Morocco ( 212 )</item>
+        <item>Mozambique ( 258 )</item>
+        <item>Myanmar ( 95 )</item>
+        <item>Namibia ( 264 )</item>
+        <item>Nauru ( 674 )</item>
+        <item>Nepal ( 977 )</item>
+        <item>Netherlands ( 31 )</item>
+        <item>Netherlands Antilles ( 599 )</item>
+        <item>Nevis ( 869 )</item>
+        <item>New Caledonia ( 687 )</item>
+        <item>New Zealand ( 64 )</item>
+        <item>Nicaragua ( 505 )</item>
+        <item>Niger ( 227 )</item>
+        <item>Nigeria ( 234 )</item>
+        <item>Niue ( 683 )</item>
+        <item>North Korea ( 850 )</item>
+        <item>North Yemen ( 967 )</item>
+        <item>Norway ( 47 )</item>
+        <item>Oman ( 968 )</item>
+        <item>Pakistan ( 92 )</item>
+        <item>Palau ( 680 )</item>
+        <item>Panama ( 507 )</item>
+        <item>Papua New Guinea ( 675 )</item>
+        <item>Paraguay ( 595 )</item>
+        <item>Peru ( 51 )</item>
+        <item>Philippines ( 63 )</item>
+        <item>Poland ( 48 )</item>
+        <item>Portugal ( 351 )</item>
+        <item>Puerto Rico ( 1 787 )</item>
+        <item>Qatar ( 974 )</item>
+        <item>Reunion ( 262 )</item>
+        <item>Romania ( 40 )</item>
+        <item>Rwanda ( 250 )</item>
+        <item>Saipan ( 1 670 )</item>
+        <item>Saipan ( 670 )</item>
+        <item>San Marino ( 378 )</item>
+        <item>Sao Tome and Principe ( 239 )</item>
+        <item>Saudi Arabia ( 966 )</item>
+        <item>Senegal ( 221 )</item>
+        <item>Serbia and Montenegro ( 381 )</item>
+        <item>Seychelles ( 248 )</item>
+        <item>Sierra Leone ( 232 )</item>
+        <item>Singapore ( 65 )</item>
+        <item>Slovakia ( 421 )</item>
+        <item>Slovenia ( 386 )</item>
+        <item>Solomon Islands ( 677 )</item>
+        <item>Somalia ( 252 )</item>
+        <item>South Africa ( 27 )</item>
+        <item>South Korea ( 82 )</item>
+        <item>Spain ( 34 )</item>
+        <item>Sri Lanka ( 94 )</item>
+        <item>St. Helena ( 290 )</item>
+        <item>Sudan ( 249 )</item>
+        <item>Suriname ( 597 )</item>
+        <item>Sweden ( 46 )</item>
+        <item>Switzerland ( 41 )</item>
+        <item>Syria ( 963 )</item>
+        <item>Tahiti ( 689 )</item>
+        <item>Tanzania ( 255 )</item>
+        <item>Thailand ( 66 )</item>
+        <item>Togo ( 228 )</item>
+        <item>Tokelau ( 690 )</item>
+        <item>Tonga ( 676 )</item>
+        <item>Trinidad and Tobago ( 1 868 )</item>
+        <item>Tunisia ( 216 )</item>
+        <item>Turkey ( 90 )</item>
+        <item>Turkmenistan ( 993 )</item>
+        <item>Tuvalu ( 688 )</item>
+        <item>Uganda ( 256 )</item>
+        <item>Ukraine ( 380 )</item>
+        <item>United Arab Emirates ( 971 )</item>
+        <item>United Kingdom ( 44 )</item>
+        <item>Uruguay ( 598 )</item>
+        <item>Vanuatu ( 678 )</item>
+        <item>Venezuela ( 58 )</item>
+        <item>Viet Nam ( 84 )</item>
+        <item>Virgin Islands ( 1 340 )</item>
+        <item>Wallis and Futuna ( 681 )</item>
+        <item>Western Samoa ( 685 )</item>
+        <item>Zaire ( 243 )</item>
+        <item>Zambia ( 260 )</item>
+        <item>Zimbabwe ( 263 )</item>
 
-<!--Request keys-->
-<string name="loginRequest">Login</string>
-<string name="forgotPasswordRequest">ForgotPassword</string>
-<string name="editProfileRequest">EditProfile</string>
-<string name="registerRequest">Register</string>
-<string name="changePasswordRequest">ChangePasswordRequest</string>
-<string name="update">Update</string>
+    </array>
 
-<string name="OnBackPressed">OnBackPressed</string>
-<string name="OnLanguageChange">OnLanguageChange</string>
-<string name="base64_hpt1">bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==</string>
-<string name="UDF1">sample string 23</string>
-<string name="promotion_code">sample string 18</string>
-<string name="UDF2">sample string 24</string>
-<string name="reservation_id">sample string 1</string>
-<string name="full_reservation_id">sample string 2</string>
-<string name="udf5">sample string 27</string>
-<string name="udf3">sample string 25</string>
-<string name="udf4">sample string 26</string>
-<string name="table_position">sample string 17</string>
-<string name="device_id">sample string 22</string>
-<string name="area_name">sample string 4</string>
-<string name="coupon_code">sample string 19</string>
-<string name="referral_name">sample string 14</string>
-<string name="occassion_name">sample string 16</string>
-<string name="referral_code">sample string 20</string>
-<string name="source_host">sample string 21</string>
-<string name="phone_number1">sample string 10</string>
-<string name="organisation">sample string 13</string>
-<string name="address2">sample string 6</string>
-<string name="state_request">sample string 8</string>
-<string name="address1">sample string 5</string>
-<string name="post_code">sample string 9</string>
-<string name="suburb">sample string 7</string>
-<string name="position">sample string 14</string>
-<string name="errorSelectTime">Select time to proceed</string>
-<string name="sample_string_7">Sample string 7</string>
+    <!--Request keys-->
+    <string name="loginRequest">Login</string>
+    <string name="forgotPasswordRequest">ForgotPassword</string>
+    <string name="editProfileRequest">EditProfile</string>
+    <string name="registerRequest">Register</string>
+    <string name="changePasswordRequest">ChangePasswordRequest</string>
+    <string name="update">Update</string>
 
-<!--Events Fragment-->
-<string name="tab_all_events">ALL</string>
-<string name="tab_today_events">TODAY</string>
-<string name="tab_favourites_events">FAVOURITE</string>
-<string name="tab_genres_events">GENRES</string>
-<string name="buy_tickets">BUY TICKETS</string>
-<string name="video">VIDEO</string>
-<string name="you_also_like">You might also like...</string>
-<string name="no_today_data">No Events for the day!</string>
-<string name="no_favo_data">No Favourite data!</string>
-<string name="no_data">No data!</string>
-<string name="view_details">View Details</string>
+    <string name="OnBackPressed">OnBackPressed</string>
+    <string name="OnLanguageChange">OnLanguageChange</string>
+    <string name="base64_hpt1">bjRWU1RxeGlVZUhrZkpjei9pb0MvcVEvcURPbmR6cWdHb08rUEhSWVdHRWFQMGxLZVBFeXdocG15VzlxeTVGdXZueVQ1bVhwclFpYzNUU0pGYndjdSs5OWM3R3Q3bnJ5NkVTZUh4RjVPbmd1eUhIMjRqS3BqRC9jbnE5VExtL0wveTVlTEF6ZHFrOS9xUFVLNTZua3dPVXVuc1dBZHZZM3VGeGFYTmFpOUc0PQ==</string>
+    <string name="UDF1">sample string 23</string>
+    <string name="promotion_code">sample string 18</string>
+    <string name="UDF2">sample string 24</string>
+    <string name="reservation_id">sample string 1</string>
+    <string name="full_reservation_id">sample string 2</string>
+    <string name="udf5">sample string 27</string>
+    <string name="udf3">sample string 25</string>
+    <string name="udf4">sample string 26</string>
+    <string name="table_position">sample string 17</string>
+    <string name="device_id">sample string 22</string>
+    <string name="area_name">sample string 4</string>
+    <string name="coupon_code">sample string 19</string>
+    <string name="referral_name">sample string 14</string>
+    <string name="occassion_name">sample string 16</string>
+    <string name="referral_code">sample string 20</string>
+    <string name="source_host">sample string 21</string>
+    <string name="phone_number1">sample string 10</string>
+    <string name="organisation">sample string 13</string>
+    <string name="address2">sample string 6</string>
+    <string name="state_request">sample string 8</string>
+    <string name="address1">sample string 5</string>
+    <string name="post_code">sample string 9</string>
+    <string name="suburb">sample string 7</string>
+    <string name="position">sample string 14</string>
+    <string name="errorSelectTime">Select time to proceed</string>
+    <string name="sample_string_7">Sample string 7</string>
 
-<!--Home fragment-->
-<string name="enter_keywords">Enter keywords to search for events, genres etc.</string>
-<string name="search">Search</string>
-<string name="search1">SEARCH</string>
-<string name="whats_on">What\'s on</string>
-<string name="empty"></string>
-<string name="share_using">Select App to Share Text and Image</string>
-<string name="error_youtube">Error playing youtube video</string>
+    <!--Events Fragment-->
+    <string name="tab_all_events">ALL</string>
+    <string name="tab_today_events">TODAY</string>
+    <string name="tab_favourites_events">FAVOURITE</string>
+    <string name="tab_genres_events">GENRES</string>
+    <string name="buy_tickets">BUY TICKETS</string>
+    <string name="video">VIDEO</string>
+    <string name="you_also_like">You might also like...</string>
+    <string name="no_today_data">No Events for the day!</string>
+    <string name="no_favo_data">No Favourite data!</string>
+    <string name="no_data">No data!</string>
+    <string name="view_details">View Details</string>
 
-<!--Wallet activity -->
+    <!--Home fragment-->
+    <string name="enter_keywords">Enter keywords to search for events, genres etc.</string>
+    <string name="search">Search</string>
+    <string name="search1">SEARCH</string>
+    <string name="whats_on">What\'s on</string>
+    <string name="empty"></string>
+    <string name="share_using">Select App to Share Text and Image</string>
+    <string name="error_youtube">Error playing youtube video</string>
+
+    <!--Wallet activity -->
 
     <string name="walletTitle">Wallet</string>
     <string name="walletEvents">EVENTS</string>
@@ -974,22 +1134,22 @@
     <string name="date_detail">VALID FOR 12 MONTHS</string>
 
     <!--about push notification -->
-<string name="google_app_id">102673554145</string>
-<string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>
+    <string name="google_app_id">102673554145</string>
+    <string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>
 
-<string name="close">CLOSE</string>
-<string name="select_item">Select item</string>
+    <string name="close">CLOSE</string>
+    <string name="select_item">Select item</string>
 
-<string name="find_shows">FIND SHOWS</string>
-<string name="location">LOCATION MAP</string>
+    <string name="find_shows">FIND SHOWS</string>
+    <string name="location">LOCATION MAP</string>
 
-<!--Apple Music-->
-<string name="appleMusicOpen">Open apple music</string>
-<string name="appleBuyTicket">Buy tickets</string>
+    <!--Apple Music-->
+    <string name="appleMusicOpen">Open apple music</string>
+    <string name="appleBuyTicket">Buy tickets</string>
 
-<!--Event Details-->
-<string name="eventDetailTicket">Tickets From</string>
-<string name="no_buy_link_available">Data not available</string>
+    <!--Event Details-->
+    <string name="eventDetailTicket">Tickets From</string>
+    <string name="no_buy_link_available">Data not available</string>
 
 <!--Google analytics events-->
 <string name="analytics_search_event">Events Search</string>
@@ -998,15 +1158,15 @@
 <string name="listen1">Listen</string>
 <string name="ticket_booked_success">Ticket booked successfully! Visit Wallet to view the details of the booked Ticket.</string>
 
-<string name="feedback_comment">We\'d love your feedback. Click here to rate your experience.</string>
-<string name="feedback_attended_time">You attended the show on </string>
-<string name="feedback_header">Feedback on the show</string>
+    <string name="feedback_comment">We\'d love your feedback. Click here to rate your experience.</string>
+    <string name="feedback_attended_time">You attended the show on </string>
+    <string name="feedback_header">Feedback on the show</string>
 
-<!--Notification -->
-<string name="from">FROM</string>
-<string name="aed">AED</string>
-<string name="feedBack">We would love your Feedback. Click here to rate your experience.</string>
-<string name="remindStart">start at </string>
-<string name="remindShow">. Enjoy the show!</string>
+    <!--Notification -->
+    <string name="from">FROM</string>
+    <string name="aed">AED</string>
+    <string name="feedBack">We would love your Feedback. Click here to rate your experience.</string>
+    <string name="remindStart">start at </string>
+    <string name="remindShow">Enjoy the show!</string>
 
 </resources>

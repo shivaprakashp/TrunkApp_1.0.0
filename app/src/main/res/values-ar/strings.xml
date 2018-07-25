@@ -569,7 +569,6 @@
         <item>سلوفينيا</item>
         <item>الصومال</item>
         <item>جنوب أفريقيا</item>
-        <item>كوريا الجنوبية</item>
         <item>جنوب السودان</item>
         <item>إسبانيا</item>
         <item>سيريلانكا</item>
@@ -597,7 +596,7 @@
         <item>اليمن</item>
         <item>زامبيا</item>
         <item>زيمبابوي</item>
-        <item>آخر...</item>
+        <item>آخر... </item>
     </array>
 
     <array name="country_code">
@@ -851,10 +850,11 @@
     <string name="bookReference">رقم مرجع الحجز:</string>
     <string name="bookDate">تاريخ الحجز:</string>
     <string name="giftVoucherDate">تاريخ الانتهاء:</string>
-
-    <!--Notification -->
-    <string name="from">من عند</string>
-    <string name="aed">درهم إماراتي</string>
+    <string name="walletDoor">باب:</string>
+    <string name="walletRow">صف:</string>
+    <string name="walletSection">الجزء:</string>
+    <string name="walletSeat">مقعد:</string>
+    <string name="walletDataNotAvail">لا تتوافر بيانات</string>
 
     <!--Dubai Opera Tour activity -->
     <string name="bookNow">احجز الآن</string>
@@ -875,4 +875,10 @@
     <string name="feedback_attended_time">حضرت العرض على</string>
     <string name="feedback_header">ردود الفعل على المعرض</string>
 
+    <!--Notification -->
+    <string name="from">من عند</string>
+    <string name="aed">درهم إماراتي</string>
+    <string name="feedBack">نحن نحب ملاحظاتك. انقر هنا لتقييم تجربتك.</string>
+    <string name="remindStart">تبدأ في</string>
+    <string name="remindShow">استمتع بالعرض!</string>
 </resources>

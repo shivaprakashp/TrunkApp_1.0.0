@@ -36,8 +36,11 @@ import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 import com.opera.app.utils.OperaUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -57,11 +60,12 @@ public class EditProfileActivity extends BaseActivity {
     //injecting retrofit
     @Inject
     Retrofit retrofit;
-
+    int pos = 0;
     private Api api;
     private SessionManager manager;
     private Activity mActivity;
     public static EditTextWithFont edtDob;
+    String selectedDate, finalDate;
 
     @BindView(R.id.toolbar_edit_profile)
     Toolbar toolbar;
@@ -179,7 +183,9 @@ public class EditProfileActivity extends BaseActivity {
         edtDob.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtDob.performClick();
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getDateOfBirth() != null) {
-            edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
+            //edtDob.setText(manager.getUserLoginData().getData().getProfile().getDateOfBirth());
+            finalDate = manager.getUserLoginData().getData().getProfile().getDateOfBirth();
+            edtDob.setText(finalDate);
         }
 
         edtCity = edit_edtCity.findViewById(R.id.edt);
@@ -210,7 +216,19 @@ public class EditProfileActivity extends BaseActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //edtDob.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-                        edtDob.setText(new StringBuilder().append(dayOfMonth).append("/").append(month + 1).append("/").append(year).toString());
+                        selectedDate = String.valueOf(dayOfMonth) + "/" + (month + 1) + "/" + year;
+                        edtDob.setText(selectedDate);
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date myDate = null;
+                        try {
+                            myDate = dateFormat.parse(selectedDate);
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        finalDate = timeFormat.format(myDate);
                     }
                 });
                 dialogFragment.show(getSupportFragmentManager(), "Date");
@@ -277,9 +295,42 @@ public class EditProfileActivity extends BaseActivity {
             }
         });
     }
-
     //find all spinner at one place
     private void initSpinners(){
+
+        //---------------Country----------------
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
+                R.layout.custom_spinner,
+                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
+        spinnerCountry.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_country));
+        spinnerCountry.setAdapter(countryAdapter);
+        //spinnerCountry.setSelection(countryAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
+        int mPosition=0;
+        for(int j=0;j<Arrays.asList(getResources().getStringArray(R.array.country_value)).size();j++) {
+
+            if(Arrays.asList(getResources().getStringArray(R.array.country_value)).get(j).equals(manager.getUserLoginData().getData().getProfile().getCountry())){
+                mPosition=j;
+                break;
+            }
+        }
+
+        spinnerCountry.setSelection(mPosition);
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.country))){
+                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
+                            R.style.label_black);
+                    pos =  spinnerCountry.getSelectedItemPosition();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         //---------------Nationality----------------
         // Initializing a String Array
         ArrayAdapter<String> nationalAdapter = new ArrayAdapter<>(
@@ -324,27 +375,7 @@ public class EditProfileActivity extends BaseActivity {
 
             }
         });
-        //---------------Country----------------
-        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(mActivity,
-                R.layout.custom_spinner,
-                new ArrayList<String>(new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country)))));
-        spinnerCountry.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.edit_country));
-        spinnerCountry.setAdapter(countryAdapter);
-        spinnerCountry.setSelection(countryAdapter.getPosition(manager.getUserLoginData().getData().getProfile().getCountry()));
-        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!spinnerCountry.getSelectedItem().toString().equalsIgnoreCase(
-                        getResources().getString(R.string.country))){
-                    ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
-                            R.style.label_black);
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
     }
 
     private View.OnClickListener backPress = new View.OnClickListener() {
@@ -386,13 +417,14 @@ public class EditProfileActivity extends BaseActivity {
         data.setFirstName(edtFirstName.getText().toString());
         data.setLastName(edtLastName.getText().toString());
         data.setNationality(spinnerNationality.getSelectedItem().toString().trim());
-        data.setDateOfBirth(edtDob.getText().toString());
+        data.setDateOfBirth(finalDate);
         /*data.setMobileNumber(edtMobile.getText().toString() != null ?
                 edtMobile.getText().toString() : "");*/
         data.setMobileNumber("+("+countryCode +")"+ edtMobile.getText().toString().trim());
         data.setCity(edtCity.getText().toString().trim());
         data.setState(spinnerState.getSelectedItem().toString().trim());
-        data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
+        //data.setCountry(spinnerCountry.getSelectedItem().toString().trim());
+        data.setCountry(mActivity.getResources().getStringArray(R.array.country_value)[pos]);
         data.setAddress(edit_edtAddress.getText().toString() != null ?
                 edit_edtAddress.getText().toString() : "");
 

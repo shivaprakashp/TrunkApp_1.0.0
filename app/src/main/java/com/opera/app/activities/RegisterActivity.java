@@ -69,6 +69,7 @@ public class RegisterActivity extends BaseActivity {
     //injecting retrofit
     @Inject
     Retrofit retrofit;
+    int pos = 0;
 
     private Api api;
     private Activity mActivity;
@@ -275,6 +276,7 @@ public class RegisterActivity extends BaseActivity {
                         countryCode = spinnerCountryCode.getSelectedItem().toString().substring(spinnerCountryCode.getSelectedItem().toString().indexOf("(") + 1,
                                 spinnerCountryCode.getSelectedItem().toString().indexOf(")")).replaceAll("\\s","");
                     ((TextView) parent.getChildAt(0)).setText(new StringBuilder().append("+ ").append(countryCode).toString());
+
                 }
             }
 
@@ -344,14 +346,15 @@ public class RegisterActivity extends BaseActivity {
                         getResources().getString(R.string.country))) {
                     ((TextView) parent.getChildAt(0)).setTextAppearance(mActivity,
                             R.style.label_black);
+                    pos =  spinnerCountry.getSelectedItemPosition();
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
     }
 
     //terms and privacy policy clickable
@@ -470,7 +473,8 @@ public class RegisterActivity extends BaseActivity {
         registration.setDateOfBirth(finalDate);
         registration.setMobileNumber("+(" + countryCode + ")" + edtMobile.getText().toString().trim());
         registration.setCity(edtCity.getText().toString());
-        registration.setCountry(spinnerCountry.getSelectedItem().toString());
+        //registration.setCountry(spinnerCountry.getSelectedItem().toString());
+        registration.setCountry(mActivity.getResources().getStringArray(R.array.country_value)[pos]);
         registration.setState(spinnerState.getSelectedItem().toString());
         registration.setJoinDate(OperaUtils.getCurrentDate());
         if (ckbNewsLetters.isChecked())

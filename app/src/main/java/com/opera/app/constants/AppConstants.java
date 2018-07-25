@@ -12,7 +12,7 @@ public interface AppConstants {
     String EVENT_TYPE_GIFT_CARD = "GiftCard";
     String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
     String EnglishLanguage = "en";
-    String ArabicLanguage = "ar";
+    String ArabicLanguage = "ar-AE";
     String STATUS_SUCCESS = "success";
     String MESSAGE = "message";
 
