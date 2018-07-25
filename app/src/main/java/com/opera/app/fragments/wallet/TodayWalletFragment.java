@@ -40,7 +40,6 @@ public class TodayWalletFragment extends Fragment {
 
         init();
 
-
         int mTotalData = 0;
         WalletPreference preference = new WalletPreference(getActivity());
         if (WalletEnums.EVENTS.name().equalsIgnoreCase(OperaManager.createInstance().getEnums().name())) {
