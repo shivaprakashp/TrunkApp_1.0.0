@@ -171,7 +171,7 @@ public class SeanRestOpeation {
     }
 
     public void removeSeanConnolly(String mRestaurantId) {
-        int row = database.delete(TABLE_NAME, "restItemId" + " = ?", new String[]{mRestaurantId});
+        int row = database.delete(TABLE_NAME, "restId" + " = ?", new String[]{mRestaurantId});
         Log.e("deletedRow", row + "");
     }
 }
