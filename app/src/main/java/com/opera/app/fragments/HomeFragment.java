@@ -238,41 +238,41 @@ public class HomeFragment extends BaseFragment {
 
                 for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
 
-                    //log alarm
-                    Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
-                    intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
-
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                            mActivity, i, intentLog, 0);
-
-                    MainApplication.alarmManager[i] = (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
-
                     OrderHistory history = orderHistoryDB.orderHistories().get(i);
 
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(System.currentTimeMillis());
                     calendar.clear();
-                    String[] dateTime = history.getDateTime().split("T");
-                    String[] dateYearMonth = dateTime[0].split("-");
 
-                    String endTimeAmPm = history.getEndTime().split(" ")[1];
-                    String endTimeHr = history.getEndTime().split(":")[0];
-                    String endTimeMM = history.getEndTime().split(":")[1];
+                    if (history.getEndTime()!=null){
+                        String[] endTime = history.getEndTime().split("T");
 
-                    calendar.set(Integer.valueOf(dateYearMonth[0]),
-                            Integer.valueOf(dateYearMonth[1]),
-                            Integer.valueOf(dateYearMonth[2]),
-                            Integer.valueOf(endTimeHr),
-                            Integer.valueOf(endTimeMM));
-                  /*  calendar.set(2018,
+                        calendar.set(Integer.valueOf(endTime[0].substring(0,4)),
+                                Integer.valueOf(endTime[0].substring(4,6)),
+                                Integer.valueOf(endTime[0].substring(4,6)),
+                                Integer.valueOf(endTime[1].substring(0,2)),
+                                Integer.valueOf(endTime[1].substring(3,5)));
+
+                        /*  calendar.set(2018,
                             06,
                             17,
                             17,
                             58);*/
-                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                            pendingIntent);
 
-                    MainApplication.arrayList.add(pendingIntent);
+                        //log alarm
+                        Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);
+                        intentLog.putExtra(AppConstants.LOG_FEEDBACK_ALARM, AppConstants.LOG_FEEDBACK_ALARM);
+
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                mActivity, i, intentLog, 0);
+
+                        MainApplication.alarmManager[i] = (AlarmManager) mActivity.getSystemService(ALARM_SERVICE);
+
+                        MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                pendingIntent);
+
+                        MainApplication.arrayList.add(pendingIntent);
+                    }
                 }
             }
         }

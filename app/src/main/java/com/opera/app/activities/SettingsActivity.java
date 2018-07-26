@@ -174,24 +174,47 @@ public class SettingsActivity extends BaseActivity {
                         //set dabase data
                         orderHistoryDB.open();
                         if (orderHistoryDB.orderHistories() != null ){
+
                             MainApplication.alarmManager = new AlarmManager[orderHistoryDB.orderHistories().size()];
                             MainApplication.arrayList = new ArrayList<>();
 
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(System.currentTimeMillis());
+                            calendar.clear();
+
                             for (int i = 0 ; i < orderHistoryDB.orderHistories().size() ; i++){
-                                //log alarm
-                                Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
-                                intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
-
-                                PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                                        mActivity, i, intentLog, 0);
-
-                                MainApplication.alarmManager[i] = (AlarmManager) getSystemService(ALARM_SERVICE);
-
                                 OrderHistory history = orderHistoryDB.orderHistories().get(i);
 
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.setTimeInMillis(System.currentTimeMillis());
-                                calendar.clear();
+                                if (history.getStartTime()!=null){
+                                    String[] startTime = history.getStartTime().split("T");
+
+                                    calendar.set(Integer.valueOf(startTime[0].substring(0,4)),
+                                            Integer.valueOf(startTime[0].substring(4,6)),
+                                            Integer.valueOf(startTime[0].substring(4,6)),
+                                            Integer.valueOf(startTime[1].substring(0,2)),
+                                            Integer.valueOf(startTime[1].substring(3,5)));
+
+
+                                    //log alarm
+                                    Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
+                                    intentLog.putExtra(AppConstants.LOG_ALARM, AppConstants.LOG_ALARM);
+
+                                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                            mActivity, i, intentLog, 0);
+
+                                    MainApplication.alarmManager[i] = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                                    MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                            pendingIntent);
+
+                                    MainApplication.arrayList.add(pendingIntent);
+
+                                }
+/*
+
+
+
+
                                 String[] dateTime = history.getDateTime().split("T");
                                 String[] dateYearMonth = dateTime[0].split("-");
 
@@ -208,22 +231,19 @@ public class SettingsActivity extends BaseActivity {
 
                                 String startTimeMM = history.getStartTime().split(":")[1].split(" ")[0];
 
+
                                 calendar.set(Integer.valueOf(dateYearMonth[0]),
                                         Integer.valueOf(dateYearMonth[1]),
                                         Integer.valueOf(dateYearMonth[2]),
                                         Integer.valueOf(startTime),
                                         Integer.valueOf(startTimeMM));
 
-                                /*calendar.set(2018,
+              */                  /*calendar.set(2018,
                                         06,
                                         17,
                                         17,
                                         55);*/
 
-                                MainApplication.alarmManager[i].set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                                        pendingIntent);
-
-                                MainApplication.arrayList.add(pendingIntent);
                             }
                         }
                     }catch (Exception e){
