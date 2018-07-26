@@ -885,4 +885,18 @@
     <string name="feedBack">نحن نحب ملاحظاتك. انقر هنا لتقييم تجربتك.</string>
     <string name="remindStart">تبدأ في</string>
     <string name="remindShow">استمتع بالعرض!</string>
+
+    <!--Event Details-->
+    <string name="eventDetailTicket">تذاكر من</string>
+
+    <!--Apple Music-->
+    <string name="appleMusicOpen">افتح موسيقى التفاح</string>
+    <string name="appleBuyTicket">اشتري تذاكر</string>
+
+    <!--Google analytics events-->
+    <string name="analytics_search_event">البحث عن الأحداث</string>
+    <string name="analytics_sean_reserve_table">الطعام، -، sean، Connolly، -، الاحتياطي، جدول</string>
+    <string name="dubai_opera_tour">جولة دبي للأوبرا</string>
+    <string name="listen1">استمع</string>
+
 </resources>
