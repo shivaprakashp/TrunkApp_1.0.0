@@ -40,7 +40,6 @@
             android:id="@+id/linearOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:orientation="vertical"
             android:padding="@dimen/app_margin_ten"
             app:layout_constraintBottom_toTopOf="@+id/ticketView"
@@ -78,10 +77,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dateOfReserve"
+                        android:singleLine="true"
                         font:name="Montserrat-Regular"
                         font:type="bold"
-                        android:textDirection="locale"
-                        android:textAlignment="viewStart"/>
+                        android:textDirection="locale" />
 
                     <com.opera.app.customwidget.TextViewWithFont
                         android:id="@+id/txtDateReserve"
@@ -90,8 +89,7 @@
                         android:layout_height="wrap_content"
                         font:name="Montserrat-Regular"
                         tools:text=" 12 May 2018"
-                        android:textDirection="locale"
-                        android:textAlignment="viewStart"/>
+                        android:textDirection="locale" />
 
                 </LinearLayout>
 
@@ -133,6 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/preferredTime"
+                        android:singleLine="true"
                         font:name="Montserrat-Regular"
                         font:type="bold"
                         android:textDirection="locale"
@@ -162,6 +161,7 @@
                         android:text="@string/bookReference"
                         font:name="Montserrat-Regular"
                         font:type="bold"
+                        android:singleLine="true"
                         android:textDirection="locale"
                         android:textAlignment="viewStart"/>
 
@@ -189,6 +189,7 @@
                         android:text="@string/bookDate"
                         font:name="Montserrat-Regular"
                         font:type="bold"
+                        android:singleLine="true"
                         android:textDirection="locale"
                         android:textAlignment="viewStart"/>
 

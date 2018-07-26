@@ -840,7 +840,11 @@
     <string name="walletTitle">محفظة نقود</string>
     <string name="walletEvents">أحداث</string>
     <string name="walletRestaurant">المطاعم</string>
+    <string name="value">القيمة :</string>
+    <string name="purchase_date">تاريخ الشراء:</string>
+    <string name="voucher_id">رقم القسيمة:</string>
     <string name="walletGiftCards">بطاقات الهدايا</string>
+    <string name="gift_card1">كرت هدية</string>
     <string name="walletToday">اليوم</string>
     <string name="walletUpcoming">القادمة</string>
     <string name="walletComplete">منجز</string>
