@@ -79,10 +79,8 @@ public class AdapterOfSearchedEvents extends RecyclerView.Adapter<AdapterOfSearc
         holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(mActivity, BuyTicketWebView.class);
-                in.putExtra("URL", mEventPojo.getBuyNowLink());
-                in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+
+                OperaUtils.BuyTicketCommmonFunction(mActivity, mEventPojo.getBuyNowLink(), mActivity.getResources().getString(R.string.buy_tickets));
             }
         });
     }

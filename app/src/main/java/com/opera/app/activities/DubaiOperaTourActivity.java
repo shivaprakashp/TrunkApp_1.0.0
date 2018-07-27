@@ -110,10 +110,8 @@ public class DubaiOperaTourActivity extends BaseActivity {
                 if (manager.isUserLoggedIn()) {
                     if (Connections.isConnectionAlive(mActivity)) {
                         if (manager.getGiftCardOfflineData().getEvents() != null && manager.getGiftCardOfflineData().getEvents().size() > 0) {
-                            Intent in = new Intent(mActivity, BuyTicketWebView.class);
-                            in.putExtra("URL", manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink());
-                            in.putExtra("Header", getResources().getString(R.string.menu_opera_tour));
-                            startActivity(in);
+
+                            OperaUtils.BuyTicketCommmonFunction(mActivity, manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink(), mActivity.getResources().getString(R.string.menu_opera_tour));
                         } else {
                             customToast.showErrorToast(getResources().getString(R.string.no_buy_link_available));
                         }

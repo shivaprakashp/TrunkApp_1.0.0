@@ -25,6 +25,7 @@ import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -104,10 +105,8 @@ public class GiftCardActivity extends BaseActivity {
                 if (manager.isUserLoggedIn()) {
                     if (Connections.isConnectionAlive(mActivity)) {
                         if (manager.getGiftCardOfflineData().getEvents() != null && manager.getGiftCardOfflineData().getEvents().size() > 0) {
-                            Intent in = new Intent(mActivity, BuyTicketWebView.class);
-                            in.putExtra("URL", manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink());
-                            in.putExtra("Header", getResources().getString(R.string.menu_gift_cards));
-                            startActivity(in);
+
+                            OperaUtils.BuyTicketCommmonFunction(mActivity, manager.getGiftCardOfflineData().getEvents().get(0).getBuyNowLink(), mActivity.getResources().getString(R.string.menu_gift_cards));
                         } else {
                             customToast.showErrorToast(getResources().getString(R.string.no_buy_link_available));
                         }

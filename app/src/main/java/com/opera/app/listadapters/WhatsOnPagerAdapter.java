@@ -197,10 +197,9 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 if (!eventObject.isInfoOpen()) {
-                    Intent in = new Intent(mActivity, BuyTicketWebView.class);
-                    in.putExtra("URL", eventObject.getBuyNowLink());
-                    in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                    mActivity.startActivity(in);
+
+                    OperaUtils.BuyTicketCommmonFunction(mActivity, eventObject.getBuyNowLink(), mActivity.getResources().getString(R.string.buy_tickets));
+
                 }
             }
         });
