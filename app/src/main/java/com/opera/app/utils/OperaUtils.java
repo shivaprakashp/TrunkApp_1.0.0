@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
+import com.opera.app.activities.BuyTicketWebView;
+import com.opera.app.dialogues.GuestDialog;
+import com.opera.app.preferences.SessionManager;
 import com.squareup.picasso.Target;
 
 import java.text.DateFormat;
@@ -36,6 +39,8 @@ public class OperaUtils {
     private static String blockCharacterSet = "~#^|$%&*!1234567890@({)}:;?/,][-<>`~+=_";
 
     private static OperaUtils mOperaUtils = null;
+
+    private static SessionManager manager;
 
     public static String FONT_MONSTERRAT_LIGHT = "Montserrat-Light.ttf";
 
@@ -280,7 +285,21 @@ public class OperaUtils {
         return (int) px;
     }
 
-    public static void SendGoogleAnalyticsEvent(String mEventName){
+    public static void SendGoogleAnalyticsEvent(String mEventName) {
         MainApplication.getInstance().trackScreenView(mEventName);
+    }
+
+    public static void BuyTicketCommmonFunction(Activity mActivity, String URL, String Header) {
+        manager = new SessionManager(mActivity);
+        if (manager.isUserLoggedIn()) {
+            Intent in = new Intent(mActivity, BuyTicketWebView.class);
+            in.putExtra("URL", URL);
+            in.putExtra("Header", Header);
+            mActivity.startActivity(in);
+        } else {
+            GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
+            dialog.show();
+        }
+
     }
 }

@@ -203,7 +203,7 @@ public class EventDetailsActivity extends BaseActivity {
         //What's on events
         adapterFavGenres = new WhatsOnPagerAdapter(mActivity, mEventsWithSameGenres, "");
         mViewpagerFavGenres.setAdapter(adapterFavGenres);
-        mViewpagerFavGenres.addOnPageChangeListener (new ViewPager.OnPageChangeListener() {
+        mViewpagerFavGenres.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -417,17 +417,13 @@ public class EventDetailsActivity extends BaseActivity {
                 break;
 
             case R.id.btnBuyTickets:
-                in = new Intent(mActivity, BuyTicketWebView.class);
-                in.putExtra("URL", mEventBuyURL);
-                in.putExtra("Header", getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+
+                OperaUtils.BuyTicketCommmonFunction(mActivity, mEventBuyURL, mActivity.getResources().getString(R.string.buy_tickets));
                 break;
 
             case R.id.btnBuyTickets2:
-                in = new Intent(mActivity, BuyTicketWebView.class);
-                in.putExtra("URL", mEventBuyURL);
-                in.putExtra("Header", getResources().getString(R.string.buy_tickets));
-                mActivity.startActivity(in);
+
+                OperaUtils.BuyTicketCommmonFunction(mActivity, mEventBuyURL, mActivity.getResources().getString(R.string.buy_tickets));
                 break;
 
             case R.id.imgFavourite:

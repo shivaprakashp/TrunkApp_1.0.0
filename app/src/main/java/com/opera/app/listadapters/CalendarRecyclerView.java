@@ -1,5 +1,6 @@
 package com.opera.app.listadapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.pojo.events.eventlisiting.Events;
+import com.opera.app.utils.OperaUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,10 +106,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
         holder.btnBuyTickets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(context, BuyTicketWebView.class);
-                in.putExtra("URL", events.getBuyNowLink());
-                in.putExtra("Header", context.getResources().getString(R.string.buy_tickets));
-                context.startActivity(in);
+                OperaUtils.BuyTicketCommmonFunction((Activity) context, events.getBuyNowLink(), context.getResources().getString(R.string.buy_tickets));
             }
         });
 
