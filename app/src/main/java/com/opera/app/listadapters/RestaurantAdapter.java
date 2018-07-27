@@ -121,7 +121,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final RestaurantsData mRestaurantListing = mRestaurantList.get(position);
         holder.mTxtRestaurantName.setText(mRestaurantListing.getRestName());
-        holder.mTxtRestaurantPlace.setText(new StringBuilder().append("at ").append(mRestaurantListing.getRestPlace()).toString());
+        holder.mTxtRestaurantPlace.setText(new StringBuilder().append(mActivity.getResources().getString(R.string.at)).append(" ").append(mRestaurantListing.getRestPlace()).toString());
 
         Picasso.with(mActivity).load(mRestaurantListing.getRestImage()).fit().centerCrop()
                 .into(holder.mImgRestaurantImage, new Callback() {

@@ -256,7 +256,7 @@ public class RestaurantCompleteDetails extends BaseActivity {
             }
 
             if (data.getRestPlace() != null) {
-                mTxtRestaurantPlace.setText(new StringBuilder().append("at ").append(data.getRestLocation()).toString());
+                mTxtRestaurantPlace.setText(new StringBuilder().append(getResources().getString(R.string.at)).append(" ").append(data.getRestLocation()).toString());
             }
 
             if (data.getRestPlace() != null) {
