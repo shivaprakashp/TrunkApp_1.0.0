@@ -283,4 +283,31 @@ public class OperaUtils {
     public static void SendGoogleAnalyticsEvent(String mEventName){
         MainApplication.getInstance().trackScreenView(mEventName);
     }
+
+    public Calendar splitISODateFormat( String data){
+
+        Calendar calendar = Calendar.getInstance();
+
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String[] splitData = data.split("T");
+
+            String dateInString = splitData[0].substring(0, 4)+"/"+
+                    splitData[0].substring(4, 6)+"/"+
+                    splitData[0].substring(6, 8)+" "+
+                    splitData[1].substring(0, 2)+
+                    ":"+splitData[1].substring(2, 4)+":"+
+                    splitData[1].substring(4, 6);
+
+            Date date = formatter.parse(dateInString);
+            // remove next line if you're always using the current time.
+            calendar.setTime(date);
+            calendar.add(Calendar.HOUR, -1);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return calendar;
+    }
 }

@@ -34,6 +34,7 @@ import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
+import com.opera.app.utils.OperaUtils;
 
 import org.infobip.mobile.messaging.CustomUserDataValue;
 import org.infobip.mobile.messaging.UserData;
@@ -186,14 +187,16 @@ public class SettingsActivity extends BaseActivity {
                                 OrderHistory history = orderHistoryDB.orderHistories().get(i);
 
                                 if (history.getStartTime()!=null){
-                                    String[] startTime = history.getStartTime().split("T");
+                                   // String[] startTime = history.getStartTime().split("T");
 
-                                    calendar.set(Integer.valueOf(startTime[0].substring(0,4)),
-                                            Integer.valueOf(startTime[0].substring(4,6)),
-                                            Integer.valueOf(startTime[0].substring(4,6)),
-                                            Integer.valueOf(startTime[1].substring(0,2)),
-                                            Integer.valueOf(startTime[1].substring(3,5)));
+                                    OperaUtils utils = new OperaUtils();
+                                    calendar = utils.splitISODateFormat(history.getStartTime());
 
+                                    calendar.set(calendar.get(Calendar.YEAR),
+                                            (calendar.get(Calendar.MONTH)+1),
+                                            calendar.get(Calendar.DATE),
+                                            calendar.get(Calendar.HOUR),
+                                            calendar.get(Calendar.MINUTE));
 
                                     //log alarm
                                     Intent intentLog = new Intent(mActivity, ShowReminderReceiver.class);
@@ -208,12 +211,7 @@ public class SettingsActivity extends BaseActivity {
                                             pendingIntent);
 
                                     MainApplication.arrayList.add(pendingIntent);
-
-                                }
-/*
-
-
-
+                                }/*
 
                                 String[] dateTime = history.getDateTime().split("T");
                                 String[] dateYearMonth = dateTime[0].split("-");
@@ -250,9 +248,7 @@ public class SettingsActivity extends BaseActivity {
                         e.printStackTrace();
                     }finally {
                         orderHistoryDB.close();
-
                     }
-
                 }else{
                     //remove notification
 
