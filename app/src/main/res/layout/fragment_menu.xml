@@ -309,16 +309,13 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorLightBurgendy" />
 
-            <LinearLayout
+            <View
                 android:layout_width="@dimen/app_width_zero"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/app_width_zero"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
-
-
-            </LinearLayout>
-
+            </View>
 
         </LinearLayout>
 
