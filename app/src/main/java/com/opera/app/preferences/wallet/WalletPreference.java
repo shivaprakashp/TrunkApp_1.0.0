@@ -26,6 +26,13 @@ public class WalletPreference {
         gson = new Gson();
     }
 
+    public WalletPreference(Context context,String mFrom){
+        this.context = context;
+        walletPref = context.getSharedPreferences(context.getString(R.string.walletTitle), prefMode);
+        editor = walletPref.edit();
+        gson = new Gson();
+    }
+
     // check whether data available or not
     public boolean isWalletData() {
         return walletPref.getBoolean(IS_DATA_EXIST, false);

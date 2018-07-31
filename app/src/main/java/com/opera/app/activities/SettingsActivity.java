@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.internal.m;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;
@@ -26,12 +27,14 @@ import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.dagger.Api;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.dialogues.ErrorDialogue;
+import com.opera.app.dialogues.LogoutDialog;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
 import com.opera.app.pojo.favouriteandsettings.OrderHistory;
 import com.opera.app.preferences.SessionManager;
 import com.opera.app.services.SettingsService;
+import com.opera.app.services.UpdateSettingsInterface;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.LanguageManager;
 
@@ -53,11 +56,12 @@ import retrofit2.Retrofit;
  * Created by 58001 on 23-03-2018.
  */
 
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends BaseActivity implements  UpdateSettingsInterface{
 
     private Activity mActivity;
     private SessionManager mSessionManager;
     private SettingsService mSettingsService = new SettingsService();
+    private UpdateSettingsInterface mUpdateSettingsInterface;
     private String mNotifSwitch = "",
             mPromoSwitch = "",
             mFeedbackNotifSwitch = "",
@@ -251,6 +255,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void initView() {
+        mUpdateSettingsInterface= (UpdateSettingsInterface) this;
         mSessionManager = new SessionManager(mActivity);
         ((MainApplication) getApplication()).getNetComponent().inject(SettingsActivity.this);
         api = retrofit.create(Api.class);
@@ -331,7 +336,16 @@ public class SettingsActivity extends BaseActivity {
             mNewsletterSwitch = mNewletterSwitch.isChecked() ? "true" : "false";
             mBookedShowSwitch = mReminderSwitch.isChecked() ? "true" : "false";
 
-            mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom,userData);
+            String languageType="";
+            if (LanguageManager.createInstance().
+                    GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                    equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+                languageType = AppConstants.EnglishLanguage;
+            } else {
+                languageType = AppConstants.ArabicLanguage;
+            }
+
+            mSettingsService.StartServiceFunction(mActivity, mNotifSwitch, mPromoSwitch, mFeedbackNotifSwitch, mNewsletterSwitch, mBookedShowSwitch, mNewLanguage, mFrom,userData,languageType);
         } else {
             //Toast.makeText(mActivity, getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
             customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
@@ -370,13 +384,18 @@ public class SettingsActivity extends BaseActivity {
             break;
 
             case R.id.linearLogout:
-                StartServiceUpdateSettings(getResources().getString(R.string.logout));
+                LogoutDialog dialog = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.ok),mUpdateSettingsInterface);
+                dialog.show();
+                /*StartServiceUpdateSettings(getResources().getString(R.string.logout));*/
                 /* mSessionManager.logoutUser();*/
                 break;
 
             case R.id.tvLogout:
-                StartServiceUpdateSettings(getResources().getString(R.string.logout));
-                /*mSessionManager.logoutUser();*/
+                LogoutDialog dialog1 = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.ok),mUpdateSettingsInterface);
+                dialog1.show();
+
+                /*StartServiceUpdateSettings(getResources().getString(R.string.logout));
+                mSessionManager.logoutUser();*/
                 break;
             case R.id.notificationSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
@@ -512,5 +531,10 @@ public class SettingsActivity extends BaseActivity {
             arabicSwitch.setBackgroundColor(getResources().getColor(R.color.colorBurgendy));
             mNewLanguage = LanguageManager.createInstance().mLanguageArabic;
         }
+    }
+
+    @Override
+    public void UpdateSettingsPage() {
+        StartServiceUpdateSettings(mActivity.getResources().getString(R.string.logout));
     }
 }

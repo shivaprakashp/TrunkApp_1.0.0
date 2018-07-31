@@ -35,13 +35,11 @@ public class LanguageManager {
         return languageManager;
     }
 
-
-    public void StoreInSharedPreference(Activity mActivity, String mKey, String mValue) {
-        SharedPreferences mPrefs = mActivity.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
+    public void StoreInSharedPreference(Context mContext, String mKey, String mValue) {
+        SharedPreferences mPrefs = mContext.getSharedPreferences("OperaData", Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString(mKey, mValue);
         mEditor.apply();
-
     }
 
     public String GetSharedPreferences(Activity mActivity, String mKey, String mDefauleValue) {

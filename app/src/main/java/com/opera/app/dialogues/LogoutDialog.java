@@ -12,6 +12,7 @@ import com.opera.app.R;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
 import com.opera.app.preferences.SessionManager;
+import com.opera.app.services.UpdateSettingsInterface;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +21,7 @@ public class LogoutDialog extends Dialog {
 
     private Activity mActivity;
     private String title,message, btnTxt;
+    private UpdateSettingsInterface mUpdateSettingsInterface;
 
     @BindView(R.id.txtTitle)
     TextViewWithFont txtTitle;
@@ -36,13 +38,14 @@ public class LogoutDialog extends Dialog {
     private BaseActivity mBaseActivity;
     private SessionManager mSessionManager;
 
-    public LogoutDialog(@NonNull Activity mActivity, String title, String message, String btnTxt) {
+    public LogoutDialog(@NonNull Activity mActivity, String title, String message, String btnTxt, UpdateSettingsInterface mUpdateSettingsInterface) {
         super(mActivity);
 
         this.mActivity = mActivity;
         this.title = title;
         this.message = message;
         this.btnTxt = btnTxt;
+        this.mUpdateSettingsInterface=mUpdateSettingsInterface;
         mBaseActivity = (BaseActivity) mActivity;
         mSessionManager = new SessionManager(mActivity);
     }
@@ -64,8 +67,8 @@ public class LogoutDialog extends Dialog {
     private View.OnClickListener buttonOK = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            mSessionManager.logoutUser(mActivity);
-            dismiss();
+
+            mUpdateSettingsInterface.UpdateSettingsPage();
         }
     };
 

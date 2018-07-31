@@ -68,16 +68,15 @@ public class OtherRestaurantsActivity extends BaseActivity {
 
     private ArrayList<RestaurantsData> mRestaurantListing = new ArrayList<>();
     private RestaurantAdapter mAdapter;
-    private static Activity mActivity;
+    private Activity mActivity;
     private Api api;
     private DatabaseHelper dbManager;
     @Inject
     Retrofit retrofit;
 
-    public static OtherRestaurantsActivity getInstance() {
+   /* public static OtherRestaurantsActivity getInstance() {
         return (OtherRestaurantsActivity) mActivity;
-    }
-
+    }*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

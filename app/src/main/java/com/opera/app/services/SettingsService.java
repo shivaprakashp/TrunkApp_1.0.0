@@ -41,13 +41,14 @@ import retrofit2.Retrofit;
 
 public class SettingsService extends IntentService {
 
-    private String mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", SelecteLanguage = "";
+    private String languageType="",mNotifSwitch = "", mPromoSwitch = "", mFeedbackNotifSwitch = "", mNewsletterSwitch = "", mBookedShowSwitch = "", SelecteLanguage = "";
     static String mFrom = "";
     private Api api;
     private CustomToast customToast;
+    private WebService mServiceUpdateSettings;
     @Inject
     Retrofit retrofit;
-    public static Activity mActivity;
+    public Activity mActivity;
     static SessionManager mSessionManager;
     private static ProgressDialog mProgressDialog;
 
@@ -60,7 +61,13 @@ public class SettingsService extends IntentService {
         super("SettingsService");
     }
 
-    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From, UserData userData) {
+    /*@Override
+    public void onCreate() {
+        super.onCreate();
+
+    }*/
+
+    public void StartServiceFunction(Activity activity, String mNotifSwitch, String mPromoSwitch, String mFeedbackNotifSwitch, String mNewsletterSwitch, String mBookedShowSwitch, String mNewLanguage, String From, UserData userData,String languageType) {
         mActivity = activity;
         MainApplication mApplication = ((MainApplication) mActivity.getApplicationContext());
 
@@ -75,6 +82,7 @@ public class SettingsService extends IntentService {
         mSessionManager = new SessionManager(mActivity);
         customToast = new CustomToast(mActivity);
         mFrom = From;
+        this.languageType=languageType;
         UserData userData1 = userData;
 
         if (!mFrom.equalsIgnoreCase(mActivity.getResources().getString(R.string.OnBackPressed))) {
@@ -100,15 +108,17 @@ public class SettingsService extends IntentService {
         mBookedShowSwitch = intent.getStringExtra("BookedShowSwitch");
         SelecteLanguage = intent.getStringExtra("SelecteLanguage");
 
-        if (Connections.isConnectionAlive(mActivity)) {
+       /* if (Connections.isConnectionAlive(mActivity)) {
             sendUpdatedSettings();
         } else {
             //Toast.makeText(mActivity, mActivity.getResources().getString(R.string.internet_error_msg), Toast.LENGTH_LONG).show();
             customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
-        }
+        }*/
+
+        mServiceUpdateSettings = new WebService(this,mBookedShowSwitch, mPromoSwitch, SelecteLanguage, mNewsletterSwitch, mNotifSwitch, mFeedbackNotifSwitch,mFrom,mSessionManager.getUserLoginData().getData().getToken(),languageType);
     }
 
-    private void sendUpdatedSettings() {
+    /*private void sendUpdatedSettings() {
         String languageType;
         if (LanguageManager.createInstance().
                 GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
@@ -153,8 +163,8 @@ public class SettingsService extends IntentService {
                                 mActivity.finish();
                             } else if (mFrom.equalsIgnoreCase(getResources().getString(R.string.logout))) {
                                 //mSessionManager.logoutUser(mActivity);
-                                LogoutDialog dialog = new LogoutDialog(mActivity, mActivity.getString(R.string.logout_header), mActivity.getString(R.string.logout_msg),mActivity.getString(R.string.ok));
-                                dialog.show();
+                                *//*LogoutDialog dialog = new LogoutDialog(mActivity, mActivity.getString(R.string.logout_header), mActivity.getString(R.string.logout_msg),mActivity.getString(R.string.ok));
+                                dialog.show();*//*
                             }
                         }
                     } else {
@@ -199,5 +209,5 @@ public class SettingsService extends IntentService {
         }
 
         return null;
-    }
+    }*/
 }
