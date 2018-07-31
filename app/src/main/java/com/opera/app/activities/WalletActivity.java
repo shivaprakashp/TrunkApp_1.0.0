@@ -21,14 +21,11 @@ import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.enums.WalletEnums;
 import com.opera.app.fragments.wallet.WalletFragmentPagerAdapter;
 import com.opera.app.listener.TaskComplete;
-import com.opera.app.pojo.wallet.eventwallethistory.BookedEventHistory;
 import com.opera.app.pojo.wallet.WalletDetails;
 import com.opera.app.pojo.wallet.eventwallethistory.ParentDataForBookedEventHistory;
 import com.opera.app.preferences.wallet.WalletPreference;
 import com.opera.app.utils.Connections;
 import com.opera.app.utils.OperaManager;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -71,8 +68,6 @@ public class WalletActivity extends BaseActivity {
     Retrofit retrofit;
     private Api api;
 
-    private String enumData;
-
     private TaskComplete taskComplete = new TaskComplete() {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
@@ -97,7 +92,7 @@ public class WalletActivity extends BaseActivity {
                                         if (mGenresName.equalsIgnoreCase("")) {
                                             mGenresName = mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
                                         } else {
-                                            mGenresName = mGenresName + "," + mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere();
+                                            mGenresName = new StringBuilder().append(mGenresName).append(",").append(mBookedEventHistory.getData().get(i).getOrderEvents().getArrEventGenre().get(k).getGenere()).toString();
                                         }
                                     }
                                 }

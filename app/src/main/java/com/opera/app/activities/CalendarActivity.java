@@ -267,11 +267,11 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     private String updateDate( int date, int month, int year){
 
         String appendCalendar;
-
+        month=month+1;
         if (String.valueOf(month).length()==1){
-            appendCalendar = String.valueOf(year)+"0"+String.valueOf(month+1);
+            appendCalendar = String.valueOf(year)+"0"+String.valueOf(month);
         }else {
-            appendCalendar = String.valueOf(year)+String.valueOf(month+1);
+            appendCalendar = String.valueOf(year)+String.valueOf(month);
         }
 
 
@@ -293,7 +293,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void updateValues(int lastDateOfMonth, int todayDate, int currentMonth){
-
+        currentMonth=currentMonth+1;
         dateLinLayout.removeAllViews();
 
         for ( int i=1 ; i<=lastDateOfMonth; i++ ){
@@ -326,9 +326,9 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
             String appendData;
             if (String.valueOf(currentMonth).length()==1){
-                appendData = currentYear + "0" + String.valueOf(currentMonth+1);
+                appendData = currentYear + "0" + String.valueOf(currentMonth);
             }else{
-                appendData = currentYear + String.valueOf(currentMonth+1);
+                appendData = currentYear + String.valueOf(currentMonth);
             }
             if (String.valueOf(i).length()==1){
                 appendData = appendData + "0" + String.valueOf(i);
