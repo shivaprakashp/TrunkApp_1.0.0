@@ -14,7 +14,8 @@
         android:padding="@dimen/app_margin_five"
         style="@style/label_black"
         font:name="Montserrat-Regular"
-        android:textDirection="locale"
+        android:textDirection="anyRtl"
+        android:ellipsize="end"
         android:textAlignment="viewStart">
 
         <requestFocus/>

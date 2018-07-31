@@ -180,6 +180,11 @@ public class OperaUtils {
         public CharSequence filter(CharSequence source, int start, int end,
                                    Spanned dest, int dstart, int dend) {
             for (int i = start; i < end; i++) {
+                if ( i == (end - 1)){
+                    if (Character.isSpaceChar(source.charAt(i))){
+                        return null;
+                    }
+                }
                 if (Character.isSpaceChar(source.charAt(i))) {
                     return "";
                 }
