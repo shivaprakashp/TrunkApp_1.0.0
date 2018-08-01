@@ -1,5 +1,7 @@
 package com.opera.app.dagger;
 
+import android.content.Context;
+
 import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;
@@ -23,6 +25,7 @@ import com.opera.app.fragments.HomeFragment;
 import com.opera.app.listadapters.AdapterEvent;
 import com.opera.app.listadapters.WhatsOnPagerAdapter;
 import com.opera.app.services.SettingsService;
+import com.opera.app.services.WebService;
 
 import javax.inject.Singleton;
 
@@ -58,4 +61,5 @@ public interface ApiComponent {
     void inject(GiftCardActivity mGiftCardActivity);
     void inject(RestaurantCompleteDetails mRestaurantCompleteDetails);
     void inject(BuyTicketWebView mBuyTicketWebView);
+    void inject(WebService mWebService);
 }

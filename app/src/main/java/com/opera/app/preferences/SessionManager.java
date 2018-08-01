@@ -37,6 +37,13 @@ public class SessionManager {
         mEventListingDB = new EventListingDB(context);
     }
 
+    public SessionManager(Context context,String mFrom) {
+        this.context = context;
+        loginPref = context.getSharedPreferences(context.getString(R.string.prefName), prefMode);
+        gson = new Gson();
+        mEventListingDB = new EventListingDB(context);
+    }
+
     // Get Login State
     public boolean isUserLoggedIn() {
         return loginPref.getBoolean(IS_USER_LOGIN, false);
@@ -78,22 +85,21 @@ public class SessionManager {
     }
 
     //clear login session
-    public void logoutUser(Activity mActivity) {
+    public void logoutUser(Context mContext) {
         SharedPreferences.Editor editor = loginPref.edit();
         //Put all table names which should get cleared on logout
-        DeleteAllTables(mActivity);
+        DeleteAllTables(mContext);
         //clear all data from shared preference
         editor.clear();
         editor.commit();
-        mBaseActivity.openActivityWithClearPreviousActivities((Activity) context, PreLoginActivity.class);
     }
 
-    public void DeleteAllTables(Activity mActivity) {
+    public void DeleteAllTables(Context mContext) {
         mEventListingDB.open();
         mEventListingDB.deleteCompleteTable(EventListingDB.TABLE_EVENT_LISTING);
         mEventListingDB.close();
 
-        WalletPreference preference = new WalletPreference(mActivity);
+        WalletPreference preference = new WalletPreference(mContext,"SettingService");
         preference.deleteWalletData();
     }
 

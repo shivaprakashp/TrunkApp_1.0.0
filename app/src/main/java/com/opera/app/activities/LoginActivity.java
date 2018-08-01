@@ -152,6 +152,7 @@ public class LoginActivity extends BaseActivity {
         //edittext
         username = login_username.findViewById(R.id.edt);
         username.setHint(getString(R.string.email2));
+        username.setInputType(InputType.TYPE_CLASS_TEXT);
         username.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         username.setSingleLine(true);
         username.setFilters(new InputFilter[]{OperaUtils.filterSpace, new InputFilter.LengthFilter(50)});
