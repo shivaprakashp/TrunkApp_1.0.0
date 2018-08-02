@@ -30,6 +30,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainApplication extends Application {
 
+
     //for font type defined
     private Typeface fontLight, fontMedium, fontRegular, fontBold;
 
