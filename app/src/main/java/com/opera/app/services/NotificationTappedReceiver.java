@@ -31,6 +31,7 @@ public class NotificationTappedReceiver extends BroadcastReceiver {
             } /*else {
                 intent = new Intent(context, NotificationActivity.class);
             }*/ else {
+
                 if (message.getCustomPayload().opt("dataType").toString().equalsIgnoreCase("Restaurant")) {
                     intent = new Intent(context, RestaurantCompleteDetails.class);
                     intent.putExtra("RestaurantIdSiteCore", message.getCustomPayload().opt("dataKey").toString());
