@@ -213,11 +213,11 @@ public class TodayWalletView extends LinearLayout {
                 }
 
                 txtWalletRestTitle.setText(restaurant.getRestaurantName());
-                dateReservation.setText(new StringBuilder().append(" ").append(formattedTimeReservationDate).toString());
+                dateReservation.setText(new StringBuilder().append(" ").append(formattedTime).toString());
                 mealPeriod.setText(new StringBuilder().append(" ").append(restaurant.getMealPeriodId()).toString());
                 preferTime.setText(new StringBuilder().append(" ").append(restaurant.getPreferredTime()).toString());
                 referNo.setText(new StringBuilder().append(" ").append(restaurant.getBookingReferenceNumber()).toString());
-                bookDate.setText(new StringBuilder().append(" ").append(formattedTime).toString());
+                bookDate.setText(new StringBuilder().append(" ").append(formattedTimeReservationDate).toString());
 
                 try {
                     txtBarCode.setText(restaurant.getFullReservationID());
