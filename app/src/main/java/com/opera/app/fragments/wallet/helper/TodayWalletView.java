@@ -21,6 +21,7 @@ import com.opera.app.pojo.wallet.eventwallethistory.CommonBookedHistoryData;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -28,6 +29,7 @@ import java.util.Locale;
 public class TodayWalletView extends LinearLayout {
 
     View rowView;
+    SimpleDateFormat sdfGlobal = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     public TodayWalletView(Context context) {
         super(context);
@@ -97,10 +99,22 @@ public class TodayWalletView extends LinearLayout {
                 txtBarCode = rowView.findViewById(R.id.txtBarCode);
                 barCode = rowView.findViewById(R.id.imgEventBarCode);
 
-                String[] mDateTime = mBookedHistoryEvents.getmDateAndTime().split("T");
+                /*String[] mDateTime = mBookedHistoryEvents.getmDateAndTime().split("T");*/
+
                 String mDateFor = "", mTimeFor = "";
-                Date mStandardDate = null, mStandardTime;
+                Date mStandardDate = null;
+
                 try {
+                    mStandardDate=sdfGlobal.parse(mBookedHistoryEvents.getmDateAndTime());
+                    mDateFor = sdfDate.format(mStandardDate);
+                    mTimeFor = sdfTime.format(mStandardDate);
+
+                    /*mStandardDate = sdf.parse(mDateFor);*/
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     mDateFor = mDateTime[0];
                     mTimeFor = mDateTime[1];
 
@@ -111,7 +125,7 @@ public class TodayWalletView extends LinearLayout {
                     mDateFor = sdfDate.format(mStandardDate);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 txtEventTitle.setText(mBookedHistoryEvents.getmTicketEventName());
                 txtWalletEventGenre.setText(mBookedHistoryEvents.getmTicketEventGenre());
@@ -135,7 +149,7 @@ public class TodayWalletView extends LinearLayout {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
                 if (mFrom.equalsIgnoreCase("Completed") && mCurrentDate.after(mStandardDate)) {
                     mAvailableData++;
                     this.addView(rowView);
@@ -261,8 +275,7 @@ public class TodayWalletView extends LinearLayout {
         View rowView;
         int mAvailableData = 0;
 
-
-        TextViewWithFont txtAmountOfGiftCard,txtDateReserve,txtVoucherId,txtBarCode;
+        TextViewWithFont txtAmountOfGiftCard, txtDateReserve, txtVoucherId, txtBarCode;
 
         ImageView barCode;
 
@@ -280,7 +293,22 @@ public class TodayWalletView extends LinearLayout {
                 txtBarCode = rowView.findViewById(R.id.txtBarCode);
                 barCode = rowView.findViewById(R.id.imgEventBarCode);
 
-                String[] mDateTime = giftCard.getmDateAndTime().split("T");
+
+                String mDateFor = "", mTimeFor = "";
+                Date mStandardDate = null;
+
+                try {
+                    mStandardDate=sdfGlobal.parse(giftCard.getmDateAndTime());
+                    mDateFor = sdfDate.format(mStandardDate);
+                    mTimeFor = sdfTime.format(mStandardDate);
+
+                    /*mStandardDate = sdf.parse(mDateFor);*/
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                /*String[] mDateTime = giftCard.getmDateAndTime().split("T");
                 String mDateFor = "", mTimeFor = "";
                 Date mStandardDate = null, mStandardTime;
                 try {
@@ -294,7 +322,7 @@ public class TodayWalletView extends LinearLayout {
                     mDateFor = sdfDate.format(mStandardDate);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 txtAmountOfGiftCard.setText(giftCard.getmPrice());
                 txtDateReserve.setText(new StringBuilder().append(mDateFor).append(" ").append(mTimeFor).toString());
@@ -312,18 +340,43 @@ public class TodayWalletView extends LinearLayout {
                     e.printStackTrace();
                 }
 
-                if (mFrom.equalsIgnoreCase("Completed") && mCurrentDate.after(mStandardDate)) {
+                if (mFrom.equalsIgnoreCase("Activated") && monthsBetweenDates(mStandardDate, mCurrentDate) <= 12) {
                     mAvailableData++;
                     this.addView(rowView);
-                } else if (mFrom.equalsIgnoreCase("Today") && mCurrentDate.equals(mStandardDate)) {
-                    mAvailableData++;
-                    this.addView(rowView);
-                } else if (mFrom.equalsIgnoreCase("Upcoming") && mCurrentDate.before(mStandardDate)) {
+                } else if (mFrom.equalsIgnoreCase("Completed") && monthsBetweenDates(mStandardDate, mCurrentDate) > 12) {
                     mAvailableData++;
                     this.addView(rowView);
                 }
             }
         }
         return mAvailableData;
+    }
+
+
+    public int monthsBetweenDates(Date purchaseDate, Date currentDate) {
+
+        Calendar start = Calendar.getInstance();
+        start.setTime(purchaseDate);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(currentDate);
+
+        int monthsBetween = 0;
+        int dateDiff = end.get(Calendar.DAY_OF_MONTH) - start.get(Calendar.DAY_OF_MONTH);
+
+        if (dateDiff < 0) {
+            int borrrow = end.getActualMaximum(Calendar.DAY_OF_MONTH);
+            dateDiff = (end.get(Calendar.DAY_OF_MONTH) + borrrow) - start.get(Calendar.DAY_OF_MONTH);
+            monthsBetween--;
+
+            if (dateDiff > 0) {
+                monthsBetween++;
+            }
+        } else {
+            monthsBetween++;
+        }
+        monthsBetween += end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
+        monthsBetween += (end.get(Calendar.YEAR) - start.get(Calendar.YEAR)) * 12;
+        return monthsBetween;
     }
 }

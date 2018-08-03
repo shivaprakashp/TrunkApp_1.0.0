@@ -214,6 +214,7 @@ public class BuyTicketWebView extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    Log.e("complete data", obj.toString());
 //                    mJsonData = "{\"token" + mJsonData;
 
 //                    myWebView.setVisibility(View.GONE);
@@ -223,8 +224,8 @@ public class BuyTicketWebView extends BaseActivity {
                     if (response.getTickets().size() > 0) {
                         CallViewOrderAPI(response);
                     }
-                }else if(!mVdCallTokenNo.equalsIgnoreCase("") && mVdCallTokenNo.equalsIgnoreCase("1")){
-                   finish();
+                } else if (!mVdCallTokenNo.equalsIgnoreCase("") && mVdCallTokenNo.equalsIgnoreCase("1")) {
+                    finish();
                 }
             }
         }

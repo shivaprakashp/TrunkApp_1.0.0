@@ -193,7 +193,7 @@ public class WalletActivity extends BaseActivity {
     private void initFragment(WalletEnums enums) {
         OperaManager.createInstance().setWalletData(enums);
         WalletFragmentPagerAdapter adapter = new WalletFragmentPagerAdapter(mActivity,
-                getSupportFragmentManager());
+                getSupportFragmentManager(),enums);
 
         walletViewPager.setAdapter(adapter);
         walletTabHost.setupWithViewPager(walletViewPager);

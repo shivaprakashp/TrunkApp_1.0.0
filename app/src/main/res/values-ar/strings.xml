@@ -847,6 +847,7 @@
     <string name="gift_card1">كرت هدية</string>
     <string name="walletToday">اليوم</string>
     <string name="walletUpcoming">القادمة</string>
+    <string name="walletActivate">مفعل</string>
     <string name="walletComplete">منجز</string>
     <string name="dateOfReserve">تاريخ الحجز:</string>
     <string name="mealPeriod">فترة الوجبة:</string>

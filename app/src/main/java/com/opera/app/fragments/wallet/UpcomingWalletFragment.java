@@ -57,7 +57,7 @@ public class UpcomingWalletFragment extends Fragment {
             ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.gift_card));
             dbBookendEventsHistory.close();
 
-            mTotalData = walletView.setGift(mEventHistoryData,"Upcoming");
+            mTotalData = walletView.setGift(mEventHistoryData,"Completed");
         }
 
         if (mTotalData > 0) {

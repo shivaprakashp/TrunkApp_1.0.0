@@ -57,7 +57,7 @@ public class TodayWalletFragment extends Fragment {
             ArrayList<CommonBookedHistoryData> mEventHistoryData = dbBookendEventsHistory.fetchBookedEventsHistory(getResources().getString(R.string.gift_card));
             dbBookendEventsHistory.close();
 
-            mTotalData = walletView.setGift(mEventHistoryData, "Today");
+            mTotalData = walletView.setGift(mEventHistoryData, "Activated");
         }
 
         if (mTotalData > 0) {
