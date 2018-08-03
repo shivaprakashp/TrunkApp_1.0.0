@@ -8,11 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.opera.app.R;
+import com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments;
 
 import java.util.ArrayList;
-
-
-import com.opera.app.pojo.restaurant.getmasterdetails.Time_Segments;
 
 /**
  * Created by 1000632 on 4/20/2018.

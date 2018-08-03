@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.controller.MainController;
 import com.opera.app.dagger.Api;

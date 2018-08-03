@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.internal.m;
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
 import com.opera.app.R;

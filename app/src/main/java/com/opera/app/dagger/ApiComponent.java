@@ -1,7 +1,5 @@
 package com.opera.app.dagger;
 
-import android.content.Context;
-
 import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.ContactUsActivity;
 import com.opera.app.activities.DubaiOperaTourActivity;

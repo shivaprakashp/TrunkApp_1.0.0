@@ -13,7 +13,6 @@ import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
 import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.dialogues.LogoutDialog;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
 import com.opera.app.pojo.favouriteandsettings.Settings;
 import com.opera.app.pojo.registration.RegistrationResponse;

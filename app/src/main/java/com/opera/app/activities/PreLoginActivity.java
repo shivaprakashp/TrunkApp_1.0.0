@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.utils.LanguageManager;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 

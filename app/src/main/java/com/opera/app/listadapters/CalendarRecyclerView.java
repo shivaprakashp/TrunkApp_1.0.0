@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.opera.app.R;
-import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
