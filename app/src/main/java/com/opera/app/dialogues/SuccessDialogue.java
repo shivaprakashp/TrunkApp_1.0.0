@@ -70,9 +70,11 @@ public class SuccessDialogue extends Dialog {
             dismiss();
             if (mFrom.equalsIgnoreCase("Register")) {
                 mBaseActivity.openActivity(mActivity, LoginActivity.class);
-            }else if (mFrom.equalsIgnoreCase("Editprofile")) {
+            }
+            /*else if (mFrom.equalsIgnoreCase("Editprofile")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MyProfileActivity.class);
-            } else if (mFrom.equalsIgnoreCase("setUserSettings")) {
+            } */
+            else if (mFrom.equalsIgnoreCase("setUserSettings")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);
             } else if (mFrom.equalsIgnoreCase("ContactUs")) {
                 mBaseActivity.openActivityWithClearPreviousActivities(mActivity, MainActivity.class);

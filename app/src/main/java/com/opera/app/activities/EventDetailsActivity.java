@@ -2,6 +2,7 @@ package com.opera.app.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -230,10 +231,14 @@ public class EventDetailsActivity extends BaseActivity {
         recyclerGenres.setItemAnimator(new DefaultItemAnimator());
         recyclerGenres.setAdapter(mAdapter);
 
-        if (IsFavourite.equalsIgnoreCase("true")) {
-            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
-        } else {
-            imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+        try {
+            if (IsFavourite.equalsIgnoreCase("true")) {
+                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
+            } else {
+                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
         }
 
         try {
@@ -307,16 +312,16 @@ public class EventDetailsActivity extends BaseActivity {
             mEventYoutubeVideo = mEventListingData.get(0).getVideo();
             mEventURL = mEventListingData.get(0).getSharedContentText();
             EventInternalName = mEventListingData.get(0).getInternalName();
-            IsFavourite = mEventListingData.get(0).isFavourite();
+//            IsFavourite = mEventListingData.get(0).isFavourite();
             mAppleMusicURL = mEventListingData.get(0).getAppleUrl();
 
-            if (manager.isUserLoggedIn()) {
+            /*if (manager.isUserLoggedIn()) {
                 if (IsFavourite.equalsIgnoreCase("true")) {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
                 } else {
                     imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
                 }
-            }
+            }*/
 
             if (mEventYoutubeVideo.equalsIgnoreCase("")) {
                 mLinearPlay.setVisibility(View.GONE);

@@ -14,6 +14,7 @@ import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.customwidget.ButtonWithFont;
 import com.opera.app.customwidget.TextViewWithFont;
+import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.OperaUtils;
 
@@ -26,6 +27,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
 
     private Context context;
     private List<Events> arrayList;
+    private EventListingDB mEventListingDB;
     private String currentDay, eventTime;
     SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
     SimpleDateFormat f3 = new SimpleDateFormat("hh:mm a");
@@ -49,6 +51,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     public CalendarRecyclerView(List<Events> arrayList, String currentDay) {
         this.arrayList = arrayList;
         this.currentDay = currentDay;
+        mEventListingDB = new EventListingDB(context);
     }
 
     @Override
@@ -97,7 +100,16 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
                 Intent intent = new Intent(context, EventDetailsActivity.class);
                 intent.putExtra("EventId", events.getEventId());
                 intent.putExtra("EventInternalName", events.getInternalName());
-                intent.putExtra("IsFavourite", events.isFavourite());
+
+                mEventListingDB.open();
+                if (mEventListingDB.IsFavouriteForSpecificEvent(events.getEventId())) {
+                    intent.putExtra("IsFavourite", "true");
+                } else {
+                    intent.putExtra("IsFavourite", "false");
+                }
+                mEventListingDB.close();
+
+                /*intent.putExtra("IsFavourite", events.isFavourite());*/
                 context.startActivity(intent);
 
             }
