@@ -1,4 +1,5 @@
 package com.opera.app.customwidget;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
@@ -11,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
+
 import com.opera.app.R;
 
 import java.util.ArrayList;

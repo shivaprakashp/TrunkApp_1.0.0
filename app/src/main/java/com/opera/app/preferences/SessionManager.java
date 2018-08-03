@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.opera.app.BaseActivity;
 import com.opera.app.R;
 import com.opera.app.activities.LoginActivity;
-import com.opera.app.activities.PreLoginActivity;
 import com.opera.app.database.events.EventListingDB;
 import com.opera.app.pojo.events.eventlisiting.AllEvents;
 import com.opera.app.pojo.login.LoginResponse;

@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.R;
-import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.pojo.events.eventlisiting.Events;
 import com.opera.app.utils.OperaUtils;

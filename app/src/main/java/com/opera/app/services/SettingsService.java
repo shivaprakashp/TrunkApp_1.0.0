@@ -9,30 +9,14 @@ import android.support.annotation.Nullable;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.MainActivity;
-import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
 import com.opera.app.dagger.Api;
-import com.opera.app.dialogues.ErrorDialogue;
-import com.opera.app.dialogues.LogoutDialog;
-import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettings;
-import com.opera.app.pojo.favouriteandsettings.Settings;
-import com.opera.app.pojo.registration.RegistrationResponse;
 import com.opera.app.preferences.SessionManager;
-import com.opera.app.utils.Connections;
-import com.opera.app.utils.LanguageManager;
 
 import org.infobip.mobile.messaging.UserData;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**

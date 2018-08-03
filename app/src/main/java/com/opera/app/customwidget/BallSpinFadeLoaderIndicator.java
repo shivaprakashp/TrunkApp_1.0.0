@@ -1,9 +1,8 @@
 package com.opera.app.customwidget;
 
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-
-import android.animation.ValueAnimator;
 
 import java.util.ArrayList;
 
