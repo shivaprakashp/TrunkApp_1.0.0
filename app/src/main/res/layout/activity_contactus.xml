@@ -64,9 +64,6 @@
                         android:id="@+id/imgNumber"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_marginStart="@dimen/app_margin_five"
-                        android:layout_marginEnd="@dimen/app_margin_five"
-                        android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_telephone" />
 
 
