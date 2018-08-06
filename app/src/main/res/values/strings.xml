@@ -285,10 +285,10 @@
     <string name="errorDob">Your date of birth may not be blank</string>
     <string name="errorCountryCode">Your Country Code may not be blank</string>
     <string name="errorMobile">Your Mobile Number must be filled in</string>
-    <string name="errorLengthMobile">Your Mobile Number length should be 9 or 10 digit</string>
+    <string name="errorLengthMobile">Your Mobile Number length should be of 9 or 10 digit</string>
     <string name="errorCity">Your City name may not be blank</string>
     <string name="errorState">Your Emirate or State name may not be blank</string>
-    <string name="errorCountry">Your Country Name name may not be blank</string>
+    <string name="errorCountry">Your Country name may not be blank</string>
     <string name="errorLengthPassword">Password should be between 3 to 16 character long</string>
     <string name="errorLengthCity">City should be between 2 to 26 character long</string>
     <string name="errorTerms">You need to accept the terms to proceed for registration</string>
@@ -1169,5 +1169,11 @@
     <string name="remindStart">start at </string>
     <string name="remindShow">Enjoy the show!</string>
     <string name="at">at</string>
+
+    <!--Permission-->
+    <string name="permission">Permission Denied</string>
+    <string name="permission_text">Without this permission the app is unable to receive latest event related information.
+    Unable to receive offers. Accept the permission or enable to permission from settings to receive offer notification.</string>
+    <string name="permision_accept">Accept</string>
 
 </resources>
