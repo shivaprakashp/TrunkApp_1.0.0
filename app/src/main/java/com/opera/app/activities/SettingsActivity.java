@@ -1,5 +1,6 @@
 package com.opera.app.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,7 +8,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,6 +30,7 @@ import com.opera.app.dagger.Api;
 import com.opera.app.database.orders.OrderHistoryDB;
 import com.opera.app.dialogues.ErrorDialogue;
 import com.opera.app.dialogues.LogoutDialog;
+import com.opera.app.dialogues.PermissionDialogue;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.notification.ShowReminderReceiver;
 import com.opera.app.pojo.favouriteandsettings.FavouriteAndSettingsResponseMain;
@@ -132,7 +136,13 @@ public class SettingsActivity extends BaseActivity implements  UpdateSettingsInt
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+                    if (checkAccessPermission()){
+                        userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+                    }else{
+                        PermissionDialogue dialogue = new PermissionDialogue(mActivity);
+                        dialogue.show();
+                    }
+
                 }else{
                     userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
                 }
@@ -323,6 +333,13 @@ public class SettingsActivity extends BaseActivity implements  UpdateSettingsInt
         }
     }
 
+    private boolean checkAccessPermission()
+    {
+        String permission = Manifest.permission.ACCESS_FINE_LOCATION;
+        int res = mActivity.checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
     private void GetUpdatedUserSettings() {
         MainController controller = new MainController(mActivity);
         controller.getUpdatedSettings(taskComplete, api);
@@ -414,11 +431,11 @@ public class SettingsActivity extends BaseActivity implements  UpdateSettingsInt
                 break;
             case R.id.notificationSwitch:
                 if (!mSessionManager.isUserLoggedIn()) {
-                    mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
-                    sp.edit().putString("notificationSwitch", mNotifSwitch).apply();
-                    userData.setCustomUserDataElement("notificationSwitch",
-                            new CustomUserDataValue(mNotifSwitch));
-                    ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
+                        mNotifSwitch = mNotificationSwitch.isChecked() ? "true" : "false";
+                        sp.edit().putString("notificationSwitch", mNotifSwitch).apply();
+                        userData.setCustomUserDataElement("notificationSwitch",
+                                new CustomUserDataValue(mNotifSwitch));
+                        ((MainApplication)getApplication()).getMobileMessaging().getInstance(SettingsActivity.this).syncUserData(userData);
                 }
                 break;
             case R.id.promotionSwitch:
@@ -496,8 +513,14 @@ public class SettingsActivity extends BaseActivity implements  UpdateSettingsInt
     private void SetAlreadyUpdatedSettings() {
         if (mSharedPreferences.getString(getString(R.string.NotificationSwitchValue), "true").
                 equalsIgnoreCase("true")) {
-            mNotificationSwitch.setChecked(true);
-            userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+            if (checkAccessPermission()){
+                mNotificationSwitch.setChecked(true);
+                userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("true"));
+            }else {
+                mNotificationSwitch.setChecked(false);
+                userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));
+            }
+
         } else {
             mNotificationSwitch.setChecked(false);
             userData.setCustomUserDataElement("notificationSwitch", new CustomUserDataValue("false"));

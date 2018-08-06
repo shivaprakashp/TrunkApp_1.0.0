@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.opera.app.constants.AppConstants;
 import com.opera.app.customwidget.CustomToast;
@@ -77,7 +78,10 @@ public class BaseActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             String permissions[] = {Manifest.permission.ACCESS_FINE_LOCATION};
             ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
+            Log.i("Permission", "denied");
             return;
+        }else{
+            Log.i("Permission", "granted");
         }
 
         MobileGeo.getInstance(this).activateGeofencing();
@@ -87,7 +91,10 @@ public class BaseActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Permission", "granted");
             return;
+        }else{
+            Log.i("Permission", "denied");
         }
 
         if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
