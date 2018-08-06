@@ -73,9 +73,10 @@
                             android:id="@+id/tv_profile_email"
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
+                            android:textDirection="anyRtl"
+                            android:textAlignment="viewStart"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/app_margin_twenty"
-                            android:gravity="start|center"
                             font:name="Montserrat-Regular" />
 
                     </LinearLayout>
@@ -101,9 +102,9 @@
                             style="@style/label_black_medium"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layoutDirection="ltr"
+                            android:textDirection="anyRtl"
+                            android:textAlignment="viewStart"
                             android:layout_marginStart="@dimen/app_margin_twenty"
-                            android:gravity="start|center"
                             font:name="Montserrat-Regular" />
 
                     </LinearLayout>

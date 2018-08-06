@@ -184,8 +184,8 @@ public class TodayWalletView extends LinearLayout {
 
         int mAvailableData = 0;
         Date mCurrentDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sdfToDisplay = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
+        SimpleDateFormat sdfToDisplay = new SimpleDateFormat("dd MMM yyyy",Locale.US);
         String strDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         try {
             mCurrentDate = sdf.parse(strDate);

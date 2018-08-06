@@ -15,8 +15,8 @@
         style="@style/label_black"
         font:name="Montserrat-Regular"
         android:textDirection="anyRtl"
-        android:ellipsize="end"
-        android:textAlignment="viewStart">
+        android:textAlignment="viewStart"
+        android:ellipsize="end">
 
         <requestFocus/>
     </com.opera.app.customwidget.EditTextWithFont>

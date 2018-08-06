@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by 1000779 on 2/3/2018.
@@ -225,7 +226,7 @@ public class OperaUtils {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         return df.format(c);
     }
 
