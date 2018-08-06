@@ -57,6 +57,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -194,7 +195,7 @@ public class MyProfileActivity extends BaseActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
+                SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
                 String finalDate = timeFormat.format(myDate);
                 profileInfo.setText(new StringBuilder().append(getString(R.string.profile_info)).append(" ").append(finalDate).toString());
             } else {

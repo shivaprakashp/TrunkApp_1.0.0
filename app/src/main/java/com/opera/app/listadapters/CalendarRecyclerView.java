@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
 
@@ -28,7 +29,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     private EventListingDB mEventListingDB;
     private String currentDay, eventTime;
     SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'");
-    SimpleDateFormat f3 = new SimpleDateFormat("hh:mm a");
+    SimpleDateFormat f3 = new SimpleDateFormat("hh:mm a", Locale.US);
 
     public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
