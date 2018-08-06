@@ -125,8 +125,6 @@ public class MainApplication extends Application {
         return apiComponent;
     }
 
-
-
     /***
      * Tracking screen view
      *
