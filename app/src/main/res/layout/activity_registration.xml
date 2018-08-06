@@ -136,6 +136,7 @@
                             android:padding="@dimen/app_margin_five"
                             android:layout_weight="1"
                             style="@style/label_black"
+                            android:textDirection="anyRtl"
                             font:name="Montserrat-Regular">
                             <requestFocus/>
                         </com.opera.app.customwidget.EditTextWithFont>
