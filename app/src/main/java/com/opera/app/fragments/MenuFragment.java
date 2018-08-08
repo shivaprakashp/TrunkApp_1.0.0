@@ -231,14 +231,8 @@ public class MenuFragment extends BaseFragment {
         menu_promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (manager.isUserLoggedIn()) {
-                    intent = new Intent(getActivity(), PromotionsActivity.class);
-                    getActivity().startActivity(intent);
-                } else {
-                    GuestDialog dialog = new GuestDialog(mActivity, getActivity().getString(R.string.guest_title), getActivity().getString(R.string.guest_msg));
-                    dialog.show();
-                }
-
+                intent = new Intent(getActivity(), PromotionsActivity.class);
+                getActivity().startActivity(intent);
             }
         });
 

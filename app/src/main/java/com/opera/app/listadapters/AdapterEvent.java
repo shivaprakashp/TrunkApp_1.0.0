@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.opera.app.MainApplication;
 import com.opera.app.R;
-import com.opera.app.activities.BuyTicketWebView;
 import com.opera.app.activities.EventDetailsActivity;
 import com.opera.app.constants.AppConstants;
 import com.opera.app.controller.MainController;
@@ -210,10 +209,12 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
             @Override
             public void onClick(View v) {
                 if (!mEventPojo.isInfoOpen()) {
-                    Intent in = new Intent(mActivity, BuyTicketWebView.class);
+                    /*Intent in = new Intent(mActivity, BuyTicketWebView.class);
                     in.putExtra("URL", mEventPojo.getBuyNowLink());
                     in.putExtra("Header", mActivity.getResources().getString(R.string.buy_tickets));
-                    mActivity.startActivity(in);
+                    mActivity.startActivity(in);*/
+
+                    OperaUtils.BuyTicketCommmonFunction(mActivity, mEventPojo.getBuyNowLink(), mActivity.getResources().getString(R.string.buy_tickets));
                 }
             }
         });
