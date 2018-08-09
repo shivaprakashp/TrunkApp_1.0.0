@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
 
@@ -72,6 +73,7 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
                 /*startTime = events.getStartTime().split(" ");
                 eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);*/
                 try {
+                    /*f.setTimeZone(TimeZone.getTimeZone("UTC"));*/
                     Date mDate = f.parse(events.getEventTime().get(k).getFromTime());
                     /*String mDateStr=f2.format(mDate);
                     Log.e("Converted only date", mDateStr);*/

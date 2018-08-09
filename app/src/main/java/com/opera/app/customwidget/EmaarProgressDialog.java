@@ -67,9 +67,13 @@ public class EmaarProgressDialog {
     }
 
     public void dismiss() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-//            progressDialog = null;
+        try {
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+    //            progressDialog = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
