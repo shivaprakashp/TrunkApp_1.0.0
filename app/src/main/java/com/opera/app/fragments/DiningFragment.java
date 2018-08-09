@@ -168,15 +168,18 @@ public class DiningFragment extends BaseFragment {
             case R.id.mBtnReserveATable:
                 if (Connections.isConnectionAlive(mActivity)) {
                     if (manager.isUserLoggedIn()) {
-                        if (data.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
-                            openActivity(mActivity, ReserveATableActivity.class);
-                        } else {
-                            Intent in = new Intent(mActivity, CommonWebViewActivity.class);
-                            in.putExtra("URL", data.getRestBookUrl());
-                            in.putExtra("Header", data.getRestName());
-                            mActivity.startActivity(in);
+                        if (data.getRestId() !=null ){
+                            if (data.getRestId().equalsIgnoreCase(AppConstants.SEAN_CONOLLY_RESTAURANT_ID)) {
+                                openActivity(mActivity, ReserveATableActivity.class);
+                            } else {
+                                Intent in = new Intent(mActivity, CommonWebViewActivity.class);
+                                in.putExtra("URL", data.getRestBookUrl());
+                                in.putExtra("Header", data.getRestName());
+                                mActivity.startActivity(in);
+                            }
                         }
-                    } else {
+                        customToast.showErrorToast(getResources().getString(R.string.no_data));
+                }else {
                         GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
                         dialog.show();
                     }

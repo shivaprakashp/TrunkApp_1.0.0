@@ -8,9 +8,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -416,14 +414,14 @@ public class SettingsActivity extends BaseActivity implements  UpdateSettingsInt
             break;
 
             case R.id.linearLogout:
-                LogoutDialog dialog = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.ok),mUpdateSettingsInterface);
+                LogoutDialog dialog = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.yes), getString(R.string.no), mUpdateSettingsInterface);
                 dialog.show();
                 /*StartServiceUpdateSettings(getResources().getString(R.string.logout));*/
                 /* mSessionManager.logoutUser();*/
                 break;
 
             case R.id.tvLogout:
-                LogoutDialog dialog1 = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.ok),mUpdateSettingsInterface);
+                LogoutDialog dialog1 = new LogoutDialog(mActivity, getString(R.string.logout_header), getString(R.string.logout_msg), getString(R.string.yes), getString(R.string.no),mUpdateSettingsInterface);
                 dialog1.show();
 
                 /*StartServiceUpdateSettings(getResources().getString(R.string.logout));

@@ -1176,5 +1176,7 @@
     <string name="permission_text">Without this permission the app is unable to receive latest event related information.
     Unable to receive offers. Accept the permission or enable to permission from settings to receive offer notification.</string>
     <string name="permision_accept">Accept</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 
 </resources>
