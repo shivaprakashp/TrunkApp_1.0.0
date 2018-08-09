@@ -177,8 +177,10 @@ public class DiningFragment extends BaseFragment {
                                 in.putExtra("Header", data.getRestName());
                                 mActivity.startActivity(in);
                             }
+                        }else{
+                            customToast.showErrorToast(getResources().getString(R.string.no_data));
                         }
-                        customToast.showErrorToast(getResources().getString(R.string.no_data));
+
                 }else {
                         GuestDialog dialog = new GuestDialog(mActivity, mActivity.getString(R.string.guest_title), mActivity.getString(R.string.guest_msg));
                         dialog.show();
