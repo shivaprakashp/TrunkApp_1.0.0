@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.opera.app.R;
+import com.opera.app.customwidget.EmaarProgressDialog;
 import com.opera.app.listener.TaskComplete;
 import com.opera.app.pojo.RequestProperties;
 
@@ -17,7 +18,7 @@ import retrofit2.Response;
 
 public class DataListener {
 
-    private ProgressDialog dialog;
+    private EmaarProgressDialog dialog;
     private Context context;
     protected TaskComplete taskComplete;
     private RequestProperties properties;
@@ -25,15 +26,22 @@ public class DataListener {
     public DataListener(Context context, TaskComplete taskComplete, RequestProperties properties) {
         this.context = context;
         this.taskComplete = taskComplete;
-        dialog = new ProgressDialog(context);
+        dialog = new EmaarProgressDialog(context, null);
         this.properties = properties;
     }
 
     public void dataLoad(Call call) {
         try {
-            dialog.setMessage(context.getResources().getString(R.string.loading));
-            dialog.setCancelable(false);
-            dialog.show();
+           // dialog.setMessage(context.getResources().getString(R.string.loading));
+
+            dialog.showDialog();
+            dialog.setCancelListener(new EmaarProgressDialog.onDialogCancelListener() {
+                @Override
+                public void onCancel() {
+                    taskComplete = null;
+                }
+            });
+
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
