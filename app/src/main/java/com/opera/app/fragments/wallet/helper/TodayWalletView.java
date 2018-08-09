@@ -340,7 +340,7 @@ public class TodayWalletView extends LinearLayout {
                     e.printStackTrace();
                 }
 
-                if (mFrom.equalsIgnoreCase("Activated") && monthsBetweenDates(mStandardDate, mCurrentDate) <= 12) {
+                if (mFrom.equalsIgnoreCase("Activate") && monthsBetweenDates(mStandardDate, mCurrentDate) <= 12) {
                     mAvailableData++;
                     this.addView(rowView);
                 } else if (mFrom.equalsIgnoreCase("Completed") && monthsBetweenDates(mStandardDate, mCurrentDate) > 12) {

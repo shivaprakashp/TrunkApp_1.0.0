@@ -1104,6 +1104,7 @@
     <string name="walletToday">TODAY</string>
     <string name="walletUpcoming">UPCOMING</string>
     <string name="walletActivate">ACTIVATED</string>
+    <string name="walletActivate1">ACTIVATE</string>
     <string name="walletComplete">COMPLETED</string>
     <string name="dateOfReserve">Date of Reservation:</string>
     <string name="mealPeriod">Meal Period:</string>

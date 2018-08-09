@@ -56,7 +56,7 @@ public class WalletFragmentPagerAdapter extends FragmentPagerAdapter {
                 if (!enums.equals(WalletEnums.GIFT)) {
                     return context.getString(R.string.walletToday);
                 } else {
-                    return context.getString(R.string.walletActivate);
+                    return context.getString(R.string.walletActivate1);
                 }
 
             case 1:
