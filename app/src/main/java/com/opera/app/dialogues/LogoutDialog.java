@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class LogoutDialog extends Dialog {
 
     private Activity mActivity;
-    private String title,message, btnTxt;
+    private String title, message, firstBtn, secondBtn;
     private UpdateSettingsInterface mUpdateSettingsInterface;
 
     @BindView(R.id.txtTitle)
@@ -38,13 +38,14 @@ public class LogoutDialog extends Dialog {
     private BaseActivity mBaseActivity;
     private SessionManager mSessionManager;
 
-    public LogoutDialog(@NonNull Activity mActivity, String title, String message, String btnTxt, UpdateSettingsInterface mUpdateSettingsInterface) {
+    public LogoutDialog(@NonNull Activity mActivity, String title, String message, String firstBtn, String secondBtn, UpdateSettingsInterface mUpdateSettingsInterface) {
         super(mActivity);
 
         this.mActivity = mActivity;
         this.title = title;
         this.message = message;
-        this.btnTxt = btnTxt;
+        this.firstBtn = firstBtn;
+        this.secondBtn = secondBtn;
         this.mUpdateSettingsInterface=mUpdateSettingsInterface;
         mBaseActivity = (BaseActivity) mActivity;
         mSessionManager = new SessionManager(mActivity);
@@ -59,7 +60,8 @@ public class LogoutDialog extends Dialog {
         ButterKnife.bind(this);
         txtTitle.setText(title);
         txtMessage.setText(message);
-        btnOk.setText(btnTxt);
+        btnOk.setText(firstBtn);
+        btnCancel.setText(secondBtn);
 
         btnOk.setOnClickListener(buttonOK);
         btnCancel.setOnClickListener(buttonClose);

@@ -900,5 +900,7 @@
     <string name="dubai_opera_tour">جولة دبي للأوبرا</string>
     <string name="listen1">استمع</string>
     <string name="at">في</string>
+    <string name="yes">نعما</string>
+    <string name="no">لا</string>
 
 </resources>
