@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -238,6 +239,7 @@ public class EditProfileActivity extends BaseActivity {
         //edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
         edtMobile.setHint(getString(R.string.edit_mobile));
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
 
         if (manager.getUserLoginData() != null && manager.getUserLoginData().getData().getProfile().getMobileNumber() != null) {
