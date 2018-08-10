@@ -7,4 +7,6 @@
     android:textColor="@color/colorBlack"
     android:layout_height="wrap_content"
     font:name="Montserrat-Regular"
+    android:textDirection="anyRtl"
+    android:textAlignment="viewStart"
     android:padding="@dimen/app_margin_five"/>

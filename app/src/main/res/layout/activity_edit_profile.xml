@@ -185,6 +185,8 @@
                         style="@style/label_black"
                         android:layout_width="@dimen/app_width_zero"
                         android:layout_height="@dimen/app_height_large"
+                        android:textDirection="anyRtl"
+                        android:textAlignment="viewStart"
                         android:layout_weight="0.7"
                         font:name="Montserrat-Regular"
                         />

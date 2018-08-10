@@ -176,10 +176,10 @@
                             android:id="@+id/recyclerGenres"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/app_width_small"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="end"
+                            android:layout_alignParentEnd="true"
                             android:layout_margin="@dimen/app_margin_five"
                             android:layout_marginRight="@dimen/app_margin_ten"
+                            android:layout_marginLeft="@dimen/app_margin_ten"
                             android:orientation="horizontal"/>
 
                         <LinearLayout

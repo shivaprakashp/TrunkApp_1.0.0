@@ -7,6 +7,7 @@
     android:singleLine="true"
     android:layout_height="wrap_content"
     android:maxLines="1"
-    android:layoutDirection="ltr"
+    android:textDirection="anyRtl"
+    android:textAlignment="viewStart"
     font:name="Montserrat-Regular"
     android:padding="@dimen/app_margin_five"/>
