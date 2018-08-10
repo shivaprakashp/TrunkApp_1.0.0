@@ -107,7 +107,7 @@ public class WhatsOnPagerAdapter extends PagerAdapter {
             txtEventGenre.setVisibility(View.VISIBLE);
         }
 
-        if (eventObject.isFavourite() != null) {
+        if (eventObject!=null && eventObject.isFavourite() != null) {
             if (eventObject.isFavourite().equalsIgnoreCase("true")) {
                 imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
             } else {
