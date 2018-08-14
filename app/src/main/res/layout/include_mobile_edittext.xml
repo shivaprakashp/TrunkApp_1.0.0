@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/ll_CountryCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <com.opera.app.customwidget.CustomSpinner
         android:id="@+id/spinnerCountryCode"
         style="@style/label_black"
@@ -22,11 +28,10 @@
         android:padding="@dimen/app_margin_five"
         android:layout_weight="1"
         style="@style/label_black"
-        font:name="Montserrat-Regular"
-        android:textDirection="locale"
-        android:textAlignment="viewStart">
+        font:name="Montserrat-Regular">
 
         <requestFocus/>
     </com.opera.app.customwidget.EditTextWithFont>
 
+    </LinearLayout>
 </LinearLayout>

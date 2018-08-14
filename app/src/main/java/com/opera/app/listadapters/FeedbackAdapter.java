@@ -79,7 +79,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
         holder.txtShowName.setText(mFeedbackCurrentItem.getEventName());
         holder.txtShowDesc.setText(R.string.feedback_comment);
 
-        startTime = mFeedbackCurrentItem.getStartTime().split(" ");
+//        startTime = mFeedbackCurrentItem.getStartTime().split(" ");
         //eventTime = mFeedbackCurrentItem.getDateTime().split("T")[1].substring(0, 2) + ":" + mFeedbackCurrentItem.getDateTime().split("T")[1].substring(2, 4);
         eventTime = mFeedbackCurrentItem.getDateTime().split("T")[1];
         eventDates = mFeedbackCurrentItem.getDateTime().split("T")[0];
@@ -95,7 +95,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
         SimpleDateFormat timeFormat = new SimpleDateFormat("MMMM dd, yyyy");
         String finalDate = timeFormat.format(myDate);
 
-        holder.txtShowDateAndTime.setText(new StringBuilder().append(mActivity.getResources().getString(R.string.feedback_attended_time)).append(" ").append(finalDate).append(" ").append(eventTime).append(" ").append(startTime[1]).toString());
+        holder.txtShowDateAndTime.setText(new StringBuilder().append(mActivity.getResources().getString(R.string.feedback_attended_time)).append(" ").append(finalDate).append(" ").append(eventTime).append(" "));
 
         EventListingDB mEventDetailsDB = new EventListingDB(mActivity);
         mEventDetailsDB.open();
