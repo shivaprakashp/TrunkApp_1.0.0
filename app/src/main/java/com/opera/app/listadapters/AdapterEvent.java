@@ -132,7 +132,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Events mEventPojo = mEventListingData.get(position);
 
-        if (mEventPojo.isFavourite().equalsIgnoreCase("true")) {
+        if (mEventPojo!=null && mEventPojo.isFavourite()!=null && mEventPojo.isFavourite().equalsIgnoreCase("true")) {
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite_selected));
         } else {
             holder.imgFavourite.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.ic_favourite));
