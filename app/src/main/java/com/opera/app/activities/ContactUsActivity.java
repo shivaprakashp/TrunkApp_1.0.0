@@ -167,6 +167,7 @@ public class ContactUsActivity extends BaseActivity {
 
         mEdtMobileNumber = edit_edtMobile.findViewById(R.id.edtMobile);
 //        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        // UAT issue - DOMAQ-42
         llCountryCode = edit_edtMobile.findViewById(R.id.ll_CountryCode);
         if (LanguageManager.createInstance().
                 GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
