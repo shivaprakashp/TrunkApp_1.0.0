@@ -10,6 +10,7 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -111,6 +112,8 @@ public class ContactUsActivity extends BaseActivity {
     EditTextWithFont mEdtFullName, mEdtEmail, mEdtMobileNumber;
     String countryCode;
 
+    LinearLayout llCountryCode;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +167,17 @@ public class ContactUsActivity extends BaseActivity {
 
         mEdtMobileNumber = edit_edtMobile.findViewById(R.id.edtMobile);
 //        mEdtMobileNumber.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        // UAT issue - DOMAQ-42
+        llCountryCode = edit_edtMobile.findViewById(R.id.ll_CountryCode);
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+            mEdtMobileNumber.setGravity(Gravity.CENTER | Gravity.LEFT);
+        } else {
+            mEdtMobileNumber.setGravity(Gravity.CENTER | Gravity.RIGHT);
+            llCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         mEdtMobileNumber.setHint(getString(R.string.mobile));
         mEdtMobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEdtMobileNumber.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -185,6 +199,12 @@ public class ContactUsActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+        } else {
+            spinnerCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         if (manager.getUserLoginData() != null) {
             if (manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
@@ -221,6 +241,7 @@ public class ContactUsActivity extends BaseActivity {
 
             }
         });
+
     }
 
     private void initSpinner() {

@@ -15,6 +15,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -122,6 +124,9 @@ public class RegisterActivity extends BaseActivity {
 
     @BindView(R.id.edtMobile)
     EditText edtMobile;
+
+    @BindView(R.id.ll_CountryCode)
+    LinearLayout llCountryCode;
 
     @BindView(R.id.spinnerCountryCode)
     CustomSpinner spinnerCountryCode;
@@ -252,6 +257,14 @@ public class RegisterActivity extends BaseActivity {
             }
         });
 
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+            edtMobile.setGravity(Gravity.CENTER | Gravity.LEFT);
+        } else {
+            edtMobile.setGravity(Gravity.CENTER | Gravity.RIGHT);
+            llCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
         edtMobile.setHint(getString(R.string.mobile));
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
@@ -264,7 +277,12 @@ public class RegisterActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
-
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+        } else {
+            spinnerCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         spinnerCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

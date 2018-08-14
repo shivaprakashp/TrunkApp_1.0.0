@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -78,6 +80,7 @@ public class ReserveATableActivity extends BaseActivity {
     private SessionManager mSessionManager;
     private String mCurrentSelectedItemTime = "";
     EditText editDOB;
+    LinearLayout llCountryCode;
 
     private ArrayAdapter<String> adapterSelectTime;
     //injecting retrofit
@@ -194,6 +197,12 @@ public class ReserveATableActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+        } else {
+            spinnerCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         if (mSessionManager.getUserLoginData() != null) {
             if (mSessionManager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
@@ -322,6 +331,15 @@ public class ReserveATableActivity extends BaseActivity {
         edtEmail.setHint(getString(R.string.email));
 
         edtFulNo = reserve_edtFulNo.findViewById(R.id.edtMobile);
+        llCountryCode = reserve_edtFulNo.findViewById(R.id.ll_CountryCode);
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+            edtFulNo.setGravity(Gravity.CENTER | Gravity.LEFT);
+        } else {
+            edtFulNo.setGravity(Gravity.CENTER | Gravity.RIGHT);
+            llCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
         edtFulNo.setInputType(InputType.TYPE_CLASS_NUMBER);
         edtFulNo.setMaxLines(1);
         edtFulNo.setHint(getString(R.string.mobile));

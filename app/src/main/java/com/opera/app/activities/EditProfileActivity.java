@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
@@ -97,6 +99,9 @@ public class EditProfileActivity extends BaseActivity {
 
     @BindView(R.id.edit_edtMobile)
     EditTextWithFont edtMobile;
+
+    @BindView(R.id.ll_CountryCode)
+    LinearLayout llCountryCode;
 
     @BindView(R.id.edit_edtCity)
     View edit_edtCity;
@@ -237,6 +242,7 @@ public class EditProfileActivity extends BaseActivity {
         });
 
         //edtMobile = (EditTextWithFont) edit_edtMobile.findViewById(R.id.edtMobile);
+
         edtMobile.setHint(getString(R.string.edit_mobile));
         edtMobile.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         edtMobile.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -251,7 +257,14 @@ public class EditProfileActivity extends BaseActivity {
                 edtMobile.setText(manager.getUserLoginData().getData().getProfile().getMobileNumber());
             }
         }
-
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+            edtMobile.setGravity(Gravity.CENTER | Gravity.LEFT);
+        } else {
+            edtMobile.setGravity(Gravity.CENTER | Gravity.RIGHT);
+            llCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
         //spinnerCountryCode = (CustomSpinner) edit_edtMobile.findViewById(R.id.spinnerCountryCode);
         //---------------Country Code----------------
         // Initializing a String Array
@@ -260,6 +273,12 @@ public class EditProfileActivity extends BaseActivity {
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.country_code))));
         spinnerCountryCode.setTitle(getResources().getString(R.string.select) + " " + getResources().getString(R.string.country_code));
         spinnerCountryCode.setAdapter(CountryCodeAdapter);
+        if (LanguageManager.createInstance().
+                GetSharedPreferences(mActivity, LanguageManager.createInstance().mSelectedLanguage, "").
+                equalsIgnoreCase(LanguageManager.mLanguageEnglish)) {
+        } else {
+            spinnerCountryCode.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         if(manager.getUserLoginData().getData().getProfile().getMobileNumber().contains("+")) {
 
             countryCode = manager.getUserLoginData().getData().getProfile().getMobileNumber().substring(manager.getUserLoginData().getData().getProfile().getMobileNumber().indexOf("(") + 1,
