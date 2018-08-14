@@ -529,24 +529,28 @@ public class ReserveATableActivity extends BaseActivity {
         @Override
         public void onTaskFinished(Response response, String mRequestKey) {
             if (mRequestKey.equalsIgnoreCase(AppConstants.GETMASTERDETAILS.GETMASTERDETAILS)) {
-                arrMealPeriods = new ArrayList<>();
-                arrTimeSegments = new ArrayList<>();
+                try {
+                    arrMealPeriods = new ArrayList<>();
+                    arrTimeSegments = new ArrayList<>();
 
-                //Resetting No of guests
-                mTxtNumberOfGuests.setText("1");
+                    //Resetting No of guests
+                    mTxtNumberOfGuests.setText("1");
 //                mEdtNoOfGuests.setText("1");
 
-                mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
-                //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
-                if (mRestaurantMasterDetails != null) {
-                    arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
-                if (mRestaurantMasterDetails.getData().getTime_Segment_Responses() != null)
-                    arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
-                maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
-                }
+                    mRestaurantMasterDetails = (RestaurantMasterDetails) response.body();
+                    //arrMealPeriods.add(new Meal_Periods("",getResources().getString(R.string.select_meal_priod)));
+                    if (mRestaurantMasterDetails != null) {
+                        arrMealPeriods.addAll(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMeal_Periods());
+                    if (mRestaurantMasterDetails.getData().getTime_Segment_Responses() != null)
+                        arrTimeSegments.addAll(mRestaurantMasterDetails.getData().getTime_Segment_Responses());
+                    maxPartySize = Integer.parseInt(mRestaurantMasterDetails.getData().getControl_Values_Response().getMeal_Period_Response().getMax_Party_Size());
+                    }
                 /*mAdapterMealPeriod = new AdapterMealPeriod(mActivity, arrMealPeriods);
                 mSpinnerMealPeriod.setAdapter(mAdapterMealPeriod);*/
-                ChangeTimeSegmentsField(mTxtNumberOfGuests.getText().toString().trim());
+                    ChangeTimeSegmentsField(mTxtNumberOfGuests.getText().toString().trim());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
             } else if (mRequestKey.equalsIgnoreCase(AppConstants.BOOKATABLE.BOOKATABLE)) {
                 if (response.body() != null) {
                     ReserveResponse mBookTable =
