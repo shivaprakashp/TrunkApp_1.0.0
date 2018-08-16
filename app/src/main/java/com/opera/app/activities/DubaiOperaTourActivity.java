@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -154,7 +155,15 @@ public class DubaiOperaTourActivity extends BaseActivity {
             AllEvents mEventDataPojo = (AllEvents) response.body();
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
-                    mTxtTourDetails.setText(Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription()));
+
+                    Spanned result;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        result = Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription(),Html.FROM_HTML_MODE_LEGACY);
+                    } else {
+                        result = Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription());
+                    }
+                    mTxtTourDetails.setText(result);
+
                     Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
                             .into(mIvTourCoverImage, new Callback() {
                                 @Override
