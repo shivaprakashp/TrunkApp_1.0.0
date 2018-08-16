@@ -19,7 +19,7 @@
             <RelativeLayout
                 android:id="@+id/relativeImageTop"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="400dp">
 
                 <ImageView
                     android:id="@+id/cover_image"
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/black_gradient"
                         android:orientation="vertical"
-                        android:paddingBottom="15dp">
+                        android:paddingBottom="10dp">
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recyclerGenres"
@@ -192,7 +192,7 @@
                             <android.support.v4.widget.NestedScrollView
                                 android:id="@+id/nestedScrollTxt"
                                 android:layout_width="match_parent"
-                                android:layout_height="120dp"
+                                android:layout_height="100dp"
                                 android:layout_margin="@dimen/app_margin_ten">
 
                                 <TextView

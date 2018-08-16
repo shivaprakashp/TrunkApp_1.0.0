@@ -172,7 +172,6 @@
                         android:layout_width="@dimen/app_width_vsmall"
                         android:layout_height="@dimen/app_height_vsmall"
                         android:layout_marginEnd="@dimen/app_margin_five"
-                        android:rotationY="@integer/locale_mirror_flip"
                         android:src="@drawable/ic_telephone" />
 
                     <com.opera.app.customwidget.TextViewWithFont
@@ -182,6 +181,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
+                        android:layoutDirection="ltr"
                         font:name="Montserrat-Light" />
 
                 </LinearLayout>
