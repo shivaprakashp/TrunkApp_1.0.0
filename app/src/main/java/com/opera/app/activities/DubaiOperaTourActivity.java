@@ -1,17 +1,23 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.opera.app.BaseActivity;
 import com.opera.app.MainApplication;
@@ -157,14 +163,16 @@ public class DubaiOperaTourActivity extends BaseActivity {
             try {
                 if (mEventDataPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
 
-                    Spanned result;
+                    /*Spanned result;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                         result = Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription(),Html.FROM_HTML_MODE_LEGACY);
                     } else {
                         result = Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription());
                     }
                     mTxtTourDetails.setText(result);
-                    mTxtTourDetails. setMovementMethod(LinkMovementMethod.getInstance());
+                    mTxtTourDetails. setMovementMethod(LinkMovementMethod.getInstance());*/
+
+                    setTextViewHTML(mTxtTourDetails,mEventDataPojo.getEvents().get(0).getDescription());
 
                     Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
                             .into(mIvTourCoverImage, new Callback() {
@@ -190,4 +198,32 @@ public class DubaiOperaTourActivity extends BaseActivity {
             Log.e("data", "error");
         }
     };
+
+    protected void makeLinkClickable(SpannableStringBuilder strBuilder, final URLSpan span)
+    {
+        int start = strBuilder.getSpanStart(span);
+        int end = strBuilder.getSpanEnd(span);
+        int flags = strBuilder.getSpanFlags(span);
+        ClickableSpan clickable = new ClickableSpan() {
+            public void onClick(View view) {
+                // Do something with span.getURL() to handle the link click...
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(span.getURL()));
+                startActivity(browserIntent);
+            }
+        };
+        strBuilder.setSpan(clickable, start, end, flags);
+        strBuilder.removeSpan(span);
+    }
+
+    protected void setTextViewHTML(TextView text, String html)
+    {
+        CharSequence sequence = Html.fromHtml(html);
+        SpannableStringBuilder strBuilder = new SpannableStringBuilder(sequence);
+        URLSpan[] urls = strBuilder.getSpans(0, sequence.length(), URLSpan.class);
+        for(URLSpan span : urls) {
+            makeLinkClickable(strBuilder, span);
+        }
+        text.setText(strBuilder);
+        text.setMovementMethod(LinkMovementMethod.getInstance());
+    }
 }
