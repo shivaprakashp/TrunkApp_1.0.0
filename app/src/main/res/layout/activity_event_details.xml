@@ -19,7 +19,7 @@
             <RelativeLayout
                 android:id="@+id/relativeImageTop"
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="360dp">
 
                 <ImageView
                     android:id="@+id/cover_image"
@@ -170,14 +170,14 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/black_gradient"
                         android:orientation="vertical"
-                        android:paddingBottom="10dp">
+                        android:paddingBottom="15dp">
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recyclerGenres"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/app_width_small"
                             android:layout_alignParentEnd="true"
-                            android:layout_margin="@dimen/app_margin_five"
+                            android:layout_marginTop="@dimen/app_margin_five"
                             android:layout_marginRight="@dimen/app_margin_ten"
                             android:layout_marginLeft="@dimen/app_margin_ten"
                             android:orientation="horizontal"/>

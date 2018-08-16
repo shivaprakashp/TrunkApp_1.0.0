@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
@@ -207,8 +206,20 @@ public class DubaiOperaTourActivity extends BaseActivity {
         ClickableSpan clickable = new ClickableSpan() {
             public void onClick(View view) {
                 // Do something with span.getURL() to handle the link click...
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(span.getURL()));
+                String mUrlBrowser="";
+                if(!span.getURL().contains("http")){
+                    mUrlBrowser="http://"+span.getURL();
+                }else{
+                    mUrlBrowser=span.getURL();
+                }
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlBrowser));
                 startActivity(browserIntent);
+
+               /* Uri webpage = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }*/
             }
         };
         strBuilder.setSpan(clickable, start, end, flags);
