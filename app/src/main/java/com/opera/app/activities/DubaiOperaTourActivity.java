@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -163,6 +164,7 @@ public class DubaiOperaTourActivity extends BaseActivity {
                         result = Html.fromHtml(mEventDataPojo.getEvents().get(0).getDescription());
                     }
                     mTxtTourDetails.setText(result);
+                    mTxtTourDetails. setMovementMethod(LinkMovementMethod.getInstance());
 
                     Picasso.with(mActivity).load(mEventDataPojo.getEvents().get(0).getImage())
                             .into(mIvTourCoverImage, new Callback() {
