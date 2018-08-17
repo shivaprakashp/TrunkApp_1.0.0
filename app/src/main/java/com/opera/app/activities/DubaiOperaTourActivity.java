@@ -206,14 +206,30 @@ public class DubaiOperaTourActivity extends BaseActivity {
         ClickableSpan clickable = new ClickableSpan() {
             public void onClick(View view) {
                 // Do something with span.getURL() to handle the link click...
-                String mUrlBrowser="";
+
+                String[] TO = {span.getURL()};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                //emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Queries");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Please send more details about the tour.");
+                try {
+                    mActivity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+
+                /*String mUrlBrowser="";
                 if(!span.getURL().contains("http")){
                     mUrlBrowser="http://"+span.getURL();
                 }else{
                     mUrlBrowser=span.getURL();
                 }
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrlBrowser));
-                startActivity(browserIntent);
+                startActivity(browserIntent);*/
 
                /* Uri webpage = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
