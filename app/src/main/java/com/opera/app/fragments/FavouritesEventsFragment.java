@@ -68,8 +68,10 @@ public class FavouritesEventsFragment extends BaseFragment implements EventInter
         mEventDetailsDB.close();
         mFilteredEvents = new ArrayList<>();
         for (int i = 0; i < mEventListingData.size(); i++) {
-            if (mEventListingData.get(i).isFavourite().equalsIgnoreCase("true")) {
-                mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
+            if (mEventListingData != null &&  mEventListingData.get(i).isFavourite() != null) {
+                if (mEventListingData.get(i).isFavourite().equalsIgnoreCase("true")) {
+                    mFilteredEvents.add(new Events(mEventListingData.get(i).getEventId(), mEventListingData.get(i).getName(), mEventListingData.get(i).getImage(), mEventListingData.get(i).getInternalName(), mEventListingData.get(i).getFrom(), mEventListingData.get(i).getTo(), mEventListingData.get(i).getMobileDescription(), mEventListingData.get(i).isFavourite(), mEventListingData.get(i).getEventUrl(), mEventListingData.get(i).getGenreList(), mEventListingData.get(i).getBuyNowLink(), mEventListingData.get(i).getSharedContentText(), mEventListingData.get(i).getWhatsOnImage(), mEventListingData.get(i).getHighlightedImage()));
+                }
             }
         }
         AdapterEvent mAdapterEvent = new AdapterEvent(mActivity, mFilteredEvents, listenerFavourite);

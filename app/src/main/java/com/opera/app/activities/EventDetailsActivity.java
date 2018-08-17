@@ -232,10 +232,12 @@ public class EventDetailsActivity extends BaseActivity {
         recyclerGenres.setAdapter(mAdapter);
 
         try {
-            if (IsFavourite.equalsIgnoreCase("true")) {
-                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
-            } else {
-                imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+            if (IsFavourite != null) {
+                if (IsFavourite.equalsIgnoreCase("true")) {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite_selected));
+                } else {
+                    imgFavourite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favourite));
+                }
             }
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
