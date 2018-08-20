@@ -148,12 +148,51 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         for ( int i = 0 ; i < mEventListingData.size() ; i++ ){
             for (int k = 0 ; k < mEventListingData.get(i).getEventTime().size() ; k++ ){
                 if (currentDay.equalsIgnoreCase(mEventListingData.get(i).getEventTime().get(k).getFromTime().split("T")[0])){
-                    eventsList.add(mEventListingData.get(i));
+                    if(eventsList.size()>0){
+                        for(int j=0;j<eventsList.size();j++){
+                            if(!eventsList.get(j).getName().equalsIgnoreCase(mEventListingData.get(i).getName())){
+                                eventsList.add(mEventListingData.get(i));
+                            }
+                        }
+                    }else{
+                        eventsList.add(mEventListingData.get(i));
+                    }
                 }
             }
         }
 
-        adapter = new CalendarRecyclerView(eventsList, currentDay);
+        ArrayList<Events> actualEvents=new ArrayList<>();
+        for(int i=0;i<eventsList.size();i++){
+            for(int j=0;j<eventsList.get(i).getEventTime().size();j++){
+                if(currentDay.equalsIgnoreCase(eventsList.get(i).getEventTime().get(j).getFromTime().split("T")[0])){
+                    actualEvents.add(new Events(eventsList.get(i).getEventId(),eventsList.get(i).getName(),eventsList.get(i).getImage(),eventsList.get(i).getInternalName(),
+                            eventsList.get(i).getFrom(),eventsList.get(i).getTo(),eventsList.get(i).getDescription(),eventsList.get(i).isFavourite(),eventsList.get(i).getEventUrl(),
+                            eventsList.get(i).getGenreList(),eventsList.get(i).getBuyNowLink(),eventsList.get(i).getSharedContent(),eventsList.get(i).getWhatsOnImage(),eventsList.get(i).getHighlightedImage()
+                            ,eventsList.get(i).getEventTime().get(j).getFromTime(),eventsList.get(i).getEventTime().get(j).getToTime()));
+                }
+            }
+        }
+
+
+        /*for (int k = 0; k < eventsList.size(); k++) {
+            if (currentDay.equalsIgnoreCase(eventsList.get(k).getEventTime().split("T")[0])) {
+                *//*startTime = events.getStartTime().split(" ");
+                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);*//*
+                try {
+                    *//*f.setTimeZone(TimeZone.getTimeZone("UTC"));*//*
+                    Date mDate = f.parse(events.getEventTime().get(k).getFromTime());
+                    *//*String mDateStr=f2.format(mDate);
+                    Log.e("Converted only date", mDateStr);*//*
+                    startTime = f3.format(mDate);
+
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }*/
+
+        adapter = new CalendarRecyclerView(actualEvents, currentDay);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerCalendar.setLayoutManager(mLayoutManager);
         recyclerCalendar.setItemAnimator(new DefaultItemAnimator());

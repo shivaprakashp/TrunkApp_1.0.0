@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerView.CalendarViewHolder> {
 
@@ -66,25 +65,37 @@ public class CalendarRecyclerView extends RecyclerView.Adapter<CalendarRecyclerV
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
         final Events events = arrayList.get(position);
 
-        String startTime = "";
 
-        for (int k = 0; k < events.getEventTime().size(); k++) {
+        String startTime = "";
+        /*
+for (int k = 0; k < events.getEventTime().size(); k++) {
             if (currentDay.equalsIgnoreCase(events.getEventTime().get(k).getFromTime().split("T")[0])) {
-                /*startTime = events.getStartTime().split(" ");
-                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);*/
+                *//*startTime = events.getStartTime().split(" ");
+                eventTime = events.getEventTime().get(k).getFromTime().split("T")[1].substring(0, 2) + ":" + events.getEventTime().get(k).getFromTime().split("T")[1].substring(2, 4);*//*
                 try {
-                    /*f.setTimeZone(TimeZone.getTimeZone("UTC"));*/
+                    *//*f.setTimeZone(TimeZone.getTimeZone("UTC"));*//*
                     Date mDate = f.parse(events.getEventTime().get(k).getFromTime());
-                    /*String mDateStr=f2.format(mDate);
-                    Log.e("Converted only date", mDateStr);*/
+                    *//*String mDateStr=f2.format(mDate);
+                    Log.e("Converted only date", mDateStr);*//*
                     startTime = f3.format(mDate);
+
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
+        }*/
+
+        Date mDate = null;
+        try {
+            mDate = f.parse(events.getmInnerFromTime());
+            startTime = f3.format(mDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
         try {
+
             holder.txtCalendarTime.setText(startTime);
             /*holder.txtCalendarTime.setText(new SimpleDateFormat("K:mm").format(new SimpleDateFormat("H:mm").parse(eventTime)) + "\n" + startTime[1]);*/
         } catch (Exception e) {

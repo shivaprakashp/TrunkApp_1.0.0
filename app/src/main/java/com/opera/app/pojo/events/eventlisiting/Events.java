@@ -119,7 +119,7 @@ public class Events {
     private ArrayList<GenreList> Genre;
 
     boolean IsInfoOpen = false;
-    String IsFavourite="false";
+    String IsFavourite="false",mInnerFromTime="",mInnerToTime="";
 
     public String isFavourite() {
         return IsFavourite;
@@ -151,7 +151,7 @@ public class Events {
 
     public Events(String EventId,String Name, String image, String internalName, String startDate,
                   String endDate, String MobileDescription,String IsFavourite,String EventUrl,
-    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText,String WhatsOnImage,String HighlightedImage) {
+    ArrayList<GenreList> Genre,String BuyNowLink,String SharedContentText,String WhatsOnImage,String HighlightedImage,String mInnerFromTime,String mInnerToTime) {
         this.EventId=EventId;
         this.Name = Name;
         Image = image;
@@ -166,6 +166,24 @@ public class Events {
         this.SharedContentText=SharedContentText;
         this.WhatsOnImage=WhatsOnImage;
         this.HighlightedImage=HighlightedImage;
+        this.mInnerFromTime=mInnerFromTime;
+        this.mInnerToTime=mInnerToTime;
+    }
+
+    public String getmInnerFromTime() {
+        return mInnerFromTime;
+    }
+
+    public void setmInnerFromTime(String mInnerFromTime) {
+        this.mInnerFromTime = mInnerFromTime;
+    }
+
+    public String getmInnerToTime() {
+        return mInnerToTime;
+    }
+
+    public void setmInnerToTime(String mInnerToTime) {
+        this.mInnerToTime = mInnerToTime;
     }
 
     public String getEventPerfCode() {
