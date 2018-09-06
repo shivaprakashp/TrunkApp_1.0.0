@@ -247,17 +247,17 @@ public class HomeFragment extends BaseFragment {
                     if (history.getEndTime()!=null){
                         String[] endTime = history.getEndTime().split("T");
 
-                        calendar.set(Integer.valueOf(endTime[0].substring(0,4)),
+                        /*calendar.set(Integer.valueOf(endTime[0].substring(0,4)),
                                 Integer.valueOf(endTime[0].substring(4,6)),
                                 Integer.valueOf(endTime[0].substring(4,6)),
                                 Integer.valueOf(endTime[1].substring(0,2)),
-                                Integer.valueOf(endTime[1].substring(3,5)));
+                                Integer.valueOf(endTime[1].substring(3,5)));*/
 
-                        /*  calendar.set(2018,
-                            06,
-                            17,
-                            17,
-                            58);*/
+                          calendar.set(2018,
+                            9,
+                            6,
+                            11,
+                            12);
 
                         //log alarm
                         Intent intentLog = new Intent(mActivity, FeedBackReceiver.class);

@@ -199,12 +199,14 @@ public class DiningFragment extends BaseFragment {
         public void onTaskFinished(Response response, String mRequestKey) {
             RestaurantListing mRestaurantPojo = (RestaurantListing) response.body();
 
-            if (mRestaurantPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
-                if (mRestaurantPojo.getData().size() > 0) {
-                    restOpeation.open();
-                    restOpeation.removeSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
-                    restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
-                    getSeanConnollyData();
+            if(mRestaurantPojo!=null && mRestaurantPojo.getStatus()!=null){
+                if (mRestaurantPojo.getStatus().equalsIgnoreCase(AppConstants.STATUS_SUCCESS)) {
+                    if (mRestaurantPojo.getData().size() > 0) {
+                        restOpeation.open();
+                        restOpeation.removeSeanConnolly(AppConstants.SEAN_CONOLLY_RESTAURANT_ID);
+                        restOpeation.addSeanConnollyData(mRestaurantPojo.getData().get(0));
+                        getSeanConnollyData();
+                    }
                 }
             }
         }
