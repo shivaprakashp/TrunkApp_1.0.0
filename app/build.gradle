@@ -19,11 +19,12 @@ android {
         config {
             keyAlias 'dubaiopera'
             keyPassword 'Em@@rKeyst0re'
-            storeFile file('H:/ProjectDetails/Dubai_Opera/Live upload details/dubaiOperaKeystore')
+            storeFile file('D:/DubaiOpera/Sandhya/dubaiOperaKeystore')
             storePassword 'Em@@rKeyst0re'
         }
     }
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.opera.app"
         minSdkVersion 21
@@ -31,8 +32,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.include_menu_items.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        multiDexEnabled false
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     buildTypes {
         release {
             debuggable false
@@ -85,15 +94,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.google.android.gms:play-services-analytics:10.2.4'
     implementation 'com.github.moondroid.coverflow:library:1.0'
-    //these two lines are added
-    compile 'com.google.dagger:dagger:2.13'
+    //these two lines are addedmu
+    implementation 'com.google.dagger:dagger:2.13'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     //butternife for reduce the effort of defining views
-    compile 'com.jakewharton:butterknife:8.4.0'
+    implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-geo-sdk:1.+@aar'
-    compile('org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-sdk:1.13.3@aar') {
+    implementation 'org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-geo-sdk:1.+@aar'
+    implementation('org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-sdk:1.13.3@aar') {
         transitive = true
     }
     //    Add Zxing library to generate barcode
@@ -102,7 +111,7 @@ dependencies {
     implementation files('libs/picasso-2.5.2.jar')
     //workmanager
     implementation 'android.arch.work:work-runtime:1.0.0-alpha04'
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }
 }
