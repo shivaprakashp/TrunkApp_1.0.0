@@ -6,5 +6,5 @@ package com.opera.app;
 
 public class UrlUtils {
 
-    public static String baseUrl = "https://api.androidhive.info/";
+    public static String baseUrl = "http://dubaiopera.emaar.com/api/";
 }
