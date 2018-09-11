@@ -1,7 +1,6 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -102,6 +101,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         } else {
             customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
             try {
+                dbManager.open();
                 fetchDataFromDB();
             } catch (Exception e) {
                 e.printStackTrace();
