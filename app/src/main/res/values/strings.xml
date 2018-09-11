@@ -1134,9 +1134,13 @@
     <string name="venue_detail">Dubai Opera, Dubai</string>
     <string name="date_detail">VALID FOR 12 MONTHS</string>
 
-    <!--about push notification -->
-    <string name="google_app_id">102673554145</string>
-    <string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>
+    <!--about push notification testing-->
+   <!-- <string name="google_app_id">102673554145</string>
+    <string name="infobip_application_code">463d82f0d0cfe664d9b1465902dd8604-7b828e34-bdb7-4491-948b-a72173851488</string>-->
+
+    <!--about push notification live-->
+    <string name="google_app_id">842786222429</string>
+    <string name="infobip_application_code">e3dd075d9513cef0643ff6ac1fac6b93-6db0bfbd-3e46-4919-971a-83ac38440985</string>
 
     <string name="close">CLOSE</string>
     <string name="select_item">Select item</string>

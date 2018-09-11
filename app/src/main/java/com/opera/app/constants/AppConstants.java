@@ -10,7 +10,12 @@ public interface AppConstants {
     String SEAN_CONOLLY_R_STATUS = "3";
     String EVENT_TYPE_OPERA_TOUR = "DubaiTour";
     String EVENT_TYPE_GIFT_CARD = "GiftCard";
-    String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
+
+    //Testing
+//    String YOUTUBE_DEVELOPER_KEY = "AIzaSyBt5baizzFMEP--s1eu82goVw_7iRhDAbc";
+
+    //Live
+    String YOUTUBE_DEVELOPER_KEY = "AIzaSyBDP3_MA_E5lSZZ5XXHrDwP8bcGKQGOhVo";
     String EnglishLanguage = "en";
     String ArabicLanguage = "ar-AE";
     String STATUS_SUCCESS = "success";

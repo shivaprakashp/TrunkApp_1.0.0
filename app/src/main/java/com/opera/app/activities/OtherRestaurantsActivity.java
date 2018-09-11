@@ -1,6 +1,7 @@
 package com.opera.app.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -91,6 +92,7 @@ public class OtherRestaurantsActivity extends BaseActivity {
         initToolbar();
         initViews();
         GetRestauarantDetails();
+
     }
 
     private void GetRestauarantDetails() {
@@ -99,6 +101,11 @@ public class OtherRestaurantsActivity extends BaseActivity {
             controller.getRestaurantListing(taskComplete, api);
         } else {
             customToast.showErrorToast(getResources().getString(R.string.internet_error_msg));
+            try {
+                fetchDataFromDB();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

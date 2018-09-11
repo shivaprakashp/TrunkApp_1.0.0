@@ -15,6 +15,14 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'dubaiopera'
+            keyPassword 'Em@@rKeyst0re'
+            storeFile file('H:/ProjectDetails/Dubai_Opera/Live upload details/dubaiOperaKeystore')
+            storePassword 'Em@@rKeyst0re'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.opera.app"
@@ -23,21 +31,22 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.include_menu_items.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
+            debuggable false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         debug {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
     flavorDimensions "default"
-
     productFlavors {
         prod {
             applicationId "com.opera.app.prod"
@@ -91,10 +100,8 @@ dependencies {
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     implementation files('libs/picasso-2.5.2.jar')
-
     //workmanager
-    implementation "android.arch.work:work-runtime:1.0.0-alpha04"
-
+    implementation 'android.arch.work:work-runtime:1.0.0-alpha04'
     compile('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }
